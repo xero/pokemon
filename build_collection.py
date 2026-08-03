@@ -38,18 +38,21 @@ LABELS = [
     ("weakness", "Weakness"),
     ("resistance", "Resistance"),
     ("retreat_cost", "Retreat"),
-    ("standard_legal", "Can I play it?"),
+    ("standard_legal", None),   # the badge says it; a label would repeat it
     ("category", "Category"),
 ]
 
-# Written for Fox, so the answer comes first and the reason second. Each entry
-# is (badge image in assets/, wording); unknown has no badge to show.
+# Written for Fox: the badge answers before the words do. Each entry is
+# (badge image in assets/, wording).
 LEGAL_LABEL = {
-    "yes": ("ok", "Yes, this card is allowed in tournaments"),
-    "no": ("no", "No, this card is too old for tournaments now"),
-    "japanese": ("no", "No, Japanese cards are not allowed in US tournaments"),
-    "unknown": ("", "? Not sure, check the letter on the card"),
+    "yes": ("ok", "This card is tournament legal"),
+    "no": ("no", "This card is too old for tournaments"),
+    "japanese": ("no", "USA tournaments require English cards"),
+    "unknown": ("unown", "Unknown, check the letter on the card"),
 }
+
+# Anchor for the footnote the unknown state points at.
+MARKS_ANCHOR = "checking-the-letter"
 
 ATTACKS = ("attack1", "attack2", "attack3", "attack4")
 
@@ -214,7 +217,10 @@ def value(key, r):
         if badge and (ROOT / "assets" / f"{badge}.png").exists():
             img = (f'<img src="./assets/{badge}.png" alt="{badge.upper()}" '
                    'height="22" align="top"> ')
-        return img + html.escape(text)
+        out = img + html.escape(text)
+        if v == "unknown":
+            out += f' <a href="#{MARKS_ANCHOR}">*</a>'
+        return out
     if key == "card_text":
         # normalize_cards.py prefixes the description with "Ability: ", which
         # would read twice over once the row label already says Ability.
@@ -287,6 +293,31 @@ for r, a in entries:
         out.append(f"  <tr><td>{cell}</td></tr>")
     out.append("</table>")
     out.append("")
+
+# Footnote for the unknown badge. An HTML heading rather than a markdown one so
+# the id is ours to pick and the link from every unknown row keeps working.
+out += [
+    f'<h2 id="{MARKS_ANCHOR}">* Checking the letter</h2>',
+    "",
+    "> [!IMPORTANT]",
+    "> Every modern card has a tiny letter printed in the bottom corner, next to"
+    " the card number. That letter is the only thing that decides whether a card"
+    " is too old to play. The set it came from does not decide it, and neither"
+    " does how new the card looks.",
+    ">",
+    "> Right now three letters are legal: **H**, **I**, and **J**.",
+    ">",
+    "> **G and anything older rotated out** on 10 April 2026. A card with no"
+    " letter at all is older still, so it is out too.",
+    ">",
+    "> Two cards with the same name can disagree. Prismatic Evolutions printed"
+    " Flareon with a **G** and Flareon ex with an **H**, one page apart in the"
+    " same set. Read the letter on the card in your hand, not the one you"
+    " remember.",
+    ">",
+    "> Basic Energy is the exception. It has no letter and never rotates.",
+    "",
+]
 
 DEST.write_text("\n".join(out), encoding="utf-8")
 print(f"collection.md: {len(rows)} entries, "

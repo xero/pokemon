@@ -125,7 +125,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -144,7 +144,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -163,7 +163,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -182,7 +182,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -201,7 +201,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -220,7 +220,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -240,7 +240,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -260,7 +260,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -280,7 +280,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -300,7 +300,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -319,7 +319,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -339,7 +339,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -357,7 +357,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -377,7 +377,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -397,7 +397,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -417,7 +417,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -436,7 +436,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -456,7 +456,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -475,7 +475,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -495,7 +495,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -514,7 +514,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -533,7 +533,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -553,7 +553,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -573,7 +573,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -593,7 +593,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -613,7 +613,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -633,7 +633,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -652,7 +652,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -671,7 +671,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -690,7 +690,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -710,7 +710,7 @@
   <tr><td><b>Weakness</b>: -</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: -</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -729,7 +729,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -748,7 +748,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -767,7 +767,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -785,7 +785,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -804,7 +804,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -823,7 +823,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -842,7 +842,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: -</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -862,7 +862,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -20</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -881,7 +881,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -900,7 +900,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -919,7 +919,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -938,7 +938,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -957,7 +957,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -976,7 +976,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -996,7 +996,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1015,7 +1015,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1035,7 +1035,7 @@
   <tr><td><b>Weakness</b>: -</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1054,7 +1054,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1073,7 +1073,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1092,7 +1092,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -1111,7 +1111,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1130,7 +1130,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -20</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1148,7 +1148,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1167,7 +1167,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1187,7 +1187,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1206,7 +1206,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1225,7 +1225,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1244,7 +1244,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1264,7 +1264,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1283,7 +1283,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1303,7 +1303,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1322,7 +1322,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1342,7 +1342,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -1361,7 +1361,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1380,7 +1380,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1399,7 +1399,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1419,7 +1419,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: 0</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1438,7 +1438,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1457,7 +1457,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1476,7 +1476,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1495,7 +1495,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1514,7 +1514,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -20</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1534,7 +1534,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1553,7 +1553,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1573,7 +1573,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1593,7 +1593,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1613,7 +1613,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -1632,7 +1632,7 @@
   <tr><td><b>Weakness</b>: -</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, Japanese cards are not allowed in US tournaments</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> USA tournaments require English cards</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1651,7 +1651,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1670,7 +1670,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1689,7 +1689,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1708,7 +1708,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1728,7 +1728,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> Yes, this card is allowed in tournaments</td></tr>
+  <tr><td><img src="./assets/ok.png" alt="OK" height="22" align="top"> This card is tournament legal</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
 </table>
 
@@ -1747,7 +1747,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1767,7 +1767,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
 
@@ -1786,6 +1786,19 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> No, this card is too old for tournaments now</td></tr>
+  <tr><td><img src="./assets/no.png" alt="NO" height="22" align="top"> This card is too old for tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
 </table>
+
+<h2 id="checking-the-letter">* Checking the letter</h2>
+
+> [!IMPORTANT]
+> Every modern card has a tiny letter printed in the bottom corner, next to the card number. That letter is the only thing that decides whether a card is too old to play. The set it came from does not decide it, and neither does how new the card looks.
+>
+> Right now three letters are legal: **H**, **I**, and **J**.
+>
+> **G and anything older rotated out** on 10 April 2026. A card with no letter at all is older still, so it is out too.
+>
+> Two cards with the same name can disagree. Prismatic Evolutions printed Flareon with a **G** and Flareon ex with an **H**, one page apart in the same set. Read the letter on the card in your hand, not the one you remember.
+>
+> Basic Energy is the exception. It has no letter and never rotates.
