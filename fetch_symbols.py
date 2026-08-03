@@ -147,6 +147,39 @@ for rel, url in EXTRA.items():
     else:
         print(f"WARNING: could not fetch {url}", file=sys.stderr)
 
+# --- crop away the transparent margin ----------------------------------------
+# The symbols ship letterboxed into a square canvas. The modern set plates are
+# the worst of it: 584x304 of artwork centred in 600x600, so 51% of the file is
+# empty. Since the page sizes these by height, that padding is rendered as
+# blank space and the artwork comes out half the size it should be.
+#
+# Cropping to the alpha bounding box is safe and idempotent: a tight graphic
+# has a bbox equal to its canvas and is left alone, and re-running finds
+# nothing left to trim.
+CROP_FOLDERS = ["rarities", "sets", "set-logos", "sets-jp"]
+
+
+def autocrop(path):
+    from PIL import Image
+    im = Image.open(path).convert("RGBA")
+    bb = im.getchannel("A").point(lambda a: 255 if a > 16 else 0).getbbox()
+    if not bb or bb == (0, 0, im.width, im.height):
+        return False
+    im.crop(bb).save(path)
+    return True
+
+
+cropped = 0
+for folder in CROP_FOLDERS:
+    for suffix in ("", "-dark"):
+        d = ASSETS / (folder + suffix)
+        if not d.exists():
+            continue
+        n = sum(autocrop(f) for f in sorted(d.glob("*.png")))
+        cropped += n
+        if n:
+            print(f"assets/{folder + suffix:<18}{n:>4} cropped", file=sys.stderr)
+
 # --- dark-theme variants -----------------------------------------------------
 # Most of these graphics are black line art on transparency, which disappears
 # against a dark background. They are monochrome, so inverting RGB and keeping
