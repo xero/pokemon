@@ -42,12 +42,13 @@ LABELS = [
     ("category", "Category"),
 ]
 
-# Written for Fox, so the answer comes first and the reason second.
+# Written for Fox, so the answer comes first and the reason second. Each entry
+# is (badge image in assets/, wording); unknown has no badge to show.
 LEGAL_LABEL = {
-    "yes": "✓ Yes, this card is allowed in tournaments",
-    "no": "✗ No, this card is too old for tournaments now",
-    "japanese": "✗ No, Japanese cards are not allowed at tournaments here",
-    "unknown": "? Not sure, check the letter on the card",
+    "yes": ("ok", "Yes, this card is allowed in tournaments"),
+    "no": ("no", "No, this card is too old for tournaments now"),
+    "japanese": ("no", "No, Japanese cards are not allowed in US tournaments"),
+    "unknown": ("", "? Not sure, check the letter on the card"),
 }
 
 ATTACKS = ("attack1", "attack2", "attack3", "attack4")
@@ -208,7 +209,12 @@ def value(key, r):
         ico = type_icon("Colorless", 16)
         return f"{ico * n} {html.escape(v)}".strip() if ico and n else html.escape(v)
     if key == "standard_legal":
-        return html.escape(LEGAL_LABEL.get(v, v))
+        badge, text = LEGAL_LABEL.get(v, ("", v))
+        img = ""
+        if badge and (ROOT / "assets" / f"{badge}.png").exists():
+            img = (f'<img src="./assets/{badge}.png" alt="{badge.upper()}" '
+                   'height="22" align="top"> ')
+        return img + html.escape(text)
     if key == "card_text":
         # normalize_cards.py prefixes the description with "Ability: ", which
         # would read twice over once the row label already says Ability.
