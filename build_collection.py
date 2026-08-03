@@ -63,16 +63,23 @@ SET_SLUG = {
     "SV: Scarlet & Violet 151": "151",
     "SWSH01: Sword & Shield Base Set": "sword-and-shield",
     "SWSH: Sword & Shield Promo Cards": "swsh-black-star-promos",
+    # pokesymbols has no Trick or Trade entry. All three bundles carry the same
+    # Pikachu jack-o'-lantern stamp, so they share one graphic.
+    "Trick or Trade BOOster Bundle": "trick-or-trade",
+    "Trick or Trade BOOster Bundle 2023": "trick-or-trade",
+    "Trick or Trade BOOster Bundle 2024": "trick-or-trade",
     # Battle Academy, the Trick or Trade bundles, and Mega Evolution Energies
     # have no symbol published; they fall through and render without one.
 }
 
 # Holo Rare shares the plain black star with Rare and has no symbol of its own.
-# Promo has none at all.
+# Promo is not on the rarities page either; fetch_symbols.py copies the Black
+# Star Promo mark in for it, which is what those cards actually print.
 RARITY_SLUG = {
     "Common": "common", "Uncommon": "uncommon", "Rare": "rare",
     "Holo Rare": "rare", "Double Rare": "double-rare",
     "Ultra Rare": "ultra-rare", "ACE SPEC Rare": "ace-spec-rare",
+    "Promo": "promo",
 }
 
 
@@ -88,13 +95,24 @@ def icon(folder, slug, height, alt):
 
     Several older sets have a logo published but no symbol, so the set icon
     falls back to the wordmark rather than rendering nothing at all.
+
+    Most of these are black line art on transparency and vanish against a dark
+    background, so where fetch_symbols.py produced an inverted copy the graphic
+    is wrapped in a <picture>. GitHub honours prefers-color-scheme there and
+    serves the white version to dark theme.
     """
     if not slug:
         return ""
     for f in (folder, "set-logos") if folder == "sets" else (folder,):
-        if (ROOT / "assets" / f / f"{slug}.png").exists():
-            return (f'<img src="./assets/{f}/{slug}.png" alt="{html.escape(alt)}" '
-                    f'height="{height}" align="top">')
+        if not (ROOT / "assets" / f / f"{slug}.png").exists():
+            continue
+        img = (f'<img src="./assets/{f}/{slug}.png" alt="{html.escape(alt)}" '
+               f'height="{height}" align="top">')
+        if (ROOT / "assets" / f"{f}-dark" / f"{slug}.png").exists():
+            return ('<picture>'
+                    f'<source media="(prefers-color-scheme: dark)" '
+                    f'srcset="./assets/{f}-dark/{slug}.png">{img}</picture>')
+        return img
     return ""
 
 NOT_POKEMON = ("Trainer", "Energy")
