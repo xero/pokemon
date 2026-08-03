@@ -30,6 +30,7 @@ DEST = ROOT / "collection.md"
 LABELS = [
     ("set_name", "Set"),
     ("card_number", "Number"),
+    ("rarity", "Rarity"),
     ("card_type", "Type"),
     ("hp", "HP"),
     ("stage", "Stage"),
@@ -38,11 +39,63 @@ LABELS = [
     ("weakness", "Weakness"),
     ("resistance", "Resistance"),
     ("retreat_cost", "Retreat"),
+    ("standard_legal", "Can I play it?"),
     ("category", "Category"),
     ("source_url", "Source"),
 ]
 
+# Written for Fox, so the answer comes first and the reason second.
+LEGAL_LABEL = {
+    "yes": "✓ Yes, this card is allowed in tournaments",
+    "no": "✗ No, this card is too old for tournaments now",
+    "unknown": "? Not sure, check the letter on the card",
+}
+
 ATTACKS = ("attack1", "attack2", "attack3", "attack4")
+
+# --- pokesymbols.com graphics -------------------------------------------------
+# Most set names slugify straight onto a pokesymbols slug once the "SWSH01:" and
+# "SV: " style prefixes are stripped. These are the ones that do not.
+SET_SLUG = {
+    "Base Set": "base",
+    "EX Crystal Guardians": "crystal-guardians",
+    "Pokémon GO": "pokemon-go",
+    "SV: Scarlet & Violet 151": "151",
+    "SWSH01: Sword & Shield Base Set": "sword-and-shield",
+    "SWSH: Sword & Shield Promo Cards": "swsh-black-star-promos",
+    # Battle Academy, the Trick or Trade bundles, and Mega Evolution Energies
+    # have no symbol published; they fall through and render without one.
+}
+
+# Holo Rare shares the plain black star with Rare and has no symbol of its own.
+# Promo has none at all.
+RARITY_SLUG = {
+    "Common": "common", "Uncommon": "uncommon", "Rare": "rare",
+    "Holo Rare": "rare", "Double Rare": "double-rare",
+    "Ultra Rare": "ultra-rare", "ACE SPEC Rare": "ace-spec-rare",
+}
+
+
+def set_slug(name):
+    if name in SET_SLUG:
+        return SET_SLUG[name]
+    s = re.sub(r"^(SWSH\d*|SV\d*|ME\d*|MEE|SM\d*|XY|EX)\s*[:\-]\s*", "", name)
+    return re.sub(r"[^a-z0-9]+", "-", s.replace("&", "and").lower()).strip("-")
+
+
+def icon(folder, slug, height, alt):
+    """An inline graphic, or nothing when that slug was never published.
+
+    Several older sets have a logo published but no symbol, so the set icon
+    falls back to the wordmark rather than rendering nothing at all.
+    """
+    if not slug:
+        return ""
+    for f in (folder, "set-logos") if folder == "sets" else (folder,):
+        if (ROOT / "assets" / f / f"{slug}.png").exists():
+            return (f'<img src="./assets/{f}/{slug}.png" alt="{html.escape(alt)}" '
+                    f'height="{height}" align="top">')
+    return ""
 
 NOT_POKEMON = ("Trainer", "Energy")
 
@@ -61,8 +114,14 @@ def value(key, r):
     v = r[key]
     if not v:
         return "-"
+    if key == "set_name":
+        return f'{icon("sets", set_slug(v), 22, v)} {html.escape(v)}'.strip()
+    if key == "rarity":
+        return f'{icon("rarities", RARITY_SLUG.get(v), 16, v)} {html.escape(v)}'.strip()
     if key == "source_url":
         return f'<a href="{html.escape(v)}">{html.escape(v.rsplit("/pokemon/", 1)[-1])}</a>'
+    if key == "standard_legal":
+        return html.escape(LEGAL_LABEL.get(v, v))
     if key == "card_text":
         # normalize_cards.py prefixes the description with "Ability: ", which
         # would read twice over once the row label already says Ability.
@@ -113,7 +172,9 @@ for r, a in entries:
     # that count moves with how many attacks the card has.
     span = len(cells) + 1
     out.append("<table>")
-    out.append(f'  <tr><td colspan="2"><h3 id="{a}">{html.escape(r["name"])}</h3></td></tr>')
+    rare = icon("rarities", RARITY_SLUG.get(r["rarity"]), 18, r["rarity"])
+    out.append(f'  <tr><td colspan="2"><h3 id="{a}">{html.escape(r["name"])}'
+               f'{" " + rare if rare else ""}</h3></td></tr>')
     if r["image_file"]:
         out.append("  <tr>")
         out.append(f'    <th rowspan="{span}" width="400">'

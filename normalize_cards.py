@@ -8,6 +8,7 @@ Normalizations applied:
   * Whitespace collapsed, stray punctuation spacing tidied
   * Redundant card-number suffix stripped from name (moved to card_number)
   * type_hp_stage split into atomic card_type / hp / stage, compound kept
+  * regulation_mark and standard_legal resolved per printing, not per set
   * attacks, weakness, resistance, and retreat cost carried through; the
     description field holds only the Ability, so attacks are where most of
     a card's printed text actually lives
@@ -173,6 +174,56 @@ def expand_type_code(s):
     return t
 
 
+# --- Standard legality -------------------------------------------------------
+# The 2026-27 Standard format took effect 10 April 2026: H, I, and J are legal
+# and G and everything older rotated out. Marks come from regulation-marks.json,
+# which fetch_regulation.py builds, because legality is a property of the
+# printing rather than of the set. Prismatic Evolutions is the proof: Flareon
+# 013 carries G and Flareon ex 014 carries H, in the same set.
+LEGAL_MARKS = {"H", "I", "J"}
+
+# Temporal Forces is the earliest set to carry an H mark, so anything printed
+# before it rotated out no matter what it says. This resolves the whole pre-2024
+# back catalogue without needing a mark for any of it.
+FIRST_H_SET_RELEASE = "2024-03-22"
+
+# Sets with no upstream data and no help from the release date. The Trick or
+# Trade bundles are Halloween promo reprints; xero confirmed they are too old to
+# be legal. MEE is absent too but needs no entry: it is Basic Energy, which
+# never rotates.
+PRE_ROTATION_SETS = {"BTA", "TTBB", "TTBB23", "TTBB24"}
+
+REG_MARKS = {}
+if (ROOT / "regulation-marks.json").exists():
+    REG_MARKS = json.loads((ROOT / "regulation-marks.json").read_text()).get("marks", {})
+
+
+def reg_key(set_code, number):
+    n = str(number or "").split("/")[0].strip()
+    return f"{set_code}/{n.lstrip('0') or n}"
+
+
+def legality(set_code, number, ctype, released, name=""):
+    """(regulation_mark, standard_legal) for one card.
+
+    standard_legal is "yes", "no", or "unknown". Unknown is deliberate: a card
+    whose mark could not be resolved is not the same as a card known to be
+    illegal, and quietly calling it "no" would hide gaps in the lookup.
+    """
+    # Basic Energy is legal from any set and carries no mark at all. Fairy is
+    # the one exception, retired along with the type.
+    if ctype == "Energy - Basic":
+        return "", "no" if "fairy" in name.lower() else "yes"
+    mark = REG_MARKS.get(reg_key(set_code, number), "")
+    if mark:
+        return mark, "yes" if mark in LEGAL_MARKS else "no"
+    if released and released[:10] < FIRST_H_SET_RELEASE:
+        return "", "no"
+    if set_code in PRE_ROTATION_SETS:
+        return "", "no"
+    return "", "unknown"
+
+
 TRAINER_SUB = {"item", "supporter", "stadium", "pokémon tool", "pokemon tool", "tool"}
 
 
@@ -207,6 +258,8 @@ for pid in ids:
         if ctb:
             print(f"  note: derived type {ctb!r} from attack cost for {name}", file=sys.stderr)
     ctype, hp, stage = norm_type(ctb, ca.get("hp"), ca.get("stage"))
+    mark, legal = legality(p.get("setCode") if p else "", number, ctype,
+                           ca.get("releaseDate") or "", name)
     ths = " / ".join(x for x in (ctype, hp, stage) if x)
 
     img_name = f"{pid}_{card_slug}.jpg"
@@ -223,6 +276,7 @@ for pid in ids:
         "name": name,
         "set_name": accents((p.get("setName") or "").strip()),
         "card_number": number,
+        "rarity": accents((p.get("rarityName") or "").strip()) if p else "",
         "card_type": ctype,
         "hp": hp,
         "stage": stage,
@@ -235,15 +289,18 @@ for pid in ids:
         "weakness": expand_type_code(ca.get("weakness")),
         "resistance": expand_type_code(ca.get("resistance")),
         "retreat_cost": str(ca.get("retreatCost") or "").strip(),
+        "regulation_mark": mark,
+        "standard_legal": legal,
         "image_file": img_name,
         "category": "deck" if slug in DECK_SLUGS else "collection",
         "source_url": url,
     })
 
 records.sort(key=lambda r: (r["category"], r["set_name"], r["name"]))
-cols = ["name", "set_name", "card_number", "card_type", "hp", "stage",
+cols = ["name", "set_name", "card_number", "rarity", "card_type", "hp", "stage",
         "type_hp_stage", "card_text", "attack1", "attack2", "attack3", "attack4",
         "weakness", "resistance", "retreat_cost",
+        "regulation_mark", "standard_legal",
         "image_file", "category", "source_url"]
 with open(ROOT / "cards.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=cols)
