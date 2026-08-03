@@ -54,6 +54,15 @@ LEGAL_LABEL = {
 # Anchor for the footnote the unknown state points at.
 MARKS_ANCHOR = "checking-the-letter"
 
+# The worked example in that footnote. Two printings of one Pokemon that do
+# genuinely different things, one of them the copy in Fox's own deck. Picked by
+# (name, set) and resolved to whatever anchor each ends up with, so the links
+# survive the collection growing and the sort order shifting underneath them.
+EXAMPLE_PAIR = (
+    ("Charmander", "SWSH04: Vivid Voltage"),
+    ("Charmander", "ME02: Phantasmal Flames"),
+)
+
 ATTACKS = ("attack1", "attack2", "attack3", "attack4")
 
 # --- pokesymbols.com graphics -------------------------------------------------
@@ -309,15 +318,28 @@ out += [
     ">",
     "> **G and anything older rotated out** on 10 April 2026. A card with no"
     " letter at all is older still, so it is out too.",
-    ">",
-    "> Two cards with the same name can disagree. Prismatic Evolutions printed"
-    " Flareon with a **G** and Flareon ex with an **H**, one page apart in the"
-    " same set. Read the letter on the card in your hand, not the one you"
-    " remember.",
-    ">",
-    "> Basic Energy is the exception. It has no letter and never rotates.",
     "",
 ]
+
+by_card = {(r["name"], r["set_name"]): a for r, a in entries}
+pair = [(nm, st, by_card.get((nm, st))) for nm, st in EXAMPLE_PAIR]
+if all(a for _, _, a in pair):
+    (n1, s1, a1), (n2, s2, a2) = pair
+    out += [
+        "> [!WARNING]",
+        "> Two cards can share a name and still be completely different cards.",
+        ">",
+        f"> Open [{n1}, {s1}](#{a1}) and [{n2}, {s2}](#{a2}) and read them side"
+        " by side. Same Pokémon, same picture, and almost nothing else in"
+        " common:",
+        ">",
+        f"> - The {s1} one has no Ability. It draws a card, or hits for 30.",
+        f"> - The {s2} one has an **Ability**, and a cheaper attack.",
+        ">",
+        "> One of those is in your deck and one is legal today, and they are not"
+        " the same card. Read the one in your hand every time.",
+        "",
+    ]
 
 DEST.write_text("\n".join(out), encoding="utf-8")
 print(f"collection.md: {len(rows)} entries, "

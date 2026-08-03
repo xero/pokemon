@@ -1798,7 +1798,13 @@
 > Right now three letters are legal: **H**, **I**, and **J**.
 >
 > **G and anything older rotated out** on 10 April 2026. A card with no letter at all is older still, so it is out too.
+
+> [!WARNING]
+> Two cards can share a name and still be completely different cards.
 >
-> Two cards with the same name can disagree. Prismatic Evolutions printed Flareon with a **G** and Flareon ex with an **H**, one page apart in the same set. Read the letter on the card in your hand, not the one you remember.
+> Open [Charmander, SWSH04: Vivid Voltage](#charmander-4) and [Charmander, ME02: Phantasmal Flames](#charmander) and read them side by side. Same Pokémon, same picture, and almost nothing else in common:
 >
-> Basic Energy is the exception. It has no letter and never rotates.
+> - The SWSH04: Vivid Voltage one has no Ability. It draws a card, or hits for 30.
+> - The ME02: Phantasmal Flames one has an **Ability**, and a cheaper attack.
+>
+> One of those is in your deck and one is legal today, and they are not the same card. Read the one in your hand every time.
