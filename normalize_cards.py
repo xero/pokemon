@@ -8,6 +8,9 @@ Normalizations applied:
   * Whitespace collapsed, stray punctuation spacing tidied
   * Redundant card-number suffix stripped from name (moved to card_number)
   * type_hp_stage split into atomic card_type / hp / stage, compound kept
+  * attacks, weakness, resistance, and retreat cost carried through; the
+    description field holds only the Ability, so attacks are where most of
+    a card's printed text actually lives
 """
 import csv, html, json, re, subprocess, sys, time
 from pathlib import Path
@@ -98,6 +101,19 @@ def clean_text(s):
     return s
 
 
+def clean_attack(s):
+    """Tidy an attack, keeping the split between its header and its effect text.
+
+    The source reads "[1RR] Flamethrower (50)\\r\\n<br>Discard 1 Fire Energy...".
+    That <br> is the only thing separating the cost and damage from the rules
+    text, so it becomes " - " before the tag stripper eats it.
+    """
+    if not s:
+        return ""
+    s = re.sub(r"\s*(?:\r?\n)?\s*<br\s*/?>\s*", " - ", str(s))
+    return clean_text(s)
+
+
 def strip_number(name, number):
     """Remove the card number from the product name; card_number carries it.
 
@@ -132,6 +148,29 @@ def type_from_attack(ca):
                 if ch in ENERGY_TYPE:
                     return ENERGY_TYPE[ch]
     return ""
+
+
+def expand_type_code(s):
+    """Spell out TCGplayer's weakness/resistance shorthand.
+
+    "Dx2" -> "Darkness ×2", "F-30" -> "Fighting -30", bare "W" -> "Water".
+    Resistance comes back as the literal string "None" on cards that have
+    none, which is not the same as the field being absent, so it is dropped
+    here rather than surviving into the CSV as text.
+    """
+    s = str(s or "").strip()
+    if not s or s.lower() == "none":
+        return ""
+    m = re.fullmatch(r"([A-Z])\s*(?:x\s*(\d+)|([+-]\s*\d+))?", s)
+    if not m:
+        return s
+    letter, mult, mod = m.groups()
+    t = ENERGY_TYPE.get(letter, letter)
+    if mult:
+        return f"{t} ×{mult}"
+    if mod:
+        return f"{t} {re.sub(r'\s+', '', mod)}"
+    return t
 
 
 TRAINER_SUB = {"item", "supporter", "stadium", "pokémon tool", "pokemon tool", "tool"}
@@ -189,6 +228,13 @@ for pid in ids:
         "stage": stage,
         "type_hp_stage": ths,
         "card_text": clean_text(ca.get("description")),
+        "attack1": clean_attack(ca.get("attack1")),
+        "attack2": clean_attack(ca.get("attack2")),
+        "attack3": clean_attack(ca.get("attack3")),
+        "attack4": clean_attack(ca.get("attack4")),
+        "weakness": expand_type_code(ca.get("weakness")),
+        "resistance": expand_type_code(ca.get("resistance")),
+        "retreat_cost": str(ca.get("retreatCost") or "").strip(),
         "image_file": img_name,
         "category": "deck" if slug in DECK_SLUGS else "collection",
         "source_url": url,
@@ -196,7 +242,9 @@ for pid in ids:
 
 records.sort(key=lambda r: (r["category"], r["set_name"], r["name"]))
 cols = ["name", "set_name", "card_number", "card_type", "hp", "stage",
-        "type_hp_stage", "card_text", "image_file", "category", "source_url"]
+        "type_hp_stage", "card_text", "attack1", "attack2", "attack3", "attack4",
+        "weakness", "resistance", "retreat_cost",
+        "image_file", "category", "source_url"]
 with open(ROOT / "cards.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=cols)
     w.writeheader()

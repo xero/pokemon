@@ -25,17 +25,24 @@ DEST = ROOT / "collection.md"
 
 # CSV column -> stat label, in the order they should appear. Omits name and
 # image_file, which the heading and the image already show, and type_hp_stage,
-# which just recombines card_type, hp, and stage.
+# which just recombines card_type, hp, and stage. The attack columns are
+# handled separately since a card has anywhere from zero to four of them.
 LABELS = [
     ("set_name", "Set"),
     ("card_number", "Number"),
     ("card_type", "Type"),
     ("hp", "HP"),
     ("stage", "Stage"),
-    ("card_text", "Card Text"),
+    ("card_text", "Ability"),
+    (None, None),  # attacks slot
+    ("weakness", "Weakness"),
+    ("resistance", "Resistance"),
+    ("retreat_cost", "Retreat"),
     ("category", "Category"),
     ("source_url", "Source"),
 ]
+
+ATTACKS = ("attack1", "attack2", "attack3", "attack4")
 
 NOT_POKEMON = ("Trainer", "Energy")
 
@@ -56,6 +63,10 @@ def value(key, r):
         return "-"
     if key == "source_url":
         return f'<a href="{html.escape(v)}">{html.escape(v.rsplit("/pokemon/", 1)[-1])}</a>'
+    if key == "card_text":
+        # normalize_cards.py prefixes the description with "Ability: ", which
+        # would read twice over once the row label already says Ability.
+        v = re.sub(r"^Ability:\s*", "", v)
     return html.escape(v)
 
 
@@ -66,44 +77,51 @@ rows.sort(key=lambda r: (r["name"].lower(), r["set_name"], r["card_number"]))
 if any(not r["hp"] or not r["stage"] for r in rows):
     raise SystemExit("a kept row has no hp or stage; the Pokemon filter is wrong")
 
+def stats(r):
+    """(label, html) pairs for one card, skipping attacks it does not have."""
+    out = []
+    for key, label in LABELS:
+        if key is None:
+            hits = [r[k] for k in ATTACKS if r[k]]
+            out += [("Attack", html.escape(a)) for a in hits]
+        else:
+            out.append((label, value(key, r)))
+    return out
+
+
 seen = Counter()
 entries = [(r, anchor(r["name"], seen)) for r in rows]
 
-out = [
-    "# Card Collection\n",
-    "> [!NOTE]",
-    f"> Every Pokemon in the collection, **{len(rows)} of them**, one entry each with "
-    "the full record from `cards.csv`. Trainers, Stadiums, Tools, and Energy are not "
-    "here. Sorted by name; where the same Pokemon appears more than once, the set "
-    "name in the contents below tells the printings apart.",
-    "",
-]
+out = ["# Pokémon Caught!\n"]
 
-toc = ["> ### Table of Contents"]
+# The blank lines around the list are load-bearing. Without them GitHub treats
+# the whole <details> block as raw HTML and the markdown links never render.
+toc = ["<details>", "<summary><h3>Pokédex</h3></summary>", ""]
 last_letter = None
 for r, a in entries:
     letter = r["name"][0].upper()
     if letter != last_letter:
-        toc.append(f"> - **{letter}**")
+        toc.append(f"- **{letter}**")
         last_letter = letter
-    toc.append(f">   - [{r['name']}](#{a}) _{r['set_name']}_")
+    toc.append(f"  - [{r['name']}](#{a}) _{r['set_name']}_")
+toc += ["", "</details>"]
 out += ["\n".join(toc), ""]
 
-# The image th spans its own row plus every stat row that follows it.
-span = len(LABELS) + 1
-
 for r, a in entries:
+    cells = stats(r)
+    # The image th spans its own row plus every stat row that follows it, and
+    # that count moves with how many attacks the card has.
+    span = len(cells) + 1
     out.append("<table>")
     out.append(f'  <tr><td colspan="2"><h3 id="{a}">{html.escape(r["name"])}</h3></td></tr>')
     if r["image_file"]:
         out.append("  <tr>")
-        out.append(f'    <th rowspan="{span}"><img src="./assets/{r["image_file"]}" '
-                   f'align="left" width="200"></th>')
+        out.append(f'    <th rowspan="{span}" width="400">'
+                   f'<img src="./assets/{r["image_file"]}" width="350"></th>')
         out.append("  </tr>")
-    for key, label in LABELS:
-        out.append(f"  <tr><td><b>{label}</b>: {value(key, r)}</td></tr>")
+    for label, v in cells:
+        out.append(f"  <tr><td><b>{label}</b>: {v}</td></tr>")
     out.append("</table>")
-    out.append('<br clear="both"/>')
     out.append("")
 
 DEST.write_text("\n".join(out), encoding="utf-8")
