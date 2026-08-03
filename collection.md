@@ -1,7 +1,7 @@
-# Pokemon Caught!
+# Pokémon Caught!
 
 <details>
-<summary>Table of Contents</summary>
+<summary><h3>Pokédex</h3></summary>
 
 - **C**
   - [Chandelure](#chandelure) _Trick or Trade BOOster Bundle_
