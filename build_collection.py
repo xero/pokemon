@@ -38,16 +38,15 @@ LABELS = [
     ("weakness", "Weakness"),
     ("resistance", "Resistance"),
     ("retreat_cost", "Retreat"),
-    ("standard_legal", None),   # the badge says it; a label would repeat it
-    ("category", "Category"),
+    ("standard_legal", "Tournament Play"),
 ]
 
 # Written for Fox: the badge answers before the words do. Each entry is
 # (badge image in assets/, wording).
 LEGAL_LABEL = {
-    "yes": ("ok", "This card is tournament legal"),
-    "no": ("no", "This card is too old for tournaments"),
-    "japanese": ("no", "USA tournaments require English cards"),
+    "yes": ("ok", "legal, and good to go!"),
+    "no": ("no", "card is too old"),
+    "japanese": ("no", "only English cards allowed"),
     "unknown": ("unown", "Unknown, check the letter on the card"),
 }
 
@@ -321,27 +320,43 @@ out += [
     "",
 ]
 
-by_card = {(r["name"], r["set_name"]): a for r, a in entries}
-pair = [(nm, st, by_card.get((nm, st))) for nm, st in EXAMPLE_PAIR]
-if all(a for _, _, a in pair):
-    (n1, s1, a1), (n2, s2, a2) = pair
+out += [
+    "> [!WARNING]",
+    "> Two cards can share a name and still be completely different cards. One"
+    " can have an Ability the other does not. The attacks can cost different"
+    " Energy and do different damage. The name on the card is not the card.",
+]
+
+# The worked example is a bonus. If either printing leaves the collection the
+# warning above still says everything it needs to.
+by_card = {(r["name"], r["set_name"]): (r, a) for r, a in entries}
+pair = [by_card.get(k) for k in EXAMPLE_PAIR]
+if all(pair):
+    (r1, a1), (r2, a2) = pair
+
+    def sketch(r):
+        bits = ["an **Ability**" if r["card_text"] else "no Ability"]
+        atk = [r[k] for k in ATTACKS if r[k]]
+        if atk:
+            bits.append(f"{len(atk)} attack" + ("s" if len(atk) > 1 else ""))
+        return " and ".join(bits)
+
     out += [
-        "> [!WARNING]",
-        "> Two cards can share a name and still be completely different cards.",
         ">",
-        f"> Open [{n1}, {s1}](#{a1}) and [{n2}, {s2}](#{a2}) and read them side"
-        " by side. Same Pokémon, same picture, and almost nothing else in"
-        " common:",
+        f"> Comparing [{r1['name']}, {r1['set_name']}](#{a1}) and"
+        f" [{r2['name']}, {r2['set_name']}](#{a2}) side by side:",
         ">",
-        f"> - The {s1} one has no Ability. It draws a card, or hits for 30.",
-        f"> - The {s2} one has an **Ability**, and a cheaper attack.",
+        f"> - The {r1['set_name']} one has {sketch(r1)}.",
+        f"> - The {r2['set_name']} one has {sketch(r2)}.",
         ">",
-        "> One of those is in your deck and one is legal today, and they are not"
-        " the same card. Read the one in your hand every time.",
-        "",
+        "> One of those is in your deck and one is legal today, and they are"
+        " still not the same card.",
     ]
 
-DEST.write_text("\n".join(out), encoding="utf-8")
+out += [">", "> Read the one in your hand every time.", ""]
+
+text = "\n".join(out)
+DEST.write_text(text, encoding="utf-8")
 print(f"collection.md: {len(rows)} entries, "
       f"{sum(r['category'] == 'deck' for r in rows)} in decks, "
-      f"{len(out)} lines")
+      f"{len(text.splitlines())} lines")
