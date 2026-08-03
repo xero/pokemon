@@ -28,8 +28,7 @@ DEST = ROOT / "collection.md"
 # which just recombines card_type, hp, and stage. The attack columns are
 # handled separately since a card has anywhere from zero to four of them.
 LABELS = [
-    ("set_name", "Set"),
-    ("card_number", "Number"),
+    ("set_name", None),   # set, symbol, and card number on one unlabelled row
     ("rarity", "Rarity"),
     ("card_type", "Type"),
     ("hp", "HP"),
@@ -41,7 +40,6 @@ LABELS = [
     ("retreat_cost", "Retreat"),
     ("standard_legal", "Can I play it?"),
     ("category", "Category"),
-    ("source_url", "Source"),
 ]
 
 # Written for Fox, so the answer comes first and the reason second.
@@ -189,8 +187,13 @@ def value(key, r):
     if not v:
         return "-"
     if key == "set_name":
+        # Name, symbol, then card number, with no row label. The set name is
+        # doing the labelling, and the number only means anything next to it.
         folder = set_folder(r.get("product_line"))
-        return f'{icon(folder, set_slug(v), 22, v)} {html.escape(v)}'.strip()
+        parts = [f"<b>{html.escape(v)}</b>",
+                 icon(folder, set_slug(v), 22, v),
+                 html.escape(r["card_number"])]
+        return " ".join(p for p in parts if p)
     if key == "rarity":
         return f'{icon("rarities", RARITY_SLUG.get(v), 16, v)} {html.escape(v)}'.strip()
     if key == "source_url":
@@ -221,7 +224,11 @@ if any(not r["hp"] or not r["stage"] for r in rows):
     raise SystemExit("a kept row has no hp or stage; the Pokemon filter is wrong")
 
 def stats(r):
-    """(label, html) pairs for one card, skipping attacks it does not have."""
+    """(label, html) pairs for one card, skipping attacks it does not have.
+
+    A label of None means the row carries no "Label:" prefix and the html
+    stands on its own.
+    """
     out = []
     for key, label in LABELS:
         if key is None:
@@ -270,7 +277,8 @@ for r, a in entries:
                    f'<img src="./assets/{r["image_file"]}" width="350"></th>')
         out.append("  </tr>")
     for label, v in cells:
-        out.append(f"  <tr><td><b>{label}</b>: {v}</td></tr>")
+        cell = f"<b>{label}</b>: {v}" if label else v
+        out.append(f"  <tr><td>{cell}</td></tr>")
     out.append("</table>")
     out.append("")
 
