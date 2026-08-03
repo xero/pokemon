@@ -185,6 +185,12 @@ def icon(folder, slug, height, alt):
         return img
     return ""
 
+# Attack costs print as energy symbols on the card, so they render as glyphs
+# here rather than as a bracket of letters.
+COST_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
+             "P": "Psychic", "F": "Fighting", "D": "Darkness", "M": "Metal",
+             "Y": "Fairy", "N": "Dragon", "C": "Colorless"}
+
 NOT_POKEMON = ("Trainer", "Energy")
 
 
@@ -195,6 +201,15 @@ def anchor(text, seen):
     n = seen[s]
     seen[s] += 1
     return s if n == 0 else f"{s}-{n}"
+
+
+def attack(text):
+    """An attack with its leading energy cost swapped for glyphs."""
+    m = re.match(r"\[([A-Z]+)\]\s*(.*)$", text, re.S)
+    if not m or any(c not in COST_TYPE for c in m.group(1)):
+        return html.escape(text)
+    icons = "".join(type_icon(COST_TYPE[c], 16) for c in m.group(1))
+    return f"{icons} {html.escape(m.group(2))}".strip() if icons else html.escape(text)
 
 
 def value(key, r):
@@ -257,7 +272,7 @@ def stats(r):
     for key, label in LABELS:
         if key is None:
             hits = [r[k] for k in ATTACKS if r[k]]
-            out += [("Attack", html.escape(a)) for a in hits]
+            out += [("Attack", attack(a)) for a in hits]
         else:
             out.append((label, value(key, r)))
     return out

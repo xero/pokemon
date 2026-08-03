@@ -26,6 +26,13 @@
 			--pad:   clamp(0.75rem, 2vw, 1.5rem);
 			--round: 0.5rem;
 
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
 			/* type scale */
 			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
 			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
@@ -85,7 +92,7 @@
 			h2 img,
 			dd img,
 			li img {
-				height: 1.1em;
+				height: var(--icon-h);
 				width: auto;
 			}
 
@@ -239,13 +246,46 @@
 			}
 
 			dd {
+				display: flex;
+				align-items: baseline;
 				min-width: 0;
-				overflow-wrap: anywhere;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
 			}
 
 			small {
 				color: var(--muted);
 			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
 		}
 
 		@media (width < 34em) {

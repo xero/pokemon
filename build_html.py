@@ -81,6 +81,12 @@ RARITY_SLUG = {
 TYPES = {"Colorless", "Darkness", "Dragon", "Fairy", "Fighting", "Fire",
          "Grass", "Lightning", "Metal", "Psychic", "Water"}
 
+# Attack costs print as energy symbols on the card, so they render as glyphs
+# here rather than as a bracket of letters.
+COST_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
+             "P": "Psychic", "F": "Fighting", "D": "Darkness", "M": "Metal",
+             "Y": "Fairy", "N": "Dragon", "C": "Colorless"}
+
 NOT_POKEMON = ("Trainer", "Energy")
 
 
@@ -90,6 +96,30 @@ def esc(s):
 
 def img(src, alt, extra=""):
     return f'<img src="{src}" alt="{esc(alt)}"{extra} />'
+
+
+def group(icons, kind=""):
+    """Wrap a row's leading glyphs so they can be aligned as a column.
+
+    Two flavours. The default is a fixed-width box with its single glyph
+    centred, so set, rarity, type, weakness, resistance and tournament all line
+    up regardless of how wide each individual symbol is. "cost" is for rows
+    with a variable number of symbols, which start at the same left edge and
+    run as wide as they need.
+    """
+    if not icons:
+        return ""
+    attr = ' data-icons="cost"' if kind == "cost" else " data-icons"
+    return f"<span{attr}>{icons}</span>"
+
+
+def row(icons, text, kind=""):
+    """A value cell: leading glyphs, then the text in its own box.
+
+    The text is boxed so that when it wraps, the later lines line up under the
+    first one rather than running back beneath the icons.
+    """
+    return group(icons, kind) + f"<span>{text}</span>"
 
 
 def icon(folder, slug, alt):
@@ -117,8 +147,7 @@ def type_icon(tcg_type):
 
 
 def typed(v):
-    ico = type_icon(v.split(" ")[0])
-    return f"{ico} {esc(v)}".strip() if ico else esc(v)
+    return row(type_icon(v.split(" ")[0]), esc(v))
 
 
 def set_slug(name):
@@ -155,36 +184,43 @@ def value(key, r):
         return "&ndash;"
     if key == "set_name":
         folder = set_folder(r.get("product_line"))
-        parts = [icon(folder, set_slug(v), v), esc(v),
-                 f'<small>{esc(r["card_number"])}</small>']
-        return " ".join(p for p in parts if p)
+        return row(icon(folder, set_slug(v), v),
+                   esc(v) + f' <small>{esc(r["card_number"])}</small>')
     if key == "rarity":
-        return f'{icon("rarities", RARITY_SLUG.get(v), v)} {esc(v)}'.strip()
+        return row(icon("rarities", RARITY_SLUG.get(v), v), esc(v))
     if key in ("card_type", "weakness", "resistance"):
         return typed(v)
     if key == "retreat_cost":
         n = int(v) if v.isdigit() else 0
-        ico = type_icon("Colorless")
-        return f"{ico * n} {esc(v)}".strip() if ico and n else esc(v)
+        return row(type_icon("Colorless") * n, esc(v), "cost")
     if key == "standard_legal":
         badge, text = LEGAL_LABEL.get(v, ("", v))
-        out = ""
+        ico = ""
         if badge and (ROOT / "assets" / f"{badge}.png").exists():
-            out = img(f"./assets/{badge}.png", badge.upper()) + " "
-        out += esc(text)
+            ico = img(f"./assets/{badge}.png", badge.upper())
         if v == "unknown":
-            out += f' <a href="#{MARKS_ANCHOR}">*</a>'
-        return out
+            text += f' <a href="#{MARKS_ANCHOR}">*</a>'
+            return row(ico, text)
+        return row(ico, esc(text))
     if key == "card_text":
         v = re.sub(r"^Ability:\s*", "", v)
     return esc(v)
+
+
+def attack(text):
+    """An attack with its leading energy cost swapped for glyphs."""
+    m = re.match(r"\[([A-Z]+)\]\s*(.*)$", text, re.S)
+    if not m or any(c not in COST_TYPE for c in m.group(1)):
+        return esc(text)
+    icons = "".join(type_icon(COST_TYPE[c]) for c in m.group(1))
+    return row(icons, esc(m.group(2)), "cost")
 
 
 def stats(r):
     out = []
     for key, label in LABELS:
         if key is None:
-            out += [("Attack", esc(r[k])) for k in ATTACKS if r[k]]
+            out += [("Attack", attack(r[k])) for k in ATTACKS if r[k]]
         else:
             out.append((label, value(key, r)))
     return out

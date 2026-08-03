@@ -117,18 +117,28 @@ ENERGY_ABBR = {v: k for k, v in ENERGY_TYPE.items()} | {"Colorless": "C"}
 
 
 def normalize_energy(s):
-    """Fold "[Darkness][Darkness]" down to "[DD]", the way English cards print.
+    """Put every attack cost in one notation.
 
-    Left alone, the same attack reads two different ways depending on which
-    market the card came from.
+    Three styles show up in the source for the same thing. The Japanese line
+    spells energy out as "[Darkness][Darkness]". The English line abbreviates
+    to "[DD]" but writes colorless as a count, so "[1RR]" and "[RC]" and "[3]"
+    are all in play, and "[D1]" even puts the count second.
+
+    Everything ends up as one bracket of letters with colorless written out as
+    C per symbol, so "[1RR]" becomes "[CRR]" and "[3]" becomes "[CCC]". The
+    order the source used is kept, since that is the order printed on the card.
     """
     s = re.sub(r"\[([A-Z][a-z]+)\]",
                lambda m: "[" + ENERGY_ABBR.get(m.group(1), m.group(1)) + "]", s)
     while True:                                   # [D][D] -> [DD]
         merged = re.sub(r"\[([A-Z]+)\]\[([A-Z]+)\]", r"[\1\2]", s)
         if merged == s:
-            return s
+            break
         s = merged
+    # a digit is a count of colorless symbols, not a symbol of its own
+    return re.sub(r"\[([A-Z0-9]+)\]",
+                  lambda m: "[" + re.sub(r"\d", lambda d: "C" * int(d.group()),
+                                         m.group(1)) + "]", s)
 
 
 def clean_attack(s):

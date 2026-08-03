@@ -50,8 +50,67 @@ def render(svg_path, dest, colour):
     tmp.write_text(tinted, encoding="utf-8")
     dest.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["magick", "-background", "none", str(tmp),
-                    "-resize", f"{SIZE}x{SIZE}", f"PNG32:{dest}"], check=True)
+                    "-resize", f"{SIZE}x{SIZE}",
+                    "-gravity", "center", "-extent", f"{SIZE}x{SIZE}",
+                    f"PNG32:{dest}"], check=True)
     tmp.unlink()
+    optical_align(dest, NUDGE.get(dest.stem, 0))
+
+
+# Where a glyph's visual mass should begin, as a fraction of the box. Lining
+# the glyphs up by their first stray pixel does not work: a fist has a flat
+# left edge and lands on the line, while a star or a lightning bolt touch it
+# with a single point and read as indented by comparison. So they are aligned
+# on the column where the shape reaches INK_COVER of its own height instead,
+# which is much closer to where the eye thinks the shape starts.
+OPTICAL_LEFT = 0.05
+INK_COVER = 0.25
+
+# Hand nudges after the automatic pass, in canvas pixels. The measurement gets
+# every glyph close, but a flat-edged shape still reads as sitting harder
+# against the line than a round one, so the fist wants a touch more air. The
+# canvas is SIZE px and renders around 20px, so roughly 6 canvas px per screen
+# pixel.
+NUDGE = {"fighting": 13, "colorless": 13}
+
+
+def nudge_right(im, px):
+    """Shift art right by px, shrinking it only if that would clip it."""
+    from PIL import Image
+    w, h = im.size
+    bb = im.getchannel("A").point(lambda v: 255 if v > 16 else 0).getbbox()
+    out = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    if bb and px <= w - bb[2]:
+        out.paste(im, (px, 0))          # room to spare, keep it full size
+        return out
+    scale = (w - px) / w
+    small = im.resize((round(w * scale), round(h * scale)), Image.LANCZOS)
+    out.paste(small, (px, round((h - small.height) / 2)))
+    return out
+
+
+def optical_align(path, nudge=0):
+    from PIL import Image
+    im = Image.open(path).convert("RGBA")
+    w, h = im.size
+    a = im.getchannel("A").load()
+    cols = [sum(1 for y in range(h) if a[x, y] > 16) / h for x in range(w)]
+    edge = next((x for x, c in enumerate(cols) if c >= INK_COVER), None)
+    if edge is None:
+        return
+    shift = round(OPTICAL_LEFT * w) - edge
+    ink = [x for x, c in enumerate(cols) if c > 0]
+    # never push the shape past the edge of its own box
+    shift = max(shift, -ink[0])
+    shift = min(shift, w - 1 - ink[-1])
+    if shift:
+        moved = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        moved.paste(im, (shift, 0))
+        im = moved
+    if nudge:
+        im = nudge_right(im, nudge)
+    if shift or nudge:
+        im.save(path)
 
 
 if not GLYPHS.is_dir():
