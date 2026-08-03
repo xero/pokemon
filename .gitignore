@@ -1,0 +1,14 @@
+# Raw scrapes and order history. None of this is read by the generators, and
+# raw-cards.json rebuilds itself from product-ids.tsv on the next run.
+raw-cards.json
+ordered-card-urls.txt
+theme-deck-urls.txt
+
+# Purchase records: carts, prices paid, what shipped from whom.
+tcgplayer-order.md
+shopping-list.md
+
+# Scratch
+*.bak
+.DS_Store
+__pycache__/

@@ -1,4 +1,4 @@
-# Pokémon Caught!
+<h1><img src="./assets/pokeball.png" alt="" height="40" align="top"> Pokémon Caught!</h1>
 
 <details>
 <summary><h3>Pokédex</h3></summary>
@@ -106,14 +106,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" height="22" align="top"> Trick or Trade BOOster Bundle</td></tr>
   <tr><td><b>Number</b>: 033/192</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 140</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Protective Glow All of your Pokémon that have Energy attached have no Weakness.</td></tr>
   <tr><td><b>Attack</b>: [1R] Mirage Flare (110) - Your opponent&#x27;s Active Pokémon is now Confused.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle/chandelure">trick-or-trade-booster-bundle/chandelure</a></td></tr>
@@ -127,14 +127,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png"><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" height="22" align="top"></picture> SWSH04: Vivid Voltage</td></tr>
   <tr><td><b>Number</b>: 025/185</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 170</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Battle Sense Once during your turn, you may look at the top 3 cards of your deck and put 1 of them into your hand. Discard the other cards.</td></tr>
   <tr><td><b>Attack</b>: [RR] Royal Blaze (100+) - This attack does 50 more damage for each Leon in your discard pile.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 3</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 3</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh04-vivid-voltage/charizard">swsh04-vivid-voltage/charizard</a></td></tr>
@@ -148,14 +148,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> ME02: Phantasmal Flames</td></tr>
   <tr><td><b>Number</b>: 011/094</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Agile If this Pokémon has no Energy attached, it has no Retreat Cost.</td></tr>
   <tr><td><b>Attack</b>: [R] Live Coal (20)</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/charmander">me02-phantasmal-flames/charmander</a></td></tr>
@@ -169,14 +169,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pokemon-go.png"><img src="./assets/sets/pokemon-go.png" alt="Pokémon GO" height="22" align="top"></picture> Pokémon GO</td></tr>
   <tr><td><b>Number</b>: 008/078</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Tail on Fire (10) - Search your deck for a Fire Energy card and attach it to this Pokémon. Then, shuffle your deck.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/pokemon-go/charmander">pokemon-go/charmander</a></td></tr>
@@ -190,14 +190,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/obsidian-flames.png"><img src="./assets/sets/obsidian-flames.png" alt="SV03: Obsidian Flames" height="22" align="top"></picture> SV03: Obsidian Flames</td></tr>
   <tr><td><b>Number</b>: 026/197</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Heat Tackle: (30) - This Pokémon does 10 damage to itself.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv03-obsidian-flames/charmander">sv03-obsidian-flames/charmander</a></td></tr>
@@ -211,15 +211,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> SV: Paldean Fates</td></tr>
   <tr><td><b>Number</b>: 007/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Blazing Destruction - Discard a Stadium in play.</td></tr>
   <tr><td><b>Attack</b>: [RR] Steady Firebreathing (30)</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-paldean-fates/charmander-007-091">sv-paldean-fates/charmander-007-091</a></td></tr>
@@ -233,15 +233,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png"><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" height="22" align="top"></picture> SWSH04: Vivid Voltage</td></tr>
   <tr><td><b>Number</b>: 023/185</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Collect - Draw a card.</td></tr>
   <tr><td><b>Attack</b>: [RR] Flare (30)</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh04-vivid-voltage/charmander">swsh04-vivid-voltage/charmander</a></td></tr>
@@ -255,15 +255,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolutions.png"><img src="./assets/sets/evolutions.png" alt="XY - Evolutions" height="22" align="top"></picture> XY - Evolutions</td></tr>
   <tr><td><b>Number</b>: 9/108</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Scratch (10)</td></tr>
   <tr><td><b>Attack</b>: [1R] Ember (30) - Discard a Fire Energy attached to this Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/xy-evolutions/charmander">xy-evolutions/charmander</a></td></tr>
@@ -277,15 +277,15 @@
   <tr><td><b>Set</b>: <img src="./assets/set-logos/base.png" alt="Base Set" height="22" align="top"> Base Set</td></tr>
   <tr><td><b>Number</b>: 024/102</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [3] Slash (30)</td></tr>
   <tr><td><b>Attack</b>: [1RR] Flamethrower (50) - Discard 1 Fire Energy card attached to Charmeleon in order to use this attack.</td></tr>
-  <tr><td><b>Weakness</b>: Water</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/base-set/charmeleon">base-set/charmeleon</a></td></tr>
@@ -299,14 +299,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> ME02: Phantasmal Flames</td></tr>
   <tr><td><b>Number</b>: 012/094</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Steady Firebreathing (40)</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/charmeleon">me02-phantasmal-flames/charmeleon</a></td></tr>
@@ -320,15 +320,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/burning-shadows.png"><img src="./assets/sets/burning-shadows.png" alt="SM - Burning Shadows" height="22" align="top"></picture> SM - Burning Shadows</td></tr>
   <tr><td><b>Number</b>: 19/147</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 90</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [2] Claw Slash [30]</td></tr>
   <tr><td><b>Attack</b>: [1RR] Heat Blast (70)</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sm-burning-shadows/charmeleon">sm-burning-shadows/charmeleon</a></td></tr>
@@ -342,13 +342,13 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> SV: Paldean Fates</td></tr>
   <tr><td><b>Number</b>: 008/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 90</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-paldean-fates/charmeleon-008-091">sv-paldean-fates/charmeleon-008-091</a></td></tr>
@@ -362,15 +362,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png"><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" height="22" align="top"></picture> SV: Scarlet &amp; Violet 151</td></tr>
   <tr><td><b>Number</b>: 005/165</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Combustion (20)</td></tr>
   <tr><td><b>Attack</b>: [RRR] Fire Blast (90) - Discard an Energy from this Pokémon</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-scarlet-and-violet-151/charmeleon-005-165">sv-scarlet-and-violet-151/charmeleon-005-165</a></td></tr>
@@ -384,15 +384,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png"><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" height="22" align="top"></picture> SWSH04: Vivid Voltage</td></tr>
   <tr><td><b>Number</b>: 024/185</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 90</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Slash (20)</td></tr>
   <tr><td><b>Attack</b>: [RR] Raging Flames (60) - Discard the top 3 cards of your deck.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh04-vivid-voltage/charmeleon">swsh04-vivid-voltage/charmeleon</a></td></tr>
@@ -406,15 +406,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crystal-guardians.png"><img src="./assets/sets/crystal-guardians.png" alt="EX Crystal Guardians" height="22" align="top"></picture> EX Crystal Guardians</td></tr>
   <tr><td><b>Number</b>: 30/100</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Lightning</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/electric.png" alt="Lightning" height="18" align="top"> Lightning</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [2] Slash (20)</td></tr>
   <tr><td><b>Attack</b>: [2L] Thunder Jolt (50) Flip a coin. If tails, Charmeleon does 10 damage to itself.</td></tr>
-  <tr><td><b>Weakness</b>: Water</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/ex-crystal-guardians/charmeleon-delta-species">ex-crystal-guardians/charmeleon-delta-species</a></td></tr>
@@ -428,14 +428,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/hidden-fates.png"><img src="./assets/sets/hidden-fates.png" alt="Hidden Fates" height="22" align="top"></picture> Hidden Fates</td></tr>
   <tr><td><b>Number</b>: 49/68</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Gnaw (20)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/hidden-fates/eevee-49">hidden-fates/eevee-49</a></td></tr>
@@ -449,15 +449,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> SV06: Twilight Masquerade</td></tr>
   <tr><td><b>Number</b>: 135/167</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [C] Ascension Search your deck for a card that evolves from this Pokémon and put it onto this Pokémon to evolve it. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [CCC] Quick Attack (20+) Flip a coin. If heads, this attack does 20 more damage.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv06-twilight-masquerade/eevee-135-167">sv06-twilight-masquerade/eevee-135-167</a></td></tr>
@@ -471,14 +471,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> SV: Prismatic Evolutions</td></tr>
   <tr><td><b>Number</b>: 074/131</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Boosted Evolution As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</td></tr>
   <tr><td><b>Attack</b>: [CC] Reckless Charge (30) - This Pokémon also does 10 damage to itself.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-prismatic-evolutions/eevee">sv-prismatic-evolutions/eevee</a></td></tr>
@@ -492,15 +492,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png"><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" height="22" align="top"></picture> SV: Shrouded Fable</td></tr>
   <tr><td><b>Number</b>: 050/064</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [C] Colorful Catch - Search your deck for up to 3 Basic Energy cards of different types, reveal them, and put them into your hand. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [CC] Headbutt (20)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-shrouded-fable/eevee">sv-shrouded-fable/eevee</a></td></tr>
@@ -514,14 +514,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> SV: Prismatic Evolutions</td></tr>
   <tr><td><b>Number</b>: 074/131</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Boosted Evolution As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</td></tr>
   <tr><td><b>Attack</b>: [CC] Reckless Charge (30) - This Pokémon also does 10 damage to itself.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-prismatic-evolutions/eevee-poke-ball-pattern">sv-prismatic-evolutions/eevee-poke-ball-pattern</a></td></tr>
@@ -535,14 +535,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> SV: Prismatic Evolutions</td></tr>
   <tr><td><b>Number</b>: 075/131</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 200</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Rainbow DNA This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.)</td></tr>
   <tr><td><b>Attack</b>: [RWL] Coruscating Quartz (200)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-prismatic-evolutions/eevee-ex-075-131">sv-prismatic-evolutions/eevee-ex-075-131</a></td></tr>
@@ -556,15 +556,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/swsh-black-star-promos.png"><img src="./assets/sets/swsh-black-star-promos.png" alt="SWSH: Sword &amp; Shield Promo Cards" height="22" align="top"></picture> SWSH: Sword &amp; Shield Promo Cards</td></tr>
   <tr><td><b>Number</b>: SWSH065</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 190</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Collect - Draw 3 cards.</td></tr>
   <tr><td><b>Attack</b>: [3] Brave Buddies (80+) - If you played a Supporter card from your hand during this turn, this attack does 80 more damage.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh-sword-and-shield-promo-cards/eevee-v-swsh065">swsh-sword-and-shield-promo-cards/eevee-v-swsh065</a></td></tr>
@@ -578,15 +578,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> SV: Prismatic Evolutions</td></tr>
   <tr><td><b>Number</b>: 013/131</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Destructive Flame (30) - Flip a coin. If heads, discard an Energy from your opponent&#x27;s Active Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [RCC] Fighting Blaze (90+) - If your opponent&#x27;s Active Pokémon is a Pokémon ex or Pokémon V, this attack does 90 more damage.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-prismatic-evolutions/flareon">sv-prismatic-evolutions/flareon</a></td></tr>
@@ -600,15 +600,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> SV: Prismatic Evolutions</td></tr>
   <tr><td><b>Number</b>: 014/131</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 270</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [RC] Burning Charge (130) - Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [RWL] Carnelian (280) - During your next turn, this Pokémon can&#x27;t attack.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-prismatic-evolutions/flareon-ex-014-131">sv-prismatic-evolutions/flareon-ex-014-131</a></td></tr>
@@ -622,15 +622,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/swsh-black-star-promos.png"><img src="./assets/sets/swsh-black-star-promos.png" alt="SWSH: Sword &amp; Shield Promo Cards" height="22" align="top"></picture> SWSH: Sword &amp; Shield Promo Cards</td></tr>
   <tr><td><b>Number</b>: SWSH149</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 210</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Flaming Breath (20) - Search your deck for a R Energy card and attach it to this Pokémon. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [1RR] Scorching Column (120) - Your opponent&#x27;s Active Pokémon is now Burned.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh-sword-and-shield-promo-cards/flareon-v-swsh149">swsh-sword-and-shield-promo-cards/flareon-v-swsh149</a></td></tr>
@@ -644,14 +644,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolving-skies.png"><img src="./assets/sets/evolving-skies.png" alt="SWSH07: Evolving Skies" height="22" align="top"></picture> SWSH07: Evolving Skies</td></tr>
   <tr><td><b>Number</b>: 018/203</td></tr>
   <tr><td><b>Rarity</b>: <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" height="16" align="top"> Ultra Rare</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 320</td></tr>
   <tr><td><b>Stage</b>: VMAX</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [2R] Max Detonate (100x) - Discard the top 5 cards of your deck. This attack does 100 damage for each Energy card you discarded in this way.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh07-evolving-skies/flareon-vmax">swsh07-evolving-skies/flareon-vmax</a></td></tr>
@@ -665,14 +665,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png"><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" height="22" align="top"></picture> SWSH06: Chilling Reign</td></tr>
   <tr><td><b>Number</b>: 096/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Energy Factory Each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide Darkness Darkness Energy. You can&#x27;t apply more than 1 Energy Factory Ability at a time.</td></tr>
   <tr><td><b>Attack</b>: [1D] Suffocating Gas (50)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh06-chilling-reign/galarian-weezing">swsh06-chilling-reign/galarian-weezing</a></td></tr>
@@ -686,14 +686,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shining-fates.png"><img src="./assets/sets/shining-fates.png" alt="Shining Fates" height="22" align="top"></picture> Shining Fates</td></tr>
   <tr><td><b>Number</b>: 042/072</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Neutralizing Gas As long as this Pokémon is in the Active Spot, your opponent&#x27;s Pokémon in play have no Abilities, except for Neutralizing Gas.</td></tr>
   <tr><td><b>Attack</b>: [D] Severe Poison - Your opponent&#x27;s Active Pokémon is now Poisoned. Put 4 damage counters instead of 1 on that Pokémon during Pokémon Checkup.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 3</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 3</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/shining-fates/galarian-weezing">shining-fates/galarian-weezing</a></td></tr>
@@ -707,14 +707,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fossil.png"><img src="./assets/sets/fossil.png" alt="Fossil" height="22" align="top"></picture> Fossil</td></tr>
   <tr><td><b>Number</b>: 33/62</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Lick (10) - Flip a coin. If heads, the Defending Pokémon is now Paralyzed.</td></tr>
   <tr><td><b>Attack</b>: [PP] Energy Conversion - Put up to 2 Energy cards from your discard pile into your hand. Gastly does 10 damage to itself.</td></tr>
   <tr><td><b>Weakness</b>: -</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: -</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
@@ -729,14 +729,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> ME02: Phantasmal Flames</td></tr>
   <tr><td><b>Number</b>: 054/094</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D] Petty Grudge (10)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/gastly">me02-phantasmal-flames/gastly</a></td></tr>
@@ -750,14 +750,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png"><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" height="22" align="top"></picture> ME03: Perfect Order</td></tr>
   <tr><td><b>Number</b>: 048/088</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D] Surprise Attack (30) - Flip a coin. If tails, this attack does nothing.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me03-perfect-order/gastly">me03-perfect-order/gastly</a></td></tr>
@@ -771,13 +771,13 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> SV: Paldean Fates</td></tr>
   <tr><td><b>Number</b>: 055/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-paldean-fates/gastly">sv-paldean-fates/gastly</a></td></tr>
@@ -791,14 +791,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png"><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" height="22" align="top"></picture> SV: Scarlet &amp; Violet 151</td></tr>
   <tr><td><b>Number</b>: 092/165</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Suffocating Gas (20)</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-scarlet-and-violet-151/gastly">sv-scarlet-and-violet-151/gastly</a></td></tr>
@@ -812,14 +812,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" height="22" align="top"> Trick or Trade BOOster Bundle</td></tr>
   <tr><td><b>Number</b>: 055/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Sleep Pulse (10) - Flip a coin. If heads, your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle/gastly">trick-or-trade-booster-bundle/gastly</a></td></tr>
@@ -833,13 +833,13 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" height="22" align="top"> Trick or Trade BOOster Bundle 2023</td></tr>
   <tr><td><b>Number</b>: 064/196</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 40</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Furtive Drop - Put 1 damage counter on your opponent&#x27;s Active Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: -</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
@@ -854,15 +854,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolutions.png"><img src="./assets/sets/evolutions.png" alt="XY - Evolutions" height="22" align="top"></picture> XY - Evolutions</td></tr>
   <tr><td><b>Number</b>: 47/108</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 40</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Little Grudge - During your opponent&#x27;s next turn, if this Pokémon is Knocked Out by damage from an attack, discard an Energy attached to the Attacking Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [1P] Nightmare (20) - Flip a coin. If heads, your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -20</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -20</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/xy-evolutions/gastly">xy-evolutions/gastly</a></td></tr>
@@ -876,14 +876,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png"><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" height="22" align="top"></picture> ME: Ascended Heroes</td></tr>
   <tr><td><b>Number</b>: 123/217</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D] Petty Grudge (10)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me-ascended-heroes/gastly-energy-symbol-pattern">me-ascended-heroes/gastly-energy-symbol-pattern</a></td></tr>
@@ -897,14 +897,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png"><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" height="22" align="top"></picture> ME03: Perfect Order</td></tr>
   <tr><td><b>Number</b>: 050/088</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Infinite Shadow If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</td></tr>
   <tr><td><b>Attack</b>: [D] Mind Jack (10+) - This attack does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me03-perfect-order/gengar">me03-perfect-order/gengar</a></td></tr>
@@ -918,14 +918,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png"><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" height="22" align="top"></picture> SWSH01: Sword &amp; Shield Base Set</td></tr>
   <tr><td><b>Number</b>: 085/202</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Life Shaker As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [1PP] Hypnoblast (90) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh01-sword-and-shield-base-set/gengar">swsh01-sword-and-shield-base-set/gengar</a></td></tr>
@@ -939,14 +939,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" height="22" align="top"> Trick or Trade BOOster Bundle</td></tr>
   <tr><td><b>Number</b>: 057/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Last Gift If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, search your deck for up to 2 cards and put them into your hand. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [3] Pain Burst (10+) - This attack does 40 more damage for each damage counter on your opponent&#x27;s Active Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle/gengar-2021-copyright-date">trick-or-trade-booster-bundle/gengar-2021-copyright-date</a></td></tr>
@@ -960,14 +960,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" height="22" align="top"> Trick or Trade BOOster Bundle 2023</td></tr>
   <tr><td><b>Number</b>: 066/196</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Netherworld Gate Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [P] Screaming Circle - Put 2 damage counters on your opponent&#x27;s Active Pokémon for each of your opponent&#x27;s Benched Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2023/gengar-2022-copyright-date">trick-or-trade-booster-bundle-2023/gengar-2022-copyright-date</a></td></tr>
@@ -981,14 +981,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" height="22" align="top"> Trick or Trade BOOster Bundle 2024</td></tr>
   <tr><td><b>Number</b>: 057/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
   <tr><td><b>Ability</b>: Night Gate Once during your turn, you may switch your Active Pokémon with 1 of your Benched Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [D1] Nightmare (100) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2024/gengar-cosmos-holo">trick-or-trade-booster-bundle-2024/gengar-cosmos-holo</a></td></tr>
@@ -1002,15 +1002,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fusion-strike.png"><img src="./assets/sets/fusion-strike.png" alt="SWSH08: Fusion Strike" height="22" align="top"></picture> SWSH08: Fusion Strike</td></tr>
   <tr><td><b>Number</b>: 156/264</td></tr>
   <tr><td><b>Rarity</b>: <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" height="16" align="top"> Ultra Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 210</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [DD] Dark Slumber (40) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
   <tr><td><b>Attack</b>: [DDD] Pain Explosion (190) - Put 3 damage counters on this Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh08-fusion-strike/gengar-v">swsh08-fusion-strike/gengar-v</a></td></tr>
@@ -1024,14 +1024,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" height="22" align="top"> Trick or Trade BOOster Bundle</td></tr>
   <tr><td><b>Number</b>: 077/203</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [2] Pandemonium (60x) - Reveal the top 6 cards of your deck. This attack does 60 damage for each Psychic Pokémon you find there. Then, shuffle those Pokémon back into your deck and discard the other cards.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle/gourgeist">trick-or-trade-booster-bundle/gourgeist</a></td></tr>
@@ -1045,15 +1045,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/base-set-2.png"><img src="./assets/sets/base-set-2.png" alt="Base Set 2" height="22" align="top"></picture> Base Set 2</td></tr>
   <tr><td><b>Number</b>: 043/130</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Hypnosis - The Defending Pokémon is now Asleep.</td></tr>
   <tr><td><b>Attack</b>: [PP] Dream Eater (50) - You can&#x27;t use this attack unless the Defending Pokémon is Asleep.</td></tr>
   <tr><td><b>Weakness</b>: -</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/base-set-2/haunter">base-set-2/haunter</a></td></tr>
@@ -1067,14 +1067,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> ME02: Phantasmal Flames</td></tr>
   <tr><td><b>Number</b>: 055/094</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D] Spooky Shot (40)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/haunter-055-094">me02-phantasmal-flames/haunter-055-094</a></td></tr>
@@ -1088,14 +1088,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png"><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" height="22" align="top"></picture> ME03: Perfect Order</td></tr>
   <tr><td><b>Number</b>: 049/088</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D] Haunt - Place 3 damage counters on your opponent&#x27;s Active Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me03-perfect-order/haunter">me03-perfect-order/haunter</a></td></tr>
@@ -1109,14 +1109,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crimson-invasion.png"><img src="./assets/sets/crimson-invasion.png" alt="SM - Crimson Invasion" height="22" align="top"></picture> SM - Crimson Invasion</td></tr>
   <tr><td><b>Number</b>: 37/111</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Pain Amplifier - Put 2 damage counters on each of your opponent&#x27;s Pokémon that has any damage counters on it.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -20</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -20</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sm-crimson-invasion/haunter">sm-crimson-invasion/haunter</a></td></tr>
@@ -1130,13 +1130,13 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> SV: Paldean Fates</td></tr>
   <tr><td><b>Number</b>: 056/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-paldean-fates/haunter">sv-paldean-fates/haunter</a></td></tr>
@@ -1150,14 +1150,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png"><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" height="22" align="top"></picture> SV: Scarlet &amp; Violet 151</td></tr>
   <tr><td><b>Number</b>: 093/165</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Spirit Return When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put a Supporter card from your opponent&#x27;s discard pile into their hand.</td></tr>
   <tr><td><b>Attack</b>: [1P] Mumble (30)</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-scarlet-and-violet-151/haunter">sv-scarlet-and-violet-151/haunter</a></td></tr>
@@ -1171,15 +1171,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png"><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" height="22" align="top"></picture> SWSH01: Sword &amp; Shield Base Set</td></tr>
   <tr><td><b>Number</b>: 084/202</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Nightmare (20) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
   <tr><td><b>Attack</b>: [1P] Spooky Shot (40)</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh01-sword-and-shield-base-set/haunter">swsh01-sword-and-shield-base-set/haunter</a></td></tr>
@@ -1193,14 +1193,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" height="22" align="top"> Trick or Trade BOOster Bundle</td></tr>
   <tr><td><b>Number</b>: 056/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Will-O-Wisp (30)</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle/haunter">trick-or-trade-booster-bundle/haunter</a></td></tr>
@@ -1214,14 +1214,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" height="22" align="top"> Trick or Trade BOOster Bundle 2023</td></tr>
   <tr><td><b>Number</b>: 065/196</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Cursed Drop - Put 3 damage counters on your opponent&#x27;s Pokémon in any way you like.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2023/haunter">trick-or-trade-booster-bundle-2023/haunter</a></td></tr>
@@ -1235,14 +1235,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" height="22" align="top"> Trick or Trade BOOster Bundle 2024</td></tr>
   <tr><td><b>Number</b>: 103/162</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 90</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D][D] Super Poison Breath (30) Your opponent’s Active Pokémon is now Poisoned.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2024/haunter">trick-or-trade-booster-bundle-2024/haunter</a></td></tr>
@@ -1256,14 +1256,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png"><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" height="22" align="top"></picture> SV07: Stellar Crown</td></tr>
   <tr><td><b>Number</b>: 114/142</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [C] Triple Stab (10x) - Flip 3 coins. This attack does 10 damage for each heads.</td></tr>
-  <tr><td><b>Weakness</b>: Lightning ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/electric.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv07-stellar-crown/hoothoot">sv07-stellar-crown/hoothoot</a></td></tr>
@@ -1277,15 +1277,15 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" height="22" align="top"> Trick or Trade BOOster Bundle 2023</td></tr>
   <tr><td><b>Number</b>: 034/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Sharp Fang (30)</td></tr>
   <tr><td><b>Attack</b>: [1RR] Fire Blast (150) - Discard a [R] Energy attached to this Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2023/houndoom">trick-or-trade-booster-bundle-2023/houndoom</a></td></tr>
@@ -1299,14 +1299,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" height="22" align="top"> Trick or Trade BOOster Bundle 2024</td></tr>
   <tr><td><b>Number</b>: 139/162</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Auto Marshal If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [C][C][C] Blasting Wind (110)</td></tr>
-  <tr><td><b>Weakness</b>: Lightning ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/electric.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2024/iron-jugulis">trick-or-trade-booster-bundle-2024/iron-jugulis</a></td></tr>
@@ -1320,15 +1320,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> SV09: Journey Together</td></tr>
   <tr><td><b>Number</b>: 091/159</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Tackle (10)</td></tr>
   <tr><td><b>Attack</b>: [1D] Suffocating Gas (20)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv09-journey-together/koffing">sv09-journey-together/koffing</a></td></tr>
@@ -1342,14 +1342,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png"><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" height="22" align="top"></picture> SWSH06: Chilling Reign</td></tr>
   <tr><td><b>Number</b>: 094/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1D] Smog (20) - Your opponent&#x27;s Active Pokémon is now Poisoned.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh06-chilling-reign/koffing">swsh06-chilling-reign/koffing</a></td></tr>
@@ -1363,14 +1363,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" height="22" align="top"> Trick or Trade BOOster Bundle</td></tr>
   <tr><td><b>Number</b>: 031/192</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="16" align="top"></picture> Promo</td></tr>
-  <tr><td><b>Type</b>: Fire</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [R] Scorch - Your opponent&#x27;s Active Pokémon is now Burned.</td></tr>
-  <tr><td><b>Weakness</b>: Water ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle/litwick">trick-or-trade-booster-bundle/litwick</a></td></tr>
@@ -1384,14 +1384,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fusion-strike.png"><img src="./assets/sets/fusion-strike.png" alt="SWSH08: Fusion Strike" height="22" align="top"></picture> SWSH08: Fusion Strike</td></tr>
   <tr><td><b>Number</b>: 113/264</td></tr>
   <tr><td><b>Rarity</b>: <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" height="16" align="top"> Ultra Rare</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 180</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Energy Mix - Search your deck for an Energy card and attach it to 1 of your Fusion Strike Pokémon. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [1P] Psychic Leap (70) - You may shuffle this Pokémon and all attached cards into your deck.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: 0</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
@@ -1406,14 +1406,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png"><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" height="22" align="top"></picture> SV07: Stellar Crown</td></tr>
   <tr><td><b>Number</b>: 115/142</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Colorless</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/normal.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Jewel Seeker Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any Tera Pokémon in play, you may search your deck for up to 2 Trainer cards, reveal them, and put them into your hand. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [CC] Speed Wing (60)</td></tr>
-  <tr><td><b>Weakness</b>: Lightning ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/electric.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv07-stellar-crown/noctowl">sv07-stellar-crown/noctowl</a></td></tr>
@@ -1427,14 +1427,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" height="22" align="top"> Trick or Trade BOOster Bundle 2024</td></tr>
   <tr><td><b>Number</b>: 111/167</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Fighting</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Adrena-Power If this Pokémon has any Darkness Energy attached, it gets +100 HP, and the attacks it uses do 100 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</td></tr>
   <tr><td><b>Attack</b>: [FF] Good Punch (70)</td></tr>
-  <tr><td><b>Weakness</b>: Psychic ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2024/okidogi-cosmos-holo">trick-or-trade-booster-bundle-2024/okidogi-cosmos-holo</a></td></tr>
@@ -1448,14 +1448,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png"><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" height="22" align="top"></picture> ME04: Chaos Rising</td></tr>
   <tr><td><b>Number</b>: 040/086</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Stampede (20)</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/me04-chaos-rising/pumpkaboo">me04-chaos-rising/pumpkaboo</a></td></tr>
@@ -1469,14 +1469,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crimson-invasion.png"><img src="./assets/sets/crimson-invasion.png" alt="SM - Crimson Invasion" height="22" align="top"></picture> SM - Crimson Invasion</td></tr>
   <tr><td><b>Number</b>: 44/111</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Astonish - Choose a random card from your opponent&#x27;s hand. Your opponent reveals that card and shuffles it into their deck.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -20</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -20</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sm-crimson-invasion/pumpkaboo">sm-crimson-invasion/pumpkaboo</a></td></tr>
@@ -1490,15 +1490,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paradox-rift.png"><img src="./assets/sets/paradox-rift.png" alt="SV04: Paradox Rift" height="22" align="top"></picture> SV04: Paradox Rift</td></tr>
   <tr><td><b>Number</b>: 077/182</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [P] Seed Bomb (10)</td></tr>
   <tr><td><b>Attack</b>: [2] Reckless Charge (40) - This Pokémon also does 20 damage to itself.</td></tr>
-  <tr><td><b>Weakness</b>: Darkness ×2</td></tr>
-  <tr><td><b>Resistance</b>: Fighting -30</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv04-paradox-rift/pumpkaboo">sv04-paradox-rift/pumpkaboo</a></td></tr>
@@ -1512,15 +1512,15 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" height="22" align="top"> Trick or Trade BOOster Bundle 2024</td></tr>
   <tr><td><b>Number</b>: 022/167</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Grass</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [G] Cursed Drop Put 4 damage counters on your opponent&#x27;s Pokémon in any way you like.</td></tr>
   <tr><td><b>Attack</b>: [G] Spi[LL] the Tea (70x) Discard up to 3 G Energy cards from your Pokémon. This attack does 70 damage for each card you discarded this way.</td></tr>
-  <tr><td><b>Weakness</b>: Fire ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2024/sinistcha-cosmos-holo">trick-or-trade-booster-bundle-2024/sinistcha-cosmos-holo</a></td></tr>
@@ -1534,15 +1534,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png"><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" height="22" align="top"></picture> SWSH06: Chilling Reign</td></tr>
   <tr><td><b>Number</b>: 103/198</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Ghostly Cries - For each Pokémon in your opponent&#x27;s discard pile, put 1 damage counter on your opponent&#x27;s Pokémon in any way you like. If you placed any damage counters in this way, your opponent shuffles all Pokémon from their discard pile into their deck.</td></tr>
   <tr><td><b>Attack</b>: [D] Will-O-Wisp (20)</td></tr>
-  <tr><td><b>Weakness</b>: Grass ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh06-chilling-reign/spiritomb">swsh06-chilling-reign/spiritomb</a></td></tr>
@@ -1556,15 +1556,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png"><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" height="22" align="top"></picture> SWSH01: Sword &amp; Shield Base Set</td></tr>
   <tr><td><b>Number</b>: 100/202</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Fighting</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [1] Double Draw - Draw 2 cards.</td></tr>
   <tr><td><b>Attack</b>: [1] Flail (10x) - This attack does 10 damage for each damage counter on this Pokémon.</td></tr>
-  <tr><td><b>Weakness</b>: Grass ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh01-sword-and-shield-base-set/sudowoodo">swsh01-sword-and-shield-base-set/sudowoodo</a></td></tr>
@@ -1578,14 +1578,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> SV10: Destined Rivals</td></tr>
   <tr><td><b>Number</b>: 125/182</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: Smog Signals If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), search your deck for up to 2 Pokémon that have &quot;Koffing&quot; in their name and put them onto your Bench. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [DC] Leaking Gas (30)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 1</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv10-destined-rivals/team-rockets-koffing">sv10-destined-rivals/team-rockets-koffing</a></td></tr>
@@ -1599,14 +1599,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> SV10: Destined Rivals</td></tr>
   <tr><td><b>Number</b>: 126/182</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [DC] Explode Together Now (40x) - This attack does 40 damage for each Pokémon in play that has &quot;Koffing&quot; or &quot;Weezing&quot; in its name (both yours and your opponent&#x27;s).</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv10-destined-rivals/team-rockets-weezing-126-182">sv10-destined-rivals/team-rockets-weezing-126-182</a></td></tr>
@@ -1620,14 +1620,14 @@
   <tr><td><b>Set</b>: <img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" height="22" align="top"> Trick or Trade BOOster Bundle 2023</td></tr>
   <tr><td><b>Number</b>: 017/196</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Grass</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Elder Tree Barrier If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon V, your opponent can&#x27;t take any Prize cards for it.</td></tr>
   <tr><td><b>Attack</b>: [1GG] Giga Impact (150) - During your next turn, this Pokémon can&#x27;t attack.</td></tr>
-  <tr><td><b>Weakness</b>: Fire ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 3</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 3</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2023/trevenant">trick-or-trade-booster-bundle-2023/trevenant</a></td></tr>
@@ -1641,14 +1641,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/hidden-fates.png"><img src="./assets/sets/hidden-fates.png" alt="Hidden Fates" height="22" align="top"></picture> Hidden Fates</td></tr>
   <tr><td><b>Number</b>: 29/68</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Surrender Now Once during your turn, if this Pokémon is discarded with the effect of Jessie &amp; James, you may have your opponent discard a card from their hand. (They discard that card after the effect of Jessie &amp; James.)</td></tr>
   <tr><td><b>Attack</b>: [1] Tackle (40)</td></tr>
-  <tr><td><b>Weakness</b>: Psychic ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 3</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 3</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/hidden-fates/weezing">hidden-fates/weezing</a></td></tr>
@@ -1662,15 +1662,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> SV09: Journey Together</td></tr>
   <tr><td><b>Number</b>: 092/159</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [D] Pervasive Gas (30) - Your opponent’s Active Pokémon is now Confused.</td></tr>
   <tr><td><b>Attack</b>: [1D] Crazy Blast (50+) - If this Pokémon used Pervasive Gas during your last turn, this attack does 120 more damage.</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✓ Yes, this card is allowed in tournaments</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv09-journey-together/weezing">sv09-journey-together/weezing</a></td></tr>
@@ -1684,14 +1684,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png"><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" height="22" align="top"></picture> SV: Scarlet &amp; Violet 151</td></tr>
   <tr><td><b>Number</b>: 110/165</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: Darkness</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dark.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Let&#x27;s Have a Blast If this Pokémon is in the Active Spot and is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</td></tr>
   <tr><td><b>Attack</b>: [2] Spinning Fumes (50) - This attack also does 10 damage to each of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
-  <tr><td><b>Weakness</b>: Fighting ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/sv-scarlet-and-violet-151/weezing">sv-scarlet-and-violet-151/weezing</a></td></tr>
@@ -1705,15 +1705,15 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fates-collide.png"><img src="./assets/sets/fates-collide.png" alt="XY - Fates Collide" height="22" align="top"></picture> XY - Fates Collide</td></tr>
   <tr><td><b>Number</b>: 28/124</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: [2] Balloon Bomb - Flip 2 coins. For each heads, discard 2 cards from the top of your opponent&#x27;s deck.</td></tr>
   <tr><td><b>Attack</b>: [2P] Thick Liquid (80) - Both Active Pokémon are now Confused and Poisoned.</td></tr>
-  <tr><td><b>Weakness</b>: Psychic ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 3</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 3</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/xy-fates-collide/weezing">xy-fates-collide/weezing</a></td></tr>
@@ -1727,14 +1727,14 @@
   <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/plasma-storm.png"><img src="./assets/sets/plasma-storm.png" alt="Plasma Storm" height="22" align="top"></picture> Plasma Storm</td></tr>
   <tr><td><b>Number</b>: 58/135</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
-  <tr><td><b>Type</b>: Psychic</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: Aftermath - When this Pokémon is Knocked Out by damage from an opponent&#x27;s attack, discard the top 3 cards of your opponent&#x27;s deck. (Ability)</td></tr>
   <tr><td><b>Attack</b>: [1P] Smogbank - This attack does 20 damage to each of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
-  <tr><td><b>Weakness</b>: Psychic ×2</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: 2</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"><img src="./assets/types/normal.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/plasma-storm/weezing-team-plasma">plasma-storm/weezing-team-plasma</a></td></tr>

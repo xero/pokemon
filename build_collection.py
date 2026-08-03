@@ -83,6 +83,32 @@ RARITY_SLUG = {
 }
 
 
+# The icon set is named for the video game types; this is a TCG collection.
+# Water, Metal, Fairy, and Dragon are here for completeness even though no card
+# currently in the collection uses them as a type.
+TYPE_ICON = {
+    "Colorless": "normal", "Darkness": "dark", "Dragon": "dragon",
+    "Fairy": "fairy", "Fighting": "fighting", "Fire": "fire", "Grass": "grass",
+    "Lightning": "electric", "Metal": "steel", "Psychic": "psychic",
+    "Water": "water",
+}
+
+
+def type_icon(tcg_type, height=18):
+    """The energy icon for a TCG type, or nothing if it is not a type."""
+    slug = TYPE_ICON.get(tcg_type)
+    if not slug or not (ROOT / "assets" / "types" / f"{slug}.png").exists():
+        return ""
+    return (f'<img src="./assets/types/{slug}.png" alt="{html.escape(tcg_type)}" '
+            f'height="{height}" align="top">')
+
+
+def typed(v):
+    """Prefix a value like "Darkness ×2" or "Fighting -30" with its energy icon."""
+    ico = type_icon(v.split(" ")[0])
+    return f"{ico} {html.escape(v)}".strip() if ico else html.escape(v)
+
+
 def set_slug(name):
     if name in SET_SLUG:
         return SET_SLUG[name]
@@ -138,6 +164,14 @@ def value(key, r):
         return f'{icon("rarities", RARITY_SLUG.get(v), 16, v)} {html.escape(v)}'.strip()
     if key == "source_url":
         return f'<a href="{html.escape(v)}">{html.escape(v.rsplit("/pokemon/", 1)[-1])}</a>'
+    if key in ("card_type", "weakness", "resistance"):
+        return typed(v)
+    if key == "retreat_cost":
+        # Retreat is paid in any energy, so it prints as that many Colorless
+        # symbols. Showing them beats a bare digit for someone learning.
+        n = int(v) if v.isdigit() else 0
+        ico = type_icon("Colorless", 16)
+        return f"{ico * n} {html.escape(v)}".strip() if ico and n else html.escape(v)
     if key == "standard_legal":
         return html.escape(LEGAL_LABEL.get(v, v))
     if key == "card_text":
@@ -169,7 +203,10 @@ def stats(r):
 seen = Counter()
 entries = [(r, anchor(r["name"], seen)) for r in rows]
 
-out = ["# Pokémon Caught!\n"]
+# An HTML h1 rather than a markdown one, so the Poké Ball can sit inside it.
+# It is full colour and needs no dark-theme variant.
+out = ['<h1><img src="./assets/pokeball.png" alt="" height="40" align="top"> '
+       "Pokémon Caught!</h1>\n"]
 
 # The blank lines around the list are load-bearing. Without them GitHub treats
 # the whole <details> block as raw HTML and the markdown links never render.
