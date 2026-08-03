@@ -3,6 +3,8 @@
 <details>
 <summary><h3>Pokédex</h3></summary>
 
+- **A**
+  - [Absol](#absol) _MBG: MEGA Starter Set Mega Gengar ex_
 - **C**
   - [Chandelure](#chandelure) _Trick or Trade BOOster Bundle_
   - [Charizard](#charizard) _SWSH04: Vivid Voltage_
@@ -27,6 +29,7 @@
   - [Eevee (Poké Ball Pattern)](#eevee-poké-ball-pattern) _SV: Prismatic Evolutions_
   - [Eevee ex](#eevee-ex) _SV: Prismatic Evolutions_
   - [Eevee V](#eevee-v) _SWSH: Sword & Shield Promo Cards_
+  - [Eternatus](#eternatus) _MBG: MEGA Starter Set Mega Gengar ex_
 - **F**
   - [Flareon](#flareon) _SV: Prismatic Evolutions_
   - [Flareon ex](#flareon-ex) _SV: Prismatic Evolutions_
@@ -36,13 +39,14 @@
   - [Galarian Weezing](#galarian-weezing) _SWSH06: Chilling Reign_
   - [Galarian Weezing](#galarian-weezing-1) _Shining Fates_
   - [Gastly](#gastly) _Fossil_
-  - [Gastly](#gastly-1) _ME02: Phantasmal Flames_
-  - [Gastly](#gastly-2) _ME03: Perfect Order_
-  - [Gastly](#gastly-3) _SV: Paldean Fates_
-  - [Gastly](#gastly-4) _SV: Scarlet & Violet 151_
-  - [Gastly](#gastly-5) _Trick or Trade BOOster Bundle_
-  - [Gastly](#gastly-6) _Trick or Trade BOOster Bundle 2023_
-  - [Gastly](#gastly-7) _XY - Evolutions_
+  - [Gastly](#gastly-1) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Gastly](#gastly-2) _ME02: Phantasmal Flames_
+  - [Gastly](#gastly-3) _ME03: Perfect Order_
+  - [Gastly](#gastly-4) _SV: Paldean Fates_
+  - [Gastly](#gastly-5) _SV: Scarlet & Violet 151_
+  - [Gastly](#gastly-6) _Trick or Trade BOOster Bundle_
+  - [Gastly](#gastly-7) _Trick or Trade BOOster Bundle 2023_
+  - [Gastly](#gastly-8) _XY - Evolutions_
   - [Gastly (Energy Symbol Pattern)](#gastly-energy-symbol-pattern) _ME: Ascended Heroes_
   - [Gengar](#gengar) _ME03: Perfect Order_
   - [Gengar](#gengar-1) _SWSH01: Sword & Shield Base Set_
@@ -53,15 +57,18 @@
   - [Gourgeist](#gourgeist) _Trick or Trade BOOster Bundle_
 - **H**
   - [Haunter](#haunter) _Base Set 2_
-  - [Haunter](#haunter-1) _ME02: Phantasmal Flames_
-  - [Haunter](#haunter-2) _ME03: Perfect Order_
-  - [Haunter](#haunter-3) _SM - Crimson Invasion_
-  - [Haunter](#haunter-4) _SV: Paldean Fates_
-  - [Haunter](#haunter-5) _SV: Scarlet & Violet 151_
-  - [Haunter](#haunter-6) _SWSH01: Sword & Shield Base Set_
-  - [Haunter](#haunter-7) _Trick or Trade BOOster Bundle_
-  - [Haunter](#haunter-8) _Trick or Trade BOOster Bundle 2023_
-  - [Haunter](#haunter-9) _Trick or Trade BOOster Bundle 2024_
+  - [Haunter](#haunter-1) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Haunter](#haunter-2) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Haunter](#haunter-3) _ME02: Phantasmal Flames_
+  - [Haunter](#haunter-4) _ME03: Perfect Order_
+  - [Haunter](#haunter-5) _SM - Crimson Invasion_
+  - [Haunter](#haunter-6) _SV: Paldean Fates_
+  - [Haunter](#haunter-7) _SV: Scarlet & Violet 151_
+  - [Haunter](#haunter-8) _SWSH01: Sword & Shield Base Set_
+  - [Haunter](#haunter-9) _Trick or Trade BOOster Bundle_
+  - [Haunter](#haunter-10) _Trick or Trade BOOster Bundle 2023_
+  - [Haunter](#haunter-11) _Trick or Trade BOOster Bundle 2024_
+  - [Honchkrow](#honchkrow) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Hoothoot](#hoothoot) _SV07: Stellar Crown_
   - [Houndoom](#houndoom) _Trick or Trade BOOster Bundle 2023_
 - **I**
@@ -74,6 +81,7 @@
 - **M**
   - [Mega Gengar ex](#mega-gengar-ex) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Mew V](#mew-v) _SWSH08: Fusion Strike_
+  - [Murkrow](#murkrow) _MBG: MEGA Starter Set Mega Gengar ex_
 - **N**
   - [Noctowl](#noctowl) _SV07: Stellar Crown_
 - **O**
@@ -83,10 +91,12 @@
   - [Pumpkaboo](#pumpkaboo-1) _SM - Crimson Invasion_
   - [Pumpkaboo](#pumpkaboo-2) _SV04: Paradox Rift_
 - **S**
+  - [Sableye](#sableye) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Sinistcha (Cosmos Holo)](#sinistcha-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Spiritomb](#spiritomb) _SWSH06: Chilling Reign_
   - [Sudowoodo](#sudowoodo) _SWSH01: Sword & Shield Base Set_
 - **T**
+  - [Tatsugiri](#tatsugiri) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Team Rocket's Koffing](#team-rockets-koffing) _SV10: Destined Rivals_
   - [Team Rocket's Weezing](#team-rockets-weezing) _SV10: Destined Rivals_
   - [Trevenant](#trevenant) _Trick or Trade BOOster Bundle 2023_
@@ -98,6 +108,28 @@
   - [Weezing (Team Plasma)](#weezing-team-plasma) _Plasma Storm_
 
 </details>
+
+<table>
+  <tr><td colspan="2"><h3 id="absol">Absol</h3></td></tr>
+  <tr>
+    <th rowspan="16" width="400"><img src="./assets/660124_absol.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 007/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 110</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Colorless] Allure - Draw 2 cards.</td></tr>
+  <tr><td><b>Attack</b>: [Darkness][Colorless] Dark Cutter (60)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/absol">mbg-mega-starter-set-mega-gengar-ex/absol</a></td></tr>
+</table>
 
 <table>
   <tr><td colspan="2"><h3 id="chandelure">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
@@ -572,6 +604,28 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="eternatus">Eternatus</h3></td></tr>
+  <tr>
+    <th rowspan="16" width="400"><img src="./assets/660125_eternatus.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 008/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 150</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness][Darkness] Shatter (50) - Discard a Stadium in play.</td></tr>
+  <tr><td><b>Attack</b>: [Darkness][Darkness][Darkness] Power Rush (130) - Flip a coin. If tails, during your next turn, this Pokémon can&#x27;t attack.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/eternatus">mbg-mega-starter-set-mega-gengar-ex/eternatus</a></td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="flareon">Flareon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="16" width="400"><img src="./assets/610368_flareon.jpg" width="350"></th>
@@ -723,7 +777,28 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-1">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-1">Gastly</h3></td></tr>
+  <tr>
+    <th rowspan="15" width="400"><img src="./assets/660119_gastly.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 001/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness] Petty Grudge (10)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/gastly">mbg-mega-starter-set-mega-gengar-ex/gastly</a></td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="gastly-2">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/660495_gastly.jpg" width="350"></th>
   </tr>
@@ -744,7 +819,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-2">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-3">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/684429_gastly.jpg" width="350"></th>
   </tr>
@@ -765,7 +840,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-3">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-4">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="14" width="400"><img src="./assets/534417_gastly.jpg" width="350"></th>
   </tr>
@@ -785,7 +860,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-4">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-5">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/516661_gastly.jpg" width="350"></th>
   </tr>
@@ -806,7 +881,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-5">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-6">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/283811_gastly.jpg" width="350"></th>
   </tr>
@@ -827,7 +902,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-6">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-7">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/515659_gastly.jpg" width="350"></th>
   </tr>
@@ -848,7 +923,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-7">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-8">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="16" width="400"><img src="./assets/124061_gastly.jpg" width="350"></th>
   </tr>
@@ -1061,7 +1136,49 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-1">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-1">Haunter</h3></td></tr>
+  <tr>
+    <th rowspan="15" width="400"><img src="./assets/660120_haunter-002-021.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 002/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 100</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness] Spooky Shot (40)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/haunter-002-021">mbg-mega-starter-set-mega-gengar-ex/haunter-002-021</a></td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="haunter-2">Haunter <img src="./assets/rarities/illustration-rare.png" alt="Art Rare" height="18" align="top"></h3></td></tr>
+  <tr>
+    <th rowspan="15" width="400"><img src="./assets/654108_haunter-022-021.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 022/021</td></tr>
+  <tr><td><b>Rarity</b>: <img src="./assets/rarities/illustration-rare.png" alt="Art Rare" height="16" align="top"> Art Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 100</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness] Spooky Shot (40)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/haunter-022-021">mbg-mega-starter-set-mega-gengar-ex/haunter-022-021</a></td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="haunter-3">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/660408_haunter-055-094.jpg" width="350"></th>
   </tr>
@@ -1082,7 +1199,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-2">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-4">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/684430_haunter.jpg" width="350"></th>
   </tr>
@@ -1103,7 +1220,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-3">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-5">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/149060_haunter.jpg" width="350"></th>
   </tr>
@@ -1124,7 +1241,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-4">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="14" width="400"><img src="./assets/534418_haunter.jpg" width="350"></th>
   </tr>
@@ -1144,7 +1261,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-5">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/516662_haunter.jpg" width="350"></th>
   </tr>
@@ -1165,7 +1282,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="16" width="400"><img src="./assets/208390_haunter.jpg" width="350"></th>
   </tr>
@@ -1187,7 +1304,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/283812_haunter.jpg" width="350"></th>
   </tr>
@@ -1208,7 +1325,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/515660_haunter.jpg" width="350"></th>
   </tr>
@@ -1229,7 +1346,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/570361_haunter.jpg" width="350"></th>
   </tr>
@@ -1247,6 +1364,28 @@
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/trick-or-trade-booster-bundle-2024/haunter">trick-or-trade-booster-bundle-2024/haunter</a></td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="honchkrow">Honchkrow</h3></td></tr>
+  <tr>
+    <th rowspan="16" width="400"><img src="./assets/660122_honchkrow.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 005/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 130</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness] Wind of Darkness (30)</td></tr>
+  <tr><td><b>Attack</b>: [Darkness][Darkness][Colorless] Snipe Feather - Discard 2 Energy from this Pokémon. This attack does 120 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/honchkrow">mbg-mega-starter-set-mega-gengar-ex/honchkrow</a></td></tr>
 </table>
 
 <table>
@@ -1378,11 +1517,11 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="mega-gengar-ex"><img src="./assets/mega-evolution-sigil.png" alt="Mega Evolution" height="20" align="top"> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="mega-gengar-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" height="20" align="top"> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="15" width="400"><img src="./assets/653856_mega-gengar-ex.jpg" width="350"></th>
   </tr>
-  <tr><td><b>Set</b>: MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
   <tr><td><b>Number</b>: 003/021</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
@@ -1393,7 +1532,7 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here. This one is for the collection</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/mega-gengar-ex">mbg-mega-starter-set-mega-gengar-ex/mega-gengar-ex</a></td></tr>
 </table>
@@ -1418,6 +1557,27 @@
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: collection</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh08-fusion-strike/mew-v">swsh08-fusion-strike/mew-v</a></td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="murkrow">Murkrow</h3></td></tr>
+  <tr>
+    <th rowspan="15" width="400"><img src="./assets/660121_murkrow.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 004/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness] Ambush (10+) - Flip a coin. If heads, this attack does 20 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/murkrow">mbg-mega-starter-set-mega-gengar-ex/murkrow</a></td></tr>
 </table>
 
 <table>
@@ -1527,6 +1687,27 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="sableye">Sableye</h3></td></tr>
+  <tr>
+    <th rowspan="15" width="400"><img src="./assets/660123_sableye.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 006/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [Darkness] Arrogant Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/sableye">mbg-mega-starter-set-mega-gengar-ex/sableye</a></td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="sinistcha-cosmos-holo">Sinistcha (Cosmos Holo) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="16" width="400"><img src="./assets/570462_sinistcha-cosmos-holo.jpg" width="350"></th>
@@ -1590,6 +1771,27 @@
   <tr><td><b>Can I play it?</b>: ✗ No, this card is too old for tournaments now</td></tr>
   <tr><td><b>Category</b>: deck</td></tr>
   <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon/swsh01-sword-and-shield-base-set/sudowoodo">swsh01-sword-and-shield-base-set/sudowoodo</a></td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="tatsugiri">Tatsugiri</h3></td></tr>
+  <tr>
+    <th rowspan="15" width="400"><img src="./assets/660126_tatsugiri.jpg" width="350"></th>
+  </tr>
+  <tr><td><b>Set</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> MBG: MEGA Starter Set Mega Gengar ex</td></tr>
+  <tr><td><b>Number</b>: 009/021</td></tr>
+  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dragon.png" alt="Dragon" height="18" align="top"> Dragon</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Attract Customers Once during your turn, if this Pokémon is in the Active Spot, you may look at the top 6 cards of your deck, reveal a Supporter card you find there, and put it into your hand. Shuffle the other cards back into your deck.</td></tr>
+  <tr><td><b>Attack</b>: [Fire][Water] Surf (50)</td></tr>
+  <tr><td><b>Weakness</b>: -</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Can I play it?</b>: ✗ No, Japanese cards are not allowed at tournaments here</td></tr>
+  <tr><td><b>Category</b>: collection</td></tr>
+  <tr><td><b>Source</b>: <a href="https://store.tcgplayer.com/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/tatsugiri">mbg-mega-starter-set-mega-gengar-ex/tatsugiri</a></td></tr>
 </table>
 
 <table>

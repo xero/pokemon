@@ -148,6 +148,12 @@ STAGE_FIX = {"megaex": "Mega ex", "mega ex": "Mega ex", "basicex": "Basic ex",
              "stage1": "Stage 1", "stage2": "Stage 2"}
 
 
+def norm_rarity(v):
+    """TCGplayer sends the literal string "None" where a card has no rarity."""
+    s = accents(str(v or "").strip())
+    return "" if s.lower() == "none" else s
+
+
 def type_from_attack(ca):
     """Fallback for the handful of old cards where TCGplayer has no cardTypeB."""
     for k in ("attack1", "attack2", "attack3", "attack4"):
@@ -216,8 +222,12 @@ PRE_ROTATION_SETS = {"BTA", "TTBB", "TTBB23", "TTBB24"}
 # Marks read off the physical card, for printings no upstream source carries.
 # pokemontcg.io has no Japanese sets at all, so these come from the letter in
 # the bottom corner of the card in hand.
+# Keyed either "<SET>/<number>" for a single card or "<SET>" for a whole set.
 MANUAL_MARKS = {
-    "MBG/3": "I",   # Mega Gengar ex 003/021, read off the card
+    # Read off the cards themselves: Mega Gengar ex 003/021 in hand, and
+    # checked again against the Art Rare Haunter 022/021. A starter deck is one
+    # print run carrying one mark, so it is keyed to the set.
+    "MBG": "I",
 }
 
 REG_MARKS = {}
@@ -239,8 +249,9 @@ def legality(set_code, number, ctype, released, name="", product_line=""):
     not be resolved is not the same as one known to be illegal, and quietly
     calling it "no" would hide gaps in the lookup.
     """
-    mark = MANUAL_MARKS.get(reg_key(set_code, number), "") \
-        or REG_MARKS.get(reg_key(set_code, number), "")
+    mark = (MANUAL_MARKS.get(reg_key(set_code, number))
+            or MANUAL_MARKS.get(set_code)
+            or REG_MARKS.get(reg_key(set_code, number), ""))
 
     # Language is decided before the mark. Play! Pokémon allows only English
     # cards at local and regional events in the US, whatever the mark says, so
@@ -322,7 +333,7 @@ for pid in ids:
         "name": name,
         "set_name": accents((p.get("setName") or "").strip()),
         "card_number": number,
-        "rarity": accents((p.get("rarityName") or "").strip()) if p else "",
+        "rarity": norm_rarity(p.get("rarityName")) if p else "",
         "product_line": (p.get("productLineName") or "") if p else "",
         "card_type": ctype,
         "hp": hp,

@@ -48,8 +48,7 @@ LABELS = [
 LEGAL_LABEL = {
     "yes": "✓ Yes, this card is allowed in tournaments",
     "no": "✗ No, this card is too old for tournaments now",
-    "japanese": "✗ No, Japanese cards are not allowed at tournaments here. "
-                "This one is for the collection",
+    "japanese": "✗ No, Japanese cards are not allowed at tournaments here",
     "unknown": "? Not sure, check the letter on the card",
 }
 
@@ -70,6 +69,8 @@ SET_SLUG = {
     "Trick or Trade BOOster Bundle": "trick-or-trade",
     "Trick or Trade BOOster Bundle 2023": "trick-or-trade",
     "Trick or Trade BOOster Bundle 2024": "trick-or-trade",
+    # pokesymbols has no entry for the Japanese starter decks either.
+    "MBG: MEGA Starter Set Mega Gengar ex": "megagengar",
     # Battle Academy, the Trick or Trade bundles, and Mega Evolution Energies
     # have no symbol published; they fall through and render without one.
 }
@@ -82,6 +83,9 @@ RARITY_SLUG = {
     "Holo Rare": "rare", "Double Rare": "double-rare",
     "Ultra Rare": "ultra-rare", "ACE SPEC Rare": "ace-spec-rare",
     "Promo": "promo",
+    # "Art Rare" is what the Japanese line calls what English prints as an
+    # Illustration Rare, and the two share a symbol.
+    "Art Rare": "illustration-rare",
 }
 
 
@@ -133,9 +137,12 @@ def mega_sigil(r, height=20):
     if not (r["stage"].lower().startswith("mega")
             or r["name"].lower().startswith("mega ")):
         return ""
-    if not (ROOT / "assets" / "mega-evolution-sigil.png").exists():
+    if not (ROOT / "assets" / "glyphs" / "mega-evolution.svg").exists():
         return ""
-    return ('<img src="./assets/mega-evolution-sigil.png" alt="Mega Evolution" '
+    # Referenced as SVG rather than rendered to PNG. The sigil is a four-stop
+    # gradient, and ImageMagick silently drops it and hands back a black
+    # silhouette. GitHub renders an <img> pointing at a repo SVG fine.
+    return ('<img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" '
             f'height="{height}" align="top">')
 
 

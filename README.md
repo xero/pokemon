@@ -60,12 +60,18 @@ actual tcg energy symbols rather than video game type icons, so they need no
 mapping: the file is named for the card type. `build_glyphs.py` sets the fill on
 each and renders it to png in `assets/types`.
 
-**the two static images.** both come from
-[HybridShivam/Pokemon](https://github.com/HybridShivam/Pokemon) and are the only
-assets here that no script fetches. `assets/pokeball.png` is that repo's app
-icon, [icon-512x512.psd](https://github.com/HybridShivam/Pokemon/blob/master/assets/Others/app-icons/icon-512x512.psd),
-flattened to png by hand; it heads this page and `collection.md`.
-`assets/mega-evolution-sigil.png` is waiting on a mega card to mark.
+**mega evolution sigil.**
+[poképédia](https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg),
+also zero-licence, kept at `assets/glyphs/mega-evolution.svg`. this one is
+referenced as an svg rather than rendered to png, because it is a four-stop
+gradient and imagemagick quietly drops the gradient and returns a black
+silhouette.
+
+**poké ball.** the title image is the app icon from
+[HybridShivam/Pokemon](https://github.com/HybridShivam/Pokemon),
+[icon-512x512.psd](https://github.com/HybridShivam/Pokemon/blob/master/assets/Others/app-icons/icon-512x512.psd),
+flattened to png by hand into `assets/pokeball.png`. it is the one asset here no
+script fetches.
 
 ### a note on rights
 
