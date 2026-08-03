@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Pokémon Caught!</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.08em;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+
+			h2 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				min-width: 0;
+				overflow-wrap: anywhere;
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 4px solid var(--accent);
+			border-radius: var(--round);
+			padding: var(--pad);
+
+			h2 {
+				font-size: var(--text-lg);
+				color: var(--accent);
+			}
+
+			p + p,
+			ul {
+				padding-top: 0.7em;
+			}
+
+			ul {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--accent: var(--gold);
+		}
+
+		[data-callout="warning"] {
+			--accent: var(--ember);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Pokémon Caught!</h1>
+			<p>87 Pok&eacute;mon, 21 of them tournament legal.</p>
+			<nav>
+				<details>
+					<summary>Pokédex</summary>
+					<ul>
+						<li><b>A</b></li>
+						<li><a href="#absol">Absol</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><b>C</b></li>
+						<li><a href="#chandelure">Chandelure</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li><a href="#charizard">Charizard</a> <em>SWSH04: Vivid Voltage</em></li>
+						<li><a href="#charmander">Charmander</a> <em>ME02: Phantasmal Flames</em></li>
+						<li><a href="#charmander-1">Charmander</a> <em>Pokémon GO</em></li>
+						<li><a href="#charmander-2">Charmander</a> <em>SV03: Obsidian Flames</em></li>
+						<li><a href="#charmander-3">Charmander</a> <em>SV: Paldean Fates</em></li>
+						<li><a href="#charmander-4">Charmander</a> <em>SWSH04: Vivid Voltage</em></li>
+						<li><a href="#charmander-5">Charmander</a> <em>XY - Evolutions</em></li>
+						<li><a href="#charmeleon">Charmeleon</a> <em>Base Set</em></li>
+						<li><a href="#charmeleon-1">Charmeleon</a> <em>ME02: Phantasmal Flames</em></li>
+						<li><a href="#charmeleon-2">Charmeleon</a> <em>SM - Burning Shadows</em></li>
+						<li><a href="#charmeleon-3">Charmeleon</a> <em>SV: Paldean Fates</em></li>
+						<li><a href="#charmeleon-4">Charmeleon</a> <em>SV: Scarlet &amp; Violet 151</em></li>
+						<li><a href="#charmeleon-5">Charmeleon</a> <em>SWSH04: Vivid Voltage</em></li>
+						<li><a href="#charmeleon-delta-species">Charmeleon (Delta Species)</a> <em>EX Crystal Guardians</em></li>
+						<li><b>E</b></li>
+						<li><a href="#eevee">Eevee</a> <em>Hidden Fates</em></li>
+						<li><a href="#eevee-1">Eevee</a> <em>SV06: Twilight Masquerade</em></li>
+						<li><a href="#eevee-2">Eevee</a> <em>SV: Prismatic Evolutions</em></li>
+						<li><a href="#eevee-3">Eevee</a> <em>SV: Shrouded Fable</em></li>
+						<li><a href="#eevee-poké-ball-pattern">Eevee (Poké Ball Pattern)</a> <em>SV: Prismatic Evolutions</em></li>
+						<li><a href="#eevee-ex">Eevee ex</a> <em>SV: Prismatic Evolutions</em></li>
+						<li><a href="#eevee-v">Eevee V</a> <em>SWSH: Sword &amp; Shield Promo Cards</em></li>
+						<li><a href="#eternatus">Eternatus</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><b>F</b></li>
+						<li><a href="#flareon">Flareon</a> <em>SV: Prismatic Evolutions</em></li>
+						<li><a href="#flareon-ex">Flareon ex</a> <em>SV: Prismatic Evolutions</em></li>
+						<li><a href="#flareon-v">Flareon V</a> <em>SWSH: Sword &amp; Shield Promo Cards</em></li>
+						<li><a href="#flareon-vmax">Flareon VMAX</a> <em>SWSH07: Evolving Skies</em></li>
+						<li><b>G</b></li>
+						<li><a href="#galarian-weezing">Galarian Weezing</a> <em>SWSH06: Chilling Reign</em></li>
+						<li><a href="#galarian-weezing-1">Galarian Weezing</a> <em>Shining Fates</em></li>
+						<li><a href="#gastly">Gastly</a> <em>Fossil</em></li>
+						<li><a href="#gastly-1">Gastly</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#gastly-2">Gastly</a> <em>ME02: Phantasmal Flames</em></li>
+						<li><a href="#gastly-3">Gastly</a> <em>ME03: Perfect Order</em></li>
+						<li><a href="#gastly-4">Gastly</a> <em>SV: Paldean Fates</em></li>
+						<li><a href="#gastly-5">Gastly</a> <em>SV: Scarlet &amp; Violet 151</em></li>
+						<li><a href="#gastly-6">Gastly</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li><a href="#gastly-7">Gastly</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
+						<li><a href="#gastly-8">Gastly</a> <em>XY - Evolutions</em></li>
+						<li><a href="#gastly-energy-symbol-pattern">Gastly (Energy Symbol Pattern)</a> <em>ME: Ascended Heroes</em></li>
+						<li><a href="#gengar">Gengar</a> <em>ME03: Perfect Order</em></li>
+						<li><a href="#gengar-1">Gengar</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
+						<li><a href="#gengar-2021-copyright-date">Gengar (2021 Copyright Date)</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li><a href="#gengar-2022-copyright-date">Gengar (2022 Copyright Date)</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
+						<li><a href="#gengar-cosmos-holo">Gengar (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li><a href="#gengar-v">Gengar V</a> <em>SWSH08: Fusion Strike</em></li>
+						<li><a href="#gourgeist">Gourgeist</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li><b>H</b></li>
+						<li><a href="#haunter">Haunter</a> <em>Base Set 2</em></li>
+						<li><a href="#haunter-1">Haunter</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#haunter-2">Haunter</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#haunter-3">Haunter</a> <em>ME02: Phantasmal Flames</em></li>
+						<li><a href="#haunter-4">Haunter</a> <em>ME03: Perfect Order</em></li>
+						<li><a href="#haunter-5">Haunter</a> <em>SM - Crimson Invasion</em></li>
+						<li><a href="#haunter-6">Haunter</a> <em>SV: Paldean Fates</em></li>
+						<li><a href="#haunter-7">Haunter</a> <em>SV: Scarlet &amp; Violet 151</em></li>
+						<li><a href="#haunter-8">Haunter</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
+						<li><a href="#haunter-9">Haunter</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li><a href="#haunter-10">Haunter</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
+						<li><a href="#haunter-11">Haunter</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li><a href="#honchkrow">Honchkrow</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#hoothoot">Hoothoot</a> <em>SV07: Stellar Crown</em></li>
+						<li><a href="#houndoom">Houndoom</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
+						<li><b>I</b></li>
+						<li><a href="#iron-jugulis">Iron Jugulis</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li><b>K</b></li>
+						<li><a href="#koffing">Koffing</a> <em>SV09: Journey Together</em></li>
+						<li><a href="#koffing-1">Koffing</a> <em>SWSH06: Chilling Reign</em></li>
+						<li><b>L</b></li>
+						<li><a href="#litwick">Litwick</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li><b>M</b></li>
+						<li><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#mew-v">Mew V</a> <em>SWSH08: Fusion Strike</em></li>
+						<li><a href="#murkrow">Murkrow</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><b>N</b></li>
+						<li><a href="#noctowl">Noctowl</a> <em>SV07: Stellar Crown</em></li>
+						<li><b>O</b></li>
+						<li><a href="#okidogi-cosmos-holo">Okidogi (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li><b>P</b></li>
+						<li><a href="#pumpkaboo">Pumpkaboo</a> <em>ME04: Chaos Rising</em></li>
+						<li><a href="#pumpkaboo-1">Pumpkaboo</a> <em>SM - Crimson Invasion</em></li>
+						<li><a href="#pumpkaboo-2">Pumpkaboo</a> <em>SV04: Paradox Rift</em></li>
+						<li><b>S</b></li>
+						<li><a href="#sableye">Sableye</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#sinistcha-cosmos-holo">Sinistcha (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li><a href="#spiritomb">Spiritomb</a> <em>SWSH06: Chilling Reign</em></li>
+						<li><a href="#sudowoodo">Sudowoodo</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
+						<li><b>T</b></li>
+						<li><a href="#tatsugiri">Tatsugiri</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li><a href="#team-rockets-koffing">Team Rocket&#x27;s Koffing</a> <em>SV10: Destined Rivals</em></li>
+						<li><a href="#team-rockets-weezing">Team Rocket&#x27;s Weezing</a> <em>SV10: Destined Rivals</em></li>
+						<li><a href="#trevenant">Trevenant</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
+						<li><b>W</b></li>
+						<li><a href="#weezing">Weezing</a> <em>Hidden Fates</em></li>
+						<li><a href="#weezing-1">Weezing</a> <em>SV09: Journey Together</em></li>
+						<li><a href="#weezing-2">Weezing</a> <em>SV: Scarlet &amp; Violet 151</em></li>
+						<li><a href="#weezing-3">Weezing</a> <em>XY - Fates Collide</em></li>
+						<li><a href="#weezing-team-plasma">Weezing (Team Plasma)</a> <em>Plasma Storm</em></li>
+					</ul>
+				</details>
+			</nav>
+		</header>
+		<main>
+			<article>
+				<h2 id="absol">Absol</h2>
+				<aside>
+					<img src="./assets/660124_absol.jpg" alt="Absol" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>007/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>110</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[C] Allure - Draw 2 cards.</dd>
+						<dt>Attack</dt><dd>[DC] Dark Cutter (60)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/grass.png" alt="Grass" /> Grass ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="chandelure">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/283790_chandelure.jpg" alt="Chandelure" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /> Trick or Trade BOOster Bundle <small>033/192</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>140</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Protective Glow - All of your Pokémon that have Energy attached have no Weakness.</dd>
+						<dt>Attack</dt><dd>[1R] Mirage Flare (110) - Your opponent&#x27;s Active Pokémon is now Confused.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charizard">Charizard <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/226395_charizard.jpg" alt="Charizard" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture> SWSH04: Vivid Voltage <small>025/185</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>170</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Battle Sense - Once during your turn, you may look at the top 3 cards of your deck and put 1 of them into your hand. Discard the other cards.</dd>
+						<dt>Attack</dt><dd>[RR] Royal Blaze (100+) - This attack does 50 more damage for each Leon in your discard pile.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 3</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmander">Charmander <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/662143_charmander.jpg" alt="Charmander" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture> ME02: Phantasmal Flames <small>011/094</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>80</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Agile - If this Pokémon has no Energy attached, it has no Retreat Cost.</dd>
+						<dt>Attack</dt><dd>[R] Live Coal (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmander-1">Charmander <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/274436_charmander.jpg" alt="Charmander" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pokemon-go.png" /><img src="./assets/sets/pokemon-go.png" alt="Pokémon GO" /></picture> Pokémon GO <small>008/078</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Tail on Fire (10) - Search your deck for a Fire Energy card and attach it to this Pokémon. Then, shuffle your deck.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmander-2">Charmander <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/509703_charmander.jpg" alt="Charmander" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/obsidian-flames.png" /><img src="./assets/sets/obsidian-flames.png" alt="SV03: Obsidian Flames" /></picture> SV03: Obsidian Flames <small>026/197</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Heat Tackle: (30) - This Pokémon does 10 damage to itself.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmander-3">Charmander <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/534142_charmander-007-091.jpg" alt="Charmander" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture> SV: Paldean Fates <small>007/091</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Blazing Destruction - Discard a Stadium in play.</dd>
+						<dt>Attack</dt><dd>[RR] Steady Firebreathing (30)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmander-4">Charmander <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/226392_charmander.jpg" alt="Charmander" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture> SWSH04: Vivid Voltage <small>023/185</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Collect - Draw a card.</dd>
+						<dt>Attack</dt><dd>[RR] Flare (30)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmander-5">Charmander <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/124022_charmander.jpg" alt="Charmander" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolutions.png" /><img src="./assets/sets/evolutions.png" alt="XY - Evolutions" /></picture> XY - Evolutions <small>9/108</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Scratch (10)</dd>
+						<dt>Attack</dt><dd>[1R] Ember (30) - Discard a Fire Energy attached to this Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/42365_charmeleon.jpg" alt="Charmeleon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/set-logos/base.png" alt="Base Set" /> Base Set <small>024/102</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>80</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[3] Slash (30)</dd>
+						<dt>Attack</dt><dd>[1RR] Flamethrower (50) - Discard 1 Fire Energy card attached to Charmeleon in order to use this attack.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon-1">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/662144_charmeleon.jpg" alt="Charmeleon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture> ME02: Phantasmal Flames <small>012/094</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>110</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Steady Firebreathing (40)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon-2">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/138485_charmeleon.jpg" alt="Charmeleon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/burning-shadows.png" /><img src="./assets/sets/burning-shadows.png" alt="SM - Burning Shadows" /></picture> SM - Burning Shadows <small>19/147</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>90</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[2] Claw Slash [30]</dd>
+						<dt>Attack</dt><dd>[1RR] Heat Blast (70)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon-3">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/534143_charmeleon-008-091.jpg" alt="Charmeleon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture> SV: Paldean Fates <small>008/091</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>90</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Flare Veil - Prevent all effects of attacks used by your opponent&#x27;s Pokémon done to this Pokémon. (Damage is not an effect.)</dd>
+						<dt>Attack</dt><dd>[RR] Combustion (50)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon-4">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/502557_charmeleon-005-165.jpg" alt="Charmeleon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture> SV: Scarlet &amp; Violet 151 <small>005/165</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Combustion (20)</dd>
+						<dt>Attack</dt><dd>[RRR] Fire Blast (90) - Discard an Energy from this Pokémon</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon-5">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture> SWSH04: Vivid Voltage <small>024/185</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>90</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Slash (20)</dd>
+						<dt>Attack</dt><dd>[RR] Raging Flames (60) - Discard the top 3 cards of your deck.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="charmeleon-delta-species">Charmeleon (Delta Species) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/84236_charmeleon-delta-species.jpg" alt="Charmeleon (Delta Species)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crystal-guardians.png" /><img src="./assets/sets/crystal-guardians.png" alt="EX Crystal Guardians" /></picture> EX Crystal Guardians <small>30/100</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/lightning.png" alt="Lightning" /> Lightning</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[2] Slash (20)</dd>
+						<dt>Attack</dt><dd>[2L] Thunder Jolt (50) Flip a coin. If tails, Charmeleon does 10 damage to itself.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee">Eevee <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/197694_eevee-49.jpg" alt="Eevee" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/hidden-fates.png" /><img src="./assets/sets/hidden-fates.png" alt="Hidden Fates" /></picture> Hidden Fates <small>49/68</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Gnaw (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee-1">Eevee <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/550179_eevee-135-167.jpg" alt="Eevee" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture> SV06: Twilight Masquerade <small>135/167</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[C] Ascension - Search your deck for a card that evolves from this Pokémon and put it onto this Pokémon to evolve it. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[CCC] Quick Attack (20+) - Flip a coin. If heads, this attack does 20 more damage.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee-2">Eevee <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/610429_eevee.jpg" alt="Eevee" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture> SV: Prismatic Evolutions <small>074/131</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</dd>
+						<dt>Attack</dt><dd>[CC] Reckless Charge (30) - This Pokémon also does 10 damage to itself.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee-3">Eevee <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/560361_eevee.jpg" alt="Eevee" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture> SV: Shrouded Fable <small>050/064</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[C] Colorful Catch - Search your deck for up to 3 Basic Energy cards of different types, reveal them, and put them into your hand. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[CC] Headbutt (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee-poké-ball-pattern">Eevee (Poké Ball Pattern) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture> SV: Prismatic Evolutions <small>074/131</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</dd>
+						<dt>Attack</dt><dd>[CC] Reckless Charge (30) - This Pokémon also does 10 damage to itself.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee-ex">Eevee ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture> SV: Prismatic Evolutions <small>075/131</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> Double Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>200</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.)</dd>
+						<dt>Attack</dt><dd>[RWL] Coruscating Quartz (200)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eevee-v">Eevee V <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/220317_eevee-v-swsh065.jpg" alt="Eevee V" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/swsh-black-star-promos.png" /><img src="./assets/sets/swsh-black-star-promos.png" alt="SWSH: Sword &amp; Shield Promo Cards" /></picture> SWSH: Sword &amp; Shield Promo Cards <small>SWSH065</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>190</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Collect - Draw 3 cards.</dd>
+						<dt>Attack</dt><dd>[3] Brave Buddies (80+) - If you played a Supporter card from your hand during this turn, this attack does 80 more damage.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="eternatus">Eternatus</h2>
+				<aside>
+					<img src="./assets/660125_eternatus.jpg" alt="Eternatus" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>008/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>150</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[DD] Shatter (50) - Discard a Stadium in play.</dd>
+						<dt>Attack</dt><dd>[DDD] Power Rush (130) - Flip a coin. If tails, during your next turn, this Pokémon can&#x27;t attack.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="flareon">Flareon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/610368_flareon.jpg" alt="Flareon" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture> SV: Prismatic Evolutions <small>013/131</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Destructive Flame (30) - Flip a coin. If heads, discard an Energy from your opponent&#x27;s Active Pokémon.</dd>
+						<dt>Attack</dt><dd>[RCC] Fighting Blaze (90+) - If your opponent&#x27;s Active Pokémon is a Pokémon ex or Pokémon V, this attack does 90 more damage.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="flareon-ex">Flareon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture> SV: Prismatic Evolutions <small>014/131</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> Double Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>270</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[RC] Burning Charge (130) - Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[RWL] Carnelian (280) - During your next turn, this Pokémon can&#x27;t attack.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="flareon-v">Flareon V <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/247295_flareon-v-swsh149.jpg" alt="Flareon V" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/swsh-black-star-promos.png" /><img src="./assets/sets/swsh-black-star-promos.png" alt="SWSH: Sword &amp; Shield Promo Cards" /></picture> SWSH: Sword &amp; Shield Promo Cards <small>SWSH149</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>210</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Flaming Breath (20) - Search your deck for a R Energy card and attach it to this Pokémon. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[1RR] Scorching Column (120) - Your opponent&#x27;s Active Pokémon is now Burned.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="flareon-vmax">Flareon VMAX <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /></h2>
+				<aside>
+					<img src="./assets/246712_flareon-vmax.jpg" alt="Flareon VMAX" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolving-skies.png" /><img src="./assets/sets/evolving-skies.png" alt="SWSH07: Evolving Skies" /></picture> SWSH07: Evolving Skies <small>018/203</small></dd>
+						<dt>Rarity</dt><dd><img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /> Ultra Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>320</dd>
+						<dt>Stage</dt><dd>VMAX</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[2R] Max Detonate (100x) - Discard the top 5 cards of your deck. This attack does 100 damage for each Energy card you discarded in this way.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="galarian-weezing">Galarian Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/241765_galarian-weezing.jpg" alt="Galarian Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture> SWSH06: Chilling Reign <small>096/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Energy Factory - Each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide Darkness Darkness Energy. You can&#x27;t apply more than 1 Energy Factory Ability at a time.</dd>
+						<dt>Attack</dt><dd>[1D] Suffocating Gas (50)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="galarian-weezing-1">Galarian Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/232505_galarian-weezing.jpg" alt="Galarian Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shining-fates.png" /><img src="./assets/sets/shining-fates.png" alt="Shining Fates" /></picture> Shining Fates <small>042/072</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Neutralizing Gas - As long as this Pokémon is in the Active Spot, your opponent&#x27;s Pokémon in play have no Abilities, except for Neutralizing Gas.</dd>
+						<dt>Attack</dt><dd>[D] Severe Poison - Your opponent&#x27;s Active Pokémon is now Poisoned. Put 4 damage counters instead of 1 on that Pokémon during Pokémon Checkup.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 3</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/44435_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fossil.png" /><img src="./assets/sets/fossil.png" alt="Fossil" /></picture> Fossil <small>33/62</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Lick (10) - Flip a coin. If heads, the Defending Pokémon is now Paralyzed.</dd>
+						<dt>Attack</dt><dd>[PP] Energy Conversion - Put up to 2 Energy cards from your discard pile into your hand. Gastly does 10 damage to itself.</dd>
+						<dt>Weakness</dt><dd>&ndash;</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd>&ndash;</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-1">Gastly</h2>
+				<aside>
+					<img src="./assets/660119_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>001/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Petty Grudge (10)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-2">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/660495_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture> ME02: Phantasmal Flames <small>054/094</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Petty Grudge (10)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-3">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/684429_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture> ME03: Perfect Order <small>048/088</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Surprise Attack (30) - Flip a coin. If tails, this attack does nothing.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-4">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/534417_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture> SV: Paldean Fates <small>055/091</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[C] Allure - Draw a card.</dd>
+						<dt>Attack</dt><dd>[DC] Will-O-Wisp (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-5">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/516661_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture> SV: Scarlet &amp; Violet 151 <small>092/165</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Suffocating Gas (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-6">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/283811_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /> Trick or Trade BOOster Bundle <small>055/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>50</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Sleep Pulse (10) - Flip a coin. If heads, your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-7">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/515659_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /> Trick or Trade BOOster Bundle 2023 <small>064/196</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>40</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Furtive Drop - Put 1 damage counter on your opponent&#x27;s Active Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd>&ndash;</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-8">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/124061_gastly.jpg" alt="Gastly" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolutions.png" /><img src="./assets/sets/evolutions.png" alt="XY - Evolutions" /></picture> XY - Evolutions <small>47/108</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>40</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Little Grudge - During your opponent&#x27;s next turn, if this Pokémon is Knocked Out by damage from an attack, discard an Energy attached to the Attacking Pokémon.</dd>
+						<dt>Attack</dt><dd>[1P] Nightmare (20) - Flip a coin. If heads, your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -20</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gastly-energy-symbol-pattern">Gastly (Energy Symbol Pattern) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/677089_gastly-energy-symbol-pattern.jpg" alt="Gastly (Energy Symbol Pattern)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture> ME: Ascended Heroes <small>123/217</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Petty Grudge (10)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gengar">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/684431_gengar.jpg" alt="Gengar" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture> ME03: Perfect Order <small>050/088</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Infinite Shadow - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</dd>
+						<dt>Attack</dt><dd>[D] Mind Jack (10+) - This attack does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gengar-1">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/208393_gengar.jpg" alt="Gengar" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture> SWSH01: Sword &amp; Shield Base Set <small>085/202</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>110</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Life Shaker - As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</dd>
+						<dt>Attack</dt><dd>[1PP] Hypnoblast (90) - Your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gengar-2021-copyright-date">Gengar (2021 Copyright Date) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/283766_gengar-2021-copyright-date.jpg" alt="Gengar (2021 Copyright Date)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /> Trick or Trade BOOster Bundle <small>057/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Last Gift - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, search your deck for up to 2 cards and put them into your hand. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[3] Pain Burst (10+) - This attack does 40 more damage for each damage counter on your opponent&#x27;s Active Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gengar-2022-copyright-date">Gengar (2022 Copyright Date) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/515661_gengar-2022-copyright-date.jpg" alt="Gengar (2022 Copyright Date)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /> Trick or Trade BOOster Bundle 2023 <small>066/196</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>120</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Netherworld Gate - Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</dd>
+						<dt>Attack</dt><dd>[P] Screaming Circle - Put 2 damage counters on your opponent&#x27;s Active Pokémon for each of your opponent&#x27;s Benched Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gengar-cosmos-holo">Gengar (Cosmos Holo) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/570271_gengar-cosmos-holo.jpg" alt="Gengar (Cosmos Holo)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /> Trick or Trade BOOster Bundle 2024 <small>057/091</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 2</dd>
+						<dt>Ability</dt><dd>Night Gate - Once during your turn, you may switch your Active Pokémon with 1 of your Benched Pokémon.</dd>
+						<dt>Attack</dt><dd>[D1] Nightmare (100) - Your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gengar-v">Gengar V <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /></h2>
+				<aside>
+					<img src="./assets/253370_gengar-v.jpg" alt="Gengar V" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fusion-strike.png" /><img src="./assets/sets/fusion-strike.png" alt="SWSH08: Fusion Strike" /></picture> SWSH08: Fusion Strike <small>156/264</small></dd>
+						<dt>Rarity</dt><dd><img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /> Ultra Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>210</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[DD] Dark Slumber (40) - Your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Attack</dt><dd>[DDD] Pain Explosion (190) - Put 3 damage counters on this Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="gourgeist">Gourgeist <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/283795_gourgeist.jpg" alt="Gourgeist" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /> Trick or Trade BOOster Bundle <small>077/203</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>120</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[2] Pandemonium (60x) - Reveal the top 6 cards of your deck. This attack does 60 damage for each Psychic Pokémon you find there. Then, shuffle those Pokémon back into your deck and discard the other cards.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/42506_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/base-set-2.png" /><img src="./assets/sets/base-set-2.png" alt="Base Set 2" /></picture> Base Set 2 <small>043/130</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Hypnosis - The Defending Pokémon is now Asleep.</dd>
+						<dt>Attack</dt><dd>[PP] Dream Eater (50) - You can&#x27;t use this attack unless the Defending Pokémon is Asleep.</dd>
+						<dt>Weakness</dt><dd>&ndash;</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-1">Haunter</h2>
+				<aside>
+					<img src="./assets/660120_haunter-002-021.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>002/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Spooky Shot (40)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-2">Haunter <img src="./assets/rarities/illustration-rare.png" alt="Art Rare" /></h2>
+				<aside>
+					<img src="./assets/654108_haunter-022-021.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>022/021</small></dd>
+						<dt>Rarity</dt><dd><img src="./assets/rarities/illustration-rare.png" alt="Art Rare" /> Art Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Spooky Shot (40)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-3">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture> ME02: Phantasmal Flames <small>055/094</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Spooky Shot (40)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-4">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/684430_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture> ME03: Perfect Order <small>049/088</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Haunt - Place 3 damage counters on your opponent&#x27;s Active Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-5">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/149060_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crimson-invasion.png" /><img src="./assets/sets/crimson-invasion.png" alt="SM - Crimson Invasion" /></picture> SM - Crimson Invasion <small>37/111</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Pain Amplifier - Put 2 damage counters on each of your opponent&#x27;s Pokémon that has any damage counters on it.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -20</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/534418_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture> SV: Paldean Fates <small>056/091</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>80</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[DC] Dark Slumber (40) - Your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/516662_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture> SV: Scarlet &amp; Violet 151 <small>093/165</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>80</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Spirit Return - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put a Supporter card from your opponent&#x27;s discard pile into their hand.</dd>
+						<dt>Attack</dt><dd>[1P] Mumble (30)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/208390_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture> SWSH01: Sword &amp; Shield Base Set <small>084/202</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Nightmare (20) - Your opponent&#x27;s Active Pokémon is now Asleep.</dd>
+						<dt>Attack</dt><dd>[1P] Spooky Shot (40)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/283812_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /> Trick or Trade BOOster Bundle <small>056/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>80</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Will-O-Wisp (30)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/515660_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /> Trick or Trade BOOster Bundle 2023 <small>065/196</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Cursed Drop - Put 3 damage counters on your opponent&#x27;s Pokémon in any way you like.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/570361_haunter.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /> Trick or Trade BOOster Bundle 2024 <small>103/162</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>90</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[DD] Super Poison Breath (30) - Your opponent’s Active Pokémon is now Poisoned.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="honchkrow">Honchkrow</h2>
+				<aside>
+					<img src="./assets/660122_honchkrow.jpg" alt="Honchkrow" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>005/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Wind of Darkness (30)</dd>
+						<dt>Attack</dt><dd>[DDC] Snipe Feather - Discard 2 Energy from this Pokémon. This attack does 120 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/lightning.png" alt="Lightning" /> Lightning ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="hoothoot">Hoothoot <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture> SV07: Stellar Crown <small>114/142</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[C] Triple Stab (10x) - Flip 3 coins. This attack does 10 damage for each heads.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/lightning.png" alt="Lightning" /> Lightning ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="houndoom">Houndoom <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/515650_houndoom.jpg" alt="Houndoom" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /> Trick or Trade BOOster Bundle 2023 <small>034/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>120</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Sharp Fang (30)</dd>
+						<dt>Attack</dt><dd>[1RR] Fire Blast (150) - Discard a [R] Energy attached to this Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="iron-jugulis">Iron Jugulis <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/570362_iron-jugulis.jpg" alt="Iron Jugulis" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /> Trick or Trade BOOster Bundle 2024 <small>139/162</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Auto Marshal - If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon.</dd>
+						<dt>Attack</dt><dd>[CCC] Blasting Wind (110)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/lightning.png" alt="Lightning" /> Lightning ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="koffing">Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/623518_koffing.jpg" alt="Koffing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture> SV09: Journey Together <small>091/159</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Tackle (10)</dd>
+						<dt>Attack</dt><dd>[1D] Suffocating Gas (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="koffing-1">Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/241763_koffing.jpg" alt="Koffing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture> SWSH06: Chilling Reign <small>094/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1D] Smog (20) - Your opponent&#x27;s Active Pokémon is now Poisoned.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="litwick">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></h2>
+				<aside>
+					<img src="./assets/283824_litwick.jpg" alt="Litwick" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /> Trick or Trade BOOster Bundle <small>031/192</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> Promo</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[R] Scorch - Your opponent&#x27;s Active Pokémon is now Burned.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/water.png" alt="Water" /> Water ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="mega-gengar-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/653856_mega-gengar-ex.jpg" alt="Mega Gengar ex" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>003/021</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> Double Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>350</dd>
+						<dt>Stage</dt><dd>Mega ex</dd>
+						<dt>Ability</dt><dd>Concealed in Shadow - Whenever any of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Concealed in Shadow doesn&#x27;t stack.</dd>
+						<dt>Attack</dt><dd>[DD] Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="mew-v">Mew V <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /></h2>
+				<aside>
+					<img src="./assets/253274_mew-v.jpg" alt="Mew V" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fusion-strike.png" /><img src="./assets/sets/fusion-strike.png" alt="SWSH08: Fusion Strike" /></picture> SWSH08: Fusion Strike <small>113/264</small></dd>
+						<dt>Rarity</dt><dd><img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /> Ultra Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>180</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Energy Mix - Search your deck for an Energy card and attach it to 1 of your Fusion Strike Pokémon. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[1P] Psychic Leap (70) - You may shuffle this Pokémon and all attached cards into your deck.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd>0</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="murkrow">Murkrow</h2>
+				<aside>
+					<img src="./assets/660121_murkrow.jpg" alt="Murkrow" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>004/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Ambush (10+) - Flip a coin. If heads, this attack does 20 more damage.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/lightning.png" alt="Lightning" /> Lightning ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="noctowl">Noctowl <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/567341_noctowl.jpg" alt="Noctowl" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture> SV07: Stellar Crown <small>115/142</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> Colorless</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Jewel Seeker - Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any Tera Pokémon in play, you may search your deck for up to 2 Trainer cards, reveal them, and put them into your hand. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[CC] Speed Wing (60)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/lightning.png" alt="Lightning" /> Lightning ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="okidogi-cosmos-holo">Okidogi (Cosmos Holo) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/570569_okidogi-cosmos-holo.jpg" alt="Okidogi (Cosmos Holo)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /> Trick or Trade BOOster Bundle 2024 <small>111/167</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Adrena-Power - If this Pokémon has any Darkness Energy attached, it gets +100 HP, and the attacks it uses do 100 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</dd>
+						<dt>Attack</dt><dd>[FF] Good Punch (70)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="pumpkaboo">Pumpkaboo <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/693536_pumpkaboo.jpg" alt="Pumpkaboo" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture> ME04: Chaos Rising <small>040/086</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Stampede (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="pumpkaboo-1">Pumpkaboo <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/149067_pumpkaboo.jpg" alt="Pumpkaboo" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crimson-invasion.png" /><img src="./assets/sets/crimson-invasion.png" alt="SM - Crimson Invasion" /></picture> SM - Crimson Invasion <small>44/111</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Astonish - Choose a random card from your opponent&#x27;s hand. Your opponent reveals that card and shuffles it into their deck.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -20</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="pumpkaboo-2">Pumpkaboo <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/523743_pumpkaboo.jpg" alt="Pumpkaboo" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paradox-rift.png" /><img src="./assets/sets/paradox-rift.png" alt="SV04: Paradox Rift" /></picture> SV04: Paradox Rift <small>077/182</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>60</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[P] Seed Bomb (10)</dd>
+						<dt>Attack</dt><dd>[2] Reckless Charge (40) - This Pokémon also does 20 damage to itself.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness ×2</dd>
+						<dt>Resistance</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting -30</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="sableye">Sableye</h2>
+				<aside>
+					<img src="./assets/660123_sableye.jpg" alt="Sableye" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>006/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>80</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Arrogant Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/grass.png" alt="Grass" /> Grass ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="sinistcha-cosmos-holo">Sinistcha (Cosmos Holo) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/570462_sinistcha-cosmos-holo.jpg" alt="Sinistcha (Cosmos Holo)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /> Trick or Trade BOOster Bundle 2024 <small>022/167</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/grass.png" alt="Grass" /> Grass</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[G] Cursed Drop - Put 4 damage counters on your opponent&#x27;s Pokémon in any way you like.</dd>
+						<dt>Attack</dt><dd>[G] Spill the Tea (70x) - Discard up to 3 G Energy cards from your Pokémon. This attack does 70 damage for each card you discarded this way.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="spiritomb">Spiritomb <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/241777_spiritomb.jpg" alt="Spiritomb" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture> SWSH06: Chilling Reign <small>103/198</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Ghostly Cries - For each Pokémon in your opponent&#x27;s discard pile, put 1 damage counter on your opponent&#x27;s Pokémon in any way you like. If you placed any damage counters in this way, your opponent shuffles all Pokémon from their discard pile into their deck.</dd>
+						<dt>Attack</dt><dd>[D] Will-O-Wisp (20)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/grass.png" alt="Grass" /> Grass ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="sudowoodo">Sudowoodo <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture> SWSH01: Sword &amp; Shield Base Set <small>100/202</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[1] Double Draw - Draw 2 cards.</dd>
+						<dt>Attack</dt><dd>[1] Flail (10x) - This attack does 10 damage for each damage counter on this Pokémon.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/grass.png" alt="Grass" /> Grass ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="tatsugiri">Tatsugiri</h2>
+				<aside>
+					<img src="./assets/660126_tatsugiri.jpg" alt="Tatsugiri" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture> MBG: MEGA Starter Set Mega Gengar ex <small>009/021</small></dd>
+						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Type</dt><dd><img src="./assets/types/dragon.png" alt="Dragon" /> Dragon</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Attract Customers - Once during your turn, if this Pokémon is in the Active Spot, you may look at the top 6 cards of your deck, reveal a Supporter card you find there, and put it into your hand. Shuffle the other cards back into your deck.</dd>
+						<dt>Attack</dt><dd>[RW] Surf (50)</dd>
+						<dt>Weakness</dt><dd>&ndash;</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> only English cards allowed</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="team-rockets-koffing">Team Rocket&#x27;s Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<img src="./assets/632933_team-rockets-koffing.jpg" alt="Team Rocket&#x27;s Koffing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture> SV10: Destined Rivals <small>125/182</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> Common</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>70</dd>
+						<dt>Stage</dt><dd>Basic</dd>
+						<dt>Ability</dt><dd>Smog Signals - If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), search your deck for up to 2 Pokémon that have &quot;Koffing&quot; in their name and put them onto your Bench. Then, shuffle your deck.</dd>
+						<dt>Attack</dt><dd>[DC] Leaking Gas (30)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /> 1</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="team-rockets-weezing">Team Rocket&#x27;s Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/632934_team-rockets-weezing-126-182.jpg" alt="Team Rocket&#x27;s Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture> SV10: Destined Rivals <small>126/182</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[DC] Explode Together Now (40x) - This attack does 40 damage for each Pokémon in play that has &quot;Koffing&quot; or &quot;Weezing&quot; in its name (both yours and your opponent&#x27;s).</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="trevenant">Trevenant <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/515648_trevenant.jpg" alt="Trevenant" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /> Trick or Trade BOOster Bundle 2023 <small>017/196</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/grass.png" alt="Grass" /> Grass</dd>
+						<dt>HP</dt><dd>120</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Elder Tree Barrier - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon V, your opponent can&#x27;t take any Prize cards for it.</dd>
+						<dt>Attack</dt><dd>[1GG] Giga Impact (150) - During your next turn, this Pokémon can&#x27;t attack.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fire.png" alt="Fire" /> Fire ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 3</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="weezing">Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/197673_weezing.jpg" alt="Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/hidden-fates.png" /><img src="./assets/sets/hidden-fates.png" alt="Hidden Fates" /></picture> Hidden Fates <small>29/68</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>120</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Surrender Now - Once during your turn, if this Pokémon is discarded with the effect of Jessie &amp; James, you may have your opponent discard a card from their hand. (They discard that card after the effect of Jessie &amp; James.)</dd>
+						<dt>Attack</dt><dd>[1] Tackle (40)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 3</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="weezing-1">Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/623519_weezing.jpg" alt="Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture> SV09: Journey Together <small>092/159</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>130</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[D] Pervasive Gas (30) - Your opponent’s Active Pokémon is now Confused.</dd>
+						<dt>Attack</dt><dd>[1D] Crazy Blast (50+) - If this Pokémon used Pervasive Gas during your last turn, this attack does 120 more damage.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/ok.png" alt="OK" /> legal, and good to go!</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="weezing-2">Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/516680_weezing.jpg" alt="Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture> SV: Scarlet &amp; Violet 151 <small>110/165</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/darkness.png" alt="Darkness" /> Darkness</dd>
+						<dt>HP</dt><dd>110</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Let&#x27;s Have a Blast - If this Pokémon is in the Active Spot and is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</dd>
+						<dt>Attack</dt><dd>[2] Spinning Fumes (50) - This attack also does 10 damage to each of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/fighting.png" alt="Fighting" /> Fighting ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="weezing-3">Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<img src="./assets/117788_weezing.jpg" alt="Weezing" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fates-collide.png" /><img src="./assets/sets/fates-collide.png" alt="XY - Fates Collide" /></picture> XY - Fates Collide <small>28/124</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> Uncommon</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>110</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd>[2] Balloon Bomb - Flip 2 coins. For each heads, discard 2 cards from the top of your opponent&#x27;s deck.</dd>
+						<dt>Attack</dt><dd>[2P] Thick Liquid (80) - Both Active Pokémon are now Confused and Poisoned.</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 3</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h2 id="weezing-team-plasma">Weezing (Team Plasma) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></h2>
+				<aside>
+					<img src="./assets/90566_weezing-team-plasma.jpg" alt="Weezing (Team Plasma)" />
+				</aside>
+				<section>
+					<dl>
+						<dt>Set</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/plasma-storm.png" /><img src="./assets/sets/plasma-storm.png" alt="Plasma Storm" /></picture> Plasma Storm <small>58/135</small></dd>
+						<dt>Rarity</dt><dd><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> Holo Rare</dd>
+						<dt>Type</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic</dd>
+						<dt>HP</dt><dd>100</dd>
+						<dt>Stage</dt><dd>Stage 1</dd>
+						<dt>Ability</dt><dd>Aftermath - When this Pokémon is Knocked Out by damage from an opponent&#x27;s attack, discard the top 3 cards of your opponent&#x27;s deck. (Ability)</dd>
+						<dt>Attack</dt><dd>[1P] Smogbank - This attack does 20 damage to each of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</dd>
+						<dt>Weakness</dt><dd><img src="./assets/types/psychic.png" alt="Psychic" /> Psychic ×2</dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /> 2</dd>
+						<dt>Tournament</dt><dd><img src="./assets/no.png" alt="NO" /> card is too old</dd>
+					</dl>
+				</section>
+			</article>
+		</main>
+		<footer>
+			<aside data-callout="important" id="checking-the-letter">
+				<h2>* Checking the letter</h2>
+				<p>Every modern card has a tiny letter printed in the bottom corner, next to the card number. That letter is the only thing that decides whether a card is too old to play. The set it came from does not decide it, and neither does how new the card looks.</p>
+				<p>Right now three letters are legal: <b>H</b>, <b>I</b>, and <b>J</b>.</p>
+				<p><b>G and anything older rotated out</b> on <time datetime="2026-04-10">10 April 2026</time>. A card with no letter at all is older still, so it is out too.</p>
+			</aside>
+			<aside data-callout="warning">
+				<h2>Same name, different card</h2>
+				<p>Two cards can share a name and still be completely different cards. One can have an Ability the other does not. The attacks can cost different Energy and do different damage. The name on the card is not the card.</p>
+				<p>Comparing <a href="#charmander-4">Charmander, SWSH04: Vivid Voltage</a> and <a href="#charmander">Charmander, ME02: Phantasmal Flames</a> side by side:</p>
+				<ul>
+					<li>The SWSH04: Vivid Voltage one has no Ability and 2 attacks.</li>
+					<li>The ME02: Phantasmal Flames one has an <b>Ability</b> and 1 attack.</li>
+				</ul>
+				<p>One of those is in your deck and one is legal today, and they are still not the same card.</p>
+				<p>Read the one in your hand every time.</p>
+			</aside>
+		</footer>
+	</body>
+</html>

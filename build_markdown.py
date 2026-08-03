@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Render the Pokemon in cards.csv into collection.md, one HTML table per card.
 
+This is the GitHub-flavoured markdown build. build_html.py produces the
+standalone page; the two are deliberately separate rather than one generator
+trying to satisfy both targets.
+
 Pokemon only. Trainers and Energy are dropped, identified by the "Trainer - "
 and "Energy - " prefixes normalize_cards.py puts on card_type. Every remaining
 row carries an hp and a stage, which is the cross-check that the filter is

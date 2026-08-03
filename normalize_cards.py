@@ -102,17 +102,75 @@ def clean_text(s):
     return s
 
 
+ENERGY_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
+               "P": "Psychic", "F": "Fighting", "D": "Darkness", "M": "Metal",
+               "Y": "Fairy", "N": "Dragon"}
+
+
+# Upstream typos worth correcting on the way past. TCGplayer appears to run a
+# letter-to-energy-symbol substitution over its own text, which turned the
+# attack "Spill the Tea" into "Spi[LL] the Tea".
+TEXT_FIXES = [(re.compile(r"(?<=[a-z])\[([A-Z]+)\](?=[a-z ])"), lambda m: m.group(1).lower())]
+
+# The Japanese line spells energy out where the English line abbreviates it.
+ENERGY_ABBR = {v: k for k, v in ENERGY_TYPE.items()} | {"Colorless": "C"}
+
+
+def normalize_energy(s):
+    """Fold "[Darkness][Darkness]" down to "[DD]", the way English cards print.
+
+    Left alone, the same attack reads two different ways depending on which
+    market the card came from.
+    """
+    s = re.sub(r"\[([A-Z][a-z]+)\]",
+               lambda m: "[" + ENERGY_ABBR.get(m.group(1), m.group(1)) + "]", s)
+    while True:                                   # [D][D] -> [DD]
+        merged = re.sub(r"\[([A-Z]+)\]\[([A-Z]+)\]", r"[\1\2]", s)
+        if merged == s:
+            return s
+        s = merged
+
+
 def clean_attack(s):
     """Tidy an attack, keeping the split between its header and its effect text.
 
-    The source reads "[1RR] Flamethrower (50)\\r\\n<br>Discard 1 Fire Energy...".
-    That <br> is the only thing separating the cost and damage from the rules
-    text, so it becomes " - " before the tag stripper eats it.
+    The source reads "[1RR] Flamethrower (50)\\r\\n<br>Discard 1 Fire Energy...",
+    and that break is the only thing separating the cost and damage from the
+    rules text, so it becomes " - " before the tag stripper eats it. A handful
+    of cards use a bare newline with no <br> at all, which is why the tag is
+    optional here.
     """
     if not s:
         return ""
-    s = re.sub(r"\s*(?:\r?\n)?\s*<br\s*/?>\s*", " - ", str(s))
-    return clean_text(s)
+    s = str(s)
+    for pat, repl in TEXT_FIXES:
+        s = pat.sub(repl, s)
+    s = re.sub(r"\s*(?:\r?\n\s*)?<br\s*/?>\s*", " - ", s)
+    s = re.sub(r"\s*\r?\n\s*", " - ", s)
+    return normalize_energy(clean_text(s))
+
+
+def clean_description(s):
+    """Split an ability's name from its rules text.
+
+    The source wraps the name as "<strong>Ability: Agile</strong> If this
+    Pokemon has no Energy...". Once tags are stripped the two run together into
+    "Agile If this Pokemon...". The <strong> is a real boundary, so it is used
+    rather than guessing at where the name ends from capitalisation.
+
+    That markup is not always well formed. One card closes the tag with a
+    second <strong>, another never closes it and lets the <br> do the work, so
+    the name is taken as running to whichever of those turns up first.
+    """
+    if not s:
+        return ""
+    m = re.match(r"\s*<strong>\s*(.*?)\s*"
+                 r"(?:</strong>|<strong>|<br\s*/?>|\r?\n)(.*)$", str(s), re.S)
+    if not m:
+        return normalize_energy(clean_text(s))
+    name = re.sub(r"^Ability\s*[:—–-]\s*", "", clean_text(m.group(1)))
+    body = clean_text(m.group(2))
+    return normalize_energy(f"{name} - {body}" if body else name)
 
 
 def strip_number(name, number):
@@ -135,9 +193,6 @@ def strip_number(name, number):
     return re.sub(r"\s+", " ", name).strip()
 
 
-ENERGY_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
-               "P": "Psychic", "F": "Fighting", "D": "Darkness", "M": "Metal",
-               "Y": "Fairy", "N": "Dragon"}
 
 
 ENERGY_NAMES = set(ENERGY_TYPE.values()) | {"Colorless"}
@@ -223,6 +278,19 @@ PRE_ROTATION_SETS = {"BTA", "TTBB", "TTBB23", "TTBB24"}
 # pokemontcg.io has no Japanese sets at all, so these come from the letter in
 # the bottom corner of the card in hand.
 # Keyed either "<SET>/<number>" for a single card or "<SET>" for a whole set.
+# Cards TCGplayer carries no attack or ability text for at all. Values read off
+# pokemontcg.io, which does have them. Keyed "<SET>/<number>".
+MANUAL_CARDS = {
+    "PAF/55": {"attack1": "[C] Allure - Draw a card.",
+               "attack2": "[DC] Will-O-Wisp (20)"},
+    "PAF/56": {"attack1": "[DC] Dark Slumber (40) - Your opponent's Active "
+                          "Pokémon is now Asleep."},
+    "PAF/8": {"card_text": "Flare Veil - Prevent all effects of attacks used by "
+                           "your opponent's Pokémon done to this Pokémon. "
+                           "(Damage is not an effect.)",
+              "attack1": "[RR] Combustion (50)"},
+}
+
 MANUAL_MARKS = {
     # Read off the cards themselves: Mega Gengar ex 003/021 in hand, and
     # checked again against the Art Rare Haunter 022/021. A starter deck is one
@@ -329,7 +397,7 @@ for pid in ids:
         else:
             print(f"  downloaded {img_name}", file=sys.stderr)
 
-    records.append({
+    record = {
         "name": name,
         "set_name": accents((p.get("setName") or "").strip()),
         "card_number": number,
@@ -339,7 +407,7 @@ for pid in ids:
         "hp": hp,
         "stage": stage,
         "type_hp_stage": ths,
-        "card_text": clean_text(ca.get("description")),
+        "card_text": clean_description(ca.get("description")),
         "attack1": clean_attack(ca.get("attack1")),
         "attack2": clean_attack(ca.get("attack2")),
         "attack3": clean_attack(ca.get("attack3")),
@@ -352,7 +420,9 @@ for pid in ids:
         "image_file": img_name,
         "category": "deck" if slug in DECK_SLUGS else "collection",
         "source_url": url,
-    })
+    }
+    record.update(MANUAL_CARDS.get(reg_key(p.get("setCode") if p else "", number), {}))
+    records.append(record)
 
 records.sort(key=lambda r: (r["category"], r["set_name"], r["name"]))
 cols = ["name", "set_name", "card_number", "rarity", "product_line",

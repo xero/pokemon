@@ -120,8 +120,8 @@
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Colorless] Allure - Draw 2 cards.</td></tr>
-  <tr><td><b>Attack</b>: [Darkness][Colorless] Dark Cutter (60)</td></tr>
+  <tr><td><b>Attack</b>: [C] Allure - Draw 2 cards.</td></tr>
+  <tr><td><b>Attack</b>: [DC] Dark Cutter (60)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -138,7 +138,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 140</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Protective Glow All of your Pokémon that have Energy attached have no Weakness.</td></tr>
+  <tr><td><b>Ability</b>: Protective Glow - All of your Pokémon that have Energy attached have no Weakness.</td></tr>
   <tr><td><b>Attack</b>: [1R] Mirage Flare (110) - Your opponent&#x27;s Active Pokémon is now Confused.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -156,7 +156,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 170</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Battle Sense Once during your turn, you may look at the top 3 cards of your deck and put 1 of them into your hand. Discard the other cards.</td></tr>
+  <tr><td><b>Ability</b>: Battle Sense - Once during your turn, you may look at the top 3 cards of your deck and put 1 of them into your hand. Discard the other cards.</td></tr>
   <tr><td><b>Attack</b>: [RR] Royal Blaze (100+) - This attack does 50 more damage for each Leon in your discard pile.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -174,7 +174,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Agile If this Pokémon has no Energy attached, it has no Retreat Cost.</td></tr>
+  <tr><td><b>Ability</b>: Agile - If this Pokémon has no Energy attached, it has no Retreat Cost.</td></tr>
   <tr><td><b>Attack</b>: [R] Live Coal (20)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -334,14 +334,15 @@
 <table>
   <tr><td colspan="2"><h3 id="charmeleon-3">Charmeleon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
-    <th rowspan="11" width="400"><img src="./assets/534143_charmeleon-008-091.jpg" width="350"></th>
+    <th rowspan="12" width="400"><img src="./assets/534143_charmeleon-008-091.jpg" width="350"></th>
   </tr>
   <tr><td><b>SV: Paldean Fates</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> 008/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
   <tr><td><b>HP</b>: 90</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Ability</b>: Flare Veil - Prevent all effects of attacks used by your opponent&#x27;s Pokémon done to this Pokémon. (Damage is not an effect.)</td></tr>
+  <tr><td><b>Attack</b>: [RR] Combustion (50)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
@@ -434,8 +435,8 @@
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [C] Ascension Search your deck for a card that evolves from this Pokémon and put it onto this Pokémon to evolve it. Then, shuffle your deck.</td></tr>
-  <tr><td><b>Attack</b>: [CCC] Quick Attack (20+) Flip a coin. If heads, this attack does 20 more damage.</td></tr>
+  <tr><td><b>Attack</b>: [C] Ascension - Search your deck for a card that evolves from this Pokémon and put it onto this Pokémon to evolve it. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Attack</b>: [CCC] Quick Attack (20+) - Flip a coin. If heads, this attack does 20 more damage.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -452,7 +453,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Boosted Evolution As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</td></tr>
+  <tr><td><b>Ability</b>: Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</td></tr>
   <tr><td><b>Attack</b>: [CC] Reckless Charge (30) - This Pokémon also does 10 damage to itself.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -489,7 +490,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Boosted Evolution As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</td></tr>
+  <tr><td><b>Ability</b>: Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</td></tr>
   <tr><td><b>Attack</b>: [CC] Reckless Charge (30) - This Pokémon also does 10 damage to itself.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -507,7 +508,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 200</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Rainbow DNA This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.)</td></tr>
+  <tr><td><b>Ability</b>: Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.)</td></tr>
   <tr><td><b>Attack</b>: [RWL] Coruscating Quartz (200)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -545,8 +546,8 @@
   <tr><td><b>HP</b>: 150</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness][Darkness] Shatter (50) - Discard a Stadium in play.</td></tr>
-  <tr><td><b>Attack</b>: [Darkness][Darkness][Darkness] Power Rush (130) - Flip a coin. If tails, during your next turn, this Pokémon can&#x27;t attack.</td></tr>
+  <tr><td><b>Attack</b>: [DD] Shatter (50) - Discard a Stadium in play.</td></tr>
+  <tr><td><b>Attack</b>: [DDD] Power Rush (130) - Flip a coin. If tails, during your next turn, this Pokémon can&#x27;t attack.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
@@ -638,7 +639,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Energy Factory Each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide Darkness Darkness Energy. You can&#x27;t apply more than 1 Energy Factory Ability at a time.</td></tr>
+  <tr><td><b>Ability</b>: Energy Factory - Each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide Darkness Darkness Energy. You can&#x27;t apply more than 1 Energy Factory Ability at a time.</td></tr>
   <tr><td><b>Attack</b>: [1D] Suffocating Gas (50)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -656,7 +657,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Neutralizing Gas As long as this Pokémon is in the Active Spot, your opponent&#x27;s Pokémon in play have no Abilities, except for Neutralizing Gas.</td></tr>
+  <tr><td><b>Ability</b>: Neutralizing Gas - As long as this Pokémon is in the Active Spot, your opponent&#x27;s Pokémon in play have no Abilities, except for Neutralizing Gas.</td></tr>
   <tr><td><b>Attack</b>: [D] Severe Poison - Your opponent&#x27;s Active Pokémon is now Poisoned. Put 4 damage counters instead of 1 on that Pokémon during Pokémon Checkup.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -694,7 +695,7 @@
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness] Petty Grudge (10)</td></tr>
+  <tr><td><b>Attack</b>: [D] Petty Grudge (10)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -740,7 +741,7 @@
 <table>
   <tr><td colspan="2"><h3 id="gastly-4">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
-    <th rowspan="11" width="400"><img src="./assets/534417_gastly.jpg" width="350"></th>
+    <th rowspan="13" width="400"><img src="./assets/534417_gastly.jpg" width="350"></th>
   </tr>
   <tr><td><b>SV: Paldean Fates</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> 055/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
@@ -748,6 +749,8 @@
   <tr><td><b>HP</b>: 50</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [C] Allure - Draw a card.</td></tr>
+  <tr><td><b>Attack</b>: [DC] Will-O-Wisp (20)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -855,7 +858,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Infinite Shadow If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</td></tr>
+  <tr><td><b>Ability</b>: Infinite Shadow - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</td></tr>
   <tr><td><b>Attack</b>: [D] Mind Jack (10+) - This attack does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -873,7 +876,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Life Shaker As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</td></tr>
+  <tr><td><b>Ability</b>: Life Shaker - As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [1PP] Hypnoblast (90) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
@@ -891,7 +894,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Last Gift If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, search your deck for up to 2 cards and put them into your hand. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Ability</b>: Last Gift - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, search your deck for up to 2 cards and put them into your hand. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [3] Pain Burst (10+) - This attack does 40 more damage for each damage counter on your opponent&#x27;s Active Pokémon.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
@@ -909,7 +912,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Netherworld Gate Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</td></tr>
+  <tr><td><b>Ability</b>: Netherworld Gate - Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [P] Screaming Circle - Put 2 damage counters on your opponent&#x27;s Active Pokémon for each of your opponent&#x27;s Benched Pokémon.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
@@ -927,7 +930,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 2</td></tr>
-  <tr><td><b>Ability</b>: Night Gate Once during your turn, you may switch your Active Pokémon with 1 of your Benched Pokémon.</td></tr>
+  <tr><td><b>Ability</b>: Night Gate - Once during your turn, you may switch your Active Pokémon with 1 of your Benched Pokémon.</td></tr>
   <tr><td><b>Attack</b>: [D1] Nightmare (100) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -1002,7 +1005,7 @@
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness] Spooky Shot (40)</td></tr>
+  <tr><td><b>Attack</b>: [D] Spooky Shot (40)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1020,7 +1023,7 @@
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness] Spooky Shot (40)</td></tr>
+  <tr><td><b>Attack</b>: [D] Spooky Shot (40)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1084,7 +1087,7 @@
 <table>
   <tr><td colspan="2"><h3 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
-    <th rowspan="11" width="400"><img src="./assets/534418_haunter.jpg" width="350"></th>
+    <th rowspan="12" width="400"><img src="./assets/534418_haunter.jpg" width="350"></th>
   </tr>
   <tr><td><b>SV: Paldean Fates</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png"><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" height="22" align="top"></picture> 056/091</td></tr>
   <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
@@ -1092,6 +1095,7 @@
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [DC] Dark Slumber (40) - Your opponent&#x27;s Active Pokémon is now Asleep.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1108,7 +1112,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Spirit Return When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put a Supporter card from your opponent&#x27;s discard pile into their hand.</td></tr>
+  <tr><td><b>Ability</b>: Spirit Return - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put a Supporter card from your opponent&#x27;s discard pile into their hand.</td></tr>
   <tr><td><b>Attack</b>: [1P] Mumble (30)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
@@ -1182,7 +1186,7 @@
   <tr><td><b>HP</b>: 90</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [D][D] Super Poison Breath (30) Your opponent’s Active Pokémon is now Poisoned.</td></tr>
+  <tr><td><b>Attack</b>: [DD] Super Poison Breath (30) - Your opponent’s Active Pokémon is now Poisoned.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1200,8 +1204,8 @@
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness] Wind of Darkness (30)</td></tr>
-  <tr><td><b>Attack</b>: [Darkness][Darkness][Colorless] Snipe Feather - Discard 2 Energy from this Pokémon. This attack does 120 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Attack</b>: [D] Wind of Darkness (30)</td></tr>
+  <tr><td><b>Attack</b>: [DDC] Snipe Feather - Discard 2 Energy from this Pokémon. This attack does 120 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1255,8 +1259,8 @@
   <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Auto Marshal If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon.</td></tr>
-  <tr><td><b>Attack</b>: [C][C][C] Blasting Wind (110)</td></tr>
+  <tr><td><b>Ability</b>: Auto Marshal - If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: [CCC] Blasting Wind (110)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
@@ -1328,8 +1332,8 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 350</td></tr>
   <tr><td><b>Stage</b>: Mega ex</td></tr>
-  <tr><td><b>Ability</b>: Concealed in Shadow Whenever any of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Concealed in Shadow doesn&#x27;t stack.</td></tr>
-  <tr><td><b>Attack</b>: [Darkness][Darkness] Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</td></tr>
+  <tr><td><b>Ability</b>: Concealed in Shadow - Whenever any of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Concealed in Shadow doesn&#x27;t stack.</td></tr>
+  <tr><td><b>Attack</b>: [DD] Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
@@ -1366,7 +1370,7 @@
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness] Ambush (10+) - Flip a coin. If heads, this attack does 20 more damage.</td></tr>
+  <tr><td><b>Attack</b>: [D] Ambush (10+) - Flip a coin. If heads, this attack does 20 more damage.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1383,7 +1387,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Jewel Seeker Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any Tera Pokémon in play, you may search your deck for up to 2 Trainer cards, reveal them, and put them into your hand. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Ability</b>: Jewel Seeker - Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any Tera Pokémon in play, you may search your deck for up to 2 Trainer cards, reveal them, and put them into your hand. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [CC] Speed Wing (60)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
@@ -1401,7 +1405,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Adrena-Power If this Pokémon has any Darkness Energy attached, it gets +100 HP, and the attacks it uses do 100 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</td></tr>
+  <tr><td><b>Ability</b>: Adrena-Power - If this Pokémon has any Darkness Energy attached, it gets +100 HP, and the attacks it uses do 100 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</td></tr>
   <tr><td><b>Attack</b>: [FF] Good Punch (70)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -1475,7 +1479,7 @@
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [Darkness] Arrogant Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</td></tr>
+  <tr><td><b>Attack</b>: [D] Arrogant Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1493,8 +1497,8 @@
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [G] Cursed Drop Put 4 damage counters on your opponent&#x27;s Pokémon in any way you like.</td></tr>
-  <tr><td><b>Attack</b>: [G] Spi[LL] the Tea (70x) Discard up to 3 G Energy cards from your Pokémon. This attack does 70 damage for each card you discarded this way.</td></tr>
+  <tr><td><b>Attack</b>: [G] Cursed Drop - Put 4 damage counters on your opponent&#x27;s Pokémon in any way you like.</td></tr>
+  <tr><td><b>Attack</b>: [G] Spill the Tea (70x) - Discard up to 3 G Energy cards from your Pokémon. This attack does 70 damage for each card you discarded this way.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1549,8 +1553,8 @@
   <tr><td><b>Type</b>: <img src="./assets/types/dragon.png" alt="Dragon" height="18" align="top"> Dragon</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Attract Customers Once during your turn, if this Pokémon is in the Active Spot, you may look at the top 6 cards of your deck, reveal a Supporter card you find there, and put it into your hand. Shuffle the other cards back into your deck.</td></tr>
-  <tr><td><b>Attack</b>: [Fire][Water] Surf (50)</td></tr>
+  <tr><td><b>Ability</b>: Attract Customers - Once during your turn, if this Pokémon is in the Active Spot, you may look at the top 6 cards of your deck, reveal a Supporter card you find there, and put it into your hand. Shuffle the other cards back into your deck.</td></tr>
+  <tr><td><b>Attack</b>: [RW] Surf (50)</td></tr>
   <tr><td><b>Weakness</b>: -</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
@@ -1567,7 +1571,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Smog Signals If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), search your deck for up to 2 Pokémon that have &quot;Koffing&quot; in their name and put them onto your Bench. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Ability</b>: Smog Signals - If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), search your deck for up to 2 Pokémon that have &quot;Koffing&quot; in their name and put them onto your Bench. Then, shuffle your deck.</td></tr>
   <tr><td><b>Attack</b>: [DC] Leaking Gas (30)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -1603,7 +1607,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Elder Tree Barrier If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon V, your opponent can&#x27;t take any Prize cards for it.</td></tr>
+  <tr><td><b>Ability</b>: Elder Tree Barrier - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon V, your opponent can&#x27;t take any Prize cards for it.</td></tr>
   <tr><td><b>Attack</b>: [1GG] Giga Impact (150) - During your next turn, this Pokémon can&#x27;t attack.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -1621,7 +1625,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
   <tr><td><b>HP</b>: 120</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Surrender Now Once during your turn, if this Pokémon is discarded with the effect of Jessie &amp; James, you may have your opponent discard a card from their hand. (They discard that card after the effect of Jessie &amp; James.)</td></tr>
+  <tr><td><b>Ability</b>: Surrender Now - Once during your turn, if this Pokémon is discarded with the effect of Jessie &amp; James, you may have your opponent discard a card from their hand. (They discard that card after the effect of Jessie &amp; James.)</td></tr>
   <tr><td><b>Attack</b>: [1] Tackle (40)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
@@ -1658,7 +1662,7 @@
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: Let&#x27;s Have a Blast If this Pokémon is in the Active Spot and is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</td></tr>
+  <tr><td><b>Ability</b>: Let&#x27;s Have a Blast - If this Pokémon is in the Active Spot and is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</td></tr>
   <tr><td><b>Attack</b>: [2] Spinning Fumes (50) - This attack also does 10 damage to each of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
