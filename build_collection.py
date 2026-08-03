@@ -48,6 +48,8 @@ LABELS = [
 LEGAL_LABEL = {
     "yes": "✓ Yes, this card is allowed in tournaments",
     "no": "✗ No, this card is too old for tournaments now",
+    "japanese": "✗ No, Japanese cards are not allowed at tournaments here. "
+                "This one is for the collection",
     "unknown": "? Not sure, check the letter on the card",
 }
 
@@ -83,21 +85,19 @@ RARITY_SLUG = {
 }
 
 
-# The icon set is named for the video game types; this is a TCG collection.
-# Water, Metal, Fairy, and Dragon are here for completeness even though no card
-# currently in the collection uses them as a type.
-TYPE_ICON = {
-    "Colorless": "normal", "Darkness": "dark", "Dragon": "dragon",
-    "Fairy": "fairy", "Fighting": "fighting", "Fire": "fire", "Grass": "grass",
-    "Lightning": "electric", "Metal": "steel", "Psychic": "psychic",
-    "Water": "water",
-}
+# The glyphs are named for TCG energy types, which is what cards.csv holds, so
+# the filename is just the lowercased type. Water, Metal, Fairy, and Dragon are
+# listed for completeness even though no card in the collection uses them yet.
+TYPES = {"Colorless", "Darkness", "Dragon", "Fairy", "Fighting", "Fire",
+         "Grass", "Lightning", "Metal", "Psychic", "Water"}
 
 
 def type_icon(tcg_type, height=18):
-    """The energy icon for a TCG type, or nothing if it is not a type."""
-    slug = TYPE_ICON.get(tcg_type)
-    if not slug or not (ROOT / "assets" / "types" / f"{slug}.png").exists():
+    """The energy glyph for a TCG type, or nothing if it is not a type."""
+    if tcg_type not in TYPES:
+        return ""
+    slug = tcg_type.lower()
+    if not (ROOT / "assets" / "types" / f"{slug}.png").exists():
         return ""
     return (f'<img src="./assets/types/{slug}.png" alt="{html.escape(tcg_type)}" '
             f'height="{height}" align="top">')
@@ -112,8 +112,31 @@ def typed(v):
 def set_slug(name):
     if name in SET_SLUG:
         return SET_SLUG[name]
-    s = re.sub(r"^(SWSH\d*|SV\d*|ME\d*|MEE|SM\d*|XY|EX)\s*[:\-]\s*", "", name)
+    # Set names arrive prefixed with their code, in a few shapes: "SWSH01: ",
+    # "SV: ", "ME03: ", "SM - ", "MBG: ". Strip any of them.
+    s = re.sub(r"^[A-Z][A-Z0-9]{1,5}\s*[:\-]\s*", "", name)
     return re.sub(r"[^a-z0-9]+", "-", s.replace("&", "and").lower()).strip("-")
+
+
+def set_folder(product_line):
+    """Japanese sets have their own symbol folder."""
+    return "sets-jp" if "japan" in (product_line or "").lower() else "sets"
+
+
+def mega_sigil(r, height=20):
+    """The Mega Evolution sigil, for cards that are one.
+
+    Both signals are checked because they do not always agree across product
+    lines: the Japanese line marks the stage "MegaEX" while the name carries
+    "Mega", and an English printing may only do one of the two.
+    """
+    if not (r["stage"].lower().startswith("mega")
+            or r["name"].lower().startswith("mega ")):
+        return ""
+    if not (ROOT / "assets" / "mega-evolution-sigil.png").exists():
+        return ""
+    return ('<img src="./assets/mega-evolution-sigil.png" alt="Mega Evolution" '
+            f'height="{height}" align="top">')
 
 
 def icon(folder, slug, height, alt):
@@ -129,7 +152,7 @@ def icon(folder, slug, height, alt):
     """
     if not slug:
         return ""
-    for f in (folder, "set-logos") if folder == "sets" else (folder,):
+    for f in ((folder, "set-logos") if folder == "sets" else (folder,)):
         if not (ROOT / "assets" / f / f"{slug}.png").exists():
             continue
         img = (f'<img src="./assets/{f}/{slug}.png" alt="{html.escape(alt)}" '
@@ -159,11 +182,13 @@ def value(key, r):
     if not v:
         return "-"
     if key == "set_name":
-        return f'{icon("sets", set_slug(v), 22, v)} {html.escape(v)}'.strip()
+        folder = set_folder(r.get("product_line"))
+        return f'{icon(folder, set_slug(v), 22, v)} {html.escape(v)}'.strip()
     if key == "rarity":
         return f'{icon("rarities", RARITY_SLUG.get(v), 16, v)} {html.escape(v)}'.strip()
     if key == "source_url":
-        return f'<a href="{html.escape(v)}">{html.escape(v.rsplit("/pokemon/", 1)[-1])}</a>'
+        label = re.sub(r"^.*?/pokemon(?:-japan)?/", "", v)
+        return f'<a href="{html.escape(v)}">{html.escape(label)}</a>'
     if key in ("card_type", "weakness", "resistance"):
         return typed(v)
     if key == "retreat_cost":
@@ -228,7 +253,9 @@ for r, a in entries:
     span = len(cells) + 1
     out.append("<table>")
     rare = icon("rarities", RARITY_SLUG.get(r["rarity"]), 18, r["rarity"])
-    out.append(f'  <tr><td colspan="2"><h3 id="{a}">{html.escape(r["name"])}'
+    mega = mega_sigil(r)
+    out.append(f'  <tr><td colspan="2"><h3 id="{a}">'
+               f'{mega + " " if mega else ""}{html.escape(r["name"])}'
                f'{" " + rare if rare else ""}</h3></td></tr>')
     if r["image_file"]:
         out.append("  <tr>")

@@ -56,7 +56,7 @@ ids = list(pid_to_url)
 def fetch(chunk):
     body = json.dumps({
         "algorithm": "sales_synonym_v2", "from": 0, "size": len(chunk),
-        "filters": {"term": {"productLineName": ["pokemon"], "productId": chunk},
+        "filters": {"term": {"productLineName": ["pokemon", "pokemon-japan"], "productId": chunk},
                     "range": {}, "match": {}},
         "listingSearch": {"context": {"cart": {}},
                           "filters": {"term": {}, "range": {},
@@ -140,6 +140,14 @@ ENERGY_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
                "Y": "Fairy", "N": "Dragon"}
 
 
+ENERGY_NAMES = set(ENERGY_TYPE.values()) | {"Colorless"}
+
+# The Japanese line writes stages without spacing. Left alone they read as
+# "MegaEX" in the middle of a table.
+STAGE_FIX = {"megaex": "Mega ex", "mega ex": "Mega ex", "basicex": "Basic ex",
+             "stage1": "Stage 1", "stage2": "Stage 2"}
+
+
 def type_from_attack(ca):
     """Fallback for the handful of old cards where TCGplayer has no cardTypeB."""
     for k in ("attack1", "attack2", "attack3", "attack4"):
@@ -158,10 +166,22 @@ def expand_type_code(s):
     Resistance comes back as the literal string "None" on cards that have
     none, which is not the same as the field being absent, so it is dropped
     here rather than surviving into the CSV as text.
+
+    The Japanese product line writes the same thing out longhand instead, as
+    "[Fighting] x2", so that form is folded in before the letter codes.
     """
     s = str(s or "").strip()
     if not s or s.lower() == "none":
         return ""
+    m = re.fullmatch(r"\[([A-Za-z]+)\]\s*(?:x\s*(\d+)|([+-]\s*\d+))?", s)
+    if m:
+        t, mult, mod = m.groups()
+        t = accents(t.strip().title())
+        if mult:
+            return f"{t} ×{mult}"
+        if mod:
+            return f"{t} {re.sub(r'\s+', '', mod)}"
+        return t
     m = re.fullmatch(r"([A-Z])\s*(?:x\s*(\d+)|([+-]\s*\d+))?", s)
     if not m:
         return s
@@ -193,6 +213,13 @@ FIRST_H_SET_RELEASE = "2024-03-22"
 # never rotates.
 PRE_ROTATION_SETS = {"BTA", "TTBB", "TTBB23", "TTBB24"}
 
+# Marks read off the physical card, for printings no upstream source carries.
+# pokemontcg.io has no Japanese sets at all, so these come from the letter in
+# the bottom corner of the card in hand.
+MANUAL_MARKS = {
+    "MBG/3": "I",   # Mega Gengar ex 003/021, read off the card
+}
+
 REG_MARKS = {}
 if (ROOT / "regulation-marks.json").exists():
     REG_MARKS = json.loads((ROOT / "regulation-marks.json").read_text()).get("marks", {})
@@ -203,18 +230,28 @@ def reg_key(set_code, number):
     return f"{set_code}/{n.lstrip('0') or n}"
 
 
-def legality(set_code, number, ctype, released, name=""):
+def legality(set_code, number, ctype, released, name="", product_line=""):
     """(regulation_mark, standard_legal) for one card.
 
-    standard_legal is "yes", "no", or "unknown". Unknown is deliberate: a card
-    whose mark could not be resolved is not the same as a card known to be
-    illegal, and quietly calling it "no" would hide gaps in the lookup.
+    standard_legal answers "can this be played at our local tournaments", which
+    is a stricter question than "is the mark current". Values are "yes", "no",
+    "japanese", and "unknown". Unknown is deliberate: a card whose mark could
+    not be resolved is not the same as one known to be illegal, and quietly
+    calling it "no" would hide gaps in the lookup.
     """
+    mark = MANUAL_MARKS.get(reg_key(set_code, number), "") \
+        or REG_MARKS.get(reg_key(set_code, number), "")
+
+    # Language is decided before the mark. Play! Pokémon allows only English
+    # cards at local and regional events in the US, whatever the mark says, so
+    # a current Japanese card still cannot be played here.
+    if "japan" in (product_line or "").lower():
+        return mark, "japanese"
+
     # Basic Energy is legal from any set and carries no mark at all. Fairy is
     # the one exception, retired along with the type.
     if ctype == "Energy - Basic":
         return "", "no" if "fairy" in name.lower() else "yes"
-    mark = REG_MARKS.get(reg_key(set_code, number), "")
     if mark:
         return mark, "yes" if mark in LEGAL_MARKS else "no"
     if released and released[:10] < FIRST_H_SET_RELEASE:
@@ -237,14 +274,15 @@ def norm_type(card_type_b, hp, stage):
         return f"Energy - {low.split()[0].title()}", "", ""
     if low.endswith(" energy"):
         return f"Energy - {low[:-7].title()}", "", ""
-    return t, str(hp or "").strip(), accents(str(stage or "").strip())
+    st = accents(str(stage or "").strip())
+    return t, str(hp or "").strip(), STAGE_FIX.get(st.lower(), st)
 
 
 records = []
 for pid in ids:
     p = products.get(pid)
     url = pid_to_url[pid]
-    slug = url.split("/pokemon/", 1)[1]
+    slug = re.sub(r"^.*?/pokemon(?:-japan)?/", "", url)
     card_slug = slug.split("/")[-1]
     ca = (p.get("customAttributes") or {}) if p else {}
 
@@ -253,13 +291,21 @@ for pid in ids:
     name = strip_number(name, number)
 
     ctb = ca.get("cardTypeB")
+    if not ctb:
+        # The Japanese product line has no cardTypeB at all and instead puts the
+        # energy type straight into cardType, where English puts "Pokemon".
+        for c in ca.get("cardType") or []:
+            if accents(str(c).title()) in ENERGY_NAMES:
+                ctb = accents(str(c).title())
+                break
     if not ctb and "Pokemon" in (ca.get("cardType") or []):
         ctb = type_from_attack(ca)
         if ctb:
             print(f"  note: derived type {ctb!r} from attack cost for {name}", file=sys.stderr)
     ctype, hp, stage = norm_type(ctb, ca.get("hp"), ca.get("stage"))
     mark, legal = legality(p.get("setCode") if p else "", number, ctype,
-                           ca.get("releaseDate") or "", name)
+                           ca.get("releaseDate") or "", name,
+                           (p.get("productLineName") or "") if p else "")
     ths = " / ".join(x for x in (ctype, hp, stage) if x)
 
     img_name = f"{pid}_{card_slug}.jpg"
@@ -277,6 +323,7 @@ for pid in ids:
         "set_name": accents((p.get("setName") or "").strip()),
         "card_number": number,
         "rarity": accents((p.get("rarityName") or "").strip()) if p else "",
+        "product_line": (p.get("productLineName") or "") if p else "",
         "card_type": ctype,
         "hp": hp,
         "stage": stage,
@@ -297,7 +344,8 @@ for pid in ids:
     })
 
 records.sort(key=lambda r: (r["category"], r["set_name"], r["name"]))
-cols = ["name", "set_name", "card_number", "rarity", "card_type", "hp", "stage",
+cols = ["name", "set_name", "card_number", "rarity", "product_line",
+        "card_type", "hp", "stage",
         "type_hp_stage", "card_text", "attack1", "attack2", "attack3", "attack4",
         "weakness", "resistance", "retreat_cost",
         "regulation_mark", "standard_legal",

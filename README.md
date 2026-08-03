@@ -55,15 +55,17 @@ copies that let the black line art survive github's dark theme.
 so the pikachu jack-o'-lantern stamp comes from
 [dextcg](https://dextcg.com). same script fetches it.
 
-**type icons, damage category icons, and the mega evolution sigil.**
-[HybridShivam/Pokemon](https://github.com/HybridShivam/Pokemon). `fetch_icons.py`
-downloads the type svgs and recolours them to tcg energy colours, since the
-originals are named and coloured for the video game types.
+**energy type glyphs.** zero-licence svgs kept in `assets/glyphs`. these are the
+actual tcg energy symbols rather than video game type icons, so they need no
+mapping: the file is named for the card type. `build_glyphs.py` sets the fill on
+each and renders it to png in `assets/types`.
 
-**poké ball.** the title image is that same repo's app icon,
-[icon-512x512.psd](https://github.com/HybridShivam/Pokemon/blob/master/assets/Others/app-icons/icon-512x512.psd),
-flattened to png by hand into `assets/pokeball.png`. it is the one asset here no
-script fetches.
+**the two static images.** both come from
+[HybridShivam/Pokemon](https://github.com/HybridShivam/Pokemon) and are the only
+assets here that no script fetches. `assets/pokeball.png` is that repo's app
+icon, [icon-512x512.psd](https://github.com/HybridShivam/Pokemon/blob/master/assets/Others/app-icons/icon-512x512.psd),
+flattened to png by hand; it heads this page and `collection.md`.
+`assets/mega-evolution-sigil.png` is waiting on a mega card to mark.
 
 ### a note on rights
 

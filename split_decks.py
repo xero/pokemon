@@ -4,7 +4,7 @@
 cards.csv is never modified. Four Trainers sit in both decks and so appear in
 both output files: Boss's Orders, Rare Candy, Ultra Ball, and Switch.
 """
-import csv, shutil, sys
+import csv, re, shutil, sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -57,7 +57,8 @@ FIRE = {  # charizard-deck.md
 
 
 def slug(url):
-    return url.split("/pokemon/", 1)[1]
+    # Japanese products sit on /pokemon-japan/ rather than /pokemon/.
+    return re.sub(r"^.*?/pokemon(?:-japan)?/", "", url)
 
 
 rows = list(csv.DictReader(open(SRC, encoding="utf-8")))
