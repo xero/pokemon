@@ -220,23 +220,49 @@ Use it when 280 wins the game or removes a 3-Prize Mega. Otherwise *Burning Char
 
 ## What To Buy
 
-| Card | Own | Need |
-| :--- | :--- | :--- |
-| Eevee, PRE 074 | **2** | 2 |
-| Eevee ex, PRE 075 | **1** | 1 |
-| Flareon ex, PRE 014 | **1** | 2 |
-| Hoothoot, SCR 114 | 0 | 4 |
-| Noctowl, SCR 115 | 0 | 3 |
-| Crispin, SCR 133 | 0 | 4 |
-| Sparkling Crystal, SCR 142 | 0 | 1 |
-| Buddy-Buddy Poffin, TEF 144 | household | 4 |
-| Lillie's Determination, ME01 119 | household | 4 |
-| Night Stretcher, SFA 061 | household | 3 |
-| Gwynn, ME05 078 | household | 2 |
-| Ultra Ball / Boss's Orders / Switch, ME01 | **✅ some** | top up |
-| Basic Fire / Water Energy | ✅ Fire | 3 Water |
+Quantities below are reconciled against the **actual TCGplayer order history**, not the outdated `shopping-list.md`.
 
-**"Household" means you bought them for the Gengar deck.** Buddy-Buddy Poffin, Lillie's Determination, Night Stretcher, and Gwynn are all in `dark.csv` and all Standard legal — you'd need separate copies to run both decks at once, but you already know they're good and you know what they cost.
+### Missing outright — and it's almost all one set
+
+| Card | Set | Need |
+| :--- | :--- | :--- |
+| Hoothoot | **Stellar Crown** 114 | 4 |
+| Noctowl | **Stellar Crown** 115 | 3 |
+| **Crispin** | **Stellar Crown** 133 | 4 |
+| **Sparkling Crystal** *(ACE SPEC)* | **Stellar Crown** 142 | 1 |
+| Basic Water Energy | any | 3 |
+
+**Every missing card except the Energy is Stellar Crown.** One set, one seller, one shipping charge.
+
+### Partially owned Pokémon
+
+| Card | Own | Need | Buy |
+| :--- | :--- | :--- | :--- |
+| Eevee, PRE 074 | **3** — 2 plain + 1 Poké Ball Pattern | 4 | **1** |
+| Eevee ex, PRE 075 | **1** | 2 | **1** |
+| Flareon ex, PRE 014 | **1** | 3 | **2** |
+
+> The Poké Ball Pattern Eevee counts here — same card, same number, same *Boosted Evolution*. Exactly the point made in `fire.md`.
+
+### Trainers — only short if both decks are sleeved at once
+
+The four-copy limit is per **deck**, so these aren't rules conflicts. They're only purchases if you want Gengar Gang and this deck built simultaneously.
+
+| Card | Own | Dad's deck | Fox's deck | Both | Buy |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Buddy-Buddy Poffin** | 4 | 4 | 4 | 8 | **4** |
+| **Lillie's Determination** | 3 | 3 | 4 | 7 | **4** |
+| **Night Stretcher** | 3 | 3 | 3 | 6 | **3** |
+| **Gwynn** | 2 | 2 | 2 | 4 | **2** |
+| Ultra Ball | **8** | 4 | 4 | 8 | ✅ 0 |
+| Switch | **5** | 2 | 3 | 5 | ✅ 0 |
+| Boss's Orders | **8** | 2 | 3 | 5 | ✅ 0 *(3 spare)* |
+| Rare Candy | **8** | 4 | **0** | 4 | ✅ 0 *(4 spare)* |
+
+> [!TIP]
+> **This deck runs zero Rare Candy.** Flareon ex is a **Stage 1**, not a Stage 2 — Eevee evolves straight into it. All eight of your Rare Candy stay with the Gengar deck, and the whole "can't Candy on turn one / can't Candy a Basic played this turn" trap that dominates his current Charizard deck simply doesn't exist here.
+>
+> That's a genuine simplification for a ten-year-old, and it's worth pointing out to him as a *feature* of the rebuild.
 
 ---
 
