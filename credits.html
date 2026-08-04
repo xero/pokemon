@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Credits</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin-block: 0.8em;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			padding: 0.45em 0.7em 0.45em 0;
+			vertical-align: top;
+		}
+
+		th {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout inside a card sits on the card's own background, so it
+			   needs the page colour to read as a separate box rather than a
+			   rectangle of border. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			ul {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Credits</h1>
+			<p>Where the card text, images, and symbols came from.</p>
+		</header>
+		<main>
+			<article>
+				<section>
+					<h2>Card text and rulings<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h2>
+					<p>The wording on every card, and the rulings for how it actually behaves, come from <a href="https://pkmncards.com/">PkmnCards</a>, <a href="https://www.tcgcollector.com/">TCG Collector</a>, and <a href="https://bulbapedia.bulbagarden.net/">Bulbapedia</a>.</p>
+					<p>Two Bulbapedia pages did most of the work: <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG)">Confused (TCG)</a>, because both decks lean on it, and <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50)">Gengar (Perfect Order 50)</a>, for the exact text of Infinite Shadow.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Card data<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h2>
+					<p>Names, sets, numbers, rarity, types, HP, stage, attacks, weakness, resistance, retreat cost, and card text come from the <a href="https://www.tcgplayer.com">TCGplayer</a> marketplace search API. The card scans come from the TCGplayer CDN.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Tournament legality<span data-flavor><img src="./assets/sprites/sudowoodo.gif" alt="" /></span></h2>
+					<p>Regulation marks come from <a href="https://pokemontcg.io">pokemontcg.io</a>, one lookup per card rather than one per set. That distinction matters. Prismatic Evolutions prints Flareon 013 with a G mark and Flareon ex 014 with an H, so a set-level table would call rotated cards legal.</p>
+					<p>The rotation rules behind the yes or no come from the <a href="https://www.pokemon.com/us/pokemon-news/2026-pokemon-tcg-standard-format-rotation-announcement">2026 Standard rotation announcement</a> and <a href="https://bulbapedia.bulbagarden.net/wiki/2026-27_Standard_format_%28TCG%29">Bulbapedia's 2026-27 Standard format page</a>.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Set symbols, set logos, and rarity symbols<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h2>
+					<p><a href="https://pokesymbols.com">pokesymbols.com</a>, covering the <a href="https://pokesymbols.com/tcg/rarities">rarities</a>, <a href="https://pokesymbols.com/tcg/sets">English sets</a>, and <a href="https://pokesymbols.com/tcg/japanese-sets">Japanese sets</a>.</p>
+					<p>pokesymbols has no entry for the Halloween bundles, so the Pikachu jack-o&#x27;-lantern stamp on the Trick or Trade cards comes from <a href="https://dextcg.com">DexTCG</a> instead.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Energy type glyphs<span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h2>
+					<p>Zero-licence SVGs of the actual TCG energy symbols.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Mega Evolution sigil<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h2>
+					<p>The Mega sigil beside a Mega card comes from <a href="https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg">Poképédia</a>, also zero-licence.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Poké Ball<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h2>
+					<p>The ball at the top of every page is the app icon from <a href="https://github.com/HybridShivam/Pokemon">HybridShivam/Pokemon</a>.</p>
+				</section>
+			</article>
+			<article>
+				<section>
+					<h2>Sprites<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h2>
+					<p>The animated sprites tucked into the headings are the 3D models from <a href="https://pkparaiso.com">pkparaiso.com</a>, by way of <a href="https://github.com/tdmalone/pokecss-media">tdmalone/pokecss-media</a>.</p>
+				</section>
+			</article>
+			<aside data-callout="important">
+				<h2>We claim no ownership of any of it.<span data-flavor><img src="./assets/sprites/charizard-mega-y.gif" alt="" /></span></h2>
+				<p>Pokémon and all related names, characters, card text, card images, set symbols, and type symbols are © Nintendo, Creatures Inc., and Game Freak. Pokémon and the Pokémon TCG are trademarks of Nintendo. Every card image and every piece of card text reproduced here belongs to them.</p>
+				<p>Nothing on these pages is official, endorsed, or affiliated with Nintendo, Creatures Inc., Game Freak, or The Pokémon Company. This is an unofficial fan project made for a father and son to plan decks at the kitchen table. No money changes hands and nothing is for sale.</p>
+				<p>All rights remain reserved by the original artists. <i>Thank you for sharing!</i></p>
+			</aside>
+		</main>
+		<footer>
+			<p><a href="./index.html">Back to the decks</a></p>
+		</footer>
+	</body>
+</html>
