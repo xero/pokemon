@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Xero's Gengar Gang</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.08em;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		nav p {
+			padding-top: 0.35em;
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* the prose under a card on a deck page */
+			h4 {
+				color: var(--accent);
+				font-size: 1em;
+				letter-spacing: 0.03em;
+				padding-top: 1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 4px solid var(--accent);
+			border-radius: var(--round);
+			padding: var(--pad);
+
+			h2 {
+				font-size: var(--text-lg);
+				color: var(--accent);
+			}
+
+			p + p,
+			ul {
+				padding-top: 0.7em;
+			}
+
+			ul {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--accent: var(--gold);
+		}
+
+		[data-callout="warning"] {
+			--accent: var(--ember);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Xero's Gengar Gang</h1>
+			<p>19 cards, one entry each.</p>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><strong>Pokémon</strong> — <a href="#gastly">Gastly</a> · <a href="#haunter">Haunter</a> · <a href="#gengar">Gengar</a> · <a href="#koffing">Koffing</a> · <a href="#weezing">Weezing</a></p>
+		<p><strong>Supporters</strong> — <a href="#dawn">Dawn</a> · <a href="#lillies-determination">Lillie&#x27;s Determination</a> · <a href="#gwynn">Gwynn</a> · <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></p>
+		<p><strong>Items</strong> — <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> · <a href="#ultra-ball">Ultra Ball</a> · <a href="#rare-candy">Rare Candy</a> · <a href="#night-stretcher">Night Stretcher</a> · <a href="#switch">Switch</a> · <a href="#dark-bell">Dark Bell</a></p>
+		<p><strong>Tool / Stadium</strong> — <a href="#punk-helmet">Punk Helmet</a> · <a href="#risky-ruins">Risky Ruins</a></p>
+		<p><strong>Energy</strong> — <a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a> · <a href="#basic-darkness-energy">Basic Darkness Energy</a></p>
+		<p><a href="#gameplay-strategies"><strong>Gameplay Strategies</strong></a></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="gastly">Gastly</h3>
+				<aside><img src="./assets/684429_gastly.jpg" alt="Gastly" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>4</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order</span></dd>
+						<dt>Number</dt><dd><span>048/088</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd><span>—</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span><em>Surprise Attack</em> <strong>30</strong>— Flip a coin. If tails, this attack does nothing.</span></dd>
+						<dt>Regulation</dt><dd><span>J</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p><strong>gastly</strong> → haunter → gengar</p>
+					<h4>General use</h4>
+					<p>Gastly is a seed, not a fighter. Its entire job is to be sitting on your Bench on turn one so that something better can be placed on top of it later. You run the maximum four copies not because Gastly is good but because you cannot build a Gengar without one, and drawing zero Basic Pokémon means you have to mulligan.</p>
+					<p>Do not fall in love with <em>Surprise Attack</em>. A coin flip for 30 is a last resort — the attack you use when your board fell apart and you have nothing else. Treat it as a way to not waste a turn, never as a plan.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a></strong> — at 70 HP, Gastly is a legal target, and Poffin fetches two Basics at once straight onto the Bench.</li>
+						<li>- <strong><a href="#rare-candy">Rare Candy</a></strong> — Gastly is the Basic that Rare Candy jumps to Gengar.</li>
+						<li>- <strong><a href="#dawn">Dawn</a></strong> — grabs a Gastly and its whole family in one card.</li>
+						<li>- <strong><a href="#gwynn">Gwynn</a></strong> — a spare Gastly in hand is worth 3 cards of draw.</li>
+						<li>- <strong><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a></strong> — makes a benched Gastly untouchable while it grows up.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p>The Perfect Order print is specifically the one you want. 70 HP instead of 60 is not a rounding error: it is the difference between surviving a Charmander&#x27;s opening poke and not, and — critically — 70 HP is exactly the ceiling for <strong>Buddy-Buddy Poffin</strong>. A 60 HP Gastly would still work; an 80 HP one would not.</p>
+					<p>The most common beginner mistake with this card is playing one Gastly and holding the rest. Play them. Two or three Gastly on the Bench early is not overcommitting — it is insurance, because your opponent&#x27;s Charizard deck can only knock out one thing per turn, and every Gastly you did not bench is a Gengar you cannot build later.</p>
+					<p>The one real cost of a wide Bench is that it makes your opponent&#x27;s <strong>Zinnia&#x27;s Resolve</strong> draw more cards. That is a price worth paying almost every time.</p>
+				</section>
+			</article>
+			<aside data-callout="tip">
+				<p>You already own three Standard-legal Haunters: <strong>POR 049</strong> (<em>Haunt</em> — 3 damage counters, placed wherever you like), <strong>PFL 055</strong> (<em>Spooky Shot</em> 40), and <strong>TEF 103</strong> (<em>Super Poison Breath</em> [DD] 30 + Poisoned). Any two of them work. PFL 055 is listed here because flat 40 is the most beginner-friendly, but POR 049 is arguably stronger since damage counters ignore Weakness and Resistance and can be aimed at a Benched Pokémon.</p>
+			</aside>
+			<article>
+				<h3 id="haunter">Haunter</h3>
+				<aside><img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames</span></dd>
+						<dt>Number</dt><dd><span>055/094</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1 (from Gastly)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd><span>—</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span><em>Spooky Shot</em> <strong>40</strong></span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p>gastly → <strong>haunter</strong> → gengar</p>
+					<h4>General use</h4>
+					<p>Haunter is the slow road to Gengar. When you have Rare Candy you skip it entirely; when you do not, Haunter is how you get there anyway. Only two copies are in the deck because it is a backup route, not the main one.</p>
+					<p><em>Spooky Shot</em> for a flat 40 with no coin flip is quietly useful — it is more reliable damage than Gastly&#x27;s attack, and 40 is enough to finish off something the opponent left damaged.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — the only reason Haunter exists in this list.</li>
+						<li>- <strong><a href="#dawn">Dawn</a></strong> — the &quot;Stage 1&quot; slot on Dawn is almost always Haunter.</li>
+						<li>- <strong><a href="#rare-candy">Rare Candy</a></strong> — the card that lets you <em>skip</em> Haunter. When Candy is in hand, leave Haunter in the deck.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p>Here is the timing rule that matters: <strong>Rare Candy cannot be used on your first turn, and cannot be used on a Basic you played that same turn.</strong> So the fastest possible Gengar is turn two — bench Gastly turn one, Candy it turn two. If you miss that window, Haunter becomes your path, and evolving Gastly → Haunter on turn two still lets you reach Gengar on turn three.</p>
+					<p>That means Haunter is rarely a wasted play even when you <em>do</em> draw Rare Candy later. A Haunter on the board on turn two is a Gengar on turn three. A Gastly on the board on turn two that is waiting for a Candy might be a Gengar on turn three, or might be a Gastly on turn five.</p>
+				</section>
+			</article>
+			<aside data-callout="warning">
+				<p><em>Infinite Shadow</em> <strong>does not deny your opponent a Prize card.</strong> A knockout always awards one, no matter where the card goes afterwards. What the Ability does is return Gengar to your <strong>hand</strong> instead of the discard pile — and because an evolution stack moves as a unit, <strong>Gastly and Haunter come back with it.</strong> Only the <em>attached</em> cards (Energy, Tools) are discarded.</p>
+				<p>So it is excellent value — three cards back for free — but it is never a reason to <em>let</em> Gengar die. Losing Gengar still costs you a Prize and a full turn of re-setup.</p>
+			</aside>
+			<article>
+				<h3 id="gengar">Gengar</h3>
+				<aside><img src="./assets/684431_gengar.jpg" alt="Gengar" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>3</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order</span></dd>
+						<dt>Number</dt><dd><span>050/088</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2 (from Haunter)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd><span>—</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Ability</dt><dd><span><em>Infinite Shadow</em> — If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span><em>Mind Jack</em> <strong>10+</strong>— Does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</span></dd>
+						<dt>Regulation</dt><dd><span>J</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p>gastly → haunter → <strong>gengar</strong></p>
+					<h4>General use</h4>
+					<p>Gengar is the closer, and it is a <em>punisher</em>. It costs one single Darkness Energy and its damage is decided entirely by how greedy your opponent has been with their Bench. Against a wide board it hits like a truck for one Energy. Against an empty board it does 10.</p>
+					<p>Learn this table. It is the most important arithmetic in the deck:</p>
+					<p>Against the Charizard deck, <strong>130 knocks out everything except Charizard itself</strong> — Eevee (50), Charmander (70), Charmeleon (90), Sudowoodo (100), Flareon (130) all die to a four-Bench Mind Jack. Charizard has 170 HP, and Mind Jack maxes out at 160, so Gengar alone can never one-shot it. That job belongs to Weezing.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></strong> — drags the exact target you want into range. Read the warning in Strategy first.</li>
+						<li>- <strong><a href="#rare-candy">Rare Candy</a></strong> — the fast lane from Gastly, skipping Haunter.</li>
+						<li>- <strong><a href="#dawn">Dawn</a></strong> — assembles the entire line from your deck in one Supporter.</li>
+						<li>- <strong><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a></strong> — protects Gengar completely while it waits on the Bench.</li>
+						<li>- <strong><a href="#risky-ruins">Risky Ruins</a></strong> — punishes the opponent for building the wide Bench that Mind Jack feeds on. They are trapped either way.</li>
+						<li>- <strong><a href="#night-stretcher">Night Stretcher</a></strong> — brings a discarded Gengar back.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>The Boss&#x27;s Orders trap.</strong> Boss&#x27;s Orders pulls one of your opponent&#x27;s Benched Pokémon into the Active Spot — which <em>removes it from their Bench</em> and therefore lowers Mind Jack by 30. If they have five on the Bench and you Boss up a Charmander, you are now hitting for 130, not 160. That is still plenty to kill a Charmander, but if you were counting on 160 to finish a damaged Charizard, you just talked yourself out of 30 damage. <strong>Count the Bench after the Boss, not before.</strong></p>
+					<p><strong>Infinite Shadow is recycling, not immortality.</strong> This is the single most misunderstood card in the deck, so be precise about it:</p>
+					<p>The right way to think about it: Infinite Shadow means you can play Gengar aggressively without fearing that a knockout ends your Gengar plan for the game. You will get it back. You just would rather not need to.</p>
+					<p><strong>One Energy.</strong> Do not over-invest. Mind Jack costs exactly one [D] and never wants a second. Every Energy past the first on a Gengar is an Energy that should have gone on a Weezing.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>This is a <strong>regular</strong> Koffing. It does <strong>not</strong> evolve into Team Rocket&#x27;s Weezing — that card requires <em>Team Rocket&#x27;s Koffing</em> specifically, and would need its own separate line. Names must match exactly.</p>
+			</aside>
+			<article>
+				<h3 id="koffing">Koffing</h3>
+				<aside><img src="./assets/623518_koffing.jpg" alt="Koffing" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>3</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together</span></dd>
+						<dt>Number</dt><dd><span>091/159</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd><span>—</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Attack 1</dt><dd><span><em>Tackle</em> <strong>[C] 10</strong></span></dd>
+						<dt>Attack 2</dt><dd><span><em>Suffocating Gas</em> <strong>[D][C] 20</strong></span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p><strong>koffing</strong> → weezing</p>
+					<h4>General use</h4>
+					<p>Koffing is the other seed, and unlike Gastly it only needs <em>one</em> step to become a real threat. That makes it the Basic you most want in your opening hand. Bench it turn one, evolve it turn two, and you are attacking with a 130 HP Weezing while your Gengar is still growing.</p>
+					<p><em>Tackle</em> for [C] is worth knowing about: it is the only attack in the deck that does not require Darkness Energy, so a Koffing can attack off a Shadowy Darkness Energy or any Energy at all in a pinch.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — the whole point.</li>
+						<li>- <strong><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a></strong> — 60 HP is comfortably under the 70 HP cap.</li>
+						<li>- <strong><a href="#dawn">Dawn</a></strong> — Koffing is a fine &quot;Basic&quot; slot on Dawn if you already have Gastly.</li>
+						<li>- <strong><a href="#night-stretcher">Night Stretcher</a></strong> — recovers one Gwynn threw away.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p>At 60 HP, Koffing is fragile — the Charizard deck&#x27;s <strong>Sudowoodo</strong> is a Fighting type, and Fighting is Koffing&#x27;s Weakness, so even a small Flail can erase it. Evolve promptly. A Koffing that sits on the Bench for three turns is a Koffing that gets sniped.</p>
+					<p>Three copies, not four, is deliberate. Weezing is the deck&#x27;s workhorse, but you only ever need one Weezing in play at a time, and the extra slot buys you a Trainer that finds what you actually need.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="weezing">Weezing</h3>
+				<aside><img src="./assets/623519_weezing.jpg" alt="Weezing" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>3</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together</span></dd>
+						<dt>Number</dt><dd><span>092/159</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1 (from Koffing)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd><span>—</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Attack 1</dt><dd><span><em>Pervasive Gas</em> <strong>[D] 30</strong> — Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt>Attack 2</dt><dd><span><em>Crazy Blast</em> <strong>[D][C] 50+</strong> — If this Pokémon used Pervasive Gas during your last turn, this attack does 120 more damage.</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p><strong>koffing</strong> → <strong>weezing</strong></p>
+					<p><em>(Koffing also evolves into Galarian Weezing, a separate card kept out of this deck — see the Casual Swaps section of <code>gengar-weezing-deck.md</code>.)</em></p>
+					<h4>General use</h4>
+					<p>Weezing is the engine of this deck and the card your son will hate the most. It is a two-turn combo on a single card:</p>
+					<p>**Turn one — <em>Pervasive Gas</em>.<strong> 30 damage, and their Active is now Confused. </strong>Turn two — <em>Crazy Blast</em>.<strong> 50 + 120 = </strong>170 damage.**</p>
+					<p>170 is not an arbitrary number. <strong>Charizard has exactly 170 HP.</strong> Weezing is the only card in this deck that can one-shot the opposing deck&#x27;s best Pokémon, and it does it on the second turn of a two-card-free combo.</p>
+					<p>Meanwhile the Confusion from step one means there is a 50% chance your opponent&#x27;s turn in between simply does not happen.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#dark-bell">Dark Bell</a></strong> — re-applies Confusion without spending your attack, so you can Crazy Blast <em>and</em> keep them Confused.</li>
+						<li>- <strong><a href="#punk-helmet">Punk Helmet</a></strong> — Weezing wants to stay Active for two turns, which is exactly when a retaliation Tool pays off.</li>
+						<li>- <strong><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a></strong> — protects the <em>next</em> Weezing on the Bench while this one is working.</li>
+						<li>- <strong><a href="#switch">Switch</a></strong> — Weezing&#x27;s retreat cost of 2 is genuinely expensive; Switch is the escape hatch.</li>
+						<li>- <strong><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></strong> — a Confused Pokémon that gets swapped out loses its Confusion, but Boss&#x27;s Orders lets <em>you</em> choose what comes up next.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>The combo is fragile in exactly one way, and you control it.</strong> <em>Crazy Blast</em> checks whether <strong>this Pokémon</strong> used <em>Pervasive Gas</em> during your last turn. That means:</p>
+					<ul>
+						<li>- ❌ Do not retreat the Weezing in between.</li>
+						<li>- ❌ Do not Switch it out and back.</li>
+						<li>- ❌ Do not use Pervasive Gas with one Weezing and Crazy Blast with a different one.</li>
+						<li>- ✅ Do make sure it already has <strong>two</strong> Energy attached before you commit, so an unlucky draw cannot strand you.</li>
+					</ul>
+					<p><strong>Confusion is much better than it looks.</strong> Under current rules, when a Confused Pokémon attacks, its controller flips a coin. On tails the attack does nothing, <strong>3 damage counters (30 damage) go on the Confused Pokémon</strong>, and their turn is over. So <em>Pervasive Gas</em> is not &quot;30 damage and an annoyance&quot; — it is 30 damage plus a coin flip where heads means they attack and tails means they take another 30 and waste a turn.</p>
+					<p>And Confusion only clears when the Pokémon <strong>leaves the Active Spot</strong>. Against the Charizard deck this is brutal: <strong>Charizard&#x27;s retreat cost is 3.</strong> A Confused Charizard is more or less stuck there unless they spend a Switch on it.</p>
+					<p><strong>The Weezing / Gengar handoff.</strong> These two cards want opposite boards. Weezing does a flat 170 regardless of what the opponent has benched. Gengar scales with their Bench. So: <strong>lead with Weezing while your opponent&#x27;s board is thin, and close with Gengar once it has filled out.</strong> That is the whole rhythm of the deck.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<aside data-callout="note">
+				<p><strong>The one-Supporter rule.</strong> You may play only <strong>one Supporter per turn.</strong> With 10 Supporters in this deck, deciding <em>which</em> one is the most frequent real decision you will make. Rule of thumb: <strong>Dawn</strong> when the board is missing pieces, <strong>Lillie&#x27;s Determination</strong> when your hand is bad, <strong>Gwynn</strong> when your hand is full of the wrong Pokémon, <strong>Boss&#x27;s Orders</strong> when you can win a Prize this turn.</p>
+			</aside>
+			<aside data-callout="note">
+				<p>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</p>
+			</aside>
+			<article>
+				<h3 id="dawn">Dawn</h3>
+				<aside><img src="./assets/660414_dawn.jpg" alt="Dawn" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>3</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames</span></dd>
+						<dt>Number</dt><dd><span>087/094</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Supporter</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Dawn is the card that makes a Stage 2 deck possible. In one Supporter it hands you an entire Gengar line — Gastly, Haunter, Gengar — from the deck to your hand. Without a card like this, a three-stage evolution line is a fantasy you draw one third of.</p>
+					<p>Note the wording: it takes <strong>one of each stage</strong>. You cannot use it to grab three Gastly. That is fine, because one of each is precisely what you want.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gastly">Gastly</a></strong> / <strong><a href="#haunter">Haunter</a></strong> / <strong><a href="#gengar">Gengar</a></strong> — the three slots, filled perfectly.</li>
+						<li>- <strong><a href="#rare-candy">Rare Candy</a></strong> — Dawn gets you the Gastly <em>and</em> the Gengar; Candy connects them. This is the deck&#x27;s best two-card sequence.</li>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — Weezing is a valid Stage 1 target if you already have a Haunter and would rather have the Weezing.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p>Dawn is at its very best on <strong>turn one</strong>, and this is worth being deliberate about. Turn one you cannot Rare Candy anyway, so spending your Supporter to load your hand with the entire line costs you nothing and sets up a turn-two Gengar.</p>
+					<p>Compare that to spending turn one on Lillie&#x27;s Determination: you draw eight random cards and <em>hope</em>. Dawn guarantees.</p>
+					<p>The flexible slot is the Stage 1. If your Koffing is already down and you would rather have the Weezing than the Haunter, take Weezing — you can always Rare Candy past Haunter later. Dawn does not care which Stage 1 you name.</p>
+					<p><strong>Only three copies.</strong> Dawn is fantastic but it is a setup card, and drawing your third one on turn eight is a dead card. Three is the count that shows up early without clogging you late.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</p>
+			</aside>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination</h3>
+				<aside><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>3</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt>Number</dt><dd><span>119/132</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Supporter</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>This is your reset button. Bad hand? Shuffle it away and draw six new cards. Because it <em>shuffles</em> rather than discards, nothing is lost — the cards you did not want go back into the deck where you can find them later.</p>
+					<p>The bonus condition is the interesting part: <strong>if you still have all six Prize cards, you draw eight instead of six.</strong> That is a straightforward &quot;play me early&quot; bonus, and eight cards is an enormous hand.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- Every card in the deck. This is generic draw; its partner is whatever you are missing.</li>
+						<li>- <strong><a href="#dawn">Dawn</a></strong> — the two most common turn-one plays. Choose between them, never both (one Supporter per turn).</li>
+						<li>- <strong><a href="#night-stretcher">Night Stretcher</a></strong> — Lillie&#x27;s shuffles cards <em>back in</em>, so unlike Gwynn it never needs recovery.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>The eight-card window closes the moment you take a Prize.</strong> Once you knock something out, you are at five Prizes and Lillie&#x27;s is a six-card draw forever after. So there is real tension: the 8-card mode is only available while you are still behind or even.</p>
+					<p>The clean answer for this deck: <strong>if your opening hand is genuinely bad, use Lillie&#x27;s on turn one for eight cards.</strong> If your opening hand is workable, use Dawn instead and save Lillie&#x27;s for when things go wrong.</p>
+					<p><strong>Watch what you shuffle away.</strong> Lillie&#x27;s shuffles your <em>entire</em> hand, including that Rare Candy and that Gengar you were saving. Before you play it, ask whether you are trading three good cards for six random ones. If your hand has two cards you actively need, Lillie&#x27;s is usually wrong.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Discard up to 2 Pokémon that don&#x27;t have a Rule Box from your hand, and draw 3 cards for each card you discarded in this way. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</p>
+			</aside>
+			<article>
+				<h3 id="gwynn">Gwynn</h3>
+				<aside><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
+						<dt>Number</dt><dd><span>078/084</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Supporter</span></dd>
+						<dt>Regulation</dt><dd><span>J</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Gwynn turns dead Pokémon into cards. Discard up to two Pokémon from your hand, draw three each — so up to <strong>six cards for two cards you did not want anyway.</strong></p>
+					<p><strong>Every single Pokémon in this deck has no Rule Box</strong>, so every one of them is a legal discard. That is not an accident; it is one of the quiet payoffs for building an all-non-ex deck.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#night-stretcher">Night Stretcher</a></strong> — the other half of the card. Gwynn throws a Gengar away; Night Stretcher takes it back. Together they are &quot;draw 3, no cost.&quot;</li>
+						<li>- <strong><a href="#gastly">Gastly</a></strong> / <strong><a href="#koffing">Koffing</a></strong> — the surplus Basics you inevitably accumulate are Gwynn&#x27;s best fuel.</li>
+						<li>- <strong><a href="#ultra-ball">Ultra Ball</a></strong> — competes for the same spare cards. Do not discard your last Gastly to Ultra Ball and then wish you had it for Gwynn.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Gwynn is a late-game card.</strong> Early on, every Pokémon in your hand is something you want to play. By the middle of the game you are holding a fourth Gastly and a spare Koffing that will never see the board — that is when Gwynn is a six-card draw with no real cost.</p>
+					<p>The advanced line is <strong>deliberate discarding</strong>. If you are holding a Gengar you cannot build this turn, discarding it to Gwynn for three cards and retrieving it later with Night Stretcher is card <em>advantage</em>, not a loss. You paid one Item to convert a stuck card into three fresh ones.</p>
+					<p><strong>Two copies is correct.</strong> Gwynn is conditional — it needs Pokémon in hand to do anything at all — and a Gwynn drawn on turn one with a hand you want to keep is a blank. Two means you see it when it is good and are not drowning in it when it is not.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</p>
+			</aside>
+			<aside data-callout="warning">
+				<p><strong>Boss&#x27;s Orders lowers your own Mind Jack.</strong> The Pokémon you drag up is no longer <em>Benched</em>, so your opponent&#x27;s Bench count drops by one and Mind Jack loses 30 damage. Do the math in this order: Boss first, then count the Bench, then check the target&#x27;s HP.</p>
+			</aside>
+			<article>
+				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
+				<aside><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt>Number</dt><dd><span>114/132</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Supporter</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>This is how you decide who you fight. Your opponent puts their strong Pokémon in front and hides the wounded ones on the Bench; Boss&#x27;s Orders reaches past the wall and drags out whatever you want to kill.</p>
+					<p>It is the classic finisher. In the last turns of a game, &quot;I take my sixth Prize&quot; is usually spelled <em>Boss&#x27;s Orders</em>.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — pull up something Mind Jack can kill. <strong>But read the warning below.</strong></li>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — Crazy Blast for 170 into a target of your choosing.</li>
+						<li>- <strong><a href="#risky-ruins">Risky Ruins</a></strong> — Ruins chips their Basics as they bench them; Boss&#x27;s Orders collects the ones already softened up.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p>The strongest use of this card is against <strong>Charizard</strong>. Charizard has a retreat cost of 3 — enormous. If you Boss up a wounded Charizard, they cannot easily retreat it away; they either attack with it and stay in range, or they burn a Switch.</p>
+					<p>The second-strongest use is on <strong>Sudowoodo</strong>. Sudowoodo is a Fighting type and every Pokémon in this deck is Weak to Fighting ×2. It is the single card in the Charizard deck that genuinely threatens you. If you can knock it out early — Mind Jack at a four-Bench does exactly 130 into its 100 HP — the matchup gets much simpler.</p>
+					<p><strong>Only two copies, so do not waste one.</strong> Boss&#x27;s Orders is not a draw card and not a setup card. If playing it does not take a Prize this turn or prevent one next turn, play a different Supporter.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<aside data-callout="note">
+				<p>Items are free. Play as many as you like in a turn. When in doubt, play your Items <em>before</em> your Supporter — you will often learn something that changes which Supporter you want.</p>
+			</aside>
+			<aside data-callout="note">
+				<p>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</p>
+			</aside>
+			<aside data-callout="note">
+				<p><strong>The timing trap.</strong> Rare Candy cannot be used on a Basic that was put into play that turn. So Poffin → Gastly → Rare Candy is <em>not</em> a turn-one or same-turn play. Poffin the Gastly this turn, Candy it next turn.</p>
+			</aside>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin</h3>
+				<aside><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>4</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces</span></dd>
+						<dt>Number</dt><dd><span>144/162</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Item</span></dd>
+						<dt>Regulation</dt><dd><span>H</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>The best Item in the deck, and it is not close. One card, no cost, and <strong>two Basic Pokémon go directly onto your Bench</strong> — not into your hand, straight into play. It builds your whole board in a single card.</p>
+					<p>The deck was built around its restriction. Gastly is 70 HP and Koffing is 60 HP, so <strong>every Basic Pokémon in this deck is a legal target</strong>. There are no dead Poffins here.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gastly">Gastly</a></strong> — 70 HP, right at the cap.</li>
+						<li>- <strong><a href="#koffing">Koffing</a></strong> — 60 HP, comfortably under.</li>
+						<li>- <strong><a href="#rare-candy">Rare Candy</a></strong> — careful: a Basic put down by Poffin <em>this turn</em> cannot be Rare Candied until next turn.</li>
+						<li>- <strong><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a></strong> — Poffin puts two fragile Basics on the Bench; Shadowy makes one of them untouchable.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Turn one, play Poffin before anything else.</strong> Gastly and Koffing on the Bench turn one means Weezing on turn two and Gengar on turn two or three. Nothing else in the deck accelerates you that much.</p>
+					<p>The classic mistake is fetching two Gastly. Fetch <strong>one Gastly and one Koffing</strong> — they are the front halves of your two different attackers, and having both means you are not hostage to one line.</p>
+					<p>Four copies, always. This is the card that makes the deck function.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</p>
+			</aside>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball</h3>
+				<aside><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>4</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt>Number</dt><dd><span>131/132</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Item</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Ultra Ball finds <strong>any</strong> Pokémon in the deck, with no restriction on stage or HP. The price is discarding two cards from your hand first — and you must be able to pay it, so with fewer than two other cards in hand you cannot play it at all.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — Poffin cannot fetch a Stage 2. Ultra Ball can.</li>
+						<li>- <strong><a href="#night-stretcher">Night Stretcher</a></strong> — makes the discard cost close to free. Pitch a Pokémon, take it back later.</li>
+						<li>- <strong><a href="#gwynn">Gwynn</a></strong> — competes for the same spare Pokémon. Decide which one you would rather feed.</li>
+						<li>- <strong><a href="#rare-candy">Rare Candy</a></strong> — Ultra Ball finds the Gengar; Candy puts it in play.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>The discard is a feature, not just a cost.</strong> Discarding a Pokémon is recoverable with Night Stretcher; discarding a Basic Energy is recoverable with Night Stretcher too. So the ideal Ultra Ball discards a spare Pokémon and a spare Basic Darkness Energy, both of which you can get back.</p>
+					<p>What you should <em>not</em> discard: your last Rare Candy, your last Dawn, or a Supporter you were going to play this turn.</p>
+					<p><strong>Order of operations.</strong> Play Ultra Ball <em>before</em> your Supporter when you can, because knowing what you fetched changes which Supporter is correct. And be careful about playing it right before <strong>Lillie&#x27;s Determination</strong> — Lillie&#x27;s shuffles your hand back into the deck, so you would be searching out a Gengar and then immediately shuffling it away.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can&#x27;t use this card during your first turn or on a Basic Pokémon that was put into play this turn.</p>
+			</aside>
+			<article>
+				<h3 id="rare-candy">Rare Candy</h3>
+				<aside><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>4</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt>Number</dt><dd><span>125/132</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Item</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Rare Candy is a time machine. Gastly goes straight to Gengar, and the Haunter step never happens. It turns a three-turn project into a one-turn play.</p>
+					<p><strong>Two hard restrictions, both easy to forget:</strong></p>
+					<ol>
+						<li>1. Not during your <strong>first turn</strong>, ever.</li>
+						<li>2. Not on a Basic that was <strong>put into play this turn</strong> — whether you played it from hand, or Poffin/Nest Ball put it there.</li>
+					</ol>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gastly">Gastly</a></strong> → <strong><a href="#gengar">Gengar</a></strong> — the only line it works on in this deck.</li>
+						<li>- <strong><a href="#dawn">Dawn</a></strong> — Dawn hands you Gastly and Gengar in one card; Candy welds them together.</li>
+						<li>- <strong><a href="#ultra-ball">Ultra Ball</a></strong> — finds the Gengar when Dawn is not around.</li>
+						<li>- <strong><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a></strong> — sets up the Gastly <em>a turn early</em>, so the Candy is legal when you want it.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p>The fastest legal Gengar in this deck is <strong>turn two</strong>: bench Gastly on turn one, Rare Candy on turn two. Internalize that sequence — it is the deck&#x27;s best possible opening, and it exists precisely because you benched the Gastly a turn before you needed it.</p>
+					<p><strong>Do not Rare Candy a Gastly that is Active and about to die.</strong> Putting your Gengar onto a Gastly that is one hit from a knockout hands your opponent a Prize and your Stage 2 in the same turn. Candy the Gastly on your <strong>Bench</strong>, and bring Gengar Active on a turn of your choosing.</p>
+					<p>Four copies looks like a lot for a deck with one Stage 2 line. It is not — Rare Candy is only good when you <em>also</em> have the Gengar in hand, so you want to draw it often enough that the two line up.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</p>
+			</aside>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher</h3>
+				<aside><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>3</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable</span></dd>
+						<dt>Number</dt><dd><span>061/064</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Item</span></dd>
+						<dt>Regulation</dt><dd><span>H</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Undo. Anything that ended up in the discard pile — a knocked-out Gengar, a Koffing you fed to Gwynn, a Basic Darkness Energy that went away with a knockout — comes back to your hand.</p>
+					<p>Because it is an Item and not a Supporter, it costs you nothing but a card slot.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gwynn">Gwynn</a></strong> — the intended partnership. Gwynn&#x27;s discard becomes temporary.</li>
+						<li>- <strong><a href="#ultra-ball">Ultra Ball</a></strong> — same logic; the discard cost stops being real.</li>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — the backup plan for a Gengar that got knocked out <em>without</em> Infinite Shadow applying.</li>
+						<li>- <strong><a href="#basic-darkness-energy">Basic Darkness Energy</a></strong> — Energy recovery matters more than it seems in a 12-Energy deck.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Only Basic Energy.</strong> Note the exact wording: a Pokémon <strong>or a Basic Energy card</strong>. <strong>Shadowy Darkness Energy is a Special Energy and cannot be retrieved with Night Stretcher.</strong> Once one of those is discarded it is gone for good. That is a real reason to be thoughtful about where you attach them.</p>
+					<p><strong>Energy recovery is underrated here.</strong> Twelve Energy is a lean count. Every knockout you suffer takes its attached Energy to the discard, and by mid-game you can genuinely run out. Getting one back is often more valuable than getting a Pokémon back, because you have four Gastly and only twelve Energy.</p>
+					<p>Hold one Night Stretcher in reserve rather than firing all three on sight. The turn you most need it is the turn after your Gengar dies.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Switch your Active Pokémon with 1 of your Benched Pokémon.</p>
+			</aside>
+			<article>
+				<h3 id="switch">Switch</h3>
+				<aside><img src="./assets/654469_switch.jpg" alt="Switch" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt>Number</dt><dd><span>130/132</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Item</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Free retreat. Move your Active Pokémon to the Bench and bring up whoever you like, without paying any Energy cost.</p>
+					<p>In a deck where Weezing has a <strong>retreat cost of 2</strong>, that is a meaningful amount of Energy saved.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — retreat 2 is the deck&#x27;s heaviest, and Switch is how you get out for free.</li>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — bring the closer up on exactly the turn you want it.</li>
+						<li>- <strong><a href="#punk-helmet">Punk Helmet</a></strong> — Punk Helmet only works while its Pokémon is Active, so Switch is how you get the helmeted Pokémon into position.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>The Confusion catch.</strong> Switching a Pokémon out clears its Special Conditions — so if <em>you</em> get Confused (which you cannot be by your own cards, but can be by theirs), Switch cures it. Conversely, remember that your opponent&#x27;s Switch cures the Confusion you worked for with Pervasive Gas. There are only so many Switches in their deck; make them use one.</p>
+					<p><strong>Do not Switch mid-combo.</strong> The single most expensive misplay available to you is Switching a Weezing out between <em>Pervasive Gas</em> and <em>Crazy Blast</em>. Crazy Blast checks whether <strong>this Pokémon</strong> used Pervasive Gas last turn, and a Weezing that went to the Bench and came back has still not lost that history — but a <em>different</em> Weezing has no history at all. Keep track of which one is which.</p>
+					<p>Two copies is a lean count and it is a real constraint. Save them for a stranded attacker, not for convenience.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Both Active non-Darkness Pokémon are now Confused.</p>
+			</aside>
+			<article>
+				<h3 id="dark-bell">Dark Bell</h3>
+				<aside><img src="./assets/704832_dark-bell-075-084.jpg" alt="Dark Bell" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
+						<dt>Number</dt><dd><span>075/084</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Item</span></dd>
+						<dt>Regulation</dt><dd><span>J</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Read it carefully: <strong>both Active non-Darkness Pokémon.</strong> It is written as a symmetrical card, and it is completely one-sided in your favour — because <strong>every Pokémon in this deck is Darkness</strong>, yours can never be affected.</p>
+					<p>Your opponent&#x27;s Charizard, Flareon, Eevee, and Sudowoodo are none of them Darkness. All of them get Confused. For free, as an Item, without using your attack.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — the crucial one. Dark Bell applies Confusion so <em>Crazy Blast</em> does not have to.</li>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — Gengar has no way to Confuse anything on its own; Dark Bell gives it one.</li>
+						<li>- <strong><a href="#risky-ruins">Risky Ruins</a></strong> — the other &quot;hurts only non-Darkness&quot; card. Same design trick, same payoff.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>This is the card that unlocks the deck&#x27;s best turn.</strong> Normally Weezing&#x27;s combo alternates: Confuse, then hit hard, then Confuse again, then hit hard. Dark Bell breaks the alternation. You Dark Bell for the Confusion and then attack with <em>Crazy Blast</em> for 170 on the same turn — Confusion <strong>and</strong> maximum damage, together.</p>
+					<p><strong>Confusion is worth more than it looks.</strong> On tails: the attack does nothing, 30 damage goes onto the Confused Pokémon, and the turn ends. So Dark Bell is a coin flip that says &quot;your opponent might just skip this turn and take 30.&quot; And Confusion clears <strong>only when the Pokémon leaves the Active Spot</strong> — against a Charizard with a retreat cost of 3, that is a genuine cage.</p>
+					<p><strong>Save them.</strong> Two copies. The right moment is when their best attacker is Active and fully powered up, not on a turn-one Charmander.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<aside data-callout="note">
+				<p>If the Darkness Pokémon this card is attached to is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), place 4 damage counters on the Attacking Pokémon.</p>
+			</aside>
+			<aside data-callout="tip">
+				<p>Even when your Pokémon is knocked out, the 40 still happens. So a Weezing that is going to die anyway should die wearing a helmet.</p>
+			</aside>
+			<article>
+				<h3 id="punk-helmet">Punk Helmet</h3>
+				<aside><img src="./assets/660419_punk-helmet.jpg" alt="Punk Helmet" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames</span></dd>
+						<dt>Number</dt><dd><span>092/094</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Pokémon Tool</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Spiky armour. Attach it to a Darkness Pokémon, and any opponent who attacks that Pokémon while it is Active takes <strong>40 damage</strong> back — <strong>even if the attack knocks your Pokémon out.</strong></p>
+					<p>It is a Pokémon Tool, so it stays attached and keeps working every turn. One Tool per Pokémon.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — the ideal holder. Weezing wants to sit Active for two turns anyway, so it will get attacked.</li>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — also fine, though the Tool is discarded by Infinite Shadow along with everything else attached.</li>
+						<li>- <strong><a href="#switch">Switch</a></strong> — the Tool does nothing on the Bench, so Switch is how you get it where it matters.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>It only works in the Active Spot.</strong> A Punk Helmet on a Benched Pokémon is a dead card. Attach it to whoever is about to fight, or to whoever you are about to bring up.</p>
+					<p><strong>The math is what makes it good.</strong> 40 damage is not a rounding error against this opponent — it is more than half of a Charmander, and it stacks turn over turn. Two attacks into a helmeted Weezing is 80 damage on their Charizard, which drops it from 170 HP into Mind Jack range at a four-Bench (130) rather than the impossible 170.</p>
+					<p><strong>That is the real combo.</strong> Gengar cannot one-shot a Charizard. Punk Helmet is the card that closes the gap: let the Charizard chew through a helmeted Weezing, collect 40 or 80 for free, and <em>then</em> the Charizard is killable.</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p>Whenever any player puts a Basic non-Darkness Pokémon onto their Bench during their turn, place 2 damage counters on that Pokémon.</p>
+			</aside>
+			<aside data-callout="caution">
+				<p><strong>Risky Ruins arms Sudowoodo.</strong> Sudowoodo&#x27;s <em>Flail</em> does 10 damage for each damage counter <strong>on itself</strong>, and it is a Fighting type — which means it hits your Darkness Pokémon for <strong>double</strong>. Risky Ruins putting 2 counters on a benched Sudowoodo is 20 extra Flail damage, doubled to <strong>40</strong> against you.</p>
+				<p>This is a genuine trade-off, not a reason to cut the card. But it means: when Sudowoodo comes down under your Risky Ruins, treat it as a priority target and kill it before it accumulates more counters.</p>
+			</aside>
+			<article>
+				<h3 id="risky-ruins">Risky Ruins</h3>
+				<aside><img src="./assets/654466_risky-ruins.jpg" alt="Risky Ruins" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>2</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt>Number</dt><dd><span>127/132</span></dd>
+						<dt>Type</dt><dd><span>Trainer — Stadium</span></dd>
+						<dt>Regulation</dt><dd><span>I</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>A Stadium stays in play for both players until someone replaces it. This one taxes every Basic Pokémon your opponent benches — <strong>20 damage, every time</strong> — and because all of your Pokémon are Darkness, it never touches you.</p>
+					<p>It is a slow, grinding card. It does nothing dramatic on any single turn and quietly wins games.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — the vice grip. Gengar punishes a wide Bench; Risky Ruins punishes <em>building</em> a wide Bench. Your opponent cannot avoid both.</li>
+						<li>- <strong><a href="#dark-bell">Dark Bell</a></strong> — same &quot;non-Darkness only&quot; trick.</li>
+						<li>- <strong><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></strong> — collects the Pokémon that Ruins already softened.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Understand what the Charizard deck has to do.</strong> It runs Charmander, Eevee, and Sudowoodo as Basics and it <em>needs</em> several of them down early. Every one of those costs 20 HP under Risky Ruins. Over a game that is 60 to 100 free damage, and it pushes a 70 HP Charmander to 50 — right into range of things that could not otherwise kill it.</p>
+					<p><strong>The Stadium war.</strong> Their deck runs <strong>Magma Basin</strong>, which is also a Stadium. Only one Stadium can be in play at a time, and playing a new one discards the old. This is why you run <strong>two</strong> Risky Ruins: so that when they replace yours, you can replace it back. Whoever runs out of Stadiums first loses that sub-game.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<aside data-callout="note">
+				<p>As long as this card is attached to a Pokémon, it provides [D] Energy. As long as the [D] Pokémon this card is attached to is on your Bench, prevent all damage done to it by attacks from your opponent&#x27;s Pokémon.</p>
+			</aside>
+			<aside data-callout="warning">
+				<p><strong>Night Stretcher cannot get this back.</strong> Night Stretcher retrieves &quot;a Pokémon or a <strong>Basic</strong> Energy card.&quot; Shadowy Darkness Energy is a <strong>Special</strong> Energy, so once it is discarded — by a knockout, by Infinite Shadow, by an Ultra Ball cost — it is gone permanently. You have exactly four for the whole game.</p>
+			</aside>
+			<article>
+				<h3 id="shadowy-darkness-energy">Shadowy Darkness Energy</h3>
+				<aside><img src="./assets/704840_shadowy-darkness-energy.jpg" alt="Shadowy Darkness Energy" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>4</span></dd>
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
+						<dt>Number</dt><dd><span>083/084</span></dd>
+						<dt>Type</dt><dd><span>Energy — **Special**</span></dd>
+						<dt>Regulation</dt><dd><span>J</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>Two cards in one. It is a Darkness Energy — it pays for Mind Jack, Pervasive Gas, everything — <strong>and</strong> while the Pokémon holding it sits on your <strong>Bench</strong>, that Pokémon takes <strong>zero damage from attacks.</strong> Not reduced. Zero.</p>
+					<p>Because it counts as Energy, attaching it is never a wasted turn. You get protection now and firepower later.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- <strong><a href="#gengar">Gengar</a></strong> — the headline pairing. Gengar spends two or three turns growing up on the Bench, which is exactly when it is most vulnerable.</li>
+						<li>- <strong><a href="#gastly">Gastly</a></strong> — protect the Gastly <em>before</em> it becomes Gengar, and the Energy is already there when it evolves.</li>
+						<li>- <strong><a href="#weezing">Weezing</a></strong> — a spare Weezing on the Bench is your backup plan; make it untouchable.</li>
+						<li>- <strong><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a></strong> — Poffin puts two fragile Basics down; Shadowy shields one of them immediately.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Attach it to your Bench, not your Active.</strong> This is the whole trick and it is worth saying plainly: the protection only applies <strong>while the Pokémon is on your Bench</strong>. The moment it becomes Active, the shield is off and it is just a Darkness Energy. That is fine — it still pays for attacks — but it means you attach it early, to something in the back, and it protects that thing right up until the turn it steps forward to fight.</p>
+					<p><strong>It stops damage from attacks only.</strong> It does not stop damage counters placed by card effects, and it does not stop Special Conditions. Against this particular Charizard deck, attacks are essentially the whole threat, so it is close to absolute.</p>
+					<p><strong>Four is the hard cap</strong>, because the four-copy limit applies to Special Energy (only <em>Basic</em> Energy is exempt).</p>
+				</section>
+			</article>
+			<aside data-callout="note">
+				<p><em>No rules text. Provides [D] Energy.</em></p>
+			</aside>
+			<aside data-callout="warning">
+				<p><strong>Buy Basic Darkness Energy printed 2007 or later.</strong> Darkness Energy debuted in Neo Genesis (2000) as a <strong>Special Energy</strong> and stayed that way until Diamond &amp; Pearl. Anything older is capped at 4 copies, carries a damage-boost effect, and is not Standard legal. TCGplayer labels the old one <code>Darkness Energy (Special)</code>; the Basic version has <strong>no rules text at all</strong> — that is the tell. Metal Energy has the identical history; no other type does.</p>
+			</aside>
+			<article>
+				<h3 id="basic-darkness-energy">Basic Darkness Energy</h3>
+				<aside><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></aside>
+				<section>
+					<dl>
+						<dt>Qty</dt><dd><span>8</span></dd>
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies (or any print **2007 or later**)</span></dd>
+						<dt>Number</dt><dd><span>007</span></dd>
+						<dt>Type</dt><dd><span>Energy — **Basic**</span></dd>
+						<dt>Regulation</dt><dd><span>— (Basic Energy never rotates)</span></dd>
+					</dl>
+					<h4>General use</h4>
+					<p>The fuel. Every attack in this deck costs Darkness Energy, and every one of these pays for it. One attachment per turn, no exceptions.</p>
+					<p>Basic Energy is exempt from the four-copy rule — you may run as many as you want.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li>- Everything. <strong><a href="#gengar">Gengar</a></strong> needs one. <strong><a href="#weezing">Weezing</a></strong> needs two.</li>
+						<li>- <strong><a href="#night-stretcher">Night Stretcher</a></strong> — Basic Energy <em>can</em> be retrieved from the discard, unlike Shadowy.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Twelve Energy total is lean, so every attachment matters.</strong> You get exactly one Energy attachment per turn, and there is nothing in this deck that accelerates that. This is the deck&#x27;s real speed limit: not finding Pokémon, but powering them.</p>
+					<p>The practical consequence: <strong>decide early whether the turn&#x27;s Energy goes to the Weezing that is fighting now or the Gengar that will fight in two turns.</strong> The usual answer is Weezing first — it does the immediate work — but a Gengar that reaches the Active Spot with no Energy on it is a wasted Stage 2.</p>
+					<p><strong>Attach ahead of the play.</strong> Put Energy on Benched Pokémon <em>before</em> you need them Active. A Weezing that comes up with two Energy already attached can Crazy Blast the turn after it arrives; one that comes up empty is two turns from doing anything.</p>
+				</section>
+			</article>
+			<h2 id="gameplay-strategies">Gameplay Strategies</h2>
+			<aside data-callout="note">
+				<p>These are the named plans. Learn the six below and you know how to pilot the deck. Everything above is just the parts list.</p>
+			</aside>
+			<h3 id="1-the-two-turn-fuse">1. The Two-Turn Fuse</h3>
+					<p><strong>The core combo, and the reason the deck works.</strong></p>
+<pre><code>Turn A:  Weezing → Pervasive Gas       30 damage + Confused
+Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
+					<p><strong>170 damage is exactly Charizard&#x27;s 170 HP.</strong> This deck&#x27;s single strongest play is a two-turn sequence off one Pokémon, using no Trainer cards at all.</p>
+					<p><strong>The rules to obey:</strong></p>
+					<ol>
+						<li>1. <strong>The same Weezing must do both attacks.</strong> Crazy Blast checks &quot;if <em>this Pokémon</em> used Pervasive Gas during your last turn.&quot; A second Weezing does not inherit the fuse.</li>
+						<li>2. <strong>Have both Energy attached before you start.</strong> Crazy Blast costs [D][C] — two Energy. If you light the fuse with only one Energy down and then whiff your draw, you sit there for a turn and the bonus expires.</li>
+						<li>3. <strong>Do not retreat or Switch in between</strong> unless you are certain you will bring the same Weezing back. Every turn it is not Active is a turn <em>Pervasive Gas</em> was not used &quot;last turn.&quot;</li>
+					</ol>
+					<p><strong>Why the middle turn is safe.</strong> Between your two attacks, your opponent gets a turn — but their Active is <strong>Confused</strong>. On tails their attack does nothing, they take 30, and their turn ends. That is a coin flip on whether their turn happens at all, and it lands right where you are most exposed.</p>
+					<p><strong>The upgraded version.</strong> Once you draw a <a href="#dark-bell">Dark Bell</a>, you no longer have to alternate. Dark Bell applies the Confusion as an Item, so you Crazy Blast <strong>and</strong> Confuse on the same turn. That is the deck&#x27;s best turn, full stop.</p>
+			<h3 id="2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark</h3>
+					<p><strong>How to build a Stage 2 without getting punished for it.</strong></p>
+					<p>The universal weakness of a Stage 2 deck is the two or three turns where your best card is a defenceless Basic sitting on the Bench. This deck has a specific, complete answer to that.</p>
+					<p><strong>The sequence:</strong></p>
+					<p><strong>Why it works.</strong> Shadowy Darkness Energy prevents <em>all</em> damage from attacks while the holder is Benched — so the Gastly cannot be sniped, and neither can the Gengar it becomes. And because Shadowy is still an Energy, the Gengar walks into the Active Spot already powered up. You spent zero tempo on defence.</p>
+					<p><strong>The two timing rules you will forget:</strong></p>
+					<ul>
+						<li>- Rare Candy is <strong>illegal on your first turn</strong>, period.</li>
+						<li>- Rare Candy is <strong>illegal on a Basic that came into play that turn</strong> — including one that Poffin put there.</li>
+					</ul>
+					<p>Both are solved by the same habit: <strong>bench your Basics one turn earlier than you think you need them.</strong></p>
+			<h3 id="3-the-bench-tax">3. The Bench Tax</h3>
+					<p><strong>Gengar and Risky Ruins as a pincer.</strong></p>
+					<p>Your opponent&#x27;s deck wants a wide Bench. Charizard needs Charmander down early. Eevee needs to be benched to become Flareon. Sudowoodo wants to sit and accumulate damage. Zinnia&#x27;s Resolve draws more the more Pokémon <em>you</em> have out, and Welder wants targets.</p>
+					<p>You attack that from both sides at once:</p>
+					<ul>
+						<li>- <strong><a href="#risky-ruins">Risky Ruins</a></strong> charges <strong>20 damage</strong> for every non-Darkness Basic they bench.</li>
+						<li>- <strong><a href="#gengar">Mind Jack</a></strong> charges <strong>30 damage</strong> for every Pokémon still sitting on that Bench.</li>
+					</ul>
+					<p>There is no line of play that avoids both. Bench wide and Mind Jack hits for 130-160. Bench narrow and Mind Jack is weak — but they have no board, no evolutions coming, and Weezing beats them down at a flat 170 regardless.</p>
+					<p><strong>Piloting note.</strong> This is why the deck runs <strong>two</strong> Risky Ruins. Their <strong>Magma Basin</strong> is also a Stadium, and playing one discards the other. Do not lead with your first Risky Ruins on turn one into an empty board; wait until they have Basics to punish, and keep the second in hand to win the Stadium war back.</p>
+					<p><strong>Do the Boss&#x27;s Orders math in the right order.</strong> <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a> moves a Pokémon <em>off</em> their Bench, dropping Mind Jack by 30. Boss first, count second, then check whether the target actually dies.</p>
+			<h3 id="4-wearing-the-helmet">4. Wearing the Helmet</h3>
+					<p><strong>How to kill a Charizard when Mind Jack cannot.</strong></p>
+					<p>Mind Jack&#x27;s ceiling is <strong>160</strong>. Charizard&#x27;s HP is <strong>170</strong>. Gengar can never one-shot it. That is not a flaw in the deck — it is the reason <a href="#punk-helmet">Punk Helmet</a> is in it.</p>
+					<p><strong>The plan:</strong></p>
+					<ol>
+						<li>1. Put a Punk Helmet on the Weezing you expect to lose.</li>
+						<li>2. Let their Charizard attack into it. You take the hit; they take <strong>40</strong>.</li>
+						<li>3. If your Weezing survives and gets hit again, that is <strong>80</strong>.</li>
+						<li>4. Charizard is now at 130 or 90 HP — comfortably inside Mind Jack range at a four- or five-Bench.</li>
+						<li>5. <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a> it back up if it retreated, and finish it.</li>
+					</ol>
+					<p><strong>The key clause:</strong> the 40 happens <strong>even if your Pokémon is Knocked Out.</strong> So a Weezing that is going to die anyway should die wearing a helmet. There is no downside — a Punk Helmet in your hand at the end of the game did nothing at all.</p>
+					<p><strong>Also remember Charizard&#x27;s retreat cost is 3.</strong> Once it is Active and damaged, it is expensive for them to hide. Combine with <a href="#dark-bell">Dark Bell</a> and a Confused, wounded Charizard is stuck in front of you flipping coins.</p>
+			<h3 id="5-trading-ghosts">5. Trading Ghosts</h3>
+					<p><strong>Playing the Prize race when every card is worth one Prize.</strong></p>
+					<p>Both decks are built entirely from non-ex Pokémon, so <strong>every knockout is worth exactly one Prize</strong> and the race is six to six. That makes this a game about <em>efficiency</em>: you want each of your Pokémon to take at least one Prize before it dies.</p>
+					<p><strong>What that means in practice:</strong></p>
+					<ul>
+						<li>- <strong>A Weezing that Pervasive Gassed and then Crazy Blasted has paid for itself.</strong> Two attacks, likely one knockout. If it dies after that, the trade was even and you got 30 chip damage for free.</li>
+						<li>- <strong>A Gengar that dies is not really dead.</strong> <a href="#gengar">Infinite Shadow</a> returns the whole stack — Gastly, Haunter, and Gengar — to your hand. You lose the attached Energy and a Prize, but you keep the pieces. Your opponent has to do that work <em>three times</em> to actually remove Gengar from the game.</li>
+						<li>- <strong>Do not chase small Prizes with big investments.</strong> Knocking out a fresh 50 HP Eevee with a fully powered Weezing is a poor use of a turn if a Charizard is sitting on the Bench getting ready.</li>
+					</ul>
+			<aside data-callout="warning">
+				<p>The most common misunderstanding of this deck: <strong>Infinite Shadow does not deny a Prize.</strong> Your opponent gets their Prize card for the knockout no matter what. The Ability is card recovery, not a shield. Never sandbag a Gengar into a knockout thinking it is free.</p>
+			</aside>
+					<p><strong>Where the race is actually decided.</strong> Their <a href="./charizard-deck.md">Charizard&#x27;s <em>Royal Blaze</em></a> does 100 plus 50 for each <strong>Leon</strong> in their discard pile. With one Leon discarded it does 150, which one-shots your 130 HP Gengar and Weezing. So the moment you see a Leon hit their discard, assume everything you own dies in one hit — and start making sure that every Pokémon you play attacks at least once before that happens.</p>
+			<h3 id="6-reading-the-opening-hand">6. Reading the Opening Hand</h3>
+					<p><strong>A decision tree for turn one, which is the turn that decides most games.</strong></p>
+					<p><strong>Step one: do you have a Basic Pokémon?</strong> If not, you must mulligan — reveal your hand, shuffle it back, draw seven again, and your opponent draws one extra card.</p>
+			<aside data-callout="caution">
+				<p><strong>Known rough edge.</strong> This deck runs only <strong>7 Basic Pokémon</strong> (4 Gastly + 3 Koffing) out of 60. That is a <strong>~40% mulligan rate</strong> — you will start over in roughly four games out of ten. It is survivable in casual play (a mulligan costs you nothing but time and gives your opponent one card), but it is the deck&#x27;s weakest structural point.</p>
+				<p>If it gets annoying, the cheapest fix is <strong>+1 Koffing for −1 Punk Helmet</strong>, which drops the mulligan rate to about 35%. Getting it down near 20% would need roughly 13 Basics, which would mean redesigning the deck around a Basic attacker.</p>
+			</aside>
+					<p><strong>Step two: what does turn one look like?</strong></p>
+					<p><strong>Step three: the attachment.</strong> If you have a <strong>Shadowy Darkness Energy</strong>, it goes on the Benched Gastly — that Gastly is your Gengar, and now nothing can touch it. Otherwise attach a Basic Darkness to whichever Basic is closest to attacking.</p>
+					<p><strong>And remember:</strong> if you go <strong>first</strong>, you cannot attack on your first turn. Use that turn entirely for setup — Poffin, Dawn, evolutions, attachments — and do not feel bad about it.</p>
+			<h3 id="7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</h3>
+					<p>A checklist of the specific mistakes this deck invites.</p>
+			<h3 id="8-teaching-notes">8. Teaching Notes</h3>
+					<p><em>For explaining this to a ten-year-old across the table.</em></p>
+					<ul>
+						<li>- <strong>Lead with the Weezing plan, not the Gengar plan.</strong> &quot;Poison them, then blow them up&quot; is a two-step story a kid can hold in their head. The Stage 2 math can come later.</li>
+						<li>- <strong>The Mind Jack table is the lesson worth teaching.</strong> It is the first time a Pokémon TCG card asks a player to <em>look at the opponent&#x27;s board and do arithmetic before choosing an attack</em>. That is the single biggest skill jump from theme-deck play to real play.</li>
+						<li>- <strong>Confusion teaches probability honestly.</strong> Half the time nothing happens. That is not the card being bad; that is the card being a coin flip, and coin flips even out. Good practice for not tilting.</li>
+						<li>- <strong>Infinite Shadow is a great &quot;read the card twice&quot; moment.</strong> It looks like it makes Gengar immortal. It does not. Being able to say <em>why</em> — &quot;they still get a Prize&quot; — is exactly the kind of careful reading the game rewards.</li>
+						<li>- <strong>This deck is deliberately fair.</strong> Every attacker is 1 Prize on both sides, Weezing&#x27;s 170 exactly answers Charizard&#x27;s 170, and the Charizard deck&#x27;s Sudowoodo hits your Fighting Weakness for double. Neither side has a card the other cannot answer. If games are lopsided, it is piloting, not the lists — which is the whole point.</li>
+					</ul>
+					<p><strong>Sources for card text and rulings:</strong> <a href="https://pkmncards.com/">PkmnCards</a> · <a href="https://www.tcgcollector.com/cards/59008/gengar-perfect-order-050-088">TCG Collector</a> · <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG">Bulbapedia — Confused (TCG)</a>) · <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50">Bulbapedia — Gengar (Perfect Order 50)</a>)</p>
+		</main>
+		<footer>
+			<aside data-callout="note">
+				<p><strong>How to read this file.</strong></p>
+				<p>Every card in the deck gets its own entry below, in the order you actually think about them during a game: the Pokémon first (evolution lines together), then Supporters, Items, Tools, the Stadium, and finally Energy.</p>
+				<p>Each entry has the same four parts:</p>
+				<ul>
+					<li>- <strong>General use</strong> — the plain-English &quot;what is this card for,&quot; one paragraph. If you read nothing else, read these.</li>
+					<li>- <strong>Pairing</strong> — the other cards in the deck that this one wants to be next to. Follow these like links; they form the deck&#x27;s actual skeleton.</li>
+					<li>- <strong>Strategy</strong> — the deeper reasoning. Timing, math, traps, and the reasons a play that looks fine is actually wrong.</li>
+					<li>- <strong>Evolution</strong> (Pokémon only) — where this card sits in its chain, so you can see at a glance what it needs and what it becomes.</li>
+				</ul>
+				<p>The stat table repeats what is printed on the card, so you can check a number without getting up.</p>
+				<p>At the bottom is <strong><a href="#gameplay-strategies">Gameplay Strategies</a></strong> — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.</p>
+				<p><strong>Deck total: 60 cards.</strong> 15 Pokémon, 33 Trainers, 12 Energy. Every attacker is worth <strong>1 Prize card</strong>, which is what keeps games against a theme deck close and fair.</p>
+			</aside>
+		</footer>
+	</body>
+</html>

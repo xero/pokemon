@@ -186,6 +186,22 @@
 			padding-block: var(--pad);
 		}
 
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		nav p {
+			padding-top: 0.35em;
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
 		article {
 			display: flex;
 			flex-flow: row wrap;
@@ -201,7 +217,8 @@
 			border-radius: var(--round);
 			padding: var(--pad);
 
-			h2 {
+			h2,
+			h3 {
 				display: flex;
 				flex-flow: row wrap;
 				align-items: center;
@@ -209,6 +226,43 @@
 				flex: 1 0 100%;
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
+			}
+
+			/* the prose under a card on a deck page */
+			h4 {
+				color: var(--accent);
+				font-size: 1em;
+				letter-spacing: 0.03em;
+				padding-top: 1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
 			}
 
 			aside {
