@@ -474,6 +474,16 @@
 			vertical-align: top;
 		}
 
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
 		th {
 			color: var(--muted);
 			font-size: 0.85em;
@@ -522,12 +532,19 @@
 			padding: var(--pad);
 			margin-block: 1em;
 
-			/* a callout inside a card sits on the card's own background, so it
-			   needs the page colour to read as a separate box rather than a
-			   rectangle of border. */
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
 			article &,
 			main > section & {
 				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
 			}
 
 			h2 {
@@ -542,7 +559,8 @@
 			}
 
 			p + p,
-			ul {
+			ul,
+			ol {
 				padding-top: 0.7em;
 			}
 
@@ -553,7 +571,10 @@
 				padding-top: 0;
 			}
 
-			ul {
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
 				padding-inline-start: 1.2em;
 			}
 		}
@@ -710,6 +731,7 @@
 					<p>Gengar is the closer, and it is a <em>punisher</em>. It costs one single Darkness Energy and its damage is decided entirely by how greedy your opponent has been with their Bench. Against a wide board it hits like a truck for one Energy. Against an empty board it does 10.</p>
 					<p>Learn this table. It is the most important arithmetic in the deck:</p>
 					<dl>
+						<dt data-head>Opponent&#x27;s Benched Pokémon</dt><dd data-head>Mind Jack damage</dd>
 						<dt>0</dt><dd><span>10</span></dd>
 						<dt>1</dt><dd><span>40</span></dd>
 						<dt>2</dt><dd><span>70</span></dd>
@@ -1290,6 +1312,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p>The universal weakness of a Stage 2 deck is the two or three turns where your best card is a defenceless Basic sitting on the Bench. This deck has a specific, complete answer to that.</p>
 					<p><strong>The sequence:</strong></p>
 					<dl>
+						<dt data-head>Turn</dt><dd data-head>Play</dd>
 						<dt>1</dt><dd><span><strong>Buddy-Buddy Poffin</strong> → Gastly + Koffing onto the Bench. <strong>Dawn</strong> → Gastly, Haunter, Gengar into hand.</span></dd>
 						<dt>1</dt><dd><span>Attach <strong>Shadowy Darkness Energy</strong> to the Benched Gastly. It is now immune to attacks.</span></dd>
 						<dt>2</dt><dd><span><strong>Rare Candy</strong> on the protected Gastly → <strong>Gengar</strong>, still on the Bench, still immune, already holding its one Energy.</span></dd>
@@ -1357,6 +1380,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 			</aside>
 					<p><strong>Step two: what does turn one look like?</strong></p>
 					<dl>
+						<dt data-head>Your hand has…</dt><dd data-head>Play</dd>
 						<dt><strong>Buddy-Buddy Poffin</strong></dt><dd><span>Play it first, always. Fetch <strong>one Gastly and one Koffing</strong> — not two of either.</span></dd>
 						<dt><strong>A workable board + Dawn</strong></dt><dd><span><strong>Dawn.</strong> Load your hand with Gastly / Haunter / Gengar. Best turn-one Supporter in the deck.</span></dd>
 						<dt><strong>A bad hand, few cards</strong></dt><dd><span><strong>Lillie&#x27;s Determination</strong> for <strong>8</strong> (you still have all 6 Prizes). This bonus disappears the moment you take a Prize — use it now or lose it.</span></dd>
@@ -1370,6 +1394,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 				<h3 id="7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game<span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
 					<p>A checklist of the specific mistakes this deck invites.</p>
 					<dl>
+						<dt data-head>Mistake</dt><dd data-head>What actually happens</dd>
 						<dt>Boss&#x27;s Orders, <em>then</em> counting the Bench for Mind Jack</dt><dd><span>You pulled one off their Bench. Mind Jack just lost 30.</span></dd>
 						<dt>Retreating a Weezing between Pervasive Gas and Crazy Blast</dt><dd><span>The 120 bonus is gone. You do 50 instead of 170.</span></dd>
 						<dt>Rare Candy onto an Active Gastly that is about to die</dt><dd><span>They take a Prize <em>and</em> your Stage 2 in one turn. Candy the Benched one.</span></dd>

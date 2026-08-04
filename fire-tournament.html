@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Fox's Flareon Engine</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin-block: 0.8em;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			padding: 0.45em 0.7em 0.45em 0;
+			vertical-align: top;
+		}
+
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		th {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Fox's Flareon Engine <img data-mascot src="./assets/sprites/flareon.gif" alt="" /> <img data-mascot src="./assets/sprites/noctowl.gif" alt="" /></h1>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><b>Word List —</b><span><a href="#the-board">The board</a> · <a href="#pokémon">Pokémon</a> · <a href="#energy-and-attacks">Energy and attacks</a> · <a href="#trainer-cards">Trainer cards</a> · <a href="#rules-that-trip-people-up">Rules that trip people up</a></span></p>
+		<p><b>Pokémon —</b><span><a href="#eevee">Eevee</a> · <a href="#eevee-ex">Eevee ex</a> · <a href="#flareon-ex">Flareon ex</a> · <a href="#hoothoot">Hoothoot</a> · <a href="#noctowl">Noctowl</a></span></p>
+		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination">Lillie&#x27;s Determination</a> · <a href="#crispin">Crispin</a> · <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a> · <a href="#gwynn">Gwynn</a></span></p>
+		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> · <a href="#ultra-ball">Ultra Ball</a> · <a href="#switch">Switch</a> · <a href="#night-stretcher">Night Stretcher</a></span></p>
+		<p><b>Trainers — Tool —</b><span><a href="#sparkling-crystal">Sparkling Crystal</a></span></p>
+		<p><b>Energy —</b><span><a href="#basic-fire-energy">Basic Fire Energy</a> · <a href="#basic-water-energy">Basic Water Energy</a></span></p>
+		<p><b>Game Plans —</b><span><a href="#1-the-two-energy-engine">1. The Two-Energy Engine</a> · <a href="#2-turn-one-flareon">2. Turn One, Flareon</a> · <a href="#3-jewel-seeker-is-your-real-draw-engine">3. Jewel Seeker Is Your Real Draw Engine</a> · <a href="#4-the-bench-is-a-fortress">4. The Bench Is a Fortress</a> · <a href="#5-the-prize-race-changed">5. The Prize Race Changed</a> · <a href="#6-reading-your-first-hand">6. Reading Your First Hand</a> · <a href="#7-beating-dads-gengar-gang">7. Beating Dad&#x27;s Gengar Gang</a> · <a href="#8-mistakes-that-will-cost-you-the-game">8. Mistakes That Will Cost You The Game</a> · <a href="#9-the-turn-checklist">9. The Turn Checklist</a></span></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<aside data-callout="note">
+				<p><strong>How to read this file.</strong></p>
+				<p>This is your tournament deck. All 60 cards are in here, one at a time.</p>
+				<p>Start with the <strong><a href="#word-list">Word List</a></strong> below. It explains every game word you will see in this file. Most of it is the same list from <code>fire.md</code>, so if you already know it you can skip ahead. A few words at the end are new, and those ones matter.</p>
+				<p>Then each card has its own page. Every card page has the same parts:</p>
+				<ul>
+					<li><strong>General use</strong> — what the card is <em>for</em>. Plain and short. If you only read one part, read this one.</li>
+					<li><strong>Pairing</strong> — the other cards that work well with this one. These are links. Click them and you can follow a combo around the file.</li>
+					<li><strong>Strategy</strong> — the deeper stuff. When to play it, when <em>not</em> to, and the tricks people miss.</li>
+					<li><strong>Evolution</strong> (Pokémon only) — where the card sits in its family.</li>
+				</ul>
+				<p>The little table on each card page just copies the numbers off the real card, so you can check something fast.</p>
+				<p>At the end is <strong><a href="#game-plans">Game Plans</a></strong>. That&#x27;s the good part. The card pages teach you the pieces. The Game Plans teach you how to win.</p>
+			</aside>
+			<aside data-callout="tip">
+				<p><strong>Your deck is 60 cards.</strong> 16 Pokémon, 31 Trainers, 13 Energy.</p>
+				<p>This deck is <strong>legal at real tournaments.</strong> Your Fire Force deck isn&#x27;t, because some of those cards are too old. Every card in here has the right letter on it.</p>
+			</aside>
+			<aside data-callout="note">
+				<p><strong>Three Trainer slots are still empty, and that&#x27;s on purpose.</strong></p>
+				<p>Count the Trainer pages in this file and you&#x27;ll get <strong>28</strong>, not 31. The last three are blank because your dad hasn&#x27;t picked them yet — they should be search and draw cards, and he wants to check what&#x27;s good right now before choosing.</p>
+				<p><strong>So this is a 57-card list with 3 slots to fill.</strong> Everything in here is decided. Those three aren&#x27;t. Ask him about it, and pick them together.</p>
+			</aside>
+			<aside data-callout="warning">
+				<p><strong>This deck plays by different Prize rules, and it&#x27;s the biggest change.</strong></p>
+				<p>In your Fire Force deck, every Pokémon on both sides was worth <strong>1 Prize card</strong>. Even trades. Not here.</p>
+				<p><strong><a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> are worth 2 Prize cards each.</strong> Every Pokémon in your dad&#x27;s deck is still worth 1.</p>
+				<p>So he needs <strong>3 knockouts</strong> to win. You need <strong>6</strong>. Read <strong><a href="#5-the-prize-race-changed">The Prize Race Changed</a></strong> before you play a single game with this deck.</p>
+			</aside>
+			<section>
+				<h3 id="word-list">Word List</h3>
+					<p>Every game word you need, in order of how much you&#x27;ll use it.</p>
+			<article>
+				<h3 id="the-board">The board</h3>
+				<section>
+					<dl>
+						<dt data-head>Word</dt><dd data-head>What it means</dd>
+						<dt><strong>Active Spot</strong></dt><dd><span>The one Pokémon out front. It&#x27;s the only one that can attack, and it&#x27;s the only one that can be attacked.</span></dd>
+						<dt><strong>Bench</strong></dt><dd><span>Your other Pokémon, waiting behind. You can have up to <strong>5</strong>. They&#x27;re safe from most attacks, but they can&#x27;t attack either.</span></dd>
+						<dt><strong>Hand</strong></dt><dd><span>The cards you&#x27;re holding.</span></dd>
+						<dt><strong>Deck</strong></dt><dd><span>Your face-down pile you draw from.</span></dd>
+						<dt><strong>Discard pile</strong></dt><dd><span>Where used and knocked-out cards go. Not gone forever — some cards fish things back out.</span></dd>
+						<dt><strong>Prize cards</strong></dt><dd><span>6 cards you set aside at the start. Every time you knock out a Pokémon, you take one — or <strong>two</strong>, if it was an <strong>ex</strong>. <strong>Take all 6 and you win.</strong></span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="pokémon">Pokémon</h3>
+				<section>
+					<dl>
+						<dt data-head>Word</dt><dd data-head>What it means</dd>
+						<dt><strong>Basic</strong></dt><dd><span>A Pokémon you can play straight from your hand onto the Bench. Eevee, Eevee ex, and Hoothoot are your Basics.</span></dd>
+						<dt><strong>Stage 1</strong></dt><dd><span>Evolves from a Basic. You put it <em>on top</em> of the Basic. Flareon ex and Noctowl are Stage 1.</span></dd>
+						<dt><strong>Stage 2</strong></dt><dd><span>Evolves from a Stage 1. <strong>This deck has none.</strong> That&#x27;s on purpose.</span></dd>
+						<dt><strong>Evolve</strong></dt><dd><span>Put an evolution card on top of the Pokémon it grows from. It keeps its Energy and its damage. <strong>You can&#x27;t evolve a Pokémon the same turn you played it</strong> — unless a card says you can.</span></dd>
+						<dt><strong>HP</strong></dt><dd><span>How much damage a Pokémon can take before it&#x27;s knocked out.</span></dd>
+						<dt><strong>Damage counter</strong></dt><dd><span>A little marker worth <strong>10 damage</strong>. So 3 damage counters = 30 damage.</span></dd>
+						<dt><strong>Knocked Out (KO)</strong></dt><dd><span>When damage reaches a Pokémon&#x27;s HP, it goes to the discard pile and your opponent takes a Prize card.</span></dd>
+						<dt><strong>Weakness</strong></dt><dd><span>If a Pokémon is Weak to a type, attacks of that type do <strong>double</strong> damage to it. Your Flareon ex is Weak to Water ×2. Your dad has no Water cards, so it never comes up against him.</span></dd>
+						<dt><strong>Resistance</strong></dt><dd><span>The opposite — that type does <strong>less</strong> damage. Your Hoothoot and Noctowl both Resist Fighting <strong>−30</strong>.</span></dd>
+						<dt><strong>Retreat cost</strong></dt><dd><span>How much Energy you discard to move your Active Pokémon back to the Bench. Flareon ex&#x27;s is <strong>2</strong>.</span></dd>
+						<dt><strong>Ability</strong></dt><dd><span>Free text on a Pokémon that just <em>works</em>. It is <strong>not</strong> an attack. Using an Ability does not end your turn.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="energy-and-attacks">Energy and attacks</h3>
+				<section>
+					<dl>
+						<dt data-head>Word</dt><dd data-head>What it means</dd>
+						<dt><strong>Energy</strong></dt><dd><span>Cards you attach to Pokémon so they can attack. <strong>You may attach only 1 Energy per turn</strong> from your hand. Cards can attach more — this deck has a lot of those.</span></dd>
+						<dt><strong>[R]</strong></dt><dd><span>A Fire Energy symbol. Only a Fire Energy pays for it.</span></dd>
+						<dt><strong>[W]</strong></dt><dd><span>A Water Energy symbol. Only a Water Energy pays for it.</span></dd>
+						<dt><strong>[L]</strong></dt><dd><span>A Lightning Energy symbol. <strong>You have none of these.</strong> See <a href="#basic-water-energy">Basic Water Energy</a> for why that matters.</span></dd>
+						<dt><strong>[C]</strong></dt><dd><span>A Colorless symbol. <strong>Any</strong> Energy pays for it.</span></dd>
+						<dt><strong>Attack cost</strong></dt><dd><span>The symbols next to an attack. You need that much Energy attached to use it.</span></dd>
+						<dt><strong>Attacking ends your turn.</strong></dt><dd><span>Do everything else <em>first</em>. Once you attack, your turn is over.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="trainer-cards">Trainer cards</h3>
+				<section>
+					<dl>
+						<dt data-head>Word</dt><dd data-head>What it means</dd>
+						<dt><strong>Trainer</strong></dt><dd><span>Any card that isn&#x27;t a Pokémon or an Energy. There are four kinds:</span></dd>
+						<dt><strong>Supporter</strong></dt><dd><span><strong>Only 1 per turn.</strong> These are the powerful ones. Choosing which one is your biggest decision each turn.</span></dd>
+						<dt><strong>Item</strong></dt><dd><span>Play as many as you want in a turn.</span></dd>
+						<dt><strong>Stadium</strong></dt><dd><span>Stays on the table and changes the rules for <strong>both</strong> players. Only one Stadium can be out at a time. <strong>You have none.</strong> Your dad has Risky Ruins, so his always stays.</span></dd>
+						<dt><strong>Pokémon Tool</strong></dt><dd><span>Attaches to a Pokémon and stays there. You have exactly one: <a href="#sparkling-crystal">Sparkling Crystal</a>.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="rules-that-trip-people-up">Rules that trip people up</h3>
+				<section>
+					<dl>
+						<dt data-head>Word</dt><dd data-head>What it means</dd>
+						<dt><strong>Mulligan</strong></dt><dd><span>If your first 7 cards have <strong>no Basic Pokémon</strong>, show your hand, shuffle it back, and draw 7 again. Your opponent draws 1 extra card. It&#x27;s not a loss — just a do-over.</span></dd>
+						<dt><strong>Going first</strong></dt><dd><span>Whoever goes first <strong>cannot attack on their first turn.</strong> Use that turn to set up instead.</span></dd>
+						<dt><strong>Confused</strong></dt><dd><span>A Special Condition. When a Confused Pokémon tries to attack, flip a coin. <strong>Tails = the attack does nothing, that Pokémon takes 30 damage, and the turn ends.</strong> It only wears off when the Pokémon leaves the Active Spot. Your dad&#x27;s deck does this constantly.</span></dd>
+						<dt><strong>Special Condition</strong></dt><dd><span>Confused, Asleep, Paralyzed, Poisoned, or Burned. They all go away when the Pokémon leaves the Active Spot.</span></dd>
+						<dt><strong>4-copy limit</strong></dt><dd><span>You may have at most <strong>4 cards with the same name</strong> in a deck. Basic Energy is the one exception — you can have as many as you want.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="new-words-for-this-deck">New words for this deck</h3>
+				<section>
+					<p>These five are the ones that make this deck different. Learn these.</p>
+					<dl>
+						<dt data-head>Word</dt><dd data-head>What it means</dd>
+						<dt><strong>ex</strong></dt><dd><span>A really strong Pokémon. The catch: it&#x27;s worth <strong>2 Prize cards</strong> when it gets knocked out, not 1. &quot;ex&quot; is part of the card&#x27;s name, so <em>Eevee</em> and <em>Eevee ex</em> count as different cards for the 4-copy limit.</span></dd>
+						<dt><strong>Rule Box</strong></dt><dd><span>The grey box of extra rules at the bottom of an <strong>ex</strong> card. <strong><a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> have one. Everything else in your deck doesn&#x27;t.</strong> <a href="#gwynn">Gwynn</a> cares about this.</span></dd>
+						<dt><strong>Tera</strong></dt><dd><span>An Ability on <strong>both</strong> <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a>. <strong>While that Pokémon is on your Bench, attacks do zero damage to it.</strong> Not less damage. Zero. This Ability is the reason the deck works.</span></dd>
+						<dt><strong>ACE SPEC</strong></dt><dd><span>A card so strong you may only have <strong>one in your whole deck</strong> — one <em>total</em>, not one of each. Yours is <a href="#sparkling-crystal">Sparkling Crystal</a>.</span></dd>
+						<dt><strong>Search your deck</strong></dt><dd><span>Look through your whole deck and take out the exact card you want. Then shuffle. Half this deck does this. It&#x27;s why you almost never get stuck.</span></dd>
+					</dl>
+				</section>
+			</article>
+			</section>
+			<h2 id="pokémon-1">Pokémon</h2>
+			<article>
+				<h3 id="eevee">Eevee</h3>
+				<aside><img src="./assets/610429_eevee.jpg" alt="Eevee" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>074/131</span></dd>
+						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt><strong>HP</strong></dt><dd><span>50</span></dd>
+						<dt><strong>Stage</strong></dt><dd><span>Basic</span></dd>
+						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt><strong>Ability</strong></dt><dd><span><em>Boosted Evolution</em> — as long as this Pokémon is in the <strong>Active Spot</strong>, it can evolve during your first turn or the turn you play it.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Reckless Charge</em> <strong>[C][C] 30</strong> — this Pokémon also does 10 damage to itself.</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p><strong>eevee</strong> → flareon ex</p>
+					<h4>General use</h4>
+					<p>Eevee is the fast start, and <em>Boosted Evolution</em> is the whole reason.</p>
+					<p>Normally you play a Basic, wait a turn, then evolve it. Eevee doesn&#x27;t wait. Play it into the <strong>Active Spot</strong> and you can put <a href="#flareon-ex">Flareon ex</a> on top of it <strong>the same turn</strong> — even on turn one.</p>
+					<p>That&#x27;s a 270 HP attacker on the board before your dad has done anything.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — the only thing you want Eevee to become.</li>
+						<li><strong><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a></strong> — fetches two Eevee out of your deck for free. They land on the <strong>Bench</strong> though, so read the Strategy below.</li>
+						<li><strong><a href="#ultra-ball">Ultra Ball</a></strong> — grabs the exact Eevee you need.</li>
+						<li><strong><a href="#night-stretcher">Night Stretcher</a></strong> — pulls a knocked-out Eevee back out of the discard pile.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>The trap is the Bench.</strong> <em>Boosted Evolution</em> says <strong>Active Spot</strong>, and it means it. An Eevee sitting on your Bench is a normal Eevee: you have to wait a full turn to evolve it.</p>
+					<p>So the Eevee you&#x27;re going to evolve right now has to come <strong>from your hand, into the Active Spot.</strong> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> puts Pokémon on the <strong>Bench</strong>, so Poffin is for your <em>spare</em> Eevee and your Hoothoot, not for the one you want to grow immediately.</p>
+					<p><strong>50 HP is nothing.</strong> Almost anything your dad plays knocks out an Eevee. That&#x27;s fine — you&#x27;re not planning to leave it there. You play it, you evolve it, and by the time he gets a turn it&#x27;s a Flareon ex.</p>
+					<p><strong>Don&#x27;t attack with it.</strong> <em>Reckless Charge</em> does 30 and hurts itself for 10. On a 50 HP Pokémon that&#x27;s a third of its life for almost no damage. If you&#x27;re attacking with Eevee, something went wrong three turns ago.</p>
+			<aside data-callout="warning">
+				<p><strong>Watch out for Risky Ruins.</strong> Your dad&#x27;s Stadium puts <strong>2 damage counters (20 damage)</strong> on every Basic Pokémon that isn&#x27;t a Darkness Pokémon the moment it goes on the Bench. None of yours are Darkness.</p>
+				<p>A benched Eevee under Risky Ruins shows up at <strong>30 HP</strong>. And the damage <strong>stays on it after it evolves</strong> — so your Flareon ex arrives with 20 damage already on it. Annoying, not fatal, but worth knowing.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee-ex">Eevee ex</h3>
+				<aside><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>075/131</span></dd>
+						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt><strong>HP</strong></dt><dd><span>200</span></dd>
+						<dt><strong>Stage</strong></dt><dd><span>Basic</span></dd>
+						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt><strong>Prizes given up</strong></dt><dd><span><strong>2</strong></span></dd>
+						<dt><strong>Ability 1</strong></dt><dd><span><em>Rainbow DNA</em> — this Pokémon can evolve into <strong>any Pokémon ex that evolves from Eevee</strong> if you play it from your hand onto this Pokémon.</span></dd>
+						<dt><strong>Ability 2</strong></dt><dd><span><em>Tera</em> — as long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Coruscating Quartz</em> <strong>[R][W][L] 200</strong></span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p><strong>eevee ex</strong> → flareon ex</p>
+					<h4>General use</h4>
+					<p>Eevee ex is the tough version of Eevee. <strong>200 HP instead of 50.</strong></p>
+					<p>It does not have <em>Boosted Evolution</em>, so it can&#x27;t evolve the turn you play it. What it gives you instead is a body your dad genuinely struggles to remove. His best attack does 170.</p>
+					<p>It also has <strong><em>Tera</strong></em>, the same Ability as <a href="#flareon-ex">Flareon ex</a>. <strong>On your Bench, attacks do zero damage to it.</strong> So an Eevee ex you&#x27;re saving for later cannot be picked off while it waits.</p>
+					<p>Use plain <a href="#eevee">Eevee</a> when you want speed. Use Eevee ex when you have a turn to spare and you&#x27;d rather not lose anything.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — what <em>Rainbow DNA</em> turns it into.</li>
+						<li><strong><a href="#ultra-ball">Ultra Ball</a></strong> — the only reliable way to find it. It&#x27;s too big for Buddy-Buddy Poffin.</li>
+						<li><strong><a href="#switch">Switch</a></strong> — retreat cost 1 is cheap, but Switch is free.</li>
+						<li><strong><a href="#sparkling-crystal">Sparkling Crystal</a></strong> — Eevee ex is a <strong>Tera</strong> Pokémon, so the Tool is allowed to go on it.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>It is worth 2 Prize cards.</strong> A 200 HP Pokémon feels safe, and then your dad chips it down over three turns and takes a third of the game for it. Big is not the same as safe when the prize is doubled.</p>
+					<p><strong>Buddy-Buddy Poffin cannot find it.</strong> Poffin only fetches Basics with <strong>70 HP or less</strong>. Eevee ex has 200. <a href="#ultra-ball">Ultra Ball</a> is your search card for this one.</p>
+			<aside data-callout="important">
+				<p><strong>Normally you cannot use <em>Coruscating Quartz</em>.</strong> It costs <strong>[R][W][L]</strong> — Fire, Water, <strong>and Lightning</strong>. Your deck has 10 Fire and 3 Water and <strong>zero Lightning</strong>.</p>
+				<p>So most of the time Eevee ex isn&#x27;t in here to attack. It&#x27;s a 200 HP body that turns into a Flareon ex, and that&#x27;s fine.</p>
+				<p><strong>The exception is <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> It takes 1 Energy off the cost, <strong>of any type</strong>. Take off the Lightning and <em>Coruscating Quartz</em> costs <strong>[R][W]</strong> — one Fire, one Water, both of which you have. That&#x27;s a real 200-damage attack off a 200 HP Basic.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="flareon-ex">Flareon ex</h3>
+				<aside><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>014/131</span></dd>
+						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
+						<dt><strong>HP</strong></dt><dd><span>270</span></dd>
+						<dt><strong>Stage</strong></dt><dd><span>Stage 1 (from Eevee)</span></dd>
+						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
+						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt><strong>Prizes given up</strong></dt><dd><span><strong>2</strong></span></dd>
+						<dt><strong>Ability</strong></dt><dd><span><em>Tera</em> — as long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Burning Charge</em> <strong>[R][C] 130</strong> — search your deck for up to <strong>2 Basic Energy</strong> cards and attach them to 1 of your Pokémon.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Carnelian</em> <strong>[R][W][L] 280</strong> — during your next turn, this Pokémon can&#x27;t attack.</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p>eevee → <strong>flareon ex</strong></p>
+					<h4>General use</h4>
+					<p><strong>This is the whole deck.</strong> Everything else exists to get a Flareon ex out and keep it attacking.</p>
+					<p><em>Burning Charge</em> is the card. It does <strong>130 damage</strong> — and then it goes and finds <strong>two more Energy</strong> out of your deck and attaches them anywhere you like. You attack and you build up at the same time, every single turn.</p>
+					<p><strong>130 is an exact number against your dad.</strong> His Gengar has 130 HP. His Weezing has 130 HP. <em>Burning Charge</em> knocks out either one in <strong>one hit</strong>, with no Leon, no set-up, and no coin flips.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#eevee">Eevee</a></strong> — the fast way to get here, on turn one.</li>
+						<li><strong><a href="#eevee-ex">Eevee ex</a></strong> — the tough way to get here.</li>
+						<li><strong><a href="#sparkling-crystal">Sparkling Crystal</a></strong> — makes <em>Burning Charge</em> cost <strong>one</strong> Energy instead of two.</li>
+						<li><strong><a href="#crispin">Crispin</a></strong> — hands you the Fire Energy to start the engine.</li>
+						<li><strong><a href="#switch">Switch</a></strong> — pulls a hurt Flareon ex back to the Bench, where <em>Tera</em> makes it untouchable.</li>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — its Ability only works if you have a <strong>Tera</strong> Pokémon in play. Flareon ex and <a href="#eevee-ex">Eevee ex</a> both count.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong><em>Tera</em> is the best Ability in the deck, and it only works on the Bench.</strong> While a Flareon ex is benched, attacks do <strong>zero</strong> damage to it. Not reduced. Zero.</p>
+					<p>Think about what that means against your dad. His Gengar&#x27;s <em>Mind Jack</em> can&#x27;t touch it. His Weezing&#x27;s <em>Crazy Blast</em> can&#x27;t touch it. The only Pokémon he can attack is whichever one is in your <strong>Active Spot</strong>.</p>
+					<p><strong>So the pattern is: build on the Bench, step forward, hit, step back.</strong> Attack with one Flareon ex, and when it gets low, <a href="#switch">Switch</a> it to the Bench and bring up a fresh one. The hurt one is now completely safe.</p>
+					<p><strong>Free Energy every turn adds up fast.</strong> <em>Burning Charge</em> attaches 2 Energy on top of the 1 you attach by hand. That&#x27;s 3 Energy a turn while you&#x27;re also doing 130 damage. Put them on the Flareon ex sitting on your Bench, so your <em>next</em> attacker is already loaded before it ever steps out.</p>
+			<aside data-callout="important">
+				<p><strong><em>Carnelian</em> costs [R][W][L], and your deck has no Lightning Energy.</strong> So normally you can&#x27;t use it at all.</p>
+				<p><strong>Unless you have <a href="#sparkling-crystal">Sparkling Crystal</a> attached.</strong> It takes 1 Energy off the cost, <strong>of any type</strong>. Drop the Lightning and <em>Carnelian</em> costs <strong>[R][W]</strong> — one Fire, one Water. That you can do, and <em>Burning Charge</em> can go and fetch you the Water.</p>
+				<p>Even then, think before using it. 280 damage looks amazing, but <em>&quot;this Pokémon can&#x27;t attack next turn&quot;</em> means you give your dad a completely free turn. In a deck where losing a Flareon ex costs you <strong>2 Prize cards</strong>, a free turn is exactly what he wants.</p>
+				<p>Two <em>Burning Charges</em> do <strong>260</strong> across two turns and never skip. That&#x27;s almost the same damage and none of the risk. Use <em>Burning Charge</em>.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="hoothoot">Hoothoot</h3>
+				<aside><img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>114/142</span></dd>
+						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt><strong>HP</strong></dt><dd><span>70</span></dd>
+						<dt><strong>Stage</strong></dt><dd><span>Basic</span></dd>
+						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt><strong>Resistance</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting −30</span></dd>
+						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Triple Stab</em> <strong>[C] 10×</strong> — flip 3 coins. This attack does 10 damage for each heads.</span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p><strong>hoothoot</strong> → noctowl</p>
+					<h4>General use</h4>
+					<p>Hoothoot has one job: <strong>be a Hoothoot so it can become a <a href="#noctowl">Noctowl</a>.</strong> That&#x27;s it. It never attacks and it never wins you a game by itself.</p>
+					<p>You have 4 because Noctowl&#x27;s Ability is the best draw engine in the deck, and you can&#x27;t have a Noctowl without a Hoothoot underneath it first.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — the only reason Hoothoot is in the deck.</li>
+						<li><strong><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a></strong> — 70 HP exactly, so Poffin can fetch it. That&#x27;s not a coincidence.</li>
+						<li><strong><a href="#gwynn">Gwynn</a></strong> — Hoothoot has no Rule Box, so a spare one is perfect Gwynn fuel.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Bench them early and bench more than one.</strong> Every Hoothoot on your Bench is a Noctowl you can evolve later, and each evolution is <strong>two free Trainer cards</strong>. Holding Hoothoot back in your hand is holding back your own draw engine.</p>
+					<p><strong>70 HP is the magic number for <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a>.</strong> Poffin fetches Basics with <strong>70 HP or less</strong>, and Hoothoot is exactly 70. So one Poffin can grab an Eevee <em>and</em> a Hoothoot in one go, for free, without using your Supporter.</p>
+					<p><strong>Don&#x27;t attack with it.</strong> <em>Triple Stab</em> flips 3 coins for 10 each. On average that&#x27;s 15 damage. Your dad&#x27;s smallest Pokémon has 60 HP.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="noctowl">Noctowl</h3>
+				<aside><img src="./assets/567341_noctowl.jpg" alt="Noctowl" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>115/142</span></dd>
+						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt><strong>HP</strong></dt><dd><span>100</span></dd>
+						<dt><strong>Stage</strong></dt><dd><span>Stage 1 (from Hoothoot)</span></dd>
+						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt><strong>Resistance</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting −30</span></dd>
+						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt><strong>Ability</strong></dt><dd><span><em>Jewel Seeker</em> — once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, <strong>if you have any Tera Pokémon in play</strong>, search your deck for up to <strong>2 Trainer cards</strong> and put them into your hand.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Speed Wing</em> <strong>[C][C] 60</strong></span></dd>
+					</dl>
+					<h4>Evolution</h4>
+					<p>hoothoot → <strong>noctowl</strong></p>
+					<h4>General use</h4>
+					<p>Noctowl is your draw engine, and it doesn&#x27;t work like a normal one.</p>
+					<p>Most draw cards give you random cards. <em>Jewel Seeker</em> lets you <strong>pick the exact two Trainers you want</strong> out of your whole deck. Need a Boss&#x27;s Orders to finish the game? Go get it. Need a Switch to escape? Go get it.</p>
+					<p>The catch is in the wording: it only fires <strong>the moment you evolve a Hoothoot into it</strong>, and only if you have a <strong>Tera</strong> Pokémon in play. Both <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> are Tera, so that part is almost always true.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — a Tera Pokémon, which is what switches <em>Jewel Seeker</em> on.</li>
+						<li><strong><a href="#eevee-ex">Eevee ex</a></strong> — also Tera, so it turns <em>Jewel Seeker</em> on too. Even a benched one counts.</li>
+						<li><strong><a href="#hoothoot">Hoothoot</a></strong> — has to be on your Bench first.</li>
+						<li><strong><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></strong> — the best thing to go and fetch when you&#x27;re close to winning.</li>
+						<li><strong><a href="#sparkling-crystal">Sparkling Crystal</a></strong> — if you haven&#x27;t drawn it yet, <em>Jewel Seeker</em> can go find it.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>You have 3 Noctowl, so you get 3 uses. Don&#x27;t waste them.</strong> The most common mistake is evolving every Hoothoot the moment you draw a Noctowl. That burns all three uses early, when you don&#x27;t need anything specific.</p>
+					<p><strong>Save one.</strong> Keep a Hoothoot on the Bench and a Noctowl in your hand, and evolve it on the turn you actually need a card. That&#x27;s not a draw engine any more — that&#x27;s a card that says <em>&quot;go get any two Trainers in my deck.&quot;</em></p>
+					<p><strong>Check the Tera condition first.</strong> You need a Flareon ex <em>or</em> an Eevee ex somewhere in play. If both are gone, <em>Jewel Seeker</em> does nothing. Evolve the Hoothoot anyway if you need the HP, just don&#x27;t count on the cards.</p>
+					<p><strong>100 HP is real.</strong> Noctowl can hold the Active Spot for a turn while you set up behind it. <em>Speed Wing</em> does 60, which knocks out his Koffing exactly.</p>
+			<aside data-callout="tip">
+				<p><strong><em>Jewel Seeker</em> fires when you evolve, not when you attack.</strong> So it costs you nothing. You can use it, then play a Supporter, then attack, all on the same turn. Abilities are free.</p>
+			</aside>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<aside data-callout="important">
+				<p><strong>You may play only ONE Supporter per turn.</strong> You have 10 of them. Picking the right one is the biggest decision you make most turns.</p>
+			</aside>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination</h3>
+				<aside><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>119/132</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw <strong>8</strong> cards instead.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>This is your reset button. Bad hand? Shuffle the whole thing away and draw a fresh 6.</p>
+					<p>The important part is that it <strong>shuffles</strong>, it doesn&#x27;t discard. Nothing is lost. If you shuffle away a Flareon ex, it goes back into your deck where <a href="#ultra-ball">Ultra Ball</a> can find it again.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#ultra-ball">Ultra Ball</a></strong> — play your Ultra Balls <strong>first</strong>, then Lillie&#x27;s. Balls turn junk into the card you want; Lillie&#x27;s throws everything away either way.</li>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — <em>Jewel Seeker</em> is free and happens before your Supporter. Use it first so you know what you still need.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Play it on turn one whenever you can.</strong> If you still have all <strong>6 Prize cards</strong>, Lillie&#x27;s draws <strong>8</strong> instead of 6. That bonus only exists before anyone has knocked anything out, so it&#x27;s a first-turn card. Two extra cards for free is a lot.</p>
+					<p><strong>Empty your hand before you play it.</strong> Every card you were holding gets shuffled away. So play your Items first, attach your Energy first, evolve first — then Lillie&#x27;s, then attack. Follow <strong><a href="#9-the-turn-checklist">The Turn Checklist</a></strong> and this happens automatically.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="crispin">Crispin</h3>
+				<aside><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>133/142</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Search your deck for up to 2 Basic Energy cards of <strong>different types</strong>. Put 1 into your hand and attach the other to 1 of your Pokémon.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Crispin gets your engine started. It finds Energy in your deck and puts one of them <strong>straight onto a Pokémon</strong> — that attachment doesn&#x27;t use up your one-per-turn attachment.</p>
+					<p>So on a Crispin turn you can attach <strong>two</strong> Energy: one by hand, one from Crispin.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — Crispin gets you to <em>Burning Charge</em> a turn earlier, and after that Burning Charge does the finding for you.</li>
+						<li><strong><a href="#basic-water-energy">Basic Water Energy</a></strong> — the reason those 3 Water cards are in the deck at all.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>&quot;Different types&quot; is a rule, not a suggestion.</strong> You can&#x27;t grab two Fire. You must take one Fire and one of something else, and the only something else you own is <strong>Water</strong>. So the real result of Crispin is: <strong>one Fire Energy, plus one Water Energy.</strong></p>
+					<p><strong>Usually: attach the Fire, keep the Water.</strong> Early on you&#x27;re playing Crispin to get <em>Burning Charge</em> online, and that wants Fire.</p>
+					<p><strong>But hold on to that Water.</strong> If you have <a href="#sparkling-crystal">Sparkling Crystal</a> on a Flareon ex, one Fire plus one Water is exactly what <em>Carnelian</em> costs. Crispin can hand you both halves of a 280-damage attack in a single card.</p>
+					<p><strong>It&#x27;s a turn-one and turn-two card.</strong> Once a Flareon ex is attacking, <em>Burning Charge</em> finds 2 Energy every single turn for free, and Crispin becomes the weakest Supporter in your deck. Play it early, then stop.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
+				<aside><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>114/132</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Boss&#x27;s Orders reaches past whatever your dad is hiding behind and drags out the Pokémon you actually want to knock out.</p>
+					<p>This is how you finish games. He hides a hurt Gengar on the Bench; you drag it out and hit it for 130.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — 130 damage knocks out anything he owns, so whatever you drag out, it dies.</li>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — <em>Jewel Seeker</em> can go and find a Boss&#x27;s Orders on the exact turn you need it.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Save them for Prize cards, not for fun.</strong> You only have 3. Each one should be the difference between taking a Prize and not taking one.</p>
+					<p><strong>Count first.</strong> Before you play it, work out whether 130 actually knocks out the thing you&#x27;re dragging. Against your dad it always does, so this is an easy one for you.</p>
+					<p><strong>He has Boss&#x27;s Orders too — and it&#x27;s his answer to <em>Tera</em>.</strong> See <strong><a href="#7-beating-dads-gengar-gang">Beating Dad&#x27;s Gengar Gang</a></strong>. A Flareon ex on your Bench is untouchable <em>until</em> he plays this card and drags it out.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="gwynn">Gwynn</h3>
+				<aside><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>078/084</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Discard up to 2 Pokémon that <strong>don&#x27;t have a Rule Box</strong> from your hand, and draw 3 cards for each card you discarded in this way.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Gwynn turns spare Pokémon into cards. Discard two, draw six.</p>
+					<p>The words <strong>&quot;don&#x27;t have a Rule Box&quot;</strong> are doing all the work here. That means Gwynn can discard your <a href="#eevee">Eevee</a>, <a href="#hoothoot">Hoothoot</a>, and <a href="#noctowl">Noctowl</a>. It <strong>cannot</strong> discard <a href="#flareon-ex">Flareon ex</a> or <a href="#eevee-ex">Eevee ex</a>.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#hoothoot">Hoothoot</a></strong> — you have 4 and you rarely need all of them. Best Gwynn fuel in the deck.</li>
+						<li><strong><a href="#night-stretcher">Night Stretcher</a></strong> — gets a discarded Pokémon straight back. Gwynn isn&#x27;t really throwing them away.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Six cards for two you weren&#x27;t using is a great deal.</strong> Late in the game you&#x27;ll be holding a spare Hoothoot and a spare Eevee that will never be played. That&#x27;s a 6-card Gwynn.</p>
+					<p><strong>Check the Rule Box before you plan around it.</strong> If your hand is a Flareon ex and an Eevee ex, Gwynn draws you <strong>nothing.</strong> It is a dead card in that hand. Play <a href="#lillies-determination">Lillie&#x27;s Determination</a> instead.</p>
+					<p><strong>Discard <em>up to</em> 2.</strong> You can discard just one and draw 3, if that&#x27;s all you can spare.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<aside data-callout="important">
+				<p><strong>Items are free.</strong> Play as many as you want in one turn. Play them <strong>before</strong> your Supporter, so you know what you still need.</p>
+			</aside>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin</h3>
+				<aside><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>144/162</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Search your deck for up to 2 Basic Pokémon with <strong>70 HP or less</strong> and put them onto your Bench.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Two Pokémon out of your deck, onto your Bench, for free, without using your Supporter for the turn. This is the best Item in the deck.</p>
+					<p>The usual grab is <strong>one <a href="#eevee">Eevee</a> and one <a href="#hoothoot">Hoothoot</a></strong>. Both are 70 HP or less. Both are things you want on the Bench.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#hoothoot">Hoothoot</a></strong> — exactly 70 HP, so Poffin can always fetch it.</li>
+						<li><strong><a href="#eevee">Eevee</a></strong> — 50 HP, also fine.</li>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — Poffin puts the Hoothoot down; Noctowl evolves it next turn for two free Trainers.</li>
+					</ul>
+					<h4>Strategy</h4>
+			<aside data-callout="caution">
+				<p><strong>Poffin puts Pokémon on the BENCH.</strong> <a href="#eevee">Eevee&#x27;s</a> <em>Boosted Evolution</em> only works in the <strong>Active Spot</strong>.</p>
+				<p>So a Poffin Eevee <strong>cannot</strong> become a Flareon ex this turn. If you want the turn-one Flareon ex, that Eevee has to come out of your <strong>hand</strong> and into the <strong>Active Spot</strong>. Use Poffin for your <em>second</em> Eevee and your Hoothoot.</p>
+				<p>Getting this backwards is the single easiest way to lose a whole turn with this deck.</p>
+			</aside>
+					<p><strong>It cannot find <a href="#eevee-ex">Eevee ex</a>.</strong> 200 HP is way over the limit. Use <a href="#ultra-ball">Ultra Ball</a> for that.</p>
+					<p><strong>It&#x27;s free, so play it early.</strong> There is almost never a reason to hold a Poffin. Bench bodies are what this deck runs on.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball</h3>
+				<aside><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>131/132</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>You can use this card only if you <strong>discard 2 other cards</strong> from your hand. Search your deck for <strong>a Pokémon</strong>, reveal it, and put it into your hand.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Ultra Ball finds <strong>any</strong> Pokémon in your deck. Not &quot;a Basic,&quot; not &quot;70 HP or less.&quot; Any of them. Flareon ex, Eevee ex, Noctowl, whatever you need.</p>
+					<p>The price is discarding 2 cards from your hand first.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#eevee-ex">Eevee ex</a></strong> — the only card in the deck that can find it.</li>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — when you need a second one right now.</li>
+						<li><strong><a href="#night-stretcher">Night Stretcher</a></strong> — gets back a Pokémon you discarded to pay for the Ball.</li>
+						<li><strong><a href="#lillies-determination">Lillie&#x27;s Determination</a></strong> — play your Ultra Balls <strong>first</strong>, then Lillie&#x27;s.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Pay with cards you can get back.</strong> A spare Hoothoot is the best discard in the deck — you have 4, you need maybe 2, and <a href="#night-stretcher">Night Stretcher</a> can fetch one back anyway. A spare Basic Energy is fine too, since <em>Burning Charge</em> pulls Energy from your deck, not your hand.</p>
+					<p><strong>Never pay with your last Flareon ex.</strong> Obvious when you read it here, easy to do at the table when you&#x27;re rushing.</p>
+					<p><strong>Order matters.</strong> Ultra Ball first, <a href="#lillies-determination">Lillie&#x27;s Determination</a> second. If you do it the other way round you shuffle away the cards you were going to pay with.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch</h3>
+				<aside><img src="./assets/654469_switch.jpg" alt="Switch" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>130/132</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Switch your Active Pokémon with 1 of your Benched Pokémon.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Switch moves your Active Pokémon to the Bench and brings up whoever you want, <strong>for free</strong> — no Energy, no retreat cost.</p>
+					<p>In most decks Switch is a small convenience card. In this deck it&#x27;s a defensive weapon, because of <em>Tera</em>.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — Switch a hurt one back to the Bench and attacks can&#x27;t touch it any more. This is the best card interaction in your deck.</li>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — <em>Jewel Seeker</em> can go and find a Switch when you&#x27;re stuck.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Switch beats Confusion.</strong> A Special Condition goes away the moment a Pokémon leaves the Active Spot. Your dad&#x27;s <a href="#7-beating-dads-gengar-gang">Dark Bell and Weezing</a> will Confuse you constantly, and a Confused Flareon ex is a coin flip away from doing nothing all turn.</p>
+					<p>Switching out clears it instantly, and unlike retreating it costs no Energy.</p>
+					<p><strong>Switch turns a hurt Flareon ex into a safe one.</strong> Your Flareon ex is at 40 HP and about to die. Switch it to the Bench. Now <em>Tera</em> means it takes <strong>zero</strong> damage from attacks. It&#x27;s still hurt, but he can&#x27;t finish it — not unless he has a Boss&#x27;s Orders.</p>
+					<p><strong>Three copies is not many.</strong> Don&#x27;t burn one just to reposition. Save them for Confusion and for saving a Flareon ex.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher</h3>
+				<aside><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>061/064</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Put <strong>a Pokémon or a Basic Energy card</strong> from your discard pile into your hand.</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Night Stretcher reaches into your discard pile and takes one thing back. A Pokémon <strong>or</strong> a Basic Energy — you choose when you play it.</p>
+					<p>It&#x27;s why discarding to <a href="#ultra-ball">Ultra Ball</a> and <a href="#gwynn">Gwynn</a> doesn&#x27;t really hurt.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#ultra-ball">Ultra Ball</a></strong> — pay with a Hoothoot, take the Hoothoot back later.</li>
+						<li><strong><a href="#gwynn">Gwynn</a></strong> — same trick, two cards at a time.</li>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — when your dad knocks one out, this is how you get it back.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Getting a knocked-out Flareon ex back is the big one.</strong> He spent a whole turn and two of your Prize cards removing it. Night Stretcher puts the card back in your hand for free. You still need an Eevee to evolve, but the hard part is back.</p>
+					<p><strong>One card at a time.</strong> Not &quot;a Pokémon and an Energy.&quot; One or the other.</p>
+					<p><strong>Basic Energy only.</strong> Your deck only has Basic Energy, so this never actually limits you.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool">Trainers — Tool</h2>
+			<article>
+				<h3 id="sparkling-crystal">Sparkling Crystal</h3>
+				<aside><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span><strong>1</strong> (ACE SPEC)</span></dd>
+						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>142/142</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Trainer — Pokémon Tool</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p>Attach to a <strong>Tera</strong> Pokémon. When the Tera Pokémon this card is attached to uses an attack, that attack costs <strong>1 Energy less</strong>. (The Energy can be of any type.)</p>
+			</aside>
+					<h4>General use</h4>
+					<p>Attach it to a <a href="#flareon-ex">Flareon ex</a> and <em>Burning Charge</em> costs <strong>one</strong> Fire Energy instead of two.</p>
+					<p>That doesn&#x27;t sound huge until you count turns. Without it you need two Energy before you can attack. With it you need one, which means you can attack a full turn earlier.</p>
+					<p><strong>It goes on any Tera Pokémon, and you have two kinds:</strong> <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a>.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — the usual home. Makes <em>Burning Charge</em> cost one Energy.</li>
+						<li><strong><a href="#eevee-ex">Eevee ex</a></strong> — also Tera, so also a legal target.</li>
+						<li><strong><a href="#noctowl">Noctowl</a></strong> — <em>Jewel Seeker</em> can go and find this exact card.</li>
+					</ul>
+					<h4>Strategy</h4>
+			<aside data-callout="warning">
+				<p><strong>ACE SPEC means one per deck. One card, total.</strong> Not one of each ACE SPEC — <strong>one ACE SPEC in the whole 60.</strong> If you ever want a different ACE SPEC, this one comes out.</p>
+			</aside>
+					<p><strong>Attach it to a Flareon ex on the Bench.</strong> <em>Tera</em> means a benched Flareon ex can&#x27;t be attacked, so the Tool can&#x27;t be knocked off with it. Attach it to your <em>next</em> attacker, not your current one.</p>
+					<p><strong>It only works on Tera Pokémon.</strong> You cannot put it on <a href="#noctowl">Noctowl</a>, <a href="#hoothoot">Hoothoot</a>, or plain <a href="#eevee">Eevee</a>. Flareon ex and Eevee ex are your only two targets.</p>
+			<aside data-callout="tip">
+				<p><strong>The hidden trick: it can turn on an attack you couldn&#x27;t pay for.</strong></p>
+				<p><em>Carnelian</em> costs [R][W][<strong>L</strong>] and you own no Lightning. Sparkling Crystal takes off <strong>1 Energy of any type</strong> — so take off the Lightning, and it costs [R][W]. One Fire, one Water. Suddenly it&#x27;s a real 280-damage attack.</p>
+				<p>Same trick makes Eevee ex&#x27;s <em>Coruscating Quartz</em> cost [R][W] for 200.</p>
+				<p><strong>This one card quietly unlocks two attacks the deck otherwise cannot use at all.</strong> It&#x27;s the main reason it&#x27;s worth the ACE SPEC slot.</p>
+			</aside>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-fire-energy">Basic Fire Energy</h3>
+				<aside><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></aside>
+				<section>
+					<dl class="card">
+						<dt><strong>How many</strong></dt><dd><span>10</span></dd>
+						<dt><strong>Set</strong></dt><dd><span>MEE: Mega Evolution Energies (any Fire Energy works)</span></dd>
+						<dt><strong>Number</strong></dt><dd><span>002</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p><em>Provides [R] Fire Energy.</em></p>
+			</aside>
+					<h4>General use</h4>
+					<p>The Energy that actually runs your deck. <em>Burning Charge</em> costs <strong>[R][C]</strong> — one Fire, plus one of anything. Both of those can be Fire.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — <em>Burning Charge</em> searches your deck for more of these every time you attack.</li>
+						<li><strong><a href="#crispin">Crispin</a></strong> — finds one and attaches it for free.</li>
+						<li><strong><a href="#night-stretcher">Night Stretcher</a></strong> — pulls one back out of the discard pile.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Ten Energy in 60 cards sounds low. It isn&#x27;t.</strong> Most decks need to <em>draw</em> their Energy. You go and <em>fetch</em> yours: <em>Burning Charge</em> finds 2 every turn, Crispin finds 2 more, and Night Stretcher recycles them. You will almost never be stuck without Energy after turn two.</p>
+					<p><strong>Attach to a benched Flareon ex whenever you can.</strong> <em>Tera</em> protects it while it loads up. By the time it steps into the Active Spot it&#x27;s already ready to attack.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-water-energy">Basic Water Energy</h3>
+				<section>
+					<dl>
+						<dt data-head>Key</dt><dd data-head>Val</dd>
+						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+						<dt><strong>Set</strong></dt><dd><span>any</span></dd>
+						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
+					</dl>
+			<aside data-callout="note">
+				<p><em>Provides [W] Water Energy.</em></p>
+			</aside>
+					<h4>General use</h4>
+					<p>Water does two jobs in this deck, and neither one is obvious.</p>
+					<p><strong>Job 1: it makes <a href="#crispin">Crispin</a> work.</strong> Crispin makes you take two Basic Energy of <strong>different types</strong>. With only Fire in the deck, Crispin would only ever find one card.</p>
+					<p><strong>Job 2: it pays for the big attacks, but only with <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> <em>Carnelian</em> and <em>Coruscating Quartz</em> both cost [R][W][<strong>L</strong>], and you own no Lightning. Sparkling Crystal takes off 1 Energy of any type. Take off the Lightning and both attacks cost <strong>[R][W]</strong> — one Fire, one Water.</p>
+					<h4>Pairing</h4>
+					<ul>
+						<li><strong><a href="#crispin">Crispin</a></strong> — the card that needs a second Energy type to exist.</li>
+						<li><strong><a href="#sparkling-crystal">Sparkling Crystal</a></strong> — turns Water from a spare card into attack fuel.</li>
+						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — <em>Burning Charge</em> searches <strong>Basic Energy</strong>, not Fire Energy. It can go and fetch you a Water.</li>
+					</ul>
+					<h4>Strategy</h4>
+					<p><strong>Only 3 of them, so don&#x27;t waste one.</strong> Attaching a Water to a Pokémon that will never use <em>Carnelian</em> is a wasted attachment. Fire is almost always the right attach.</p>
+					<p><strong>Let <em>Burning Charge</em> find the Water instead.</strong> It searches your deck for <strong>any 2 Basic Energy</strong> and attaches them wherever you like. So the real line is: attack with <em>Burning Charge</em>, use it to place a Water on the Flareon ex wearing Sparkling Crystal, and now <em>Carnelian</em> is armed for next turn.</p>
+			<aside data-callout="tip">
+				<p><strong>Against your dad, you will almost never need <em>Carnelian</em>.</strong> <em>Burning Charge</em> already does 130, and 130 knocks out every single Pokémon in his deck. 280 is not more useful than 130 when 130 is already enough.</p>
+				<p>Where 280 matters is at a <strong>real tournament</strong>, against a big Pokémon with 300 HP that shrugs off 130. That&#x27;s the game where these three Water cards win you something.</p>
+			</aside>
+				</section>
+			</article>
+			<h2 id="game-plans">Game Plans</h2>
+			<aside data-callout="note">
+				<p>These are the real plans. Learn these and you know how to play the deck. Everything above is just the parts list.</p>
+			</aside>
+			<section>
+				<h3 id="1-the-two-energy-engine">1. The Two-Energy Engine<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
+					<p><strong>This is your deck&#x27;s main plan. If you only learn one thing, learn this.</strong></p>
+					<p><a href="#flareon-ex">Flareon ex&#x27;s</a> <em>Burning Charge</em> does two things at once:</p>
+<pre><code>Burning Charge  [R][C]
+  1. 130 damage.
+  2. Search your deck for 2 Basic Energy.
+     Attach them to ANY 1 of your Pokemon.</code></pre>
+					<p>Most attacks just do damage. This one <strong>pays for your next attack while it&#x27;s doing it.</strong></p>
+					<p>Count the Energy you gain in a turn:</p>
+					<dl>
+						<dt data-head>Where it comes from</dt><dd data-head>How much</dd>
+						<dt>Your normal attachment from hand</dt><dd><span>1</span></dd>
+						<dt><em>Burning Charge</em></dt><dd><span><strong>2</strong></span></dd>
+						<dt><strong>Total per turn</strong></dt><dd><span><strong>3</strong></span></dd>
+					</dl>
+					<p>You spend two Energy to attack. You gain three. <strong>You get further ahead every single turn.</strong></p>
+					<p><strong>130 is the number that matters against your dad.</strong> His Gengar has 130 HP. His Weezing has 130 HP. Everything else he owns has less. <em>Burning Charge</em> one-shots his entire deck, from turn two, forever.</p>
+					<p>Compare that to your Fire Force deck, where you had to build up Leons in the discard pile just to reach 150. Here you start at the number you need.</p>
+			<aside data-callout="tip">
+				<p><strong>Put the 2 free Energy on a Flareon ex sitting on your Bench.</strong> It can&#x27;t be attacked there, thanks to <em>Tera</em>. So while your Active Flareon ex is fighting, a second fully-loaded one is quietly getting ready behind it. When the first one gets low, <a href="#switch">Switch</a> them.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="2-turn-one-flareon">2. Turn One, Flareon<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+					<p><strong>The best possible start, and the one rule that ruins it.</strong></p>
+					<p><a href="#eevee">Eevee&#x27;s</a> <em>Boosted Evolution</em> lets it evolve the turn you play it. That breaks the normal rule, and it&#x27;s how you get a 270 HP attacker down before your dad has done anything.</p>
+<pre><code>1. Play EEVEE into the ACTIVE SPOT.  (from your hand!)
+2. Evolve it into FLAREON EX.        (same turn - Boosted Evolution)
+3. Buddy-Buddy Poffin -&gt; Eevee + Hoothoot onto the Bench.
+4. Attach a Fire Energy.
+5. Lillie&#x27;s Determination -&gt; draw 8. (you still have all 6 Prizes)</code></pre>
+					<p>Next turn you attach one more Fire and <em>Burning Charge</em> for 130.</p>
+			<aside data-callout="caution">
+				<p><strong>The Active Spot part is not optional.</strong></p>
+				<p><em>Boosted Evolution</em> says <strong>&quot;as long as this Pokémon is in the Active Spot.&quot;</strong> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> puts Pokémon on the <strong>Bench</strong>. So a Poffin Eevee is a normal Eevee that has to wait a turn.</p>
+				<p>The Eevee you&#x27;re evolving right now comes from your <strong>hand</strong>, into the <strong>Active Spot</strong>. Poffin is for the <em>other</em> ones.</p>
+			</aside>
+					<p><strong>If you have <a href="#sparkling-crystal">Sparkling Crystal</a>, attach it.</strong> <em>Burning Charge</em> then costs one Fire instead of two, and you can attack on turn two with a single Energy attachment.</p>
+			</section>
+			<section>
+				<h3 id="3-jewel-seeker-is-your-real-draw-engine">3. Jewel Seeker Is Your Real Draw Engine<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
+					<p><strong><a href="#noctowl">Noctowl</a> doesn&#x27;t draw you cards. It hands you the exact cards you name.</strong></p>
+					<p><em>Jewel Seeker</em> fires when you <strong>evolve a Hoothoot into a Noctowl</strong>, as long as a <strong>Tera</strong> Pokémon is in play. <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> are both Tera, and one of them is nearly always on your board.</p>
+					<p>You get <strong>2 Trainer cards of your choice</strong> out of your deck.</p>
+					<p><strong>You have 3 Noctowl. That&#x27;s 3 uses in the whole game.</strong> The mistake is spending them all in the first two turns because you happen to have the cards in hand.</p>
+					<p><strong>Instead, keep a Hoothoot benched and a Noctowl in hand.</strong> Now you&#x27;re holding a card that says <em>&quot;at any time, take any two Trainers from my deck.&quot;</em> That&#x27;s not a draw engine, that&#x27;s a toolbox.</p>
+					<p>Best things to go and get:</p>
+					<dl>
+						<dt data-head>Situation</dt><dd data-head>Fetch</dd>
+						<dt>You can win this turn if you reach his Bench</dt><dd><span><strong><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></strong></span></dd>
+						<dt>You&#x27;re Confused and stuck</dt><dd><span><strong><a href="#switch">Switch</a></strong></span></dd>
+						<dt>You still haven&#x27;t seen your ACE SPEC</dt><dd><span><strong><a href="#sparkling-crystal">Sparkling Crystal</a></strong></span></dd>
+						<dt>Your Flareon ex got knocked out</dt><dd><span><strong><a href="#night-stretcher">Night Stretcher</a></strong></span></dd>
+						<dt>You need a Pokémon, not a Trainer</dt><dd><span><strong><a href="#ultra-ball">Ultra Ball</a></strong> — Jewel Seeker only takes Trainers, so take the Ball and let it find the Pokémon</span></dd>
+					</dl>
+			<aside data-callout="tip">
+				<p><strong>Abilities are free and they don&#x27;t end your turn.</strong> Evolve, take your two Trainers, <em>then</em> play your Supporter, <em>then</em> attack. All in one turn.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="4-the-bench-is-a-fortress">4. The Bench Is a Fortress<span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
+					<p><strong>This is the exact opposite of your old deck&#x27;s biggest problem.</strong></p>
+					<p>In your Fire Force deck, Charmanders sat on the Bench getting picked off for three turns while you tried to build a Charizard. Every one of them was a free Prize card for dad.</p>
+					<p>Now look at <em>Tera</em>:</p>
+			<aside data-callout="note">
+				<p>As long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</p>
+			</aside>
+					<p><strong>Zero damage. Not less. Zero.</strong> A benched <a href="#flareon-ex">Flareon ex</a> cannot be hurt by <em>Mind Jack</em>, by <em>Crazy Blast</em>, by anything he attacks with. <strong><a href="#eevee-ex">Eevee ex</a> has the same Ability</strong>, so a 200 HP Eevee ex waiting on your Bench is untouchable too.</p>
+					<p>So the whole shape of your game changes:</p>
+					<ol>
+						<li><strong>Build on the Bench.</strong> Load Energy onto a benched Flareon ex where nothing can touch it.</li>
+						<li><strong>Step forward.</strong> Move it into the Active Spot and attack for 130.</li>
+						<li><strong>Step back when it&#x27;s hurt.</strong> <a href="#switch">Switch</a> it to the Bench. Now it&#x27;s safe again, damage and all.</li>
+						<li><strong>Send out the fresh one</strong> you were loading the whole time.</li>
+					</ol>
+					<p>Two Switch plus three <a href="#night-stretcher">Night Stretcher</a> makes that a real rotation, not a dream.</p>
+			<aside data-callout="important">
+				<p><strong><em>Tera</em> stops damage from ATTACKS. It does not stop everything.</strong></p>
+				<p>Your dad&#x27;s <strong>Risky Ruins</strong> puts damage counters on your Basic Pokémon when you bench them. That&#x27;s a <strong>Stadium effect</strong>, not an attack, so <em>Tera</em> does nothing about it — not even on an Eevee ex, which is a Basic and does get hit. It skips Flareon ex and Noctowl only because those are Stage 1.</p>
+				<p>The rule to remember: <strong>an attack can&#x27;t touch your benched Flareon ex. A card effect might.</strong></p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="5-the-prize-race-changed">5. The Prize Race Changed<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+					<p><strong>Read this one twice. It&#x27;s the biggest difference between this deck and your old one.</strong></p>
+					<p>In your Fire Force deck, every Pokémon on both sides was worth <strong>1 Prize card</strong>. Perfectly fair trades. Knock one out, take one Prize, six knockouts each way.</p>
+					<p>That is <strong>not</strong> how this deck works.</p>
+					<dl>
+						<dt data-head>Pokémon</dt><dd data-head>Prizes it gives your dad</dd>
+						<dt><a href="#eevee">Eevee</a></dt><dd><span>1</span></dd>
+						<dt><a href="#hoothoot">Hoothoot</a></dt><dd><span>1</span></dd>
+						<dt><a href="#noctowl">Noctowl</a></dt><dd><span>1</span></dd>
+						<dt><strong><a href="#flareon-ex">Flareon ex</a></strong></dt><dd><span><strong>2</strong></span></dd>
+						<dt><strong><a href="#eevee-ex">Eevee ex</a></strong></dt><dd><span><strong>2</strong></span></dd>
+					</dl>
+					<p>Every Pokémon in his Gengar Gang is still worth <strong>1</strong>.</p>
+			<article>
+				<h3 id="what-that-actually-means">What that actually means</h3>
+				<section>
+<pre><code>He needs 3 knockouts to win.   (3 x 2 Prizes = 6)
+You need 6 knockouts to win.   (6 x 1 Prize  = 6)</code></pre>
+					<p><strong>He needs half as many good turns as you do.</strong> That&#x27;s the trade you made for a 270 HP attacker that one-shots everything he owns.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="how-to-win-the-race-anyway">How to win the race anyway</h3>
+				<section>
+					<p><strong>Knock something out every single turn.</strong> 130 damage kills anything in his deck. If you&#x27;re attacking every turn from turn two, you take 6 Prizes in 6 turns. He can&#x27;t remove three Flareon ex that fast — his best attack does 170 and yours has 270 HP.</p>
+					<p><strong>Never let him have a free knockout.</strong> Every Flareon ex that dies is two turns of your work handed back. <a href="#switch">Switch</a> it out before it dies. That&#x27;s what Switch is <em>for</em> in this deck.</p>
+					<p><strong>Don&#x27;t leave a hurt Flareon ex in the Active Spot hoping.</strong> If it&#x27;s below 170, his Weezing can finish it. Below 160, his Gengar can. Move it.</p>
+					<p><strong>Your small Pokémon are worth 1 Prize, and that&#x27;s useful.</strong> If something has to die, better it&#x27;s a Hoothoot than a Flareon ex. Letting him knock out a Noctowl costs you one Prize and buys you a turn.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="6-reading-your-first-hand">6. Reading Your First Hand<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+					<p><strong>Turn one decides a lot of games. Here&#x27;s how to play it.</strong></p>
+			<article>
+				<h3 id="step-1-do-you-have-a-basic-pokémon">Step 1: Do you have a Basic Pokémon?</h3>
+				<section>
+					<p>If not, you <strong>mulligan</strong> — show your hand, shuffle it back, draw 7 more. Your dad draws 1 extra card. It&#x27;s just a do-over.</p>
+					<p>Your Basics are <strong>Eevee, Eevee ex, and Hoothoot</strong> — 10 of them in 60 cards. You&#x27;ll mulligan a bit less often than with your old deck.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="step-2-what-do-you-play">Step 2: What do you play?</h3>
+				<section>
+					<dl>
+						<dt data-head>Your hand has…</dt><dd data-head>Do this</dd>
+						<dt><strong>Eevee + Flareon ex</strong></dt><dd><span>Play Eevee <strong>Active</strong>, evolve immediately. Best possible start.</span></dd>
+						<dt><strong>Buddy-Buddy Poffin</strong></dt><dd><span>Play it. It&#x27;s free. Grab an Eevee and a Hoothoot.</span></dd>
+						<dt><strong>Eevee ex, no plain Eevee</strong></dt><dd><span>Play it Active. It can&#x27;t evolve this turn, but 200 HP holds the spot fine.</span></dd>
+						<dt><strong>Hoothoot but no Eevee</strong></dt><dd><span>Bench the Hoothoot, play Ultra Ball or Lillie&#x27;s to dig for an Eevee.</span></dd>
+						<dt><strong>All 6 Prizes still out</strong></dt><dd><span><strong>Lillie&#x27;s Determination</strong> draws <strong>8</strong> instead of 6. Do it.</span></dd>
+						<dt><strong>Crispin</strong></dt><dd><span>Good turn-one Supporter if you don&#x27;t need Lillie&#x27;s. Free Energy attachment.</span></dd>
+						<dt><strong>Sparkling Crystal</strong></dt><dd><span>Attach it to your Flareon ex right away.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="step-3-attach-your-energy">Step 3: Attach your Energy</h3>
+				<section>
+					<p>Fire, onto whatever is attacking soonest. Usually the Active Flareon ex.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="step-4-remember-the-turn-one-rules">Step 4: Remember the turn-one rules</h3>
+				<section>
+					<ul>
+						<li>If you went <strong>first</strong>, you <strong>cannot attack.</strong> Set up instead.</li>
+						<li><em>Boosted Evolution</em> <strong>does</strong> work on turn one. That&#x27;s the whole point of it.</li>
+						<li>There is <strong>no Rare Candy</strong> in this deck, so none of that turn-one Candy trouble exists any more.</li>
+					</ul>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="7-beating-dads-gengar-gang">7. Beating Dad&#x27;s Gengar Gang<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+					<p><strong>Know the other side and you&#x27;ll see plays coming.</strong></p>
+					<p>His deck is all <strong>Darkness</strong> Pokémon. Nothing in it is Water, so your Flareon ex&#x27;s Water Weakness <strong>never comes up.</strong> Nothing in it is Fighting, so your Eevee ex&#x27;s Fighting Weakness never comes up either.</p>
+					<p>That&#x27;s a really good start.</p>
+			<article>
+				<h3 id="the-one-number-to-remember">The one number to remember</h3>
+				<section>
+					<p><strong>130 knocks out everything he owns.</strong></p>
+					<table>
+						<thead><tr><th>His Pokémon</th><th>HP</th><th><em>Burning Charge</em> does</th></tr></thead>
+						<tbody>
+							<tr><td>Koffing</td><td>60</td><td>KO</td></tr>
+							<tr><td>Gastly</td><td>70</td><td>KO</td></tr>
+							<tr><td>Haunter</td><td>100</td><td>KO</td></tr>
+							<tr><td><strong>Weezing</strong></td><td><strong>130</strong></td><td><strong>KO, exactly</strong></td></tr>
+							<tr><td><strong>Gengar</strong></td><td><strong>130</strong></td><td><strong>KO, exactly</strong></td></tr>
+						</tbody>
+					</table>
+					<p>No set-up. No coin flips. No Leons in the discard pile. You attack, something dies.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="weezing-his-early-attacker-130-hp">Weezing — his early attacker (130 HP)<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
+				<section>
+					<p>It&#x27;s a two-turn combo:</p>
+					<ul>
+						<li><strong>Turn A:</strong> <em>Pervasive Gas</em> — 30 damage, and your Active Pokémon is now <strong>Confused</strong>.</li>
+						<li><strong>Turn B:</strong> <em>Crazy Blast</em> — <strong>170 damage</strong>, but only if that same Weezing used <em>Pervasive Gas</em> last turn.</li>
+					</ul>
+					<p><strong>170 does not knock out a Flareon ex.</strong> 270 HP minus 170 is 100 left. In your old deck, 170 was exactly your Charizard&#x27;s HP and Weezing was terrifying. Now it isn&#x27;t.</p>
+					<p><strong>The Confusion is the real threat, not the damage.</strong> A Confused Flareon ex has to flip a coin to attack. Tails means no damage, 30 to itself, and your turn is over. That&#x27;s a turn where you took zero Prizes and he got a free one.</p>
+					<p><strong>How to fight it:</strong> <a href="#switch">Switch</a>. Leaving the Active Spot clears Confusion instantly and costs no Energy. If you&#x27;re Confused and you don&#x27;t have a Switch, <a href="#noctowl">Noctowl</a> can go and get one.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="gengar-his-closer-130-hp">Gengar — his closer (130 HP)<span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
+				<section>
+					<p><em>Mind Jack</em> costs one Energy and does <strong>10 damage, plus 30 for every Pokémon on YOUR Bench.</strong></p>
+					<table>
+						<thead><tr><th>Your Bench</th><th><em>Mind Jack</em> does</th><th>Does it KO your Active Flareon ex?</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>70</td><td>No</td></tr>
+							<tr><td>3</td><td>100</td><td>No</td></tr>
+							<tr><td>4</td><td>130</td><td>No</td></tr>
+							<tr><td><strong>5</strong></td><td><strong>160</strong></td><td><strong>No — 270 HP</strong></td></tr>
+						</tbody>
+					</table>
+					<p><strong>Read that last column again.</strong> Even with a full Bench, Gengar cannot knock out a Flareon ex in one hit. In your old deck a big Bench was dangerous. Here it mostly isn&#x27;t.</p>
+					<p><strong>But it kills everything else you own.</strong> 130 knocks out a Noctowl. 70 knocks out a Hoothoot. So the rule is simple: <strong>keep a Flareon ex in the Active Spot.</strong> Never leave a Hoothoot or a Noctowl out front when a Gengar is ready.</p>
+					<p><strong>Infinite Shadow:</strong> when his Gengar is knocked out, the card goes back to his hand instead of the discard pile. <strong>You still take your Prize card.</strong> Never hesitate to knock out a Gengar.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="his-answer-to-tera-is-bosss-orders">His answer to <em>Tera</em> is Boss&#x27;s Orders<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3>
+				<section>
+					<p>This is the most important thing in this whole section.</p>
+					<p>A <a href="#flareon-ex">Flareon ex</a> or <a href="#eevee-ex">Eevee ex</a> on your Bench cannot be attacked. He knows that. So his plan is <strong><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a></strong> — it drags one of your Benched Pokémon into the Active Spot, where <em>Tera</em> stops working.</p>
+					<p><strong>And both of those are worth 2 Prize cards.</strong> Boss&#x27;s Orders is how he turns your safest Pokémon into his best target.</p>
+					<p><strong>So a hurt Flareon ex on your Bench is safe, but it is not safe forever.</strong></p>
+					<ul>
+						<li>If you have a Flareon ex at 40 HP hiding on the Bench, assume he will drag it out the moment he can.</li>
+						<li>The answer is to have a <strong>second</strong> healthy Flareon ex and a <a href="#switch">Switch</a> in hand, so you can drag it right back.</li>
+						<li>Or knock him out first. If he has no Pokémon that can attack, Boss&#x27;s Orders doesn&#x27;t help him.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="his-annoying-cards">His annoying cards<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
+				<section>
+					<table>
+						<thead><tr><th>Card</th><th>What it does</th><th>What you do</th></tr></thead>
+						<tbody>
+							<tr><td><strong>Dark Bell</strong></td><td>Confuses your Active Pokémon, for free, as an Item</td><td>Keep a <a href="#switch">Switch</a> around. He can play several in a turn.</td></tr>
+							<tr><td><strong>Risky Ruins</strong></td><td>20 damage to each Basic you bench</td><td>You have no Stadium to replace it, so just accept it. It hits Eevee and Hoothoot, never Flareon ex.</td></tr>
+							<tr><td><strong>Punk Helmet</strong></td><td>You take 40 damage for attacking the Pokémon wearing it</td><td>Flareon ex has 270 HP. Take the 40 and keep attacking.</td></tr>
+							<tr><td><strong>Infinite Shadow</strong></td><td>His knocked-out Gengar goes back to his hand</td><td><strong>You still get the Prize card.</strong> Knock it out anyway.</td></tr>
+							<tr><td><strong>Boss&#x27;s Orders</strong></td><td>Drags your benched Pokémon into the Active Spot</td><td>The one card that beats <em>Tera</em>. Plan for it.</td></tr>
+							<tr><td><strong>Haunter — <em>Haunt</strong></em></td><td>Places 3 damage counters (30) on your Active</td><td>Small. Ignore it and keep attacking.</td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="important">
+				<p><strong>The whole matchup in one sentence:</strong> he cannot knock out a Flareon ex in one hit, and you can knock out anything he owns in one hit — so the only way you lose is by giving him <strong>three</strong> two-Prize knockouts. Protect your Flareon ex and you win.</p>
+			</aside>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="8-mistakes-that-will-cost-you-the-game">8. Mistakes That Will Cost You The Game<span data-flavor><img src="./assets/sprites/flareon-back.gif" alt="" /></span></h3>
+					<p>The specific traps in <em>this</em> deck. Read this one twice.</p>
+					<p><strong>Playing Eevee to the Bench and expecting to evolve it.</strong> <em>Boosted Evolution</em> only works in the <strong>Active Spot</strong>. This is the number one mistake with this deck.</p>
+					<p><strong>Using Buddy-Buddy Poffin to find the Eevee you want to evolve now.</strong> Poffin puts them on the <strong>Bench</strong>. Same mistake, one step earlier.</p>
+					<p><strong>Trying to use <em>Carnelian</em> or <em>Coruscating Quartz</em>.</strong> Both cost <strong>[L] Lightning</strong> and your deck has none. They are not options.</p>
+					<p><strong>Leaving a hurt Flareon ex in the Active Spot.</strong> Below 170 HP a Weezing finishes it. That&#x27;s 2 Prize cards you handed over for free. <a href="#switch">Switch</a> it out.</p>
+					<p><strong>Leaving a Hoothoot or Noctowl Active when his Gengar is ready.</strong> <em>Mind Jack</em> eats them. Keep a Flareon ex out front.</p>
+					<p><strong>Evolving all three Noctowl at once.</strong> You only get 3 <em>Jewel Seeker</em> uses in the whole game. Save one for when you actually need a specific card.</p>
+					<p><strong>Forgetting <em>Jewel Seeker</em> is free.</strong> Evolve <strong>before</strong> you play your Supporter, so you know what you still need.</p>
+					<p><strong>Playing Lillie&#x27;s Determination with a good hand.</strong> It shuffles <strong>everything</strong> away. Play your Items first.</p>
+					<p><strong>Playing Lillie&#x27;s before your Ultra Balls.</strong> You just shuffled away the cards you were going to pay the Ball with.</p>
+					<p><strong>Playing Gwynn holding only ex cards.</strong> Gwynn can only discard Pokémon <strong>without a Rule Box</strong>. Flareon ex and Eevee ex both have one, so that Gwynn draws you zero cards.</p>
+					<p><strong>Attaching Sparkling Crystal to a Noctowl.</strong> It only goes on a <strong>Tera</strong> Pokémon. Flareon ex and Eevee ex are your only two.</p>
+					<p><strong>Playing two Supporters in one turn.</strong> Not allowed. <strong>One per turn.</strong></p>
+					<p><strong>Attacking, then trying to do other stuff.</strong> <strong>Attacking ends your turn.</strong> Do everything else first.</p>
+			</section>
+			<section>
+				<h3 id="9-the-turn-checklist">9. The Turn Checklist<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
+					<p>Stick to this order and you&#x27;ll stop forgetting things.</p>
+<pre><code>1. DRAW your card.
+2. ITEMS       - Poffin, Ultra Ball, Switch, Night Stretcher.
+3. ENERGY      - attach 1 from your hand.
+4. EVOLVE      - Eevee -&gt; Flareon ex, Hoothoot -&gt; Noctowl.
+                 JEWEL SEEKER fires here. Take your 2 Trainers.
+5. TOOL        - attach Sparkling Crystal if you have it.
+6. SUPPORTER   - only ONE. Lillie&#x27;s? Crispin? Boss&#x27;s Orders?
+7. ATTACK      - Burning Charge. This ENDS your turn.</code></pre>
+					<p><strong>Why this order?</strong> Because every step tells you something about the next one. Evolving a Noctowl at step 4 might hand you the Boss&#x27;s Orders you play at step 6. If you play the Supporter first, you&#x27;ll pick the wrong one.</p>
+					<p><strong>Step 4 is where this deck is different from your old one.</strong> In Fire Force, <em>Battle Sense</em> was the free thing you always forgot. Here it&#x27;s <em>Jewel Seeker</em>. Same habit, different card: <strong>do the free thing before the thing you only get once.</strong></p>
+					<p>The single most common mistake in this whole game is <strong>attacking too early in your turn.</strong> Attack last. Always.</p>
+			</section>
+		</main>
+		<footer>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+		</footer>
+	</body>
+</html>

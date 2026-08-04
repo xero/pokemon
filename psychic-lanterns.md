@@ -16,20 +16,6 @@
 
 ---
 
-## What Changed From The First Draft
-
-**Psyduck is gone.** Water type, no Energy in the deck to pay for it, and it made Old Cemetery awkward.
-
-**Wobbuffet replaces it, and it is a straight upgrade** — read *Bide Barricade* carefully:
-
-> As long as this Pokémon is your Active Pokémon, each Pokémon in play, in each player's hand, and in each player's discard pile has no Abilities **(except for [P] Pokémon)**.
-
-**It exempts Psychic Pokémon.** In a mono-Psychic deck that is a one-sided Ability lock: yours keep working, theirs all switch off. Against Fox that means **Charizard's *Battle Sense* and Eevee's *Boosted Evolution* stop existing** — his card-draw engine and his fast start, both gone, for free, from a Basic.
-
-**And Chandelure joins the deck**, which is the real headline. More on that below.
-
----
-
 > ### Table of Contents
 > - [The Thesis](#the-thesis)
 > - [Deck List](#deck-list)
@@ -37,7 +23,7 @@
 > - [Game Plans](#game-plans)
 > - [Versus Fox](#versus-fox)
 > - [What To Buy](#what-to-buy)
-> - [Cards I Looked At And Rejected](#cards-i-looked-at-and-rejected)
+> - [Build A or Build B?](#build-a-or-build-b)
 
 ---
 
@@ -364,7 +350,7 @@ You already own the entire Gastly line and most of the Gourgeist line.
 
 | Card | Own | Need | Note |
 | :--- | :--- | :--- | :--- |
-| Gastly, Haunter (Psychic) | **9** | 0 | Skip 151 093 — its Ability helps your opponent |
+| Gastly, Haunter (Psychic) | **11** | 0 | Skip 151 093 — its Ability helps your opponent |
 | Pumpkaboo (Psychic) | **3** | 0 | Any print |
 | Gengar, SSH 085 | **1** | 0 | *Life Shaker* |
 | Gengar, LOR 066 | **1** | **2** | Buy **Lost Origin** prints; your ToT 2023 066 is the same card |
@@ -378,52 +364,29 @@ You already own the entire Gastly line and most of the Gourgeist line.
 | Mysterious Treasure | 0 | **3** | Forbidden Light 145 |
 | Level Ball | 0 | **2** | Battle Styles 129 |
 | N | 0 | **3** | Noble Victories 92 |
-| Rare Candy / Ultra Ball / Prof's Research / Switch | 0 | 14 | Any prints |
+| Rare Candy / Ultra Ball / Prof's Research / Switch | **1+ of each** | up to 14 | You own all four now. `cards.csv` has no counts, and these are shared with the Fire and Dark decks — count what's actually spare before ordering |
 | Basic Psychic Energy | 0 | 11 | Never rotates |
 
 **Not Standard legal and cannot be made so** — Noble Victories, Phantom Forces, Plasma Freeze, Chilling Reign, Battle Styles, Forbidden Light, and Lost Origin are all rotated. That's the point, and it's what keeps the parts cheap.
 
 ---
 
-## Cards I Looked At And Rejected
+## Build A or Build B?
 
-You asked about three specifically. Here's what I found.
+| | **A — Witching Hour** | **[B — Long Night](./psychic-sleep.md)** |
+| :--- | :--- | :--- |
+| **Built on** | Gengar LOR 066 | Gengar SSH 085 |
+| **Wins by** | Damage counters everywhere, incl. their Bench | Denying turns |
+| **Signature card** | Chandelure, *Cursed Shadow* | Drowzee, *Hypnosis* |
+| **Main attack cost** | 1 Energy | 3 Energy |
+| **Energy count** | 11 | 12 |
+| **Reaches their Bench?** | ✅ Yes, every turn, free | ❌ Active only |
+| **Consistency** | High — grinds, compounds, forgiving | Swingy — coin flips decide clumps of turns |
+| **Cost to build** | Higher (3× Chandelure NVI) | **Lower** |
+| **Fun to play against?** | Yes — he can learn to play around it | Not especially |
 
-### ✅ Wobbuffet — in, and it's the best card I added
+**My recommendation: build A**, this one. Cursed Shadow reaching the Bench is a genuinely novel thing that neither of the other two decks on your table can do, it teaches Fox a real skill (protect your Basics), and it doesn't depend on coin flips to function.
 
-Covered above. *Bide Barricade* exempting Psychic Pokémon is the whole reason it works, and *Psychic Assault* turns out to be the finisher both drafts were missing.
+**[Build B](./psychic-sleep.md) is the better *deck* in a vacuum** — turn denial is the strongest effect in the game — and it's cheaper. It's just a worse thing to point at a kid.
 
-Worth noting: **Wobbuffet is Weak to Psychic ×2.** Irrelevant against Fox and against your Dark deck — neither plays Psychic — but it means the two Psychic builds would savage each other in a mirror.
-
-### ❌ Unown — genuinely unplayable here, and the reason is arithmetic
-
-The interesting one is **Unown DAMAGE (Lost Thunder 090)**:
-
-> Once during your turn (before your attack), if this Pokémon is your Active Pokémon, and if there are **66 or more damage counters on your Benched Pokémon**, you may use this Ability. If you do, **you win this game.**
-
-An alternate win condition, in a deck whose Gengar moves damage counters around at will. It looks tailor-made.
-
-**It cannot be done.** Your Bench holds 5 Pokémon, and a Pokémon is Knocked Out the moment counters reach its HP — so each one can hold at most (HP ÷ 10) − 1 counters while alive:
-
-| Best case Bench | Max counters alive |
-| :--- | :--- |
-| Chandelure, 130 HP | 12 |
-| Gengar (LOR), 120 HP | 11 |
-| Gourgeist, 120 HP | 11 |
-| Gengar (SSH), 110 HP | 10 |
-| Wobbuffet, 110 HP | 10 |
-| **Total** | **54** |
-
-You need 66. **Even five 130 HP Pokémon only reach 60.** To get there you'd need five benched Pokémon with 150+ HP, which means a completely different deck built around VMAX or ex bench-sitters — and those give up 2 or 3 Prizes each. It is not a tuning problem; it is out of reach by twelve counters.
-
-The other two Unown are worse: **LOT 091** wins if you have 35+ cards in hand, **LOT 092** if your opponent has 12+ Supporters in the Lost Zone. Fun cards. Not these decks.
-
-### 🔶 Drowzee — great card, wrong build
-
-**Drowzee (Unbroken Bonds 071)** — Psychic, 70 HP, Basic. ***Hypnosis* [P]: your opponent's Active Pokémon is now Asleep.** One Energy, turn one, no coin flip.
-
-That is excellent, and it is the foundation of **[Build B](./psychic-sleep.md)**. It doesn't belong here because this deck's Active Spot is already fought over by three cards and Drowzee would be a fourth.
-
----
-
-**Sources:** [PkmnCards](https://pkmncards.com/) · [Limitless TCG](https://limitlesstcg.com/) · [Bulbapedia — Special Conditions](https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG)) · [Pokégym Compendium — Retreating](https://compendium.pokegym.net/category/7-gameplay/retreating/) · [JustinBasil — Damage Control](https://www.justinbasil.com/guide/damage)
+If you want a middle path: **run this build and swap in 2 Drowzee** over the Gourgeist line. You get *Hypnosis* as a turn-one tempo play without committing to the full lock, and Cursed Shadow stays the engine.

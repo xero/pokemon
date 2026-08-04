@@ -309,6 +309,20 @@ MANUAL_CARDS = {
                            "your opponent's Pokémon done to this Pokémon. "
                            "(Damage is not an effect.)",
               "attack1": "[RR] Combustion (50)"},
+    # TCGplayer ships an empty description for this one, so the ability that
+    # the whole tournament deck is built on was missing. Read off the card.
+    "PRE/14": {"card_text": "Tera - As long as this Pokémon is on your Bench, "
+                            "prevent all damage done to this Pokémon by attacks "
+                            "(both yours and your opponent's)."},
+    # TCGplayer lists only Rainbow DNA here and drops the second ability. Both
+    # read off the card; Tera is worded the same as on Flareon ex.
+    "PRE/75": {"card_text": "Rainbow DNA - This Pokémon can evolve into any "
+                            "Pokémon ex that evolves from Eevee if you play it "
+                            "from your hand onto this Pokémon. (This Pokémon "
+                            "can't evolve during your first turn or the turn you "
+                            "play it.) Tera - As long as this Pokémon is on your "
+                            "Bench, prevent all damage done to this Pokémon by "
+                            "attacks (both yours and your opponent's)."},
 }
 
 MANUAL_MARKS = {

@@ -3,54 +3,16 @@
 ### Mega Gengar ex, the current meta, and how ex decks actually work
 
 > [!NOTE]
-> **How to read this file.**
+> **What this file is for.**
 >
-> Two things you asked for, in order:
+> Two things, and neither one is a shopping list.
 >
-> 1. **[The Gengar Meta](#the-gengar-meta)** — where Gengar actually sits in Standard right now, what the card does, and what a real deck looks like.
-> 2. **[How To Play ex Style](#how-to-play-ex-style)** — the primer. If you skip everything else, read that section. It's the part that transfers to any ex deck, not just this one.
+> 1. **[The Gengar Meta](#the-gengar-meta)** — where Gengar actually sits in Standard right now, what the card does, and what a real competitive list looks like.
+> 2. **[How To Play ex Style](#how-to-play-ex-style)** — the primer. If you skip everything else, read that section. It is the part that transfers to **any** ex deck, not just this one.
+>
+> Multi-Prize Pokémon change how the game is played, not just how hard it hits.
 >
 > Companion files: **[Flareon ex / Noctowl](./fire-standard.md)** · **[Rainbow DNA](./eevee-standard.md)** · **[Ground Zero](./fighting-standard.md)** — Fox's three Standard options.
-
----
-
-## First, a correction — twice over
-
-I said you didn't own Mega Gengar ex, because it isn't in `cards.csv`. **You do own one.** Your order history has it:
-
-> **Starter Set MEGA Mega Gengar ex** — MBG: MEGA Starter Set Mega Gengar ex — *Unopened, **Japanese*** — $37.25, ordered 31 July 2026
-
-It never reached `cards.csv` because the scraper only walked the singles URLs, and this is a sealed product.
-
-> [!IMPORTANT]
-> **It's Japanese, which matters twice.**
->
-> 1. **You already ruled Japanese cards out.** Your words, earlier in this project: *"they're japanese, the backing is slightly different so i dont wanna play with them."* That reasoning applies here too.
-> 2. **Japanese cards are not legal at English-language Play! Pokémon events.** For tournament use in the US you need the English print regardless.
->
-> So the starter set is a great thing to open and read — it's a whole preconstructed deck and it'll show you how the card is *meant* to be played — but if the goal is Standard play, you still need English copies. See [the printings table](#which-mega-gengar-ex-printing) below.
-
-## Second, the genuinely good news
-
-**Your Gengar Gang deck is already Standard legal.** Every single card in `dark.csv` carries Regulation **H, I, or J**:
-
-| Card | Set | Reg |
-| :--- | :--- | :--- |
-| Gastly | Perfect Order 048 | **J** |
-| Haunter | Phantasmal Flames 055 | **I** |
-| Gengar | Perfect Order 050 | **J** |
-| Koffing / Weezing | Journey Together 091 / 092 | **I** |
-| Dawn | Phantasmal Flames 087 | **I** |
-| Lillie's Determination · Boss's Orders · Ultra Ball · Rare Candy · Switch · Risky Ruins | Mega Evolution | **I** |
-| Gwynn · Dark Bell · Shadowy Darkness Energy | Pitch Black | **J** |
-| Punk Helmet | Phantasmal Flames 092 | **I** |
-| Buddy-Buddy Poffin | Temporal Forces 144 | **H** |
-| Night Stretcher | Shrouded Fable 061 | **H** |
-| Basic Darkness Energy | — | never rotates |
-
-You could walk into a tournament with it tomorrow. Fox's deck needs a full rebuild; yours needs **one card**.
-
-And you already own **Gastly PFL 054** — the exact Gastly the competitive dark box lists play.
 
 ---
 
@@ -295,7 +257,3 @@ Same name, same 350 HP, same Stage 2 from Haunter, same *Shadowy Concealment*, s
 > *Shadowy Concealment* is a **metagame card**. It's excellent at a league night full of Dragapult and Gardevoir. It does **nothing** against Fox, and nothing against a single-prize deck.
 >
 > If the goal is tournament play, this is the build. If the goal is better games at the kitchen table, your existing `dark.csv` deck is already legal, already balanced against his, and adding a 3-Prize 350 HP Mega to it would wreck that balance in one card.
-
----
-
-**Sources:** [Bulbapedia — Mega Gengar ex (PFL 56)](https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56)) · [Bulbapedia — Mega Evolution Pokémon ex](https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG)) · [Limitless TCG](https://limitlesstcg.com/) · [Joseph Writer Anderson — Mega Gengar ex deck guide](https://www.josephwriteranderson.com/blog/mega-gengar-ex-deck-list-and-guide) · [Pokémon.com — 2026 Rotation](https://www.pokemon.com/us/news/2026-pokemon-tcg-standard-format-rotation-announcement)

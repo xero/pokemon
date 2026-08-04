@@ -474,6 +474,16 @@
 			vertical-align: top;
 		}
 
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
 		th {
 			color: var(--muted);
 			font-size: 0.85em;
@@ -522,12 +532,19 @@
 			padding: var(--pad);
 			margin-block: 1em;
 
-			/* a callout inside a card sits on the card's own background, so it
-			   needs the page colour to read as a separate box rather than a
-			   rectangle of border. */
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
 			article &,
 			main > section & {
 				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
 			}
 
 			h2 {
@@ -542,7 +559,8 @@
 			}
 
 			p + p,
-			ul {
+			ul,
+			ol {
 				padding-top: 0.7em;
 			}
 
@@ -553,7 +571,10 @@
 				padding-top: 0;
 			}
 
-			ul {
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
 				padding-inline-start: 1.2em;
 			}
 		}
@@ -602,7 +623,22 @@
 				<section>
 					<h2><a href="./fire.html">Fox's Fire Force</a></h2>
 					<p>Fox&#x27;s deck, card by card: what each one is for, what it wants to sit next to, and how to beat dad.</p>
-					<p><small><em>38 unique cards</em></small></p>
+					<p><small><em>20 unique cards</em></small></p>
+				</section>
+			</article>
+			<article>
+				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/noctowl.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./fire-tournament.html">Fox's Flareon Engine</a></h2>
+					<p>Fox&#x27;s tournament deck. Flareon ex, Noctowl, and why a Bench dad cannot touch changes how the whole game is played.</p>
+					<p><small><em>16 unique cards</em></small></p>
+				</section>
+			</article>
+			<article>
+				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/hoothoot.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./fire-standard.html">Fox's Flareon ex — Standard Legal</a></h2>
+					<p>The planning notes behind the Flareon Engine: why the deck is built this way, the exact card text, and what it still gives up.</p>
 				</section>
 			</article>
 			<article>
@@ -611,6 +647,27 @@
 					<h2><a href="./dark.html">Xero's Gengar Gang</a></h2>
 					<p>Xero&#x27;s deck. The dark duo of Gengar and Weezing, and the two-turn combo dad&#x27;s whole deck is built around.</p>
 					<p><small><em>19 unique cards</em></small></p>
+				</section>
+			</article>
+			<article>
+				<aside data-sprite><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./dark-ex.html">Xero's Dark Box — Standard Legal</a></h2>
+					<p>Planning notes. What a real Standard Mega Gengar ex deck looks like, and the honest argument for not putting one across the table from Fox.</p>
+				</section>
+			</article>
+			<article>
+				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./psychic-lanterns.html">Xero's Witching Hour</a></h2>
+					<p>Paper plan. Chandelure dropping three damage counters anywhere on the board, every turn, for free — including on the Bench.</p>
+				</section>
+			</article>
+			<article>
+				<aside data-sprite><img src="./assets/sprites/hypno.gif" alt="" /><img src="./assets/sprites/drowzee.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./psychic-sleep.html">Xero's Long Night</a></h2>
+					<p>Paper plan. The other way to build the Psychic Gengars: put them to sleep on turn one and never let them wake up.</p>
 				</section>
 			</article>
 		</main>

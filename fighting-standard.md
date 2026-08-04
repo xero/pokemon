@@ -168,7 +168,7 @@ Against a wide board it ends games outright. Against a narrow one it's a coin fl
 | | **[Flareon ex](./fire-standard.md)** | **[Rainbow DNA](./eevee-standard.md)** | **Ground Zero** |
 | :--- | :--- | :--- | :--- |
 | **Type** | Fire | Six types | Fighting |
-| **Uses cards he owns** | ✅ **Most** | ✅ Some | ❌ None |
+| **Uses cards he owns** | ✅ **All of it** | ✅ All but 3 | Trainers only |
 | **Complexity** | Medium | **High** | **Low** |
 | **Cost to build** | Medium | **High** | Low–Medium |
 | **Prizes given up** | 2 | 2 | **3** |
@@ -181,7 +181,3 @@ Against a wide board it ends games outright. Against a narrow one it's a coin fl
 **[Rainbow DNA](./eevee-standard.md) is where I'd go next**, once he's comfortable. It's the deck he'd actually be excited about, and *Onyx* stealing a Prize card is the kind of effect a kid remembers for years.
 
 **Ground Zero is the wildcard.** Build it if he ever says the Charizard deck feels slow — or if you want him to learn Prize math the hard way, in one afternoon.
-
----
-
-**Sources:** [Pokémon.com — 2026 Rotation](https://www.pokemon.com/us/news/2026-pokemon-tcg-standard-format-rotation-announcement) · [Limitless TCG — Mega Zygarde ex](https://limitlesstcg.com/cards/POR/47) · [Pokémon.com TCG Card Database](https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/me03/104)

@@ -92,16 +92,16 @@ Umbreon ex sits on the Bench at **280 HP behind Tera** — immune to attack dama
 
 **Pokémon (19)**
 
-| Qty | Card | Set | Number | Reg | Owns |
-| --- | --- | --- | --- | --- | --- |
-| 4 | Eevee | Prismatic Evolutions | 074 | H | **2** |
-| 3 | Eevee ex | Prismatic Evolutions | 075 | H | **1** |
-| 2 | Flareon ex | Prismatic Evolutions | 014 | H | **1** |
-| 2 | Umbreon ex | Prismatic Evolutions | 060 | H | 0 |
-| 1 | Leafeon ex | Prismatic Evolutions | 006 | H | 0 |
-| 1 | Glaceon ex | Prismatic Evolutions | 026 | H | 0 |
-| 4 | Hoothoot | Stellar Crown | 114 | H | 0 |
-| 2 | Noctowl | Stellar Crown | 115 | H | 0 |
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Eevee | Prismatic Evolutions | 074 | H |
+| 3 | Eevee ex | Prismatic Evolutions | 075 | H |
+| 2 | Flareon ex | Prismatic Evolutions | 014 | H |
+| 2 | Umbreon ex | Prismatic Evolutions | 060 | H |
+| 1 | Leafeon ex | Prismatic Evolutions | 006 | H |
+| 1 | Glaceon ex | Prismatic Evolutions | 026 | H |
+| 4 | Hoothoot | Stellar Crown | 114 | H |
+| 2 | Noctowl | Stellar Crown | 115 | H |
 
 **Trainers (29)**
 
@@ -184,7 +184,7 @@ The mitigation is *Tera*. A Benched eeveelution ex takes **zero** damage from at
 
 **It is the hardest of the three to pilot.** Six Energy types, a toolbox of 1-ofs, one ACE SPEC doing two jobs, and a win condition that requires assembling three specific Energy types. This is a deck for a kid who has already got comfortable with the basics — which, after a season of the Charizard deck, he might well be.
 
-**It is also the most expensive.** Nine different eeveelution ex, four Noctowl-line cards, four Crispin, and a Sparkling Crystal. There's no way to build it cheaply.
+**It is still the most expensive of the three.** The Noctowl line, Crispin, and Sparkling Crystal are all in the binder now, so what's left to buy is the part that was always going to cost: four more eeveelution ex, one of them a card people speculate on.
 
 **Weak to Fighting ×2 on Eevee ex** — so [Build 3](./fighting-standard.md) beats it, badly. Worth knowing if you end up building more than one of these.
 
@@ -194,24 +194,16 @@ The mitigation is *Tera*. A Benched eeveelution ex takes **zero** damage from at
 
 ## What To Buy
 
-| Card | Own | Need |
+Checked against `cards.csv`. Everything else this deck lists is already in the binder, including all four Stellar Crown cards and every Trainer.
+
+| Card | Set | Need |
 | :--- | :--- | :--- |
-| Eevee, PRE 074 | **2** | 2 |
-| Eevee ex, PRE 075 | **1** | 2 |
-| Flareon ex, PRE 014 | **1** | 1 |
-| Umbreon ex, PRE 060 | 0 | **2** |
-| Leafeon ex, PRE 006 | 0 | 1 |
-| Glaceon ex, PRE 026 | 0 | 1 |
-| Hoothoot / Noctowl, SCR 114 / 115 | 0 | 4 / 2 |
-| Crispin, SCR 133 | 0 | 4 |
-| Sparkling Crystal, SCR 142 | 0 | 1 |
-| Buddy-Buddy Poffin / Lillie's / Night Stretcher | household | 4 / 4 / 3 |
-| Ultra Ball / Boss's Orders / Switch, ME01 | **✅ some** | top up |
-| Energy — Fire, Darkness, Lightning, Psychic, Grass | ✅ Fire | the rest |
+| **Umbreon ex** | Prismatic Evolutions 060 | 2 |
+| Leafeon ex | Prismatic Evolutions 006 | 1 |
+| Glaceon ex | Prismatic Evolutions 026 | 1 |
+| Basic Lightning / Psychic / Grass Energy | any | 2 / 2 / 1 |
+
+**All three are Prismatic Evolutions.** One set, one seller, one shipping charge. Fire and Darkness Energy you already have.
 
 > [!TIP]
 > **Watch the Umbreon ex price.** The regular PRE 060 print is a normal Double Rare at a few dollars. The Special Illustration Rare version of the same card is one of the most expensive cards in modern Pokémon. **Same card, same text, same legality** — buy the cheap print, exactly like the Eevee (Poké Ball Pattern) lesson in `fire.md`.
-
----
-
-**Sources:** [Pokémon.com — 2026 Rotation](https://www.pokemon.com/us/news/2026-pokemon-tcg-standard-format-rotation-announcement) · [Limitless TCG](https://limitlesstcg.com/) · [Serebii — Prismatic Evolutions set list](https://www.serebii.net/card/prismaticevolutions/) · [Bulbapedia — Sparkling Crystal](https://bulbapedia.bulbagarden.net/wiki/Sparkling_Crystal_(Stellar_Crown_142))

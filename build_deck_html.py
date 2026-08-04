@@ -40,7 +40,12 @@ NAV_LABEL = {
 
 # The mascot shown beside each deck's title.
 MASCOT = {"dark.md": ["gengar", "weezing"],
-          "fire.md": ["charizard", "flareon"]}
+          "fire.md": ["charizard", "flareon"],
+          "fire-tournament.md": ["flareon", "noctowl"],
+          "fire-standard.md": ["eevee", "flareon"],
+          "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
+          "psychic-lanterns.md": ["chandelure", "gengar"],
+          "psychic-sleep.md": ["hypno", "gengar"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -57,6 +62,74 @@ FLAVOR = {
         "His annoying cards": ["haunter"],
         "7. Mistakes That Will Cost You The Game": ["eevee-back"],
         "8. The Turn Checklist": ["charmeleon"],
+    },
+    # the planning docs put their sprites on the Key Card Text entries, which
+    # are the closest thing they have to a card page.
+    # no sprite exists for Toxtricity, Munkidori, or Dragapult, so this one
+    # runs on the Gengar line it is named after.
+    "dark-ex.md": {
+        "The Gengar Meta": ["gengar-mega"],
+        "The card": ["gengar-mega-shiny"],
+        "❌ Gengar Spirit Link — skip it": ["wobbuffet-back"],
+        "The engine: Toxtricity → Munkidori": ["haunter"],
+        "The Shell": ["gastly"],
+        "How To Play ex Style": ["charizard"],
+        "7. Errors to expect on the way over": ["eevee-back"],
+        "What To Buy": ["koffing"],
+    },
+    "fire-standard.md": {
+        "The Thesis": ["flareon"],
+        "Flareon ex — Prismatic Evolutions 014 · Reg H": ["flareon-back"],
+        "Eevee ex — Prismatic Evolutions 075 · Reg H": ["eevee"],
+        "Eevee — Prismatic Evolutions 074 · Reg H": ["eevee-back"],
+        "Noctowl — Stellar Crown 115 · Reg H · Hoothoot — Stellar Crown 114":
+            ["noctowl", "hoothoot"],
+        "3. The Bench Is a Fortress": ["charizard"],
+        "Honest Weaknesses": ["charmander"],
+    },
+    "psychic-lanterns.md": {
+        "The Thesis": ["gastly"],
+        "Chandelure — Noble Victories 060": ["chandelure"],
+        "Litwick — Noble Victories 058 · Lampent — Noble Victories 059":
+            ["litwick", "lampent"],
+        "Wobbuffet — Phantom Forces 036": ["wobbuffet"],
+        "Gengar — Lost Origin 066 *(you own the Trick or Trade 2023 reprint)*":
+            ["gengar"],
+        "Gengar — Sword & Shield 085": ["gengar-booty"],
+        "Gourgeist — Evolving Skies 077 *(you own this as Trick or Trade 077)*":
+            ["gourgeist"],
+        "2. The Traffic Jam": ["pumpkaboo"],
+        "Versus Fox": ["charizard"],
+        "Build A or Build B?": ["drowzee"],
+    },
+    "psychic-sleep.md": {
+        "The Thesis": ["gastly"],
+        "Drowzee — Unbroken Bonds 071": ["drowzee"],
+        "Hypno — Unbroken Bonds 072": ["hypno"],
+        "Gengar — Sword & Shield 085": ["gengar"],
+        "Gourgeist — Paradox Rift 078": ["gourgeist"],
+        "Wobbuffet — Phantom Forces 036": ["wobbuffet"],
+        "Gengar — Lost Origin 066 *(single copy)*": ["gengar-booty"],
+        "4. Bide Barricade, and the One Thing It Costs You":
+            ["wobbuffet-back"],
+        "6. The Cemetery Tax": ["pumpkaboo"],
+        "Versus Fox": ["charizard"],
+        "Build A or Build B?": ["chandelure"],
+    },
+    "fire-tournament.md": {
+        "1. The Two-Energy Engine": ["flareon"],
+        "2. Turn One, Flareon": ["eevee"],
+        "3. Jewel Seeker Is Your Real Draw Engine": ["noctowl"],
+        "4. The Bench Is a Fortress": ["hoothoot"],
+        "5. The Prize Race Changed": ["gengar-mega"],
+        "6. Reading Your First Hand": ["eevee-back"],
+        "7. Beating Dad's Gengar Gang": ["gengar"],
+        "Weezing — his early attacker (130 HP)": ["weezing"],
+        "Gengar — his closer (130 HP)": ["gengar-booty"],
+        "His answer to *Tera* is Boss's Orders": ["koffing"],
+        "His annoying cards": ["haunter"],
+        "8. Mistakes That Will Cost You The Game": ["flareon-back"],
+        "9. The Turn Checklist": ["charizard"],
     },
     "dark.md": {
         "1. The Two-Turn Fuse": ["weezing"],
@@ -82,6 +155,19 @@ def flavor(name, table, used):
 GLYPH_ROWS = {"Type", "Weakness", "Resistance"}
 
 
+def local_href(url):
+    """Point a sibling .md link at its built page when there is one.
+
+    The markdown has to link .md so the files navigate on GitHub. From the
+    built page that lands on the raw source instead, so a link is rewritten
+    only when the .html actually exists.
+    """
+    m = re.fullmatch(r"(\./)([\w-]+)\.md", url)
+    if m and (ROOT / f"{m.group(2)}.html").exists():
+        return f"./{m.group(2)}.html"
+    return url
+
+
 def inline(s):
     """Markdown spans to HTML. Raw tags in the source are passed through."""
     keep = []
@@ -93,7 +179,8 @@ def inline(s):
     s = re.sub(r"<(?:img|br)\b[^>]*/?>", stash, s)
     s = esc(s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
-    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
+    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
+               lambda m: f'<a href="{local_href(m.group(2))}">{m.group(1)}</a>', s)
     # bold first, and allowed to span anything, so "**a *b* c**" works. the
     # old pattern refused to cross a nested emphasis and left the ** visible.
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s, flags=re.S)
@@ -121,8 +208,15 @@ def render_table(rows, ind, stats=False):
         # a card's stat block is marked so it can be styled apart from the
         # tables that appear in the prose. the tell is the card image: a real
         # card has one, a table of matchups or opening hands does not.
-        tag = '<dl class="card">' if stats else "<dl>"
-        return [f"{ind}{tag}"] + stat_rows(rows[1:]) + [f"{ind}</dl>"]
+        if stats:
+            # "Key | Val" over a card's stats says nothing worth a row
+            return ([f'{ind}<dl class="card">'] + stat_rows(rows[1:])
+                    + [f"{ind}</dl>"])
+        # everywhere else the header is the only thing that says what the left
+        # column means. dropping it left tables reading "3 | 60".
+        head = (f"{ind}\t<dt data-head>{inline(rows[0][0])}</dt>"
+                f"<dd data-head>{inline(rows[0][1])}</dd>")
+        return [f"{ind}<dl>", head] + stat_rows(rows[1:]) + [f"{ind}</dl>"]
     head, body = rows[0], rows[1:]
     out = [f"{ind}<table>",
            f"{ind}\t<thead><tr>"
@@ -243,6 +337,15 @@ def convert(src):
                 emit("\t\t\t</aside>")
             continue
 
+        # a ### sitting directly under the page title is a subtitle, not a
+        # card. the planning docs open that way ("Build A - ..."), and left as
+        # an article it swallowed the intro callout into a box of its own.
+        if (stripped.startswith("### ") and title and not subtitle
+                and not body and art is None and sect is None):
+            subtitle = stripped[4:].strip()
+            i += 1
+            continue
+
         if stripped.startswith("### "):
             close_art()
             name = stripped[4:].strip()
@@ -359,6 +462,10 @@ def build_nav(toc):
     """
     out = ["<nav>", "\t<details open>", "\t\t<summary>Contents</summary>"]
     group, kids = None, []
+    # the planning docs have no top-level groups at all, only ## sections. with
+    # nothing to group under, promoting the first one turned it into a label
+    # for its own siblings and cost it its link.
+    grouped = any(lvl == 1 for lvl, _, _ in toc)
 
     def flush():
         nonlocal group
@@ -375,7 +482,7 @@ def build_nav(toc):
         group = None
 
     for level, text, a in toc:
-        if level == 1 or (level == 2 and group is None and not kids):
+        if level == 1 or (grouped and level == 2 and group is None and not kids):
             flush()
             group = text
         else:
@@ -401,7 +508,10 @@ def bullets_or_para(text, ind):
     return [f"{ind}<p>{inline(' '.join(lines))}</p>"]
 
 
-for name in sys.argv[1:] or ["dark.md", "fire.md"]:
+DECKS = ["dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
+         "fire-standard.md", "psychic-lanterns.md", "psychic-sleep.md"]
+
+for name in sys.argv[1:] or DECKS:
     src = ROOT / name
     dest = src.with_suffix(".html")
     title, subtitle, nav, body, notes = convert(src)

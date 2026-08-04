@@ -26,6 +26,23 @@ SOURCES = [
         'Confused (TCG)</a>, because both decks lean on it, and'
         ' <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50)">'
         'Gengar (Perfect Order 50)</a>, for the exact text of Infinite Shadow.',
+        'The awkward rules questions were settled by'
+        ' <a href="https://www.justinbasil.com/guide/damage">JustinBasil</a> on'
+        ' why damage counters ignore Weakness and every prevent-damage effect,'
+        ' the <a href="https://compendium.pokegym.net/category/7-gameplay/retreating/">'
+        'Pokégym Compendium</a> on retreating, and'
+        ' <a href="https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG)">'
+        'Bulbapedia on Special Conditions</a> for how Sleep and Confusion'
+        ' actually resolve.',
+        'Deck lists and what people are really playing come from'
+        ' <a href="https://limitlesstcg.com/">Limitless TCG</a> and the'
+        ' <a href="https://www.pokemon.com/us/pokemon-tcg/">Pokémon.com card'
+        ' database</a>. Full set lists, for checking a card exists before'
+        ' planning around it, come from'
+        ' <a href="https://www.serebii.net/card/">Serebii</a>. And'
+        ' <a href="https://www.josephwriteranderson.com/blog/mega-gengar-ex-deck-list-and-guide">'
+        "Joseph Writer Anderson's Mega Gengar ex guide</a> worked out how that"
+        ' deck is actually piloted.',
     ]),
     ("Card data", "weezing", [
         'Names, sets, numbers, rarity, types, HP, stage, attacks, weakness,'

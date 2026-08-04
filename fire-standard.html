@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Fox's Flareon ex — Standard Legal</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin-block: 0.8em;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			padding: 0.45em 0.7em 0.45em 0;
+			vertical-align: top;
+		}
+
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		th {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Fox's Flareon ex — Standard Legal <img data-mascot src="./assets/sprites/eevee.gif" alt="" /> <img data-mascot src="./assets/sprites/flareon.gif" alt="" /></h1>
+			<p>Tournament-proven Fire Deck</p>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><span><a href="#the-thesis">The Thesis</a> · <a href="#deck-list">Deck List</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#game-plans">Game Plans</a> · <a href="#honest-weaknesses">Honest Weaknesses</a></span></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
+					<p><strong>Flareon ex is not an attacker that happens to accelerate Energy. It is an Energy engine that happens to hit for 130.</strong></p>
+			<aside data-callout="note">
+				<p><strong><em>Burning Charge</strong></em> [R][C], <strong>130 damage.</strong> Search your deck for up to <strong>2 Basic Energy cards</strong> and attach them to 1 of your Pokémon.</p>
+			</aside>
+					<p>Read what that doesn&#x27;t say. It doesn&#x27;t say <em>Fire</em> Energy. It says <strong>Basic Energy</strong> — any type, any two, attached wherever you want. Every turn you attack, you also make a two-Energy attachment out of nowhere.</p>
+					<p>Three consequences:</p>
+					<ol>
+						<li><strong>You are never Energy-screwed.</strong> The attack finds them from the deck, so your Energy count can be lean.</li>
+						<li><strong>The deck can support off-type attacks</strong> — this is what makes <a href="./eevee-standard.md">Build 2</a> possible at all.</li>
+						<li><strong>130 for two Energy is fine damage on its own.</strong> You are not paying for the engine.</li>
+					</ol>
+					<p>The second pillar is <strong>Tera</strong>, which every eeveelution ex has:</p>
+			<aside data-callout="note">
+				<p><strong><em>Tera</strong></em> — As long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to it by attacks (both yours and your opponent&#x27;s).</p>
+			</aside>
+					<p>A benched Flareon ex is untouchable. That is the exact opposite of the problem his current Charizard deck has, where Charmanders sit on the Bench getting sniped for three turns.</p>
+					<p>And Tera unlocks the third piece:</p>
+			<aside data-callout="note">
+				<p><strong>Noctowl — <em>Jewel Seeker</em>.</strong> Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, <strong>if you have any Tera Pokémon in play</strong>, search your deck for up to <strong>2 Trainer cards</strong> and put them into your hand.</p>
+			</aside>
+					<p>Two free Trainers, on demand, twice or three times a game.</p>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+					<p><strong>Pokémon (16)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Eevee</td><td>Prismatic Evolutions</td><td>074</td><td>H</td></tr>
+							<tr><td>2</td><td>Eevee ex</td><td>Prismatic Evolutions</td><td>075</td><td>H</td></tr>
+							<tr><td>3</td><td>Flareon ex</td><td>Prismatic Evolutions</td><td>014</td><td>H</td></tr>
+							<tr><td>4</td><td>Hoothoot</td><td>Stellar Crown</td><td>114</td><td>H</td></tr>
+							<tr><td>3</td><td>Noctowl</td><td>Stellar Crown</td><td>115</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (31)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces 144</td><td>H</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution 131</td><td>I</td></tr>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution 119</td><td>I</td></tr>
+							<tr><td>4</td><td>Crispin</td><td>Supporter</td><td>Stellar Crown 133</td><td>H</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution 114</td><td>I</td></tr>
+							<tr><td>3</td><td>Switch</td><td>Item</td><td>Mega Evolution 130</td><td>I</td></tr>
+							<tr><td>3</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable 061</td><td>H</td></tr>
+							<tr><td>2</td><td>Gwynn</td><td>Supporter</td><td>Pitch Black 078</td><td>J</td></tr>
+							<tr><td>1</td><td><strong>Sparkling Crystal</strong></td><td>ACE SPEC Tool</td><td>Stellar Crown 142</td><td>H</td></tr>
+							<tr><td>3</td><td><em>flex</em></td><td>—</td><td>—</td><td>—</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (13)</strong> — 10 Basic Fire, 3 Basic Water.</p>
+					<p><strong>16 + 31 + 13 = 60.</strong> ✅</p>
+			<aside data-callout="note">
+				<p><strong>The 3 flex slots are deliberate.</strong> I verified every card above is Regulation H/I/J, but I did <strong>not</strong> verify the current post-rotation search and draw staples beyond what&#x27;s listed — I&#x27;d be guessing at what replaced Nest Ball and Professor&#x27;s Research. Fill those three from a current staple list before you build. Everything else is confirmed legal.</p>
+			</aside>
+			<aside data-callout="tip">
+				<p><strong>&quot;Eevee&quot; and &quot;Eevee ex&quot; are different card names.</strong> The four-copy limit is per name, and the <em>ex</em> is part of the name — so 4 Eevee <strong>plus</strong> 4 Eevee ex is perfectly legal. Same trick applies to Flareon and Flareon ex.</p>
+				<p>The three Water Energy do two jobs: they give <a href="#deck-list">Crispin</a> a second Energy type to find, and with <strong>Sparkling Crystal</strong> attached they pay the [W] in <em>Carnelian</em> and <em>Coruscating Quartz</em>. See <a href="#4-carnelian-is-a-trap-most-of-the-time">Carnelian Is a Trap Most of the Time</a>.</p>
+			</aside>
+			<aside data-callout="tip">
+				<p><strong>This deck runs zero Rare Candy.</strong> Flareon ex is a <strong>Stage 1</strong>, not a Stage 2 — Eevee evolves straight into it. All eight of your Rare Candy stay with the Gengar deck, and the whole &quot;can&#x27;t Candy on turn one / can&#x27;t Candy a Basic played this turn&quot; trap that dominates his current Charizard deck simply doesn&#x27;t exist here.</p>
+				<p>That&#x27;s a genuine simplification for a ten-year-old, and it&#x27;s worth pointing out to him as a <em>feature</em> of the rebuild.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="key-card-text">Key Card Text</h3>
+			<article>
+				<h3 id="flareon-ex-prismatic-evolutions-014-reg-h">Flareon ex — Prismatic Evolutions 014 · Reg H<span data-flavor><img src="./assets/sprites/flareon-back.gif" alt="" /></span></h3>
+				<section>
+					<p>Fire, <strong>270 HP</strong>, Stage 1 from Eevee. Weak <strong>Water ×2</strong>, Retreat 2. <strong>Gives up 2 Prize cards.</strong></p>
+					<ul>
+						<li><strong>Ability — <em>Tera</em>.</strong> While on your Bench, prevent all damage done to this Pokémon by attacks.</li>
+						<li><strong><em>Burning Charge</strong></em> [R][C], <strong>130</strong> — search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon.</li>
+						<li><strong><em>Carnelian</strong></em> [R][W][<strong>L</strong>], <strong>280</strong> — this Pokémon can&#x27;t attack during your next turn.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex — Prismatic Evolutions 075 · Reg H<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+				<section>
+					<p>Colorless, <strong>200 HP</strong>, Basic. Weak <strong>Fighting ×2</strong>, Retreat 1. <strong>2 Prizes.</strong></p>
+					<ul>
+						<li><strong>Ability — <em>Rainbow DNA</em>.</strong> This Pokémon can evolve into <strong>any Pokémon ex that evolves from Eevee</strong> if you play it from your hand onto this Pokémon.</li>
+						<li><strong>Ability — <em>Tera</em>.</strong></li>
+						<li><strong><em>Coruscating Quartz</strong></em> [R][W][L], 200.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee-prismatic-evolutions-074-reg-h">Eevee — Prismatic Evolutions 074 · Reg H<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+				<section>
+					<p>Colorless, 50 HP, Basic. <strong>Ability — <em>Boosted Evolution</em>:</strong> while in the <strong>Active Spot</strong>, it can evolve during your first turn or the turn you play it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="noctowl-stellar-crown-115-reg-h-hoothoot-stellar-crown-114">Noctowl — Stellar Crown 115 · Reg H · Hoothoot — Stellar Crown 114<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
+				<section>
+					<p>Colorless, 100 HP, Stage 1. Weak Lightning ×2, Resist Fighting −30, Retreat 1.</p>
+					<ul>
+						<li><strong>Ability — <em>Jewel Seeker</em>.</strong> Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any <strong>Tera</strong> Pokémon in play, search your deck for up to 2 Trainer cards, reveal them, and put them into your hand.</li>
+						<li><em>Speed Wing</em> [C][C], 60.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="crispin-stellar-crown-133-reg-h-supporter">Crispin — Stellar Crown 133 · Reg H <em>(Supporter)</em></h3>
+				<section>
+			<aside data-callout="note">
+				<p>Search your deck for up to 2 Basic Energy cards of <strong>different types</strong>. Put 1 into your hand and attach the other to 1 of your Pokémon.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="sparkling-crystal-stellar-crown-142-reg-h-ace-spec">Sparkling Crystal — Stellar Crown 142 · Reg H · <strong>ACE SPEC</strong></h3>
+				<section>
+			<aside data-callout="note">
+				<p>Attach to a <strong>Tera</strong> Pokémon. Its attacks cost 1 less Energy.</p>
+			</aside>
+			<aside data-callout="warning">
+				<p><strong>ACE SPEC means exactly one per deck</strong> — not one per name, one <em>total</em> across all ACE SPEC cards. Choose carefully. In this shell it makes <em>Burning Charge</em> cost a single Fire Energy.</p>
+			</aside>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="game-plans">Game Plans</h3>
+			<article>
+				<h3 id="1-turn-one-flareon">1. Turn One, Flareon</h3>
+				<section>
+					<p>Eevee&#x27;s <em>Boosted Evolution</em> breaks the &quot;no evolving the turn you play it&quot; rule — <strong>but only in the Active Spot.</strong></p>
+<pre><code>Turn 1   Buddy-Buddy Poffin → Eevee + Hoothoot (both under 70 HP)
+         Play Eevee ACTIVE (from hand, not Poffin — Poffin goes to the Bench)
+         Evolve → Flareon ex, same turn
+         Attach Fire
+Turn 2   Burning Charge: 130 damage + 2 free Energy attached anywhere</code></pre>
+			<aside data-callout="caution">
+				<p><strong>Buddy-Buddy Poffin puts Pokémon on the Bench</strong>, and <em>Boosted Evolution</em> only works in the <strong>Active Spot</strong>. Poffin is for fetching your <em>second</em> Eevee and your Hoothoot. The Eevee you intend to evolve immediately has to come from your hand into the Active Spot.</p>
+			</aside>
+					<p><strong>Eevee ex is the better body when you can afford the wait.</strong> 200 HP versus 50, and <em>Rainbow DNA</em> means it evolves into any eeveelution ex — but it has no <em>Boosted Evolution</em>, so it cannot evolve the turn you play it. Plain Eevee is the fast start; Eevee ex is the resilient one.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-jewel-seeker-is-your-real-draw-engine">2. Jewel Seeker Is Your Real Draw Engine</h3>
+				<section>
+					<p>Two Trainer cards, searched, whenever a Noctowl evolves — as long as any Tera Pokémon is in play. Every eeveelution ex is Tera, so that condition is satisfied from turn one.</p>
+					<p><strong>Three Noctowl means three uses.</strong> Don&#x27;t evolve them all at once. Hold a Hoothoot back and evolve it on the turn you need a specific Trainer — this is a tutor disguised as an evolution.</p>
+					<p>Best targets: <strong>Boss&#x27;s Orders</strong> to close a game, <strong>Switch</strong> to escape a lock, <strong>Sparkling Crystal</strong> if it hasn&#x27;t shown up.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-the-bench-is-a-fortress">3. The Bench Is a Fortress<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
+				<section>
+					<p>Every eeveelution ex has <em>Tera</em>: <strong>zero damage from attacks while Benched.</strong></p>
+					<p>This inverts the biggest weakness of his current deck. Charmanders on the Bench are free Prizes for dad&#x27;s Gengar. A Flareon ex on the Bench cannot be touched by <em>Screaming Circle</em>, by <em>Mind Jack</em>, by anything.</p>
+					<p><strong>So the play pattern is:</strong> build on the Bench in total safety, step forward, attack, and if it&#x27;s about to die, Switch it back to safety. Two Switch plus three Night Stretcher makes that a real rotation, not a fantasy.</p>
+			<aside data-callout="note">
+				<p><em>Tera</em> stops <strong>damage from attacks</strong>. It does <strong>not</strong> stop damage counters placed by card effects — which is exactly what dad&#x27;s psychic builds do. If you ever build <a href="./psychic-lanterns.html">Witching Hour</a>, <em>Cursed Shadow</em> goes straight through Tera. Good matchup lesson for both of them.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-carnelian-is-a-trap-most-of-the-time">4. Carnelian Is a Trap Most of the Time</h3>
+				<section>
+					<p>280 damage for [R][W][L] is the biggest number in the deck. It also means <strong>Flareon ex cannot attack next turn</strong>, which in a 2-Prize deck usually hands the opponent a free turn to knock it out and take two.</p>
+					<p>Use it when 280 wins the game or removes a 3-Prize Mega. Otherwise <em>Burning Charge</em> twice does 260 and never skips a turn.</p>
+			<aside data-callout="note">
+				<p><strong>Sparkling Crystal is what makes the second attack legal, and it is the reason to keep it in the ACE SPEC slot.</strong></p>
+				<p><em>Carnelian</em> and <em>Coruscating Quartz</em> both cost [R][W][<strong>L</strong>], confirmed off 014/131, and the list runs no Lightning. Sparkling Crystal removes <strong>1 Energy of any type</strong>, so dropping the [L] leaves [R][W] on both. Castable on the Fire and Water already in the deck.</p>
+				<p>That also settles what the 3 Water are for. They are not filler for Crispin; they are the second half of a 280-damage attack. <em>Burning Charge</em> searches <strong>Basic</strong> Energy, so it can fetch the Water itself.</p>
+			</aside>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="honest-weaknesses">Honest Weaknesses<span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h3>
+					<p><strong>Everything gives up 2 Prizes.</strong> Flareon ex and Eevee ex are both 2-Prize Pokémon in a 6-Prize game. Three knockouts and it&#x27;s over. This is a real change in how Fox has to think — his current deck is entirely 1-Prize, so trades were even. Here, losing one Pokémon costs him a third of the game.</p>
+					<p><strong>Water Weakness ×2.</strong> Flareon ex at 270 HP is enormous until something Water hits it for double. Note this cuts the other way too: <strong>Eevee ex is Weak to Fighting ×2</strong>, which means <a href="./fighting-standard.md">Build 3</a> hard-counters this one.</p>
+			</section>
+		</main>
+		<footer>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+		</footer>
+	</body>
+</html>

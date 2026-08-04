@@ -1,55 +1,6 @@
 # Fox's Flareon ex — Standard Legal
 
-### Build 1 of 3 · Fire · the tournament-proven one
-
-> [!NOTE]
-> **How to read this file.**
->
-> Three Standard-legal directions for Fox, one file each. These are planning docs for **you**, not teaching docs for him — if he picks one, I'll rewrite it in his voice like `fire.md`.
->
-> - **This file** — **Flareon ex / Noctowl**. Fire. Built almost entirely on cards he already owns, and it's a real tournament archetype.
-> - **[Rainbow DNA](./eevee-standard.md)** — the Eevee toolbox. Multi-type. The dream deck for an Eevee fan.
-> - **[Ground Zero](./fighting-standard.md)** — Mega Zygarde ex. Fighting, no evolution lines at all, and the simplest deck on this list to actually pilot.
->
-> **Format:** Standard rotated **10 April 2026**. Regulation marks **H, I, and J** are legal; **G and everything older is out**. Legality is printed on the card, not determined by the set — reprints with a legal mark are fine. ([Pokémon.com rotation announcement](https://www.pokemon.com/us/news/2026-pokemon-tcg-standard-format-rotation-announcement))
-
----
-
-## First, the bad news
-
-I audited every card in `fire.csv` against the current rotation. Of the **20 distinct cards in his deck, 6 are still legal**:
-
-| Still legal | Reg | Rotated out | Reg |
-| :--- | :--- | :--- | :--- |
-| Eevee — PRE 074 | **H** | Charizard — VIV 025 | D |
-| Boss's Orders — ME01 114 | **I** | Charmander / Charmeleon — VIV | D |
-| Rare Candy — ME01 125 | **I** | Leon — VIV 154 | D |
-| Ultra Ball — ME01 131 | **I** | Welder — Battle Academy | — |
-| Switch — ME01 130 | **I** | Sudowoodo, Evolution Incense, Ordinary Rod | D |
-| Basic Fire Energy | never rotates | Zinnia's Resolve / Kindler / Magma Basin | E / F |
-| | | Professor's Research — PRE 122 | **G** |
-| | | Nest Ball — PAF 084 | **G** |
-| | | **Flareon — PRE 013** | **G** |
-
-> [!CAUTION]
-> **The regular Flareon is rotated; Flareon *ex* is not.** PRE 013 is Regulation **G**. PRE 014 is Regulation **H**. Same set, same page of the binder, different legality. This is the single most confusing thing about the current format and it is worth showing him directly — the letter in the bottom-left corner is the only thing that matters.
-
-## And now the good news
-
-**His birthday presents are the legal core of a deck that took 2nd place at a 2026 Regional.**
-
-| Card | Set | Reg | Owns |
-| :--- | :--- | :--- | :--- |
-| **Flareon ex** | Prismatic Evolutions 014 | **H** | ✅ 1 |
-| **Eevee ex** | Prismatic Evolutions 075 | **H** | ✅ 1 |
-| **Eevee** | Prismatic Evolutions 074 | **H** | ✅ 2 (incl. Poké Ball Pattern) |
-| Eevee | Shrouded Fable 050 | **H** | ✅ 1 |
-| Eevee | Twilight Masquerade 135 | **H** | ✅ 1 |
-| Charmander / Charmeleon | Phantasmal Flames 011 / 012 | **I** | ✅ 1 each |
-
-The Flareon ex we bought as a "too strong, save it for later" gift turns out to be the centrepiece of **Flareon ex / Noctowl**, a genuine tier-1 Standard deck. That's a nice thing to be able to tell him.
-
----
+### Tournament-proven Fire Deck
 
 ## The Thesis
 
@@ -83,13 +34,13 @@ Two free Trainers, on demand, twice or three times a game.
 
 **Pokémon (16)**
 
-| Qty | Card | Set | Number | Reg | Owns |
-| --- | --- | --- | --- | --- | --- |
-| 4 | Eevee | Prismatic Evolutions | 074 | H | **2** |
-| 2 | Eevee ex | Prismatic Evolutions | 075 | H | **1** |
-| 3 | Flareon ex | Prismatic Evolutions | 014 | H | **1** |
-| 4 | Hoothoot | Stellar Crown | 114 | H | 0 |
-| 3 | Noctowl | Stellar Crown | 115 | H | 0 |
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Eevee | Prismatic Evolutions | 074 | H |
+| 2 | Eevee ex | Prismatic Evolutions | 075 | H |
+| 3 | Flareon ex | Prismatic Evolutions | 014 | H |
+| 4 | Hoothoot | Stellar Crown | 114 | H |
+| 3 | Noctowl | Stellar Crown | 115 | H |
 
 **Trainers (31)**
 
@@ -116,7 +67,12 @@ Two free Trainers, on demand, twice or three times a game.
 > [!TIP]
 > **"Eevee" and "Eevee ex" are different card names.** The four-copy limit is per name, and the *ex* is part of the name — so 4 Eevee **plus** 4 Eevee ex is perfectly legal. Same trick applies to Flareon and Flareon ex.
 >
-> The three Water Energy are only there for *Carnelian*. If you never use it, cut them.
+> The three Water Energy do two jobs: they give [Crispin](#deck-list) a second Energy type to find, and with **Sparkling Crystal** attached they pay the [W] in *Carnelian* and *Coruscating Quartz*. See [Carnelian Is a Trap Most of the Time](#4-carnelian-is-a-trap-most-of-the-time).
+
+> [!TIP]
+> **This deck runs zero Rare Candy.** Flareon ex is a **Stage 1**, not a Stage 2 — Eevee evolves straight into it. All eight of your Rare Candy stay with the Gengar deck, and the whole "can't Candy on turn one / can't Candy a Basic played this turn" trap that dominates his current Charizard deck simply doesn't exist here.
+>
+> That's a genuine simplification for a ten-year-old, and it's worth pointing out to him as a *feature* of the rebuild.
 
 ---
 
@@ -128,7 +84,7 @@ Fire, **270 HP**, Stage 1 from Eevee. Weak **Water ×2**, Retreat 2. **Gives up 
 
 - **Ability — *Tera*.** While on your Bench, prevent all damage done to this Pokémon by attacks.
 - ***Burning Charge*** [R][C], **130** — search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon.
-- ***Carnelian*** [R][W][C], **280** — this Pokémon can't attack during your next turn.
+- ***Carnelian*** [R][W][**L**], **280** — this Pokémon can't attack during your next turn.
 
 ### Eevee ex — Prismatic Evolutions 075 · Reg H
 
@@ -144,7 +100,7 @@ Colorless, 50 HP, Basic. **Ability — *Boosted Evolution*:** while in the **Act
 
 ### Noctowl — Stellar Crown 115 · Reg H · Hoothoot — Stellar Crown 114
 
-Colorless, 100 HP, Stage 1. Weak Lightning, Resist Fighting −20, Retreat 1.
+Colorless, 100 HP, Stage 1. Weak Lightning ×2, Resist Fighting −30, Retreat 1.
 
 - **Ability — *Jewel Seeker*.** Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any **Tera** Pokémon in play, search your deck for up to 2 Trainer cards, reveal them, and put them into your hand.
 - *Speed Wing* [C][C], 60.
@@ -202,9 +158,16 @@ This inverts the biggest weakness of his current deck. Charmanders on the Bench 
 
 ### 4. Carnelian Is a Trap Most of the Time
 
-280 damage for [R][W][C] is the biggest number in the deck. It also means **Flareon ex cannot attack next turn**, which in a 2-Prize deck usually hands the opponent a free turn to knock it out and take two.
+280 damage for [R][W][L] is the biggest number in the deck. It also means **Flareon ex cannot attack next turn**, which in a 2-Prize deck usually hands the opponent a free turn to knock it out and take two.
 
 Use it when 280 wins the game or removes a 3-Prize Mega. Otherwise *Burning Charge* twice does 260 and never skips a turn.
+
+> [!NOTE]
+> **Sparkling Crystal is what makes the second attack legal, and it is the reason to keep it in the ACE SPEC slot.**
+>
+> *Carnelian* and *Coruscating Quartz* both cost [R][W][**L**], confirmed off 014/131, and the list runs no Lightning. Sparkling Crystal removes **1 Energy of any type**, so dropping the [L] leaves [R][W] on both. Castable on the Fire and Water already in the deck.
+>
+> That also settles what the 3 Water are for. They are not filler for Crispin; they are the second half of a 280-damage attack. *Burning Charge* searches **Basic** Energy, so it can fetch the Water itself.
 
 ---
 
@@ -213,57 +176,3 @@ Use it when 280 wins the game or removes a 3-Prize Mega. Otherwise *Burning Char
 **Everything gives up 2 Prizes.** Flareon ex and Eevee ex are both 2-Prize Pokémon in a 6-Prize game. Three knockouts and it's over. This is a real change in how Fox has to think — his current deck is entirely 1-Prize, so trades were even. Here, losing one Pokémon costs him a third of the game.
 
 **Water Weakness ×2.** Flareon ex at 270 HP is enormous until something Water hits it for double. Note this cuts the other way too: **Eevee ex is Weak to Fighting ×2**, which means [Build 3](./fighting-standard.md) hard-counters this one.
-
-**The deck needs Stellar Crown.** Hoothoot, Noctowl, Crispin, and Sparkling Crystal are all SCR — that's the one set he'd need to buy into meaningfully. All four are cheap; Sparkling Crystal is the only card with a real price.
-
----
-
-## What To Buy
-
-Quantities below are reconciled against the **actual TCGplayer order history**, not the outdated `shopping-list.md`.
-
-### Missing outright — and it's almost all one set
-
-| Card | Set | Need |
-| :--- | :--- | :--- |
-| Hoothoot | **Stellar Crown** 114 | 4 |
-| Noctowl | **Stellar Crown** 115 | 3 |
-| **Crispin** | **Stellar Crown** 133 | 4 |
-| **Sparkling Crystal** *(ACE SPEC)* | **Stellar Crown** 142 | 1 |
-| Basic Water Energy | any | 3 |
-
-**Every missing card except the Energy is Stellar Crown.** One set, one seller, one shipping charge.
-
-### Partially owned Pokémon
-
-| Card | Own | Need | Buy |
-| :--- | :--- | :--- | :--- |
-| Eevee, PRE 074 | **3** — 2 plain + 1 Poké Ball Pattern | 4 | **1** |
-| Eevee ex, PRE 075 | **1** | 2 | **1** |
-| Flareon ex, PRE 014 | **1** | 3 | **2** |
-
-> The Poké Ball Pattern Eevee counts here — same card, same number, same *Boosted Evolution*. Exactly the point made in `fire.md`.
-
-### Trainers — only short if both decks are sleeved at once
-
-The four-copy limit is per **deck**, so these aren't rules conflicts. They're only purchases if you want Gengar Gang and this deck built simultaneously.
-
-| Card | Own | Dad's deck | Fox's deck | Both | Buy |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Buddy-Buddy Poffin** | 4 | 4 | 4 | 8 | **4** |
-| **Lillie's Determination** | 3 | 3 | 4 | 7 | **4** |
-| **Night Stretcher** | 3 | 3 | 3 | 6 | **3** |
-| **Gwynn** | 2 | 2 | 2 | 4 | **2** |
-| Ultra Ball | **8** | 4 | 4 | 8 | ✅ 0 |
-| Switch | **5** | 2 | 3 | 5 | ✅ 0 |
-| Boss's Orders | **8** | 2 | 3 | 5 | ✅ 0 *(3 spare)* |
-| Rare Candy | **8** | 4 | **0** | 4 | ✅ 0 *(4 spare)* |
-
-> [!TIP]
-> **This deck runs zero Rare Candy.** Flareon ex is a **Stage 1**, not a Stage 2 — Eevee evolves straight into it. All eight of your Rare Candy stay with the Gengar deck, and the whole "can't Candy on turn one / can't Candy a Basic played this turn" trap that dominates his current Charizard deck simply doesn't exist here.
->
-> That's a genuine simplification for a ten-year-old, and it's worth pointing out to him as a *feature* of the rebuild.
-
----
-
-**Sources:** [Pokémon.com — 2026 Rotation](https://www.pokemon.com/us/news/2026-pokemon-tcg-standard-format-rotation-announcement) · [Limitless TCG](https://limitlesstcg.com/) · [PkmnCards](https://pkmncards.com/) · [Deltia's Gaming — Emma Hagen's Flareon ex deck, 2026 Birmingham Regional 2nd](https://deltiasgaming.com/pokemon-tcg-emma-hagens-flareon-ex-deck-guide/)

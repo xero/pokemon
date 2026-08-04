@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Xero's Dark Box — Standard Legal</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin-block: 0.8em;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			padding: 0.45em 0.7em 0.45em 0;
+			vertical-align: top;
+		}
+
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		th {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Xero's Dark Box — Standard Legal <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></h1>
+			<p>Mega Gengar ex, the current meta, and how ex decks actually work</p>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><span><a href="#the-gengar-meta">The Gengar Meta</a> · <a href="#the-shell">The Shell</a> · <a href="#how-to-play-ex-style">How To Play ex Style</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>Two things, and neither one is a shopping list.</p>
+				<ol>
+					<li><strong><a href="#the-gengar-meta">The Gengar Meta</a></strong> — where Gengar actually sits in Standard right now, what the card does, and what a real competitive list looks like.</li>
+					<li><strong><a href="#how-to-play-ex-style">How To Play ex Style</a></strong> — the primer. If you skip everything else, read that section. It is the part that transfers to <strong>any</strong> ex deck, not just this one.</li>
+				</ol>
+				<p>Multi-Prize Pokémon change how the game is played, not just how hard it hits.</p>
+				<p>Companion files: <strong><a href="./fire-standard.html">Flareon ex / Noctowl</a></strong> · <strong><a href="./eevee-standard.md">Rainbow DNA</a></strong> · <strong><a href="./fighting-standard.md">Ground Zero</a></strong> — Fox&#x27;s three Standard options.</p>
+			</aside>
+			<section>
+				<h3 id="the-gengar-meta">The Gengar Meta<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+			<article>
+				<h3 id="where-it-actually-sits">Where it actually sits</h3>
+				<section>
+					<p>Honest answer first: <strong>Mega Gengar ex is not a tier-1 deck.</strong> As of August 2026 the format looks like this:</p>
+					<table>
+						<thead><tr><th>Tier</th><th>Deck</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><strong>1</strong></td><td><strong>Dragapult ex / Blaziken ex</strong></td><td>The #1 deck, boosted by Pitch Black. Drakloak&#x27;s <em>Recon Directive</em> is the engine.</td></tr>
+							<tr><td><strong>1</strong></td><td><strong>Gardevoir ex</strong></td><td>The longest-standing deck in the format, now with Mega Diancie, Jellicent ex, Clefairy ex</td></tr>
+							<tr><td><strong>2</strong></td><td><strong>Mega Excadrill ex</strong></td><td>Newest riser — Drilbur + Genesect ex + Metal Maker</td></tr>
+							<tr><td><strong>2</strong></td><td>Gholdengo ex, Mega Starmie ex, Mega Zygarde ex</td><td></td></tr>
+							<tr><td><strong>Rogue</strong></td><td><strong>Mega Gengar ex &quot;dark box&quot;</strong></td><td>Real, played, not dominant</td></tr>
+						</tbody>
+					</table>
+					<p>So this is a solid rogue deck, not a metagame pillar. Which — given you&#x27;re building it to play at your kitchen table — is completely fine, and it happens to be pointed <em>directly</em> at what the top decks are doing.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-card">The card<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>
+				<section>
+					<p><strong>Mega Gengar ex — Phantasmal Flames 056 · Reg I</strong></p>
+					<p>Darkness, <strong>350 HP</strong>, <strong>Stage 2 from Haunter</strong>. Weak <strong>Fighting ×2</strong>, no Resistance, Retreat 2. <strong>Gives up 3 Prize cards.</strong></p>
+					<ul>
+						<li><strong>Ability — <em>Shadowy Concealment</em>.</strong> If 1 of your <strong>[D]</strong> Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s <strong>Pokémon ex</strong>, that player takes <strong>1 fewer Prize card</strong>. The effect of <em>Shadowy Concealment</em> doesn&#x27;t stack.</li>
+						<li><strong><em>Void Gale</strong></em> <strong>[D][D], 230.</strong> Move an Energy from this Pokémon to 1 of your Benched Pokémon.</li>
+					</ul>
+			<aside data-callout="note">
+				<p><strong>Limitless lists this card as giving up 2 Prizes. It gives up 3.</strong> Their summary applies the generic &quot;Pokémon ex&quot; rule; the printed rule box on a Mega Evolution Pokémon ex reads three. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56">Bulbapedia</a>))</p>
+				<p>Also worth knowing: unlike the old SWSH-era &quot;M Pokémon-EX&quot;, <strong>playing a Mega Evolution Pokémon ex does not end your turn.</strong> It evolves like any other Stage 2.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-real-card-is-the-ability-not-the-attack">The real card is the Ability, not the attack</h3>
+				<section>
+					<p><em>Void Gale</em> is a fine attack — 230 for two Energy, and it feeds its own Energy back to the Bench. It does <strong>not</strong> one-shot the format&#x27;s big threats (Dragapult ex is 320, Gardevoir ex around 310).</p>
+					<p><strong><em>Shadowy Concealment</em> is the reason the deck exists.</strong> Look at what it does to a board of one-Prize Darkness Pokémon when your opponent is attacking with ex Pokémon:</p>
+					<table>
+						<thead><tr><th>Your Pokémon</th><th>Prizes normally</th><th>Prizes when KO&#x27;d <strong>by an opposing ex</strong></th></tr></thead>
+						<tbody>
+							<tr><td>Gastly, Haunter, Gengar (POR 050), Koffing, Weezing, Toxel, Toxtricity, Munkidori</td><td>1</td><td><strong>0</strong></td></tr>
+							<tr><td>Fezandipiti ex, Pecharunt ex</td><td>2</td><td><strong>1</strong></td></tr>
+							<tr><td><strong>Mega Gengar ex</strong></td><td>3</td><td><strong>2</strong></td></tr>
+						</tbody>
+					</table>
+					<p><strong>They knock out your Gastly with a Dragapult ex and get nothing.</strong> Not one Prize. In a format where nearly every top deck attacks with ex Pokémon, you have deleted an entire Prize from every exchange on the board.</p>
+			<aside data-callout="warning">
+				<p><strong>Read the trigger twice: &quot;by an attack from your opponent&#x27;s Pokémon ex.&quot;</strong></p>
+				<p>Against a deck that attacks with <strong>non-ex</strong> Pokémon, <em>Shadowy Concealment</em> does <strong>absolutely nothing.</strong> Fox&#x27;s decks, single-prize rogue decks, and your own psychic builds all ignore it completely.</p>
+				<p>This is a <strong>metagame card</strong>. It is superb against the top of the format and blank against the kitchen table. Know which game you&#x27;re playing.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="gengar-spirit-link-skip-it">❌ Gengar Spirit Link — skip it<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+				<section>
+					<p>You asked. It&#x27;s a no, and it fails for three independent reasons — any one of them is fatal.</p>
+					<p><strong>Gengar Spirit Link — Phantom Forces 095</strong> <em>(Pokémon Tool)</em></p>
+			<aside data-callout="note">
+				<p>Your turn does not end if the Pokémon this card is attached to becomes <strong>M Gengar-EX</strong>.</p>
+			</aside>
+					<dl>
+						<dt data-head>Problem</dt><dd data-head>Detail</dd>
+						<dt><strong>Wrong card name</strong></dt><dd><span>It names <strong><em>M Gengar-EX</strong></em>, the XY-era card. <strong>Mega Gengar ex</strong> (PFL 056) is a different card with a different name. The Tool would never trigger.</span></dd>
+						<dt><strong>Solves a rule that no longer exists</strong></dt><dd><span>In the XY era, Mega Evolving <strong>ended your turn</strong> — that&#x27;s the entire problem Spirit Links were printed to fix. Modern Mega Evolution Pokémon ex <strong>do not end your turn</strong> when played. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG">Bulbapedia</a>))</span></dd>
+						<dt><strong>Not Standard legal</strong></dt><dd><span>Phantom Forces is 2014. Rotated many times over.</span></dd>
+					</dl>
+					<p><strong>And it wouldn&#x27;t help your binder either.</strong> You own <strong>Gengar V</strong>, not Gengar-EX. A V evolves into a VMAX, which also doesn&#x27;t end your turn — so there&#x27;s no version of your collection where this card does anything.</p>
+					<p>Genuinely good instinct to ask, though: the Spirit Link cards <em>were</em> format-defining in their era, and if the modern Megas had kept the turn-ending rule, this would be an auto-include four-of.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-engine-toxtricity-munkidori">The engine: Toxtricity → Munkidori<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
+				<section>
+					<p>The competitive shell isn&#x27;t built on Gengar&#x27;s attack at all. It&#x27;s built on a damage-counter engine you&#x27;ll recognise immediately.</p>
+					<p><strong>Toxtricity — Phantasmal Flames 068 · Reg I.</strong> Darkness, 140 HP, Stage 1 from Toxel.</p>
+			<aside data-callout="note">
+				<p><strong>Ability — <em>Sinister Surge</em>.</strong> Once during your turn, search your deck for a Basic <strong>[D]</strong> Energy card and attach it to 1 of your Benched <strong>[D]</strong> Pokémon. Then shuffle. If you attached Energy this way, place <strong>2 damage counters</strong> on that Pokémon.</p>
+			</aside>
+					<p><strong>Munkidori — Twilight Masquerade 095 · Reg H.</strong> Psychic, 110 HP, Basic.</p>
+			<aside data-callout="note">
+				<p><strong>Ability — <em>Adrena-Brain</em>.</strong> Once during your turn, if this Pokémon has any <strong>[D]</strong> Energy attached, you may move up to <strong>3 damage counters</strong> from 1 of your Pokémon to 1 of your opponent&#x27;s Pokémon.</p>
+			</aside>
+					<p><strong>Toxtricity&#x27;s drawback is Munkidori&#x27;s ammunition.</strong> Accelerate Energy, take 2 counters as the price, then throw those counters at your opponent. Free Energy <em>and</em> free damage, every single turn, with no attack and no Supporter spent.</p>
+					<p>If that structure feels familiar: it is exactly <strong>Magma Basin</strong> from Fox&#x27;s deck (attach from elsewhere, take 2 counters) welded to <strong>Life Shaker</strong> from your psychic builds (move counters around) — except the counters go to the <em>opponent</em>.</p>
+					<p><strong>Fezandipiti ex — Shrouded Fable 038 · Reg H.</strong> Darkness, 210 HP, Basic, 2 Prizes.</p>
+			<aside data-callout="note">
+				<p><strong>Ability — <em>Flip the Script</em>.</strong> Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, draw 3 cards.</p>
+			</aside>
+					<p>A deck built to trade away cheap bodies <em>wants</em> to be losing Pokémon. Fezandipiti turns each loss into three cards.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="the-shell">The Shell<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
+			<aside data-callout="caution">
+				<p><strong>Every published Mega Gengar list I found predates the April 2026 rotation.</strong> The competitive lists lean on <strong>Iono, Artazon, Arven, Nest Ball, Pokégear 3.0, Technical Machine: Evolution, and Air Balloon</strong> — all Regulation <strong>G</strong>, all now illegal.</p>
+				<p>Below is the verified-legal core plus your existing shell. The flex slots are real gaps, not padding: I&#x27;d be guessing at what replaced Arven and Iono, and I&#x27;d rather say so.</p>
+			</aside>
+					<p><strong>Pokémon (17)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Reg</th><th>Own</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Gastly</td><td>Phantasmal Flames 054</td><td>I</td><td><strong>1</strong></td></tr>
+							<tr><td>3</td><td>Haunter</td><td>Phantasmal Flames 055</td><td>I</td><td><strong>2</strong></td></tr>
+							<tr><td>3</td><td><strong>Mega Gengar ex</strong></td><td>Phantasmal Flames 056</td><td>I</td><td>0</td></tr>
+							<tr><td>1</td><td>Gengar</td><td>Perfect Order 050</td><td>J</td><td><strong>2</strong></td></tr>
+							<tr><td>3</td><td>Toxel</td><td>Phantasmal Flames 067</td><td>I</td><td>0</td></tr>
+							<tr><td>2</td><td>Toxtricity</td><td>Phantasmal Flames 068</td><td>I</td><td>0</td></tr>
+							<tr><td>2</td><td>Munkidori</td><td>Twilight Masquerade 095</td><td>H</td><td>0</td></tr>
+							<tr><td>1</td><td>Fezandipiti ex</td><td>Shrouded Fable 038</td><td>H</td><td>0</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (~34)</strong> — verified-legal core:</p>
+					<p>4 Buddy-Buddy Poffin (TEF 144, H) · 4 Ultra Ball (ME01 131, I) · 4 Rare Candy (ME01 125, I) · 4 Lillie&#x27;s Determination (ME01 119, I) · 3 Boss&#x27;s Orders (ME01 114, I) · 3 Night Stretcher (SFA 061, H) · 2 Switch (ME01 130, I) · 2 Gwynn (ME05 078, J) · 2 Dawn (PFL 087, I) · <strong>~6 flex</strong> (draw Supporter + Ball search to replace Iono/Arven/Nest Ball)</p>
+					<p><strong>Energy (9)</strong> — 9 Basic Darkness. <em>Sinister Surge</em> searches them from the deck, so the count can be lean.</p>
+			<aside data-callout="tip">
+				<p><strong>&quot;Gengar&quot; and &quot;Mega Gengar ex&quot; are different card names</strong>, so four of each is legal. Better still: <strong>they both evolve from Haunter.</strong> One Gastly→Haunter line feeds two completely different Stage 2 payoffs — the 3-Prize 350 HP monster, and your existing 1-Prize <em>Mind Jack</em> Gengar that gives up <strong>zero</strong> Prizes under <em>Shadowy Concealment</em>.</p>
+				<p>That&#x27;s why Gengar POR 050 stays in the list. It isn&#x27;t nostalgia; it&#x27;s the perfect single-prize attacker for this exact shell.</p>
+			</aside>
+					<p><strong>What carries over from <code>dark.csv</code>:</strong> the Gastly/Haunter/Gengar line, and every Trainer except the ones tuned for the casual build. <strong>Punk Helmet, Dark Bell, and Risky Ruins come out</strong> — they&#x27;re built for a one-Prize mirror, not for racing ex decks. <strong>Shadowy Darkness Energy</strong> is a genuine consideration (Bench damage prevention on a setup Mega Gengar), but the four-copy Special Energy cap and <em>Sinister Surge</em> only fetching <strong>Basic</strong> Darkness argue against it.</p>
+			</section>
+			<section>
+				<h3 id="how-to-play-ex-style">How To Play ex Style<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
+					<p><strong>This is the part that transfers.</strong> Everything below applies to any ex deck, including all three of Fox&#x27;s.</p>
+			<article>
+				<h3 id="1-you-are-not-fighting-you-are-racing-to-six">1. You are not fighting. You are racing to six.</h3>
+				<section>
+					<p>The single biggest mental shift from your casual deck. In Gengar Gang, every Pokémon is worth 1 Prize, so &quot;knock out more stuff than they do&quot; and &quot;win&quot; are the same sentence.</p>
+					<p>In an ex format they come apart:</p>
+					<dl>
+						<dt data-head>Pokémon type</dt><dd data-head>Prizes</dd>
+						<dt>Non-ex</dt><dd><span><strong>1</strong></span></dd>
+						<dt>Pokémon ex / V</dt><dd><span><strong>2</strong></span></dd>
+						<dt><strong>Mega Evolution Pokémon ex</strong></dt><dd><span><strong>3</strong></span></dd>
+					</dl>
+					<p><strong>Two Mega knockouts is 6 Prizes.</strong> The game can end in two exchanges. You are not playing a war of attrition; you are playing a 2-to-4 turn sprint where each turn is worth a third of the game.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-build-a-prize-map-before-you-start">2. Build a Prize map before you start</h3>
+				<section>
+					<p>Before the first attack, ask: <strong>which six Prizes am I actually taking?</strong></p>
+					<ul>
+						<li><em>Three knockouts on their 2-Prize attackers</em> — the standard plan.</li>
+						<li><em>Two knockouts on their Megas</em> — fastest, but requires enough damage.</li>
+						<li><em>Six knockouts on single-prize Pokémon</em> — you will lose this race. Don&#x27;t plan it.</li>
+					</ul>
+					<p>Then ask the mirror question: <strong>which of my Pokémon can they afford to knock out?</strong> If your Mega Gengar ex dying hands them 3 of their 6, then Mega Gengar ex is not a card you casually leave in the Active Spot.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-the-trade-is-the-whole-game">3. The trade is the whole game</h3>
+				<section>
+					<p>Every exchange has a price on both sides. Score it:</p>
+					<table>
+						<thead><tr><th>You lose</th><th>They lose</th><th>Verdict</th></tr></thead>
+						<tbody>
+							<tr><td>1-Prize Pokémon</td><td>their 2-Prize ex</td><td><strong>Great.</strong> This is the dream.</td></tr>
+							<tr><td>2-Prize ex</td><td>their 2-Prize ex</td><td>Even. Fine.</td></tr>
+							<tr><td><strong>3-Prize Mega</strong></td><td>their 2-Prize ex</td><td><strong>Bad.</strong> You lost the exchange even though you won the fight.</td></tr>
+							<tr><td>1-Prize Pokémon</td><td>nothing</td><td>Bad, unless you gained setup</td></tr>
+						</tbody>
+					</table>
+					<p><strong>This is why &quot;dark box&quot; decks exist and why <em>Shadowy Concealment</em> is strong.</strong> A deck stuffed with 1-Prize attackers that occasionally knocks out a 2-Prize ex wins the race without ever winning a &quot;fight.&quot; Add an Ability that drops your 1-Prize bodies to <em>zero</em>, and the maths stops being close.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-the-two-shot-problem-beats-hp-every-time">4. The two-shot problem beats HP every time</h3>
+				<section>
+					<p>350 HP feels unkillable. It isn&#x27;t, and here&#x27;s the trap:</p>
+					<p>If your attacker needs <strong>two turns</strong> to knock something out, and theirs needs <strong>one</strong>, you lose — regardless of how much HP you have. They knock out one of yours every turn; you knock out one of theirs every other turn.</p>
+					<p><em>Void Gale</em> does <strong>230</strong>. Dragapult ex has <strong>320</strong>. That is a two-shot, and it is the single biggest problem with this deck. The fix is exactly what the engine does: <strong>Munkidori moves 3 counters (30 damage) onto the target every turn for free</strong>, and <em>Sinister Surge</em> keeps feeding it. Chip damage isn&#x27;t a nice extra in ex decks — it&#x27;s the difference between one-shotting and losing.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="5-gust-effects-are-the-most-valuable-cards-in-the-format">5. Gust effects are the most valuable cards in the format</h3>
+				<section>
+					<p><strong>Boss&#x27;s Orders wins more ex games than any attacker.</strong> Because in an ex format your opponent hides the wounded thing on the Bench and presents a fresh one, and the whole game is deciding <em>what</em> you&#x27;re allowed to knock out.</p>
+					<p>Casually you can play 2. In a real ex deck you want <strong>3</strong>, and you should treat drawing one as the beginning of a plan, not a card you use to fill a turn.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="6-rules-that-bite-harder-in-ex-decks">6. Rules that bite harder in ex decks</h3>
+				<section>
+					<ul>
+						<li><strong>Going first, you cannot attack.</strong> With a Stage 2 Mega that&#x27;s fine — turn one was always setup. Going <em>second</em> and attacking on turn one is a real tempo edge in fast matchups.</li>
+						<li><strong>ACE SPEC: exactly one per deck, total</strong> — not one per name. One card, across the whole 60.</li>
+						<li><strong>Rule Box Pokémon can&#x27;t be discarded to Gwynn.</strong> Gwynn says &quot;Pokémon that don&#x27;t have a Rule Box.&quot; Every ex has one. In Gengar Gang all 15 Pokémon were legal fuel; here only the small ones are, which quietly makes Gwynn worse. Budget for that.</li>
+						<li><strong><em>Shadowy Concealment</em> doesn&#x27;t stack.</strong> Three Mega Gengar in play still reduces by exactly 1.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="7-errors-to-expect-on-the-way-over">7. Errors to expect on the way over<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+				<section>
+					<dl>
+						<dt data-head>Habit from Gengar Gang</dt><dd data-head>Why it fails in ex</dd>
+						<dt>Leading with the best attacker</dt><dd><span>It&#x27;s worth 3 Prizes. Lead with something cheap.</span></dd>
+						<dt>Trading freely because everything&#x27;s 1 Prize</dt><dd><span>Now trades have prices. Score them first.</span></dd>
+						<dt>Building a wide Bench</dt><dd><span>Bigger boards feed <em>Dragapult ex</em>&#x27;s Phantom Dive and every spread attack in the format</span></dd>
+						<dt>Treating chip damage as optional</dt><dd><span>It&#x27;s how a 230 attack beats a 320 HP Pokémon</span></dd>
+						<dt>Saving Boss&#x27;s Orders &quot;for the end&quot;</dt><dd><span>The end arrives on turn four</span></dd>
+					</dl>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3>
+			<article>
+				<h3 id="which-mega-gengar-ex-printing">Which Mega Gengar ex printing?</h3>
+				<section>
+					<p>There are three on TCGplayer. <strong>They are the same card.</strong> I checked each independently:</p>
+					<table>
+						<thead><tr><th>Printing</th><th>Number</th><th>HP</th><th>Reg</th><th>Ability / Attack</th><th>Market</th><th>Low</th><th>Listings</th></tr></thead>
+						<tbody>
+							<tr><td><strong>ME02: Phantasmal Flames</strong></td><td>056/094</td><td>350</td><td><strong>I</strong></td><td>Shadowy Concealment / Void Gale [D][D] 230</td><td><strong>$2.15</strong></td><td><strong>$1.00</strong></td><td><strong>681</strong></td></tr>
+							<tr><td>ME: Ascended Heroes</td><td>125/217</td><td>350</td><td><strong>I</strong></td><td><em>identical</em></td><td>$2.60</td><td>$1.99</td><td>377</td></tr>
+							<tr><td>ME: Mega Evolution Promo</td><td>073</td><td>350</td><td><strong>I</strong></td><td><em>identical</em></td><td>$4.34</td><td>$3.10</td><td>487</td></tr>
+						</tbody>
+					</table>
+					<p>Same name, same 350 HP, same Stage 2 from Haunter, same <em>Shadowy Concealment</em>, same <em>Void Gale</em> [D][D] 230, same Fighting ×2 Weakness, same Retreat 2, same 3 Prizes, <strong>same Regulation I</strong>. The only differences are the set symbol, the card number, and the foiling. Phantasmal Flames and Ascended Heroes are both Double Rares illustrated by 5ban Graphics; the promo is a Black Star Promo with a different holo pattern.</p>
+			<aside data-callout="tip">
+				<p><strong>Buy the Phantasmal Flames 056.</strong> Cheapest by a distance, and 681 listings means you can get all three from one seller without paying separate shipping. The promo costs <strong>twice as much for zero gameplay difference.</strong></p>
+				<p><strong>They share one 4-copy limit</strong>, since the limit counts names. Two Phantasmal Flames plus two Ascended Heroes is still four total — so mix freely if that&#x27;s what&#x27;s cheap on the day.</p>
+			</aside>
+			<aside data-callout="warning">
+				<p><strong>Ignore the high-numbered versions.</strong> There are Special Illustration Rare prints of this exact card at numbers above the set size (Ascended Heroes 269/217 and similar). Same text, same legality, many times the price — the same trap as the Umbreon ex SIR and the Eevee Poké Ball Pattern. If the number is bigger than the set total, it&#x27;s the collector version.</p>
+			</aside>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><strong>Mega Gengar ex, PFL 056</strong></td><td>0</td><td><strong>3</strong></td><td>Double Rare, ~$1–2 each — see above</td></tr>
+							<tr><td>Gastly, PFL 054</td><td><strong>1</strong></td><td>3</td><td>You already own one</td></tr>
+							<tr><td>Haunter, PFL 055</td><td><strong>2</strong></td><td>1</td><td>In your current deck</td></tr>
+							<tr><td>Gengar, POR 050</td><td><strong>2</strong></td><td>0</td><td>Stays in — perfect 1-Prize attacker</td></tr>
+							<tr><td>Toxel / Toxtricity, PFL 067 / 068</td><td>0</td><td>3 / 2</td><td>The Energy engine</td></tr>
+							<tr><td>Munkidori, TWM 095</td><td>0</td><td><strong>2</strong></td><td>The damage engine</td></tr>
+							<tr><td>Fezandipiti ex, SFA 038</td><td>0</td><td>1</td><td>Draw off your own knockouts</td></tr>
+							<tr><td>Boss&#x27;s Orders, ME01 114</td><td><strong>2</strong></td><td>1</td><td>Go to 3</td></tr>
+							<tr><td>Everything else</td><td>✅</td><td>0</td><td>Already in <code>dark.csv</code></td></tr>
+						</tbody>
+					</table>
+					<p><strong>Roughly a dozen new cards and one set to learn.</strong> Cheapest upgrade path of anything in this project — because the shell you already built happens to be the right shell.</p>
+			<aside data-callout="important">
+				<p><strong>Before you buy: decide which game you&#x27;re buying for.</strong></p>
+				<p><em>Shadowy Concealment</em> is a <strong>metagame card</strong>. It&#x27;s excellent at a league night full of Dragapult and Gardevoir. It does <strong>nothing</strong> against Fox, and nothing against a single-prize deck.</p>
+				<p>If the goal is tournament play, this is the build. If the goal is better games at the kitchen table, your existing <code>dark.csv</code> deck is already legal, already balanced against his, and adding a 3-Prize 350 HP Mega to it would wreck that balance in one card.</p>
+			</aside>
+				</section>
+			</article>
+			</section>
+		</main>
+		<footer>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+		</footer>
+	</body>
+</html>

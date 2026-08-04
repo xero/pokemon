@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Xero's Long Night</title>
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin-block: 0.8em;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			padding: 0.45em 0.7em 0.45em 0;
+			vertical-align: top;
+		}
+
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		th {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Xero's Long Night <img data-mascot src="./assets/sprites/hypno.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar.gif" alt="" /></h1>
+			<p>Build B — They never get a turn</p>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><span><a href="#the-thesis">The Thesis</a> · <a href="#deck-list">Deck List</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#game-plans">Game Plans</a> · <a href="#versus-fox">Versus Fox</a> · <a href="#what-to-buy">What To Buy</a> · <a href="#build-a-or-build-b">Build A or Build B?</a></span></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<aside data-callout="note">
+				<p><strong>How to read this file.</strong></p>
+				<p>This is the second of <strong>two</strong> paper builds for your Psychic Gengars. Both are &quot;versus Fox&quot; future plans; both lean on old cards deliberately.</p>
+				<ul>
+					<li><strong><a href="./psychic-lanterns.html">Build A — Witching Hour</a></strong> is built on <strong>Gengar, Lost Origin 066</strong>. It&#x27;s a <strong>spread</strong> deck: damage counters on everything, including the Bench.</li>
+					<li><strong>This file (Build B)</strong> is built on <strong>Gengar, Sword &amp; Shield 085</strong> — the <em>Life Shaker</em> / <em>Hypnoblast</em> one. It&#x27;s a <strong>lock</strong> deck: it wins by making sure the Pokémon in front of you never does anything.</li>
+				</ul>
+				<p>They share a Gastly line and about eight Trainers. Otherwise they play nothing alike. Build A grinds; this one strangles.</p>
+				<p><code>psychic.md</code> — the first draft — is untouched.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
+					<p><strong>Asleep is the most under-rated Special Condition in the game, and it is the only one that stops both halves of a turn.</strong></p>
+			<aside data-callout="note">
+				<p><strong>The rule:</strong> an Asleep Pokémon <strong>cannot attack and cannot retreat</strong>. During Pokémon Checkup its owner flips a coin — heads it wakes up, tails it stays Asleep. It also clears if the Pokémon leaves the Active Spot. (<a href="https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG">Bulbapedia — Special Conditions</a>))</p>
+			</aside>
+					<p>Compare that to what your Dark deck does with Confusion. A Confused Pokémon <em>can</em> attack — it just flips first. An Asleep Pokémon has no flip and no choice. It stands there.</p>
+					<p>And the escape hatch is narrow. It cannot retreat, so paying Energy is not an option. It has to either <strong>win a coin flip at Checkup</strong> or <strong>be removed by a card effect</strong> — and Fox runs exactly <strong>two Switch</strong>.</p>
+					<p><strong>So the whole deck is one question: how many different ways can I put something to sleep?</strong></p>
+					<p>This build has three, at three different price points:</p>
+					<table>
+						<thead><tr><th>Card</th><th>Cost</th><th>Effect</th></tr></thead>
+						<tbody>
+							<tr><td><strong>Drowzee</strong>, <em>Hypnosis</em></td><td><strong>[P]</strong> — one Energy</td><td>Asleep. Turn one. No coin flip.</td></tr>
+							<tr><td><strong>Gengar</strong>, <em>Hypnoblast</em></td><td>[P][P][C]</td><td><strong>90 damage</strong> + Asleep</td></tr>
+							<tr><td><strong>Gourgeist</strong>, <em>Shadow Bind</em></td><td>[P][C][C]</td><td><strong>100 damage</strong> + can&#x27;t retreat</td></tr>
+						</tbody>
+					</table>
+					<p>Sleep them cheaply early, sleep them expensively late, and trap them when they wake up.</p>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+					<p><strong>Pokémon (23)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Own</th><th>Need</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Gastly</td><td>any Psychic print</td><td>—</td><td><strong>4</strong></td><td>0</td></tr>
+							<tr><td>2</td><td>Haunter</td><td>any Psychic print</td><td>—</td><td><strong>5</strong></td><td>0</td></tr>
+							<tr><td>3</td><td>Gengar</td><td>Sword &amp; Shield</td><td>085</td><td><strong>1</strong></td><td>2</td></tr>
+							<tr><td>1</td><td>Gengar</td><td>Lost Origin</td><td>066</td><td><strong>1</strong></td><td>0</td></tr>
+							<tr><td>4</td><td>Drowzee</td><td>Unbroken Bonds</td><td>071</td><td>0</td><td>4</td></tr>
+							<tr><td>3</td><td>Hypno</td><td>Unbroken Bonds</td><td>072</td><td>0</td><td>3</td></tr>
+							<tr><td>2</td><td>Wobbuffet</td><td>Phantom Forces</td><td>036</td><td>0</td><td>2</td></tr>
+							<tr><td>2</td><td>Pumpkaboo</td><td>any Psychic print</td><td>—</td><td><strong>3</strong></td><td>0</td></tr>
+							<tr><td>2</td><td>Gourgeist</td><td>Paradox Rift</td><td>078</td><td>0</td><td>2</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (25)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Rare Candy</td><td>Item</td><td>any</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>any</td></tr>
+							<tr><td>4</td><td>Professor&#x27;s Research</td><td>Supporter</td><td>any</td></tr>
+							<tr><td>3</td><td>N</td><td>Supporter</td><td>Noble Victories 92</td></tr>
+							<tr><td>3</td><td>Fog Crystal</td><td>Item</td><td>Chilling Reign 140</td></tr>
+							<tr><td>3</td><td>Mysterious Treasure</td><td>Item</td><td>Forbidden Light 145</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Item</td><td>any</td></tr>
+							<tr><td>2</td><td>Old Cemetery</td><td>Stadium</td><td>Chilling Reign 147</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (12)</strong> — 12 Basic Psychic Energy.</p>
+					<p><strong>23 + 25 + 12 = 60.</strong> ✅</p>
+					<p><strong>Basics: 12</strong> (4 Gastly, 4 Drowzee, 2 Wobbuffet, 2 Pumpkaboo) — about a <strong>19% mulligan rate</strong>.</p>
+					<p><strong>Twelve Energy, not eleven.</strong> Build A&#x27;s main attack costs one Energy; this deck&#x27;s do not. <em>Hypnoblast</em>, <em>Shadow Bind</em>, and <em>Stir the Brain</em> are all three-Energy attacks, and three Fog Crystal are in the list partly to find Energy.</p>
+			<aside data-callout="warning">
+				<p><strong>The Gengar split is 3 + 1 and it&#x27;s the opposite of Build A&#x27;s.</strong> Both prints share one four-card name limit. Here the Sword &amp; Shield 085 is the <em>attacker</em> — you want to draw it — and the single Lost Origin copy is there purely for <em>Netherworld Gate</em>, which works from the discard pile and only needs to exist once.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="key-card-text">Key Card Text</h3>
+			<article>
+				<h3 id="drowzee-unbroken-bonds-071">Drowzee — Unbroken Bonds 071<span data-flavor><img src="./assets/sprites/drowzee.gif" alt="" /></span></h3>
+				<section>
+					<p>Psychic, 70 HP, Basic. Weak <strong>Psychic ×2</strong>, Retreat 2.</p>
+					<ul>
+						<li><strong><em>Hypnosis</em> [P].</strong> Your opponent&#x27;s Active Pokémon is now Asleep.</li>
+						<li><em>Psypunch</em> [P][C][C], 30.</li>
+					</ul>
+			<aside data-callout="note">
+				<p>One Energy. No coin flip. No damage — and that&#x27;s fine, because this card isn&#x27;t here to deal damage, it&#x27;s here to make turn two not happen.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="hypno-unbroken-bonds-072">Hypno — Unbroken Bonds 072<span data-flavor><img src="./assets/sprites/hypno.gif" alt="" /></span></h3>
+				<section>
+					<p>Psychic, <strong>110 HP</strong>, Stage 1 from Drowzee. Weak <strong>Psychic ×2</strong>, Retreat 2.</p>
+					<ul>
+						<li><strong>Ability — <em>Hypnotic Pendulum</em>.</strong> When your opponent&#x27;s Active Pokémon is Knocked Out, flip a coin. If heads, <strong>choose which of your opponent&#x27;s Benched Pokémon becomes their new Active Pokémon.</strong></li>
+						<li><strong><em>Stir the Brain</em> [P][C][C], 30+.</strong> 10 more damage for each card in your opponent&#x27;s hand.</li>
+					</ul>
+					<dl>
+						<dt data-head>Cards in their hand</dt><dd data-head>Stir the Brain</dd>
+						<dt>3</dt><dd><span>60</span></dd>
+						<dt>5</dt><dd><span>80</span></dd>
+						<dt>7 (just played Professor&#x27;s Research)</dt><dd><span><strong>100</strong></span></dd>
+						<dt>9</dt><dd><span>120</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="gengar-sword-shield-085">Gengar — Sword &amp; Shield 085<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+				<section>
+					<p>Psychic, <strong>110 HP</strong>, Stage 2 from Haunter. Weak <strong>Darkness ×2</strong>, Resist <strong>Fighting −30</strong>, Retreat 2.</p>
+					<ul>
+						<li><strong>Ability — <em>Life Shaker</em>.</strong> As often as you like during your turn, move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</li>
+						<li><strong><em>Hypnoblast</em> [P][P][C], 90.</strong> Your opponent&#x27;s Active Pokémon is now Asleep.</li>
+					</ul>
+			<aside data-callout="note">
+				<p><strong>90 damage <em>and</em> Asleep on the same attack.</strong> This is the card the whole deck is built to protect and power up.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="gourgeist-paradox-rift-078">Gourgeist — Paradox Rift 078<span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
+				<section>
+					<p>Psychic, 110 HP, Stage 1 from Pumpkaboo. Weak <strong>Darkness ×2</strong>, Resist <strong>Fighting −30</strong>, Retreat 2.</p>
+					<ul>
+						<li><strong>Ability — <em>Startling Pumpkin</em>.</strong> If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, <strong>discard 2 random cards from your opponent&#x27;s hand.</strong></li>
+						<li><strong><em>Shadow Bind</em> [P][C][C], 100.</strong> The Defending Pokémon <strong>can&#x27;t retreat</strong> during your opponent&#x27;s next turn.</li>
+					</ul>
+			<aside data-callout="note">
+				<p>Note this is a <strong>different Gourgeist</strong> from the one you own. Yours is the <em>Pandemonium</em> print (Evolving Skies 077) and it&#x27;s the right card for Build A. This one is the right card here.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="wobbuffet-phantom-forces-036">Wobbuffet — Phantom Forces 036<span data-flavor><img src="./assets/sprites/wobbuffet.gif" alt="" /></span></h3>
+				<section>
+					<p>Psychic, <strong>110 HP</strong>, Basic. Weak <strong>Psychic ×2</strong>, Retreat 2.</p>
+					<ul>
+						<li><strong>Ability — <em>Bide Barricade</em>.</strong> As long as this Pokémon is your Active Pokémon, each Pokémon in play, in each player&#x27;s hand, and in each player&#x27;s discard pile has no Abilities <strong>(except for [P] Pokémon)</strong>.</li>
+						<li><strong><em>Psychic Assault</em> [P], 10+.</strong> 10 more damage for each damage counter on your opponent&#x27;s Active Pokémon.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="gengar-lost-origin-066-single-copy">Gengar — Lost Origin 066 <em>(single copy)</em><span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
+				<section>
+					<ul>
+						<li><strong>Ability — <em>Netherworld Gate</em>.</strong> Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</li>
+						<li><em>Screaming Circle</em> [P] — 2 damage counters on their Active per their Benched Pokémon.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="old-cemetery-chilling-reign-147-stadium">Old Cemetery — Chilling Reign 147 <em>(Stadium)</em></h3>
+				<section>
+			<aside data-callout="note">
+				<p>Whenever a player attaches an Energy card <strong>from their hand</strong> to 1 of their <strong>non-Psychic</strong> Pokémon, put 2 damage counters on that Pokémon.</p>
+			</aside>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="game-plans">Game Plans</h3>
+			<article>
+				<h3 id="1-the-long-night">1. The Long Night</h3>
+				<section>
+					<p><strong>The core loop. Sleep on turn one, sleep forever.</strong></p>
+<pre><code>Turn 1   Drowzee Active, 1 Energy → HYPNOSIS. They&#x27;re Asleep.
+Turn 2   Still Asleep? They can&#x27;t attack or retreat.
+         Hypnosis again if they woke up.
+Turn 3+  Gastly → Gengar (Rare Candy) → HYPNOBLAST:
+         90 damage AND they&#x27;re Asleep again.</code></pre>
+					<p><strong>Every one of their turns is a coin flip on whether it happens at all.</strong> They flip at Checkup: heads they wake and get a normal turn, tails they stand there. Then you re-apply on your turn and it starts over.</p>
+					<p><strong>Do the arithmetic on that.</strong> Over six of their turns, they get roughly three. You get six. That is the entire deck in one sentence.</p>
+			<aside data-callout="important">
+				<p><strong>Asleep clears when the Pokémon leaves the Active Spot</strong> — and Asleep, Paralyzed, and Confused are mutually exclusive, so anything that applies a different one <em>replaces</em> your Sleep. Nothing in Fox&#x27;s deck does that, so against him the only outs are the Checkup flip and his two Switch.</p>
+				<p><strong>Count his Switch.</strong> Two in sixty cards. Once both are gone, a sleeping Charizard is a dead Charizard.</p>
+			</aside>
+					<p><strong>Why Drowzee is 4-of and not a throwaway.</strong> <em>Hypnosis</em> costs one Energy and works on turn one, before you have a Stage 2, before you have three Energy, before anything. Locking your opponent out on turn one while you set up a Stage 2 behind it is the best trade in the deck — and it&#x27;s why this build can afford to run a three-Energy main attacker at all.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-two-ways-out-and-you-close-both">2. Two Ways Out, and You Close Both</h3>
+				<section>
+					<p><strong>Asleep stops retreating. Shadow Bind stops the rest.</strong></p>
+					<p>An Asleep Pokémon can&#x27;t retreat, so it has two escapes: <strong>win the Checkup flip</strong>, or <strong>get switched out by a card effect</strong>. Switch, Escape Rope, and friends are not &quot;retreating&quot; — they bypass the restriction entirely. (<a href="https://compendium.pokegym.net/category/7-gameplay/retreating/">Pokégym Compendium — Retreating</a>)</p>
+					<p><strong>Gourgeist&#x27;s <em>Shadow Bind</em> is your answer to the turn they wake up.</strong> 100 damage, and the Defending Pokémon can&#x27;t retreat during their next turn — awake or not.</p>
+					<p>So the pattern against a big, expensive Active Pokémon:</p>
+					<dl>
+						<dt data-head>Their state</dt><dd data-head>Your play</dd>
+						<dt>Fresh</dt><dd><span><em>Hypnosis</em> — cheap, immediate</span></dd>
+						<dt>Asleep, you&#x27;re set up</dt><dd><span><em>Hypnoblast</em> — 90 and re-sleep</span></dd>
+						<dt>They woke up</dt><dd><span><em>Shadow Bind</em> — 100 and they still can&#x27;t leave</span></dd>
+						<dt>Buried in counters</dt><dd><span><em>Psychic Assault</em> — cash out for one Energy</span></dd>
+					</dl>
+					<p><strong>And <em>Startling Pumpkin</em> makes Gourgeist unpleasant to kill.</strong> If they knock it out, they discard <strong>2 random cards</strong> from their hand. In a deck already being denied turns, losing two random cards off the top is a real tax on the one thing they <em>did</em> get to do.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-hypnotic-pendulum-picks-the-next-victim">3. Hypnotic Pendulum Picks the Next Victim</h3>
+				<section>
+					<p><strong>A free gust, every knockout, forever.</strong></p>
+			<aside data-callout="note">
+				<p>When your opponent&#x27;s Active Pokémon is Knocked Out, flip a coin. If heads, choose which of your opponent&#x27;s Benched Pokémon becomes their new Active Pokémon.</p>
+			</aside>
+					<p>Normally the <em>opponent</em> chooses their replacement, and they will always choose the healthiest thing they own. On heads, <strong>you</strong> choose — and you choose the 70 HP Charmander they were growing into a Charizard.</p>
+					<p>Then you put it to sleep, and it never becomes a Charizard.</p>
+					<p><strong>This is why Hypno is a 3-of and not a 1-of.</strong> Each Hypno has its own Ability, so multiple Hypno means multiple flips on the same knockout — three Hypno in play is a <strong>87.5%</strong> chance at least one comes up heads.</p>
+			<aside data-callout="note">
+				<p>It&#x27;s an Ability, not an attack, and it has no Active requirement. Hypno does its job from the Bench all game. That matters enormously in a deck where the Active Spot is already spoken for.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-bide-barricade-and-the-one-thing-it-costs-you">4. Bide Barricade, and the One Thing It Costs You<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+				<section>
+					<p>Same card as Build A, same one-sided lock — <strong>Psychic Pokémon are exempt</strong>, and every Pokémon here is Psychic:</p>
+					<dl>
+						<dt data-head>Yours</dt><dd data-head>Theirs (Fox)</dd>
+						<dt><em>Life Shaker</em> ✅</dt><dd><span><strong>Charizard, <em>Battle Sense</strong></em> ❌</span></dd>
+						<dt><em>Netherworld Gate</em> ✅</dt><dd><span><strong>Eevee, <em>Boosted Evolution</strong></em> ❌</span></dd>
+						<dt><em>Hypnotic Pendulum</em> ✅</dt><dd><span></span></dd>
+						<dt><em>Startling Pumpkin</em> ✅</dt><dd><span></span></dd>
+					</dl>
+					<p><strong>But here the cost is higher than in Build A</strong>, and you should know it going in. Wobbuffet has to be <strong>Active</strong> to do this — which means the turn you play the lock is a turn you are not applying Sleep. If they wake up on that Checkup, they get a completely free turn.</p>
+					<p><strong>So Wobbuffet is a scalpel here, not a default.</strong> Bring it up on a turn where their Active is already deeply buried in damage counters — <em>Psychic Assault</em> cashes those in, so the turn isn&#x27;t wasted — or on the exact turn Fox most needs <em>Battle Sense</em> to find a Rare Candy.</p>
+					<p><strong>One quiet upside:</strong> <em>Psychic Assault</em> costs <strong>one</strong> Energy. In a deck full of three-Energy attacks, having a cheap button for the turn you&#x27;re short on Energy is worth more than it looks.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="5-stir-the-brain-and-the-n-problem">5. Stir the Brain and the N Problem</h3>
+				<section>
+					<p><strong>A real tension in the list, stated honestly.</strong></p>
+					<p><em>Stir the Brain</em> does 30 plus 10 per card in your opponent&#x27;s hand. It rewards you for letting them refill.</p>
+					<p><strong>N does the opposite of what you want here.</strong> N makes each player shuffle their hand into their deck and draw a card for each remaining Prize card. When you&#x27;re winning — which is the plan — they have <em>fewer</em> Prizes left, so N shrinks their hand and shrinks <em>Stir the Brain</em>.</p>
+					<p>So the two cards actively fight. Play them accordingly:</p>
+					<ul>
+						<li><strong>N is for when you&#x27;re behind.</strong> You draw more, they draw less. It&#x27;s a catch-up card.</li>
+						<li><strong>Stir the Brain is for right after they refill.</strong> Fox plays Professor&#x27;s Research and draws 7 — that&#x27;s your window, and it&#x27;s a 100-damage attack.</li>
+						<li><strong>Don&#x27;t play N on a turn you&#x27;re planning to Stir the Brain.</strong> You&#x27;d be deleting your own damage.</li>
+					</ul>
+					<p>Three N is the right count for a slow control deck that sometimes falls behind early. Just don&#x27;t play it on autopilot.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="6-the-cemetery-tax">6. The Cemetery Tax<span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3>
+				<section>
+					<p>Unchanged from Build A, and it&#x27;s still one of the harshest Stadiums in casual play:</p>
+			<aside data-callout="note">
+				<p>Whenever a player attaches an Energy card <strong>from their hand</strong> to 1 of their <strong>non-Psychic</strong> Pokémon, put 2 damage counters on that Pokémon.</p>
+			</aside>
+					<p>Every Pokémon in this deck is Psychic. Every Pokémon in Fox&#x27;s deck is not. <strong>20 damage per Energy attachment, all game, one-sided.</strong></p>
+			<aside data-callout="tip">
+				<p><strong>Welder triggers it twice.</strong> Welder attaches <em>up to 2</em> Fire Energy from hand — that is two separate attachment events, so Old Cemetery fires twice for <strong>40 damage</strong> on the Pokémon he just powered up.</p>
+				<p><strong>Magma Basin does not trigger it</strong> — that attaches from the <strong>discard pile</strong>, and the Stadium says &quot;from their hand.&quot;</p>
+			</aside>
+					<p>And it stacks beautifully with the sleep lock. He&#x27;s taking 20 a turn just to function, on a Pokémon that keeps failing to wake up.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="versus-fox">Versus Fox<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
+			<article>
+				<h3 id="the-type-chart-cancels-out">The type chart cancels out</h3>
+				<section>
+					<p>Everything here is Weak to <strong>Darkness</strong> or <strong>Psychic</strong>. Fox plays <strong>Fire</strong>, <strong>Fighting</strong>, and <strong>Colorless</strong>. He hits no Weakness — and Psychic doesn&#x27;t hit Fire&#x27;s Water Weakness either. <strong>Neither player gets a free multiplier.</strong> The game is decided entirely by mechanics, which is what makes it a good match.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="why-sleep-is-especially-cruel-to-his-deck">Why sleep is especially cruel to his deck</h3>
+				<section>
+					<p><strong>His deck is built to take big turns.</strong> Welder into a fully-loaded Charizard. Leon plus Royal Blaze. Battle Sense every turn digging toward the combo. All of it assumes he <em>gets</em> turns.</p>
+					<dl>
+						<dt data-head>His card</dt><dd data-head>What Sleep does to it</dd>
+						<dt><strong>Charizard</strong>, <em>Royal Blaze</em></dt><dd><span>Can&#x27;t attack. The 150-damage swing simply doesn&#x27;t happen.</span></dd>
+						<dt><strong>Charizard</strong>, retreat <strong>3</strong></dt><dd><span>Asleep means it can&#x27;t retreat at any price.</span></dd>
+						<dt><strong>Welder</strong></dt><dd><span>He can still play it — but powering up a Pokémon that can&#x27;t attack is a wasted turn <em>and</em> 40 from Old Cemetery.</span></dd>
+						<dt><strong>Leon</strong></dt><dd><span>The +30 only lasts &quot;during this turn.&quot; A slept turn wastes it entirely.</span></dd>
+						<dt><strong>Battle Sense</strong></dt><dd><span>Off, while Wobbuffet is Active.</span></dd>
+					</dl>
+					<p><strong>Leon is the sharpest one.</strong> Leon reads <em>&quot;during this turn.&quot;</em> If he plays Leon and then fails his Checkup flip, that Supporter did nothing at all — and it&#x27;s one of his four.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="what-still-hurts-you">What still hurts you</h3>
+				<section>
+					<p><strong>Royal Blaze one-shots everything you own.</strong> With one Leon in his discard it does 150; your biggest body is a 110 HP Hypno or Gengar. He does not need to win the long game if he wins three coin flips in a row.</p>
+					<p><strong>Sudowoodo hits Drowzee, Hypno, and Wobbuffet at full.</strong> Only Gengar and Gourgeist carry the −30 Fighting Resistance. Flail into a 110 HP Hypno is a real threat.</p>
+					<p><strong>And two Switch is enough to matter.</strong> He gets two guaranteed escapes from the lock. Make him spend them early on something cheap if you can.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="honest-verdict">Honest verdict</h3>
+				<section>
+					<p><strong>Favourable, but swingier than Build A.</strong> Build A grinds out an advantage that compounds and never gives it back. This deck wins hard when the coin flips cooperate and loses turns in clumps when they don&#x27;t. It is the more <em>fun</em> deck to pilot and the less reliable one.</p>
+			<aside data-callout="caution">
+				<p><strong>A word about playing this against a ten-year-old.</strong></p>
+				<p>A hard sleep lock is not fun to sit across from. Getting three turns out of six, and losing your Leon to a coin flip, is exactly the kind of game that makes a kid put the cards down.</p>
+				<p>If you build this one, consider it a <strong>deck to play sparingly</strong> — or trim to 2 Drowzee and treat Sleep as tempo rather than a lock. <strong>Build A is the better regular opponent for him.</strong> It&#x27;s oppressive in a way he can learn to play around; this one is oppressive in a way he mostly just watches.</p>
+			</aside>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="what-to-buy">What To Buy</h3>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td>Gastly, Haunter (Psychic)</td><td><strong>11</strong></td><td>0</td><td>Skip 151 093</td></tr>
+							<tr><td>Pumpkaboo (Psychic)</td><td><strong>3</strong></td><td>0</td><td>Any print</td></tr>
+							<tr><td>Gengar, SSH 085</td><td><strong>1</strong></td><td><strong>2</strong></td><td>The attacker — you want three</td></tr>
+							<tr><td>Gengar, LOR 066</td><td><strong>1</strong></td><td>0</td><td>Your ToT 2023 066 is this card</td></tr>
+							<tr><td><strong>Drowzee, UNB 071</strong></td><td>0</td><td><strong>4</strong></td><td>Common, cents</td></tr>
+							<tr><td><strong>Hypno, UNB 072</strong></td><td>0</td><td><strong>3</strong></td><td>Rare, cheap</td></tr>
+							<tr><td><strong>Wobbuffet, PHF 036</strong></td><td>0</td><td><strong>2</strong></td><td>Common</td></tr>
+							<tr><td><strong>Gourgeist, PAR 078</strong></td><td>0</td><td><strong>2</strong></td><td>Not the print you own — but you do own <strong>Pumpkaboo PAR 077</strong>, the Basic from that same line</td></tr>
+							<tr><td>Old Cemetery</td><td><strong>1</strong></td><td><strong>1</strong></td><td>Chilling Reign 147</td></tr>
+							<tr><td>Fog Crystal</td><td>0</td><td><strong>3</strong></td><td>Chilling Reign 140</td></tr>
+							<tr><td>Mysterious Treasure</td><td>0</td><td><strong>3</strong></td><td>Forbidden Light 145</td></tr>
+							<tr><td>N</td><td>0</td><td><strong>3</strong></td><td>Noble Victories 92</td></tr>
+							<tr><td>Rare Candy / Ultra Ball / Prof&#x27;s Research / Switch</td><td><strong>1+ of each</strong></td><td>up to 14</td><td>You own all four now. <code>cards.csv</code> has no counts, and these are shared with the Fire and Dark decks — count what&#x27;s actually spare before ordering</td></tr>
+							<tr><td>Basic Psychic Energy</td><td>0</td><td>12</td><td>Never rotates</td></tr>
+						</tbody>
+					</table>
+					<p><strong>The cheapest of the three Psychic builds by a wide margin.</strong> Build A needs three Chandelure NVI — a 2011 Rare Holo that carries a real price. This deck&#x27;s most expensive card is a Sword &amp; Shield Gengar you already own one of.</p>
+					<p><strong>Not Standard legal and can&#x27;t be made so.</strong> Unbroken Bonds, Phantom Forces, Noble Victories, Chilling Reign, Forbidden Light, and Lost Origin are all rotated.</p>
+			</section>
+			<section>
+				<h3 id="build-a-or-build-b">Build A or Build B?<span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th></th><th><strong><a href="./psychic-lanterns.html">A — Witching Hour</a></strong></th><th><strong>B — Long Night</strong></th></tr></thead>
+						<tbody>
+							<tr><td><strong>Built on</strong></td><td>Gengar LOR 066</td><td>Gengar SSH 085</td></tr>
+							<tr><td><strong>Wins by</strong></td><td>Damage counters everywhere, incl. their Bench</td><td>Denying turns</td></tr>
+							<tr><td><strong>Signature card</strong></td><td>Chandelure, <em>Cursed Shadow</em></td><td>Drowzee, <em>Hypnosis</em></td></tr>
+							<tr><td><strong>Main attack cost</strong></td><td>1 Energy</td><td>3 Energy</td></tr>
+							<tr><td><strong>Energy count</strong></td><td>11</td><td>12</td></tr>
+							<tr><td><strong>Reaches their Bench?</strong></td><td>✅ Yes, every turn, free</td><td>❌ Active only</td></tr>
+							<tr><td><strong>Consistency</strong></td><td>High — grinds, compounds, forgiving</td><td>Swingy — coin flips decide clumps of turns</td></tr>
+							<tr><td><strong>Cost to build</strong></td><td>Higher (3× Chandelure NVI)</td><td><strong>Lower</strong></td></tr>
+							<tr><td><strong>Fun to play against?</strong></td><td>Yes — he can learn to play around it</td><td>Not especially</td></tr>
+						</tbody>
+					</table>
+					<p><strong>My recommendation: build A.</strong> Cursed Shadow reaching the Bench is a genuinely novel thing that neither of the other two decks on your table can do, it teaches Fox a real skill (protect your Basics), and it doesn&#x27;t depend on coin flips to function.</p>
+					<p><strong>Build B is the better <em>deck</em> in a vacuum</strong> — turn denial is the strongest effect in the game — and it&#x27;s cheaper. It&#x27;s just a worse thing to point at a kid.</p>
+					<p>If you want a middle path: <strong>run Build A and swap in 2 Drowzee</strong> over the Gourgeist line. You get <em>Hypnosis</em> as a turn-one tempo play without committing to the full lock, and Cursed Shadow stays the engine.</p>
+			</section>
+		</main>
+		<footer>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+		</footer>
+	</body>
+</html>

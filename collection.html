@@ -474,6 +474,16 @@
 			vertical-align: top;
 		}
 
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
 		th {
 			color: var(--muted);
 			font-size: 0.85em;
@@ -522,12 +532,19 @@
 			padding: var(--pad);
 			margin-block: 1em;
 
-			/* a callout inside a card sits on the card's own background, so it
-			   needs the page colour to read as a separate box rather than a
-			   rectangle of border. */
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
 			article &,
 			main > section & {
 				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
 			}
 
 			h2 {
@@ -542,7 +559,8 @@
 			}
 
 			p + p,
-			ul {
+			ul,
+			ol {
 				padding-top: 0.7em;
 			}
 
@@ -553,7 +571,10 @@
 				padding-top: 0;
 			}
 
-			ul {
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
 				padding-inline-start: 1.2em;
 			}
 		}
@@ -1163,7 +1184,7 @@
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
 						<dt>HP</dt><dd>200</dd>
 						<dt>Stage</dt><dd>Basic</dd>
-						<dt>Ability</dt><dd>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.)</dd>
+						<dt>Ability</dt><dd>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.) Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Coruscating Quartz (200)</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
@@ -1250,7 +1271,7 @@
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
 						<dt>HP</dt><dd>270</dd>
 						<dt>Stage</dt><dd>Stage 1</dd>
-						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Ability</dt><dd>Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Burning Charge (130) - Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Carnelian (280) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>

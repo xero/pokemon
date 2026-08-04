@@ -474,6 +474,16 @@
 			vertical-align: top;
 		}
 
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
 		th {
 			color: var(--muted);
 			font-size: 0.85em;
@@ -522,12 +532,19 @@
 			padding: var(--pad);
 			margin-block: 1em;
 
-			/* a callout inside a card sits on the card's own background, so it
-			   needs the page colour to read as a separate box rather than a
-			   rectangle of border. */
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
 			article &,
 			main > section & {
 				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
 			}
 
 			h2 {
@@ -542,7 +559,8 @@
 			}
 
 			p + p,
-			ul {
+			ul,
+			ol {
 				padding-top: 0.7em;
 			}
 
@@ -553,7 +571,10 @@
 				padding-top: 0;
 			}
 
-			ul {
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
 				padding-inline-start: 1.2em;
 			}
 		}

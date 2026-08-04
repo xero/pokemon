@@ -474,6 +474,16 @@
 			vertical-align: top;
 		}
 
+		/* a <dl> built from a real table keeps its header row, styled to match
+		   the <th> of the tables that stayed tables */
+		dl [data-head] {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
 		th {
 			color: var(--muted);
 			font-size: 0.85em;
@@ -522,12 +532,19 @@
 			padding: var(--pad);
 			margin-block: 1em;
 
-			/* a callout inside a card sits on the card's own background, so it
-			   needs the page colour to read as a separate box rather than a
-			   rectangle of border. */
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
 			article &,
 			main > section & {
 				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
 			}
 
 			h2 {
@@ -542,7 +559,8 @@
 			}
 
 			p + p,
-			ul {
+			ul,
+			ol {
 				padding-top: 0.7em;
 			}
 
@@ -553,7 +571,10 @@
 				padding-top: 0;
 			}
 
-			ul {
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
 				padding-inline-start: 1.2em;
 			}
 		}
@@ -594,6 +615,8 @@
 					<h2>Card text and rulings<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h2>
 					<p>The wording on every card, and the rulings for how it actually behaves, come from <a href="https://pkmncards.com/">PkmnCards</a>, <a href="https://www.tcgcollector.com/">TCG Collector</a>, and <a href="https://bulbapedia.bulbagarden.net/">Bulbapedia</a>.</p>
 					<p>Two Bulbapedia pages did most of the work: <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG)">Confused (TCG)</a>, because both decks lean on it, and <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50)">Gengar (Perfect Order 50)</a>, for the exact text of Infinite Shadow.</p>
+					<p>The awkward rules questions were settled by <a href="https://www.justinbasil.com/guide/damage">JustinBasil</a> on why damage counters ignore Weakness and every prevent-damage effect, the <a href="https://compendium.pokegym.net/category/7-gameplay/retreating/">Pokégym Compendium</a> on retreating, and <a href="https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG)">Bulbapedia on Special Conditions</a> for how Sleep and Confusion actually resolve.</p>
+					<p>Deck lists and what people are really playing come from <a href="https://limitlesstcg.com/">Limitless TCG</a> and the <a href="https://www.pokemon.com/us/pokemon-tcg/">Pokémon.com card database</a>. Full set lists, for checking a card exists before planning around it, come from <a href="https://www.serebii.net/card/">Serebii</a>. And <a href="https://www.josephwriteranderson.com/blog/mega-gengar-ex-deck-list-and-guide">Joseph Writer Anderson's Mega Gengar ex guide</a> worked out how that deck is actually piloted.</p>
 				</section>
 			</article>
 			<article>

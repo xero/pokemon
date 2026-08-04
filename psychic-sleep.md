@@ -319,19 +319,19 @@ Everything here is Weak to **Darkness** or **Psychic**. Fox plays **Fire**, **Fi
 
 | Card | Own | Need | Note |
 | :--- | :--- | :--- | :--- |
-| Gastly, Haunter (Psychic) | **9** | 0 | Skip 151 093 |
+| Gastly, Haunter (Psychic) | **11** | 0 | Skip 151 093 |
 | Pumpkaboo (Psychic) | **3** | 0 | Any print |
 | Gengar, SSH 085 | **1** | **2** | The attacker — you want three |
 | Gengar, LOR 066 | **1** | 0 | Your ToT 2023 066 is this card |
 | **Drowzee, UNB 071** | 0 | **4** | Common, cents |
 | **Hypno, UNB 072** | 0 | **3** | Rare, cheap |
 | **Wobbuffet, PHF 036** | 0 | **2** | Common |
-| **Gourgeist, PAR 078** | 0 | **2** | Not the print you own |
+| **Gourgeist, PAR 078** | 0 | **2** | Not the print you own — but you do own **Pumpkaboo PAR 077**, the Basic from that same line |
 | Old Cemetery | **1** | **1** | Chilling Reign 147 |
 | Fog Crystal | 0 | **3** | Chilling Reign 140 |
 | Mysterious Treasure | 0 | **3** | Forbidden Light 145 |
 | N | 0 | **3** | Noble Victories 92 |
-| Rare Candy / Ultra Ball / Prof's Research / Switch | 0 | 14 | Any prints |
+| Rare Candy / Ultra Ball / Prof's Research / Switch | **1+ of each** | up to 14 | You own all four now. `cards.csv` has no counts, and these are shared with the Fire and Dark decks — count what's actually spare before ordering |
 | Basic Psychic Energy | 0 | 12 | Never rotates |
 
 **The cheapest of the three Psychic builds by a wide margin.** Build A needs three Chandelure NVI — a 2011 Rare Holo that carries a real price. This deck's most expensive card is a Sword & Shield Gengar you already own one of.
@@ -359,7 +359,3 @@ Everything here is Weak to **Darkness** or **Psychic**. Fox plays **Fire**, **Fi
 **Build B is the better *deck* in a vacuum** — turn denial is the strongest effect in the game — and it's cheaper. It's just a worse thing to point at a kid.
 
 If you want a middle path: **run Build A and swap in 2 Drowzee** over the Gourgeist line. You get *Hypnosis* as a turn-one tempo play without committing to the full lock, and Cursed Shadow stays the engine.
-
----
-
-**Sources:** [PkmnCards](https://pkmncards.com/) · [Limitless TCG](https://limitlesstcg.com/) · [Pokémon.com TCG Card Database](https://www.pokemon.com/us/pokemon-tcg/) · [Bulbapedia — Special Conditions](https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG)) · [Pokégym Compendium — Retreating](https://compendium.pokegym.net/category/7-gameplay/retreating/)
