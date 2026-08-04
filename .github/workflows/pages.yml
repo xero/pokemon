@@ -1,8 +1,12 @@
 name: publish
 
-# Manual only. Publishes whatever is committed on the selected ref --
-# no generators run here, the HTML is built locally and committed.
+# Publishes whatever is committed on main -- no generators run here, the HTML
+# is built locally and committed. workflow_dispatch stays so any ref can still
+# be published by hand.
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -27,7 +31,10 @@ jobs:
       - name: stage site
         run: |
           mkdir -p _site
-          cp index.html collection.html dark.html fire.html _site/
+          # every page in the repo root is generated and meant to be published.
+          # naming them one by one meant a new deck page was live locally and a
+          # 404 in production until someone remembered to edit this line.
+          cp *.html _site/
           cp -R assets _site/assets
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
