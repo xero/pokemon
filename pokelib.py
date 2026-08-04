@@ -222,11 +222,15 @@ def anchor(text, seen):
     return s if n == 0 else f"{s}-{n}"
 
 
-def page(dest, title, subtitle, nav, body, notes="", sprite=""):
+def page(dest, title, subtitle, nav, body, notes="", sprite="", script=""):
     """Fill the shared template and write it out.
 
     sprite names one file in assets/sprites, or several, shown beside the
     page title. Missing files are skipped rather than left as broken images.
+
+    script is a path in assets. Only the collection asks for one, so the tag
+    is dropped entirely everywhere else rather than shipping nine pages that
+    fetch a file with nothing to do on them.
     """
     out = TEMPLATE.read_text(encoding="utf-8")
     names = [sprite] if isinstance(sprite, str) else list(sprite or [])
@@ -238,6 +242,10 @@ def page(dest, title, subtitle, nav, body, notes="", sprite=""):
         out = re.sub(r"\n\t*\$\{NAV\}", "", out)
     if not subtitle:                  # likewise, no empty <p> left behind
         out = re.sub(r"\n\t*<p>\$\{SUBTITLE\}</p>", "", out)
+    if script:
+        out = out.replace("${SCRIPT}", f'<script defer src="{script}"></script>')
+    else:
+        out = re.sub(r"\n\t*\$\{SCRIPT\}", "", out)
     for token, repl in (("${TITLE}", title), ("${SUBTITLE}", subtitle),
                         ("${NAV}", nav), ("${ARTICLES}", body),
                         ("${NOTES}", notes)):

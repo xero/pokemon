@@ -3,6 +3,7 @@
 raw-cards.json
 ordered-card-urls.txt
 theme-deck-urls.txt
+*.tsv
 
 # Purchase records: carts, prices paid, what shipped from whom.
 tcgplayer-order.md

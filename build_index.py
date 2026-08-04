@@ -13,8 +13,8 @@ ROOT = Path(__file__).parent
 
 PAGES = [
     ("collection.html", ["charizard-mega-x", "gengar-mega"],
-     "Every Pokémon in the binder, sorted by name, with what each one does, and"
-     " if it's tournament legal."),
+     "A searchable collection of our combined binders. Every card, stat, and"
+     " ability, and whether it's legal for tournament play."),
     ("fire.html", ["charizard", "flareon"],
      "Fox's deck, card by card: what each one is for, what it wants to sit next"
      " to, and how to beat dad."),
@@ -49,7 +49,10 @@ def read(name):
     """
     html = (ROOT / name).read_text(encoding="utf-8")
     title = re.search(r"<title>(.*?)</title>", html, re.S).group(1)
-    cards = sum(1 for a in html.split("<article>")[1:]
+    # split on the tag name, not on "<article>": the collection's articles
+    # carry the filter values as attributes, and matching the bare tag counted
+    # every one of them as zero
+    cards = sum(1 for a in re.split(r"<article\b", html)[1:]
                 if "How many" in (body := a.split("</article>")[0])
                 or 'class="card"' in body)
     return title, cards

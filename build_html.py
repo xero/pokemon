@@ -29,7 +29,7 @@ SRC = ROOT / "cards.csv"
 TEMPLATE = ROOT / "assets" / "template.html"
 DEST = ROOT / "collection.html"
 
-TITLE = "Pokémon Caught!"
+TITLE = "Pokédex"
 
 # Sprites shown beside the title.
 MASCOT = ["gengar-mega", "charizard"]
@@ -56,6 +56,21 @@ LEGAL_LABEL = {
     "japanese": ("no", "only English cards allowed"),
     "unknown": ("unown", "Unknown, check the letter on the card"),
 }
+
+# The stat rows you can click to filter the page, and the attribute each one
+# reads its value from. The value lives on the <article> rather than on the row
+# so the script never has to unpick a cell that holds an icon and a <small>.
+FILTER_KEY = {
+    "set_name": "set",
+    "rarity": "rarity",
+    "card_type": "type",
+    "stage": "stage",
+    "standard_legal": "tournament",
+}
+
+# standard_legal is stored as a flag; a filter chip has to read as English.
+TOURNAMENT = {"yes": "legal", "no": "too old", "japanese": "Japanese",
+              "unknown": "unknown"}
 
 ATTACKS = ("attack1", "attack2", "attack3", "attack4")
 MARKS_ANCHOR = "checking-the-letter"
@@ -107,13 +122,24 @@ def attack(text):
 
 
 def stats(r):
+    """Rows for a card's <dl>: term, value, and the filter it clicks through to."""
     out = []
     for key, label in LABELS:
         if key is None:
-            out += [("Attack", attack(r[k])) for k in ATTACKS if r[k]]
+            out += [("Attack", attack(r[k]), "") for k in ATTACKS if r[k]]
         else:
-            out.append((label, value(key, r)))
+            # an empty cell has nothing to filter on, and a row that filters
+            # the page down to "cards with no rarity" is not worth offering
+            out.append((label, value(key, r), FILTER_KEY.get(key, "") if r[key] else ""))
     return out
+
+
+def tags(r):
+    """The filterable values, as attributes on the <article>."""
+    v = {"name": r["name"], "set": r["set_name"], "rarity": r["rarity"],
+         "type": r["card_type"], "stage": r["stage"],
+         "tournament": TOURNAMENT.get(r["standard_legal"], r["standard_legal"])}
+    return "".join(f' data-{k}="{esc(x)}"' for k, x in v.items() if x)
 
 
 # quantity 0 is a card a deck plan wants but we do not own. It belongs in the
@@ -131,16 +157,21 @@ entries = [(r, anchor(r["name"], seen)) for r in rows]
 
 # --- navigation --------------------------------------------------------------
 # Letter markers are list items too: <ul> only ever admits <li> children.
-nav = ["<nav>", "\t<details>", "\t\t<summary>Pokédex</summary>", "\t\t<ul>"]
+nav = ["<nav>", "\t<details>", "\t\t<summary>Search</summary>",
+       '\t\t<input type="search" data-search placeholder="Find a Pokémon"'
+       ' aria-label="Find a Pokémon" autocomplete="off" />',
+       "\t\t<ul>"]
 last = None
 for r, a in entries:
     letter = r["name"][0].upper()
     if letter != last:
-        nav.append(f"\t\t\t<li><b>{esc(letter)}</b></li>")
+        nav.append(f"\t\t\t<li data-letter><b>{esc(letter)}</b></li>")
         last = letter
-    nav.append(f'\t\t\t<li><a href="#{a}">{esc(r["name"])}</a> '
+    # data-for ties the entry to its card, so hiding one hides the other and
+    # the contents list never offers a jump to something that is filtered out
+    nav.append(f'\t\t\t<li data-for="{a}"><a href="#{a}">{esc(r["name"])}</a> '
                f'<em>{esc(r["set_name"])}</em></li>')
-nav += ["\t\t</ul>", "\t</details>", "</nav>"]
+nav += ["\t\t</ul>", "\t</details>", "\t<div data-active hidden></div>", "</nav>"]
 
 # --- cards -------------------------------------------------------------------
 articles = []
@@ -148,17 +179,21 @@ for r, a in entries:
     head = [mega_sigil(r["stage"], r["name"]), esc(r["name"]),
             icon("rarities", RARITY_SLUG.get(r["rarity"]), r["rarity"]),
             count_badge(r["quantity"])]
-    art = ["\t\t\t<article>",
+    art = [f"\t\t\t<article{tags(r)}>",
            f'\t\t\t\t<h2 id="{a}">' + " ".join(p for p in head if p) + "</h2>"]
     if r["image_file"]:
         art += ["\t\t\t\t<aside>",
                 "\t\t\t\t\t" + img(f'./assets/{r["image_file"]}', r["name"]),
                 "\t\t\t\t</aside>"]
     art += ["\t\t\t\t<section>", '\t\t\t\t\t<dl class="card">']
-    for label, v in stats(r):
-        art.append(f"\t\t\t\t\t\t<dt>{esc(label)}</dt><dd>{v}</dd>")
+    for label, v, key in stats(r):
+        at = f' class="filter" data-filter="{key}"' if key else ""
+        art.append(f"\t\t\t\t\t\t<dt{at}>{esc(label)}</dt><dd{at}>{v}</dd>")
     art += ["\t\t\t\t\t</dl>", "\t\t\t\t</section>", "\t\t\t</article>"]
     articles.append("\n".join(art))
+
+# shown by the script when a filter or a search leaves nothing standing
+articles.append('\t\t\t<p data-empty hidden>No Pok&eacute;mon match.</p>')
 
 # --- footnotes ---------------------------------------------------------------
 notes = [
@@ -211,9 +246,11 @@ notes += ["\t\t\t\t<p>Read the one in your hand every time.</p>",
 
 # --- assemble ----------------------------------------------------------------
 legal = sum(1 for r in rows if r["standard_legal"] == "yes")
-subtitle = f"{len(rows)} Pok&eacute;mon, {legal} of them tournament legal."
+subtitle = (f"{len(rows)} Pok&eacute;mon caught, {legal} of them tournament"
+            " legal.")
 
 out = page(DEST, TITLE, subtitle, "\n\t\t\t".join(nav),
-           "\n".join(articles), "\n".join(notes), MASCOT)
+           "\n".join(articles), "\n".join(notes), MASCOT,
+           script="./assets/collection.js")
 print(f"collection.html: {len(rows)} entries, {legal} legal, "
       f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")
