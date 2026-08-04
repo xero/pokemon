@@ -25,9 +25,10 @@ import re, sys
 from collections import Counter
 from pathlib import Path
 
-from pokelib import (ASSETS, CREDITS_NOTE, anchor, cost_icons, count_badge,
-                     esc, find_card, flair, icon, img, page, row, set_folder,
-                     set_slug, typed, type_icon)
+from pokelib import (CREDITS_NOTE, anchor, card_art, cost_icons,
+                     count_badge, esc, find_card, flair, icon, img,
+                     legal_cell, page, row, set_folder, set_slug, stat_cell,
+                     type_icon)
 
 ROOT = Path(__file__).parent
 
@@ -306,10 +307,12 @@ def attack_row(val):
 # cards. The number is what pins the printing.
 HEADING_CARD = re.compile(r"([A-Z][\w'’.\- ]*?)\s+[—-]\s+([A-Za-z&'’.: \-]+?)\s+(\d{2,3})\b")
 
-# Legality badge and wording, matching build_html.py.
-LEGAL = {"yes": ("ok", "legal"), "no": ("no", "rotated out"),
-         "japanese": ("no", "Japanese, not legal in the US"),
-         "unknown": ("unown", "unknown, check the letter on the card")}
+# How a deck plan words legality. Terser than the collection page, which is
+# talking to a reader browsing a binder rather than one checking a deck list.
+# The badge that goes with each is shared, in pokelib.
+LEGAL = {"yes": "legal", "no": "rotated out",
+         "japanese": "Japanese, not legal in the US",
+         "unknown": "unknown, check the letter on the card"}
 
 # Which stat rows to show, and what to call them.
 CARD_ROWS = [("set_name", "Set"), ("rarity", "Rarity"),
@@ -381,8 +384,8 @@ def card_block(heading, ind, counts=None):
         out = []
         if r["image_file"]:
             out += ["\t\t\t\t<aside>",
-                    f'\t\t\t\t\t<img src="./assets/{r["image_file"]}"'
-                    f' alt="{esc(r["name"])}" />',
+                    "\t\t\t\t\t" + card_art(f'./assets/{r["image_file"]}',
+                                            r["name"]),
                     "\t\t\t\t</aside>"]
         out.append("\t\t\t\t<section>")
         out.append(f'{ind}<dl class="card">')
@@ -390,25 +393,11 @@ def card_block(heading, ind, counts=None):
             v = r.get(key, "")
             if not v:
                 continue
-            if key == "set_name":
-                body = row(icon(set_folder(r.get("product_line")), set_slug(v), v),
-                           esc(v) + f' <small>{esc(r["card_number"])}</small>')
-            elif key in ("card_type", "weakness", "resistance"):
-                body = typed(v)
-            elif key == "retreat_cost":
-                body = row(type_icon("Colorless") * (int(v) if v.isdigit() else 0),
-                           esc(v), "cost")
-            elif key == "standard_legal":
-                # same badge the collection page uses, so legality reads the
-                # same wherever it appears
-                # not "label": that is the loop's <dt> text, and rebinding it
-                # renamed the row from "Tournament" to "no"
-                badge, text = LEGAL.get(v, ("", v))
-                ico = (img(f"./assets/{badge}.png", badge.upper())
-                       if badge and (ASSETS / f"{badge}.png").exists() else "")
-                body = row(ico, esc(text))
+            if key == "standard_legal":
+                # same badge the collection page uses, worded for a deck plan
+                body = legal_cell(v, esc(LEGAL.get(v, v)))
             else:
-                body = row("", esc(re.sub(r"^Ability:\s*", "", v)))
+                body = stat_cell(key, r)
             out.append(f"{ind}\t<dt>{esc(label)}</dt><dd>{body}</dd>")
         for k in ("attack1", "attack2", "attack3", "attack4"):
             if r.get(k):
@@ -559,8 +548,8 @@ def convert(src):
                 has_image = True
                 src_m = re.search(r'src="([^"]+)"', lines[j])
                 art.append("\t\t\t\t<aside>"
-                           f'<img src="{src_m.group(1)}" alt="{esc(name)}" />'
-                           "</aside>")
+                           + card_art(src_m.group(1), name)
+                           + "</aside>")
                 i = j
             art.append("\t\t\t\t<section>")
             # the stat table, if the next non-blank block is one

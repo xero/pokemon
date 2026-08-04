@@ -449,6 +449,22 @@
 				}
 			}
 
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
@@ -841,12 +857,12 @@
 			<article>
 				<h3 id="flareon-ex-prismatic-evolutions-014-reg-h">Flareon ex — Prismatic Evolutions 014 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" />
+					<a data-art href="./assets/610369_flareon-ex-014-131.jpg" target="_blank" rel="noopener"><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>014/131</small></span></dd>
-						<dt>Rarity</dt><dd><span>Double Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
 						<dt>HP</dt><dd><span>270</span></dd>
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
@@ -865,12 +881,12 @@
 			<article>
 				<h3 id="eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex — Prismatic Evolutions 075 · Reg H<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" />
+					<a data-art href="./assets/610430_eevee-ex-075-131.jpg" target="_blank" rel="noopener"><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>075/131</small></span></dd>
-						<dt>Rarity</dt><dd><span>Double Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
 						<dt>HP</dt><dd><span>200</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -888,12 +904,12 @@
 			<article>
 				<h3 id="eevee-prismatic-evolutions-074-reg-h">Eevee — Prismatic Evolutions 074 · Reg H<span data-count>x4</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" />
+					<a data-art href="./assets/610590_eevee-poke-ball-pattern.jpg" target="_blank" rel="noopener"><img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>074/131</small></span></dd>
-						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
 						<dt>HP</dt><dd><span>50</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -911,12 +927,12 @@
 			<article>
 				<h3 id="hoothoot-stellar-crown-114-reg-h">Hoothoot — Stellar Crown 114 · Reg H<span data-count>x4</span><span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" />
+					<a data-art href="./assets/567340_hoothoot.jpg" target="_blank" rel="noopener"><img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>114/142</small></span></dd>
-						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
 						<dt>HP</dt><dd><span>70</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -934,12 +950,12 @@
 			<article>
 				<h3 id="noctowl-stellar-crown-115-reg-h">Noctowl — Stellar Crown 115 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/567341_noctowl.jpg" alt="Noctowl" />
+					<a data-art href="./assets/567341_noctowl.jpg" target="_blank" rel="noopener"><img src="./assets/567341_noctowl.jpg" alt="Noctowl" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>115/142</small></span></dd>
-						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
 						<dt>HP</dt><dd><span>100</span></dd>
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
@@ -958,12 +974,12 @@
 			<article>
 				<h3 id="crispin-stellar-crown-133-reg-h-supporter">Crispin — Stellar Crown 133 · Reg H <em>(Supporter)</em><span data-count>x4</span></h3>
 				<aside>
-					<img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" />
+					<a data-art href="./assets/567390_crispin-133-142.jpg" target="_blank" rel="noopener"><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>133/142</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Energy cards of different types, reveal them, and put 1 of them into your hand. Attach the other to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
 						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
@@ -978,12 +994,12 @@
 			<article>
 				<h3 id="sparkling-crystal-stellar-crown-142-reg-h-ace-spec">Sparkling Crystal — Stellar Crown 142 · Reg H · <strong>ACE SPEC</strong><span data-count>x1</span></h3>
 				<aside>
-					<img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" />
+					<a data-art href="./assets/567416_sparkling-crystal.jpg" target="_blank" rel="noopener"><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>142/142</small></span></dd>
-						<dt>Rarity</dt><dd><span>ACE SPEC Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
 						<dt>Ability</dt><dd><span>When the Tera Pokémon this card is attached to uses an attack, that attack costs 1 Energy less. (The Energy can be of any type.)</span></dd>
 						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>

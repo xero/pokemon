@@ -449,6 +449,22 @@
 				}
 			}
 
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
@@ -878,7 +894,7 @@
 			<h2 id="pokémon-1">Pokémon</h2>
 			<article>
 				<h3 id="charmander">Charmander<span data-count>x4</span><span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h3>
-				<aside><img src="./assets/226392_charmander.jpg" alt="Charmander" /></aside>
+				<aside><a data-art href="./assets/226392_charmander.jpg" target="_blank" rel="noopener"><img src="./assets/226392_charmander.jpg" alt="Charmander" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
@@ -914,7 +930,7 @@
 			</article>
 			<article>
 				<h3 id="charmeleon">Charmeleon<span data-count>x2</span><span data-flavor><img src="./assets/sprites/charmeleon.gif" alt="" /></span></h3>
-				<aside><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /></aside>
+				<aside><a data-art href="./assets/226394_charmeleon.jpg" target="_blank" rel="noopener"><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
@@ -946,7 +962,7 @@
 			</article>
 			<article>
 				<h3 id="charizard">Charizard<span data-count>x3</span><span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
-				<aside><img src="./assets/226395_charizard.jpg" alt="Charizard" /></aside>
+				<aside><a data-art href="./assets/226395_charizard.jpg" target="_blank" rel="noopener"><img src="./assets/226395_charizard.jpg" alt="Charizard" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
@@ -990,7 +1006,7 @@
 			</article>
 			<article>
 				<h3 id="eevee">Eevee<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
-				<aside><img src="./assets/610429_eevee.jpg" alt="Eevee" /></aside>
+				<aside><a data-art href="./assets/610429_eevee.jpg" target="_blank" rel="noopener"><img src="./assets/610429_eevee.jpg" alt="Eevee" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
@@ -1027,7 +1043,7 @@
 			</article>
 			<article>
 				<h3 id="flareon">Flareon<span data-count>x2</span><span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
-				<aside><img src="./assets/610368_flareon.jpg" alt="Flareon" /></aside>
+				<aside><a data-art href="./assets/610368_flareon.jpg" target="_blank" rel="noopener"><img src="./assets/610368_flareon.jpg" alt="Flareon" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
@@ -1064,7 +1080,7 @@
 			</article>
 			<article>
 				<h3 id="sudowoodo">Sudowoodo<span data-count>x2</span><span data-flavor><img src="./assets/sprites/sudowoodo.gif" alt="" /></span></h3>
-				<aside><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /></aside>
+				<aside><a data-art href="./assets/208409_sudowoodo.jpg" target="_blank" rel="noopener"><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set</span></dd>
@@ -1130,7 +1146,7 @@
 			</aside>
 			<article>
 				<h3 id="leon">Leon<span data-count>x4</span></h3>
-				<aside><img src="./assets/226508_leon.jpg" alt="Leon" /></aside>
+				<aside><a data-art href="./assets/226508_leon.jpg" target="_blank" rel="noopener"><img src="./assets/226508_leon.jpg" alt="Leon" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
@@ -1166,7 +1182,7 @@
 			</article>
 			<article>
 				<h3 id="welder">Welder<span data-count>x2</span></h3>
-				<aside><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder" /></aside>
+				<aside><a data-art href="./assets/219100_welder-189-214-25-charizard-stamped.jpg" target="_blank" rel="noopener"><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span>Battle Academy (#25 Charizard Stamped)</span></dd>
@@ -1197,7 +1213,7 @@
 			</article>
 			<article>
 				<h3 id="professors-research-professor-oak">Professor&#x27;s Research [Professor Oak]<span data-count>x3</span></h3>
-				<aside><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /></aside>
+				<aside><a data-art href="./assets/610477_professors-research-professor-oak.jpg" target="_blank" rel="noopener"><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
@@ -1232,7 +1248,7 @@
 			</article>
 			<article>
 				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]<span data-count>x3</span></h3>
-				<aside><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></aside>
+				<aside><a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
@@ -1262,7 +1278,7 @@
 			</article>
 			<article>
 				<h3 id="kindler">Kindler<span data-count>x2</span></h3>
-				<aside><img src="./assets/257309_kindler.jpg" alt="Kindler" /></aside>
+				<aside><a data-art href="./assets/257309_kindler.jpg" target="_blank" rel="noopener"><img src="./assets/257309_kindler.jpg" alt="Kindler" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/brilliant-stars.png" /><img src="./assets/sets/brilliant-stars.png" alt="SWSH09: Brilliant Stars" /></picture></span><span>SWSH09: Brilliant Stars</span></dd>
@@ -1290,7 +1306,7 @@
 			</article>
 			<article>
 				<h3 id="zinnias-resolve">Zinnia&#x27;s Resolve<span data-count>x1</span></h3>
-				<aside><img src="./assets/246789_zinnias-resolve.jpg" alt="Zinnia&#x27;s Resolve" /></aside>
+				<aside><a data-art href="./assets/246789_zinnias-resolve.jpg" target="_blank" rel="noopener"><img src="./assets/246789_zinnias-resolve.jpg" alt="Zinnia&#x27;s Resolve" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolving-skies.png" /><img src="./assets/sets/evolving-skies.png" alt="SWSH07: Evolving Skies" /></picture></span><span>SWSH07: Evolving Skies</span></dd>
@@ -1329,7 +1345,7 @@
 			</aside>
 			<article>
 				<h3 id="rare-candy">Rare Candy<span data-count>x4</span></h3>
-				<aside><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></aside>
+				<aside><a data-art href="./assets/654464_rare-candy-125-132.jpg" target="_blank" rel="noopener"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
@@ -1362,7 +1378,7 @@
 			</article>
 			<article>
 				<h3 id="ultra-ball">Ultra Ball<span data-count>x3</span></h3>
-				<aside><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></aside>
+				<aside><a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
@@ -1390,7 +1406,7 @@
 			</article>
 			<article>
 				<h3 id="nest-ball">Nest Ball<span data-count>x3</span></h3>
-				<aside><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /></aside>
+				<aside><a data-art href="./assets/534446_nest-ball.jpg" target="_blank" rel="noopener"><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture></span><span>SV: Paldean Fates</span></dd>
@@ -1419,7 +1435,7 @@
 			</article>
 			<article>
 				<h3 id="evolution-incense">Evolution Incense<span data-count>x1</span></h3>
-				<aside><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /></aside>
+				<aside><a data-art href="./assets/208489_evolution-incense.jpg" target="_blank" rel="noopener"><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set</span></dd>
@@ -1445,7 +1461,7 @@
 			</article>
 			<article>
 				<h3 id="switch">Switch<span data-count>x2</span></h3>
-				<aside><img src="./assets/654469_switch.jpg" alt="Switch" /></aside>
+				<aside><a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
@@ -1475,7 +1491,7 @@
 			</article>
 			<article>
 				<h3 id="ordinary-rod">Ordinary Rod<span data-count>x1</span></h3>
-				<aside><img src="./assets/208500_ordinary-rod.jpg" alt="Ordinary Rod" /></aside>
+				<aside><a data-art href="./assets/208500_ordinary-rod.jpg" target="_blank" rel="noopener"><img src="./assets/208500_ordinary-rod.jpg" alt="Ordinary Rod" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set</span></dd>
@@ -1504,7 +1520,7 @@
 			<h2 id="stadium">Stadium</h2>
 			<article>
 				<h3 id="magma-basin">Magma Basin<span data-count>x2</span></h3>
-				<aside><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /></aside>
+				<aside><a data-art href="./assets/257310_magma-basin.jpg" target="_blank" rel="noopener"><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/brilliant-stars.png" /><img src="./assets/sets/brilliant-stars.png" alt="SWSH09: Brilliant Stars" /></picture></span><span>SWSH09: Brilliant Stars</span></dd>
@@ -1540,7 +1556,7 @@
 			<h2 id="energy">Energy</h2>
 			<article>
 				<h3 id="basic-fire-energy">Basic Fire Energy<span data-count>x13</span></h3>
-				<aside><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></aside>
+				<aside><a data-art href="./assets/656264_basic-fire-energy-002.jpg" target="_blank" rel="noopener"><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></a></aside>
 				<section>
 					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span>MEE: Mega Evolution Energies (any Fire Energy works)</span></dd>

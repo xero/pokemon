@@ -21,7 +21,7 @@ PAGES = [
     ("fire-tournament.html", ["flareon", "noctowl"],
      "Fox's tournament deck. Flareon ex, Noctowl, and why a Bench dad cannot"
      " touch changes how the whole game is played."),
-    ("fire-standard.html", ["flareon", "hoothoot"],
+    ("fire-standard.html", ["flareon-ex", "hoothoot"],
      "The planning notes behind the Flareon Engine: why the deck is built this"
      " way, the exact card text, and what it still gives up."),
     ("dark.html", ["gengar", "weezing"],

@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
 
-DARK = {  # gengar-weezing-deck.md
+DARK = {  # dark.md, Xero's Gengar Gang
     "me03-perfect-order/gastly",
     "me02-phantasmal-flames/haunter-055-094",
     "me03-perfect-order/gengar",
@@ -32,7 +32,7 @@ DARK = {  # gengar-weezing-deck.md
     "mee-mega-evolution-energies/basic-darkness-energy-007",
 }
 
-FIRE = {  # charizard-deck.md
+FIRE = {  # fire.md, Fox's Fire Force
     "swsh04-vivid-voltage/charmander",
     "swsh04-vivid-voltage/charmeleon",
     "swsh04-vivid-voltage/charizard",

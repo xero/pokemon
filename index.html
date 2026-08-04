@@ -449,6 +449,22 @@
 				}
 			}
 
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
@@ -788,7 +804,7 @@
 				</section>
 			</article>
 			<article>
-				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/hoothoot.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/flareon-ex.gif" alt="" /><img src="./assets/sprites/hoothoot.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./fire-standard.html">Fox's Flareon ex — Standard Legal</a></h2>
 					<p>The planning notes behind the Flareon Engine: why the deck is built this way, the exact card text, and what it still gives up.</p>

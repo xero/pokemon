@@ -256,7 +256,11 @@ def value(key, r):
 
 
 all_rows = list(csv.DictReader(open(SRC, encoding="utf-8")))
-rows = [r for r in all_rows if not r["card_type"].startswith(NOT_POKEMON)]
+# quantity 0 is a card a deck plan wants but we do not own. Same rule as
+# build_html.py: it belongs on the deck pages, not on a list of what is caught.
+rows = [r for r in all_rows
+        if not r["card_type"].startswith(NOT_POKEMON)
+        and int(r.get("quantity") or 0) > 0]
 rows.sort(key=lambda r: (r["name"].lower(), r["set_name"], r["card_number"]))
 
 if any(not r["hp"] or not r["stage"] for r in rows):
@@ -311,9 +315,16 @@ for r, a in entries:
                f'{mega + " " if mega else ""}{html.escape(r["name"])}'
                f'{" " + rare if rare else ""}</h3></td></tr>')
     if r["image_file"]:
+        # linked to itself so the scan can be opened full size, same as the
+        # HTML pages. no target="_blank": GitHub's sanitizer does not pass
+        # target through on an anchor, so it would only mislead whoever reads
+        # this next. relative hrefs it does keep, and they resolve to the file
+        # view, which is a perfectly good zoomed look at the card.
+        src = f'./assets/{r["image_file"]}'
         out.append("  <tr>")
-        out.append(f'    <th rowspan="{span}" width="400">'
-                   f'<img src="./assets/{r["image_file"]}" width="350"></th>')
+        out.append(f'    <th rowspan="{span}" width="400"><a href="{src}">'
+                   f'<img src="{src}" width="350" alt="{html.escape(r["name"])}">'
+                   f"</a></th>")
         out.append("  </tr>")
     for label, v in cells:
         cell = f"<b>{label}</b>: {v}" if label else v

@@ -64,6 +64,22 @@ def img(src, alt, extra=""):
     return f'<img src="{src}" alt="{esc(alt)}"{extra} />'
 
 
+def card_art(src, alt):
+    """A card scan, linked to itself so it can be opened full size.
+
+    The scans are 1000px wide and the page shows them at about 250, so there is
+    real detail to go and look at. Opening in a new tab rather than this one:
+    the collection page carries filter state that a back button would drop, and
+    the deck pages are long enough that returning should not mean finding your
+    place again.
+
+    data-art marks it for the stylesheet. An <aside> is also what a callout is
+    built from, so styling "the link inside an aside" would catch every inline
+    link in the prose.
+    """
+    return f'<a data-art href="{src}" target="_blank" rel="noopener">{img(src, alt)}</a>'
+
+
 def icon(folder, slug, alt):
     """An inline graphic, wrapped in <picture> when a dark variant exists."""
     if not slug:
@@ -144,6 +160,46 @@ def mega_sigil(stage, name):
     if not (ASSETS / "glyphs" / "mega-evolution.svg").exists():
         return ""
     return img("./assets/glyphs/mega-evolution.svg", "Mega Evolution")
+
+
+# Legality badge. The wording differs by page and is the caller's business;
+# the graphic does not, so a card reads the same wherever it turns up.
+LEGAL_BADGE = {"yes": "ok", "no": "no", "japanese": "no", "unknown": "unown"}
+
+
+def legal_cell(v, text):
+    """The legality row: badge, then whatever the page wants to call it."""
+    badge = LEGAL_BADGE.get(v, "")
+    ico = (img(f"./assets/{badge}.png", badge.upper())
+           if badge and (ASSETS / f"{badge}.png").exists() else "")
+    return row(ico, text)
+
+
+def stat_cell(key, r):
+    """One value cell of a card's stat block, from a cards.csv row.
+
+    Both the collection and the deck guides show the same card, so both render
+    it here. They used to carry a copy each, which is how the deck pages ended
+    up printing "Double Rare" as bare text while the collection showed the
+    symbol for it.
+
+    standard_legal is not handled: its wording is per page. Use legal_cell.
+    """
+    v = r.get(key) or ""
+    if key == "set_name":
+        return row(icon(set_folder(r.get("product_line")), set_slug(v), v),
+                   esc(v) + f' <small>{esc(r.get("card_number"))}</small>')
+    if key == "rarity":
+        return row(icon("rarities", RARITY_SLUG.get(v), v), esc(v))
+    if key in ("card_type", "weakness", "resistance"):
+        return typed(v)
+    if key == "retreat_cost":
+        return row(type_icon("Colorless") * (int(v) if v.isdigit() else 0),
+                   esc(v), "cost")
+    if key == "card_text":
+        # the name is already the <dt>; "Ability: Agile" would say it twice
+        v = re.sub(r"^Ability:\s*", "", v)
+    return row("", esc(v))
 
 
 _CARDS = None

@@ -55,11 +55,11 @@ def path_of(url):
 
 
 def read_orders():
-    """{card path: copies bought as singles}, minus sealed boxes and supplies."""
-    out, sealed_boxes = {}, []
+    """{card path: copies bought as singles}, minus supplies."""
+    out = {}
     if not ORDERS.exists():
         print(f"  no {ORDERS.name}; sealed products only", file=sys.stderr)
-        return out, sealed_boxes
+        return out
     for line in ORDERS.read_text(encoding="utf-8").splitlines():
         if not line.strip() or line.startswith("#"):
             continue
@@ -68,12 +68,15 @@ def read_orders():
         if NOT_A_CARD.match(path):
             continue
         out[path] = out.get(path, 0) + int(qty)
-    return out, sealed_boxes
+    return out
 
 
 def read_sealed():
     """{card path: copies}, expanded from the decks in sealed-contents.tsv."""
     out, unlinked = {}, []
+    if not SEALED.exists():
+        print(f"  no {SEALED.name}; order history only", file=sys.stderr)
+        return out, unlinked
     for line in SEALED.read_text(encoding="utf-8").splitlines():
         if not line.strip() or line.startswith("#") or line.startswith("product\t"):
             continue
@@ -87,7 +90,7 @@ def read_sealed():
 
 def main():
     dry = "--dry-run" in sys.argv
-    orders, _ = read_orders()
+    orders = read_orders()
     sealed, unlinked = read_sealed()
 
     # a sealed box is bought as one line item; its cards are counted from the

@@ -8,6 +8,10 @@ on:
     branches:
       - main
   workflow_dispatch:
+  # add-card.yml calls this directly. A push made by a workflow using the
+  # built-in token does not start another workflow, so without this the card
+  # would land on main and the site would sit there showing the old build.
+  workflow_call:
 
 permissions:
   contents: read

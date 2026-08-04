@@ -1,0 +1,65 @@
+# Cards we own that no singles order accounts for.
+#
+# Order history only knows about singles and about the sealed box itself, so
+# without this a theme deck's 18 Fire Energy look like zero. scrape_quantities.py
+# adds these on top of the order-history counts.
+#
+# product      key from the table below
+# sealed       yes = still shrink-wrapped, so the cards are owned but not playable
+# qty          how many of that card are in one copy of the product
+# url          TCGplayer path, blank until the card is added to product-ids.tsv
+# card         what it is, so a blank url is still readable
+#
+# charizard-td  2020 Vivid Voltage Charizard Theme Deck, opened, Fox plays it
+#               https://bulbapedia.bulbagarden.net/wiki/Charizard_Theme_Deck_(TCG)
+# mbg-starter   MEGA Starter Set Mega Gengar ex, Japanese, UNOPENED
+#               https://bulbapedia.bulbagarden.net/wiki/MEGA_Starter_Set_Mega_Gengar_ex_(TCG)
+# other         loose cards whose origin was never written down, counted by hand
+#
+# Both decklists verified against Bulbapedia wikitext and both total exactly 60.
+#
+product	sealed	qty	url	card
+charizard-td	no	2	/pokemon/swsh04-vivid-voltage/charizard	Charizard, Vivid Voltage 25
+charizard-td	no	3	/pokemon/swsh04-vivid-voltage/charmeleon	Charmeleon, Vivid Voltage 24
+charizard-td	no	3	/pokemon/swsh04-vivid-voltage/charmander	Charmander, Vivid Voltage 23
+charizard-td	no	2	/pokemon/swsh04-vivid-voltage/leon	Leon, Vivid Voltage 154
+charizard-td	no	2	/pokemon/swsh01-sword-and-shield-base-set/sudowoodo	Sudowoodo, Sword & Shield 100
+charizard-td	no	1	/pokemon/swsh01-sword-and-shield-base-set/evolution-incense	Evolution Incense, Sword & Shield 163
+charizard-td	no	2	/pokemon/swsh01-sword-and-shield-base-set/ordinary-rod	Ordinary Rod, Sword & Shield 171
+charizard-td	no	18	/pokemon/mee-mega-evolution-energies/basic-fire-energy-002	Fire Energy (basic energy is fungible)
+charizard-td	no	2	/pokemon/swsh04-vivid-voltage/yanmega	Yanmega, Vivid Voltage 7
+charizard-td	no	3	/pokemon/swsh04-vivid-voltage/yanma	Yanma, Vivid Voltage 6
+charizard-td	no	2	/pokemon/swsh04-vivid-voltage/magcargo	Magcargo, Vivid Voltage 28
+charizard-td	no	3	/pokemon/swsh04-vivid-voltage/slugma	Slugma, Vivid Voltage 27
+charizard-td	no	1	/pokemon/swsh03-darkness-ablaze/lugia	Lugia, Darkness Ablaze 140
+charizard-td	no	2	/pokemon/swsh01-sword-and-shield-base-set/bede	Bede, Sword & Shield 157
+charizard-td	no	2	/pokemon/swsh02-rebel-clash/dan	Dan, Rebel Clash 158
+charizard-td	no	2	/pokemon/swsh01-sword-and-shield-base-set/great-ball	Great Ball, Sword & Shield 164
+charizard-td	no	4	/pokemon/swsh01-sword-and-shield-base-set/hop	Hop, Sword & Shield 165
+charizard-td	no	2	/pokemon/swsh01-sword-and-shield-base-set/professors-research-professor-magnolia	Professor's Research [Professor Magnolia], Sword & Shield 178
+charizard-td	no	2	/pokemon/swsh02-rebel-clash/sonia	Sonia, Rebel Clash 167
+charizard-td	no	2	/pokemon/swsh01-sword-and-shield-base-set/switch	Switch, Sword & Shield 183
+mbg-starter	yes	4	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/gastly	Gastly 001/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/haunter-002-021	Haunter 002/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/mega-gengar-ex	Mega Gengar ex 003/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/murkrow	Murkrow 004/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/honchkrow	Honchkrow 005/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/sableye	Sableye 006/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/absol	Absol 007/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/eternatus	Eternatus 008/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/tatsugiri	Tatsugiri 009/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/haunter-022-021	Haunter 022/021, the Art Rare
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/buddy-buddy-poffin	Buddy-Buddy Poffin 010/021
+mbg-starter	yes	4	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/ultra-ball	Ultra Ball 011/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/rare-candy	Rare Candy 012/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/prime-catcher	Prime Catcher 013/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/switch	Switch 014/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/mega-signal	Mega Signal 015/021
+mbg-starter	yes	1	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/night-stretcher	Night Stretcher 016/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/punk-helmet	Punk Helmet 017/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/air-balloon	Air Balloon 018/021
+mbg-starter	yes	4	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/iriss-fighting-spirit	Iris's Fighting Spirit 019/021
+mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/bosss-orders	Boss's Orders [Ghetsis] 020/021
+mbg-starter	yes	4	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/lillies-determination	Lillie's Determination 021/021
+mbg-starter	yes	15	/pokemon/mee-mega-evolution-energies/basic-darkness-energy-007	Basic Darkness Energy (basic energy is fungible)
+other	no	1	/pokemon/trick-or-trade-booster-bundle/gengar-2021-copyright-date	Gengar (2021 Copyright Date), counted by hand

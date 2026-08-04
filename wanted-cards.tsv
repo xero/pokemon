@@ -1,0 +1,86 @@
+# Cards to add to product-ids.tsv. See add_cards.py.
+#
+#   query<TAB>number<TAB>quantity<TAB>note
+#
+# quantity 0 means a card we want but do not own. It still gets a full card page
+# in the deck plans. Pin the number whenever a name has more than one printing;
+# Umbreon ex is a $2 card and a $200 card depending which one you land on.
+#
+# --- Vivid Voltage Charizard Theme Deck, cards not already in the seed --------
+Yanmega Vivid Voltage	007/185	2	charizard theme deck
+Yanma Vivid Voltage	006/185	3	charizard theme deck
+Magcargo Vivid Voltage	028/185	2	charizard theme deck
+Slugma Vivid Voltage	027/185	3	charizard theme deck
+Lugia Darkness Ablaze	140/189	1	charizard theme deck
+Bede Sword Shield	157/202	2	charizard theme deck
+Dan Rebel Clash	158/192	2	charizard theme deck
+Great Ball Sword Shield	164/202	2	charizard theme deck
+Hop Sword Shield	165/202	4	charizard theme deck
+Professor's Research Sword Shield	178/202	2	charizard theme deck
+Sonia Rebel Clash	167/192	2	charizard theme deck
+Switch Sword Shield	183/202	2	charizard theme deck
+#
+# --- MEGA Starter Set Mega Gengar ex, Japanese, the Trainers and Energy -------
+Buddy-Buddy Poffin MEGA Starter Set Mega Gengar ex	010/021	2	japan, mbg starter
+Ultra Ball MEGA Starter Set Mega Gengar ex	011/021	4	japan, mbg starter
+Rare Candy MEGA Starter Set Mega Gengar ex	012/021	2	japan, mbg starter
+Prime Catcher MEGA Starter Set Mega Gengar ex	013/021	1	japan, mbg starter
+Switch MEGA Starter Set Mega Gengar ex	014/021	2	japan, mbg starter
+Mega Signal MEGA Starter Set Mega Gengar ex	015/021	1	japan, mbg starter
+Night Stretcher MEGA Starter Set Mega Gengar ex	016/021	1	japan, mbg starter
+Punk Helmet MEGA Starter Set Mega Gengar ex	017/021	2	japan, mbg starter
+Air Balloon MEGA Starter Set Mega Gengar ex	018/021	2	japan, mbg starter
+Iris's Fighting Spirit MEGA Starter Set Mega Gengar ex	019/021	4	japan, mbg starter
+Boss's Orders MEGA Starter Set Mega Gengar ex	020/021	2	japan, mbg starter
+Lillie's Determination MEGA Starter Set Mega Gengar ex	021/021	4	japan, mbg starter
+#
+# --- Japanese Gengar singles already owned, never added to the seed ----------
+Gengar Jet-Black Spirit	027/070	1	japan
+Gengar Pokemon Card 151	094/165	1	japan
+Gengar Raging Surf		1	japan
+#
+# ============================================================================
+# WISHLIST. Everything below is quantity 0: wanted by a deck plan, not owned.
+# ============================================================================
+#
+# --- eevee-standard.md, the Rainbow DNA toolbox ------------------------------
+Umbreon ex Prismatic Evolutions	060/131	0	wishlist, NOT the 161/131 chase print
+Leafeon ex Prismatic Evolutions	006/131	0	wishlist
+Glaceon ex Prismatic Evolutions	026/131	0	wishlist
+#
+# --- psychic-lanterns.md, Build A --------------------------------------------
+Gengar Lost Origin	066/196	0	wishlist
+Gourgeist Evolving Skies	077/203	0	wishlist
+Litwick Noble Victories	058/101	0	wishlist
+Lampent Noble Victories	059/101	0	wishlist
+Chandelure Noble Victories	060/101	0	wishlist
+Wobbuffet Phantom Forces	036/119	0	wishlist
+Float Stone Plasma Freeze	099/116	0	wishlist
+Mysterious Treasure Forbidden Light	113/131	0	wishlist, NOT the 145 Secret print
+Level Ball Battle Styles	129/163	0	wishlist
+N Noble Victories	092/101	0	wishlist
+#
+# --- psychic-sleep.md, Build B -----------------------------------------------
+Drowzee Unbroken Bonds	071/214	0	wishlist
+Hypno Unbroken Bonds	072/214	0	wishlist
+Gourgeist Paradox Rift	078/182	0	wishlist
+Fog Crystal Chilling Reign	140/198	0	wishlist
+#
+# --- dark-ex.md, the Standard Mega Gengar box --------------------------------
+Mega Gengar ex Phantasmal Flames	056/094	0	wishlist, the English print
+Toxel Phantasmal Flames	067/094	0	wishlist
+Toxtricity Phantasmal Flames	068/094	0	wishlist
+Munkidori Twilight Masquerade	095/167	0	wishlist
+Fezandipiti ex Shrouded Fable	038/064	0	wishlist
+#
+# --- fighting-standard.md, Ground Zero ---------------------------------------
+Mega Zygarde ex Perfect Order	047/088	0	wishlist
+#
+# --- basic energy the decks call for and we have none of ---------------------
+Basic Water Energy Mega Evolution Energies	003	0	wishlist
+Basic Lightning Energy Mega Evolution Energies	004	0	wishlist
+Basic Psychic Energy Mega Evolution Energies	005	0	wishlist
+Basic Grass Energy Mega Evolution Energies	001	0	wishlist
+#
+# --- dark-ex.md explains why this one does NOT work; it needs the card art ----
+Gengar Spirit Link Phantom Forces	095/119	0	wishlist, only to show the card while explaining why to skip it

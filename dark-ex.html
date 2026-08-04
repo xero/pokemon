@@ -449,6 +449,22 @@
 				}
 			}
 
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
@@ -784,12 +800,12 @@
 			<article>
 				<h3 id="mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex — Phantasmal Flames 056 · Reg I<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" />
+					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
-						<dt>Rarity</dt><dd><span>Double Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>350</span></dd>
 						<dt>Stage</dt><dd><span>Stage 2</span></dd>
@@ -812,12 +828,12 @@
 			<article>
 				<h3 id="gastly-phantasmal-flames-054-reg-i">Gastly — Phantasmal Flames 054 · Reg I<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/660495_gastly.jpg" alt="Gastly" />
+					<a data-art href="./assets/660495_gastly.jpg" target="_blank" rel="noopener"><img src="./assets/660495_gastly.jpg" alt="Gastly" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>054/094</small></span></dd>
-						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>70</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -834,12 +850,12 @@
 			<article>
 				<h3 id="haunter-phantasmal-flames-055-reg-i">Haunter — Phantasmal Flames 055 · Reg I<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" />
+					<a data-art href="./assets/660408_haunter-055-094.jpg" target="_blank" rel="noopener"><img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>055/094</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>100</span></dd>
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
@@ -856,12 +872,12 @@
 			<article>
 				<h3 id="gengar-perfect-order-050-reg-j">Gengar — Perfect Order 050 · Reg J<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/684431_gengar.jpg" alt="Gengar" />
+					<a data-art href="./assets/684431_gengar.jpg" target="_blank" rel="noopener"><img src="./assets/684431_gengar.jpg" alt="Gengar" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>050/088</small></span></dd>
-						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>130</span></dd>
 						<dt>Stage</dt><dd><span>Stage 2</span></dd>
@@ -879,12 +895,12 @@
 			<article>
 				<h3 id="toxel-phantasmal-flames-067-reg-i">Toxel — Phantasmal Flames 067 · Reg I</h3>
 				<aside>
-					<img src="./assets/660411_toxel.jpg" alt="Toxel" />
+					<a data-art href="./assets/660411_toxel.jpg" target="_blank" rel="noopener"><img src="./assets/660411_toxel.jpg" alt="Toxel" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>067/094</small></span></dd>
-						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>70</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -902,12 +918,12 @@
 			<article>
 				<h3 id="toxtricity-phantasmal-flames-068-reg-i">Toxtricity — Phantasmal Flames 068 · Reg I</h3>
 				<aside>
-					<img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" />
+					<a data-art href="./assets/660409_toxtricity.jpg" target="_blank" rel="noopener"><img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>068/094</small></span></dd>
-						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>140</span></dd>
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
@@ -925,12 +941,12 @@
 			<article>
 				<h3 id="munkidori-twilight-masquerade-095-reg-h">Munkidori — Twilight Masquerade 095 · Reg H</h3>
 				<aside>
-					<img src="./assets/550139_munkidori.jpg" alt="Munkidori" />
+					<a data-art href="./assets/550139_munkidori.jpg" target="_blank" rel="noopener"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>095/167</small></span></dd>
-						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>110</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -949,12 +965,12 @@
 			<article>
 				<h3 id="fezandipiti-ex-shrouded-fable-038-reg-h">Fezandipiti ex — Shrouded Fable 038 · Reg H</h3>
 				<aside>
-					<img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" />
+					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
-						<dt>Rarity</dt><dd><span>Double Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd><span>210</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -1001,12 +1017,12 @@
 			<article>
 				<h3 id="gengar-spirit-link-phantom-forces-095">Gengar Spirit Link — Phantom Forces 095<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/94663_gengar-spirit-link.jpg" alt="Gengar Spirit Link" />
+					<a data-art href="./assets/94663_gengar-spirit-link.jpg" target="_blank" rel="noopener"><img src="./assets/94663_gengar-spirit-link.jpg" alt="Gengar Spirit Link" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantom-forces.png" /><img src="./assets/sets/phantom-forces.png" alt="XY - Phantom Forces" /></picture></span><span>XY - Phantom Forces <small>95/119</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Your turn does not end if the Pokémon this card is attached to becomes M Gengar-EX.</span></dd>
 						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>

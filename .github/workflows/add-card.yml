@@ -1,0 +1,89 @@
+name: add a card
+
+# The form on the Actions tab. Fill it in, and this looks the card up on
+# TCGplayer, pulls its text and scan, rebuilds every page, commits, and
+# republishes the site.
+#
+# Adding a card by hand is still fine, and is the same three commands this
+# runs: add_cards.py, then normalize_cards.py, then build.py.
+on:
+  workflow_dispatch:
+    inputs:
+      card:
+        description: "Card name and set, or a TCGplayer product URL"
+        required: true
+        type: string
+      number:
+        description: "Printed number, e.g. 060/131. Pins which printing when a name has more than one."
+        required: false
+        type: string
+      quantity:
+        description: "How many you own. 0 for a card a deck plan wants but you have not bought."
+        required: true
+        default: "0"
+        type: string
+      note:
+        description: "Why it is on the list. Include the word japan for a Japanese card."
+        required: false
+        default: "added from the web form"
+        type: string
+
+permissions:
+  contents: write
+
+# One at a time. Two runs at once would both branch off the same commit and the
+# second push would be rejected.
+concurrency:
+  group: add-card
+  cancel-in-progress: false
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Every input is passed through env, never interpolated into the script.
+      # A ${{ }} in a run: block is pasted in as shell source before the shell
+      # ever sees it, so a card name holding a quote would run as a command.
+      - name: look the card up
+        env:
+          CARD: ${{ inputs.card }}
+          NUMBER: ${{ inputs.number }}
+          QUANTITY: ${{ inputs.quantity }}
+          NOTE: ${{ inputs.note }}
+        run: |
+          python3 add_cards.py "$CARD" \
+            --number "$NUMBER" --quantity "$QUANTITY" --note "$NOTE"
+
+      - name: fetch its text and scan
+        run: python3 normalize_cards.py
+
+      - name: rebuild the site
+        run: python3 build.py
+
+      # Named paths, not "git add -A". assets/ani holds ~880 untracked sprite
+      # gifs, and the order-history scrape is only one .gitignore line away
+      # from the working tree. Neither belongs in a commit made by a robot.
+      - name: commit
+        env:
+          CARD: ${{ inputs.card }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add product-ids.tsv cards.csv collection.md ./*.html
+          git add assets/*.jpg || true
+          if git diff --cached --quiet; then
+            echo "nothing changed; the card was already in the seed"
+            exit 0
+          fi
+          git commit -m "add $CARD"
+          git push
+
+  publish:
+    needs: add
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml

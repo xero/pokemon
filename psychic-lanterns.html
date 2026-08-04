@@ -449,6 +449,22 @@
 				}
 			}
 
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
@@ -846,12 +862,12 @@
 			<article>
 				<h3 id="chandelure-noble-victories-060">Chandelure — Noble Victories 060<span data-count>x3</span><span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/84164_chandelure.jpg" alt="Chandelure" />
+					<a data-art href="./assets/84164_chandelure.jpg" target="_blank" rel="noopener"><img src="./assets/84164_chandelure.jpg" alt="Chandelure" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/noble-victories.png" /><img src="./assets/sets/noble-victories.png" alt="Noble Victories" /></picture></span><span>Noble Victories <small>60/101</small></span></dd>
-						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>130</span></dd>
 						<dt>Stage</dt><dd><span>Stage 2</span></dd>
@@ -870,12 +886,12 @@
 			<article>
 				<h3 id="litwick-noble-victories-058">Litwick — Noble Victories 058<span data-count>x4</span><span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/86809_litwick-58.jpg" alt="Litwick" />
+					<a data-art href="./assets/86809_litwick-58.jpg" target="_blank" rel="noopener"><img src="./assets/86809_litwick-58.jpg" alt="Litwick" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/noble-victories.png" /><img src="./assets/sets/noble-victories.png" alt="Noble Victories" /></picture></span><span>Noble Victories <small>58/101</small></span></dd>
-						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>50</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -892,12 +908,12 @@
 			<article>
 				<h3 id="lampent-noble-victories-059">Lampent — Noble Victories 059<span data-count>x1</span><span data-flavor><img src="./assets/sprites/lampent.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/86587_lampent.jpg" alt="Lampent" />
+					<a data-art href="./assets/86587_lampent.jpg" target="_blank" rel="noopener"><img src="./assets/86587_lampent.jpg" alt="Lampent" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/noble-victories.png" /><img src="./assets/sets/noble-victories.png" alt="Noble Victories" /></picture></span><span>Noble Victories <small>59/101</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>80</span></dd>
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
@@ -918,12 +934,12 @@
 			<article>
 				<h3 id="wobbuffet-phantom-forces-036">Wobbuffet — Phantom Forces 036<span data-count>x2</span><span data-flavor><img src="./assets/sprites/wobbuffet.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/94169_wobbuffet.jpg" alt="Wobbuffet" />
+					<a data-art href="./assets/94169_wobbuffet.jpg" target="_blank" rel="noopener"><img src="./assets/94169_wobbuffet.jpg" alt="Wobbuffet" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantom-forces.png" /><img src="./assets/sets/phantom-forces.png" alt="XY - Phantom Forces" /></picture></span><span>XY - Phantom Forces <small>36/119</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>110</span></dd>
 						<dt>Stage</dt><dd><span>Basic</span></dd>
@@ -950,12 +966,12 @@
 			<article>
 				<h3 id="gengar-lost-origin-066-you-own-the-trick-or-trade-2023-reprint">Gengar — Lost Origin 066 <em>(you own the Trick or Trade 2023 reprint)</em><span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/283941_gengar.jpg" alt="Gengar" />
+					<a data-art href="./assets/283941_gengar.jpg" target="_blank" rel="noopener"><img src="./assets/283941_gengar.jpg" alt="Gengar" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/lost-origin.png" /><img src="./assets/sets/lost-origin.png" alt="SWSH11: Lost Origin" /></picture></span><span>SWSH11: Lost Origin <small>066/196</small></span></dd>
-						<dt>Rarity</dt><dd><span>Holo Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>120</span></dd>
 						<dt>Stage</dt><dd><span>Stage 2</span></dd>
@@ -974,12 +990,12 @@
 			<article>
 				<h3 id="gengar-sword-shield-085">Gengar — Sword &amp; Shield 085<span data-count>x1</span><span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/208393_gengar.jpg" alt="Gengar" />
+					<a data-art href="./assets/208393_gengar.jpg" target="_blank" rel="noopener"><img src="./assets/208393_gengar.jpg" alt="Gengar" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set <small>085/202</small></span></dd>
-						<dt>Rarity</dt><dd><span>Holo Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>110</span></dd>
 						<dt>Stage</dt><dd><span>Stage 2</span></dd>
@@ -998,12 +1014,12 @@
 			<article>
 				<h3 id="gourgeist-evolving-skies-077-you-own-this-as-trick-or-trade-077">Gourgeist — Evolving Skies 077 <em>(you own this as Trick or Trade 077)</em><span data-count>x2</span><span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
 				<aside>
-					<img src="./assets/246860_gourgeist.jpg" alt="Gourgeist" />
+					<a data-art href="./assets/246860_gourgeist.jpg" target="_blank" rel="noopener"><img src="./assets/246860_gourgeist.jpg" alt="Gourgeist" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolving-skies.png" /><img src="./assets/sets/evolving-skies.png" alt="SWSH07: Evolving Skies" /></picture></span><span>SWSH07: Evolving Skies <small>077/203</small></span></dd>
-						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
 						<dt>HP</dt><dd><span>120</span></dd>
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
@@ -1024,12 +1040,12 @@
 			<article>
 				<h3 id="old-cemetery-chilling-reign-147-stadium">Old Cemetery — Chilling Reign 147 <em>(Stadium)</em><span data-count>x2</span></h3>
 				<aside>
-					<img src="./assets/241850_old-cemetery.jpg" alt="Old Cemetery" />
+					<a data-art href="./assets/241850_old-cemetery.jpg" target="_blank" rel="noopener"><img src="./assets/241850_old-cemetery.jpg" alt="Old Cemetery" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>147/198</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
 						<dt>Ability</dt><dd><span>Whenever a player attaches an Energy card from their hand to 1 of their non-Psychic Pokémon, put 2 damage counters on that Pokémon.</span></dd>
 						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
@@ -1044,12 +1060,12 @@
 			<article>
 				<h3 id="float-stone-plasma-freeze-099-pokémon-tool">Float Stone — Plasma Freeze 099 <em>(Pokémon Tool)</em><span data-count>x2</span></h3>
 				<aside>
-					<img src="./assets/85510_float-stone.jpg" alt="Float Stone" />
+					<a data-art href="./assets/85510_float-stone.jpg" target="_blank" rel="noopener"><img src="./assets/85510_float-stone.jpg" alt="Float Stone" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/plasma-freeze.png" /><img src="./assets/sets/plasma-freeze.png" alt="Plasma Freeze" /></picture></span><span>Plasma Freeze <small>99/116</small></span></dd>
-						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Attach a Pokémon Tool to 1 of your Pokémon that doesn&#x27;t already have a Pokémon Tool attached to it.</span></dd>
 						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>

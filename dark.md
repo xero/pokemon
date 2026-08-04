@@ -1004,7 +1004,7 @@ Both decks are built entirely from non-ex Pokémon, so **every knockout is worth
 > [!WARNING]
 > The most common misunderstanding of this deck: **Infinite Shadow does not deny a Prize.** Your opponent gets their Prize card for the knockout no matter what. The Ability is card recovery, not a shield. Never sandbag a Gengar into a knockout thinking it is free.
 
-**Where the race is actually decided.** Their [Charizard's *Royal Blaze*](./charizard-deck.md) does 100 plus 50 for each **Leon** in their discard pile. With one Leon discarded it does 150, which one-shots your 130 HP Gengar and Weezing. So the moment you see a Leon hit their discard, assume everything you own dies in one hit — and start making sure that every Pokémon you play attacks at least once before that happens.
+**Where the race is actually decided.** Their [Charizard's *Royal Blaze*](./fire.md) does 100 plus 50 for each **Leon** in their discard pile. With one Leon discarded it does 150, which one-shots your 130 HP Gengar and Weezing. So the moment you see a Leon hit their discard, assume everything you own dies in one hit — and start making sure that every Pokémon you play attacks at least once before that happens.
 
 ---
 

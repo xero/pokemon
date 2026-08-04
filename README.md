@@ -18,6 +18,130 @@ tcg deck planning for me and my son
 - [eevee standard](./eevee-standard.md)
 - [fighting standard](./fighting-standard.md)
 
+## building
+
+```sh
+python3 build.py            # rebuild every generated page
+python3 build.py --check    # rebuild, then fail if the result differs from git
+python3 build.py --data     # re-fetch cards.csv first, then build
+```
+
+run `build.py` rather than the builders under it. `build_index.py` reads the
+finished pages back to count the cards on each one, so it has to run last, and
+running them by hand in the wrong order has produced a wrong index twice.
+
+everything generated is committed, so `--check` on a clean tree proves the html
+still matches the sources it came from.
+
+### adding a card
+
+`add_cards.py` puts a card in `product-ids.tsv`. that file is the seed for
+everything else, and it needs a tcgplayer product id, which is not something you
+can work out from a card name. this looks it up.
+
+```sh
+python3 add_cards.py "Umbreon ex Prismatic Evolutions" -n 060/131 -q 2
+python3 add_cards.py https://www.tcgplayer.com/product/94663/... -q 0
+python3 add_cards.py                       # everything in wanted-cards.tsv
+```
+
+#### options
+
+| flag | | what it does |
+| :--- | :--- | :--- |
+| `card` | | positional. a card name and its set, or a tcgplayer product url. leave it off to read the batch file instead. |
+| `-n` | `--number` | the printed number, `060/131` or `060`. pins which printing. |
+| `-q` | `--quantity` | how many you own. `0` for a card you want but have not bought. defaults to `0`. |
+| | `--note` | why it is on the list. also picks the product line, see below. |
+| `-f` | `--file` | a batch of cards, tab separated. defaults to `wanted-cards.tsv`. |
+| | `--dry-run` | say what would change, write nothing. |
+
+#### the three forms
+
+**by name.** the name and set go in one string, and the words in it are matched
+against the set name, so "Yanmega Vivid Voltage" is enough. this is a search, so
+it can come back with more than one answer.
+
+**by url.** paste any tcgplayer product link. the id is in the path, so this
+skips the search entirely and is exact. everything after the id is ignored,
+query string and all, so a copied address bar works as is.
+
+**by file.** the batch form, tab separated, `#` comments and blank lines
+skipped:
+
+```
+query<TAB>number<TAB>quantity<TAB>note
+
+Umbreon ex Prismatic Evolutions   060/131   0   eevee-standard wants 2
+Yanmega Vivid Voltage             007/185   2   charizard theme deck
+```
+
+#### pinning the printing
+
+**use `-n` whenever a name has more than one print.** "Umbreon ex" matches both
+the $2 double rare `060/131` and the special illustration rare `161/131`, and
+picking the wrong one is an expensive mistake. without a number it refuses to
+guess and shows you what it saw:
+
+```
+??    Umbreon ex Prismatic Evolutions
+        ambiguous, pin it with --number. Saw: Umbreon ex - 161/131 (SV: Prismatic
+        Evolutions), Umbreon ex - 060/131 (SV: Prismatic Evolutions), ...
+```
+
+a number on its own is still not always enough, so the set words in the query
+break the tie. both mega starter sets are 21 cards, so `011/021` exists in each,
+and matching on the number alone once put the gengar deck's ultra ball in the
+diancie set.
+
+#### quantity
+
+`-q 0` is a real value, not a missing one. it means a deck plan wants this card
+and we do not own it. the card still gets a full card page in the plans, with
+its art, stats, and text, and it is left off the collection page entirely.
+
+`scrape_quantities.py` leaves a row it knows nothing about alone, so a hand-set
+quantity survives a re-run.
+
+#### japanese cards
+
+the search runs against one product line at a time, and **the word `japan`
+anywhere in `--note` switches it** to the japanese one:
+
+```sh
+python3 add_cards.py "Ultra Ball MEGA Starter Set Mega Gengar ex" \
+  -n 011/021 -q 4 --note "japan, mbg starter"
+```
+
+the url form needs no such hint. it asks both lines at once, since an id is
+unique across them.
+
+#### what it prints
+
+| | |
+| :--- | :--- |
+| `add` | a new row went in |
+| `have` | already in the seed, nothing done |
+| `set` | quantity changed, with the old value and the new |
+| `??` | not resolved. the reason is on the next line |
+
+naming one card updates its quantity if the card is already there, because "add
+this, i own 2" is a statement about today. the batch file only ever adds, so it
+stays safe to re-run after appending a line.
+
+#### afterwards
+
+```sh
+python3 normalize_cards.py   # pull the card text and scan
+python3 build.py             # rebuild every page
+```
+
+`normalize_cards.py` only fetches what it does not already have, so adding one
+card costs one request rather than a refetch of all 172.
+
+there is also a **form on the actions tab** that runs all three and republishes
+the site. it takes the same four fields.
+
 ## sources
 
 every csv and image in here is fetched by a script, so it all rebuilds from
@@ -29,9 +153,18 @@ weakness, resistance, retreat cost, and card text all come from the
 scans come from the tcgplayer cdn. `normalize_cards.py` pulls both and writes
 `cards.csv`.
 
-**what we own.** `product-ids.tsv` is the seed for everything else. it is
-scraped from tcgplayer order history, which stays out of the repo along with the
-raw api dumps. see `.gitignore`.
+**what we own.** `product-ids.tsv` is the seed for everything else: a product
+id, a url, and how many we own. the count is merged by `scrape_quantities.py`
+from two places, because neither one knows the whole answer:
+
+- **singles**, scraped from tcgplayer order history. that scrape stays out of
+  the repo along with the raw api dumps. see `.gitignore`.
+- **sealed products**, listed card by card in `sealed-contents.tsv`. order
+  history knows we bought one theme deck; only a decklist knows it held 18 fire
+  energy.
+
+a quantity of 0 means a card a deck plan wants but we do not own. it still gets
+a full card page in the plans, and is left off the collection page entirely.
 
 **tournament legality.** regulation marks come from
 [pokemontcg.io](https://pokemontcg.io), one lookup per card rather than per set.

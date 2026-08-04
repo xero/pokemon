@@ -20,9 +20,9 @@ import csv, re
 from collections import Counter
 from pathlib import Path
 
-from pokelib import (ASSETS, COST_TYPE, CREDITS_NOTE, RARITY_SLUG, anchor,
-                     cost_icons, count_badge, esc, group, icon, img, mega_sigil,
-                     page, row, set_folder, set_slug, type_icon, typed)
+from pokelib import (CREDITS_NOTE, RARITY_SLUG, anchor, card_art,
+                     cost_icons, count_badge, esc, icon, legal_cell,
+                     mega_sigil, page, row, stat_cell)
 
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
@@ -50,11 +50,13 @@ LABELS = [
     ("standard_legal", "Tournament"),
 ]
 
+# How this page words legality. The badge that goes with each is shared, in
+# pokelib, so the deck guides can say it differently and still look the same.
 LEGAL_LABEL = {
-    "yes": ("ok", "legal, and good to go!"),
-    "no": ("no", "card is too old"),
-    "japanese": ("no", "only English cards allowed"),
-    "unknown": ("unown", "Unknown, check the letter on the card"),
+    "yes": "legal, and good to go!",
+    "no": "card is too old",
+    "japanese": "only English cards allowed",
+    "unknown": "Unknown, check the letter on the card",
 }
 
 # The stat rows you can click to filter the page, and the attribute each one
@@ -87,29 +89,12 @@ def value(key, r):
     v = r[key]
     if not v:
         return "&ndash;"
-    if key == "set_name":
-        folder = set_folder(r.get("product_line"))
-        return row(icon(folder, set_slug(v), v),
-                   esc(v) + f' <small>{esc(r["card_number"])}</small>')
-    if key == "rarity":
-        return row(icon("rarities", RARITY_SLUG.get(v), v), esc(v))
-    if key in ("card_type", "weakness", "resistance"):
-        return typed(v)
-    if key == "retreat_cost":
-        n = int(v) if v.isdigit() else 0
-        return row(type_icon("Colorless") * n, esc(v), "cost")
     if key == "standard_legal":
-        badge, text = LEGAL_LABEL.get(v, ("", v))
-        ico = ""
-        if badge and (ROOT / "assets" / f"{badge}.png").exists():
-            ico = img(f"./assets/{badge}.png", badge.upper())
-        if v == "unknown":
-            text += f' <a href="#{MARKS_ANCHOR}">*</a>'
-            return row(ico, text)
-        return row(ico, esc(text))
-    if key == "card_text":
-        v = re.sub(r"^Ability:\s*", "", v)
-    return esc(v)
+        text = LEGAL_LABEL.get(v, v)
+        # the footnote is a link, so it goes in after escaping, not before
+        return legal_cell(v, esc(text) + (f' <a href="#{MARKS_ANCHOR}">*</a>'
+                                         if v == "unknown" else ""))
+    return stat_cell(key, r)
 
 
 def attack(text):
@@ -183,7 +168,7 @@ for r, a in entries:
            f'\t\t\t\t<h2 id="{a}">' + " ".join(p for p in head if p) + "</h2>"]
     if r["image_file"]:
         art += ["\t\t\t\t<aside>",
-                "\t\t\t\t\t" + img(f'./assets/{r["image_file"]}', r["name"]),
+                "\t\t\t\t\t" + card_art(f'./assets/{r["image_file"]}', r["name"]),
                 "\t\t\t\t</aside>"]
     art += ["\t\t\t\t<section>", '\t\t\t\t\t<dl class="card">']
     for label, v, key in stats(r):

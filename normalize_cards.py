@@ -23,7 +23,9 @@ RAW = ROOT / "raw-cards.json"
 API = "https://mp-search-api.tcgplayer.com/v1/search/request?q=&isList=false"
 CDN = "https://tcgplayer-cdn.tcgplayer.com/product/{id}_in_1000x1000.jpg"
 
-# Every card appearing in gengar-weezing-deck.md or charizard-deck.md.
+# Every card in the two starter decks: dark.md and fire.md. Named for the drafts
+# they grew out of, gengar-weezing-deck.md and charizard-deck.md, both since
+# folded into the guides above and deleted.
 # The last two ship in the Vivid Voltage theme deck and were never ordered.
 DECK_SLUGS = {
     "me03-perfect-order/gastly", "me02-phantasmal-flames/haunter-055-094",
@@ -265,25 +267,28 @@ def expand_type_code(s):
     s = str(s or "").strip()
     if not s or s.lower() == "none":
         return ""
-    m = re.fullmatch(r"\[([A-Za-z]+)\]\s*(?:x\s*(\d+)|([+-]\s*\d+))?", s)
-    if m:
-        t, mult, mod = m.groups()
-        t = accents(t.strip().title())
+
+    def fmt(t, mult, mod):
         if mult:
             return f"{t} ×{mult}"
         if mod:
             return f"{t} {re.sub(r'\s+', '', mod)}"
         return t
-    m = re.fullmatch(r"([A-Z])\s*(?:x\s*(\d+)|([+-]\s*\d+))?", s)
-    if not m:
-        return s
-    letter, mult, mod = m.groups()
-    t = ENERGY_TYPE.get(letter, letter)
-    if mult:
-        return f"{t} ×{mult}"
-    if mod:
-        return f"{t} {re.sub(r'\s+', '', mod)}"
-    return t
+
+    # the modifier is written the same way in all three forms
+    tail = r"\s*(?:x\s*(\d+)|([+-]\s*\d+))?"
+    m = re.fullmatch(r"\[([A-Za-z]+)\]" + tail, s)
+    if m:
+        return fmt(accents(m.group(1).strip().title()), m.group(2), m.group(3))
+    m = re.fullmatch(r"([A-Z])" + tail, s)
+    if m:
+        return fmt(ENERGY_TYPE.get(m.group(1), m.group(1)), m.group(2), m.group(3))
+    # the third form spells the type out with no brackets at all: "Darkness x2".
+    # Left alone it kept the source's ASCII x while every other card showed ×.
+    m = re.fullmatch(r"([A-Za-z]+)" + tail, s)
+    if m and accents(m.group(1).title()) in ENERGY_NAMES:
+        return fmt(accents(m.group(1).title()), m.group(2), m.group(3))
+    return s
 
 
 # --- Standard legality -------------------------------------------------------
