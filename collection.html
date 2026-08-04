@@ -44,7 +44,9 @@
 			--fg:      #21202b;
 			--muted:   var(--ash);
 			--line:    #ddd7cc;
-			--accent:  var(--poison);
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
 			--ok:      var(--leaf);
 			--no:      var(--ember);
 		}
@@ -56,6 +58,8 @@
 			--fg:      var(--chalk);
 			--muted:   var(--ghost);
 			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
 		}
 		}
 
@@ -133,6 +137,13 @@
 				width: auto;
 			}
 
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
 			p {
 				flex: 1 1 100%;
 				color: var(--muted);
@@ -161,11 +172,20 @@
 				flex: 0 1 auto;
 			}
 
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
 			li:has(> b) {
 				flex: 1 0 100%;
 				color: var(--muted);
-				font-size: 0.85em;
 				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
 			}
 
 			em {
@@ -187,8 +207,27 @@
 		}
 
 		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
 		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
 			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
 		}
 
 		main > h2 {
@@ -202,38 +241,29 @@
 			padding-top: var(--pad);
 		}
 
-		article {
-			display: flex;
-			flex-flow: row wrap;
-			align-items: flex-start;
-			align-content: flex-start;
-			gap: var(--gap);
-			/* main is a column, so a flex-basis here would size the article's
-			   HEIGHT and pad every short card with dead space. let content
-			   decide. */
-			flex: 0 0 auto;
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
 			background: var(--surface);
 			border: 1px solid var(--line);
 			border-radius: var(--round);
 			padding: var(--pad);
+		}
 
-			h2,
-			h3 {
-				display: flex;
-				flex-flow: row wrap;
-				align-items: center;
-				gap: 0.4em;
-				flex: 1 0 100%;
-				font-size: var(--text-lg);
-				scroll-margin-top: var(--pad);
-			}
-
-			/* the prose under a card on a deck page */
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
 			h4 {
-				color: var(--accent);
-				font-size: 1em;
-				letter-spacing: 0.03em;
-				padding-top: 1em;
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
 			}
 
 			p,
@@ -242,6 +272,8 @@
 				padding-top: 0.5em;
 			}
 
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
 			ul,
 			ol {
 				padding-inline-start: 1.3em;
@@ -251,6 +283,8 @@
 				padding-top: 0.2em;
 			}
 
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
 			pre {
 				background: var(--bg);
 				border: 1px solid var(--line);
@@ -263,6 +297,46 @@
 					font-size: 0.9em;
 					white-space: pre;
 				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
 			}
 
 			aside {
@@ -317,6 +391,34 @@
 			}
 		}
 
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
 		/* leading glyphs, boxed so they line up down the column instead of
 		   each row starting wherever its symbol happens to end. */
 		[data-icons] {
@@ -342,6 +444,41 @@
 			gap: 0.1em;
 		}
 
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin-block: 0.8em;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			padding: 0.45em 0.7em 0.45em 0;
+			vertical-align: top;
+		}
+
+		th {
+			color: var(--muted);
+			font-size: 0.85em;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
 		@media (width < 34em) {
 		dl {
 			grid-template-columns: 1fr;
@@ -357,18 +494,34 @@
 			flex: 1 1 100%;
 			background: var(--surface);
 			border: 1px solid var(--line);
-			border-inline-start: 4px solid var(--accent);
+			border-inline-start: 8px solid var(--quiet);
 			border-radius: var(--round);
 			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout inside a card sits on the card's own background, so it
+			   needs the page colour to read as a separate box rather than a
+			   rectangle of border. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
 
 			h2 {
 				font-size: var(--text-lg);
-				color: var(--accent);
+				color: var(--heading);
 			}
 
 			p + p,
 			ul {
 				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
 			}
 
 			ul {
@@ -377,11 +530,19 @@
 		}
 
 		[data-callout="important"] {
-			--accent: var(--gold);
+			--quiet: var(--gold);
+			--heading: var(--gold);
 		}
 
-		[data-callout="warning"] {
-			--accent: var(--ember);
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
 		}
 
 		body > footer {
@@ -395,7 +556,7 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="./assets/pokeball.png" alt="" />Pokémon Caught!</h1>
+			<h1><img src="./assets/pokeball.png" alt="" />Pokémon Caught! <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/charizard.gif" alt="" /></h1>
 			<p>87 Pok&eacute;mon, 21 of them tournament legal.</p>
 			<nav>
 				<details>
@@ -510,14 +671,14 @@
 		</header>
 		<main>
 			<article>
-				<h2 id="absol">Absol</h2>
+				<h2 id="absol">Absol <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660124_absol.jpg" alt="Absol" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>007/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>110</dd>
 						<dt>Stage</dt><dd>Basic</dd>
@@ -537,7 +698,7 @@
 					<img src="./assets/283790_chandelure.jpg" alt="Chandelure" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /></span><span>Trick or Trade BOOster Bundle <small>033/192</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -558,7 +719,7 @@
 					<img src="./assets/226395_charizard.jpg" alt="Charizard" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage <small>025/185</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -579,7 +740,7 @@
 					<img src="./assets/662143_charmander.jpg" alt="Charmander" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>011/094</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -600,7 +761,7 @@
 					<img src="./assets/274436_charmander.jpg" alt="Charmander" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pokemon-go.png" /><img src="./assets/sets/pokemon-go.png" alt="Pokémon GO" /></picture></span><span>Pokémon GO <small>008/078</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -621,7 +782,7 @@
 					<img src="./assets/509703_charmander.jpg" alt="Charmander" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/obsidian-flames.png" /><img src="./assets/sets/obsidian-flames.png" alt="SV03: Obsidian Flames" /></picture></span><span>SV03: Obsidian Flames <small>026/197</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -642,7 +803,7 @@
 					<img src="./assets/534142_charmander-007-091.jpg" alt="Charmander" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture></span><span>SV: Paldean Fates <small>007/091</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -664,7 +825,7 @@
 					<img src="./assets/226392_charmander.jpg" alt="Charmander" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage <small>023/185</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -686,7 +847,7 @@
 					<img src="./assets/124022_charmander.jpg" alt="Charmander" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolutions.png" /><img src="./assets/sets/evolutions.png" alt="XY - Evolutions" /></picture></span><span>XY - Evolutions <small>9/108</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -708,7 +869,7 @@
 					<img src="./assets/42365_charmeleon.jpg" alt="Charmeleon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/set-logos/base.png" alt="Base Set" /></span><span>Base Set <small>024/102</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -730,7 +891,7 @@
 					<img src="./assets/662144_charmeleon.jpg" alt="Charmeleon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>012/094</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -751,7 +912,7 @@
 					<img src="./assets/138485_charmeleon.jpg" alt="Charmeleon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/burning-shadows.png" /><img src="./assets/sets/burning-shadows.png" alt="SM - Burning Shadows" /></picture></span><span>SM - Burning Shadows <small>19/147</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -773,7 +934,7 @@
 					<img src="./assets/534143_charmeleon-008-091.jpg" alt="Charmeleon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture></span><span>SV: Paldean Fates <small>008/091</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -794,7 +955,7 @@
 					<img src="./assets/502557_charmeleon-005-165.jpg" alt="Charmeleon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture></span><span>SV: Scarlet &amp; Violet 151 <small>005/165</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -816,7 +977,7 @@
 					<img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage <small>024/185</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -838,7 +999,7 @@
 					<img src="./assets/84236_charmeleon-delta-species.jpg" alt="Charmeleon (Delta Species)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crystal-guardians.png" /><img src="./assets/sets/crystal-guardians.png" alt="EX Crystal Guardians" /></picture></span><span>EX Crystal Guardians <small>30/100</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning</span></dd>
@@ -860,7 +1021,7 @@
 					<img src="./assets/197694_eevee-49.jpg" alt="Eevee" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/hidden-fates.png" /><img src="./assets/sets/hidden-fates.png" alt="Hidden Fates" /></picture></span><span>Hidden Fates <small>49/68</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -881,7 +1042,7 @@
 					<img src="./assets/550179_eevee-135-167.jpg" alt="Eevee" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>135/167</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -903,7 +1064,7 @@
 					<img src="./assets/610429_eevee.jpg" alt="Eevee" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>074/131</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -924,7 +1085,7 @@
 					<img src="./assets/560361_eevee.jpg" alt="Eevee" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>050/064</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -946,7 +1107,7 @@
 					<img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>074/131</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -967,7 +1128,7 @@
 					<img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>075/131</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -988,7 +1149,7 @@
 					<img src="./assets/220317_eevee-v-swsh065.jpg" alt="Eevee V" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/swsh-black-star-promos.png" /><img src="./assets/sets/swsh-black-star-promos.png" alt="SWSH: Sword &amp; Shield Promo Cards" /></picture></span><span>SWSH: Sword &amp; Shield Promo Cards <small>SWSH065</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -1005,14 +1166,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="eternatus">Eternatus</h2>
+				<h2 id="eternatus">Eternatus <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660125_eternatus.jpg" alt="Eternatus" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>008/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>150</dd>
 						<dt>Stage</dt><dd>Basic</dd>
@@ -1032,7 +1193,7 @@
 					<img src="./assets/610368_flareon.jpg" alt="Flareon" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>013/131</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -1054,7 +1215,7 @@
 					<img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>014/131</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -1076,7 +1237,7 @@
 					<img src="./assets/247295_flareon-v-swsh149.jpg" alt="Flareon V" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/swsh-black-star-promos.png" /><img src="./assets/sets/swsh-black-star-promos.png" alt="SWSH: Sword &amp; Shield Promo Cards" /></picture></span><span>SWSH: Sword &amp; Shield Promo Cards <small>SWSH149</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -1098,7 +1259,7 @@
 					<img src="./assets/246712_flareon-vmax.jpg" alt="Flareon VMAX" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolving-skies.png" /><img src="./assets/sets/evolving-skies.png" alt="SWSH07: Evolving Skies" /></picture></span><span>SWSH07: Evolving Skies <small>018/203</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /></span><span>Ultra Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -1119,7 +1280,7 @@
 					<img src="./assets/241765_galarian-weezing.jpg" alt="Galarian Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>096/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1140,7 +1301,7 @@
 					<img src="./assets/232505_galarian-weezing.jpg" alt="Galarian Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shining-fates.png" /><img src="./assets/sets/shining-fates.png" alt="Shining Fates" /></picture></span><span>Shining Fates <small>042/072</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1161,7 +1322,7 @@
 					<img src="./assets/44435_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fossil.png" /><img src="./assets/sets/fossil.png" alt="Fossil" /></picture></span><span>Fossil <small>33/62</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1178,14 +1339,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="gastly-1">Gastly</h2>
+				<h2 id="gastly-1">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660119_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>001/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>70</dd>
 						<dt>Stage</dt><dd>Basic</dd>
@@ -1204,7 +1365,7 @@
 					<img src="./assets/660495_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>054/094</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1225,7 +1386,7 @@
 					<img src="./assets/684429_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>048/088</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1246,7 +1407,7 @@
 					<img src="./assets/534417_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture></span><span>SV: Paldean Fates <small>055/091</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1268,7 +1429,7 @@
 					<img src="./assets/516661_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture></span><span>SV: Scarlet &amp; Violet 151 <small>092/165</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1289,7 +1450,7 @@
 					<img src="./assets/283811_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /></span><span>Trick or Trade BOOster Bundle <small>055/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1310,7 +1471,7 @@
 					<img src="./assets/515659_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /></span><span>Trick or Trade BOOster Bundle 2023 <small>064/196</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1331,7 +1492,7 @@
 					<img src="./assets/124061_gastly.jpg" alt="Gastly" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolutions.png" /><img src="./assets/sets/evolutions.png" alt="XY - Evolutions" /></picture></span><span>XY - Evolutions <small>47/108</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1353,7 +1514,7 @@
 					<img src="./assets/677089_gastly-energy-symbol-pattern.jpg" alt="Gastly (Energy Symbol Pattern)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>123/217</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1374,7 +1535,7 @@
 					<img src="./assets/684431_gengar.jpg" alt="Gengar" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>050/088</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1395,7 +1556,7 @@
 					<img src="./assets/208393_gengar.jpg" alt="Gengar" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set <small>085/202</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1416,7 +1577,7 @@
 					<img src="./assets/283766_gengar-2021-copyright-date.jpg" alt="Gengar (2021 Copyright Date)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /></span><span>Trick or Trade BOOster Bundle <small>057/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1437,7 +1598,7 @@
 					<img src="./assets/515661_gengar-2022-copyright-date.jpg" alt="Gengar (2022 Copyright Date)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /></span><span>Trick or Trade BOOster Bundle 2023 <small>066/196</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1458,7 +1619,7 @@
 					<img src="./assets/570271_gengar-cosmos-holo.jpg" alt="Gengar (Cosmos Holo)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /></span><span>Trick or Trade BOOster Bundle 2024 <small>057/091</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1479,7 +1640,7 @@
 					<img src="./assets/253370_gengar-v.jpg" alt="Gengar V" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fusion-strike.png" /><img src="./assets/sets/fusion-strike.png" alt="SWSH08: Fusion Strike" /></picture></span><span>SWSH08: Fusion Strike <small>156/264</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /></span><span>Ultra Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1501,7 +1662,7 @@
 					<img src="./assets/283795_gourgeist.jpg" alt="Gourgeist" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /></span><span>Trick or Trade BOOster Bundle <small>077/203</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1522,7 +1683,7 @@
 					<img src="./assets/42506_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/base-set-2.png" /><img src="./assets/sets/base-set-2.png" alt="Base Set 2" /></picture></span><span>Base Set 2 <small>043/130</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1539,14 +1700,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="haunter-1">Haunter</h2>
+				<h2 id="haunter-1">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660120_haunter-002-021.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>002/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>100</dd>
 						<dt>Stage</dt><dd>Stage 1</dd>
@@ -1565,7 +1726,7 @@
 					<img src="./assets/654108_haunter-022-021.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>022/021</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/illustration-rare.png" alt="Art Rare" /></span><span>Art Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1586,7 +1747,7 @@
 					<img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>055/094</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1607,7 +1768,7 @@
 					<img src="./assets/684430_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>049/088</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1628,7 +1789,7 @@
 					<img src="./assets/149060_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crimson-invasion.png" /><img src="./assets/sets/crimson-invasion.png" alt="SM - Crimson Invasion" /></picture></span><span>SM - Crimson Invasion <small>37/111</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1649,7 +1810,7 @@
 					<img src="./assets/534418_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture></span><span>SV: Paldean Fates <small>056/091</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1670,7 +1831,7 @@
 					<img src="./assets/516662_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture></span><span>SV: Scarlet &amp; Violet 151 <small>093/165</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1691,7 +1852,7 @@
 					<img src="./assets/208390_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set <small>084/202</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1713,7 +1874,7 @@
 					<img src="./assets/283812_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /></span><span>Trick or Trade BOOster Bundle <small>056/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1734,7 +1895,7 @@
 					<img src="./assets/515660_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /></span><span>Trick or Trade BOOster Bundle 2023 <small>065/196</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1755,7 +1916,7 @@
 					<img src="./assets/570361_haunter.jpg" alt="Haunter" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /></span><span>Trick or Trade BOOster Bundle 2024 <small>103/162</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1771,14 +1932,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="honchkrow">Honchkrow</h2>
+				<h2 id="honchkrow">Honchkrow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660122_honchkrow.jpg" alt="Honchkrow" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>005/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>130</dd>
 						<dt>Stage</dt><dd>Stage 1</dd>
@@ -1798,7 +1959,7 @@
 					<img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>114/142</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -1819,7 +1980,7 @@
 					<img src="./assets/515650_houndoom.jpg" alt="Houndoom" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /></span><span>Trick or Trade BOOster Bundle 2023 <small>034/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -1841,7 +2002,7 @@
 					<img src="./assets/570362_iron-jugulis.jpg" alt="Iron Jugulis" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /></span><span>Trick or Trade BOOster Bundle 2024 <small>139/162</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -1862,7 +2023,7 @@
 					<img src="./assets/623518_koffing.jpg" alt="Koffing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>091/159</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1884,7 +2045,7 @@
 					<img src="./assets/241763_koffing.jpg" alt="Koffing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>094/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1905,7 +2066,7 @@
 					<img src="./assets/283824_litwick.jpg" alt="Litwick" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle" /></span><span>Trick or Trade BOOster Bundle <small>031/192</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -1926,7 +2087,7 @@
 					<img src="./assets/653856_mega-gengar-ex.jpg" alt="Mega Gengar ex" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>003/021</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1947,7 +2108,7 @@
 					<img src="./assets/253274_mew-v.jpg" alt="Mew V" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fusion-strike.png" /><img src="./assets/sets/fusion-strike.png" alt="SWSH08: Fusion Strike" /></picture></span><span>SWSH08: Fusion Strike <small>113/264</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /></span><span>Ultra Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1964,14 +2125,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="murkrow">Murkrow</h2>
+				<h2 id="murkrow">Murkrow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660121_murkrow.jpg" alt="Murkrow" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>004/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>60</dd>
 						<dt>Stage</dt><dd>Basic</dd>
@@ -1990,7 +2151,7 @@
 					<img src="./assets/567341_noctowl.jpg" alt="Noctowl" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>115/142</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -2011,7 +2172,7 @@
 					<img src="./assets/570569_okidogi-cosmos-holo.jpg" alt="Okidogi (Cosmos Holo)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /></span><span>Trick or Trade BOOster Bundle 2024 <small>111/167</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
@@ -2032,7 +2193,7 @@
 					<img src="./assets/693536_pumpkaboo.jpg" alt="Pumpkaboo" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>040/086</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -2053,7 +2214,7 @@
 					<img src="./assets/149067_pumpkaboo.jpg" alt="Pumpkaboo" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/crimson-invasion.png" /><img src="./assets/sets/crimson-invasion.png" alt="SM - Crimson Invasion" /></picture></span><span>SM - Crimson Invasion <small>44/111</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -2074,7 +2235,7 @@
 					<img src="./assets/523743_pumpkaboo.jpg" alt="Pumpkaboo" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paradox-rift.png" /><img src="./assets/sets/paradox-rift.png" alt="SV04: Paradox Rift" /></picture></span><span>SV04: Paradox Rift <small>077/182</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -2091,14 +2252,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="sableye">Sableye</h2>
+				<h2 id="sableye">Sableye <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660123_sableye.jpg" alt="Sableye" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>006/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
 						<dt>HP</dt><dd>80</dd>
 						<dt>Stage</dt><dd>Basic</dd>
@@ -2117,7 +2278,7 @@
 					<img src="./assets/570462_sinistcha-cosmos-holo.jpg" alt="Sinistcha (Cosmos Holo)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2024" /></span><span>Trick or Trade BOOster Bundle 2024 <small>022/167</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
@@ -2139,7 +2300,7 @@
 					<img src="./assets/241777_spiritomb.jpg" alt="Spiritomb" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>103/198</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -2161,7 +2322,7 @@
 					<img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set <small>100/202</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
@@ -2178,14 +2339,14 @@
 				</section>
 			</article>
 			<article>
-				<h2 id="tatsugiri">Tatsugiri</h2>
+				<h2 id="tatsugiri">Tatsugiri <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
 					<img src="./assets/660126_tatsugiri.jpg" alt="Tatsugiri" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>009/021</small></span></dd>
-						<dt>Rarity</dt><dd>&ndash;</dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/dragon.png" alt="Dragon" /></span><span>Dragon</span></dd>
 						<dt>HP</dt><dd>70</dd>
 						<dt>Stage</dt><dd>Basic</dd>
@@ -2204,7 +2365,7 @@
 					<img src="./assets/632933_team-rockets-koffing.jpg" alt="Team Rocket&#x27;s Koffing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>125/182</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -2225,7 +2386,7 @@
 					<img src="./assets/632934_team-rockets-weezing-126-182.jpg" alt="Team Rocket&#x27;s Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>126/182</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -2246,7 +2407,7 @@
 					<img src="./assets/515648_trevenant.jpg" alt="Trevenant" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><img src="./assets/sets/trick-or-trade.png" alt="Trick or Trade BOOster Bundle 2023" /></span><span>Trick or Trade BOOster Bundle 2023 <small>017/196</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
@@ -2267,7 +2428,7 @@
 					<img src="./assets/197673_weezing.jpg" alt="Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/hidden-fates.png" /><img src="./assets/sets/hidden-fates.png" alt="Hidden Fates" /></picture></span><span>Hidden Fates <small>29/68</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -2288,7 +2449,7 @@
 					<img src="./assets/623519_weezing.jpg" alt="Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>092/159</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -2310,7 +2471,7 @@
 					<img src="./assets/516680_weezing.jpg" alt="Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture></span><span>SV: Scarlet &amp; Violet 151 <small>110/165</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -2331,7 +2492,7 @@
 					<img src="./assets/117788_weezing.jpg" alt="Weezing" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fates-collide.png" /><img src="./assets/sets/fates-collide.png" alt="XY - Fates Collide" /></picture></span><span>XY - Fates Collide <small>28/124</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -2353,7 +2514,7 @@
 					<img src="./assets/90566_weezing-team-plasma.jpg" alt="Weezing (Team Plasma)" />
 				</aside>
 				<section>
-					<dl>
+					<dl class="card">
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/plasma-storm.png" /><img src="./assets/sets/plasma-storm.png" alt="Plasma Storm" /></picture></span><span>Plasma Storm <small>58/135</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
 						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>

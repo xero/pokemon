@@ -12,12 +12,15 @@ from pokelib import esc, page
 ROOT = Path(__file__).parent
 
 PAGES = [
-    ("collection.html", "Every Pokémon in the binder, sorted by name, with what"
-                        " each one does and whether it can be played."),
-    ("fire.html", "Fox's deck, card by card: what each one is for, what it wants"
-                  " to sit next to, and the game plans."),
-    ("dark.html", "Xero's deck, same shape. Gengar and Weezing, and the two-turn"
-                  " combo the whole thing is built around."),
+    ("collection.html", ["charizard-mega-x", "gengar-mega"],
+     "Every Pokémon in the binder, sorted by name, with what each one does, and"
+     " if it's tournament legal."),
+    ("fire.html", ["charizard", "flareon"],
+     "Fox's deck, card by card: what each one is for, what it wants to sit next"
+     " to, and how to beat dad."),
+    ("dark.html", ["gengar", "weezing"],
+     "Xero's deck. The dark duo of Gengar and Weezing, and the two-turn combo"
+     " dad's whole deck is built around."),
 ]
 
 
@@ -29,24 +32,34 @@ def read(name):
 
 
 body, total = [], 0
-for name, blurb in PAGES:
+for name, sprites, blurb in PAGES:
     if not (ROOT / name).exists():
         print(f"  skipping {name}, not built yet")
         continue
     title, count = read(name)
     total += count
-    body += [
-        "\t\t\t<article>",
-        f'\t\t\t\t<h2><a href="./{name}">{title}</a></h2>',
+    art = ["\t\t\t<article>"]
+    # decorative, and the heading right beside them already names the page
+    gifs = [s for s in sprites
+            if (ROOT / "assets" / "sprites" / f"{s}.gif").exists()]
+    if gifs:
+        tags = "".join(f'<img src="./assets/sprites/{s}.gif" alt="" />'
+                       for s in gifs)
+        art.append(f"\t\t\t\t<aside data-sprite>{tags}</aside>")
+    # the heading lives inside the section so the sprite can sit beside it
+    # rather than being pushed under a full-width row
+    art += [
         "\t\t\t\t<section>",
+        f'\t\t\t\t\t<h2><a href="./{name}">{title}</a></h2>',
         f"\t\t\t\t\t<p>{esc(blurb)}</p>",
-        f"\t\t\t\t\t<p><small>{count} cards · "
-        f'<a href="./{name}">{esc(name)}</a></small></p>',
+        f"\t\t\t\t\t<p><small><em>{count} unique cards</em></small></p>",
         "\t\t\t\t</section>",
         "\t\t\t</article>",
     ]
+    body += art
 
-out = page(ROOT / "index.html", "Pokémon", "Deck planning for me and my son.",
+out = page(ROOT / "index.html", "Pokémon TCG",
+           "Deck planning for me and my son.",
            "", "\n".join(body))
 print(f"index.html: {len(PAGES)} pages, {total} cards linked, "
       f"{len(out.splitlines())} lines")

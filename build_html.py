@@ -31,6 +31,9 @@ DEST = ROOT / "collection.html"
 
 TITLE = "Pokémon Caught!"
 
+# Sprites shown beside the title.
+MASCOT = ["gengar-mega", "charizard"]
+
 # CSV column -> term shown in the <dl>. None means the value is self-describing
 # and stands without one. The attacks slot expands to one row per attack.
 LABELS = [
@@ -147,7 +150,7 @@ for r, a in entries:
         art += ["\t\t\t\t<aside>",
                 "\t\t\t\t\t" + img(f'./assets/{r["image_file"]}', r["name"]),
                 "\t\t\t\t</aside>"]
-    art += ["\t\t\t\t<section>", "\t\t\t\t\t<dl>"]
+    art += ["\t\t\t\t<section>", '\t\t\t\t\t<dl class="card">']
     for label, v in stats(r):
         art.append(f"\t\t\t\t\t\t<dt>{esc(label)}</dt><dd>{v}</dd>")
     art += ["\t\t\t\t\t</dl>", "\t\t\t\t</section>", "\t\t\t</article>"]
@@ -206,14 +209,7 @@ notes += ["\t\t\t\t<p>Read the one in your hand every time.</p>",
 legal = sum(1 for r in rows if r["standard_legal"] == "yes")
 subtitle = f"{len(rows)} Pok&eacute;mon, {legal} of them tournament legal."
 
-page = TEMPLATE.read_text(encoding="utf-8")
-for token, repl in (("${TITLE}", TITLE),
-                    ("${SUBTITLE}", subtitle),
-                    ("${NAV}", "\n\t\t\t".join(nav)),
-                    ("${ARTICLES}", "\n".join(articles)),
-                    ("${NOTES}", "\n".join(notes))):
-    page = page.replace(token, repl)
-
-DEST.write_text(page, encoding="utf-8")
+out = page(DEST, TITLE, subtitle, "\n\t\t\t".join(nav),
+           "\n".join(articles), "\n".join(notes), MASCOT)
 print(f"collection.html: {len(rows)} entries, {legal} legal, "
-      f"{len(page.splitlines())} lines, {len(page) / 1024:.0f}kb")
+      f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")

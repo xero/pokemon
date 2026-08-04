@@ -110,12 +110,12 @@
 </details>
 
 <table>
-  <tr><td colspan="2"><h3 id="absol">Absol</h3></td></tr>
+  <tr><td colspan="2"><h3 id="absol">Absol <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><img src="./assets/660124_absol.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 007/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 110</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
@@ -536,12 +536,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="eternatus">Eternatus</h3></td></tr>
+  <tr><td colspan="2"><h3 id="eternatus">Eternatus <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><img src="./assets/660125_eternatus.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 008/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 150</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
@@ -685,12 +685,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gastly-1">Gastly</h3></td></tr>
+  <tr><td colspan="2"><h3 id="gastly-1">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><img src="./assets/660119_gastly.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 001/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
@@ -995,12 +995,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-1">Haunter</h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-1">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><img src="./assets/660120_haunter-002-021.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 002/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 100</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
@@ -1194,12 +1194,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="honchkrow">Honchkrow</h3></td></tr>
+  <tr><td colspan="2"><h3 id="honchkrow">Honchkrow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><img src="./assets/660122_honchkrow.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 005/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 130</td></tr>
   <tr><td><b>Stage</b>: Stage 1</td></tr>
@@ -1360,12 +1360,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="murkrow">Murkrow</h3></td></tr>
+  <tr><td colspan="2"><h3 id="murkrow">Murkrow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><img src="./assets/660121_murkrow.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 004/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 60</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
@@ -1469,12 +1469,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="sableye">Sableye</h3></td></tr>
+  <tr><td colspan="2"><h3 id="sableye">Sableye <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><img src="./assets/660123_sableye.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 006/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
   <tr><td><b>HP</b>: 80</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>
@@ -1544,12 +1544,12 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="tatsugiri">Tatsugiri</h3></td></tr>
+  <tr><td colspan="2"><h3 id="tatsugiri">Tatsugiri <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><img src="./assets/660126_tatsugiri.jpg" width="350"></th>
   </tr>
   <tr><td><b>MBG: MEGA Starter Set Mega Gengar ex</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png"><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" height="22" align="top"></picture> 009/021</td></tr>
-  <tr><td><b>Rarity</b>: -</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
   <tr><td><b>Type</b>: <img src="./assets/types/dragon.png" alt="Dragon" height="18" align="top"> Dragon</td></tr>
   <tr><td><b>HP</b>: 70</td></tr>
   <tr><td><b>Stage</b>: Basic</td></tr>

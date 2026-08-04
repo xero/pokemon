@@ -30,6 +30,18 @@ from pokelib import (anchor, cost_icons, esc, icon, page, row, set_slug,
 
 ROOT = Path(__file__).parent
 
+# Contents labels that read better than the heading they come from. The
+# headings themselves are left alone; this only affects the contents list.
+NAV_LABEL = {
+    "Trainers — Supporters": "Trainers (Support)",
+    "Trainers — Items": "Trainers (Items)",
+    "Trainers — Tool & Stadium": "Trainers (Tool / Stadium)",
+}
+
+# The mascot shown beside each deck's title.
+MASCOT = {"dark.md": ["gengar", "weezing"],
+          "fire.md": ["charizard", "flareon"]}
+
 # Stat rows that have a glyph to show. Everything else renders as plain text.
 GLYPH_ROWS = {"Type", "Weakness", "Resistance"}
 
@@ -46,35 +58,71 @@ def inline(s):
     s = esc(s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
-    s = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", s)
-    s = re.sub(r"(?<![*\w])\*([^*]+)\*(?!\*)", r"<em>\1</em>", s)
+    # bold first, and allowed to span anything, so "**a *b* c**" works. the
+    # old pattern refused to cross a nested emphasis and left the ** visible.
+    s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s, flags=re.S)
+    s = re.sub(r"(?<!\w)\*([^*]+)\*(?!\w)", r"<em>\1</em>", s, flags=re.S)
     return re.sub(r"\x00(\d+)\x00", lambda m: keep[int(m.group(1))], s)
 
 
-def stat_rows(table):
-    """A markdown key/value table as <dl> rows, with glyphs where they fit.
+def parse_table(table):
+    """Markdown table lines to a grid, minus the |:---| underline row."""
+    rows = [[c.strip() for c in l.strip().strip("|").split("|")] for l in table]
+    return [r for r in rows if not all(set(c) <= set("-: ") and c for c in r)]
 
-    The first two lines are the header and its underline, which carry no card
-    data; a <dl> has no header row to put them in.
+
+def render_table(rows, ind, stats=False):
+    """A table as a <dl> when it is key/value, otherwise as a real <table>.
+
+    Two columns is a card's stat block or a term and its meaning, which a <dl>
+    says better. Three or more is a genuine table and needs to stay one; those
+    were being dropped entirely before, since a <dl> has nowhere to put a third
+    column.
     """
+    if not rows:
+        return []
+    if max(len(r) for r in rows) == 2:
+        # a card's stat block is marked so it can be styled apart from the
+        # tables that appear in the prose. the tell is the card image: a real
+        # card has one, a table of matchups or opening hands does not.
+        tag = '<dl class="card">' if stats else "<dl>"
+        return [f"{ind}{tag}"] + stat_rows(rows[1:]) + [f"{ind}</dl>"]
+    head, body = rows[0], rows[1:]
+    out = [f"{ind}<table>",
+           f"{ind}\t<thead><tr>"
+           + "".join(f"<th>{inline(c)}</th>" for c in head) + "</tr></thead>",
+           f"{ind}\t<tbody>"]
+    for r in body:
+        out.append(f"{ind}\t\t<tr>"
+                   + "".join(f"<td>{inline(c)}</td>" for c in r) + "</tr>")
+    return out + [f"{ind}\t</tbody>", f"{ind}</table>"]
+
+
+def stat_rows(rows):
+    """Key/value rows as <dl> pairs, with glyphs where the field lines up."""
     out = []
-    for line in table[2:]:
-        cells = [c.strip() for c in line.strip().strip("|").split("|")]
-        if len(cells) != 2 or set(cells[0]) <= set("-: "):
+    for cells in rows:
+        if len(cells) != 2:
             continue
         key = re.sub(r"\*\*(.*?)\*\*", r"\1", cells[0])
         val = cells[1]
+        # glyphs are looked up against the plain text, but the cell still
+        # renders with its markdown; matching on "**Fighting**" finds nothing
+        # and printing the plain form loses the emphasis
+        plain = val.replace("*", "").strip()
         if key == "Set":
-            body = row(icon("sets", set_slug(val), val), esc(val))
-        elif key in GLYPH_ROWS and val not in ("—", "-", ""):
-            body = typed(val)
-        elif key == "Retreat" and val.isdigit():
-            body = row(type_icon("Colorless") * int(val), esc(val), "cost")
+            body = row(icon("sets", set_slug(plain), plain), inline(val))
+        elif key in GLYPH_ROWS and plain not in ("—", "-", ""):
+            body = row(type_icon(plain.split(" ")[0]), inline(val))
+        elif key == "Retreat" and plain.isdigit():
+            body = row(type_icon("Colorless") * int(plain), esc(plain), "cost")
         elif key == "Attack":
             body = attack_row(val)
         else:
             body = row("", inline(val))
-        out.append(f"\t\t\t\t\t\t<dt>{esc(key)}</dt><dd>{body}</dd>")
+        # the key matches on plain text, but renders with its markdown, since
+        # an arbitrary two-column table can have emphasis in the left column
+        out.append(f"\t\t\t\t\t\t<dt>{inline(cells[0])}</dt><dd>{body}</dd>")
     return out
 
 
@@ -92,18 +140,38 @@ def convert(src):
     lines = src.read_text(encoding="utf-8").splitlines()
     title, subtitle = "", ""
     nav, notes, body = [], [], []
+    # (level, text, anchor) for every heading, so the contents list is built
+    # from the document rather than from a hand-kept list that drifts out of
+    # step with it. fire.md's own list had lost "Word List" and never had the
+    # game plans in it at all.
+    toc = []
     seen = Counter()
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
+    sect = None           # the ## section currently being filled in
 
-    def close():
+    def close_art():
         nonlocal art
         if art:
-            body.append("\n".join(art + ["\t\t\t\t</section>", "\t\t\t</article>"]))
+            done = "\n".join(art + ["\t\t\t\t</section>", "\t\t\t</article>"])
+            (sect if sect is not None else body).append(done)
             art = None
 
+    def close_sect():
+        nonlocal sect
+        close_art()
+        if sect is not None:
+            body.append("\n".join(["\t\t\t<section>"] + sect + ["\t\t\t</section>"]))
+            sect = None
+
+    def close():
+        close_sect()
+
     def emit(html_):
-        (art if art is not None else body).append(html_)
+        for target in (art, sect, body):
+            if target is not None:
+                target.append(html_)
+                return
 
     while i < n:
         line = lines[i]
@@ -126,30 +194,30 @@ def convert(src):
                     block.append(t)
                 i += 1
             if any(x.startswith("### Table of Contents") for x in block):
-                nav.append("<nav>\n\t<details open>\n\t\t<summary>Contents</summary>")
-                for t in block:
-                    if t.startswith("###") or not t.strip():
-                        continue
-                    nav.append(f"\t\t<p>{inline(t)}</p>")
-                nav.append("\t</details>\n</nav>")
+                pass                       # rebuilt below from the headings
             else:
-                target = notes if not body else body
-                target.append(f'\t\t\t<aside data-callout="{kind}">')
+                # emit(), so a callout that belongs to a card ends up inside
+                # that card rather than loose in <main>. before any card, it
+                # lands at the top of the page where the intro belongs.
+                emit(f'\t\t\t<aside data-callout="{kind}">')
                 for para in "\n".join(block).split("\n\n"):
-                    target += bullets_or_para(para, "\t\t\t\t")
-                target.append("\t\t\t</aside>")
+                    for h in bullets_or_para(para, "\t\t\t\t"):
+                        emit(h)
+                emit("\t\t\t</aside>")
             continue
 
         if stripped.startswith("### "):
-            close()
+            close_art()
             name = stripped[4:].strip()
             a = anchor(name, seen)
             art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}</h3>']
             # an image on its own line becomes the card's aside
+            has_image = False
             j = i + 1
             while j < n and not lines[j].strip():
                 j += 1
             if j < n and lines[j].strip().startswith("<img"):
+                has_image = True
                 src_m = re.search(r'src="([^"]+)"', lines[j])
                 art.append("\t\t\t\t<aside>"
                            f'<img src="{src_m.group(1)}" alt="{esc(name)}" />'
@@ -165,8 +233,13 @@ def convert(src):
                 while j < n and lines[j].strip().startswith("|"):
                     table.append(lines[j])
                     j += 1
-                art += ["\t\t\t\t\t<dl>"] + stat_rows(table) + ["\t\t\t\t\t</dl>"]
+                grid = parse_table(table)
+                art += render_table(grid, "\t\t\t\t\t", stats=has_image)
                 i = j - 1
+                # a table means this is a card or a glossary entry, both worth
+                # indexing. a ### with no table is a prose subsection inside a
+                # game plan, and listing those buries the plans themselves.
+                toc.append((3, name, a))
             i += 1
             continue
 
@@ -176,17 +249,21 @@ def convert(src):
             continue
 
         if stripped.startswith("## "):
-            close()
+            close_sect()
             name = stripped[3:].strip()
             a = anchor(name, seen)
-            body.append(f'\t\t\t<h3 id="{a}">{inline(name)}</h3>')
+            toc.append((2, name, a))
+            # a game plan gets its own box, the way a card does. left loose in
+            # <main> its list markers hang outside the text column.
+            sect = [f'\t\t\t\t<h3 id="{a}">{inline(name)}</h3>']
             i += 1
             continue
 
         if stripped.startswith("# "):
-            close()
+            close_sect()
             name = stripped[2:].strip()
             a = anchor(name, seen)
+            toc.append((1, name, a))
             body.append(f'\t\t\t<h2 id="{a}">{inline(name)}</h2>')
             i += 1
             continue
@@ -199,6 +276,15 @@ def convert(src):
                 i += 1
             emit("<pre><code>" + "\n".join(code) + "</code></pre>")
             i += 1
+            continue
+
+        if stripped.startswith("|"):
+            table = []
+            while i < n and lines[i].strip().startswith("|"):
+                table.append(lines[i])
+                i += 1
+            for h in render_table(parse_table(table), "\t\t\t\t\t"):
+                emit(h)
             continue
 
         if stripped in ("---", "") or stripped.startswith("<br"):
@@ -218,10 +304,44 @@ def convert(src):
             emit(h)
 
     close()
-    if not subtitle:
-        cards = sum(1 for x in body if "<article>" in x)
-        subtitle = f"{cards} cards, one entry each."
-    return title, subtitle, "\n".join(nav), "\n".join(body), "\n".join(notes)
+    return title, subtitle, build_nav(toc), "\n".join(body), "\n".join(notes)
+
+
+def build_nav(toc):
+    """A contents list grouped by the document's own headings.
+
+    Groups come from the top-level headings. Inside a group that has named
+    subsections, only those are listed: the game plans each contain their own
+    prose headings, and listing those buries the plans they belong to. A
+    heading that appears before any group, like Fox's word list, becomes a
+    group in its own right rather than being dropped.
+    """
+    out = ["<nav>", "\t<details open>", "\t\t<summary>Contents</summary>"]
+    group, kids = None, []
+
+    def flush():
+        nonlocal group
+        if kids:
+            if any(lvl == 2 for lvl, _, _ in kids):
+                kids[:] = [k for k in kids if k[0] == 2]
+            links = " · ".join(f'<a href="#{a}">{esc(x)}</a>' for _, x, a in kids)
+            name = NAV_LABEL.get(group, group)
+            label = f"<b>{esc(name)} —</b>" if group else ""
+            out.append(f"\t\t<p>{label}<span>{links}</span></p>")
+        elif group:
+            out.append(f'\t\t<p><b>{esc(NAV_LABEL.get(group, group))}</b></p>')
+        kids.clear()
+        group = None
+
+    for level, text, a in toc:
+        if level == 1 or (level == 2 and group is None and not kids):
+            flush()
+            group = text
+        else:
+            kids.append((level, text, a))
+    flush()
+    out += ["\t</details>", "</nav>"]
+    return "\n".join(out)
 
 
 def bullets_or_para(text, ind):
@@ -231,11 +351,11 @@ def bullets_or_para(text, ind):
         return []
     if all(re.match(r"^\s*[-*] ", l) for l in lines):
         out = [f"{ind}<ul>"]
-        out += [f"{ind}\t<li>{inline(re.sub(r'^\\s*[-*] ', '', l))}</li>" for l in lines]
+        out += [f"{ind}\t<li>{inline(re.sub(r'^\s*[-*] ', '', l))}</li>" for l in lines]
         return out + [f"{ind}</ul>"]
     if all(re.match(r"^\s*\d+\. ", l) for l in lines):
         out = [f"{ind}<ol>"]
-        out += [f"{ind}\t<li>{inline(re.sub(r'^\\s*\\d+\\. ', '', l))}</li>" for l in lines]
+        out += [f"{ind}\t<li>{inline(re.sub(r'^\s*\d+\. ', '', l))}</li>" for l in lines]
         return out + [f"{ind}</ol>"]
     return [f"{ind}<p>{inline(' '.join(lines))}</p>"]
 
@@ -244,6 +364,7 @@ for name in sys.argv[1:] or ["dark.md", "fire.md"]:
     src = ROOT / name
     dest = src.with_suffix(".html")
     title, subtitle, nav, body, notes = convert(src)
-    out = page(dest, title, subtitle, nav, body, notes)
+    out = page(dest, title, subtitle, nav, body, notes,
+               MASCOT.get(src.name, []))
     print(f"{dest.name}: {body.count('<article>')} cards, "
           f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")

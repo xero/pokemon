@@ -1266,20 +1266,29 @@ It's a two-turn combo:
 
 The specific traps in *your* deck. Read this one twice.
 
-| Mistake | What actually happens |
-| :--- | :--- |
-| Forgetting to use *Battle Sense* | It's free, every turn, and it doesn't end your turn. You just threw away a free card. |
-| Bringing Charizard out with no Energy | It sits there for 2 turns getting hit. Load it **on the Bench** first. |
-| Trying to Rare Candy on turn one | Not allowed. Ever. |
-| Rare Candy on a Charmander you played this turn | Not allowed. It had to be there since before this turn. |
-| Rare Candy onto an Active Charmander that's about to die | He takes a Prize **and** your Charizard, in one turn. Candy the **benched** one. |
-| Playing Eevee to the **Bench** and expecting to evolve it | *Boosted Evolution* only works in the **Active Spot**. |
-| Using *Fighting Blaze* expecting 180 | He has no ex or V Pokémon. It's just 90. Use *Destructive Flame* instead. |
-| Professor's Research with a good hand | It **discards** — it does not shuffle back. Those cards are gone. |
-| Zinnia's Resolve on turn one | His board is empty. You'd discard 2 to draw 1. |
-| Kindler with no Fire Energy in hand | You literally can't play it. Dead card. |
-| Playing two Supporters in one turn | Not allowed. **One per turn.** |
-| Attacking, then trying to do other stuff | **Attacking ends your turn.** Do everything else first. |
+**Forgetting to use *Battle Sense*.** It's free, every turn, and it doesn't end your turn. You just threw away a free card.
+
+**Bringing Charizard out with no Energy.** It sits there for 2 turns getting hit. Load it **on the Bench** first.
+
+**Trying to Rare Candy on turn one.** Not allowed. Ever.
+
+**Rare Candy on a Charmander you played this turn.** Not allowed. It had to be there since before this turn.
+
+**Rare Candy onto an Active Charmander that's about to die.** He takes a Prize **and** your Charizard, in one turn. Candy the **benched** one.
+
+**Playing Eevee to the Bench and expecting to evolve it.** *Boosted Evolution* only works in the **Active Spot**.
+
+**Using *Fighting Blaze* expecting 180.** He has no ex or V Pokémon. It's just 90. Use *Destructive Flame* instead.
+
+**Professor's Research with a good hand.** It **discards**, it does not shuffle back. Those cards are gone.
+
+**Zinnia's Resolve on turn one.** His board is empty. You'd discard 2 to draw 1.
+
+**Kindler with no Fire Energy in hand.** You literally can't play it. Dead card.
+
+**Playing two Supporters in one turn.** Not allowed. **One per turn.**
+
+**Attacking, then trying to do other stuff.** **Attacking ends your turn.** Do everything else first.
 
 ---
 

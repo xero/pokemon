@@ -144,11 +144,22 @@ def anchor(text, seen):
     return s if n == 0 else f"{s}-{n}"
 
 
-def page(dest, title, subtitle, nav, body, notes=""):
-    """Fill the shared template and write it out."""
+def page(dest, title, subtitle, nav, body, notes="", sprite=""):
+    """Fill the shared template and write it out.
+
+    sprite names one file in assets/sprites, or several, shown beside the
+    page title. Missing files are skipped rather than left as broken images.
+    """
     out = TEMPLATE.read_text(encoding="utf-8")
+    names = [sprite] if isinstance(sprite, str) else list(sprite or [])
+    tag = "".join(
+        f' <img data-mascot src="./assets/sprites/{s}.gif" alt="" />'
+        for s in names if s and (ASSETS / "sprites" / f"{s}.gif").exists())
+    out = out.replace("${SPRITE}", tag)
     if not nav:                       # no contents list, drop its line entirely
         out = re.sub(r"\n\t*\$\{NAV\}", "", out)
+    if not subtitle:                  # likewise, no empty <p> left behind
+        out = re.sub(r"\n\t*<p>\$\{SUBTITLE\}</p>", "", out)
     for token, repl in (("${TITLE}", title), ("${SUBTITLE}", subtitle),
                         ("${NAV}", nav), ("${ARTICLES}", body),
                         ("${NOTES}", notes)):

@@ -213,10 +213,20 @@ STAGE_FIX = {"megaex": "Mega ex", "mega ex": "Mega ex", "basicex": "Basic ex",
              "stage1": "Stage 1", "stage2": "Stage 2"}
 
 
-def norm_rarity(v):
-    """TCGplayer sends the literal string "None" where a card has no rarity."""
+def norm_rarity(v, product_line=""):
+    """Tidy a rarity, and fill in the one TCGplayer leaves blank.
+
+    "None" arrives as a literal string rather than an absent field. On the
+    Japanese line the field is simply missing for ordinary cards, which is
+    every card in a starter deck that is not the holo or the art rare, so
+    those are Common.
+    """
     s = accents(str(v or "").strip())
-    return "" if s.lower() == "none" else s
+    if s.lower() == "none":
+        s = ""
+    if not s and "japan" in (product_line or "").lower():
+        return "Common"
+    return s
 
 
 def type_from_attack(ca):
@@ -411,7 +421,8 @@ for pid in ids:
         "name": name,
         "set_name": accents((p.get("setName") or "").strip()),
         "card_number": number,
-        "rarity": norm_rarity(p.get("rarityName")) if p else "",
+        "rarity": norm_rarity(p.get("rarityName"),
+                              p.get("productLineName")) if p else "",
         "product_line": (p.get("productLineName") or "") if p else "",
         "card_type": ctype,
         "hp": hp,
