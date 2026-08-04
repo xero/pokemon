@@ -312,6 +312,10 @@
 			}
 
 			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
@@ -490,6 +494,25 @@
 		}
 		}
 
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
@@ -508,6 +531,12 @@
 			}
 
 			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
 				font-size: var(--text-lg);
 				color: var(--heading);
 			}
@@ -2548,6 +2577,8 @@
 				<p>One of those is in your deck and one is legal today, and they are still not the same card.</p>
 				<p>Read the one in your hand every time.</p>
 			</aside>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
 		</footer>
 	</body>
 </html>

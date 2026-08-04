@@ -312,6 +312,10 @@
 			}
 
 			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
@@ -490,6 +494,25 @@
 		}
 		}
 
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
@@ -508,6 +531,12 @@
 			}
 
 			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
 				font-size: var(--text-lg);
 				color: var(--heading);
 			}
@@ -1241,7 +1270,7 @@
 				<p>These are the named plans. Learn the six below and you know how to pilot the deck. Everything above is just the parts list.</p>
 			</aside>
 			<section>
-				<h3 id="1-the-two-turn-fuse">1. The Two-Turn Fuse</h3>
+				<h3 id="1-the-two-turn-fuse">1. The Two-Turn Fuse<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
 					<p><strong>The core combo, and the reason the deck works.</strong></p>
 <pre><code>Turn A:  Weezing → Pervasive Gas       30 damage + Confused
 Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
@@ -1256,7 +1285,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p><strong>The upgraded version.</strong> Once you draw a <a href="#dark-bell">Dark Bell</a>, you no longer have to alternate. Dark Bell applies the Confusion as an Item, so you Crazy Blast <strong>and</strong> Confuse on the same turn. That is the deck&#x27;s best turn, full stop.</p>
 			</section>
 			<section>
-				<h3 id="2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark</h3>
+				<h3 id="2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
 					<p><strong>How to build a Stage 2 without getting punished for it.</strong></p>
 					<p>The universal weakness of a Stage 2 deck is the two or three turns where your best card is a defenceless Basic sitting on the Bench. This deck has a specific, complete answer to that.</p>
 					<p><strong>The sequence:</strong></p>
@@ -1276,7 +1305,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p>Both are solved by the same habit: <strong>bench your Basics one turn earlier than you think you need them.</strong></p>
 			</section>
 			<section>
-				<h3 id="3-the-bench-tax">3. The Bench Tax</h3>
+				<h3 id="3-the-bench-tax">3. The Bench Tax<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
 					<p><strong>Gengar and Risky Ruins as a pincer.</strong></p>
 					<p>Your opponent&#x27;s deck wants a wide Bench. Charizard needs Charmander down early. Eevee needs to be benched to become Flareon. Sudowoodo wants to sit and accumulate damage. Zinnia&#x27;s Resolve draws more the more Pokémon <em>you</em> have out, and Welder wants targets.</p>
 					<p>You attack that from both sides at once:</p>
@@ -1289,7 +1318,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p><strong>Do the Boss&#x27;s Orders math in the right order.</strong> <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a> moves a Pokémon <em>off</em> their Bench, dropping Mind Jack by 30. Boss first, count second, then check whether the target actually dies.</p>
 			</section>
 			<section>
-				<h3 id="4-wearing-the-helmet">4. Wearing the Helmet</h3>
+				<h3 id="4-wearing-the-helmet">4. Wearing the Helmet<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3>
 					<p><strong>How to kill a Charizard when Mind Jack cannot.</strong></p>
 					<p>Mind Jack&#x27;s ceiling is <strong>160</strong>. Charizard&#x27;s HP is <strong>170</strong>. Gengar can never one-shot it. That is not a flaw in the deck — it is the reason <a href="#punk-helmet">Punk Helmet</a> is in it.</p>
 					<p><strong>The plan:</strong></p>
@@ -1304,7 +1333,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p><strong>Also remember Charizard&#x27;s retreat cost is 3.</strong> Once it is Active and damaged, it is expensive for them to hide. Combine with <a href="#dark-bell">Dark Bell</a> and a Confused, wounded Charizard is stuck in front of you flipping coins.</p>
 			</section>
 			<section>
-				<h3 id="5-trading-ghosts">5. Trading Ghosts</h3>
+				<h3 id="5-trading-ghosts">5. Trading Ghosts<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
 					<p><strong>Playing the Prize race when every card is worth one Prize.</strong></p>
 					<p>Both decks are built entirely from non-ex Pokémon, so <strong>every knockout is worth exactly one Prize</strong> and the race is six to six. That makes this a game about <em>efficiency</em>: you want each of your Pokémon to take at least one Prize before it dies.</p>
 					<p><strong>What that means in practice:</strong></p>
@@ -1338,7 +1367,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p><strong>And remember:</strong> if you go <strong>first</strong>, you cannot attack on your first turn. Use that turn entirely for setup — Poffin, Dawn, evolutions, attachments — and do not feel bad about it.</p>
 			</section>
 			<section>
-				<h3 id="7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</h3>
+				<h3 id="7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game<span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
 					<p>A checklist of the specific mistakes this deck invites.</p>
 					<dl>
 						<dt>Boss&#x27;s Orders, <em>then</em> counting the Bench for Mind Jack</dt><dd><span>You pulled one off their Bench. Mind Jack just lost 30.</span></dd>
@@ -1354,7 +1383,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					</dl>
 			</section>
 			<section>
-				<h3 id="8-teaching-notes">8. Teaching Notes</h3>
+				<h3 id="8-teaching-notes">8. Teaching Notes<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
 					<p><em>For explaining this to a ten-year-old across the table.</em></p>
 					<ul>
 						<li><strong>Lead with the Weezing plan, not the Gengar plan.</strong> &quot;Poison them, then blow them up&quot; is a two-step story a kid can hold in their head. The Stage 2 math can come later.</li>
@@ -1363,11 +1392,11 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 						<li><strong>Infinite Shadow is a great &quot;read the card twice&quot; moment.</strong> It looks like it makes Gengar immortal. It does not. Being able to say <em>why</em> — &quot;they still get a Prize&quot; — is exactly the kind of careful reading the game rewards.</li>
 						<li><strong>This deck is deliberately fair.</strong> Every attacker is 1 Prize on both sides, Weezing&#x27;s 170 exactly answers Charizard&#x27;s 170, and the Charizard deck&#x27;s Sudowoodo hits your Fighting Weakness for double. Neither side has a card the other cannot answer. If games are lopsided, it is piloting, not the lists — which is the whole point.</li>
 					</ul>
-					<p><strong>Sources for card text and rulings:</strong> <a href="https://pkmncards.com/">PkmnCards</a> · <a href="https://www.tcgcollector.com/cards/59008/gengar-perfect-order-050-088">TCG Collector</a> · <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG">Bulbapedia — Confused (TCG)</a>) · <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50">Bulbapedia — Gengar (Perfect Order 50)</a>)</p>
 			</section>
 		</main>
 		<footer>
-
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
 		</footer>
 	</body>
 </html>

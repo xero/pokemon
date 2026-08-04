@@ -312,6 +312,10 @@
 			}
 
 			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
@@ -490,6 +494,25 @@
 		}
 		}
 
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
@@ -508,6 +531,12 @@
 			}
 
 			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
 				font-size: var(--text-lg);
 				color: var(--heading);
 			}
@@ -1358,7 +1387,7 @@
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p><em>No rules text. It provides [R] Fire Energy.</em></p>
+				<p><em>Provides [R] Fire Energy.</em></p>
 			</aside>
 					<h4>General use</h4>
 					<p>Fuel. Every attack in your deck is paid for with these.</p>
@@ -1393,7 +1422,7 @@
 				<p>These are the real plans. Learn these and you know how to play the deck. Everything above is just the parts list.</p>
 			</aside>
 			<section>
-				<h3 id="1-the-leon-engine">1. The Leon Engine</h3>
+				<h3 id="1-the-leon-engine">1. The Leon Engine<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
 					<p><strong>This is your deck&#x27;s main plan. If you only learn one thing, learn this.</strong></p>
 					<p><a href="#charizard">Charizard&#x27;s</a> <em>Royal Blaze</em> does <strong>50 more damage for every Leon card in your discard pile.</strong> And <a href="#leon">Leon</a> goes to your discard pile the moment you play it.</p>
 					<p>So the more you use Leon, the stronger Charizard gets — <strong>forever</strong>.</p>
@@ -1423,7 +1452,7 @@
 			</article>
 			</section>
 			<section>
-				<h3 id="2-two-speeds">2. Two Speeds</h3>
+				<h3 id="2-two-speeds">2. Two Speeds<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /><img src="./assets/sprites/charmander.gif" alt="" /></span></h3>
 					<p><strong>Your deck has a fast plan and a strong plan. Run both at the same time.</strong></p>
 					<p>Charizard is a Stage 2. It takes turns to build. If you spend those turns doing nothing, you&#x27;ll be three Prize cards behind before your best card even shows up.</p>
 					<p>So you have a second, faster attacker: <strong><a href="#flareon">Flareon</a></strong>.</p>
@@ -1450,7 +1479,7 @@
 			</article>
 			</section>
 			<section>
-				<h3 id="3-the-rock-that-hits-back">3. The Rock That Hits Back</h3>
+				<h3 id="3-the-rock-that-hits-back">3. The Rock That Hits Back<span data-flavor><img src="./assets/sprites/sudowoodo.gif" alt="" /></span></h3>
 					<p><strong>How <a href="#sudowoodo">Sudowoodo</a> wins you a game nobody expected.</strong></p>
 					<p>Every Pokémon in your dad&#x27;s deck — Gastly, Haunter, Gengar, Koffing, Weezing — is <strong>Weak to Fighting ×2</strong>. Sudowoodo is the only Fighting Pokémon in either deck.</p>
 					<p>So Sudowoodo&#x27;s damage gets <strong>doubled</strong>. Always. Against everything he has.</p>
@@ -1486,7 +1515,7 @@
 			</article>
 			</section>
 			<section>
-				<h3 id="4-winning-the-stadium-war">4. Winning the Stadium War</h3>
+				<h3 id="4-winning-the-stadium-war">4. Winning the Stadium War<span data-flavor><img src="./assets/sprites/charizard-mega-y.gif" alt="" /></span></h3>
 					<p><strong>A small fight inside the big fight.</strong></p>
 					<p>Only <strong>one Stadium</strong> can be on the table at a time. Playing a new one throws the old one in the discard pile.</p>
 					<ul>
@@ -1502,7 +1531,7 @@
 					</ul>
 			</section>
 			<section>
-				<h3 id="5-reading-your-first-hand">5. Reading Your First Hand</h3>
+				<h3 id="5-reading-your-first-hand">5. Reading Your First Hand<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
 					<p><strong>Turn one decides a lot of games. Here&#x27;s how to play it.</strong></p>
 			<article>
 				<h3 id="step-1-do-you-have-a-basic-pokémon">Step 1: Do you have a Basic Pokémon?</h3>
@@ -1545,7 +1574,7 @@
 					<p><strong>Know the other side and you&#x27;ll see plays coming.</strong></p>
 					<p>His deck is all <strong>Darkness</strong> Pokémon. Two main threats:</p>
 			<article>
-				<h3 id="weezing-his-early-attacker-130-hp">Weezing — his early attacker (130 HP)</h3>
+				<h3 id="weezing-his-early-attacker-130-hp">Weezing — his early attacker (130 HP)<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
 				<section>
 					<p>It&#x27;s a two-turn combo:</p>
 					<ul>
@@ -1557,7 +1586,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="gengar-his-closer-130-hp">Gengar — his closer (130 HP)</h3>
+				<h3 id="gengar-his-closer-130-hp">Gengar — his closer (130 HP)<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
 				<section>
 					<p><em>Mind Jack</em> costs one Energy and does <strong>10 damage, plus 30 for every Pokémon on YOUR Bench.</strong></p>
 					<dl>
@@ -1571,7 +1600,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="his-annoying-cards">His annoying cards</h3>
+				<h3 id="his-annoying-cards">His annoying cards<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
 				<section>
 					<table>
 						<thead><tr><th>Card</th><th>What it does</th><th>What you do</th></tr></thead>
@@ -1589,7 +1618,7 @@
 			</article>
 			</section>
 			<section>
-				<h3 id="7-mistakes-that-will-cost-you-the-game">7. Mistakes That Will Cost You The Game</h3>
+				<h3 id="7-mistakes-that-will-cost-you-the-game">7. Mistakes That Will Cost You The Game<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
 					<p>The specific traps in <em>your</em> deck. Read this one twice.</p>
 					<p><strong>Forgetting to use <em>Battle Sense</em>.</strong> It&#x27;s free, every turn, and it doesn&#x27;t end your turn. You just threw away a free card.</p>
 					<p><strong>Bringing Charizard out with no Energy.</strong> It sits there for 2 turns getting hit. Load it <strong>on the Bench</strong> first.</p>
@@ -1605,7 +1634,7 @@
 					<p><strong>Attacking, then trying to do other stuff.</strong> <strong>Attacking ends your turn.</strong> Do everything else first.</p>
 			</section>
 			<section>
-				<h3 id="8-the-turn-checklist">8. The Turn Checklist</h3>
+				<h3 id="8-the-turn-checklist">8. The Turn Checklist<span data-flavor><img src="./assets/sprites/charmeleon.gif" alt="" /></span></h3>
 					<p>Stick to this order and you&#x27;ll stop forgetting things.</p>
 <pre><code>1. DRAW your card.
 2. BATTLE SENSE  — free, every turn, if a Charizard is in play.
@@ -1721,13 +1750,13 @@
 				<p>Right now that bonus never happens, because your dad plays none. But the day he brings out Mega Gengar ex, your regular little Flareon suddenly hits for <strong>180</strong>.</p>
 				<p>Your deck already has the answer to his upgrade built into it. It&#x27;s just waiting.</p>
 			</aside>
-					<p><strong>Where the card text came from:</strong> <a href="https://pkmncards.com/">PkmnCards</a> · <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG">Bulbapedia — Confused (TCG)</a>)</p>
 				</section>
 			</article>
 			</section>
 		</main>
 		<footer>
-
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
 		</footer>
 	</body>
 </html>

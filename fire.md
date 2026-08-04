@@ -1019,7 +1019,7 @@ That's why you have **2**. When he replaces your Magma Basin, you can put it rig
 | **Number** | 002 |
 | **Type** | Energy — Basic |
 
-> *No rules text. It provides [R] Fire Energy.*
+> *Provides [R] Fire Energy.*
 
 <br clear="all">
 
@@ -1454,7 +1454,3 @@ A **Flareon ex** with 270 HP would need him to land that combo **twice** — aro
 > Right now that bonus never happens, because your dad plays none. But the day he brings out Mega Gengar ex, your regular little Flareon suddenly hits for **180**.
 >
 > Your deck already has the answer to his upgrade built into it. It's just waiting.
-
----
-
-**Where the card text came from:** [PkmnCards](https://pkmncards.com/) · [Bulbapedia — Confused (TCG)](https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG))

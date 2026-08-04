@@ -7,7 +7,7 @@ the index cannot claim a number the page it links to disagrees with.
 import re
 from pathlib import Path
 
-from pokelib import esc, page
+from pokelib import CREDITS_NOTE, esc, page
 
 ROOT = Path(__file__).parent
 
@@ -60,6 +60,6 @@ for name, sprites, blurb in PAGES:
 
 out = page(ROOT / "index.html", "Pokémon TCG",
            "Deck planning for me and my son.",
-           "", "\n".join(body))
+           "", "\n".join(body), CREDITS_NOTE)
 print(f"index.html: {len(PAGES)} pages, {total} cards linked, "
       f"{len(out.splitlines())} lines")

@@ -45,6 +45,17 @@ COST_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
              "Y": "Fairy", "N": "Dragon", "C": "Colorless"}
 
 
+# Every page carries the same footer. Split in two so the pages that credit
+# their sources point at credits.html, and credits.html points back home.
+CREDITS_NOTE = (
+    '\t\t\t<p><a href="./credits.html">Credits and sources</a></p>\n'
+    "\t\t\t<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak."
+    " Unofficial fan project, nothing here is for sale.</small></p>"
+)
+
+HOME_NOTE = '\t\t\t<p><a href="./index.html">Back to the decks</a></p>'
+
+
 def esc(s):
     return html.escape(str(s or ""))
 
@@ -133,6 +144,14 @@ def mega_sigil(stage, name):
     if not (ASSETS / "glyphs" / "mega-evolution.svg").exists():
         return ""
     return img("./assets/glyphs/mega-evolution.svg", "Mega Evolution")
+
+
+def flair(names):
+    """Sprites for the corner of a heading. Missing files are skipped."""
+    tags = "".join(f'<img src="./assets/sprites/{s}.gif" alt="" />'
+                   for s in names or ()
+                   if (ASSETS / "sprites" / f"{s}.gif").exists())
+    return f"<span data-flavor>{tags}</span>" if tags else ""
 
 
 def anchor(text, seen):

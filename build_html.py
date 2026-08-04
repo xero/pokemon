@@ -20,8 +20,8 @@ import csv, re
 from collections import Counter
 from pathlib import Path
 
-from pokelib import (ASSETS, COST_TYPE, RARITY_SLUG, anchor, cost_icons,
-                     esc, group, icon, img, mega_sigil, page, row,
+from pokelib import (ASSETS, COST_TYPE, CREDITS_NOTE, RARITY_SLUG, anchor,
+                     cost_icons, esc, group, icon, img, mega_sigil, page, row,
                      set_folder, set_slug, type_icon, typed)
 
 ROOT = Path(__file__).parent
@@ -203,7 +203,7 @@ if all(pair):
     ]
 
 notes += ["\t\t\t\t<p>Read the one in your hand every time.</p>",
-          "\t\t\t</aside>"]
+          "\t\t\t</aside>", CREDITS_NOTE]
 
 # --- assemble ----------------------------------------------------------------
 legal = sum(1 for r in rows if r["standard_legal"] == "yes")

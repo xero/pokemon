@@ -25,8 +25,8 @@ import re, sys
 from collections import Counter
 from pathlib import Path
 
-from pokelib import (anchor, cost_icons, esc, icon, page, row, set_slug,
-                     typed, type_icon)
+from pokelib import (CREDITS_NOTE, anchor, cost_icons, esc, flair, icon,
+                     page, row, set_slug, typed, type_icon)
 
 ROOT = Path(__file__).parent
 
@@ -41,6 +41,42 @@ NAV_LABEL = {
 # The mascot shown beside each deck's title.
 MASCOT = {"dark.md": ["gengar", "weezing"],
           "fire.md": ["charizard", "flareon"]}
+
+# Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
+# exact heading text, so a reworded heading loses its sprite loudly rather than
+# silently attaching it to the wrong section.
+FLAVOR = {
+    "fire.md": {
+        "1. The Leon Engine": ["charizard"],
+        "2. Two Speeds": ["eevee", "charmander"],
+        "3. The Rock That Hits Back": ["sudowoodo"],
+        "4. Winning the Stadium War": ["charizard-mega-y"],
+        "5. Reading Your First Hand": ["flareon"],
+        "Weezing — his early attacker (130 HP)": ["weezing"],
+        "Gengar — his closer (130 HP)": ["gengar"],
+        "His annoying cards": ["haunter"],
+        "7. Mistakes That Will Cost You The Game": ["eevee-back"],
+        "8. The Turn Checklist": ["charmeleon"],
+    },
+    "dark.md": {
+        "1. The Two-Turn Fuse": ["weezing"],
+        "2. Growing a Ghost in the Dark": ["gastly"],
+        "3. The Bench Tax": ["gengar"],
+        "4. Wearing the Helmet": ["koffing"],
+        "5. Trading Ghosts": ["haunter"],
+        "7. Things That Will Cost You a Game": ["gengar-booty"],
+        "8. Teaching Notes": ["gengar-mega"],
+    },
+}
+
+
+def flavor(name, table, used):
+    """The corner sprites for a heading, or "" when it has none."""
+    names = table.get(name)
+    if not names:
+        return ""
+    used.add(name)
+    return flair(names)
 
 # Stat rows that have a glyph to show. Everything else renders as plain text.
 GLYPH_ROWS = {"Type", "Weakness", "Resistance"}
@@ -146,6 +182,7 @@ def convert(src):
     # game plans in it at all.
     toc = []
     seen = Counter()
+    flav, seen_flav = FLAVOR.get(src.name, {}), set()
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
     sect = None           # the ## section currently being filled in
@@ -210,7 +247,8 @@ def convert(src):
             close_art()
             name = stripped[4:].strip()
             a = anchor(name, seen)
-            art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}</h3>']
+            art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}'
+                   f'{flavor(name, flav, seen_flav)}</h3>']
             # an image on its own line becomes the card's aside
             has_image = False
             j = i + 1
@@ -255,7 +293,8 @@ def convert(src):
             toc.append((2, name, a))
             # a game plan gets its own box, the way a card does. left loose in
             # <main> its list markers hang outside the text column.
-            sect = [f'\t\t\t\t<h3 id="{a}">{inline(name)}</h3>']
+            sect = [f'\t\t\t\t<h3 id="{a}">{inline(name)}'
+                    f'{flavor(name, flav, seen_flav)}</h3>']
             i += 1
             continue
 
@@ -304,6 +343,8 @@ def convert(src):
             emit(h)
 
     close()
+    for miss in sorted(set(flav) - seen_flav):
+        print(f"  {src.name}: no heading matches flavour key {miss!r}")
     return title, subtitle, build_nav(toc), "\n".join(body), "\n".join(notes)
 
 
@@ -364,7 +405,7 @@ for name in sys.argv[1:] or ["dark.md", "fire.md"]:
     src = ROOT / name
     dest = src.with_suffix(".html")
     title, subtitle, nav, body, notes = convert(src)
-    out = page(dest, title, subtitle, nav, body, notes,
+    out = page(dest, title, subtitle, nav, body, notes or CREDITS_NOTE,
                MASCOT.get(src.name, []))
     print(f"{dest.name}: {body.count('<article>')} cards, "
           f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")

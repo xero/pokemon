@@ -1063,7 +1063,3 @@ A checklist of the specific mistakes this deck invites.
 - **Confusion teaches probability honestly.** Half the time nothing happens. That is not the card being bad; that is the card being a coin flip, and coin flips even out. Good practice for not tilting.
 - **Infinite Shadow is a great "read the card twice" moment.** It looks like it makes Gengar immortal. It does not. Being able to say *why* — "they still get a Prize" — is exactly the kind of careful reading the game rewards.
 - **This deck is deliberately fair.** Every attacker is 1 Prize on both sides, Weezing's 170 exactly answers Charizard's 170, and the Charizard deck's Sudowoodo hits your Fighting Weakness for double. Neither side has a card the other cannot answer. If games are lopsided, it is piloting, not the lists — which is the whole point.
-
----
-
-**Sources for card text and rulings:** [PkmnCards](https://pkmncards.com/) · [TCG Collector](https://www.tcgcollector.com/cards/59008/gengar-perfect-order-050-088) · [Bulbapedia — Confused (TCG)](https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG)) · [Bulbapedia — Gengar (Perfect Order 50)](https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50))
