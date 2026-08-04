@@ -304,6 +304,14 @@
 			display: flex;
 			flex-direction: column;
 
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
 			/* a card inside a game plan is on the plan's own background, and
 			   a border alone does not separate them. same reason a nested
 			   callout drops back to the page colour. */
@@ -357,6 +365,13 @@
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
 			}
 		}
 
@@ -452,9 +467,15 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
+				padding-left: 2px;
 			}
 		}
 
@@ -462,7 +483,7 @@
 		   cannot hold a third column, so these stay tables. */
 		table {
 			border-collapse: collapse;
-			margin-block: 0.8em;
+			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
 		}
@@ -470,24 +491,43 @@
 		th,
 		td {
 			border-bottom: 1px solid var(--line);
-			padding: 0.45em 0.7em 0.45em 0;
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
 			vertical-align: top;
 		}
 
-		/* a <dl> built from a real table keeps its header row, styled to match
-		   the <th> of the tables that stayed tables */
-		dl [data-head] {
-			color: var(--muted);
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 		}
 
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
 		th {
-			color: var(--muted);
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			white-space: nowrap;
@@ -502,6 +542,32 @@
 				padding-top: 0.6em;
 			}
 		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
 		}
 
 		/* sprites parked in the corner of a heading. decorative, and the
@@ -724,11 +790,10 @@
 			</section>
 			<h2 id="pokémon-1">Pokémon</h2>
 			<article>
-				<h3 id="charmander">Charmander</h3>
+				<h3 id="charmander">Charmander<span data-count>x4</span><span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h3>
 				<aside><img src="./assets/226392_charmander.jpg" alt="Charmander" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>023/185</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -761,11 +826,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="charmeleon">Charmeleon</h3>
+				<h3 id="charmeleon">Charmeleon<span data-count>x2</span><span data-flavor><img src="./assets/sprites/charmeleon.gif" alt="" /></span></h3>
 				<aside><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>024/185</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -794,11 +858,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="charizard">Charizard</h3>
+				<h3 id="charizard">Charizard<span data-count>x3</span><span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
 				<aside><img src="./assets/226395_charizard.jpg" alt="Charizard" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>025/185</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -839,11 +902,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="eevee">Eevee</h3>
+				<h3 id="eevee">Eevee<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside><img src="./assets/610429_eevee.jpg" alt="Eevee" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>074/131</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -877,11 +939,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="flareon">Flareon</h3>
+				<h3 id="flareon">Flareon<span data-count>x2</span><span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
 				<aside><img src="./assets/610368_flareon.jpg" alt="Flareon" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>013/131</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -915,11 +976,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="sudowoodo">Sudowoodo</h3>
+				<h3 id="sudowoodo">Sudowoodo<span data-count>x2</span><span data-flavor><img src="./assets/sprites/sudowoodo.gif" alt="" /></span></h3>
 				<aside><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>100/202</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span><strong>Fighting</strong></span></dd>
@@ -982,11 +1042,10 @@
 				</ul>
 			</aside>
 			<article>
-				<h3 id="leon">Leon</h3>
+				<h3 id="leon">Leon<span data-count>x4</span></h3>
 				<aside><img src="./assets/226508_leon.jpg" alt="Leon" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/vivid-voltage.png" /><img src="./assets/sets/vivid-voltage.png" alt="SWSH04: Vivid Voltage" /></picture></span><span>SWSH04: Vivid Voltage</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>154/185</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1019,11 +1078,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="welder">Welder</h3>
+				<h3 id="welder">Welder<span data-count>x2</span></h3>
 				<aside><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span>Battle Academy (#25 Charizard Stamped)</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>189/214</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1051,11 +1109,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="professors-research-professor-oak">Professor&#x27;s Research [Professor Oak]</h3>
+				<h3 id="professors-research-professor-oak">Professor&#x27;s Research [Professor Oak]<span data-count>x3</span></h3>
 				<aside><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>122/131</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1087,11 +1144,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
+				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]<span data-count>x3</span></h3>
 				<aside><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>114/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1118,11 +1174,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="kindler">Kindler</h3>
+				<h3 id="kindler">Kindler<span data-count>x2</span></h3>
 				<aside><img src="./assets/257309_kindler.jpg" alt="Kindler" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/brilliant-stars.png" /><img src="./assets/sets/brilliant-stars.png" alt="SWSH09: Brilliant Stars" /></picture></span><span>SWSH09: Brilliant Stars</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>143/172</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1147,11 +1202,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="zinnias-resolve">Zinnia&#x27;s Resolve</h3>
+				<h3 id="zinnias-resolve">Zinnia&#x27;s Resolve<span data-count>x1</span></h3>
 				<aside><img src="./assets/246789_zinnias-resolve.jpg" alt="Zinnia&#x27;s Resolve" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>1</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/evolving-skies.png" /><img src="./assets/sets/evolving-skies.png" alt="SWSH07: Evolving Skies" /></picture></span><span>SWSH07: Evolving Skies</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>164/203</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1187,11 +1241,10 @@
 				<p>Items are free. Play as many as you want in one turn. Play them <strong>before</strong> your Supporter — you&#x27;ll often learn something that changes which Supporter you want.</p>
 			</aside>
 			<article>
-				<h3 id="rare-candy">Rare Candy</h3>
+				<h3 id="rare-candy">Rare Candy<span data-count>x4</span></h3>
 				<aside><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>125/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1221,11 +1274,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="ultra-ball">Ultra Ball</h3>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x3</span></h3>
 				<aside><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>131/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1250,11 +1302,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="nest-ball">Nest Ball</h3>
+				<h3 id="nest-ball">Nest Ball<span data-count>x3</span></h3>
 				<aside><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paldean-fates.png" /><img src="./assets/sets/paldean-fates.png" alt="SV: Paldean Fates" /></picture></span><span>SV: Paldean Fates</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>084/091</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1280,11 +1331,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="evolution-incense">Evolution Incense</h3>
+				<h3 id="evolution-incense">Evolution Incense<span data-count>x1</span></h3>
 				<aside><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>1</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>163/202</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1307,11 +1357,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="switch">Switch</h3>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
 				<aside><img src="./assets/654469_switch.jpg" alt="Switch" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>130/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1338,11 +1387,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="ordinary-rod">Ordinary Rod</h3>
+				<h3 id="ordinary-rod">Ordinary Rod<span data-count>x1</span></h3>
 				<aside><img src="./assets/208500_ordinary-rod.jpg" alt="Ordinary Rod" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>1</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>171/202</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1368,11 +1416,10 @@
 			</article>
 			<h2 id="stadium">Stadium</h2>
 			<article>
-				<h3 id="magma-basin">Magma Basin</h3>
+				<h3 id="magma-basin">Magma Basin<span data-count>x2</span></h3>
 				<aside><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/brilliant-stars.png" /><img src="./assets/sets/brilliant-stars.png" alt="SWSH09: Brilliant Stars" /></picture></span><span>SWSH09: Brilliant Stars</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>144/172</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Stadium</span></dd>
@@ -1405,11 +1452,10 @@
 			</article>
 			<h2 id="energy">Energy</h2>
 			<article>
-				<h3 id="basic-fire-energy">Basic Fire Energy</h3>
+				<h3 id="basic-fire-energy">Basic Fire Energy<span data-count>x13</span></h3>
 				<aside><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>13</span></dd>
 						<dt><strong>Set</strong></dt><dd><span>MEE: Mega Evolution Energies (any Fire Energy works)</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>002</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>

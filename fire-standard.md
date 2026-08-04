@@ -80,30 +80,23 @@ Two free Trainers, on demand, twice or three times a game.
 
 ### Flareon ex — Prismatic Evolutions 014 · Reg H
 
-Fire, **270 HP**, Stage 1 from Eevee. Weak **Water ×2**, Retreat 2. **Gives up 2 Prize cards.**
-
-- **Ability — *Tera*.** While on your Bench, prevent all damage done to this Pokémon by attacks.
-- ***Burning Charge*** [R][C], **130** — search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon.
-- ***Carnelian*** [R][W][**L**], **280** — this Pokémon can't attack during your next turn.
+Stage 1 from Eevee. **Gives up 2 Prize cards.**
 
 ### Eevee ex — Prismatic Evolutions 075 · Reg H
 
-Colorless, **200 HP**, Basic. Weak **Fighting ×2**, Retreat 1. **2 Prizes.**
-
-- **Ability — *Rainbow DNA*.** This Pokémon can evolve into **any Pokémon ex that evolves from Eevee** if you play it from your hand onto this Pokémon.
-- **Ability — *Tera*.**
-- ***Coruscating Quartz*** [R][W][L], 200.
+Basic, so nothing evolves into it. **Gives up 2 Prize cards.**
 
 ### Eevee — Prismatic Evolutions 074 · Reg H
 
-Colorless, 50 HP, Basic. **Ability — *Boosted Evolution*:** while in the **Active Spot**, it can evolve during your first turn or the turn you play it.
+The 50 HP body that turns into a Flareon ex on turn one.
 
-### Noctowl — Stellar Crown 115 · Reg H · Hoothoot — Stellar Crown 114
+### Hoothoot — Stellar Crown 114 · Reg H
 
-Colorless, 100 HP, Stage 1. Weak Lightning ×2, Resist Fighting −30, Retreat 1.
+Basic, and 70 HP exactly, which is what lets [Buddy-Buddy Poffin](#deck-list) fetch it.
 
-- **Ability — *Jewel Seeker*.** Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any **Tera** Pokémon in play, search your deck for up to 2 Trainer cards, reveal them, and put them into your hand.
-- *Speed Wing* [C][C], 60.
+### Noctowl — Stellar Crown 115 · Reg H
+
+Stage 1 from Hoothoot. *Jewel Seeker* only fires on the turn you evolve, and only while a **Tera** Pokémon is in play.
 
 ### Crispin — Stellar Crown 133 · Reg H *(Supporter)*
 

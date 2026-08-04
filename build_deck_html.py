@@ -25,8 +25,9 @@ import re, sys
 from collections import Counter
 from pathlib import Path
 
-from pokelib import (CREDITS_NOTE, anchor, cost_icons, esc, flair, icon,
-                     page, row, set_slug, typed, type_icon)
+from pokelib import (ASSETS, CREDITS_NOTE, anchor, cost_icons, count_badge,
+                     esc, find_card, flair, icon, img, page, row, set_folder,
+                     set_slug, typed, type_icon)
 
 ROOT = Path(__file__).parent
 
@@ -52,6 +53,14 @@ MASCOT = {"dark.md": ["gengar", "weezing"],
 # silently attaching it to the wrong section.
 FLAVOR = {
     "fire.md": {
+        # the Pokemon card pages
+        "Charmander": ["charmander"],
+        "Charmeleon": ["charmeleon"],
+        "Charizard": ["charizard"],
+        "Eevee": ["eevee"],
+        "Flareon": ["flareon"],
+        "Sudowoodo": ["sudowoodo"],
+        # the game plans
         "1. The Leon Engine": ["charizard"],
         "2. Two Speeds": ["eevee", "charmander"],
         "3. The Rock That Hits Back": ["sudowoodo"],
@@ -67,31 +76,42 @@ FLAVOR = {
     # are the closest thing they have to a card page.
     # no sprite exists for Toxtricity, Munkidori, or Dragapult, so this one
     # runs on the Gengar line it is named after.
+    # no sprite exists for Toxel, Toxtricity, Munkidori or Fezandipiti, so the
+    # cards that have one get it and the rest go without.
     "dark-ex.md": {
-        "The Gengar Meta": ["gengar-mega"],
-        "The card": ["gengar-mega-shiny"],
-        "❌ Gengar Spirit Link — skip it": ["wobbuffet-back"],
-        "The engine: Toxtricity → Munkidori": ["haunter"],
-        "The Shell": ["gastly"],
+        "Mega Gengar ex — Phantasmal Flames 056 · Reg I": ["gengar-mega"],
+        "Gastly — Phantasmal Flames 054 · Reg I": ["gastly"],
+        "Haunter — Phantasmal Flames 055 · Reg I": ["haunter"],
+        "Gengar — Perfect Order 050 · Reg J": ["gengar"],
+        "❌ Gengar Spirit Link — Skip It": ["wobbuffet-back"],
+        "Gengar Spirit Link — Phantom Forces 095": ["gengar-mega-shiny"],
+        "The Real Card Is the Ability, Not the Attack": ["gengar-booty"],
         "How To Play ex Style": ["charizard"],
         "7. Errors to expect on the way over": ["eevee-back"],
         "What To Buy": ["koffing"],
     },
     "fire-standard.md": {
+        # the card pages get the card's own Pokemon
+        "Flareon ex — Prismatic Evolutions 014 · Reg H": ["flareon-ex"],
+        "Eevee ex — Prismatic Evolutions 075 · Reg H": ["eevee-ex"],
+        "Eevee — Prismatic Evolutions 074 · Reg H": ["eevee"],
+        "Hoothoot — Stellar Crown 114 · Reg H": ["hoothoot"],
+        "Noctowl — Stellar Crown 115 · Reg H": ["noctowl"],
+        # the argument and the game plans
         "The Thesis": ["flareon"],
-        "Flareon ex — Prismatic Evolutions 014 · Reg H": ["flareon-back"],
-        "Eevee ex — Prismatic Evolutions 075 · Reg H": ["eevee"],
-        "Eevee — Prismatic Evolutions 074 · Reg H": ["eevee-back"],
-        "Noctowl — Stellar Crown 115 · Reg H · Hoothoot — Stellar Crown 114":
-            ["noctowl", "hoothoot"],
-        "3. The Bench Is a Fortress": ["charizard"],
-        "Honest Weaknesses": ["charmander"],
+        "1. Turn One, Flareon": ["eevee"],
+        "2. Jewel Seeker Is Your Real Draw Engine": ["noctowl"],
+        "3. The Bench Is a Fortress": ["hoothoot"],
+        # a back sprite means walking away: the trap play and the honest
+        # downsides, not the cards the deck is built on
+        "4. Carnelian Is a Trap Most of the Time": ["flareon-back"],
+        "Honest Weaknesses": ["eevee-back"],
     },
     "psychic-lanterns.md": {
         "The Thesis": ["gastly"],
         "Chandelure — Noble Victories 060": ["chandelure"],
-        "Litwick — Noble Victories 058 · Lampent — Noble Victories 059":
-            ["litwick", "lampent"],
+        "Litwick — Noble Victories 058": ["litwick"],
+        "Lampent — Noble Victories 059": ["lampent"],
         "Wobbuffet — Phantom Forces 036": ["wobbuffet"],
         "Gengar — Lost Origin 066 *(you own the Trick or Trade 2023 reprint)*":
             ["gengar"],
@@ -117,6 +137,13 @@ FLAVOR = {
         "Build A or Build B?": ["chandelure"],
     },
     "fire-tournament.md": {
+        # the Pokemon card pages
+        "Eevee": ["eevee"],
+        "Eevee ex": ["eevee-ex"],
+        "Flareon ex": ["flareon-ex"],
+        "Hoothoot": ["hoothoot"],
+        "Noctowl": ["noctowl"],
+        # the game plans
         "1. The Two-Energy Engine": ["flareon"],
         "2. Turn One, Flareon": ["eevee"],
         "3. Jewel Seeker Is Your Real Draw Engine": ["noctowl"],
@@ -132,6 +159,11 @@ FLAVOR = {
         "9. The Turn Checklist": ["charizard"],
     },
     "dark.md": {
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Gengar": ["gengar"],
+        "Koffing": ["koffing"],
+        "Weezing": ["weezing"],
         "1. The Two-Turn Fuse": ["weezing"],
         "2. Growing a Ghost in the Dark": ["gastly"],
         "3. The Bench Tax": ["gengar"],
@@ -181,7 +213,11 @@ def inline(s):
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
                lambda m: f'<a href="{local_href(m.group(2))}">{m.group(1)}</a>', s)
-    # bold first, and allowed to span anything, so "**a *b* c**" works. the
+    # ***both*** first: letting the bold rule see it produced <strong><em>x
+    # </strong></em>, which is mis-nested and only survived because browsers
+    # repair it.
+    s = re.sub(r"\*\*\*(.+?)\*\*\*", r"<strong><em>\1</em></strong>", s, flags=re.S)
+    # bold next, and allowed to span anything, so "**a *b* c**" works. the
     # old pattern refused to cross a nested emphasis and left the ** visible.
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s, flags=re.S)
     s = re.sub(r"(?<!\w)\*([^*]+)\*(?!\w)", r"<em>\1</em>", s, flags=re.S)
@@ -266,6 +302,166 @@ def attack_row(val):
     return row(icons, inline(val).strip(), "cost")
 
 
+# "Flareon ex — Prismatic Evolutions 014 · Reg H", and some headings name two
+# cards. The number is what pins the printing.
+HEADING_CARD = re.compile(r"([A-Z][\w'’.\- ]*?)\s+[—-]\s+([A-Za-z&'’.: \-]+?)\s+(\d{2,3})\b")
+
+# Legality badge and wording, matching build_html.py.
+LEGAL = {"yes": ("ok", "legal"), "no": ("no", "rotated out"),
+         "japanese": ("no", "Japanese, not legal in the US"),
+         "unknown": ("unown", "unknown, check the letter on the card")}
+
+# Which stat rows to show, and what to call them.
+CARD_ROWS = [("set_name", "Set"), ("rarity", "Rarity"),
+             ("card_type", "Type"), ("hp", "HP"), ("stage", "Stage"),
+             ("card_text", "Ability"), ("weakness", "Weakness"),
+             ("resistance", "Resistance"), ("retreat_cost", "Retreat"),
+             ("standard_legal", "Tournament")]
+
+
+def deck_counts(lines):
+    """{(name, number): qty} from every table that leads with a Qty column.
+
+    A card page shows how many that deck runs, and on the planning docs that
+    number lives only in the deck list, not on the card entry. Keyed by number
+    as well as name because a list can run two printings of one card at
+    different counts, as psychic-sleep does with Gengar.
+    """
+    out, cols = {}, None
+    for l in lines:
+        s = l.strip()
+        if not s.startswith("|"):
+            cols = None
+            continue
+        cells = [c.strip() for c in s.strip("|").split("|")]
+        if cells and cells[0].lower() == "qty":
+            cols = cells
+            continue
+        if not cols or set("".join(cells)) <= set("-: "):
+            continue
+        if len(cells) < 2 or not cells[0].strip("*").isdigit():
+            continue
+        qty = int(cells[0].strip("*"))
+        name = re.sub(r"\*+|\[.*?\]", "", cells[1]).strip()
+        num = ""
+        for c in cells[2:]:
+            m = re.fullmatch(r"\**(\d{2,3})\**", c.strip())
+            if m:
+                num = m.group(1).lstrip("0")
+                break
+        out[(name.lower(), num)] = qty
+        out.setdefault((name.lower(), ""), qty)
+    return out
+
+
+def in_deck(counts, name, number):
+    """How many of this card the deck list runs."""
+    n = re.sub(r"\s*[—-]\s*.*$", "", name).strip().lower()
+    num = str(number).split("/")[0].lstrip("0")
+    return counts.get((n, num)) or counts.get((n, "")) or 0
+
+
+def owned(n):
+    n = int(n or 0)
+    return "none yet" if n == 0 else ("1 copy" if n == 1 else f"{n} copies")
+
+
+def card_block(heading, ind, counts=None):
+    """Art and stats for every card a Key Card Text heading names.
+
+    The deck guides hand-write this table; the planning docs never did, because
+    until cards.csv carried the cards we do not own there was nothing to look
+    up. A heading that names no card in the data produces nothing.
+    """
+    blocks, found = [], []
+    for name, set_hint, number in HEADING_CARD.findall(heading):
+        r = find_card(name.strip(), set_hint.strip(), number)
+        if not r:
+            continue
+        out = []
+        if r["image_file"]:
+            out += ["\t\t\t\t<aside>",
+                    f'\t\t\t\t\t<img src="./assets/{r["image_file"]}"'
+                    f' alt="{esc(r["name"])}" />',
+                    "\t\t\t\t</aside>"]
+        out.append("\t\t\t\t<section>")
+        out.append(f'{ind}<dl class="card">')
+        for key, label in CARD_ROWS:
+            v = r.get(key, "")
+            if not v:
+                continue
+            if key == "set_name":
+                body = row(icon(set_folder(r.get("product_line")), set_slug(v), v),
+                           esc(v) + f' <small>{esc(r["card_number"])}</small>')
+            elif key in ("card_type", "weakness", "resistance"):
+                body = typed(v)
+            elif key == "retreat_cost":
+                body = row(type_icon("Colorless") * (int(v) if v.isdigit() else 0),
+                           esc(v), "cost")
+            elif key == "standard_legal":
+                # same badge the collection page uses, so legality reads the
+                # same wherever it appears
+                # not "label": that is the loop's <dt> text, and rebinding it
+                # renamed the row from "Tournament" to "no"
+                badge, text = LEGAL.get(v, ("", v))
+                ico = (img(f"./assets/{badge}.png", badge.upper())
+                       if badge and (ASSETS / f"{badge}.png").exists() else "")
+                body = row(ico, esc(text))
+            else:
+                body = row("", esc(re.sub(r"^Ability:\s*", "", v)))
+            out.append(f"{ind}\t<dt>{esc(label)}</dt><dd>{body}</dd>")
+        for k in ("attack1", "attack2", "attack3", "attack4"):
+            if r.get(k):
+                out.append(f"{ind}\t<dt>Attack</dt><dd>{attack_row(r[k])}</dd>")
+        out.append(f"{ind}</dl>")
+        out.append("\t\t\t\t</section>")
+        blocks += out
+        found.append(r)
+    return blocks, found
+
+
+def buy_table(body, ind):
+    """A ```buy block into a shopping table costed from cards.csv.
+
+    The Own column used to be typed by hand and went stale the moment anything
+    was ordered. Here it is looked up, and Buy is arithmetic, so the table
+    cannot disagree with the collection.
+    """
+    out = [f"{ind}<table>",
+           f"{ind}\t<thead><tr><th>Card</th><th>Own</th><th>Need</th>"
+           f"<th>Buy</th><th>Note</th></tr></thead>", f"{ind}\t<tbody>"]
+    total = 0
+    for line in body.splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        f = [x.strip() for x in (line.split("|") + [""] * 4)[:4]]
+        query, where, need, note = f
+        m = re.search(r"(\d{2,3})\s*$", where)
+        r = find_card(query, re.sub(r"\d+\s*$", "", where), m.group(1) if m else "")
+        own = int(r["quantity"]) if r else 0
+        try:
+            want = int(need)
+        except ValueError:
+            want = 0
+        buy = max(0, want - own)
+        total += buy
+        label = esc(query)
+        if r:
+            label = row(icon(set_folder(r.get("product_line")),
+                             set_slug(r["set_name"]), r["set_name"]),
+                        f'{esc(r["name"])} <small>{esc(r["set_name"])} '
+                        f'{esc(r["card_number"])}</small>')
+        elif where:
+            label += f" <small>{esc(where)}</small>"
+        cells = [label, str(own), esc(need),
+                 f"<strong>{buy}</strong>" if buy else "✓",
+                 inline(note) if note else ""]
+        out.append(f"{ind}\t\t<tr>" + "".join(f"<td>{c}</td>" for c in cells) + "</tr>")
+    out.append(f"{ind}\t\t<tr><td><strong>Total to buy</strong></td><td></td><td></td>"
+               f"<td><strong>{total}</strong></td><td></td></tr>")
+    return out + [f"{ind}\t</tbody>", f"{ind}</table>"]
+
+
 def convert(src):
     lines = src.read_text(encoding="utf-8").splitlines()
     title, subtitle = "", ""
@@ -277,6 +473,7 @@ def convert(src):
     toc = []
     seen = Counter()
     flav, seen_flav = FLAVOR.get(src.name, {}), set()
+    counts = deck_counts(lines)
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
     sect = None           # the ## section currently being filled in
@@ -351,7 +548,8 @@ def convert(src):
             name = stripped[4:].strip()
             a = anchor(name, seen)
             art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}'
-                   f'{flavor(name, flav, seen_flav)}</h3>']
+                   f'\x00{flavor(name, flav, seen_flav)}</h3>']
+            badge = ""
             # an image on its own line becomes the card's aside
             has_image = False
             j = i + 1
@@ -375,12 +573,40 @@ def convert(src):
                     table.append(lines[j])
                     j += 1
                 grid = parse_table(table)
-                art += render_table(grid, "\t\t\t\t\t", stats=has_image)
+                cells = {re.sub(r"\*+", "", r[0]).strip(): r[1].strip()
+                         for r in grid if len(r) == 2}
+                # a card scan used to be the tell for "this is a card", which
+                # missed Basic Water Energy: a real card page with no scan. The
+                # count row is the better tell, and a glossary table has none.
+                is_card = has_image or "How many" in cells or "Qty" in cells
+                if is_card:
+                    # the hand-written count is how many the DECK runs. read it
+                    # before dropping the row, then show it as the badge in the
+                    # heading rather than repeating it here.
+                    badge = count_badge(cells.get("How many")
+                                        or cells.get("Qty", ""))
+                    grid = [r for r in grid
+                            if re.sub(r"\*+", "", r[0]).strip()
+                            not in ("How many", "Qty")]
+                rendered = render_table(grid, "\t\t\t\t\t", stats=is_card)
+                art += rendered
                 i = j - 1
                 # a table means this is a card or a glossary entry, both worth
                 # indexing. a ### with no table is a prose subsection inside a
                 # game plan, and listing those buries the plans themselves.
                 toc.append((3, name, a))
+            elif not has_image:
+                # no hand-written table. if the heading names a card, build one
+                # from cards.csv; the planning docs get their art this way.
+                blocks, found = card_block(name, "\t\t\t\t\t", counts)
+                if blocks:
+                    badge = count_badge(sum(
+                        in_deck(counts, name, r["card_number"]) for r in found))
+                    # each card is its own aside+section pair; the trailing
+                    # open <section> then takes the hand-written prose
+                    art = art[:-1] + blocks + [art[-1]]
+                    toc.append((3, name, a))
+            art[0] = art[0].replace("\x00", badge)
             i += 1
             continue
 
@@ -411,13 +637,19 @@ def convert(src):
             continue
 
         if stripped.startswith("```"):
+            lang = stripped[3:].strip().lower()
             code = []
             i += 1
             while i < n and not lines[i].strip().startswith("```"):
-                code.append(esc(lines[i]))
+                code.append(lines[i])
                 i += 1
-            emit("<pre><code>" + "\n".join(code) + "</code></pre>")
             i += 1
+            if lang == "buy":
+                for h in buy_table("\n".join(code), "\t\t\t\t\t"):
+                    emit(h)
+            else:
+                emit("<pre><code>" + "\n".join(esc(c) for c in code)
+                     + "</code></pre>")
             continue
 
         if stripped.startswith("|"):

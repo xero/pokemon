@@ -304,6 +304,14 @@
 			display: flex;
 			flex-direction: column;
 
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
 			/* a card inside a game plan is on the plan's own background, and
 			   a border alone does not separate them. same reason a nested
 			   callout drops back to the page colour. */
@@ -357,6 +365,13 @@
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
 			}
 		}
 
@@ -452,9 +467,15 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
+				padding-left: 2px;
 			}
 		}
 
@@ -462,7 +483,7 @@
 		   cannot hold a third column, so these stay tables. */
 		table {
 			border-collapse: collapse;
-			margin-block: 0.8em;
+			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
 		}
@@ -470,24 +491,43 @@
 		th,
 		td {
 			border-bottom: 1px solid var(--line);
-			padding: 0.45em 0.7em 0.45em 0;
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
 			vertical-align: top;
 		}
 
-		/* a <dl> built from a real table keeps its header row, styled to match
-		   the <th> of the tables that stayed tables */
-		dl [data-head] {
-			color: var(--muted);
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 		}
 
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
 		th {
-			color: var(--muted);
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			white-space: nowrap;
@@ -502,6 +542,32 @@
 				padding-top: 0.6em;
 			}
 		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
 		}
 
 		/* sprites parked in the corner of a heading. decorative, and the
@@ -744,11 +810,10 @@
 			</section>
 			<h2 id="pokémon-1">Pokémon</h2>
 			<article>
-				<h3 id="eevee">Eevee</h3>
+				<h3 id="eevee">Eevee<span data-count>x4</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside><img src="./assets/610429_eevee.jpg" alt="Eevee" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>074/131</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -784,11 +849,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="eevee-ex">Eevee ex</h3>
+				<h3 id="eevee-ex">Eevee ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
 				<aside><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>075/131</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -806,7 +870,7 @@
 					<h4>General use</h4>
 					<p>Eevee ex is the tough version of Eevee. <strong>200 HP instead of 50.</strong></p>
 					<p>It does not have <em>Boosted Evolution</em>, so it can&#x27;t evolve the turn you play it. What it gives you instead is a body your dad genuinely struggles to remove. His best attack does 170.</p>
-					<p>It also has <strong><em>Tera</strong></em>, the same Ability as <a href="#flareon-ex">Flareon ex</a>. <strong>On your Bench, attacks do zero damage to it.</strong> So an Eevee ex you&#x27;re saving for later cannot be picked off while it waits.</p>
+					<p>It also has <strong><em>Tera</em></strong>, the same Ability as <a href="#flareon-ex">Flareon ex</a>. <strong>On your Bench, attacks do zero damage to it.</strong> So an Eevee ex you&#x27;re saving for later cannot be picked off while it waits.</p>
 					<p>Use plain <a href="#eevee">Eevee</a> when you want speed. Use Eevee ex when you have a turn to spare and you&#x27;d rather not lose anything.</p>
 					<h4>Pairing</h4>
 					<ul>
@@ -826,11 +890,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="flareon-ex">Flareon ex</h3>
+				<h3 id="flareon-ex">Flareon ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
 				<aside><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>014/131</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
@@ -872,11 +935,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="hoothoot">Hoothoot</h3>
+				<h3 id="hoothoot">Hoothoot<span data-count>x4</span><span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
 				<aside><img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>114/142</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -905,11 +967,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="noctowl">Noctowl</h3>
+				<h3 id="noctowl">Noctowl<span data-count>x3</span><span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
 				<aside><img src="./assets/567341_noctowl.jpg" alt="Noctowl" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>115/142</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -950,11 +1011,10 @@
 				<p><strong>You may play only ONE Supporter per turn.</strong> You have 10 of them. Picking the right one is the biggest decision you make most turns.</p>
 			</aside>
 			<article>
-				<h3 id="lillies-determination">Lillie&#x27;s Determination</h3>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
 				<aside><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>119/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -976,11 +1036,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="crispin">Crispin</h3>
+				<h3 id="crispin">Crispin<span data-count>x4</span></h3>
 				<aside><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>133/142</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1004,11 +1063,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
+				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]<span data-count>x3</span></h3>
 				<aside><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>114/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1031,11 +1089,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="gwynn">Gwynn</h3>
+				<h3 id="gwynn">Gwynn<span data-count>x2</span></h3>
 				<aside><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>078/084</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -1062,11 +1119,10 @@
 				<p><strong>Items are free.</strong> Play as many as you want in one turn. Play them <strong>before</strong> your Supporter, so you know what you still need.</p>
 			</aside>
 			<article>
-				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin</h3>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x4</span></h3>
 				<aside><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>144/162</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1094,11 +1150,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="ultra-ball">Ultra Ball</h3>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
 				<aside><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>131/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1123,11 +1178,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="switch">Switch</h3>
+				<h3 id="switch">Switch<span data-count>x3</span></h3>
 				<aside><img src="./assets/654469_switch.jpg" alt="Switch" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>130/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1151,11 +1205,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="night-stretcher">Night Stretcher</h3>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x3</span></h3>
 				<aside><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>061/064</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1180,11 +1233,10 @@
 			</article>
 			<h2 id="trainers-tool">Trainers — Tool</h2>
 			<article>
-				<h3 id="sparkling-crystal">Sparkling Crystal</h3>
+				<h3 id="sparkling-crystal">Sparkling Crystal<span data-count>x1</span></h3>
 				<aside><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span><strong>1</strong> (ACE SPEC)</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>142/142</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Pokémon Tool</span></dd>
@@ -1218,11 +1270,10 @@
 			</article>
 			<h2 id="energy">Energy</h2>
 			<article>
-				<h3 id="basic-fire-energy">Basic Fire Energy</h3>
+				<h3 id="basic-fire-energy">Basic Fire Energy<span data-count>x10</span></h3>
 				<aside><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>How many</strong></dt><dd><span>10</span></dd>
 						<dt><strong>Set</strong></dt><dd><span>MEE: Mega Evolution Energies (any Fire Energy works)</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>002</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
@@ -1244,11 +1295,9 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="basic-water-energy">Basic Water Energy</h3>
+				<h3 id="basic-water-energy">Basic Water Energy<span data-count>x3</span></h3>
 				<section>
-					<dl>
-						<dt data-head>Key</dt><dd data-head>Val</dd>
-						<dt><strong>How many</strong></dt><dd><span>3</span></dd>
+					<dl class="card">
 						<dt><strong>Set</strong></dt><dd><span>any</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
 					</dl>

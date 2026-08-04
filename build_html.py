@@ -21,8 +21,8 @@ from collections import Counter
 from pathlib import Path
 
 from pokelib import (ASSETS, COST_TYPE, CREDITS_NOTE, RARITY_SLUG, anchor,
-                     cost_icons, esc, group, icon, img, mega_sigil, page, row,
-                     set_folder, set_slug, type_icon, typed)
+                     cost_icons, count_badge, esc, group, icon, img, mega_sigil,
+                     page, row, set_folder, set_slug, type_icon, typed)
 
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
@@ -116,8 +116,11 @@ def stats(r):
     return out
 
 
+# quantity 0 is a card a deck plan wants but we do not own. It belongs in the
+# deck pages, not in a page called "Pokemon Caught!".
 rows = [r for r in csv.DictReader(open(SRC, encoding="utf-8"))
-        if not r["card_type"].startswith(NOT_POKEMON)]
+        if not r["card_type"].startswith(NOT_POKEMON)
+        and int(r.get("quantity") or 0) > 0]
 rows.sort(key=lambda r: (r["name"].lower(), r["set_name"], r["card_number"]))
 
 if any(not r["hp"] or not r["stage"] for r in rows):
@@ -143,7 +146,8 @@ nav += ["\t\t</ul>", "\t</details>", "</nav>"]
 articles = []
 for r, a in entries:
     head = [mega_sigil(r["stage"], r["name"]), esc(r["name"]),
-            icon("rarities", RARITY_SLUG.get(r["rarity"]), r["rarity"])]
+            icon("rarities", RARITY_SLUG.get(r["rarity"]), r["rarity"]),
+            count_badge(r["quantity"])]
     art = ["\t\t\t<article>",
            f'\t\t\t\t<h2 id="{a}">' + " ".join(p for p in head if p) + "</h2>"]
     if r["image_file"]:

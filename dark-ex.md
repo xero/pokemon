@@ -1,4 +1,4 @@
-# Xero's Dark Box — Standard Legal
+# Xero's Dark Box — Tournament EX
 
 ### Mega Gengar ex, the current meta, and how ex decks actually work
 
@@ -7,46 +7,59 @@
 >
 > Two things, and neither one is a shopping list.
 >
-> 1. **[The Gengar Meta](#the-gengar-meta)** — where Gengar actually sits in Standard right now, what the card does, and what a real competitive list looks like.
+> 1. **[Mega Gengar ex](#mega-gengar-ex-phantasmal-flames-056-reg-i)** and the cards around it — what each one actually does.
 > 2. **[How To Play ex Style](#how-to-play-ex-style)** — the primer. If you skip everything else, read that section. It is the part that transfers to **any** ex deck, not just this one.
 >
 > Multi-Prize Pokémon change how the game is played, not just how hard it hits.
 >
-> Companion files: **[Flareon ex / Noctowl](./fire-standard.md)** · **[Rainbow DNA](./eevee-standard.md)** · **[Ground Zero](./fighting-standard.md)** — Fox's three Standard options.
+> **This is not a complete deck.** It covers only the Pokémon needed to explain ex play style.
 
 ---
 
-## The Gengar Meta
+## Deck List
 
-### Where it actually sits
+### Mega Gengar ex — Phantasmal Flames 056 · Reg I
 
-Honest answer first: **Mega Gengar ex is not a tier-1 deck.** As of August 2026 the format looks like this:
+**Stage 2 from Haunter. Gives up 3 Prize cards**, not 2. Limitless lists it as 2 because their summary applies the generic "Pokémon ex" rule; the printed rule box on a Mega Evolution Pokémon ex reads three. ([Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56)))
 
-| Tier | Deck | Note |
-| :--- | :--- | :--- |
-| **1** | **Dragapult ex / Blaziken ex** | The #1 deck, boosted by Pitch Black. Drakloak's *Recon Directive* is the engine. |
-| **1** | **Gardevoir ex** | The longest-standing deck in the format, now with Mega Diancie, Jellicent ex, Clefairy ex |
-| **2** | **Mega Excadrill ex** | Newest riser — Drilbur + Genesect ex + Metal Maker |
-| **2** | Gholdengo ex, Mega Starmie ex, Mega Zygarde ex | |
-| **Rogue** | **Mega Gengar ex "dark box"** | Real, played, not dominant |
+Unlike the old SWSH-era "M Pokémon-EX", **playing a Mega Evolution Pokémon ex does not end your turn.** It evolves like any other Stage 2.
 
-So this is a solid rogue deck, not a metagame pillar. Which — given you're building it to play at your kitchen table — is completely fine, and it happens to be pointed *directly* at what the top decks are doing.
-
-### The card
-
-**Mega Gengar ex — Phantasmal Flames 056 · Reg I**
-
-Darkness, **350 HP**, **Stage 2 from Haunter**. Weak **Fighting ×2**, no Resistance, Retreat 2. **Gives up 3 Prize cards.**
-
-- **Ability — *Shadowy Concealment*.** If 1 of your **[D]** Pokémon is Knocked Out by damage from an attack from your opponent's **Pokémon ex**, that player takes **1 fewer Prize card**. The effect of *Shadowy Concealment* doesn't stack.
-- ***Void Gale*** **[D][D], 230.** Move an Energy from this Pokémon to 1 of your Benched Pokémon.
-
-> [!NOTE]
-> **Limitless lists this card as giving up 2 Prizes. It gives up 3.** Their summary applies the generic "Pokémon ex" rule; the printed rule box on a Mega Evolution Pokémon ex reads three. ([Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56)))
+> [!TIP]
+> **"Gengar" and "Mega Gengar ex" are different card names**, so four of each is legal. Better still: **they both evolve from Haunter.** One Gastly→Haunter line feeds two completely different Stage 2 payoffs — the 3-Prize 350 HP monster, and your existing 1-Prize *Mind Jack* Gengar that gives up **zero** Prizes under *Shadowy Concealment*.
 >
-> Also worth knowing: unlike the old SWSH-era "M Pokémon-EX", **playing a Mega Evolution Pokémon ex does not end your turn.** It evolves like any other Stage 2.
+> That's why Gengar POR 050 stays in the list. It isn't nostalgia; it's the perfect single-prize attacker for this exact shell.
 
-### The real card is the Ability, not the attack
+### Gastly — Phantasmal Flames 054 · Reg I
+
+The Basic both Stage 2 lines are built on. Four of them, because nothing in this deck happens without one.
+
+### Haunter — Phantasmal Flames 055 · Reg I
+
+**One Haunter line feeds two different Stage 2 payoffs.** Mega Gengar ex and the Perfect Order Gengar both evolve from it.
+
+### Gengar — Perfect Order 050 · Reg J
+
+The 1-Prize attacker, and under *Shadowy Concealment* it gives up **zero** Prizes to an opposing ex. It stays in the list on merit, not nostalgia.
+
+### Toxel — Phantasmal Flames 067 · Reg I
+
+Basic, and the bottom of the Energy engine.
+
+### Toxtricity — Phantasmal Flames 068 · Reg I
+
+***Sinister Surge*** searches a Basic Darkness Energy onto a Benched Darkness Pokémon, then puts **2 damage counters** on that Pokémon as the price.
+
+### Munkidori — Twilight Masquerade 095 · Reg H
+
+***Adrena-Brain*** moves up to **3 damage counters** from one of your Pokémon to one of your opponent's, as long as Munkidori has Darkness Energy attached.
+
+### Fezandipiti ex — Shrouded Fable 038 · Reg H
+
+***Flip the Script*** draws 3 cards if any of your Pokémon were Knocked Out on your opponent's last turn. A deck built to trade away cheap bodies *wants* to be losing Pokémon.
+
+---
+
+## The Real Card Is the Ability, Not the Attack
 
 *Void Gale* is a fine attack — 230 for two Energy, and it feeds its own Energy back to the Bench. It does **not** one-shot the format's big threats (Dragapult ex is 320, Gardevoir ex around 310).
 
@@ -67,13 +80,25 @@ Darkness, **350 HP**, **Stage 2 from Haunter**. Weak **Fighting ×2**, no Resist
 >
 > This is a **metagame card**. It is superb against the top of the format and blank against the kitchen table. Know which game you're playing.
 
-### ❌ Gengar Spirit Link — skip it
+---
 
-You asked. It's a no, and it fails for three independent reasons — any one of them is fatal.
+## The Engine: Toxtricity into Munkidori
 
-**Gengar Spirit Link — Phantom Forces 095** *(Pokémon Tool)*
+The competitive shell isn't built on Gengar's attack at all. It's built on a damage-counter engine you'll recognise immediately.
 
-> Your turn does not end if the Pokémon this card is attached to becomes **M Gengar-EX**.
+**Toxtricity's drawback is Munkidori's ammunition.** Accelerate Energy, take 2 counters as the price, then throw those counters at your opponent. Free Energy *and* free damage, every single turn, with no attack and no Supporter spent.
+
+If that structure feels familiar: it is exactly **Magma Basin** from Fox's deck (attach from elsewhere, take 2 counters) welded to **Life Shaker** from your psychic builds (move counters around) — except the counters go to the *opponent*.
+
+---
+
+## ❌ Gengar Spirit Link — Skip It
+
+A card that looks purpose-built for this deck, and does nothing in it.
+
+### Gengar Spirit Link — Phantom Forces 095
+
+Three independent reasons, and any one of them on its own is fatal.
 
 | Problem | Detail |
 | :--- | :--- |
@@ -83,61 +108,7 @@ You asked. It's a no, and it fails for three independent reasons — any one of 
 
 **And it wouldn't help your binder either.** You own **Gengar V**, not Gengar-EX. A V evolves into a VMAX, which also doesn't end your turn — so there's no version of your collection where this card does anything.
 
-Genuinely good instinct to ask, though: the Spirit Link cards *were* format-defining in their era, and if the modern Megas had kept the turn-ending rule, this would be an auto-include four-of.
-
-### The engine: Toxtricity → Munkidori
-
-The competitive shell isn't built on Gengar's attack at all. It's built on a damage-counter engine you'll recognise immediately.
-
-**Toxtricity — Phantasmal Flames 068 · Reg I.** Darkness, 140 HP, Stage 1 from Toxel.
-> **Ability — *Sinister Surge*.** Once during your turn, search your deck for a Basic **[D]** Energy card and attach it to 1 of your Benched **[D]** Pokémon. Then shuffle. If you attached Energy this way, place **2 damage counters** on that Pokémon.
-
-**Munkidori — Twilight Masquerade 095 · Reg H.** Psychic, 110 HP, Basic.
-> **Ability — *Adrena-Brain*.** Once during your turn, if this Pokémon has any **[D]** Energy attached, you may move up to **3 damage counters** from 1 of your Pokémon to 1 of your opponent's Pokémon.
-
-**Toxtricity's drawback is Munkidori's ammunition.** Accelerate Energy, take 2 counters as the price, then throw those counters at your opponent. Free Energy *and* free damage, every single turn, with no attack and no Supporter spent.
-
-If that structure feels familiar: it is exactly **Magma Basin** from Fox's deck (attach from elsewhere, take 2 counters) welded to **Life Shaker** from your psychic builds (move counters around) — except the counters go to the *opponent*.
-
-**Fezandipiti ex — Shrouded Fable 038 · Reg H.** Darkness, 210 HP, Basic, 2 Prizes.
-> **Ability — *Flip the Script*.** Once during your turn, if any of your Pokémon were Knocked Out during your opponent's last turn, draw 3 cards.
-
-A deck built to trade away cheap bodies *wants* to be losing Pokémon. Fezandipiti turns each loss into three cards.
-
----
-
-## The Shell
-
-> [!CAUTION]
-> **Every published Mega Gengar list I found predates the April 2026 rotation.** The competitive lists lean on **Iono, Artazon, Arven, Nest Ball, Pokégear 3.0, Technical Machine: Evolution, and Air Balloon** — all Regulation **G**, all now illegal.
->
-> Below is the verified-legal core plus your existing shell. The flex slots are real gaps, not padding: I'd be guessing at what replaced Arven and Iono, and I'd rather say so.
-
-**Pokémon (17)**
-
-| Qty | Card | Set | Reg | Own |
-| --- | --- | --- | --- | --- |
-| 4 | Gastly | Phantasmal Flames 054 | I | **1** |
-| 3 | Haunter | Phantasmal Flames 055 | I | **2** |
-| 3 | **Mega Gengar ex** | Phantasmal Flames 056 | I | 0 |
-| 1 | Gengar | Perfect Order 050 | J | **2** |
-| 3 | Toxel | Phantasmal Flames 067 | I | 0 |
-| 2 | Toxtricity | Phantasmal Flames 068 | I | 0 |
-| 2 | Munkidori | Twilight Masquerade 095 | H | 0 |
-| 1 | Fezandipiti ex | Shrouded Fable 038 | H | 0 |
-
-**Trainers (~34)** — verified-legal core:
-
-4 Buddy-Buddy Poffin (TEF 144, H) · 4 Ultra Ball (ME01 131, I) · 4 Rare Candy (ME01 125, I) · 4 Lillie's Determination (ME01 119, I) · 3 Boss's Orders (ME01 114, I) · 3 Night Stretcher (SFA 061, H) · 2 Switch (ME01 130, I) · 2 Gwynn (ME05 078, J) · 2 Dawn (PFL 087, I) · **~6 flex** (draw Supporter + Ball search to replace Iono/Arven/Nest Ball)
-
-**Energy (9)** — 9 Basic Darkness. *Sinister Surge* searches them from the deck, so the count can be lean.
-
-> [!TIP]
-> **"Gengar" and "Mega Gengar ex" are different card names**, so four of each is legal. Better still: **they both evolve from Haunter.** One Gastly→Haunter line feeds two completely different Stage 2 payoffs — the 3-Prize 350 HP monster, and your existing 1-Prize *Mind Jack* Gengar that gives up **zero** Prizes under *Shadowy Concealment*.
->
-> That's why Gengar POR 050 stays in the list. It isn't nostalgia; it's the perfect single-prize attacker for this exact shell.
-
-**What carries over from `dark.csv`:** the Gastly/Haunter/Gengar line, and every Trainer except the ones tuned for the casual build. **Punk Helmet, Dark Bell, and Risky Ruins come out** — they're built for a one-Prize mirror, not for racing ex decks. **Shadowy Darkness Energy** is a genuine consideration (Bench damage prevention on a setup Mega Gengar), but the four-copy Special Energy cap and *Sinister Surge* only fetching **Basic** Darkness argue against it.
+The Spirit Link cards *were* format-defining in their era, and if the modern Megas had kept the turn-ending rule, this would be an auto-include four-of.
 
 ---
 
@@ -237,17 +208,19 @@ Same name, same 350 HP, same Stage 2 from Haunter, same *Shadowy Concealment*, s
 > [!WARNING]
 > **Ignore the high-numbered versions.** There are Special Illustration Rare prints of this exact card at numbers above the set size (Ascended Heroes 269/217 and similar). Same text, same legality, many times the price — the same trap as the Umbreon ex SIR and the Eevee Poké Ball Pattern. If the number is bigger than the set total, it's the collector version.
 
-| Card | Own | Need | Note |
-| :--- | :--- | :--- | :--- |
-| **Mega Gengar ex, PFL 056** | 0 | **3** | Double Rare, ~$1–2 each — see above |
-| Gastly, PFL 054 | **1** | 3 | You already own one |
-| Haunter, PFL 055 | **2** | 1 | In your current deck |
-| Gengar, POR 050 | **2** | 0 | Stays in — perfect 1-Prize attacker |
-| Toxel / Toxtricity, PFL 067 / 068 | 0 | 3 / 2 | The Energy engine |
-| Munkidori, TWM 095 | 0 | **2** | The damage engine |
-| Fezandipiti ex, SFA 038 | 0 | 1 | Draw off your own knockouts |
-| Boss's Orders, ME01 114 | **2** | 1 | Go to 3 |
-| Everything else | ✅ | 0 | Already in `dark.csv` |
+```buy
+Mega Gengar ex | Phantasmal Flames 056 | 3 | Double Rare, about $1-2 each, see the printings table above
+Gastly | Phantasmal Flames 054 | 3 |
+Haunter | Phantasmal Flames 055 | 3 | Already in your current deck
+Gengar | Perfect Order 050 | 2 | Stays in, a perfect 1-Prize attacker
+Toxel | Phantasmal Flames 067 | 3 | The Energy engine
+Toxtricity | Phantasmal Flames 068 | 2 | The Energy engine
+Munkidori | Twilight Masquerade 095 | 2 | The damage engine
+Fezandipiti ex | Shrouded Fable 038 | 1 | Draw off your own knockouts
+Boss's Orders | Mega Evolution 114 | 3 |
+```
+
+Everything else the list needs is already in your Gengar Gang deck.
 
 **Roughly a dozen new cards and one set to learn.** Cheapest upgrade path of anything in this project — because the shell you already built happens to be the right shell.
 

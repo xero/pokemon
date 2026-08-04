@@ -146,12 +146,71 @@ def mega_sigil(stage, name):
     return img("./assets/glyphs/mega-evolution.svg", "Mega Evolution")
 
 
+_CARDS = None
+
+
+def cards():
+    """Every row of cards.csv, loaded once."""
+    global _CARDS
+    if _CARDS is None:
+        import csv
+        with open(ROOT / "cards.csv", encoding="utf-8") as f:
+            _CARDS = list(csv.DictReader(f))
+    return _CARDS
+
+
+def _norm(s):
+    return re.sub(r"[^a-z0-9]+", " ", (s or "").lower()).strip()
+
+
+def find_card(name, set_hint="", number=""):
+    """The cards.csv row a deck-plan heading is naming, or None.
+
+    Headings read "Flareon ex - Prismatic Evolutions 014", so the name and the
+    printed number identify the card and the set text breaks ties: three
+    different Gengar share number 094.
+    """
+    want, num = _norm(name), str(number).split("/")[0].lstrip("0")
+    def bare(s):
+        # drop "(#25 Charizard Stamped)" and "[Ghetsis]" before normalising;
+        # _norm eats the brackets, so splitting after it never matched
+        return _norm(re.sub(r"\s*[\(\[].*?[\)\]]", "", s))
+
+    hits = [r for r in cards() if bare(r["name"]) == want or _norm(r["name"]) == want]
+    if num:
+        pinned = [r for r in hits
+                  if r["card_number"].split("/")[0].lstrip("0") == num]
+        hits = pinned or hits
+    if not hits:
+        return None
+    if len(hits) == 1:
+        return hits[0]
+    words = set(_norm(set_hint).split())
+    best = max(hits, key=lambda r: len(words & set(_norm(r["set_name"]).split())))
+    return best
+
+
 def flair(names):
     """Sprites for the corner of a heading. Missing files are skipped."""
     tags = "".join(f'<img src="./assets/sprites/{s}.gif" alt="" />'
                    for s in names or ()
                    if (ASSETS / "sprites" / f"{s}.gif").exists())
     return f"<span data-flavor>{tags}</span>" if tags else ""
+
+
+def count_badge(n):
+    """The count that sits in the corner of a card heading.
+
+    Means different things on different pages and that is deliberate: the
+    collection shows how many are owned, a deck page how many that deck runs.
+    Both read "xN" on a Pokedex, so the shape is shared and the number is not.
+    """
+    # values arrive as "4", "**1** (ACE SPEC)" or an int, so take the first
+    # number rather than requiring the cell to be nothing else
+    m = re.search(r"\d+", str(n or ""))
+    if not m or not int(m.group()):
+        return ""
+    return f'<span data-count>x{int(m.group())}</span>'
 
 
 def anchor(text, seen):

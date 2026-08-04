@@ -304,6 +304,14 @@
 			display: flex;
 			flex-direction: column;
 
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
 			/* a card inside a game plan is on the plan's own background, and
 			   a border alone does not separate them. same reason a nested
 			   callout drops back to the page colour. */
@@ -357,6 +365,13 @@
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
 			}
 		}
 
@@ -452,9 +467,15 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
+				padding-left: 2px;
 			}
 		}
 
@@ -462,7 +483,7 @@
 		   cannot hold a third column, so these stay tables. */
 		table {
 			border-collapse: collapse;
-			margin-block: 0.8em;
+			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
 		}
@@ -470,24 +491,43 @@
 		th,
 		td {
 			border-bottom: 1px solid var(--line);
-			padding: 0.45em 0.7em 0.45em 0;
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
 			vertical-align: top;
 		}
 
-		/* a <dl> built from a real table keeps its header row, styled to match
-		   the <th> of the tables that stayed tables */
-		dl [data-head] {
-			color: var(--muted);
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 		}
 
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
 		th {
-			color: var(--muted);
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			white-space: nowrap;
@@ -502,6 +542,32 @@
 				padding-top: 0.6em;
 			}
 		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
 		}
 
 		/* sprites parked in the corner of a heading. decorative, and the
@@ -636,11 +702,10 @@
 			</aside>
 			<h2 id="pokémon">Pokémon</h2>
 			<article>
-				<h3 id="gastly">Gastly</h3>
+				<h3 id="gastly">Gastly<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
 				<aside><img src="./assets/684429_gastly.jpg" alt="Gastly" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>048/088</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -672,11 +737,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="haunter">Haunter</h3>
+				<h3 id="haunter">Haunter<span data-count>x2</span><span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
 				<aside><img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>055/094</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -708,11 +772,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="gengar">Gengar</h3>
+				<h3 id="gengar">Gengar<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
 				<aside><img src="./assets/684431_gengar.jpg" alt="Gengar" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>050/088</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -761,11 +824,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="koffing">Koffing</h3>
+				<h3 id="koffing">Koffing<span data-count>x3</span><span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3>
 				<aside><img src="./assets/623518_koffing.jpg" alt="Koffing" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>091/159</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -799,11 +861,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="weezing">Weezing</h3>
+				<h3 id="weezing">Weezing<span data-count>x3</span><span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
 				<aside><img src="./assets/623519_weezing.jpg" alt="Weezing" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>092/159</span></dd>
 						<dt><strong>Type</strong></dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -850,11 +911,10 @@
 				<p><strong>The one-Supporter rule.</strong> You may play only <strong>one Supporter per turn.</strong> With 10 Supporters in this deck, deciding <em>which</em> one is the most frequent real decision you will make. Rule of thumb: <strong>Dawn</strong> when the board is missing pieces, <strong>Lillie&#x27;s Determination</strong> when your hand is bad, <strong>Gwynn</strong> when your hand is full of the wrong Pokémon, <strong>Boss&#x27;s Orders</strong> when you can win a Prize this turn.</p>
 			</aside>
 			<article>
-				<h3 id="dawn">Dawn</h3>
+				<h3 id="dawn">Dawn<span data-count>x3</span></h3>
 				<aside><img src="./assets/660414_dawn.jpg" alt="Dawn" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>087/094</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -880,11 +940,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="lillies-determination">Lillie&#x27;s Determination</h3>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x3</span></h3>
 				<aside><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>119/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -909,11 +968,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="gwynn">Gwynn</h3>
+				<h3 id="gwynn">Gwynn<span data-count>x2</span></h3>
 				<aside><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>078/084</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -938,11 +996,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
+				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]<span data-count>x2</span></h3>
 				<aside><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>114/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
@@ -974,11 +1031,10 @@
 				<p>Items are free. Play as many as you like in a turn. When in doubt, play your Items <em>before</em> your Supporter — you will often learn something that changes which Supporter you want.</p>
 			</aside>
 			<article>
-				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin</h3>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x4</span></h3>
 				<aside><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>144/162</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1007,11 +1063,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="ultra-ball">Ultra Ball</h3>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
 				<aside><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>131/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1036,11 +1091,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="rare-candy">Rare Candy</h3>
+				<h3 id="rare-candy">Rare Candy<span data-count>x4</span></h3>
 				<aside><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>125/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1070,11 +1124,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="night-stretcher">Night Stretcher</h3>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x3</span></h3>
 				<aside><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>3</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>061/064</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1100,11 +1153,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="switch">Switch</h3>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
 				<aside><img src="./assets/654469_switch.jpg" alt="Switch" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>130/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1129,11 +1181,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="dark-bell">Dark Bell</h3>
+				<h3 id="dark-bell">Dark Bell<span data-count>x2</span></h3>
 				<aside><img src="./assets/704832_dark-bell-075-084.jpg" alt="Dark Bell" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>075/084</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Item</span></dd>
@@ -1159,11 +1210,10 @@
 			</article>
 			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
 			<article>
-				<h3 id="punk-helmet">Punk Helmet</h3>
+				<h3 id="punk-helmet">Punk Helmet<span data-count>x2</span></h3>
 				<aside><img src="./assets/660419_punk-helmet.jpg" alt="Punk Helmet" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>092/094</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Pokémon Tool</span></dd>
@@ -1191,11 +1241,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="risky-ruins">Risky Ruins</h3>
+				<h3 id="risky-ruins">Risky Ruins<span data-count>x2</span></h3>
 				<aside><img src="./assets/654466_risky-ruins.jpg" alt="Risky Ruins" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>2</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>127/132</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Stadium</span></dd>
@@ -1224,11 +1273,10 @@
 			</article>
 			<h2 id="energy">Energy</h2>
 			<article>
-				<h3 id="shadowy-darkness-energy">Shadowy Darkness Energy</h3>
+				<h3 id="shadowy-darkness-energy">Shadowy Darkness Energy<span data-count>x4</span></h3>
 				<aside><img src="./assets/704840_shadowy-darkness-energy.jpg" alt="Shadowy Darkness Energy" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>4</span></dd>
 						<dt><strong>Set</strong></dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>083/084</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Energy — <strong>Special</strong></span></dd>
@@ -1257,11 +1305,10 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="basic-darkness-energy">Basic Darkness Energy</h3>
+				<h3 id="basic-darkness-energy">Basic Darkness Energy<span data-count>x8</span></h3>
 				<aside><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></aside>
 				<section>
 					<dl class="card">
-						<dt><strong>Qty</strong></dt><dd><span>8</span></dd>
 						<dt><strong>Set</strong></dt><dd><span>MEE: Mega Evolution Energies (or any print <strong>2007 or later</strong>)</span></dd>
 						<dt><strong>Number</strong></dt><dd><span>007</span></dd>
 						<dt><strong>Type</strong></dt><dd><span>Energy — <strong>Basic</strong></span></dd>

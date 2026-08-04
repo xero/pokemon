@@ -48,8 +48,14 @@ DECK_SLUGS = {
     "mee-mega-evolution-energies/basic-fire-energy-002",
 }
 
-rows = [l.split("\t") for l in (ROOT / "product-ids.tsv").read_text().splitlines() if l.strip()]
-pid_to_url = {int(float(p)): u for p, u in rows}
+# id / url / quantity. scrape_quantities.py fills the third column by merging
+# order history with sealed-contents.tsv; a 0 means a card we want but do not
+# own, which still gets a full card page in the deck plans.
+rows = [l.split("\t") for l in (ROOT / "product-ids.tsv").read_text().splitlines()
+        if l.strip()]
+pid_to_url = {int(float(r[0])): r[1] for r in rows}
+pid_to_qty = {int(float(r[0])): int(r[2]) if len(r) > 2 and r[2].strip() else 0
+              for r in rows}
 ids = list(pid_to_url)
 
 
@@ -69,12 +75,17 @@ def fetch(chunk):
     return json.loads(out)["results"][0]["results"]
 
 
+products = {}
 if RAW.exists():
     products = {int(k): v for k, v in json.loads(RAW.read_text()).items()}
-else:
-    products = {}
-    for i in range(0, len(ids), 40):
-        for p in fetch(ids[i:i + 40]):
+
+# top up rather than all-or-nothing: adding one card to the seed should cost one
+# request, not a refetch of everything already cached.
+todo = [i for i in ids if i not in products]
+if todo:
+    print(f"  {len(products)} cached, fetching {len(todo)}", file=sys.stderr)
+    for i in range(0, len(todo), 40):
+        for p in fetch(todo[i:i + 40]):
             products[int(float(p["productId"]))] = p
         print(f"  fetched {len(products)}/{len(ids)}", file=sys.stderr)
         time.sleep(1.0)
@@ -411,6 +422,15 @@ for pid in ids:
             if accents(str(c).title()) in ENERGY_NAMES:
                 ctb = accents(str(c).title())
                 break
+    if not ctb:
+        # Japanese Trainers put the whole "Trainer - Item" string in cardType,
+        # which the energy check above steps straight past. Without this they
+        # came out with no card_type at all and the collection page tried to
+        # render Prime Catcher as a Pokemon.
+        for c in ca.get("cardType") or []:
+            if str(c).startswith(("Trainer", "Energy")):
+                ctb = accents(str(c))
+                break
     if not ctb and "Pokemon" in (ca.get("cardType") or []):
         ctb = type_from_attack(ca)
         if ctb:
@@ -453,6 +473,7 @@ for pid in ids:
         "regulation_mark": mark,
         "standard_legal": legal,
         "image_file": img_name,
+        "quantity": str(pid_to_qty.get(pid, 0)),
         "category": "deck" if slug in DECK_SLUGS else "collection",
         "source_url": url,
     }
@@ -465,7 +486,7 @@ cols = ["name", "set_name", "card_number", "rarity", "product_line",
         "type_hp_stage", "card_text", "attack1", "attack2", "attack3", "attack4",
         "weakness", "resistance", "retreat_cost",
         "regulation_mark", "standard_legal",
-        "image_file", "category", "source_url"]
+        "image_file", "quantity", "category", "source_url"]
 with open(ROOT / "cards.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=cols)
     w.writeheader()

@@ -27,15 +27,15 @@ PAGES = [
     ("dark.html", ["gengar", "weezing"],
      "Xero's deck. The dark duo of Gengar and Weezing, and the two-turn combo"
      " dad's whole deck is built around."),
-    ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
-     "Planning notes. What a real Standard Mega Gengar ex deck looks like, and"
-     " the honest argument for not putting one across the table from Fox."),
     ("psychic-lanterns.html", ["chandelure", "gengar-mega-shiny"],
      "Paper plan. Chandelure dropping three damage counters anywhere on the"
      " board, every turn, for free — including on the Bench."),
     ("psychic-sleep.html", ["hypno", "drowzee"],
      "Paper plan. The other way to build the Psychic Gengars: put them to"
      " sleep on turn one and never let them wake up."),
+    ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
+     "Not a deck, a primer. Mega Gengar ex and the cards around it, used to"
+     " explain how ex play style actually works."),
 ]
 
 

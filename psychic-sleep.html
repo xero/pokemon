@@ -304,6 +304,14 @@
 			display: flex;
 			flex-direction: column;
 
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
 			/* a card inside a game plan is on the plan's own background, and
 			   a border alone does not separate them. same reason a nested
 			   callout drops back to the page colour. */
@@ -357,6 +365,13 @@
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
 			}
 		}
 
@@ -452,9 +467,15 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
+				padding-left: 2px;
 			}
 		}
 
@@ -462,7 +483,7 @@
 		   cannot hold a third column, so these stay tables. */
 		table {
 			border-collapse: collapse;
-			margin-block: 0.8em;
+			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
 		}
@@ -470,24 +491,43 @@
 		th,
 		td {
 			border-bottom: 1px solid var(--line);
-			padding: 0.45em 0.7em 0.45em 0;
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
 			vertical-align: top;
 		}
 
-		/* a <dl> built from a real table keeps its header row, styled to match
-		   the <th> of the tables that stayed tables */
-		dl [data-head] {
-			color: var(--muted);
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 		}
 
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
 		th {
-			color: var(--muted);
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			white-space: nowrap;
@@ -502,6 +542,32 @@
 				padding-top: 0.6em;
 			}
 		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
 		}
 
 		/* sprites parked in the corner of a heading. decorative, and the
@@ -672,7 +738,7 @@
 							<tr><td>4</td><td>Professor&#x27;s Research</td><td>Supporter</td><td>any</td></tr>
 							<tr><td>3</td><td>N</td><td>Supporter</td><td>Noble Victories 92</td></tr>
 							<tr><td>3</td><td>Fog Crystal</td><td>Item</td><td>Chilling Reign 140</td></tr>
-							<tr><td>3</td><td>Mysterious Treasure</td><td>Item</td><td>Forbidden Light 145</td></tr>
+							<tr><td>3</td><td>Mysterious Treasure</td><td>Item</td><td>Forbidden Light 113</td></tr>
 							<tr><td>2</td><td>Switch</td><td>Item</td><td>any</td></tr>
 							<tr><td>2</td><td>Old Cemetery</td><td>Stadium</td><td>Chilling Reign 147</td></tr>
 						</tbody>
@@ -688,26 +754,53 @@
 			<section>
 				<h3 id="key-card-text">Key Card Text</h3>
 			<article>
-				<h3 id="drowzee-unbroken-bonds-071">Drowzee — Unbroken Bonds 071<span data-flavor><img src="./assets/sprites/drowzee.gif" alt="" /></span></h3>
+				<h3 id="drowzee-unbroken-bonds-071">Drowzee — Unbroken Bonds 071<span data-count>x4</span><span data-flavor><img src="./assets/sprites/drowzee.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/189171_drowzee.jpg" alt="Drowzee" />
+				</aside>
 				<section>
-					<p>Psychic, 70 HP, Basic. Weak <strong>Psychic ×2</strong>, Retreat 2.</p>
-					<ul>
-						<li><strong><em>Hypnosis</em> [P].</strong> Your opponent&#x27;s Active Pokémon is now Asleep.</li>
-						<li><em>Psypunch</em> [P][C][C], 30.</li>
-					</ul>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/unbroken-bonds.png" /><img src="./assets/sets/unbroken-bonds.png" alt="SM - Unbroken Bonds" /></picture></span><span>SM - Unbroken Bonds <small>71/214</small></span></dd>
+						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Hypnosis - Your opponent&#x27;s Active Pokémon is now Asleep.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psypunch (30)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Basic, and the whole reason this build exists.</p>
 			<aside data-callout="note">
 				<p>One Energy. No coin flip. No damage — and that&#x27;s fine, because this card isn&#x27;t here to deal damage, it&#x27;s here to make turn two not happen.</p>
 			</aside>
 				</section>
 			</article>
 			<article>
-				<h3 id="hypno-unbroken-bonds-072">Hypno — Unbroken Bonds 072<span data-flavor><img src="./assets/sprites/hypno.gif" alt="" /></span></h3>
+				<h3 id="hypno-unbroken-bonds-072">Hypno — Unbroken Bonds 072<span data-count>x3</span><span data-flavor><img src="./assets/sprites/hypno.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/189172_hypno.jpg" alt="Hypno" />
+				</aside>
 				<section>
-					<p>Psychic, <strong>110 HP</strong>, Stage 1 from Drowzee. Weak <strong>Psychic ×2</strong>, Retreat 2.</p>
-					<ul>
-						<li><strong>Ability — <em>Hypnotic Pendulum</em>.</strong> When your opponent&#x27;s Active Pokémon is Knocked Out, flip a coin. If heads, <strong>choose which of your opponent&#x27;s Benched Pokémon becomes their new Active Pokémon.</strong></li>
-						<li><strong><em>Stir the Brain</em> [P][C][C], 30+.</strong> 10 more damage for each card in your opponent&#x27;s hand.</li>
-					</ul>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/unbroken-bonds.png" /><img src="./assets/sets/unbroken-bonds.png" alt="SM - Unbroken Bonds" /></picture></span><span>SM - Unbroken Bonds <small>72/214</small></span></dd>
+						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Hypnotic Pendulum - When your opponent&#x27;s Active Pokémon is Knocked Out, flip a coin. If heads, choose which of your opponent&#x27;s Benched Pokémon becomes their new Active Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Stir the Brain (30+) - This attack does 10 more damage for each card in your opponent&#x27;s hand.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Stage 1 from Drowzee. <strong><em>Hypnotic Pendulum</em> fires on a knockout, not on your attack</strong>, so it works whichever of your Pokémon took the Prize.</p>
+					<p><em>Stir the Brain</em> scales off their hand, which is why the N problem below matters:</p>
 					<dl>
 						<dt data-head>Cards in their hand</dt><dd data-head>Stir the Brain</dd>
 						<dt>3</dt><dd><span>60</span></dd>
@@ -718,52 +811,120 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="gengar-sword-shield-085">Gengar — Sword &amp; Shield 085<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+				<h3 id="gengar-sword-shield-085">Gengar — Sword &amp; Shield 085<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/208393_gengar.jpg" alt="Gengar" />
+				</aside>
 				<section>
-					<p>Psychic, <strong>110 HP</strong>, Stage 2 from Haunter. Weak <strong>Darkness ×2</strong>, Resist <strong>Fighting −30</strong>, Retreat 2.</p>
-					<ul>
-						<li><strong>Ability — <em>Life Shaker</em>.</strong> As often as you like during your turn, move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</li>
-						<li><strong><em>Hypnoblast</em> [P][P][C], 90.</strong> Your opponent&#x27;s Active Pokémon is now Asleep.</li>
-					</ul>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>SWSH01: Sword &amp; Shield Base Set <small>085/202</small></span></dd>
+						<dt>Rarity</dt><dd><span>Holo Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Life Shaker - As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Hypnoblast (90) - Your opponent&#x27;s Active Pokémon is now Asleep.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Stage 2 from Haunter. <strong><em>Life Shaker</em> has no once-per-turn limit.</strong></p>
 			<aside data-callout="note">
 				<p><strong>90 damage <em>and</em> Asleep on the same attack.</strong> This is the card the whole deck is built to protect and power up.</p>
 			</aside>
 				</section>
 			</article>
 			<article>
-				<h3 id="gourgeist-paradox-rift-078">Gourgeist — Paradox Rift 078<span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
+				<h3 id="gourgeist-paradox-rift-078">Gourgeist — Paradox Rift 078<span data-count>x2</span><span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/523744_gourgeist.jpg" alt="Gourgeist" />
+				</aside>
 				<section>
-					<p>Psychic, 110 HP, Stage 1 from Pumpkaboo. Weak <strong>Darkness ×2</strong>, Resist <strong>Fighting −30</strong>, Retreat 2.</p>
-					<ul>
-						<li><strong>Ability — <em>Startling Pumpkin</em>.</strong> If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, <strong>discard 2 random cards from your opponent&#x27;s hand.</strong></li>
-						<li><strong><em>Shadow Bind</em> [P][C][C], 100.</strong> The Defending Pokémon <strong>can&#x27;t retreat</strong> during your opponent&#x27;s next turn.</li>
-					</ul>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paradox-rift.png" /><img src="./assets/sets/paradox-rift.png" alt="SV04: Paradox Rift" /></picture></span><span>SV04: Paradox Rift <small>078/182</small></span></dd>
+						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Startling Pumpkin - If this Pokémon is Knocked Out by damage from an attack from your opponent’s Pokémon, discard 2 random cards from your opponent’s hand.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Shadow Bind (100) - During your opponent’s next turn, the Defending Pokémon can’t retreat.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Stage 1 from Pumpkaboo. <strong><em>Startling Pumpkin</em> pays you for losing it</strong>, which is unusual and worth planning around.</p>
 			<aside data-callout="note">
 				<p>Note this is a <strong>different Gourgeist</strong> from the one you own. Yours is the <em>Pandemonium</em> print (Evolving Skies 077) and it&#x27;s the right card for Build A. This one is the right card here.</p>
 			</aside>
 				</section>
 			</article>
 			<article>
-				<h3 id="wobbuffet-phantom-forces-036">Wobbuffet — Phantom Forces 036<span data-flavor><img src="./assets/sprites/wobbuffet.gif" alt="" /></span></h3>
+				<h3 id="wobbuffet-phantom-forces-036">Wobbuffet — Phantom Forces 036<span data-count>x2</span><span data-flavor><img src="./assets/sprites/wobbuffet.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/94169_wobbuffet.jpg" alt="Wobbuffet" />
+				</aside>
 				<section>
-					<p>Psychic, <strong>110 HP</strong>, Basic. Weak <strong>Psychic ×2</strong>, Retreat 2.</p>
-					<ul>
-						<li><strong>Ability — <em>Bide Barricade</em>.</strong> As long as this Pokémon is your Active Pokémon, each Pokémon in play, in each player&#x27;s hand, and in each player&#x27;s discard pile has no Abilities <strong>(except for [P] Pokémon)</strong>.</li>
-						<li><strong><em>Psychic Assault</em> [P], 10+.</strong> 10 more damage for each damage counter on your opponent&#x27;s Active Pokémon.</li>
-					</ul>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantom-forces.png" /><img src="./assets/sets/phantom-forces.png" alt="XY - Phantom Forces" /></picture></span><span>XY - Phantom Forces <small>36/119</small></span></dd>
+						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Bide Barrier If this Pokémon is your Active Pokémon, each Pokémon in play, in each player&#x27;s hand, and in each player&#x27;s discard pile has no Abilities (except for Psychic Pokémon).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic Assault (10+) - Does 10 more damage for each damage counter on your opponent&#x27;s Active Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Basic. The Ability exempts <strong>[P] Pokémon</strong>, and every Pokémon in this deck is Psychic, so the lock is entirely one-sided.</p>
 				</section>
 			</article>
 			<article>
-				<h3 id="gengar-lost-origin-066-single-copy">Gengar — Lost Origin 066 <em>(single copy)</em><span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
+				<h3 id="gengar-lost-origin-066-single-copy">Gengar — Lost Origin 066 <em>(single copy)</em><span data-count>x1</span><span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/283941_gengar.jpg" alt="Gengar" />
+				</aside>
 				<section>
-					<ul>
-						<li><strong>Ability — <em>Netherworld Gate</em>.</strong> Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</li>
-						<li><em>Screaming Circle</em> [P] — 2 damage counters on their Active per their Benched Pokémon.</li>
-					</ul>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/lost-origin.png" /><img src="./assets/sets/lost-origin.png" alt="SWSH11: Lost Origin" /></picture></span><span>SWSH11: Lost Origin <small>066/196</small></span></dd>
+						<dt>Rarity</dt><dd><span>Holo Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Netherworld Gate - Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Screaming Circle - Put 2 damage counters on your opponent&#x27;s Active Pokémon for each of your opponent&#x27;s Benched Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Netherworld Gate</em> works from the discard pile</strong>, so the single copy does its job without ever being drawn.</p>
 				</section>
 			</article>
 			<article>
-				<h3 id="old-cemetery-chilling-reign-147-stadium">Old Cemetery — Chilling Reign 147 <em>(Stadium)</em></h3>
+				<h3 id="old-cemetery-chilling-reign-147-stadium">Old Cemetery — Chilling Reign 147 <em>(Stadium)</em><span data-count>x2</span></h3>
+				<aside>
+					<img src="./assets/241850_old-cemetery.jpg" alt="Old Cemetery" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>147/198</small></span></dd>
+						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Whenever a player attaches an Energy card from their hand to 1 of their non-Psychic Pokémon, put 2 damage counters on that Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+					</dl>
+				</section>
 				<section>
 			<aside data-callout="note">
 				<p>Whenever a player attaches an Energy card <strong>from their hand</strong> to 1 of their <strong>non-Psychic</strong> Pokémon, put 2 damage counters on that Pokémon.</p>
@@ -916,24 +1077,27 @@ Turn 3+  Gastly → Gengar (Rare Candy) → HYPNOBLAST:
 			<section>
 				<h3 id="what-to-buy">What To Buy</h3>
 					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Note</th></tr></thead>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
 						<tbody>
-							<tr><td>Gastly, Haunter (Psychic)</td><td><strong>11</strong></td><td>0</td><td>Skip 151 093</td></tr>
-							<tr><td>Pumpkaboo (Psychic)</td><td><strong>3</strong></td><td>0</td><td>Any print</td></tr>
-							<tr><td>Gengar, SSH 085</td><td><strong>1</strong></td><td><strong>2</strong></td><td>The attacker — you want three</td></tr>
-							<tr><td>Gengar, LOR 066</td><td><strong>1</strong></td><td>0</td><td>Your ToT 2023 066 is this card</td></tr>
-							<tr><td><strong>Drowzee, UNB 071</strong></td><td>0</td><td><strong>4</strong></td><td>Common, cents</td></tr>
-							<tr><td><strong>Hypno, UNB 072</strong></td><td>0</td><td><strong>3</strong></td><td>Rare, cheap</td></tr>
-							<tr><td><strong>Wobbuffet, PHF 036</strong></td><td>0</td><td><strong>2</strong></td><td>Common</td></tr>
-							<tr><td><strong>Gourgeist, PAR 078</strong></td><td>0</td><td><strong>2</strong></td><td>Not the print you own — but you do own <strong>Pumpkaboo PAR 077</strong>, the Basic from that same line</td></tr>
-							<tr><td>Old Cemetery</td><td><strong>1</strong></td><td><strong>1</strong></td><td>Chilling Reign 147</td></tr>
-							<tr><td>Fog Crystal</td><td>0</td><td><strong>3</strong></td><td>Chilling Reign 140</td></tr>
-							<tr><td>Mysterious Treasure</td><td>0</td><td><strong>3</strong></td><td>Forbidden Light 145</td></tr>
-							<tr><td>N</td><td>0</td><td><strong>3</strong></td><td>Noble Victories 92</td></tr>
-							<tr><td>Rare Candy / Ultra Ball / Prof&#x27;s Research / Switch</td><td><strong>1+ of each</strong></td><td>up to 14</td><td>You own all four now. <code>cards.csv</code> has no counts, and these are shared with the Fire and Dark decks — count what&#x27;s actually spare before ordering</td></tr>
-							<tr><td>Basic Psychic Energy</td><td>0</td><td>12</td><td>Never rotates</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/sword-and-shield.png" /><img src="./assets/sets/sword-and-shield.png" alt="SWSH01: Sword &amp; Shield Base Set" /></picture></span><span>Gengar <small>SWSH01: Sword &amp; Shield Base Set 085/202</small></span></td><td>1</td><td>3</td><td><strong>2</strong></td><td>The attacker, you want three</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/lost-origin.png" /><img src="./assets/sets/lost-origin.png" alt="SWSH11: Lost Origin" /></picture></span><span>Gengar <small>SWSH11: Lost Origin 066/196</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Your ToT 2023 066 is this card</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/unbroken-bonds.png" /><img src="./assets/sets/unbroken-bonds.png" alt="SM - Unbroken Bonds" /></picture></span><span>Drowzee <small>SM - Unbroken Bonds 71/214</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>Common, cents</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/unbroken-bonds.png" /><img src="./assets/sets/unbroken-bonds.png" alt="SM - Unbroken Bonds" /></picture></span><span>Hypno <small>SM - Unbroken Bonds 72/214</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>Rare, cheap</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantom-forces.png" /><img src="./assets/sets/phantom-forces.png" alt="XY - Phantom Forces" /></picture></span><span>Wobbuffet <small>XY - Phantom Forces 36/119</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Common</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paradox-rift.png" /><img src="./assets/sets/paradox-rift.png" alt="SV04: Paradox Rift" /></picture></span><span>Gourgeist <small>SV04: Paradox Rift 078/182</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Not the print you own, but you do own <strong>Pumpkaboo PAR 077</strong> from that line</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>Old Cemetery <small>SWSH06: Chilling Reign 147/198</small></span></td><td>3</td><td>2</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>Fog Crystal <small>SWSH06: Chilling Reign 140/198</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/forbidden-light.png" /><img src="./assets/sets/forbidden-light.png" alt="SM - Forbidden Light" /></picture></span><span>Mysterious Treasure <small>SM - Forbidden Light 113/131</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td><strong>113</strong>, not the 145 gold Secret print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/noble-victories.png" /><img src="./assets/sets/noble-victories.png" alt="Noble Victories" /></picture></span><span>N (Supporter) <small>Noble Victories 92/101</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>8</td><td>4</td><td>✓</td><td>Shared with the Fire and Dark decks</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>8</td><td>4</td><td>✓</td><td>Shared with the Fire and Dark decks</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Professor&#x27;s Research [Professor Oak] <small>SV: Prismatic Evolutions 122/131</small></span></td><td>2</td><td>4</td><td><strong>2</strong></td><td>Shared with the Fire deck</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>5</td><td>2</td><td>✓</td><td>Shared with the Fire and Dark decks</td></tr>
+							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>0</td><td>12</td><td><strong>12</strong></td><td>Never rotates</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>37</strong></td><td></td></tr>
 						</tbody>
 					</table>
+					<p>The Gastly, Haunter, and Pumpkaboo lines are already covered. Skip <strong>151 093</strong> for Haunter.</p>
 					<p><strong>The cheapest of the three Psychic builds by a wide margin.</strong> Build A needs three Chandelure NVI — a 2011 Rare Holo that carries a real price. This deck&#x27;s most expensive card is a Sword &amp; Shield Gengar you already own one of.</p>
 					<p><strong>Not Standard legal and can&#x27;t be made so.</strong> Unbroken Bonds, Phantom Forces, Noble Victories, Chilling Reign, Forbidden Light, and Lost Origin are all rotated.</p>
 			</section>

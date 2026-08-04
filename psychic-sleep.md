@@ -75,7 +75,7 @@ Sleep them cheaply early, sleep them expensively late, and trap them when they w
 | 4 | Professor's Research | Supporter | any |
 | 3 | N | Supporter | Noble Victories 92 |
 | 3 | Fog Crystal | Item | Chilling Reign 140 |
-| 3 | Mysterious Treasure | Item | Forbidden Light 145 |
+| 3 | Mysterious Treasure | Item | Forbidden Light 113 |
 | 2 | Switch | Item | any |
 | 2 | Old Cemetery | Stadium | Chilling Reign 147 |
 
@@ -96,19 +96,15 @@ Sleep them cheaply early, sleep them expensively late, and trap them when they w
 
 ### Drowzee — Unbroken Bonds 071
 
-Psychic, 70 HP, Basic. Weak **Psychic ×2**, Retreat 2.
-
-- ***Hypnosis* [P].** Your opponent's Active Pokémon is now Asleep.
-- *Psypunch* [P][C][C], 30.
+Basic, and the whole reason this build exists.
 
 > One Energy. No coin flip. No damage — and that's fine, because this card isn't here to deal damage, it's here to make turn two not happen.
 
 ### Hypno — Unbroken Bonds 072
 
-Psychic, **110 HP**, Stage 1 from Drowzee. Weak **Psychic ×2**, Retreat 2.
+Stage 1 from Drowzee. ***Hypnotic Pendulum* fires on a knockout, not on your attack**, so it works whichever of your Pokémon took the Prize.
 
-- **Ability — *Hypnotic Pendulum*.** When your opponent's Active Pokémon is Knocked Out, flip a coin. If heads, **choose which of your opponent's Benched Pokémon becomes their new Active Pokémon.**
-- ***Stir the Brain* [P][C][C], 30+.** 10 more damage for each card in your opponent's hand.
+*Stir the Brain* scales off their hand, which is why the N problem below matters:
 
 | Cards in their hand | Stir the Brain |
 | :--- | :--- |
@@ -119,33 +115,23 @@ Psychic, **110 HP**, Stage 1 from Drowzee. Weak **Psychic ×2**, Retreat 2.
 
 ### Gengar — Sword & Shield 085
 
-Psychic, **110 HP**, Stage 2 from Haunter. Weak **Darkness ×2**, Resist **Fighting −30**, Retreat 2.
-
-- **Ability — *Life Shaker*.** As often as you like during your turn, move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.
-- ***Hypnoblast* [P][P][C], 90.** Your opponent's Active Pokémon is now Asleep.
+Stage 2 from Haunter. ***Life Shaker* has no once-per-turn limit.**
 
 > **90 damage *and* Asleep on the same attack.** This is the card the whole deck is built to protect and power up.
 
 ### Gourgeist — Paradox Rift 078
 
-Psychic, 110 HP, Stage 1 from Pumpkaboo. Weak **Darkness ×2**, Resist **Fighting −30**, Retreat 2.
-
-- **Ability — *Startling Pumpkin*.** If this Pokémon is Knocked Out by damage from an attack from your opponent's Pokémon, **discard 2 random cards from your opponent's hand.**
-- ***Shadow Bind* [P][C][C], 100.** The Defending Pokémon **can't retreat** during your opponent's next turn.
+Stage 1 from Pumpkaboo. ***Startling Pumpkin* pays you for losing it**, which is unusual and worth planning around.
 
 > Note this is a **different Gourgeist** from the one you own. Yours is the *Pandemonium* print (Evolving Skies 077) and it's the right card for Build A. This one is the right card here.
 
 ### Wobbuffet — Phantom Forces 036
 
-Psychic, **110 HP**, Basic. Weak **Psychic ×2**, Retreat 2.
-
-- **Ability — *Bide Barricade*.** As long as this Pokémon is your Active Pokémon, each Pokémon in play, in each player's hand, and in each player's discard pile has no Abilities **(except for [P] Pokémon)**.
-- ***Psychic Assault* [P], 10+.** 10 more damage for each damage counter on your opponent's Active Pokémon.
+Basic. The Ability exempts **[P] Pokémon**, and every Pokémon in this deck is Psychic, so the lock is entirely one-sided.
 
 ### Gengar — Lost Origin 066 *(single copy)*
 
-- **Ability — *Netherworld Gate*.** Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.
-- *Screaming Circle* [P] — 2 damage counters on their Active per their Benched Pokémon.
+***Netherworld Gate* works from the discard pile**, so the single copy does its job without ever being drawn.
 
 ### Old Cemetery — Chilling Reign 147 *(Stadium)*
 
@@ -317,22 +303,25 @@ Everything here is Weak to **Darkness** or **Psychic**. Fox plays **Fire**, **Fi
 
 ## What To Buy
 
-| Card | Own | Need | Note |
-| :--- | :--- | :--- | :--- |
-| Gastly, Haunter (Psychic) | **11** | 0 | Skip 151 093 |
-| Pumpkaboo (Psychic) | **3** | 0 | Any print |
-| Gengar, SSH 085 | **1** | **2** | The attacker — you want three |
-| Gengar, LOR 066 | **1** | 0 | Your ToT 2023 066 is this card |
-| **Drowzee, UNB 071** | 0 | **4** | Common, cents |
-| **Hypno, UNB 072** | 0 | **3** | Rare, cheap |
-| **Wobbuffet, PHF 036** | 0 | **2** | Common |
-| **Gourgeist, PAR 078** | 0 | **2** | Not the print you own — but you do own **Pumpkaboo PAR 077**, the Basic from that same line |
-| Old Cemetery | **1** | **1** | Chilling Reign 147 |
-| Fog Crystal | 0 | **3** | Chilling Reign 140 |
-| Mysterious Treasure | 0 | **3** | Forbidden Light 145 |
-| N | 0 | **3** | Noble Victories 92 |
-| Rare Candy / Ultra Ball / Prof's Research / Switch | **1+ of each** | up to 14 | You own all four now. `cards.csv` has no counts, and these are shared with the Fire and Dark decks — count what's actually spare before ordering |
-| Basic Psychic Energy | 0 | 12 | Never rotates |
+```buy
+Gengar | Sword & Shield 085 | 3 | The attacker, you want three
+Gengar | Lost Origin 066 | 1 | Your ToT 2023 066 is this card
+Drowzee | Unbroken Bonds 071 | 4 | Common, cents
+Hypno | Unbroken Bonds 072 | 3 | Rare, cheap
+Wobbuffet | Phantom Forces 036 | 2 | Common
+Gourgeist | Paradox Rift 078 | 2 | Not the print you own, but you do own **Pumpkaboo PAR 077** from that line
+Old Cemetery | Chilling Reign 147 | 2 |
+Fog Crystal | Chilling Reign 140 | 3 |
+Mysterious Treasure | Forbidden Light 113 | 3 | **113**, not the 145 gold Secret print
+N | Noble Victories 092 | 3 |
+Rare Candy | Mega Evolution 125 | 4 | Shared with the Fire and Dark decks
+Ultra Ball | Mega Evolution 131 | 4 | Shared with the Fire and Dark decks
+Professor's Research | Prismatic Evolutions 122 | 4 | Shared with the Fire deck
+Switch | Mega Evolution 130 | 2 | Shared with the Fire and Dark decks
+Basic Psychic Energy | Mega Evolution Energies 005 | 12 | Never rotates
+```
+
+The Gastly, Haunter, and Pumpkaboo lines are already covered. Skip **151 093** for Haunter.
 
 **The cheapest of the three Psychic builds by a wide margin.** Build A needs three Chandelure NVI — a 2011 Rare Holo that carries a real price. This deck's most expensive card is a Sword & Shield Gengar you already own one of.
 

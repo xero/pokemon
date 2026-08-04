@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Dark Box — Standard Legal</title>
+		<title>Xero's Dark Box — Tournament EX</title>
 		<style>
 		:root {
 			/* palette */
@@ -304,6 +304,14 @@
 			display: flex;
 			flex-direction: column;
 
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
 			/* a card inside a game plan is on the plan's own background, and
 			   a border alone does not separate them. same reason a nested
 			   callout drops back to the page colour. */
@@ -357,6 +365,13 @@
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
 			}
 		}
 
@@ -452,9 +467,15 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
+				padding-left: 2px;
 			}
 		}
 
@@ -462,7 +483,7 @@
 		   cannot hold a third column, so these stay tables. */
 		table {
 			border-collapse: collapse;
-			margin-block: 0.8em;
+			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
 		}
@@ -470,24 +491,43 @@
 		th,
 		td {
 			border-bottom: 1px solid var(--line);
-			padding: 0.45em 0.7em 0.45em 0;
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
 			vertical-align: top;
 		}
 
-		/* a <dl> built from a real table keeps its header row, styled to match
-		   the <th> of the tables that stayed tables */
-		dl [data-head] {
-			color: var(--muted);
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 		}
 
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
 		th {
-			color: var(--muted);
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			white-space: nowrap;
@@ -502,6 +542,32 @@
 				padding-top: 0.6em;
 			}
 		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
 		}
 
 		/* sprites parked in the corner of a heading. decorative, and the
@@ -606,12 +672,12 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="./assets/pokeball.png" alt="" />Xero's Dark Box — Standard Legal <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></h1>
+			<h1><img src="./assets/pokeball.png" alt="" />Xero's Dark Box — Tournament EX <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></h1>
 			<p>Mega Gengar ex, the current meta, and how ex decks actually work</p>
 			<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><span><a href="#the-gengar-meta">The Gengar Meta</a> · <a href="#the-shell">The Shell</a> · <a href="#how-to-play-ex-style">How To Play ex Style</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+		<p><span><a href="#deck-list">Deck List</a> · <a href="#the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack</a> · <a href="#the-engine-toxtricity-into-munkidori">The Engine: Toxtricity into Munkidori</a> · <a href="#gengar-spirit-link-skip-it">❌ Gengar Spirit Link — Skip It</a> · <a href="#how-to-play-ex-style">How To Play ex Style</a> · <a href="#what-to-buy">What To Buy</a></span></p>
 	</details>
 </nav>
 		</header>
@@ -620,49 +686,205 @@
 				<p><strong>What this file is for.</strong></p>
 				<p>Two things, and neither one is a shopping list.</p>
 				<ol>
-					<li><strong><a href="#the-gengar-meta">The Gengar Meta</a></strong> — where Gengar actually sits in Standard right now, what the card does, and what a real competitive list looks like.</li>
+					<li><strong><a href="#mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex</a></strong> and the cards around it — what each one actually does.</li>
 					<li><strong><a href="#how-to-play-ex-style">How To Play ex Style</a></strong> — the primer. If you skip everything else, read that section. It is the part that transfers to <strong>any</strong> ex deck, not just this one.</li>
 				</ol>
 				<p>Multi-Prize Pokémon change how the game is played, not just how hard it hits.</p>
-				<p>Companion files: <strong><a href="./fire-standard.html">Flareon ex / Noctowl</a></strong> · <strong><a href="./eevee-standard.md">Rainbow DNA</a></strong> · <strong><a href="./fighting-standard.md">Ground Zero</a></strong> — Fox&#x27;s three Standard options.</p>
+				<p><strong>This is not a complete deck.</strong> It covers only the Pokémon needed to explain ex play style.</p>
 			</aside>
 			<section>
-				<h3 id="the-gengar-meta">The Gengar Meta<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+				<h3 id="deck-list">Deck List</h3>
 			<article>
-				<h3 id="where-it-actually-sits">Where it actually sits</h3>
+				<h3 id="mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex — Phantasmal Flames 056 · Reg I<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" />
+				</aside>
 				<section>
-					<p>Honest answer first: <strong>Mega Gengar ex is not a tier-1 deck.</strong> As of August 2026 the format looks like this:</p>
-					<table>
-						<thead><tr><th>Tier</th><th>Deck</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><strong>1</strong></td><td><strong>Dragapult ex / Blaziken ex</strong></td><td>The #1 deck, boosted by Pitch Black. Drakloak&#x27;s <em>Recon Directive</em> is the engine.</td></tr>
-							<tr><td><strong>1</strong></td><td><strong>Gardevoir ex</strong></td><td>The longest-standing deck in the format, now with Mega Diancie, Jellicent ex, Clefairy ex</td></tr>
-							<tr><td><strong>2</strong></td><td><strong>Mega Excadrill ex</strong></td><td>Newest riser — Drilbur + Genesect ex + Metal Maker</td></tr>
-							<tr><td><strong>2</strong></td><td>Gholdengo ex, Mega Starmie ex, Mega Zygarde ex</td><td></td></tr>
-							<tr><td><strong>Rogue</strong></td><td><strong>Mega Gengar ex &quot;dark box&quot;</strong></td><td>Real, played, not dominant</td></tr>
-						</tbody>
-					</table>
-					<p>So this is a solid rogue deck, not a metagame pillar. Which — given you&#x27;re building it to play at your kitchen table — is completely fine, and it happens to be pointed <em>directly</em> at what the top decks are doing.</p>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
+						<dt>Rarity</dt><dd><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
+					</dl>
 				</section>
-			</article>
-			<article>
-				<h3 id="the-card">The card<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>
 				<section>
-					<p><strong>Mega Gengar ex — Phantasmal Flames 056 · Reg I</strong></p>
-					<p>Darkness, <strong>350 HP</strong>, <strong>Stage 2 from Haunter</strong>. Weak <strong>Fighting ×2</strong>, no Resistance, Retreat 2. <strong>Gives up 3 Prize cards.</strong></p>
-					<ul>
-						<li><strong>Ability — <em>Shadowy Concealment</em>.</strong> If 1 of your <strong>[D]</strong> Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s <strong>Pokémon ex</strong>, that player takes <strong>1 fewer Prize card</strong>. The effect of <em>Shadowy Concealment</em> doesn&#x27;t stack.</li>
-						<li><strong><em>Void Gale</strong></em> <strong>[D][D], 230.</strong> Move an Energy from this Pokémon to 1 of your Benched Pokémon.</li>
-					</ul>
-			<aside data-callout="note">
-				<p><strong>Limitless lists this card as giving up 2 Prizes. It gives up 3.</strong> Their summary applies the generic &quot;Pokémon ex&quot; rule; the printed rule box on a Mega Evolution Pokémon ex reads three. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56">Bulbapedia</a>))</p>
-				<p>Also worth knowing: unlike the old SWSH-era &quot;M Pokémon-EX&quot;, <strong>playing a Mega Evolution Pokémon ex does not end your turn.</strong> It evolves like any other Stage 2.</p>
+					<p><strong>Stage 2 from Haunter. Gives up 3 Prize cards</strong>, not 2. Limitless lists it as 2 because their summary applies the generic &quot;Pokémon ex&quot; rule; the printed rule box on a Mega Evolution Pokémon ex reads three. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56">Bulbapedia</a>))</p>
+					<p>Unlike the old SWSH-era &quot;M Pokémon-EX&quot;, <strong>playing a Mega Evolution Pokémon ex does not end your turn.</strong> It evolves like any other Stage 2.</p>
+			<aside data-callout="tip">
+				<p><strong>&quot;Gengar&quot; and &quot;Mega Gengar ex&quot; are different card names</strong>, so four of each is legal. Better still: <strong>they both evolve from Haunter.</strong> One Gastly→Haunter line feeds two completely different Stage 2 payoffs — the 3-Prize 350 HP monster, and your existing 1-Prize <em>Mind Jack</em> Gengar that gives up <strong>zero</strong> Prizes under <em>Shadowy Concealment</em>.</p>
+				<p>That&#x27;s why Gengar POR 050 stays in the list. It isn&#x27;t nostalgia; it&#x27;s the perfect single-prize attacker for this exact shell.</p>
 			</aside>
 				</section>
 			</article>
 			<article>
-				<h3 id="the-real-card-is-the-ability-not-the-attack">The real card is the Ability, not the attack</h3>
+				<h3 id="gastly-phantasmal-flames-054-reg-i">Gastly — Phantasmal Flames 054 · Reg I<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/660495_gastly.jpg" alt="Gastly" />
+				</aside>
 				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>054/094</small></span></dd>
+						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Petty Grudge (10)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Basic both Stage 2 lines are built on. Four of them, because nothing in this deck happens without one.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="haunter-phantasmal-flames-055-reg-i">Haunter — Phantasmal Flames 055 · Reg I<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>055/094</small></span></dd>
+						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Spooky Shot (40)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>One Haunter line feeds two different Stage 2 payoffs.</strong> Mega Gengar ex and the Perfect Order Gengar both evolve from it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="gengar-perfect-order-050-reg-j">Gengar — Perfect Order 050 · Reg J<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/684431_gengar.jpg" alt="Gengar" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>050/088</small></span></dd>
+						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Infinite Shadow - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Mind Jack (10+) - This attack does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The 1-Prize attacker, and under <em>Shadowy Concealment</em> it gives up <strong>zero</strong> Prizes to an opposing ex. It stays in the list on merit, not nostalgia.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="toxel-phantasmal-flames-067-reg-i">Toxel — Phantasmal Flames 067 · Reg I</h3>
+				<aside>
+					<img src="./assets/660411_toxel.jpg" alt="Toxel" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>067/094</small></span></dd>
+						<dt>Rarity</dt><dd><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Call for Family - Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Playful Kick (20)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Basic, and the bottom of the Energy engine.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="toxtricity-phantasmal-flames-068-reg-i">Toxtricity — Phantasmal Flames 068 · Reg I</h3>
+				<aside>
+					<img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>068/094</small></span></dd>
+						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>140</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Sinister Surge - Once during your turn, you may use this Ability. Search your deck for a Basic Darkness Energy card and attach it to 1 of your Benched Darkness Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, place 2 damage counters on that Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Gentle Slap (100)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Sinister Surge</em></strong> searches a Basic Darkness Energy onto a Benched Darkness Pokémon, then puts <strong>2 damage counters</strong> on that Pokémon as the price.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="munkidori-twilight-masquerade-095-reg-h">Munkidori — Twilight Masquerade 095 · Reg H</h3>
+				<aside>
+					<img src="./assets/550139_munkidori.jpg" alt="Munkidori" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>095/167</small></span></dd>
+						<dt>Rarity</dt><dd><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Adrena-Brain - Once during your turn, if this Pokémon has any D Energy attached, you may move up to 3 damage counters from 1 of your Pokémon to 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Mind Bend (60) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Adrena-Brain</em></strong> moves up to <strong>3 damage counters</strong> from one of your Pokémon to one of your opponent&#x27;s, as long as Munkidori has Darkness Energy attached.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="fezandipiti-ex-shrouded-fable-038-reg-h">Fezandipiti ex — Shrouded Fable 038 · Reg H</h3>
+				<aside>
+					<img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" />
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
+						<dt>Rarity</dt><dd><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Flip the Script</em></strong> draws 3 cards if any of your Pokémon were Knocked Out on your opponent&#x27;s last turn. A deck built to trade away cheap bodies <em>wants</em> to be losing Pokémon.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack<span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
 					<p><em>Void Gale</em> is a fine attack — 230 for two Energy, and it feeds its own Energy back to the Bench. It does <strong>not</strong> one-shot the format&#x27;s big threats (Dragapult ex is 320, Gardevoir ex around 310).</p>
 					<p><strong><em>Shadowy Concealment</em> is the reason the deck exists.</strong> Look at what it does to a board of one-Prize Darkness Pokémon when your opponent is attacking with ex Pokémon:</p>
 					<table>
@@ -679,76 +901,42 @@
 				<p>Against a deck that attacks with <strong>non-ex</strong> Pokémon, <em>Shadowy Concealment</em> does <strong>absolutely nothing.</strong> Fox&#x27;s decks, single-prize rogue decks, and your own psychic builds all ignore it completely.</p>
 				<p>This is a <strong>metagame card</strong>. It is superb against the top of the format and blank against the kitchen table. Know which game you&#x27;re playing.</p>
 			</aside>
-				</section>
-			</article>
+			</section>
+			<section>
+				<h3 id="the-engine-toxtricity-into-munkidori">The Engine: Toxtricity into Munkidori</h3>
+					<p>The competitive shell isn&#x27;t built on Gengar&#x27;s attack at all. It&#x27;s built on a damage-counter engine you&#x27;ll recognise immediately.</p>
+					<p><strong>Toxtricity&#x27;s drawback is Munkidori&#x27;s ammunition.</strong> Accelerate Energy, take 2 counters as the price, then throw those counters at your opponent. Free Energy <em>and</em> free damage, every single turn, with no attack and no Supporter spent.</p>
+					<p>If that structure feels familiar: it is exactly <strong>Magma Basin</strong> from Fox&#x27;s deck (attach from elsewhere, take 2 counters) welded to <strong>Life Shaker</strong> from your psychic builds (move counters around) — except the counters go to the <em>opponent</em>.</p>
+			</section>
+			<section>
+				<h3 id="gengar-spirit-link-skip-it">❌ Gengar Spirit Link — Skip It<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+					<p>A card that looks purpose-built for this deck, and does nothing in it.</p>
 			<article>
-				<h3 id="gengar-spirit-link-skip-it">❌ Gengar Spirit Link — skip it<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+				<h3 id="gengar-spirit-link-phantom-forces-095">Gengar Spirit Link — Phantom Forces 095<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>
+				<aside>
+					<img src="./assets/94663_gengar-spirit-link.jpg" alt="Gengar Spirit Link" />
+				</aside>
 				<section>
-					<p>You asked. It&#x27;s a no, and it fails for three independent reasons — any one of them is fatal.</p>
-					<p><strong>Gengar Spirit Link — Phantom Forces 095</strong> <em>(Pokémon Tool)</em></p>
-			<aside data-callout="note">
-				<p>Your turn does not end if the Pokémon this card is attached to becomes <strong>M Gengar-EX</strong>.</p>
-			</aside>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantom-forces.png" /><img src="./assets/sets/phantom-forces.png" alt="XY - Phantom Forces" /></picture></span><span>XY - Phantom Forces <small>95/119</small></span></dd>
+						<dt>Rarity</dt><dd><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Your turn does not end if the Pokémon this card is attached to becomes M Gengar-EX.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three independent reasons, and any one of them on its own is fatal.</p>
 					<dl>
 						<dt data-head>Problem</dt><dd data-head>Detail</dd>
-						<dt><strong>Wrong card name</strong></dt><dd><span>It names <strong><em>M Gengar-EX</strong></em>, the XY-era card. <strong>Mega Gengar ex</strong> (PFL 056) is a different card with a different name. The Tool would never trigger.</span></dd>
+						<dt><strong>Wrong card name</strong></dt><dd><span>It names <strong><em>M Gengar-EX</em></strong>, the XY-era card. <strong>Mega Gengar ex</strong> (PFL 056) is a different card with a different name. The Tool would never trigger.</span></dd>
 						<dt><strong>Solves a rule that no longer exists</strong></dt><dd><span>In the XY era, Mega Evolving <strong>ended your turn</strong> — that&#x27;s the entire problem Spirit Links were printed to fix. Modern Mega Evolution Pokémon ex <strong>do not end your turn</strong> when played. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG">Bulbapedia</a>))</span></dd>
 						<dt><strong>Not Standard legal</strong></dt><dd><span>Phantom Forces is 2014. Rotated many times over.</span></dd>
 					</dl>
 					<p><strong>And it wouldn&#x27;t help your binder either.</strong> You own <strong>Gengar V</strong>, not Gengar-EX. A V evolves into a VMAX, which also doesn&#x27;t end your turn — so there&#x27;s no version of your collection where this card does anything.</p>
-					<p>Genuinely good instinct to ask, though: the Spirit Link cards <em>were</em> format-defining in their era, and if the modern Megas had kept the turn-ending rule, this would be an auto-include four-of.</p>
+					<p>The Spirit Link cards <em>were</em> format-defining in their era, and if the modern Megas had kept the turn-ending rule, this would be an auto-include four-of.</p>
 				</section>
 			</article>
-			<article>
-				<h3 id="the-engine-toxtricity-munkidori">The engine: Toxtricity → Munkidori<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
-				<section>
-					<p>The competitive shell isn&#x27;t built on Gengar&#x27;s attack at all. It&#x27;s built on a damage-counter engine you&#x27;ll recognise immediately.</p>
-					<p><strong>Toxtricity — Phantasmal Flames 068 · Reg I.</strong> Darkness, 140 HP, Stage 1 from Toxel.</p>
-			<aside data-callout="note">
-				<p><strong>Ability — <em>Sinister Surge</em>.</strong> Once during your turn, search your deck for a Basic <strong>[D]</strong> Energy card and attach it to 1 of your Benched <strong>[D]</strong> Pokémon. Then shuffle. If you attached Energy this way, place <strong>2 damage counters</strong> on that Pokémon.</p>
-			</aside>
-					<p><strong>Munkidori — Twilight Masquerade 095 · Reg H.</strong> Psychic, 110 HP, Basic.</p>
-			<aside data-callout="note">
-				<p><strong>Ability — <em>Adrena-Brain</em>.</strong> Once during your turn, if this Pokémon has any <strong>[D]</strong> Energy attached, you may move up to <strong>3 damage counters</strong> from 1 of your Pokémon to 1 of your opponent&#x27;s Pokémon.</p>
-			</aside>
-					<p><strong>Toxtricity&#x27;s drawback is Munkidori&#x27;s ammunition.</strong> Accelerate Energy, take 2 counters as the price, then throw those counters at your opponent. Free Energy <em>and</em> free damage, every single turn, with no attack and no Supporter spent.</p>
-					<p>If that structure feels familiar: it is exactly <strong>Magma Basin</strong> from Fox&#x27;s deck (attach from elsewhere, take 2 counters) welded to <strong>Life Shaker</strong> from your psychic builds (move counters around) — except the counters go to the <em>opponent</em>.</p>
-					<p><strong>Fezandipiti ex — Shrouded Fable 038 · Reg H.</strong> Darkness, 210 HP, Basic, 2 Prizes.</p>
-			<aside data-callout="note">
-				<p><strong>Ability — <em>Flip the Script</em>.</strong> Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, draw 3 cards.</p>
-			</aside>
-					<p>A deck built to trade away cheap bodies <em>wants</em> to be losing Pokémon. Fezandipiti turns each loss into three cards.</p>
-				</section>
-			</article>
-			</section>
-			<section>
-				<h3 id="the-shell">The Shell<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
-			<aside data-callout="caution">
-				<p><strong>Every published Mega Gengar list I found predates the April 2026 rotation.</strong> The competitive lists lean on <strong>Iono, Artazon, Arven, Nest Ball, Pokégear 3.0, Technical Machine: Evolution, and Air Balloon</strong> — all Regulation <strong>G</strong>, all now illegal.</p>
-				<p>Below is the verified-legal core plus your existing shell. The flex slots are real gaps, not padding: I&#x27;d be guessing at what replaced Arven and Iono, and I&#x27;d rather say so.</p>
-			</aside>
-					<p><strong>Pokémon (17)</strong></p>
-					<table>
-						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Reg</th><th>Own</th></tr></thead>
-						<tbody>
-							<tr><td>4</td><td>Gastly</td><td>Phantasmal Flames 054</td><td>I</td><td><strong>1</strong></td></tr>
-							<tr><td>3</td><td>Haunter</td><td>Phantasmal Flames 055</td><td>I</td><td><strong>2</strong></td></tr>
-							<tr><td>3</td><td><strong>Mega Gengar ex</strong></td><td>Phantasmal Flames 056</td><td>I</td><td>0</td></tr>
-							<tr><td>1</td><td>Gengar</td><td>Perfect Order 050</td><td>J</td><td><strong>2</strong></td></tr>
-							<tr><td>3</td><td>Toxel</td><td>Phantasmal Flames 067</td><td>I</td><td>0</td></tr>
-							<tr><td>2</td><td>Toxtricity</td><td>Phantasmal Flames 068</td><td>I</td><td>0</td></tr>
-							<tr><td>2</td><td>Munkidori</td><td>Twilight Masquerade 095</td><td>H</td><td>0</td></tr>
-							<tr><td>1</td><td>Fezandipiti ex</td><td>Shrouded Fable 038</td><td>H</td><td>0</td></tr>
-						</tbody>
-					</table>
-					<p><strong>Trainers (~34)</strong> — verified-legal core:</p>
-					<p>4 Buddy-Buddy Poffin (TEF 144, H) · 4 Ultra Ball (ME01 131, I) · 4 Rare Candy (ME01 125, I) · 4 Lillie&#x27;s Determination (ME01 119, I) · 3 Boss&#x27;s Orders (ME01 114, I) · 3 Night Stretcher (SFA 061, H) · 2 Switch (ME01 130, I) · 2 Gwynn (ME05 078, J) · 2 Dawn (PFL 087, I) · <strong>~6 flex</strong> (draw Supporter + Ball search to replace Iono/Arven/Nest Ball)</p>
-					<p><strong>Energy (9)</strong> — 9 Basic Darkness. <em>Sinister Surge</em> searches them from the deck, so the count can be lean.</p>
-			<aside data-callout="tip">
-				<p><strong>&quot;Gengar&quot; and &quot;Mega Gengar ex&quot; are different card names</strong>, so four of each is legal. Better still: <strong>they both evolve from Haunter.</strong> One Gastly→Haunter line feeds two completely different Stage 2 payoffs — the 3-Prize 350 HP monster, and your existing 1-Prize <em>Mind Jack</em> Gengar that gives up <strong>zero</strong> Prizes under <em>Shadowy Concealment</em>.</p>
-				<p>That&#x27;s why Gengar POR 050 stays in the list. It isn&#x27;t nostalgia; it&#x27;s the perfect single-prize attacker for this exact shell.</p>
-			</aside>
-					<p><strong>What carries over from <code>dark.csv</code>:</strong> the Gastly/Haunter/Gengar line, and every Trainer except the ones tuned for the casual build. <strong>Punk Helmet, Dark Bell, and Risky Ruins come out</strong> — they&#x27;re built for a one-Prize mirror, not for racing ex decks. <strong>Shadowy Darkness Energy</strong> is a genuine consideration (Bench damage prevention on a setup Mega Gengar), but the four-copy Special Energy cap and <em>Sinister Surge</em> only fetching <strong>Basic</strong> Darkness argue against it.</p>
 			</section>
 			<section>
 				<h3 id="how-to-play-ex-style">How To Play ex Style<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
@@ -858,19 +1046,21 @@
 				<p><strong>Ignore the high-numbered versions.</strong> There are Special Illustration Rare prints of this exact card at numbers above the set size (Ascended Heroes 269/217 and similar). Same text, same legality, many times the price — the same trap as the Umbreon ex SIR and the Eevee Poké Ball Pattern. If the number is bigger than the set total, it&#x27;s the collector version.</p>
 			</aside>
 					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Note</th></tr></thead>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
 						<tbody>
-							<tr><td><strong>Mega Gengar ex, PFL 056</strong></td><td>0</td><td><strong>3</strong></td><td>Double Rare, ~$1–2 each — see above</td></tr>
-							<tr><td>Gastly, PFL 054</td><td><strong>1</strong></td><td>3</td><td>You already own one</td></tr>
-							<tr><td>Haunter, PFL 055</td><td><strong>2</strong></td><td>1</td><td>In your current deck</td></tr>
-							<tr><td>Gengar, POR 050</td><td><strong>2</strong></td><td>0</td><td>Stays in — perfect 1-Prize attacker</td></tr>
-							<tr><td>Toxel / Toxtricity, PFL 067 / 068</td><td>0</td><td>3 / 2</td><td>The Energy engine</td></tr>
-							<tr><td>Munkidori, TWM 095</td><td>0</td><td><strong>2</strong></td><td>The damage engine</td></tr>
-							<tr><td>Fezandipiti ex, SFA 038</td><td>0</td><td>1</td><td>Draw off your own knockouts</td></tr>
-							<tr><td>Boss&#x27;s Orders, ME01 114</td><td><strong>2</strong></td><td>1</td><td>Go to 3</td></tr>
-							<tr><td>Everything else</td><td>✅</td><td>0</td><td>Already in <code>dark.csv</code></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Mega Gengar ex <small>ME02: Phantasmal Flames 056/094</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>Double Rare, about $1-2 each, see the printings table above</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Gastly <small>ME02: Phantasmal Flames 054/094</small></span></td><td>5</td><td>3</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Haunter <small>ME02: Phantasmal Flames 055/094</small></span></td><td>1</td><td>3</td><td><strong>2</strong></td><td>Already in your current deck</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Gengar <small>ME03: Perfect Order 050/088</small></span></td><td>3</td><td>2</td><td>✓</td><td>Stays in, a perfect 1-Prize attacker</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxel <small>ME02: Phantasmal Flames 067/094</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>The Energy engine</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxtricity <small>ME02: Phantasmal Flames 068/094</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>The Energy engine</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Munkidori <small>SV06: Twilight Masquerade 095/167</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>The damage engine</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Draw off your own knockouts</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>8</td><td>3</td><td>✓</td><td></td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>13</strong></td><td></td></tr>
 						</tbody>
 					</table>
+					<p>Everything else the list needs is already in your Gengar Gang deck.</p>
 					<p><strong>Roughly a dozen new cards and one set to learn.</strong> Cheapest upgrade path of anything in this project — because the shell you already built happens to be the right shell.</p>
 			<aside data-callout="important">
 				<p><strong>Before you buy: decide which game you&#x27;re buying for.</strong></p>

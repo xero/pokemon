@@ -304,6 +304,13 @@
 			display: flex;
 			flex-direction: column;
 
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so two cards in a row sat flush. only adjacent ones need it:
+			   an article following prose is already spaced by the prose. */
+			> article + article {
+				margin-top: var(--gap);
+			}
+
 			/* a card inside a game plan is on the plan's own background, and
 			   a border alone does not separate them. same reason a nested
 			   callout drops back to the page colour. */
@@ -357,6 +364,13 @@
 			section {
 				flex: 1 1 22rem;
 				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
 			}
 		}
 
@@ -452,9 +466,15 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
+				padding-left: 2px;
 			}
 		}
 
@@ -462,7 +482,7 @@
 		   cannot hold a third column, so these stay tables. */
 		table {
 			border-collapse: collapse;
-			margin-block: 0.8em;
+			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
 		}
@@ -470,24 +490,43 @@
 		th,
 		td {
 			border-bottom: 1px solid var(--line);
-			padding: 0.45em 0.7em 0.45em 0;
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
 			vertical-align: top;
 		}
 
-		/* a <dl> built from a real table keeps its header row, styled to match
-		   the <th> of the tables that stayed tables */
-		dl [data-head] {
-			color: var(--muted);
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 		}
 
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
 		th {
-			color: var(--muted);
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
 			font-size: 0.85em;
-			font-weight: 600;
+			font-weight: bolder;
 			letter-spacing: 0.04em;
 			text-transform: uppercase;
 			white-space: nowrap;
@@ -502,6 +541,32 @@
 				padding-top: 0.6em;
 			}
 		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
 		}
 
 		/* sprites parked in the corner of a heading. decorative, and the
@@ -615,7 +680,7 @@
 				<section>
 					<h2><a href="./collection.html">Pokémon Caught!</a></h2>
 					<p>Every Pokémon in the binder, sorted by name, with what each one does, and if it&#x27;s tournament legal.</p>
-					<p><small><em>87 unique cards</em></small></p>
+					<p><small><em>95 unique cards</em></small></p>
 				</section>
 			</article>
 			<article>
@@ -639,6 +704,7 @@
 				<section>
 					<h2><a href="./fire-standard.html">Fox's Flareon ex — Standard Legal</a></h2>
 					<p>The planning notes behind the Flareon Engine: why the deck is built this way, the exact card text, and what it still gives up.</p>
+					<p><small><em>7 unique cards</em></small></p>
 				</section>
 			</article>
 			<article>
@@ -650,17 +716,11 @@
 				</section>
 			</article>
 			<article>
-				<aside data-sprite><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></aside>
-				<section>
-					<h2><a href="./dark-ex.html">Xero's Dark Box — Standard Legal</a></h2>
-					<p>Planning notes. What a real Standard Mega Gengar ex deck looks like, and the honest argument for not putting one across the table from Fox.</p>
-				</section>
-			</article>
-			<article>
 				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./psychic-lanterns.html">Xero's Witching Hour</a></h2>
 					<p>Paper plan. Chandelure dropping three damage counters anywhere on the board, every turn, for free — including on the Bench.</p>
+					<p><small><em>9 unique cards</em></small></p>
 				</section>
 			</article>
 			<article>
@@ -668,6 +728,15 @@
 				<section>
 					<h2><a href="./psychic-sleep.html">Xero's Long Night</a></h2>
 					<p>Paper plan. The other way to build the Psychic Gengars: put them to sleep on turn one and never let them wake up.</p>
+					<p><small><em>7 unique cards</em></small></p>
+				</section>
+			</article>
+			<article>
+				<aside data-sprite><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./dark-ex.html">Xero's Dark Box — Tournament EX</a></h2>
+					<p>Not a deck, a primer. Mega Gengar ex and the cards around it, used to explain how ex play style actually works.</p>
+					<p><small><em>9 unique cards</em></small></p>
 				</section>
 			</article>
 		</main>

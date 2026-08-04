@@ -194,14 +194,17 @@ The mitigation is *Tera*. A Benched eeveelution ex takes **zero** damage from at
 
 ## What To Buy
 
-Checked against `cards.csv`. Everything else this deck lists is already in the binder, including all four Stellar Crown cards and every Trainer.
+Counts checked against `cards.csv`. They will become a live table the day this file gets an HTML build. Everything else this deck lists is already in the binder, including all four Stellar Crown cards and every Trainer.
 
-| Card | Set | Need |
-| :--- | :--- | :--- |
-| **Umbreon ex** | Prismatic Evolutions 060 | 2 |
-| Leafeon ex | Prismatic Evolutions 006 | 1 |
-| Glaceon ex | Prismatic Evolutions 026 | 1 |
-| Basic Lightning / Psychic / Grass Energy | any | 2 / 2 / 1 |
+| Card | Own | Need | Buy | Note |
+| :--- | :--- | :--- | :--- | :--- |
+| Umbreon ex <small>SV: Prismatic Evolutions 060/131</small> | 0 | 2 | **2** | Buy the plain Double Rare, **not** the 161 Special Illustration |
+| Leafeon ex <small>SV: Prismatic Evolutions 006/131</small> | 0 | 1 | **1** | *Verdant Storm* scales on **their** Energy |
+| Glaceon ex <small>SV: Prismatic Evolutions 026/131</small> | 0 | 1 | **1** | The card that beats [Build 1](./fire-standard.md) |
+| Basic Lightning Energy <small>MEE: Mega Evolution Energies 4</small> | 0 | 2 | **2** |  |
+| Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small> | 0 | 2 | **2** |  |
+| Basic Grass Energy <small>MEE: Mega Evolution Energies 1</small> | 0 | 1 | **1** |  |
+| **Total to buy** | | | **9** | |
 
 **All three are Prismatic Evolutions.** One set, one seller, one shipping charge. Fire and Darkness Energy you already have.
 

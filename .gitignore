@@ -12,3 +12,7 @@ shopping-list.md
 *.bak
 .DS_Store
 __pycache__/
+
+# Raw order-history quantity scrape. product-ids.tsv carries the merged result,
+# which is what the generators actually read.
+order-quantities.tsv

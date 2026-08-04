@@ -74,7 +74,7 @@ And then there's the payoff card the first draft was missing entirely:
 | 4 | Rare Candy | Item | any |
 | 4 | Ultra Ball | Item | any |
 | 4 | Professor's Research | Supporter | any |
-| 3 | Mysterious Treasure | Item | Forbidden Light 145 |
+| 3 | Mysterious Treasure | Item | Forbidden Light 113 |
 | 3 | N | Supporter | Noble Victories 92 |
 | 2 | Level Ball | Item | Battle Styles 129 |
 | 2 | Switch | Item | any |
@@ -100,24 +100,25 @@ And then there's the payoff card the first draft was missing entirely:
 
 ### Chandelure — Noble Victories 060
 
-Psychic, **130 HP**, Stage 2 from Lampent. Weak **Darkness ×2**, no Resistance, Retreat 2.
+Stage 2 from Lampent.
 
-- **Ability — *Cursed Shadow*.** Once during your turn (before your attack), **if this Pokémon is your Active Pokémon**, you may put 3 damage counters on your opponent's Pokémon in any way you like.
-- **Attack — *Eerie Glow* [P][C][C], 50.** The Defending Pokémon is now **Burned and Confused**.
+**Read the Ability's condition twice: *Cursed Shadow* only works while Chandelure is your Active Pokémon.** Not from the Bench. That one word is what makes this deck harder to pilot than it looks.
 
-### Litwick — Noble Victories 058 · Lampent — Noble Victories 059
+### Litwick — Noble Victories 058
 
-- **Litwick**, Psychic, 50 HP, Basic. *Teleportation Burst* [P], 10 — switch this Pokémon with 1 of your Benched Pokémon.
-- **Lampent**, Psychic, 80 HP, Stage 1. ***Luring Light* [C]** — switch the Defending Pokémon with 1 of your opponent's Benched Pokémon. *Will-O-Wisp* [P][C], 30.
+The bottom of the line into Chandelure. Four of them, because a Stage 2 needs a Basic underneath it before anything else can happen.
+
+### Lampent — Noble Victories 059
+
+**Lampent's *Luring Light* is a free Boss's Orders on a Stage 1**, worth remembering when you are one Prize from winning.
 
 > *Luring Light* is **Boss's Orders stapled to an attack, for one Colorless.** It is the reason this deck runs zero copies of Boss's Orders.
 
 ### Wobbuffet — Phantom Forces 036
 
-Psychic, **110 HP**, Basic. Weak **Psychic ×2**, no Resistance, Retreat 2.
+Basic, and **Weak to Psychic ×2**, which only ever matters against your own other Psychic build.
 
-- **Ability — *Bide Barricade*.** As long as this Pokémon is your Active Pokémon, each Pokémon in play, in each player's hand, and in each player's discard pile has no Abilities (except for [P] Pokémon).
-- **Attack — *Psychic Assault* [P], 10+.** 10 more damage for each damage counter on your opponent's Active Pokémon.
+*Psychic Assault* is how you cash in every counter you have piled up:
 
 | Counters on their Active | Psychic Assault |
 | :--- | :--- |
@@ -129,23 +130,15 @@ Psychic, **110 HP**, Basic. Weak **Psychic ×2**, no Resistance, Retreat 2.
 
 ### Gengar — Lost Origin 066 *(you own the Trick or Trade 2023 reprint)*
 
-Psychic, **120 HP**, Stage 2 from Haunter. Weak **Darkness ×2**, Resist **Fighting −30**, Retreat 2.
-
-- **Ability — *Netherworld Gate*.** Once during your turn, if this Pokémon is in your discard pile, you may put it onto your Bench. If you do, put 3 damage counters on this Pokémon.
-- **Attack — *Screaming Circle* [P].** Put 2 damage counters on your opponent's Active Pokémon for each of your opponent's Benched Pokémon.
+Stage 2 from Haunter. ***Netherworld Gate* works from the discard pile**, which is why one copy earns its slot even on the turns you never draw it.
 
 ### Gengar — Sword & Shield 085
 
-Psychic, **110 HP**, Stage 2 from Haunter. Weak **Darkness ×2**, Resist **Fighting −30**, Retreat 2.
-
-- **Ability — *Life Shaker*.** As often as you like during your turn, move 1 damage counter from 1 of your Psychic Pokémon to another of your Psychic Pokémon.
-- **Attack — *Hypnoblast* [P][P][C], 90.** Opponent's Active is now Asleep.
+Stage 2 from Haunter. ***Life Shaker* has no once-per-turn limit**, so damage already on your own board is fluid rather than fixed.
 
 ### Gourgeist — Evolving Skies 077 *(you own this as Trick or Trade 077)*
 
-Psychic, 120 HP, Stage 1 from Pumpkaboo. Weak **Darkness ×2**, Resist **Fighting −30**, Retreat 2.
-
-- **Attack — *Pandemonium* [C][C], 60×.** Reveal the top 6 cards of your deck; 60 damage per [P] Pokémon found. Shuffle those back, discard the rest.
+Stage 1 from Pumpkaboo. *Pandemonium* shuffles the Psychic Pokémon it finds back in and discards the rest.
 
 > With **23** Psychic Pokémon in 60 cards, expected hit is ~2.3 → **~140 damage**. That is a real number now. In the first draft this card was a coin toss; here it is a legitimate second plan.
 
@@ -348,24 +341,27 @@ Every Pokémon in this deck is Weak to **Darkness** or **Psychic**. Fox plays **
 
 You already own the entire Gastly line and most of the Gourgeist line.
 
-| Card | Own | Need | Note |
-| :--- | :--- | :--- | :--- |
-| Gastly, Haunter (Psychic) | **11** | 0 | Skip 151 093 — its Ability helps your opponent |
-| Pumpkaboo (Psychic) | **3** | 0 | Any print |
-| Gengar, SSH 085 | **1** | 0 | *Life Shaker* |
-| Gengar, LOR 066 | **1** | **2** | Buy **Lost Origin** prints; your ToT 2023 066 is the same card |
-| Gourgeist, EVS 077 | **1** | **1** | Yours is the ToT 077 print |
-| **Litwick, NVI 058** | 0 | **4** | Common, cents |
-| **Lampent, NVI 059** | 0 | **1** | ~$1.50 |
-| **Chandelure, NVI 060** | 0 | **3** | The expensive one — Rare Holo, 2011 |
-| **Wobbuffet, PHF 036** | 0 | **2** | Common |
-| Old Cemetery | **1** | **1** | Chilling Reign 147 |
-| Float Stone | 0 | **2** | Plasma Freeze 99 |
-| Mysterious Treasure | 0 | **3** | Forbidden Light 145 |
-| Level Ball | 0 | **2** | Battle Styles 129 |
-| N | 0 | **3** | Noble Victories 92 |
-| Rare Candy / Ultra Ball / Prof's Research / Switch | **1+ of each** | up to 14 | You own all four now. `cards.csv` has no counts, and these are shared with the Fire and Dark decks — count what's actually spare before ordering |
-| Basic Psychic Energy | 0 | 11 | Never rotates |
+```buy
+Gengar | Lost Origin 066 | 3 | Your ToT 2023 066 is the same card and counts
+Chandelure | Noble Victories 060 | 3 | The expensive one, Rare Holo, 2011
+Lampent | Noble Victories 059 | 1 |
+Litwick | Noble Victories 058 | 4 | Common, cents. The Fire prints you own do **not** serve this line
+Wobbuffet | Phantom Forces 036 | 2 | Common
+Gourgeist | Evolving Skies 077 | 2 | Yours is the ToT 077 print of the same card
+Gengar | Sword & Shield 085 | 1 | *Life Shaker*
+Old Cemetery | Chilling Reign 147 | 2 |
+Float Stone | Plasma Freeze 099 | 2 |
+Mysterious Treasure | Forbidden Light 113 | 3 | **113**, not the 145 gold Secret print
+Level Ball | Battle Styles 129 | 2 |
+N | Noble Victories 092 | 3 |
+Rare Candy | Mega Evolution 125 | 4 | Shared with the Fire and Dark decks
+Ultra Ball | Mega Evolution 131 | 4 | Shared with the Fire and Dark decks
+Professor's Research | Prismatic Evolutions 122 | 4 | Shared with the Fire deck
+Switch | Mega Evolution 130 | 2 | Shared with the Fire and Dark decks
+Basic Psychic Energy | Mega Evolution Energies 005 | 11 | Never rotates
+```
+
+The Gastly, Haunter, and Pumpkaboo lines are already covered. Skip **151 093** for Haunter; its Ability helps your opponent.
 
 **Not Standard legal and cannot be made so** — Noble Victories, Phantom Forces, Plasma Freeze, Chilling Reign, Battle Styles, Forbidden Light, and Lost Origin are all rotated. That's the point, and it's what keeps the parts cheap.
 
