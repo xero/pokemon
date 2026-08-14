@@ -13,6 +13,7 @@ tcg deck planning for me and my son
 
 - [xero's witching hour](./psychic-lanterns.md)
 - [xero's long night](./psychic-sleep.md)
+- [xero's lanterns reborn](./psychic-standard.md)
 - [dark ex](./dark-ex.md)
 - [fire standard](./fire-standard.md)
 - [eevee standard](./eevee-standard.md)

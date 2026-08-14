@@ -47,7 +47,8 @@ MASCOT = {"dark.md": ["gengar", "weezing"],
           "fire-standard.md": ["eevee", "flareon"],
           "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
           "psychic-lanterns.md": ["chandelure", "gengar"],
-          "psychic-sleep.md": ["hypno", "gengar"]}
+          "psychic-sleep.md": ["hypno", "gengar"],
+          "psychic-standard.md": ["chandelure", "gourgeist"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -77,16 +78,20 @@ FLAVOR = {
     # are the closest thing they have to a card page.
     # no sprite exists for Toxtricity, Munkidori, or Dragapult, so this one
     # runs on the Gengar line it is named after.
-    # no sprite exists for Toxel, Toxtricity, Munkidori or Fezandipiti, so the
-    # cards that have one get it and the rest go without.
+    # no sprite exists for Toxel, Toxtricity, Munkidori, Fezandipiti, or
+    # Pecharunt, so the cards that have one get it and the rest go without.
+    # seviper and sableye were promoted from assets/ani for this page.
     "dark-ex.md": {
         "Mega Gengar ex — Phantasmal Flames 056 · Reg I": ["gengar-mega"],
         "Gastly — Phantasmal Flames 054 · Reg I": ["gastly"],
-        "Haunter — Phantasmal Flames 055 · Reg I": ["haunter"],
+        "Haunter — Perfect Order 049 · Reg J": ["haunter"],
         "Gengar — Perfect Order 050 · Reg J": ["gengar"],
-        "❌ Gengar Spirit Link — Skip It": ["wobbuffet-back"],
+        "Seviper — Phantasmal Flames 062 · Reg I": ["seviper"],
+        "Sableye — Phantasmal Flames 059 · Reg I": ["sableye"],
+        "✗ Gengar Spirit Link — Skip It": ["wobbuffet-back"],
         "Gengar Spirit Link — Phantom Forces 095": ["gengar-mega-shiny"],
         "The Real Card Is the Ability, Not the Attack": ["gengar-booty"],
+        "Versus the Kitchen Table": ["weezing"],
         "How To Play ex Style": ["charizard"],
         "7. Errors to expect on the way over": ["eevee-back"],
         "What To Buy": ["koffing"],
@@ -122,6 +127,28 @@ FLAVOR = {
         "2. The Traffic Jam": ["pumpkaboo"],
         "Versus Fox": ["charizard"],
         "Build A or Build B?": ["drowzee"],
+    },
+    "psychic-standard.md": {
+        # the ghost and ice lines came from assets/ani; no Mega Chandelure
+        # sprite exists, so the base form stands in for it.
+        "Mega Chandelure ex — Pitch Black 038 · Reg J": ["chandelure"],
+        "Litwick — Pitch Black 036 · Reg J": ["litwick"],
+        "Lampent — Pitch Black 037 · Reg J": ["lampent"],
+        "Pumpkaboo — Chaos Rising 040 · Reg J": ["pumpkaboo"],
+        "Gourgeist ex — Chaos Rising 041 · Reg J": ["gourgeist"],
+        "Duskull — Shrouded Fable 018 · Reg H": ["duskull"],
+        "Dusclops — Shrouded Fable 019 · Reg H": ["dusclops"],
+        "Dusknoir — Shrouded Fable 020 · Reg H": ["dusknoir"],
+        "Snorunt — Twilight Masquerade 051 · Reg H": ["snorunt"],
+        "Froslass — Twilight Masquerade 053 · Reg H": ["froslass"],
+        "The Thesis": ["litwick"],
+        "1. The Trap": ["chandelure"],
+        "2. Feeding the Rondo": ["gourgeist"],
+        "3. The Thirteen-Counter Button": ["dusknoir"],
+        "4. The Spreading Light Endgame": ["lampent"],
+        "5. What This Deck Gives Up": ["duskull"],
+        "Versus the Kitchen Table": ["charizard"],
+        "What To Buy": ["pumpkaboo"],
     },
     "psychic-sleep.md": {
         "The Thesis": ["gastly"],
@@ -165,6 +192,8 @@ FLAVOR = {
         "Gengar": ["gengar"],
         "Koffing": ["koffing"],
         "Weezing": ["weezing"],
+        # no sprite exists for Toxel or Toxtricity; Sableye's came from ani
+        "Sableye": ["sableye"],
         "1. The Two-Turn Fuse": ["weezing"],
         "2. Growing a Ghost in the Dark": ["gastly"],
         "3. The Bench Tax": ["gengar"],
@@ -730,7 +759,8 @@ def bullets_or_para(text, ind):
 
 
 DECKS = ["dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
-         "fire-standard.md", "psychic-lanterns.md", "psychic-sleep.md"]
+         "fire-standard.md", "psychic-lanterns.md", "psychic-sleep.md",
+         "psychic-standard.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

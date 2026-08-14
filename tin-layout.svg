@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 706 662" width="706" height="662" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+	<style>
+		:root { --bg:#fbfbfa; --ink:#1c1b19; --line:#8a8781; --warn:#c2410c; --sub:#6b6862; }
+		@media (prefers-color-scheme: dark) {
+			:root { --bg:#161513; --ink:#eceae6; --line:#7d7a73; --warn:#fb923c; --sub:#9a968e; }
+		}
+		.tin { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+		.h1 { fill: var(--ink); font-size: 17px; font-weight: 700; }
+		.h2 { fill: var(--ink); font-size: 12px; font-weight: 700; }
+		.sub { fill: var(--sub); font-size: 11px; }
+		.cap { fill: var(--sub); font-size: 10px; text-anchor: middle; }
+		.lid { fill: var(--warn); font-size: 10px; }
+		.chip { fill: #fff; font-size: 9.5px; font-weight: 700; text-anchor: middle; }
+		.spare { fill: var(--sub); font-size: 8.5px; text-anchor: middle; opacity: .8; }
+		.dim { fill: var(--sub); font-size: 10px; text-anchor: middle; }
+	</style>
+	<rect x="0" y="0" width="706" height="662" fill="var(--bg)" />
+
+	<text class="h1" x="30" y="34">Mini tin &#8212; one full set, top down</text>
+	<text class="sub" x="30" y="54">interior 115.71 &#215; 68.07 &#215; 20.03 mm, measured off min-tin-insert_base.stl</text>
+	<text class="sub" x="30" y="70">tokens &#216;20 mm &#183; 24&#215;10 + 5&#215;50 + 5&#215;100 &#183; 11 of 15 columns used</text>
+
+	<rect class="tin" x="30" y="104" width="462.8" height="272.3" rx="80.0" />
+	<text class="dim" x="261" y="94">115.71 mm</text>
+	<text class="dim" x="527" y="240">68.07</text>
+	<circle cx="83.3" cy="157.3" r="40.0" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="83.3" y="160.8" class="chip">4×10</text>
+	<circle cx="163.3" cy="157.3" r="40.0" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="163.3" y="160.8" class="chip">4×10</text>
+	<circle cx="243.3" cy="157.3" r="40.0" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="243.3" y="160.8" class="chip">4×10</text>
+	<circle cx="323.3" cy="157.3" r="40.0" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="323.3" y="160.8" class="chip">4×10</text>
+	<circle cx="403.3" cy="157.3" r="40.0" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="403.3" y="160.8" class="chip">4×10</text>
+	<circle cx="83.3" cy="237.3" r="40.0" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="83.3" y="240.8" class="chip">4×10</text>
+	<circle cx="163.3" cy="237.3" r="40.0" fill="#d42a2a" stroke="var(--ink)" stroke-width="1" />
+	<text x="163.3" y="240.8" class="chip">100+50</text>
+	<circle cx="243.3" cy="237.3" r="40.0" fill="#d42a2a" stroke="var(--ink)" stroke-width="1" />
+	<text x="243.3" y="240.8" class="chip">100+50</text>
+	<circle cx="323.3" cy="237.3" r="40.0" fill="#d42a2a" stroke="var(--ink)" stroke-width="1" />
+	<text x="323.3" y="240.8" class="chip">100+50</text>
+	<circle cx="403.3" cy="237.3" r="40.0" fill="#d42a2a" stroke="var(--ink)" stroke-width="1" />
+	<text x="403.3" y="240.8" class="chip">100+50</text>
+	<circle cx="83.3" cy="317.3" r="40.0" fill="#d42a2a" stroke="var(--ink)" stroke-width="1" />
+	<text x="83.3" y="320.8" class="chip">100+50</text>
+	<circle cx="163.3" cy="317.3" r="40.0" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6" />
+	<text x="163.3" y="320.8" class="spare">spare</text>
+	<circle cx="243.3" cy="317.3" r="40.0" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6" />
+	<text x="243.3" y="320.8" class="spare">spare</text>
+	<circle cx="323.3" cy="317.3" r="40.0" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6" />
+	<text x="323.3" y="320.8" class="spare">spare</text>
+	<circle cx="403.3" cy="317.3" r="40.0" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".6" />
+	<text x="403.3" y="320.8" class="spare">spare</text>
+
+	<text class="h2" x="30" y="450.28">Column heights against the 20.03 mm lid</text>
+	<line x1="30" y1="486.28" x2="402" y2="486.28" stroke="var(--warn)" stroke-width="2" stroke-dasharray="6 4" />
+	<text x="410" y="490.28" class="lid">lid &#8212; 20.03 mm</text>
+	<line x1="30" y1="566.4" x2="402" y2="566.4" stroke="var(--ink)" stroke-width="2" />
+	<rect x="42" y="546.4" width="82" height="20.0" rx="2" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="83" y="559.9" class="chip">10</text>
+	<rect x="42" y="526.4" width="82" height="20.0" rx="2" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="83" y="539.9" class="chip">10</text>
+	<rect x="42" y="506.4" width="82" height="20.0" rx="2" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="83" y="519.9" class="chip">10</text>
+	<rect x="42" y="486.4" width="82" height="20.0" rx="2" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="83" y="499.9" class="chip">10</text>
+	<text x="83" y="583.4" class="cap">4 &#215; 10 = 20.0</text>
+	<rect x="164" y="534.4" width="82" height="32.0" rx="2" fill="#e8730a" stroke="var(--ink)" stroke-width="1" />
+	<text x="205" y="553.9" class="chip">50</text>
+	<rect x="164" y="490.4" width="82" height="44.0" rx="2" fill="#d42a2a" stroke="var(--ink)" stroke-width="1" />
+	<text x="205" y="515.9" class="chip">100</text>
+	<text x="205" y="583.4" class="cap">100 + 50 = 19.0</text>
+	<rect x="286" y="546.4" width="82" height="20.0" rx="2" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="327" y="559.9" class="chip">10</text>
+	<rect x="286" y="526.4" width="82" height="20.0" rx="2" fill="#9aa0a6" stroke="var(--ink)" stroke-width="1" />
+	<text x="327" y="539.9" class="chip">10</text>
+	<rect x="286" y="494.4" width="82" height="32.0" rx="2" fill="#e8730a" stroke="var(--ink)" stroke-width="1" />
+	<text x="327" y="513.9" class="chip">50</text>
+	<text x="327" y="583.4" class="cap">50 + 2&#215;10 = 18.0</text>
+
+	<text class="sub" x="30" y="616">grey = 10 (5 mm) &#183; orange = 50 (8 mm) &#183; red = 100 (11 mm)</text>
+	<text class="sub" x="30" y="634">four 10s stand 20.00 mm in a 20.03 mm tin. 0.03 mm spare, so plan on 3-high if his figures drift.</text>
+</svg>

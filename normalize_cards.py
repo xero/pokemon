@@ -346,6 +346,19 @@ MANUAL_MARKS = {
     # checked again against the Art Rare Haunter 022/021. A starter deck is one
     # print run carrying one mark, so it is keyed to the set.
     "MBG": "I",
+    # Surging Sparks is missing from pokemontcg.io. Every card on Bulbapedia's
+    # set page carries an H, so it is keyed to the set. Scramble Switch 186/191
+    # from the Mewtwo League Battle Deck is the card that needed it.
+    "SSP": "H",
+    # Black Bolt is missing too. Every card on Bulbapedia's set page carries an
+    # I, Pokegear 3.0 084/086 included, so it is keyed to the set.
+    "BLK": "I",
+    # The Mega Battle Deck's Illustration Rare Haunter. Bulbapedia records no
+    # mark for promos, but it is an alt-art reprint of Phantasmal Flames 055
+    # (an I upstream) and its Japanese twin is the MBG Art Rare read as I
+    # above. Keyed to the card, not the series: promo series outlive marks,
+    # the way SVP promos span G through I.
+    "MEP/27": "I",
 }
 
 REG_MARKS = {}

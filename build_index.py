@@ -34,8 +34,12 @@ PAGES = [
      "Paper plan. The other way to build the Psychic Gengars: put them to"
      " sleep on turn one and never let them wake up."),
     ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
-     "Not a deck, a primer. Mega Gengar ex and the cards around it, used to"
-     " explain how ex play style actually works."),
+     "Xero's tournament deck. Mega Gengar ex over a bench of zero-prize"
+     " attackers, and the prize ladder that bends every trade."),
+    ("psychic-standard.html", ["chandelure", "dusknoir"],
+     "Witching Hour's tournament heir. Mega Chandelure ex turns the"
+     " opponent's own Retreat Cost into damage, and Boss's Orders picks"
+     " the victim."),
 ]
 
 

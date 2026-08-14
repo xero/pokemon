@@ -30,6 +30,7 @@
   - [Eevee ex](#eevee-ex) _SV: Prismatic Evolutions_
   - [Eevee V](#eevee-v) _SWSH: Sword & Shield Promo Cards_
   - [Eternatus](#eternatus) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Eternatus](#eternatus-1) _ME02: Phantasmal Flames_
 - **F**
   - [Flareon](#flareon) _SV: Prismatic Evolutions_
   - [Flareon ex](#flareon-ex) _SV: Prismatic Evolutions_
@@ -64,13 +65,14 @@
   - [Haunter](#haunter-2) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Haunter](#haunter-3) _ME02: Phantasmal Flames_
   - [Haunter](#haunter-4) _ME03: Perfect Order_
-  - [Haunter](#haunter-5) _SM - Crimson Invasion_
-  - [Haunter](#haunter-6) _SV: Paldean Fates_
-  - [Haunter](#haunter-7) _SV: Scarlet & Violet 151_
-  - [Haunter](#haunter-8) _SWSH01: Sword & Shield Base Set_
-  - [Haunter](#haunter-9) _Trick or Trade BOOster Bundle_
-  - [Haunter](#haunter-10) _Trick or Trade BOOster Bundle 2023_
-  - [Haunter](#haunter-11) _Trick or Trade BOOster Bundle 2024_
+  - [Haunter](#haunter-5) _ME: Mega Evolution Promo_
+  - [Haunter](#haunter-6) _SM - Crimson Invasion_
+  - [Haunter](#haunter-7) _SV: Paldean Fates_
+  - [Haunter](#haunter-8) _SV: Scarlet & Violet 151_
+  - [Haunter](#haunter-9) _SWSH01: Sword & Shield Base Set_
+  - [Haunter](#haunter-10) _Trick or Trade BOOster Bundle_
+  - [Haunter](#haunter-11) _Trick or Trade BOOster Bundle 2023_
+  - [Haunter](#haunter-12) _Trick or Trade BOOster Bundle 2024_
   - [Honchkrow](#honchkrow) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Hoothoot](#hoothoot) _SV07: Stellar Crown_
   - [Houndoom](#houndoom) _Trick or Trade BOOster Bundle 2023_
@@ -85,6 +87,7 @@
 - **M**
   - [Magcargo](#magcargo) _SWSH04: Vivid Voltage_
   - [Mega Gengar ex](#mega-gengar-ex) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Mega Gengar ex](#mega-gengar-ex-1) _ME02: Phantasmal Flames_
   - [Mew V](#mew-v) _SWSH08: Fusion Strike_
   - [Murkrow](#murkrow) _MBG: MEGA Starter Set Mega Gengar ex_
 - **N**
@@ -97,14 +100,26 @@
   - [Pumpkaboo](#pumpkaboo-2) _SV04: Paradox Rift_
 - **S**
   - [Sableye](#sableye) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Sableye](#sableye-1) _ME02: Phantasmal Flames_
+  - [Seviper](#seviper) _ME02: Phantasmal Flames_
   - [Sinistcha (Cosmos Holo)](#sinistcha-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Slugma](#slugma) _SWSH04: Vivid Voltage_
   - [Spiritomb](#spiritomb) _SWSH06: Chilling Reign_
   - [Sudowoodo](#sudowoodo) _SWSH01: Sword & Shield Base Set_
 - **T**
   - [Tatsugiri](#tatsugiri) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Team Rocket's Articuno](#team-rockets-articuno) _SV10: Destined Rivals_
+  - [Team Rocket's Crobat ex](#team-rockets-crobat-ex) _SV10: Destined Rivals_
+  - [Team Rocket's Golbat](#team-rockets-golbat) _SV10: Destined Rivals_
   - [Team Rocket's Koffing](#team-rockets-koffing) _SV10: Destined Rivals_
+  - [Team Rocket's Mewtwo ex](#team-rockets-mewtwo-ex) _SV10: Destined Rivals_
+  - [Team Rocket's Mimikyu](#team-rockets-mimikyu) _SV10: Destined Rivals_
+  - [Team Rocket's Spidops](#team-rockets-spidops) _SV10: Destined Rivals_
+  - [Team Rocket's Tarountula](#team-rockets-tarountula) _SV10: Destined Rivals_
   - [Team Rocket's Weezing](#team-rockets-weezing) _SV10: Destined Rivals_
+  - [Team Rocket's Zubat](#team-rockets-zubat) _SV10: Destined Rivals_
+  - [Toxel](#toxel) _ME02: Phantasmal Flames_
+  - [Toxtricity](#toxtricity) _ME02: Phantasmal Flames_
   - [Trevenant](#trevenant) _Trick or Trade BOOster Bundle 2023_
 - **W**
   - [Weezing](#weezing) _Hidden Fates_
@@ -561,6 +576,25 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> only English cards allowed</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="eternatus-1">Eternatus <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/660406_eternatus.jpg"><img src="./assets/660406_eternatus.jpg" width="350" alt="Eternatus"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 069/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 150</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Shatter (50) - Discard a Stadium in play.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Power Rush (130) - Flip a coin. If tails, during your next turn, this Pokémon can&#x27;t attack.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -1131,7 +1165,25 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-5">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-5">Haunter</h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/659232_haunter-027.jpg"><img src="./assets/659232_haunter-027.jpg" width="350" alt="Haunter"></a></th>
+  </tr>
+  <tr><td><b>ME: Mega Evolution Promo</b> 027</td></tr>
+  <tr><td><b>Rarity</b>: Illustration Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 100</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Spooky Shot (40)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/149060_haunter.jpg"><img src="./assets/149060_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1149,7 +1201,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/534418_haunter.jpg"><img src="./assets/534418_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1167,7 +1219,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/516662_haunter.jpg"><img src="./assets/516662_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1185,7 +1237,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/208390_haunter.jpg"><img src="./assets/208390_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1204,7 +1256,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283812_haunter.jpg"><img src="./assets/283812_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1222,7 +1274,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/515660_haunter.jpg"><img src="./assets/515660_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1240,7 +1292,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-12">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/570361_haunter.jpg"><img src="./assets/570361_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1443,6 +1495,24 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="mega-gengar-ex-1"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" height="20" align="top"> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/660380_mega-gengar-ex.jpg"><img src="./assets/660380_mega-gengar-ex.jpg" width="350" alt="Mega Gengar ex"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 056/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 350</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="mew-v">Mew V <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" height="18" align="top"></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/253274_mew-v.jpg"><img src="./assets/253274_mew-v.jpg" width="350" alt="Mew V"></a></th>
@@ -1589,6 +1659,42 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="sableye-1">Sableye <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/660412_sableye.jpg"><img src="./assets/660412_sableye.jpg" width="350" alt="Sableye"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 059/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Cocky Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="seviper">Seviper <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/660413_seviper.jpg"><img src="./assets/660413_seviper.jpg" width="350" alt="Seviper"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 062/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 120</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Excited Power - If you have any Darkness Mega Evolution Pokémon ex in play, attacks used by this Pokémon do 120 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Pitch-Black Fangs (120)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="sinistcha-cosmos-holo">Sinistcha (Cosmos Holo) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/570462_sinistcha-cosmos-holo.jpg"><img src="./assets/570462_sinistcha-cosmos-holo.jpg" width="350" alt="Sinistcha (Cosmos Holo)"></a></th>
@@ -1683,6 +1789,60 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="team-rockets-articuno">Team Rocket&#x27;s Articuno <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632864_team-rockets-articuno.jpg"><img src="./assets/632864_team-rockets-articuno.jpg" width="350" alt="Team Rocket&#x27;s Articuno"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 051/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 120</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Repelling Veil - Prevent all effects of attacks used by your opponent&#x27;s Pokémon done to your Basic Team Rocket&#x27;s Pokémon in play. (Existing effects are not removed. Damage is not an effect.)</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Dark Frost (60+) - If this Pokémon has any Team Rocket&#x27;s Energy attached, this attack does 60 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632930_team-rockets-crobat-ex-122-182.jpg"><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" width="350" alt="Team Rocket&#x27;s Crobat ex"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 122/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 310</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Biting Spree - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may choose 2 of your opponent&#x27;s Pokémon and put 2 damage counters on each of them.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Assassin&#x27;s Return (120) - You may put this Pokémon into your hand. (Discard all cards attached to this Pokémon.)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="team-rockets-golbat">Team Rocket&#x27;s Golbat <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632929_team-rockets-golbat.jpg"><img src="./assets/632929_team-rockets-golbat.jpg" width="350" alt="Team Rocket&#x27;s Golbat"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 121/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Sneaky Bite - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put 2 damage counters on 1 of your opponent&#x27;s Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Confuse Ray (30) - Your opponent&#x27;s Active Pokémon is now Confused.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="team-rockets-koffing">Team Rocket&#x27;s Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/632933_team-rockets-koffing.jpg"><img src="./assets/632933_team-rockets-koffing.jpg" width="350" alt="Team Rocket&#x27;s Koffing"></a></th>
@@ -1701,6 +1861,78 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="team-rockets-mewtwo-ex">Team Rocket&#x27;s Mewtwo ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg"><img src="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" width="350" alt="Team Rocket&#x27;s Mewtwo ex"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 081/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 280</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Power Saver - This Pokémon can&#x27;t attack unless you have 4 or more Team Rocket&#x27;s Pokémon in play.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Erasure Ball (160+) - You may discard up to 2 Energy from your Benched Pokémon. This attack does 60 more damage for each card you discarded in this way.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="team-rockets-mimikyu">Team Rocket&#x27;s Mimikyu <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/630821_team-rockets-mimikyu.jpg"><img src="./assets/630821_team-rockets-mimikyu.jpg" width="350" alt="Team Rocket&#x27;s Mimikyu"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 087/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Gemstone Mimicry - Choose 1 of your opponent&#x27;s Active Tera Pokémon&#x27;s attacks and use it as this attack.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: 0</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="team-rockets-spidops">Team Rocket&#x27;s Spidops <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632846_team-rockets-spidops-020-182.jpg"><img src="./assets/632846_team-rockets-spidops-020-182.jpg" width="350" alt="Team Rocket&#x27;s Spidops"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 020/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 130</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Charging Up - Once during your turn, you may attach a Basic Energy card from your discard pile to this Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Rocket Rush (30x) - This attack does 30 damage for each of your Team Rocket&#x27;s Pokémon in play.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="team-rockets-tarountula">Team Rocket&#x27;s Tarountula <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632845_team-rockets-tarountula.jpg"><img src="./assets/632845_team-rockets-tarountula.jpg" width="350" alt="Team Rocket&#x27;s Tarountula"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 019/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 50</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Take Down (30) - This Pokémon also does 10 damage to itself.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="team-rockets-weezing">Team Rocket&#x27;s Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/632934_team-rockets-weezing-126-182.jpg"><img src="./assets/632934_team-rockets-weezing-126-182.jpg" width="350" alt="Team Rocket&#x27;s Weezing"></a></th>
@@ -1712,6 +1944,61 @@
   <tr><td><b>Stage</b>: Stage 1</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Explode Together Now (40x) - This attack does 40 damage for each Pokémon in play that has &quot;Koffing&quot; or &quot;Weezing&quot; in its name (both yours and your opponent&#x27;s).</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="team-rockets-zubat">Team Rocket&#x27;s Zubat <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632928_team-rockets-zubat.jpg"><img src="./assets/632928_team-rockets-zubat.jpg" width="350" alt="Team Rocket&#x27;s Zubat"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 120/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 50</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Poison Spray - Your opponent&#x27;s Active Pokémon is now Poisoned.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="18" align="top"> Lightning ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="toxel">Toxel <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/660411_toxel.jpg"><img src="./assets/660411_toxel.jpg" width="350" alt="Toxel"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 067/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Call for Family - Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Playful Kick (20)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="toxtricity">Toxtricity <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/660409_toxtricity.jpg"><img src="./assets/660409_toxtricity.jpg" width="350" alt="Toxtricity"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 068/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 140</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Sinister Surge - Once during your turn, you may use this Ability. Search your deck for a Basic Darkness Energy card and attach it to 1 of your Benched Darkness Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, place 2 damage counters on that Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Gentle Slap (100)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>

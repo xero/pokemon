@@ -5,6 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
 		<title>Pokédex</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
 		<style>
 		:root {
 			/* palette */
@@ -776,7 +786,7 @@
 	<body>
 		<header>
 			<h1><img src="./assets/pokeball.png" alt="" />Pokédex <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/charizard.gif" alt="" /></h1>
-			<p>95 Pok&eacute;mon caught, 21 of them tournament legal.</p>
+			<p>110 Pok&eacute;mon caught, 36 of them tournament legal.</p>
 			<nav>
 				<details>
 					<summary>Search</summary>
@@ -809,6 +819,7 @@
 						<li data-for="eevee-ex"><a href="#eevee-ex">Eevee ex</a> <em>SV: Prismatic Evolutions</em></li>
 						<li data-for="eevee-v"><a href="#eevee-v">Eevee V</a> <em>SWSH: Sword &amp; Shield Promo Cards</em></li>
 						<li data-for="eternatus"><a href="#eternatus">Eternatus</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li data-for="eternatus-1"><a href="#eternatus-1">Eternatus</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-letter><b>F</b></li>
 						<li data-for="flareon"><a href="#flareon">Flareon</a> <em>SV: Prismatic Evolutions</em></li>
 						<li data-for="flareon-ex"><a href="#flareon-ex">Flareon ex</a> <em>SV: Prismatic Evolutions</em></li>
@@ -843,13 +854,14 @@
 						<li data-for="haunter-2"><a href="#haunter-2">Haunter</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
 						<li data-for="haunter-3"><a href="#haunter-3">Haunter</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-for="haunter-4"><a href="#haunter-4">Haunter</a> <em>ME03: Perfect Order</em></li>
-						<li data-for="haunter-5"><a href="#haunter-5">Haunter</a> <em>SM - Crimson Invasion</em></li>
-						<li data-for="haunter-6"><a href="#haunter-6">Haunter</a> <em>SV: Paldean Fates</em></li>
-						<li data-for="haunter-7"><a href="#haunter-7">Haunter</a> <em>SV: Scarlet &amp; Violet 151</em></li>
-						<li data-for="haunter-8"><a href="#haunter-8">Haunter</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
-						<li data-for="haunter-9"><a href="#haunter-9">Haunter</a> <em>Trick or Trade BOOster Bundle</em></li>
-						<li data-for="haunter-10"><a href="#haunter-10">Haunter</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
-						<li data-for="haunter-11"><a href="#haunter-11">Haunter</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li data-for="haunter-5"><a href="#haunter-5">Haunter</a> <em>ME: Mega Evolution Promo</em></li>
+						<li data-for="haunter-6"><a href="#haunter-6">Haunter</a> <em>SM - Crimson Invasion</em></li>
+						<li data-for="haunter-7"><a href="#haunter-7">Haunter</a> <em>SV: Paldean Fates</em></li>
+						<li data-for="haunter-8"><a href="#haunter-8">Haunter</a> <em>SV: Scarlet &amp; Violet 151</em></li>
+						<li data-for="haunter-9"><a href="#haunter-9">Haunter</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
+						<li data-for="haunter-10"><a href="#haunter-10">Haunter</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li data-for="haunter-11"><a href="#haunter-11">Haunter</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
+						<li data-for="haunter-12"><a href="#haunter-12">Haunter</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
 						<li data-for="honchkrow"><a href="#honchkrow">Honchkrow</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
 						<li data-for="hoothoot"><a href="#hoothoot">Hoothoot</a> <em>SV07: Stellar Crown</em></li>
 						<li data-for="houndoom"><a href="#houndoom">Houndoom</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
@@ -864,6 +876,7 @@
 						<li data-letter><b>M</b></li>
 						<li data-for="magcargo"><a href="#magcargo">Magcargo</a> <em>SWSH04: Vivid Voltage</em></li>
 						<li data-for="mega-gengar-ex"><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li data-for="mega-gengar-ex-1"><a href="#mega-gengar-ex-1">Mega Gengar ex</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-for="mew-v"><a href="#mew-v">Mew V</a> <em>SWSH08: Fusion Strike</em></li>
 						<li data-for="murkrow"><a href="#murkrow">Murkrow</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
 						<li data-letter><b>N</b></li>
@@ -876,14 +889,26 @@
 						<li data-for="pumpkaboo-2"><a href="#pumpkaboo-2">Pumpkaboo</a> <em>SV04: Paradox Rift</em></li>
 						<li data-letter><b>S</b></li>
 						<li data-for="sableye"><a href="#sableye">Sableye</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li data-for="sableye-1"><a href="#sableye-1">Sableye</a> <em>ME02: Phantasmal Flames</em></li>
+						<li data-for="seviper"><a href="#seviper">Seviper</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-for="sinistcha-cosmos-holo"><a href="#sinistcha-cosmos-holo">Sinistcha (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
 						<li data-for="slugma"><a href="#slugma">Slugma</a> <em>SWSH04: Vivid Voltage</em></li>
 						<li data-for="spiritomb"><a href="#spiritomb">Spiritomb</a> <em>SWSH06: Chilling Reign</em></li>
 						<li data-for="sudowoodo"><a href="#sudowoodo">Sudowoodo</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
 						<li data-letter><b>T</b></li>
 						<li data-for="tatsugiri"><a href="#tatsugiri">Tatsugiri</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li data-for="team-rockets-articuno"><a href="#team-rockets-articuno">Team Rocket&#x27;s Articuno</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-crobat-ex"><a href="#team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-golbat"><a href="#team-rockets-golbat">Team Rocket&#x27;s Golbat</a> <em>SV10: Destined Rivals</em></li>
 						<li data-for="team-rockets-koffing"><a href="#team-rockets-koffing">Team Rocket&#x27;s Koffing</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-mewtwo-ex"><a href="#team-rockets-mewtwo-ex">Team Rocket&#x27;s Mewtwo ex</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-mimikyu"><a href="#team-rockets-mimikyu">Team Rocket&#x27;s Mimikyu</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-spidops"><a href="#team-rockets-spidops">Team Rocket&#x27;s Spidops</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-tarountula"><a href="#team-rockets-tarountula">Team Rocket&#x27;s Tarountula</a> <em>SV10: Destined Rivals</em></li>
 						<li data-for="team-rockets-weezing"><a href="#team-rockets-weezing">Team Rocket&#x27;s Weezing</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="team-rockets-zubat"><a href="#team-rockets-zubat">Team Rocket&#x27;s Zubat</a> <em>SV10: Destined Rivals</em></li>
+						<li data-for="toxel"><a href="#toxel">Toxel</a> <em>ME02: Phantasmal Flames</em></li>
+						<li data-for="toxtricity"><a href="#toxtricity">Toxtricity</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-for="trevenant"><a href="#trevenant">Trevenant</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
 						<li data-letter><b>W</b></li>
 						<li data-for="weezing"><a href="#weezing">Weezing</a> <em>Hidden Fates</em></li>
@@ -1417,6 +1442,28 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Eternatus" data-set="ME02: Phantasmal Flames" data-rarity="Uncommon" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="eternatus-1">Eternatus <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/660406_eternatus.jpg" target="_blank" rel="noopener"><img src="./assets/660406_eternatus.jpg" alt="Eternatus" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>069/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>150</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Shatter (50) - Discard a Stadium in play.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Power Rush (130) - Flip a coin. If tails, during your next turn, this Pokémon can&#x27;t attack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Flareon" data-set="SV: Prismatic Evolutions" data-rarity="Rare" data-type="Fire" data-stage="Stage 1" data-tournament="too old">
 				<h2 id="flareon">Flareon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x2</span></h2>
 				<aside>
@@ -1590,7 +1637,7 @@
 				</section>
 			</article>
 			<article data-name="Gastly" data-set="ME02: Phantasmal Flames" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
-				<h2 id="gastly-2">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x5</span></h2>
+				<h2 id="gastly-2">Gastly <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x9</span></h2>
 				<aside>
 					<a data-art href="./assets/660495_gastly.jpg" target="_blank" rel="noopener"><img src="./assets/660495_gastly.jpg" alt="Gastly" /></a>
 				</aside>
@@ -2036,7 +2083,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="ME02: Phantasmal Flames" data-rarity="Uncommon" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
-				<h2 id="haunter-3">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-3">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
 				<aside>
 					<a data-art href="./assets/660408_haunter-055-094.jpg" target="_blank" rel="noopener"><img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2077,8 +2124,29 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Haunter" data-set="ME: Mega Evolution Promo" data-rarity="Illustration Rare" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="haunter-5">Haunter <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/659232_haunter-027.jpg" target="_blank" rel="noopener"><img src="./assets/659232_haunter-027.jpg" alt="Haunter" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span>ME: Mega Evolution Promo <small>027</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span>Illustration Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Spooky Shot (40)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Haunter" data-set="SM - Crimson Invasion" data-rarity="Uncommon" data-type="Psychic" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-5">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/149060_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/149060_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2099,7 +2167,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="SV: Paldean Fates" data-rarity="Common" data-type="Darkness" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/534418_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/534418_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2120,7 +2188,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="SV: Scarlet &amp; Violet 151" data-rarity="Uncommon" data-type="Psychic" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/516662_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/516662_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2141,7 +2209,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="SWSH01: Sword &amp; Shield Base Set" data-rarity="Uncommon" data-type="Psychic" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/208390_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/208390_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2163,7 +2231,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="Trick or Trade BOOster Bundle" data-rarity="Promo" data-type="Psychic" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/283812_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/283812_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2184,7 +2252,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="Trick or Trade BOOster Bundle 2023" data-rarity="Uncommon" data-type="Psychic" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/515660_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/515660_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2205,7 +2273,7 @@
 				</section>
 			</article>
 			<article data-name="Haunter" data-set="Trick or Trade BOOster Bundle 2024" data-rarity="Common" data-type="Darkness" data-stage="Stage 1" data-tournament="too old">
-				<h2 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
+				<h2 id="haunter-12">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
 				<aside>
 					<a data-art href="./assets/570361_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/570361_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -2440,6 +2508,27 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Mega Gengar ex" data-set="ME02: Phantasmal Flames" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="mega-gengar-ex-1"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Mew V" data-set="SWSH08: Fusion Strike" data-rarity="Ultra Rare" data-type="Psychic" data-stage="Basic" data-tournament="too old">
 				<h2 id="mew-v">Mew V <img src="./assets/rarities/ultra-rare.png" alt="Ultra Rare" /> <span data-count>x1</span></h2>
 				<aside>
@@ -2610,6 +2699,48 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Sableye" data-set="ME02: Phantasmal Flames" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="sableye-1">Sableye <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/660412_sableye.jpg" target="_blank" rel="noopener"><img src="./assets/660412_sableye.jpg" alt="Sableye" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>059/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Cocky Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Seviper" data-set="ME02: Phantasmal Flames" data-rarity="Uncommon" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="seviper">Seviper <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/660413_seviper.jpg" target="_blank" rel="noopener"><img src="./assets/660413_seviper.jpg" alt="Seviper" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>062/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Excited Power - If you have any Darkness Mega Evolution Pokémon ex in play, attacks used by this Pokémon do 120 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Pitch-Black Fangs (120)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Sinistcha (Cosmos Holo)" data-set="Trick or Trade BOOster Bundle 2024" data-rarity="Holo Rare" data-type="Grass" data-stage="Stage 1" data-tournament="too old">
 				<h2 id="sinistcha-cosmos-holo">Sinistcha (Cosmos Holo) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> <span data-count>x1</span></h2>
 				<aside>
@@ -2719,6 +2850,69 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Team Rocket&#x27;s Articuno" data-set="SV10: Destined Rivals" data-rarity="Rare" data-type="Water" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-articuno">Team Rocket&#x27;s Articuno <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/632864_team-rockets-articuno.jpg" target="_blank" rel="noopener"><img src="./assets/632864_team-rockets-articuno.jpg" alt="Team Rocket&#x27;s Articuno" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>051/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Repelling Veil - Prevent all effects of attacks used by your opponent&#x27;s Pokémon done to your Basic Team Rocket&#x27;s Pokémon in play. (Existing effects are not removed. Damage is not an effect.)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Dark Frost (60+) - If this Pokémon has any Team Rocket&#x27;s Energy attached, this attack does 60 more damage.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Crobat ex" data-set="SV10: Destined Rivals" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/632930_team-rockets-crobat-ex-122-182.jpg" target="_blank" rel="noopener"><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" alt="Team Rocket&#x27;s Crobat ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>122/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>310</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Biting Spree - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may choose 2 of your opponent&#x27;s Pokémon and put 2 damage counters on each of them.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Assassin&#x27;s Return (120) - You may put this Pokémon into your hand. (Discard all cards attached to this Pokémon.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Golbat" data-set="SV10: Destined Rivals" data-rarity="Uncommon" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="team-rockets-golbat">Team Rocket&#x27;s Golbat <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/632929_team-rockets-golbat.jpg" target="_blank" rel="noopener"><img src="./assets/632929_team-rockets-golbat.jpg" alt="Team Rocket&#x27;s Golbat" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>121/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Sneaky Bite - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put 2 damage counters on 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Confuse Ray (30) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Team Rocket&#x27;s Koffing" data-set="SV10: Destined Rivals" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
 				<h2 id="team-rockets-koffing">Team Rocket&#x27;s Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
 				<aside>
@@ -2740,6 +2934,90 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Team Rocket&#x27;s Mewtwo ex" data-set="SV10: Destined Rivals" data-rarity="Double Rare" data-type="Psychic" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-mewtwo-ex">Team Rocket&#x27;s Mewtwo ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" target="_blank" rel="noopener"><img src="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" alt="Team Rocket&#x27;s Mewtwo ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>081/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>280</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Power Saver - This Pokémon can&#x27;t attack unless you have 4 or more Team Rocket&#x27;s Pokémon in play.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Erasure Ball (160+) - You may discard up to 2 Energy from your Benched Pokémon. This attack does 60 more damage for each card you discarded in this way.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Mimikyu" data-set="SV10: Destined Rivals" data-rarity="Uncommon" data-type="Psychic" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-mimikyu">Team Rocket&#x27;s Mimikyu <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/630821_team-rockets-mimikyu.jpg" target="_blank" rel="noopener"><img src="./assets/630821_team-rockets-mimikyu.jpg" alt="Team Rocket&#x27;s Mimikyu" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>087/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Gemstone Mimicry - Choose 1 of your opponent&#x27;s Active Tera Pokémon&#x27;s attacks and use it as this attack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span>0</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Spidops" data-set="SV10: Destined Rivals" data-rarity="Rare" data-type="Grass" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="team-rockets-spidops">Team Rocket&#x27;s Spidops <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/632846_team-rockets-spidops-020-182.jpg" target="_blank" rel="noopener"><img src="./assets/632846_team-rockets-spidops-020-182.jpg" alt="Team Rocket&#x27;s Spidops" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>020/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Charging Up - Once during your turn, you may attach a Basic Energy card from your discard pile to this Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Rocket Rush (30x) - This attack does 30 damage for each of your Team Rocket&#x27;s Pokémon in play.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Tarountula" data-set="SV10: Destined Rivals" data-rarity="Common" data-type="Grass" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-tarountula">Team Rocket&#x27;s Tarountula <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/632845_team-rockets-tarountula.jpg" target="_blank" rel="noopener"><img src="./assets/632845_team-rockets-tarountula.jpg" alt="Team Rocket&#x27;s Tarountula" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>019/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /></span><span>Take Down (30) - This Pokémon also does 10 damage to itself.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Team Rocket&#x27;s Weezing" data-set="SV10: Destined Rivals" data-rarity="Uncommon" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
 				<h2 id="team-rockets-weezing">Team Rocket&#x27;s Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
 				<aside>
@@ -2754,6 +3032,70 @@
 						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
 						<dt>Ability</dt><dd>&ndash;</dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Explode Together Now (40x) - This attack does 40 damage for each Pokémon in play that has &quot;Koffing&quot; or &quot;Weezing&quot; in its name (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Zubat" data-set="SV10: Destined Rivals" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-zubat">Team Rocket&#x27;s Zubat <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/632928_team-rockets-zubat.jpg" target="_blank" rel="noopener"><img src="./assets/632928_team-rockets-zubat.jpg" alt="Team Rocket&#x27;s Zubat" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>120/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Poison Spray - Your opponent&#x27;s Active Pokémon is now Poisoned.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Toxel" data-set="ME02: Phantasmal Flames" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="toxel">Toxel <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/660411_toxel.jpg" target="_blank" rel="noopener"><img src="./assets/660411_toxel.jpg" alt="Toxel" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>067/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Call for Family - Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Playful Kick (20)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Toxtricity" data-set="ME02: Phantasmal Flames" data-rarity="Rare" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="toxtricity">Toxtricity <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/660409_toxtricity.jpg" target="_blank" rel="noopener"><img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>068/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>140</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Sinister Surge - Once during your turn, you may use this Ability. Search your deck for a Basic Darkness Energy card and attach it to 1 of your Benched Darkness Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, place 2 damage counters on that Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Gentle Slap (100)</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>

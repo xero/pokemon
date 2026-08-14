@@ -14,9 +14,14 @@
 #               https://bulbapedia.bulbagarden.net/wiki/Charizard_Theme_Deck_(TCG)
 # mbg-starter   MEGA Starter Set Mega Gengar ex, Japanese, UNOPENED
 #               https://bulbapedia.bulbagarden.net/wiki/MEGA_Starter_Set_Mega_Gengar_ex_(TCG)
+# gengar-mbd    Mega Gengar ex Mega Battle Deck, the English counterpart of
+#               mbg-starter with a different list, opened, xero plays it
+#               https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_Mega_Battle_Deck_(TCG)
+# mewtwo-lbd    Team Rocket's Mewtwo ex League Battle Deck, opened, Fox's birthday gift
+#               https://bulbapedia.bulbagarden.net/wiki/Team_Rocket%27s_Mewtwo_ex_League_Battle_Deck_(TCG)
 # other         loose cards whose origin was never written down, counted by hand
 #
-# Both decklists verified against Bulbapedia wikitext and both total exactly 60.
+# All decklists verified against Bulbapedia wikitext and each totals exactly 60.
 #
 product	sealed	qty	url	card
 charizard-td	no	2	/pokemon/swsh04-vivid-voltage/charizard	Charizard, Vivid Voltage 25
@@ -62,4 +67,54 @@ mbg-starter	yes	4	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/iriss-fight
 mbg-starter	yes	2	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/bosss-orders	Boss's Orders [Ghetsis] 020/021
 mbg-starter	yes	4	/pokemon-japan/mbg-mega-starter-set-mega-gengar-ex/lillies-determination	Lillie's Determination 021/021
 mbg-starter	yes	15	/pokemon/mee-mega-evolution-energies/basic-darkness-energy-007	Basic Darkness Energy (basic energy is fungible)
+mewtwo-lbd	no	3	/pokemon/sv10-destined-rivals/team-rockets-mewtwo-ex-081-182	Team Rocket's Mewtwo ex, Destined Rivals 081
+mewtwo-lbd	no	3	/pokemon/sv10-destined-rivals/team-rockets-spidops-020-182	Team Rocket's Spidops, Destined Rivals 020
+mewtwo-lbd	no	3	/pokemon/sv10-destined-rivals/team-rockets-tarountula	Team Rocket's Tarountula, Destined Rivals 019
+mewtwo-lbd	no	2	/pokemon/sv10-destined-rivals/team-rockets-crobat-ex-122-182	Team Rocket's Crobat ex, Destined Rivals 122
+mewtwo-lbd	no	2	/pokemon/sv10-destined-rivals/team-rockets-golbat	Team Rocket's Golbat, Destined Rivals 121
+mewtwo-lbd	no	2	/pokemon/sv10-destined-rivals/team-rockets-zubat	Team Rocket's Zubat, Destined Rivals 120
+mewtwo-lbd	no	1	/pokemon/sv10-destined-rivals/team-rockets-articuno	Team Rocket's Articuno, Destined Rivals 051
+mewtwo-lbd	no	1	/pokemon/sv10-destined-rivals/team-rockets-mimikyu	Team Rocket's Mimikyu, Destined Rivals 087
+mewtwo-lbd	no	4	/pokemon/sv10-destined-rivals/team-rockets-ariana-171-182	Team Rocket's Ariana, Destined Rivals 171
+mewtwo-lbd	no	4	/pokemon/sv10-destined-rivals/team-rockets-proton-177-182	Team Rocket's Proton, Destined Rivals 177
+mewtwo-lbd	no	2	/pokemon/sv10-destined-rivals/team-rockets-archer-170-182	Team Rocket's Archer, Destined Rivals 170
+mewtwo-lbd	no	2	/pokemon/sv10-destined-rivals/team-rockets-giovanni	Team Rocket's Giovanni, Destined Rivals 174
+mewtwo-lbd	no	1	/pokemon/sv10-destined-rivals/team-rockets-petrel-176-182	Team Rocket's Petrel, Destined Rivals 176
+mewtwo-lbd	no	4	/pokemon/sv10-destined-rivals/team-rockets-transceiver	Team Rocket's Transceiver, Destined Rivals 178
+mewtwo-lbd	no	4	/pokemon/sv01-scarlet-and-violet-base-set/ultra-ball	Ultra Ball, Scarlet & Violet 196
+mewtwo-lbd	no	2	/pokemon/sv01-scarlet-and-violet-base-set/energy-switch	Energy Switch, Scarlet & Violet 173
+mewtwo-lbd	no	2	/pokemon/sv-shrouded-fable/night-stretcher	Night Stretcher, Shrouded Fable 061
+mewtwo-lbd	no	2	/pokemon/sv01-scarlet-and-violet-base-set/switch	Switch, Scarlet & Violet 194
+mewtwo-lbd	no	1	/pokemon/sv08-surging-sparks/scramble-switch	Scramble Switch, Surging Sparks 186
+mewtwo-lbd	no	3	/pokemon/sv10-destined-rivals/team-rockets-factory	Team Rocket's Factory, Destined Rivals 173
+mewtwo-lbd	no	4	/pokemon/sv10-destined-rivals/team-rockets-energy	Team Rocket's Energy, Destined Rivals 182
+mewtwo-lbd	no	3	/pokemon/mee-mega-evolution-energies/basic-grass-energy-001	Grass Energy (basic energy is fungible)
+mewtwo-lbd	no	3	/pokemon/mee-mega-evolution-energies/basic-psychic-energy-005	Psychic Energy (basic energy is fungible)
+mewtwo-lbd	no	2	/pokemon/mee-mega-evolution-energies/basic-darkness-energy-007	Darkness Energy (basic energy is fungible)
+gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/mega-gengar-ex	Mega Gengar ex, Phantasmal Flames 056
+gengar-mbd	no	1	/pokemon/me02-phantasmal-flames/haunter-055-094	Haunter, Phantasmal Flames 055
+gengar-mbd	no	1	/pokemon/me-mega-evolution-promo/haunter-027	Haunter, ME Promo 027, the Illustration Rare
+gengar-mbd	no	4	/pokemon/me02-phantasmal-flames/gastly	Gastly, Phantasmal Flames 054
+gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/toxtricity	Toxtricity, Phantasmal Flames 068
+gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/toxel	Toxel, Phantasmal Flames 067
+gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/sableye	Sableye, Phantasmal Flames 059
+gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/seviper	Seviper, Phantasmal Flames 062
+gengar-mbd	no	1	/pokemon/me02-phantasmal-flames/eternatus	Eternatus, Phantasmal Flames 069
+gengar-mbd	no	4	/pokemon/me01-mega-evolution/lillies-determination-119-132	Lillie's Determination, Mega Evolution 119
+gengar-mbd	no	2	/pokemon/sv03-obsidian-flames/arven	Arven, Obsidian Flames 186
+gengar-mbd	no	2	/pokemon/me01-mega-evolution/bosss-orders-ghetsis	Boss's Orders [Ghetsis], Mega Evolution 114
+gengar-mbd	no	1	/pokemon/me02-phantasmal-flames/dawn	Dawn, Phantasmal Flames 087
+gengar-mbd	no	1	/pokemon/me02-phantasmal-flames/grimsleys-move	Grimsley's Move, Phantasmal Flames 090
+gengar-mbd	no	1	/pokemon/sv-paldean-fates/iono-080-091	Iono, Paldean Fates 080
+gengar-mbd	no	3	/pokemon/sv-paldean-fates/nest-ball	Nest Ball, Paldean Fates 084
+gengar-mbd	no	2	/pokemon/sv05-temporal-forces/buddy-buddy-poffin	Buddy-Buddy Poffin, Temporal Forces 144
+gengar-mbd	no	2	/pokemon/sv-shrouded-fable/night-stretcher	Night Stretcher, Shrouded Fable 061
+gengar-mbd	no	2	/pokemon/me01-mega-evolution/rare-candy-125-132	Rare Candy, Mega Evolution 125
+gengar-mbd	no	2	/pokemon/me01-mega-evolution/switch	Switch, Mega Evolution 130
+gengar-mbd	no	2	/pokemon/me01-mega-evolution/ultra-ball	Ultra Ball, Mega Evolution 131
+gengar-mbd	no	1	/pokemon/sv-black-bolt/pokegear-30	Pokegear 3.0, Black Bolt 084
+gengar-mbd	no	1	/pokemon/me01-mega-evolution/mega-signal-121-132	Mega Signal, Mega Evolution 121
+gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/punk-helmet	Punk Helmet, Phantasmal Flames 092
+gengar-mbd	no	2	/pokemon/me01-mega-evolution/risky-ruins	Risky Ruins, Mega Evolution 127
+gengar-mbd	no	13	/pokemon/mee-mega-evolution-energies/basic-darkness-energy-007	Darkness Energy (basic energy is fungible)
 other	no	1	/pokemon/trick-or-trade-booster-bundle/gengar-2021-copyright-date	Gengar (2021 Copyright Date), counted by hand

@@ -39,6 +39,39 @@ Gengar Jet-Black Spirit	027/070	1	japan
 Gengar Pokemon Card 151	094/165	1	japan
 Gengar Raging Surf		1	japan
 #
+# --- Team Rocket's Mewtwo ex League Battle Deck, cards not already in the seed
+Team Rocket's Mewtwo ex Destined Rivals	081/182	3	mewtwo league battle deck
+Team Rocket's Spidops Destined Rivals	020/182	3	mewtwo league battle deck
+Team Rocket's Tarountula Destined Rivals	019/182	3	mewtwo league battle deck
+Team Rocket's Crobat ex Destined Rivals	122/182	2	mewtwo league battle deck
+Team Rocket's Golbat Destined Rivals	121/182	2	mewtwo league battle deck
+Team Rocket's Zubat Destined Rivals	120/182	2	mewtwo league battle deck
+Team Rocket's Articuno Destined Rivals	051/182	1	mewtwo league battle deck
+Team Rocket's Mimikyu Destined Rivals	087/182	1	mewtwo league battle deck
+Team Rocket's Ariana Destined Rivals	171/182	4	mewtwo league battle deck
+Team Rocket's Proton Destined Rivals	177/182	4	mewtwo league battle deck
+Team Rocket's Archer Destined Rivals	170/182	2	mewtwo league battle deck
+Team Rocket's Giovanni Destined Rivals	174/182	2	mewtwo league battle deck
+Team Rocket's Petrel Destined Rivals	176/182	1	mewtwo league battle deck
+Team Rocket's Transceiver Destined Rivals	178/182	4	mewtwo league battle deck
+Team Rocket's Factory Destined Rivals	173/182	3	mewtwo league battle deck
+Team Rocket's Energy Destined Rivals	182/182	4	mewtwo league battle deck
+Ultra Ball Scarlet Violet	196/198	4	mewtwo league battle deck
+Energy Switch Scarlet Violet	173/198	2	mewtwo league battle deck
+Switch Scarlet Violet	194/198	2	mewtwo league battle deck
+Scramble Switch Surging Sparks	186/191	1	mewtwo league battle deck
+#
+# --- Mega Gengar ex Mega Battle Deck, English, cards not already in the seed -
+Sableye Phantasmal Flames	059/094	2	gengar mega battle deck
+Seviper Phantasmal Flames	062/094	2	gengar mega battle deck
+Eternatus Phantasmal Flames	069/094	1	gengar mega battle deck
+Haunter Mega Evolution Promo	027	1	gengar mega battle deck, the illustration rare
+Arven Obsidian Flames	186/197	2	gengar mega battle deck
+Grimsley's Move Phantasmal Flames	090/094	1	gengar mega battle deck
+Iono Paldean Fates	080/091	1	gengar mega battle deck
+Pokegear 3.0 Black Bolt	084/086	1	gengar mega battle deck
+Mega Signal Mega Evolution	121/132	1	gengar mega battle deck
+#
 # ============================================================================
 # WISHLIST. Everything below is quantity 0: wanted by a deck plan, not owned.
 # ============================================================================
@@ -67,11 +100,28 @@ Gourgeist Paradox Rift	078/182	0	wishlist
 Fog Crystal Chilling Reign	140/198	0	wishlist
 #
 # --- dark-ex.md, the Standard Mega Gengar box --------------------------------
-Mega Gengar ex Phantasmal Flames	056/094	0	wishlist, the English print
-Toxel Phantasmal Flames	067/094	0	wishlist
-Toxtricity Phantasmal Flames	068/094	0	wishlist
+Mega Gengar ex Phantasmal Flames	056/094	0	since filled by the gengar mega battle deck
+Toxel Phantasmal Flames	067/094	0	since filled by the gengar mega battle deck
+Toxtricity Phantasmal Flames	068/094	0	since filled by the gengar mega battle deck
 Munkidori Twilight Masquerade	095/167	0	wishlist
 Fezandipiti ex Shrouded Fable	038/064	0	wishlist
+Pecharunt ex Shrouded Fable	039/064	0	wishlist, dark-ex tournament build
+Legacy Energy Twilight Masquerade	167/167	0	wishlist, dark-ex tournament build, ACE SPEC
+Energy Switch Mega Evolution	115/132	0	wishlist, dark-ex tournament build
+Air Balloon Ascended Heroes	181/217	0	wishlist, dark-ex tournament build
+#
+# --- psychic-standard.md, Lanterns Reborn ------------------------------------
+Litwick Pitch Black	036/084	0	wishlist, psychic-standard
+Lampent Pitch Black	037/084	0	wishlist, psychic-standard
+Mega Chandelure ex Pitch Black	038/084	0	wishlist, psychic-standard
+Pumpkaboo Chaos Rising	040/086	0	wishlist, psychic-standard
+Gourgeist ex Chaos Rising	041/086	0	wishlist, psychic-standard
+Duskull Shrouded Fable	018/064	0	wishlist, psychic-standard
+Dusclops Shrouded Fable	019/064	0	wishlist, psychic-standard
+Dusknoir Shrouded Fable	020/064	0	wishlist, psychic-standard
+Snorunt Twilight Masquerade	051/167	0	wishlist, psychic-standard
+Froslass Twilight Masquerade	053/167	0	wishlist, psychic-standard
+Prime Catcher Temporal Forces	157/162	0	wishlist, psychic-standard, ACE SPEC, owned JP copy is not US-legal
 #
 # --- fighting-standard.md, Ground Zero ---------------------------------------
 Mega Zygarde ex Perfect Order	047/088	0	wishlist

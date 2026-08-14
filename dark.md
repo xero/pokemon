@@ -16,13 +16,15 @@
 >
 > At the bottom is **[Gameplay Strategies](#gameplay-strategies)** — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.
 >
-> **Deck total: 60 cards.** 15 Pokémon, 33 Trainers, 12 Energy. Every attacker is worth **1 Prize card**, which is what keeps games against a theme deck close and fair.
+> **Deck total: 60 cards.** 21 Pokémon, 26 Trainers, 13 Energy. Every attacker is worth **1 Prize card**, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.
+>
+> **This is the second build.** After the first five games (1 win, 3 losses) the deck traded six situational Trainers and a card of nothing for seven Pokémon and an Energy engine. Same combo, same closer, twice the fuel.
 
 ---
 
 > ### Table of Contents
 >
-> **Pokémon** — [Gastly](#gastly) · [Haunter](#haunter) · [Gengar](#gengar) · [Koffing](#koffing) · [Weezing](#weezing)
+> **Pokémon** — [Gastly](#gastly) · [Haunter](#haunter) · [Gengar](#gengar) · [Koffing](#koffing) · [Weezing](#weezing) · [Sableye](#sableye) · [Toxel](#toxel) · [Toxtricity](#toxtricity)
 > **Supporters** — [Dawn](#dawn) · [Lillie's Determination](#lillies-determination) · [Gwynn](#gwynn) · [Boss's Orders](#bosss-orders-ghetsis)
 > **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Ultra Ball](#ultra-ball) · [Rare Candy](#rare-candy) · [Night Stretcher](#night-stretcher) · [Switch](#switch) · [Dark Bell](#dark-bell)
 > **Tool / Stadium** — [Punk Helmet](#punk-helmet) · [Risky Ruins](#risky-ruins)
@@ -182,6 +184,7 @@ Against the Charizard deck, **130 knocks out everything except Charizard itself*
 - **[Shadowy Darkness Energy](#shadowy-darkness-energy)** — protects Gengar completely while it waits on the Bench.
 - **[Risky Ruins](#risky-ruins)** — punishes the opponent for building the wide Bench that Mind Jack feeds on. They are trapped either way.
 - **[Night Stretcher](#night-stretcher)** — brings a discarded Gengar back.
+- **[Sableye](#sableye)** — a Gengar on the Bench is what switches *Cocky Claw* on. The closer powers the opener.
 
 #### Strategy
 
@@ -294,6 +297,7 @@ Meanwhile the Confusion from step one means there is a 50% chance your opponent'
 - **[Shadowy Darkness Energy](#shadowy-darkness-energy)** — protects the *next* Weezing on the Bench while this one is working.
 - **[Switch](#switch)** — Weezing's retreat cost of 2 is genuinely expensive; Switch is the escape hatch.
 - **[Boss's Orders](#bosss-orders-ghetsis)** — a Confused Pokémon that gets swapped out loses its Confusion, but Boss's Orders lets *you* choose what comes up next.
+- **[Toxtricity](#toxtricity)** — *Sinister Surge* puts the second Energy on the Benched Weezing, so the fuse is lit the turn it steps forward.
 
 #### Strategy
 
@@ -302,7 +306,7 @@ Meanwhile the Confusion from step one means there is a 50% chance your opponent'
 - ❌ Do not retreat the Weezing in between.
 - ❌ Do not Switch it out and back.
 - ❌ Do not use Pervasive Gas with one Weezing and Crazy Blast with a different one.
-- ✅ Do make sure it already has **two** Energy attached before you commit, so an unlucky draw cannot strand you.
+- ✅ Do make sure it already has **two** Energy attached before you commit, so an unlucky draw cannot strand you. *Sinister Surge* is how: charge the Weezing on the Bench, then promote it loaded.
 
 **Confusion is much better than it looks.** Under current rules, when a Confused Pokémon attacks, its controller flips a coin. On tails the attack does nothing, **3 damage counters (30 damage) go on the Confused Pokémon**, and their turn is over. So *Pervasive Gas* is not "30 damage and an annoyance" — it is 30 damage plus a coin flip where heads means they attack and tails means they take another 30 and waste a turn.
 
@@ -311,11 +315,150 @@ And Confusion only clears when the Pokémon **leaves the Active Spot**. Against 
 **The Weezing / Gengar handoff.** These two cards want opposite boards. Weezing does a flat 170 regardless of what the opponent has benched. Gengar scales with their Bench. So: **lead with Weezing while your opponent's board is thin, and close with Gengar once it has filled out.** That is the whole rhythm of the deck.
 
 ---
+
+### Sableye
+
+<img src="./assets/660412_sableye.jpg" align="left" width="200">
+
+| Key | Val |
+| :--- | :--- |
+| **Qty** | 2 |
+| **Set** | ME02: Phantasmal Flames |
+| **Number** | 059/094 |
+| **Type** | Darkness |
+| **HP** | 80 |
+| **Stage** | Basic |
+| **Weakness** | Grass ×2 |
+| **Resistance** | — |
+| **Retreat** | 1 |
+| **Attack** | *Cocky Claw* **[D] 20+** — If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage. |
+| **Regulation** | I |
+
+<br clear="all">
+
+#### Evolution
+
+**sableye** — does not evolve. It fights as it is.
+
+#### General use
+
+Ninety damage for one Energy, as a Basic, worth one Prize. The condition is a board this deck builds anyway: a Stage 2 Darkness Pokémon **on your Bench**, and Gengar is a Stage 2 Darkness Pokémon that spends most of the game exactly there. Sableye is the attacker for the turns Weezing is charging and the turns Gengar is waiting, which used to be the turns this deck did nothing.
+
+#### Pairing
+
+- **[Gengar](#gengar)** — the switch that turns *Cocky Claw* on. Build the Gengar, park it on the Bench, and every Sableye in play hits for 90.
+- **[Toxel](#toxel)** — *Call for Family* is how Sableye reaches the Bench, because Buddy-Buddy Poffin cannot fetch it.
+- **[Toxtricity](#toxtricity)** — *Sinister Surge* loads a benched Sableye so it attacks the turn it steps forward.
+- **[Gwynn](#gwynn)** — a spare Sableye in hand late is three cards of draw.
+
+#### Strategy
+
+**Read the condition twice: "on your Bench."** A Gengar sitting in the Active Spot turns Cocky Claw off. When Gengar steps forward to close with Mind Jack, know that your Sableyes drop back to 20 until it returns.
+
+Ninety kills a Charmander, an Eevee, and a Charmeleon on the nose, for one Energy, from a body Fox feels silly spending a big attack on. Against his Team Rocket's deck the math is humbler, but a one-Prize 90-per-turn body is exactly the trade that deck hates making.
+
+The Grass Weakness is irrelevant against Fire, but his Team Rocket's Tarountula and Spidops are Grass. If Spidops is fighting, keep Sableye home.
+
+> [!WARNING]
+> **Sableye is 80 HP, and Buddy-Buddy Poffin stops at 70.** It is the one Basic in this deck Poffin cannot touch. Toxel's *Call for Family* has no HP cap; that is the delivery route.
+
+---
+
+### Toxel
+
+<img src="./assets/660411_toxel.jpg" align="left" width="200">
+
+| Key | Val |
+| :--- | :--- |
+| **Qty** | 2 |
+| **Set** | ME02: Phantasmal Flames |
+| **Number** | 067/094 |
+| **Type** | Darkness |
+| **HP** | 70 |
+| **Stage** | Basic |
+| **Weakness** | Fighting ×2 |
+| **Resistance** | — |
+| **Retreat** | 1 |
+| **Attack 1** | *Call for Family* **[D]** — Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck. |
+| **Attack 2** | *Playful Kick* **[D][C] 20** |
+| **Regulation** | I |
+
+<br clear="all">
+
+#### Evolution
+
+**toxel** → toxtricity
+
+#### General use
+
+The third seed, and the deck's best going-second play. Going second you may attack on turn one, and *Call for Family* is an attack that puts **two more Basic Pokémon on your Bench** — any Basics, no HP cap. Two extra bodies on turn one beats 10 damage every single time.
+
+#### Pairing
+
+- **[Toxtricity](#toxtricity)** — the whole point. Evolve on turn two and the Energy engine starts.
+- **[Sableye](#sableye)** — the Basic Poffin cannot fetch, delivered by the attack that can.
+- **[Buddy-Buddy Poffin](#buddy-buddy-poffin)** — at 70 HP, Toxel itself is a legal Poffin target.
+
+#### Strategy
+
+**Going second, lead Toxel.** Poffin plus *Call for Family* on turn one is four Basics from one opening hand; the board is built before Fox finishes his second turn. Going first you cannot attack, so Toxel is just a benched seed like Gastly, and that is fine too.
+
+Toxel is fragile at 70 HP with a Fighting Weakness, and unlike Gastly it matters if it dies, because only two are in the deck. Bench it, use it, evolve it.
+
+---
+
+### Toxtricity
+
+<img src="./assets/660409_toxtricity.jpg" align="left" width="200">
+
+| Key | Val |
+| :--- | :--- |
+| **Qty** | 2 |
+| **Set** | ME02: Phantasmal Flames |
+| **Number** | 068/094 |
+| **Type** | Darkness |
+| **HP** | 140 |
+| **Stage** | Stage 1 (from Toxel) |
+| **Weakness** | Fighting ×2 |
+| **Resistance** | — |
+| **Retreat** | 2 |
+| **Ability** | *Sinister Surge* — Once during your turn, you may search your deck for a Basic Darkness Energy card and attach it to 1 of your Benched Darkness Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, place 2 damage counters on that Pokémon. |
+| **Attack** | *Gentle Slap* **[D][D][C] 100** |
+| **Regulation** | I |
+
+<br clear="all">
+
+#### Evolution
+
+toxel → **toxtricity**
+
+#### General use
+
+**The card the first build was missing.** The old list attached one Energy per turn, had nothing that accelerated, and ran dry by game three; that was the loss condition more often than any attack was. *Sinister Surge* attaches a **second** Basic Darkness every turn, from the deck, to your Bench, for free. Weezings now arrive in the Active Spot already loaded.
+
+The price is two damage counters on whatever it feeds. Read that as rent, not damage: a Weezing at 110 still does everything a Weezing at 130 does, and a Gengar that dies comes back through *Infinite Shadow* anyway.
+
+#### Pairing
+
+- **[Weezing](#weezing)** — the main customer. Charge the next Weezing on the Bench while this one fights, and the Two-Turn Fuse never waits on a draw.
+- **[Gengar](#gengar)** — Mind Jack costs one Energy, and Surge pays it without spending your hand attachment.
+- **[Basic Darkness Energy](#basic-darkness-energy)** — nine in the deck so the search never whiffs. **Surge cannot fetch Shadowy Darkness Energy**; Basic only.
+- **[Night Stretcher](#night-stretcher)** — returns a Basic Darkness to your hand, and Surge puts it back to work from the deck side.
+
+#### Strategy
+
+**Benched Darkness Pokémon only.** Surge cannot feed the Active, and it cannot feed itself a target that is fighting. The rhythm is: hand attachment to the front, Surge to the back.
+
+**Choose the counter-catcher deliberately.** The 2 counters go on whoever received the Energy. Good targets: a Gengar (recycles itself), a Weezing about to trade anyway, a Sableye that expects to die in one hit regardless. Bad target: a Weezing you need to survive a *Royal Blaze* at 150 — two Surges put it in range.
+
+*Gentle Slap* is a real attack. When both Weezings are down and Gengar is not ready, 100 flat from a 140 HP body holds the fort.
+
+---
 ---
 
 # Trainers — Supporters
 
-> **The one-Supporter rule.** You may play only **one Supporter per turn.** With 10 Supporters in this deck, deciding *which* one is the most frequent real decision you will make. Rule of thumb: **Dawn** when the board is missing pieces, **Lillie's Determination** when your hand is bad, **Gwynn** when your hand is full of the wrong Pokémon, **Boss's Orders** when you can win a Prize this turn.
+> **The one-Supporter rule.** You may play only **one Supporter per turn.** With 8 Supporters in this deck, deciding *which* one is the most frequent real decision you will make. Rule of thumb: **Dawn** when the board is missing pieces, **Lillie's Determination** when your hand is bad, **Gwynn** when your hand is full of the wrong Pokémon, **Boss's Orders** when you can win a Prize this turn.
 
 ---
 
@@ -325,7 +468,7 @@ And Confusion only clears when the Pokémon **leaves the Active Spot**. Against 
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 3 |
+| **Qty** | 2 |
 | **Set** | ME02: Phantasmal Flames |
 | **Number** | 087/094 |
 | **Type** | Trainer — Supporter |
@@ -355,7 +498,7 @@ Compare that to spending turn one on Lillie's Determination: you draw eight rand
 
 The flexible slot is the Stage 1. If your Koffing is already down and you would rather have the Weezing than the Haunter, take Weezing — you can always Rare Candy past Haunter later. Dawn does not care which Stage 1 you name.
 
-**Only three copies.** Dawn is fantastic but it is a setup card, and drawing your third one on turn eight is a dead card. Three is the count that shows up early without clogging you late.
+**Down to two copies in this build.** Dawn is fantastic but it is a setup card, and the deck now carries 21 Pokémon plus Toxel's *Call for Family*; the board fills itself more ways than it used to. Two shows up early often enough without being a dead late-game draw.
 
 ---
 
@@ -403,7 +546,7 @@ The clean answer for this deck: **if your opening hand is genuinely bad, use Lil
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 2 |
+| **Qty** | 1 |
 | **Set** | ME05: Pitch Black |
 | **Number** | 078/084 |
 | **Type** | Trainer — Supporter |
@@ -431,7 +574,7 @@ Gwynn turns dead Pokémon into cards. Discard up to two Pokémon from your hand,
 
 The advanced line is **deliberate discarding**. If you are holding a Gengar you cannot build this turn, discarding it to Gwynn for three cards and retrieving it later with Night Stretcher is card *advantage*, not a loss. You paid one Item to convert a stuck card into three fresh ones.
 
-**Two copies is correct.** Gwynn is conditional — it needs Pokémon in hand to do anything at all — and a Gwynn drawn on turn one with a hand you want to keep is a blank. Two means you see it when it is good and are not drowning in it when it is not.
+**One copy in this build.** Gwynn is conditional — it needs Pokémon in hand to do anything at all — and a Gwynn drawn on turn one with a hand you want to keep is a blank. With 21 Pokémon the fuel is more plentiful than ever, but the Supporter slots got tighter, and the early Supporters you actually want are Dawn and Lillie's. One Gwynn is six cards exactly when the deck is ready for it.
 
 ---
 
@@ -503,7 +646,7 @@ The second-strongest use is on **Sudowoodo**. Sudowoodo is a Fighting type and e
 
 The best Item in the deck, and it is not close. One card, no cost, and **two Basic Pokémon go directly onto your Bench** — not into your hand, straight into play. It builds your whole board in a single card.
 
-The deck was built around its restriction. Gastly is 70 HP and Koffing is 60 HP, so **every Basic Pokémon in this deck is a legal target**. There are no dead Poffins here.
+The deck was built around its restriction. Gastly and Toxel are 70 HP and Koffing is 60, all legal targets. **Sableye at 80 HP is the one exception** — Poffin cannot fetch it. Toxel's *Call for Family* has no HP cap and covers that gap.
 
 #### Pairing
 
@@ -531,7 +674,7 @@ Four copies, always. This is the card that makes the deck function.
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 4 |
+| **Qty** | 2 |
 | **Set** | ME01: Mega Evolution |
 | **Number** | 131/132 |
 | **Type** | Trainer — Item |
@@ -568,7 +711,7 @@ What you should *not* discard: your last Rare Candy, your last Dawn, or a Suppor
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 4 |
+| **Qty** | 3 |
 | **Set** | ME01: Mega Evolution |
 | **Number** | 125/132 |
 | **Type** | Trainer — Item |
@@ -600,7 +743,7 @@ The fastest legal Gengar in this deck is **turn two**: bench Gastly on turn one,
 
 **Do not Rare Candy a Gastly that is Active and about to die.** Putting your Gengar onto a Gastly that is one hit from a knockout hands your opponent a Prize and your Stage 2 in the same turn. Candy the Gastly on your **Bench**, and bring Gengar Active on a turn of your choosing.
 
-Four copies looks like a lot for a deck with one Stage 2 line. It is not — Rare Candy is only good when you *also* have the Gengar in hand, so you want to draw it often enough that the two line up.
+Three copies for one Stage 2 line, backed by two Haunters and Dawn. Rare Candy is only good when you *also* have the Gengar in hand, so it needs to be common enough that the two line up, and no commoner.
 
 ---
 
@@ -610,7 +753,7 @@ Four copies looks like a lot for a deck with one Stage 2 line. It is not — Rar
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 3 |
+| **Qty** | 2 |
 | **Set** | SV: Shrouded Fable |
 | **Number** | 061/064 |
 | **Type** | Trainer — Item |
@@ -637,9 +780,9 @@ Because it is an Item and not a Supporter, it costs you nothing but a card slot.
 
 **Only Basic Energy.** Note the exact wording: a Pokémon **or a Basic Energy card**. **Shadowy Darkness Energy is a Special Energy and cannot be retrieved with Night Stretcher.** Once one of those is discarded it is gone for good. That is a real reason to be thoughtful about where you attach them.
 
-**Energy recovery is underrated here.** Twelve Energy is a lean count. Every knockout you suffer takes its attached Energy to the discard, and by mid-game you can genuinely run out. Getting one back is often more valuable than getting a Pokémon back, because you have four Gastly and only twelve Energy.
+**Energy recovery matters less than it did, and differently.** The first build ran dry because knockouts drained twelve Energy with nothing refilling the board; Toxtricity now refills it from the deck every turn. What Night Stretcher does in this build is feed the deck side of that loop — a Basic Darkness pulled back from the discard is a card *Sinister Surge* can find again.
 
-Hold one Night Stretcher in reserve rather than firing all three on sight. The turn you most need it is the turn after your Gengar dies.
+Hold one Night Stretcher in reserve rather than firing both on sight. The turn you most need it is the turn after your Gengar dies.
 
 ---
 
@@ -730,7 +873,7 @@ Your opponent's Charizard, Flareon, Eevee, and Sudowoodo are none of them Darkne
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 2 |
+| **Qty** | 1 |
 | **Set** | ME02: Phantasmal Flames |
 | **Number** | 092/094 |
 | **Type** | Trainer — Pokémon Tool |
@@ -762,6 +905,8 @@ It is a Pokémon Tool, so it stays attached and keeps working every turn. One To
 
 > [!TIP]
 > Even when your Pokémon is knocked out, the 40 still happens. So a Weezing that is going to die anyway should die wearing a helmet.
+
+One copy in this build, down from two. It is the deck's best Tool and its most situational card at the same time; the slot it gave up became a Pokémon that attacks.
 
 ---
 
@@ -859,7 +1004,7 @@ Because it counts as Energy, attaching it is never a wasted turn. You get protec
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 8 |
+| **Qty** | 9 |
 | **Set** | MEE: Mega Evolution Energies (or any print **2007 or later**) |
 | **Number** | 007 |
 | **Type** | Energy — **Basic** |
@@ -882,9 +1027,9 @@ Basic Energy is exempt from the four-copy rule — you may run as many as you wa
 
 #### Strategy
 
-**Twelve Energy total is lean, so every attachment matters.** You get exactly one Energy attachment per turn, and there is nothing in this deck that accelerates that. This is the deck's real speed limit: not finding Pokémon, but powering them.
+**Thirteen Energy total, and the deck now attaches twice a turn.** Your hand attachment is no longer the speed limit. Toxtricity's *Sinister Surge* attaches a second Basic Darkness from the deck to your Bench every turn, free, and nine Basics in the deck is the count that keeps the search from whiffing late.
 
-The practical consequence: **decide early whether the turn's Energy goes to the Weezing that is fighting now or the Gengar that will fight in two turns.** The usual answer is Weezing first — it does the immediate work — but a Gengar that reaches the Active Spot with no Energy on it is a wasted Stage 2.
+The practical consequence: **the hand attachment goes to the front, Surge feeds the back.** The Weezing that is fighting gets your attachment; the Weezing, Sableye, or Gengar waiting behind it gets the Surge. Nobody arrives in the Active Spot empty anymore.
 
 **Attach ahead of the play.** Put Energy on Benched Pokémon *before* you need them Active. A Weezing that comes up with two Energy already attached can Crazy Blast the turn after it arrives; one that comes up empty is two turns from doing anything.
 
@@ -1014,10 +1159,8 @@ Both decks are built entirely from non-ex Pokémon, so **every knockout is worth
 
 **Step one: do you have a Basic Pokémon?** If not, you must mulligan — reveal your hand, shuffle it back, draw seven again, and your opponent draws one extra card.
 
-> [!CAUTION]
-> **Known rough edge.** This deck runs only **7 Basic Pokémon** (4 Gastly + 3 Koffing) out of 60. That is a **~40% mulligan rate** — you will start over in roughly four games out of ten. It is survivable in casual play (a mulligan costs you nothing but time and gives your opponent one card), but it is the deck's weakest structural point.
->
-> If it gets annoying, the cheapest fix is **+1 Koffing for −1 Punk Helmet**, which drops the mulligan rate to about 35%. Getting it down near 20% would need roughly 13 Basics, which would mean redesigning the deck around a Basic attacker.
+> [!NOTE]
+> **The old rough edge is fixed.** The first build ran 7 Basic Pokémon and mulliganed roughly four games in ten. This build runs **11 Basics** (4 Gastly, 3 Koffing, 2 Sableye, 2 Toxel), which is about a **22% mulligan rate**. You will still start over about one game in five; that is normal for an evolution deck and no longer worth a deck slot to improve.
 
 **Step two: what does turn one look like?**
 
@@ -1026,6 +1169,7 @@ Both decks are built entirely from non-ex Pokémon, so **every knockout is worth
 | **Buddy-Buddy Poffin** | Play it first, always. Fetch **one Gastly and one Koffing** — not two of either. |
 | **A workable board + Dawn** | **Dawn.** Load your hand with Gastly / Haunter / Gengar. Best turn-one Supporter in the deck. |
 | **A bad hand, few cards** | **Lillie's Determination** for **8** (you still have all 6 Prizes). This bonus disappears the moment you take a Prize — use it now or lose it. |
+| **Toxel, going second** | Bench everything, make Toxel Active, ***Call for Family*** — two more Basics beats 10 damage every time. |
 | **Gastly and Gengar already in hand** | Bench the Gastly. Do **not** try to Rare Candy — it is illegal on turn one. Candy it next turn. |
 | **Spare Pokémon clogging the hand** | Hold Gwynn for later; on turn one those "spare" Pokémon are cards you want to play. |
 
@@ -1050,6 +1194,9 @@ A checklist of the specific mistakes this deck invites.
 | Punk Helmet on a Benched Pokémon | Does nothing. It only triggers in the **Active Spot**. |
 | Letting a Gengar die "because Infinite Shadow" | They still get the Prize card. It was never free. |
 | Playing your only Risky Ruins on an empty turn-one board | Their Magma Basin replaces it and you have nothing to answer with. |
+| Poffin targeting Sableye | Illegal — Sableye is 80 HP and Poffin stops at 70. Toxel's *Call for Family* is the route. |
+| Sinister Surge onto your Active Pokémon | Illegal — the Ability reads **Benched**. Hand attachment feeds the front. |
+| Mind Jack with Gengar Active, expecting Cocky Claw's 90 | Cocky Claw needs a Stage 2 Darkness Pokémon **on the Bench**. Gengar can close or empower Sableye, not both. |
 | Adding **Old Cemetery** for flavour | It damages non-*Psychic* Pokémon on Energy attach. Every card in this deck is Darkness. It hurts only you. |
 
 ---

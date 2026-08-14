@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Xero's Lanterns Reborn</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Xero's Lanterns Reborn <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /> <img data-mascot src="./assets/sprites/gourgeist.gif" alt="" /></h1>
+			<p>Witching Hour, rebuilt tournament legal around Mega Chandelure ex</p>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><span><a href="#the-thesis">The Thesis</a> · <a href="#deck-list">Deck List</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#game-plans">Game Plans</a> · <a href="#versus-the-kitchen-table">Versus the Kitchen Table</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p><a href="./psychic-lanterns.html">Witching Hour</a> is a kitchen-table deck built from rotated cards, on purpose, and it stays exactly as it is. This is its tournament-legal heir: the same identity (damage counters, lanterns, patience) rebuilt from the current card pool around <strong>Mega Chandelure ex</strong>, the 350 HP Mega printed in Pitch Black.</p>
+				<p>One farewell up front. <strong>Wobbuffet cannot come.</strong> The only Standard-legal Wobbuffet is Team Rocket&#x27;s, and its attack only works inside a Team Rocket&#x27;s deck, which is Fox&#x27;s territory. Wobbuffet keeps his seat in Witching Hour, where he belongs.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>
+					<p>Mega Chandelure ex reads like a midrange attacker and plays like a trap.</p>
+					<p><em>Phantom Maze</em> does 130 plus <strong>50 for each [C] in the opponent&#x27;s Active Pokémon&#x27;s Retreat Cost</strong>, and its own Ability, <em>Binding Flame</em>, adds one to that cost. So the damage is not a number; it is a question: <strong>what is standing in front of it, and how much does that thing weigh?</strong></p>
+					<table>
+						<thead><tr><th>Their Active&#x27;s printed Retreat</th><th>With Binding Flame</th><th>Phantom Maze</th></tr></thead>
+						<tbody>
+							<tr><td>0</td><td>1</td><td>180</td></tr>
+							<tr><td>1</td><td>2</td><td>230</td></tr>
+							<tr><td>2</td><td>3</td><td>280</td></tr>
+							<tr><td>3</td><td>4</td><td><strong>330</strong></td></tr>
+							<tr><td>4</td><td>5</td><td><strong>380</strong></td></tr>
+						</tbody>
+					</table>
+					<p>A good opponent answers this by keeping something light up front, and against a free-retreat pivot the attack floors at 180. That is why the deck&#x27;s real engine is not the attack; it is <strong>choosing their Active for them</strong>. Boss&#x27;s Orders or Prime Catcher drags the heavy thing forward, Binding Flame makes it heavier, Phantom Maze hits it for 330 or 380, and the retreat cost that made it a safe benchwarmer is what killed it. 380 one-shots every card printed, including the 380 HP Megas.</p>
+					<p>Around that trap, the deck keeps Witching Hour&#x27;s soul: <strong>Dusknoir</strong> places 13 damage counters in one burst, <strong>Froslass</strong> places one on every Ability Pokémon each Checkup, and <strong>Gourgeist ex</strong> converts the damage on your own Bench into a one-Energy attack. Counters ignore Weakness and Resistance, exactly as they always did.</p>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+					<p><strong>Pokémon (22)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Litwick</td><td>Pitch Black</td><td>036</td><td>J</td></tr>
+							<tr><td>3</td><td>Lampent</td><td>Pitch Black</td><td>037</td><td>J</td></tr>
+							<tr><td>3</td><td>Mega Chandelure ex</td><td>Pitch Black</td><td>038</td><td>J</td></tr>
+							<tr><td>2</td><td>Pumpkaboo</td><td>Chaos Rising</td><td>040</td><td>J</td></tr>
+							<tr><td>2</td><td>Gourgeist ex</td><td>Chaos Rising</td><td>041</td><td>J</td></tr>
+							<tr><td>3</td><td>Duskull</td><td>Shrouded Fable</td><td>018</td><td>H</td></tr>
+							<tr><td>1</td><td>Dusclops</td><td>Shrouded Fable</td><td>019</td><td>H</td></tr>
+							<tr><td>2</td><td>Dusknoir</td><td>Shrouded Fable</td><td>020</td><td>H</td></tr>
+							<tr><td>1</td><td>Snorunt</td><td>Twilight Masquerade</td><td>051</td><td>H</td></tr>
+							<tr><td>1</td><td>Froslass</td><td>Twilight Masquerade</td><td>053</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (25)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>2</td><td>Dawn</td><td>Supporter</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>4</td><td>Rare Candy</td><td>Item</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>2</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>3</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Prime Catcher</td><td>Item</td><td>Temporal Forces</td><td>157</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (13)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th></tr></thead>
+						<tbody>
+							<tr><td>13</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td></tr>
+						</tbody>
+					</table>
+					<p><strong>22 + 25 + 13 = 60.</strong> ✓</p>
+					<p><strong>Basics: 10</strong> (4 Litwick, 2 Pumpkaboo, 3 Duskull, 1 Snorunt) — about a <strong>26% mulligan rate</strong>, the highest of the three tournament decks and the honest price of running three evolution lines. Every Basic is 70 HP or under, so all four Poffins are always live, which is what makes the count workable.</p>
+			<aside data-callout="warning">
+				<p><strong>One ACE SPEC per deck.</strong> Prime Catcher is this deck&#x27;s one, and it must be the <strong>English print</strong> — your Japanese starter-set copy plays at the kitchen table but is not legal at a sanctioned event.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="key-card-text">Key Card Text</h3>
+					<p>Generic staples are covered in <a href="./dark.html">Gengar Gang</a> and <a href="./dark-ex.html">the Dark Box</a>; this section covers the lanterns.</p>
+			<article>
+				<h3 id="mega-chandelure-ex-pitch-black-038-reg-j">Mega Chandelure ex — Pitch Black 038 · Reg J<span data-count>x3</span><span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704795_mega-chandelure-ex-038-084.jpg" target="_blank" rel="noopener"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>038/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Binding Flame - Your opponent&#x27;s Active Pokémon&#x27;s Retreat Cost is {{e}} more.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Phantom Maze (130+) - This attack does 50 more damage for each Retreat Cost.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2 from Lampent. Gives up 3 Prize cards.</strong> 350 HP, and the stat line has two quiet gifts: <strong>Resistance to Fighting</strong>, which is the type that hunts Mega Gengar, and a Darkness Weakness that matters exactly once in this house (see the kitchen-table section).</p>
+					<p><em>Binding Flame</em> needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. Two Chandelure in play is not twice the effect on damage math you can count on; play to one Binding Flame and treat any stack as a bonus ruling to look up later.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="litwick-pitch-black-036-reg-j">Litwick — Pitch Black 036 · Reg J<span data-count>x4</span><span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704793_litwick.jpg" target="_blank" rel="noopener"><img src="./assets/704793_litwick.jpg" alt="Litwick" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>036/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Will-O-Wisp (20)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Basic the deck stands on, and the <strong>only Psychic Litwick ever printed</strong> — the White Flare and Twilight Masquerade prints are Fire and cannot pay a [P] cost or share a searcher&#x27;s type filter sensibly. 70 HP keeps it inside Poffin range.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lampent-pitch-black-037-reg-j">Lampent — Pitch Black 037 · Reg J<span data-count>x3</span><span data-flavor><img src="./assets/sprites/lampent.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704794_lampent.jpg" target="_blank" rel="noopener"><img src="./assets/704794_lampent.jpg" alt="Lampent" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>037/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>90</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Spreading Light - Search your deck for up to 3 Lampent and put them onto your Bench. Then, shuffle your deck.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Spreading Light</em> is the endgame in one attack</strong>: search your deck for up to 3 Lampent and bench them. It is why this deck runs a fat 3 Lampent instead of treating the Stage 1 as a bridge, and why one attack on turn two can set up every Mega Chandelure the deck will ever need. See game plan 4.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="pumpkaboo-chaos-rising-040-reg-j">Pumpkaboo — Chaos Rising 040 · Reg J<span data-count>x2</span><span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693536_pumpkaboo.jpg" target="_blank" rel="noopener"><img src="./assets/693536_pumpkaboo.jpg" alt="Pumpkaboo" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>040/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Stampede (20)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The pumpkin returns. 60 HP, Poffin-legal, and its whole job is becoming Gourgeist ex.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="gourgeist-ex-chaos-rising-041-reg-j">Gourgeist ex — Chaos Rising 041 · Reg J<span data-count>x2</span><span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693497_gourgeist-ex-041-086.jpg" target="_blank" rel="noopener"><img src="./assets/693497_gourgeist-ex-041-086.jpg" alt="Gourgeist ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>041/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>270</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Horrifying Rondo (30+) - This attack does 50 more damage for each of your Benched Pokémon that has any damage counters on it.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Ghostly Touch (140) - Discard a random card from your opponent&#x27;s hand.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Stage 1, 270 HP, 2 Prizes. <strong><em>Horrifying Rondo</em> does 30 plus 50 for each of your Benched Pokémon that has damage on it</strong> — your Bench, not theirs. In most decks that clause is dead text. In this one, Froslass lightly wounds your own Ability Pokémon every Checkup, and suddenly a one-Energy attack does 130 to 230. <em>Ghostly Touch</em> is the other half: 140 and a random card ripped from their hand, for two Energy, with no setup at all.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="duskull-shrouded-fable-018-reg-h">Duskull — Shrouded Fable 018 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/duskull.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/560328_duskull-018-064.jpg" target="_blank" rel="noopener"><img src="./assets/560328_duskull-018-064.jpg" alt="Duskull" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>018/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Come and Get You - Put up to 3 Duskull from your discard pile onto your Bench.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Mumble (30)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>60 HP seed. <em>Come and Get You</em> puts up to 3 Duskull from the discard onto your Bench, which quietly makes every discarded Duskull a future Dusknoir rather than a lost card.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dusclops-shrouded-fable-019-reg-h">Dusclops — Shrouded Fable 019 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/dusclops.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/560329_dusclops-019-064.jpg" target="_blank" rel="noopener"><img src="./assets/560329_dusclops-019-064.jpg" alt="Dusclops" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>019/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>90</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Cursed Blast - Once during your turn, you may put 5 damage counters on 1 of your opponent&#x27;s Pokémon. If you use this Ability, this Pokémon is Knocked Out.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Will-O-Wisp (50)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The bridge, and a small bomb of its own: <strong>Cursed Blast, 5 damage counters, then Dusclops Knocks itself Out.</strong> One copy, because Rare Candy usually skips it and five counters is the discount version of what Dusknoir does properly.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dusknoir-shrouded-fable-020-reg-h">Dusknoir — Shrouded Fable 020 · Reg H<span data-count>x2</span><span data-flavor><img src="./assets/sprites/dusknoir.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/560330_dusknoir-020-064.jpg" target="_blank" rel="noopener"><img src="./assets/560330_dusknoir-020-064.jpg" alt="Dusknoir" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>020/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>160</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Cursed Blast - Once during your turn, you may put 13 damage counters on 1 of your opponent&#x27;s Pokémon. If you use this Ability, this Pokémon is Knocked Out.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Shadow Bind (150) - During your opponent&#x27;s next turn, the Defending Pokémon can&#x27;t retreat.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The thirteen-counter button.</strong> Once during your turn: put <strong>13 damage counters</strong> on one of your opponent&#x27;s Pokémon, anywhere on their board, and Dusknoir Knocks itself Out. That is 130 placed damage that ignores Weakness, Resistance, and the Bench, from a card that cost you one Prize and no attack. It also has a real attack — <em>Shadow Bind</em>, 150 and the Defending Pokémon cannot retreat, which is a second way to spring the retreat trap.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="snorunt-twilight-masquerade-051-reg-h">Snorunt — Twilight Masquerade 051 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/snorunt.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/550095_snorunt.jpg" target="_blank" rel="noopener"><img src="./assets/550095_snorunt.jpg" alt="Snorunt" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>051/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Astonish (20) - Choose a random card from your opponent&#x27;s hand. Your opponent reveals that card and shuffles it into their deck.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>60 HP, Poffin-legal, and <em>Astonish</em> shuffles a random card from their hand into their deck if you are truly stuck for a turn-one play. It exists to become Froslass.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="froslass-twilight-masquerade-053-reg-h">Froslass — Twilight Masquerade 053 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/froslass.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/550097_froslass-053-167.jpg" target="_blank" rel="noopener"><img src="./assets/550097_froslass-053-167.jpg" alt="Froslass" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>053/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water</span></dd>
+						<dt>HP</dt><dd><span>90</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Freezing Shroud - During Pokémon Checkup, put 1 damage counter on each Pokémon that has an Ability (both yours and your opponent&#x27;s), except any Froslass.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Frost Smash (60)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Freezing Shroud</em>: at every Pokémon Checkup, put 1 damage counter on each Pokémon that has an Ability, both yours and theirs, except any Froslass.</strong> Read what that does here twice. Their board is full of Ability Pokémon, so it is a global slow poison. Your board is full of Ability Pokémon too, and <strong>that is the point</strong>: every ping on your own Chandelure and Dusknoir is 50 more damage on Horrifying Rondo. The deck is the rare home where Freezing Shroud&#x27;s friendly fire is a feature.</p>
+					<p>Water type, so it pays no Psychic cost and shares no searcher, and a 1-1 line is deliberately thin. It is the first cut if the Rondo plan underperforms and the first upgrade to 2-2 if it carries games.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="prime-catcher-temporal-forces-157-reg-h">Prime Catcher — Temporal Forces 157 · Reg H<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/542674_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/542674_prime-catcher.jpg" alt="Prime Catcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>157/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent’s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The ACE SPEC: gust their Bench <strong>and</strong> switch your own Active in one Item, no Supporter spent. In most decks it is tempo. In this one it is the trap trigger — pull the retreat-3 tank forward on the same turn Chandelure steps up, and the Supporter slot is still free for Lillie&#x27;s.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="game-plans">Game Plans</h3>
+			<article>
+				<h3 id="1-the-trap">1. The Trap<span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+				<section>
+					<p><strong>The deck&#x27;s main line, and the reason it wins games it looks behind in.</strong></p>
+					<ol>
+						<li>Build Mega Chandelure on the Bench (Poffin, Rare Candy, Dawn).</li>
+						<li>Attach two Psychic. Step forward.</li>
+						<li><strong>Boss&#x27;s Orders their heaviest Pokémon into the Active Spot.</strong></li>
+						<li>Phantom Maze. Their retreat 2 became 3 under Binding Flame: <strong>280</strong>. Their retreat 3 became 4: <strong>330</strong>.</li>
+					</ol>
+					<p>The targets worth dragging are the ones every deck benches and babies: the fat Stage 2, the 340 HP Mega charging up, the support Pokémon with retreat 2 that never planned to fight. Their printed retreat cost is the targeting computer. <strong>Learn your opponents&#x27; retreat costs the way the dark deck learns Bench counts.</strong></p>
+					<p>Against decks that keep a free-retreat pivot up front, do not feed the 180 floor more than you must. Every gust effect in the deck exists to go around that pivot, and <em>Shadow Bind</em> (Dusknoir&#x27;s attack) pins whatever is up front so the pivot never comes back out.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-feeding-the-rondo">2. Feeding the Rondo<span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
+				<section>
+					<p><strong>Gourgeist ex is the cheapest big attack in the deck, and your own Froslass is its supply line.</strong></p>
+					<p>Freezing Shroud pings every Ability Pokémon at every Checkup. After two Checkups with a normal board (two Chandelure and a Dusknoir benched, all lightly singed), <em>Horrifying Rondo</em> reads: 30 + 50 + 50 + 50 = <strong>180, for one Energy, from a 270 HP Stage 1 worth only 2 Prizes.</strong> With a fourth damaged bencher it is 230.</p>
+					<p>The counters on your own board are almost free. Chandelure has 350 HP; ten damage a turn is noise. The one real cost is on Gourgeist ex itself (it has no Ability, so it is never pinged, but it is 270 HP in an ex fight) — trade it while it is ahead.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-the-thirteen-counter-button">3. The Thirteen-Counter Button<span data-flavor><img src="./assets/sprites/dusknoir.gif" alt="" /></span></h3>
+				<section>
+					<p><strong>Dusknoir is Witching Hour&#x27;s Cursed Shadow, graduated.</strong></p>
+					<p>Thirteen counters, placed anywhere on their board, once, then Dusknoir dies. The three uses, best first:</p>
+					<ul>
+						<li><strong>Delete a Bench threat before it evolves or charges.</strong> The 130 lands on the Basic their whole deck is waiting on. This is the old plan against Fox&#x27;s Charmanders, scaled to tournament stakes.</li>
+						<li><strong>Fix a breakpoint.</strong> Phantom Maze left a 350 HP Mega at 330 minus something; Cursed Blast erases the gap and the Prize math flips.</li>
+						<li><strong>Feed the Rondo on the way out.</strong> The self-KO is a Checkup event away from Froslass pinging everything anyway; sequence Cursed Blast after your attack, not before.</li>
+					</ul>
+					<p>The price is honest: your opponent takes a Prize for the self-KO. Two Dusknoir plus <em>Come and Get You</em> on the Duskulls means the button exists roughly three times a game if you want it, but every press hands over a sixth of their win. Press it to convert, not to vent.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-the-spreading-light-endgame">4. The Spreading Light Endgame<span data-flavor><img src="./assets/sprites/lampent.gif" alt="" /></span></h3>
+				<section>
+					<p><strong>One attack that sets up the rest of the game.</strong></p>
+					<p>Turn two, if the trap is not ready and the board is thin: Lampent Active, one Psychic, <strong><em>Spreading Light</em> — up to 3 Lampent from the deck straight onto the Bench.</strong> Next turn those are Rare Candy targets and Mega Chandelure is no longer a card you draw; it is a card you schedule.</p>
+					<p>A deck with a 3 Prize core cannot afford to whiff its own arrival, and this is the card that guarantees it never does. Fetch all three Lampent even when you only need one; benched Lampent are Froslass ping targets that feed the Rondo, and a 90 HP body is a fine thing for an ex deck to waste an attack on.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="5-what-this-deck-gives-up">5. What This Deck Gives Up<span data-flavor><img src="./assets/sprites/duskull.gif" alt="" /></span></h3>
+				<section>
+					<p>Play it knowing the bill.</p>
+					<ul>
+						<li><strong>Three Prizes on the core, no discount.</strong> Mega Gengar bends the prize race; Chandelure just tanks it. Two Mega Knock Outs and a Dusknoir self-KO is a lost game. Position the Megas the way the dark box positions its own: behind cheap bodies, never two exposed at once.</li>
+						<li><strong>A 26% mulligan rate.</strong> Three evolution lines on ten Basics. The Poffins are load-bearing; dig for them.</li>
+						<li><strong>The 180 floor.</strong> A disciplined free-retreat deck blunts Phantom Maze all game. Gusts and Shadow Bind are the answer, and they are finite. Against those decks Gourgeist ex quietly becomes the main attacker.</li>
+						<li><strong>Darkness Weakness on the whole Gengar-hunting profile.</strong> The Fighting Resistance makes this the house&#x27;s best answer to Mega Lucario style decks, but any Darkness attacker hits Chandelure for double. Including the ones in this repo.</li>
+					</ul>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
+					<p><strong>Fox&#x27;s Charizard deck finally meets its one-shot.</strong> Charizard&#x27;s retreat cost is 3; under Binding Flame that is 4, and Phantom Maze does 330 into 170 HP. The deck that needed a two-turn Weezing fuse to answer Charizard now answers it with one attack — massive overkill, delivered by a lantern. His <em>Royal Blaze</em> at 150 cannot two-shot a 350 HP Chandelure fast enough.</p>
+					<p><strong>Fox&#x27;s Team Rocket&#x27;s Mewtwo deck walks into the same trap.</strong> Team Rocket&#x27;s Mewtwo ex has retreat 3: Binding Flame makes it 4, Phantom Maze does <strong>330 into its 280 HP</strong> — a clean one-shot on his best Pokémon, worth 2 Prizes. His Crobat ex (retreat 1) is the pivot problem in miniature: 230 into 310 HP is a two-shot, and <em>Assassin&#x27;s Return</em> is a Darkness attack hitting Chandelure&#x27;s Weakness for 240 a swing. Trade Gourgeist and counters into Crobat; save Phantom Maze for the heavy things.</p>
+					<p><strong>Against your own dark decks, this deck is the underdog on purpose.</strong> Every Gengar and Weezing in the house strikes its Darkness Weakness. That is not a flaw; that is the rock-paper-scissors the table needed.</p>
+			</section>
+			<section>
+				<h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3>
+					<p>The lantern lines are all new; the trainer shell is already on the shelf. The Rare Candy math across all three tournament decks lands on exactly the ten you own.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Litwick <small>ME05: Pitch Black 036/084</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>the Psychic print; your Fire Litwick do not serve this line</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Lampent <small>ME05: Pitch Black 037/084</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>Spreading Light</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Chandelure ex <small>ME05: Pitch Black 038/084</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>Double Rare; skip the collector prints numbered above 084</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Pumpkaboo <small>ME04: Chaos Rising 040/086</small></span></td><td>1</td><td>2</td><td><strong>1</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Gourgeist ex <small>ME04: Chaos Rising 041/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Double Rare, same trap as above; 041, not 102</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Duskull <small>SV: Shrouded Fable 018/064</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Dusclops <small>SV: Shrouded Fable 019/064</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Dusknoir <small>SV: Shrouded Fable 020/064</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Snorunt <small>SV06: Twilight Masquerade 051/167</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Froslass <small>SV06: Twilight Masquerade 053/167</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared with the other decks</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared; 3 + 3 + 4 across the decks = the 10 owned</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared; a third deck oversubscribes the 9 owned, buy 3 if all stay sleeved</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>3</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Prime Catcher <small>SV05: Temporal Forces 157/162</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>ACE SPEC; the English print, the Japanese copy is not US-legal</td></tr>
+							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>3</td><td>13</td><td><strong>10</strong></td><td>never rotates</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>32</strong></td><td></td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="important">
+				<p><strong>Regulation check.</strong> Everything above carries mark H, I, or J and is Standard legal as of August 2026. The H cards (the Duskull and Snorunt lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black and Chaos Rising core is Reg J and has years left. Budget accordingly: the soul of the deck outlives its shell.</p>
+			</aside>
+			</section>
+		</main>
+		<footer>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+		</footer>
+	</body>
+</html>
