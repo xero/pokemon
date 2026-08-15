@@ -26,11 +26,11 @@
 > This deck is **legal at real tournaments.** Your Fire Force deck isn't, because some of those cards are too old. Every card in here has the right letter on it.
 
 > [!NOTE]
-> **Three Trainer slots are still empty, and that's on purpose.**
+> **The last three Trainer slots are filled now.**
 >
-> Count the Trainer pages in this file and you'll get **28**, not 31. The last three are blank because your dad hasn't picked them yet — they should be search and draw cards, and he wants to check what's good right now before choosing.
+> They sat empty for a while because nobody had checked which search and draw cards survived the rotation. Both of the old standbys, Nest Ball and Professor's Research, are gone from the legal pool. The three slots are **2 [Dawn](#dawn)** and **1 [Pokegear 3.0](#pokegear-30)**, and every copy is already in the binder.
 >
-> **So this is a 57-card list with 3 slots to fill.** Everything in here is decided. Those three aren't. Ask him about it, and pick them together.
+> **This is a full 60 now.** Count the Trainer pages and you get 31.
 
 > [!WARNING]
 > **This deck plays by different Prize rules, and it's the biggest change.**
@@ -123,8 +123,8 @@ These five are the ones that make this deck different. Learn these.
 > ### Table of Contents
 >
 > **Pokémon** — [Eevee](#eevee) · [Eevee ex](#eevee-ex) · [Flareon ex](#flareon-ex) · [Hoothoot](#hoothoot) · [Noctowl](#noctowl)
-> **Supporters** — [Lillie's Determination](#lillies-determination) · [Crispin](#crispin) · [Boss's Orders](#bosss-orders-ghetsis) · [Gwynn](#gwynn)
-> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Ultra Ball](#ultra-ball) · [Switch](#switch) · [Night Stretcher](#night-stretcher)
+> **Supporters** — [Lillie's Determination](#lillies-determination) · [Crispin](#crispin) · [Boss's Orders](#bosss-orders-ghetsis) · [Gwynn](#gwynn) · [Dawn](#dawn)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Ultra Ball](#ultra-ball) · [Switch](#switch) · [Night Stretcher](#night-stretcher) · [Pokegear 3.0](#pokegear-30)
 > **Tool** — [Sparkling Crystal](#sparkling-crystal)
 > **Energy** — [Basic Fire Energy](#basic-fire-energy) · [Basic Water Energy](#basic-water-energy)
 >
@@ -563,6 +563,43 @@ The words **"don't have a Rule Box"** are doing all the work here. That means Gw
 **Discard *up to* 2.** You can discard just one and draw 3, if that's all you can spare.
 
 ---
+
+### Dawn
+
+<img src="./assets/660414_dawn.jpg" align="left" width="200">
+
+| Key | Val |
+| :--- | :--- |
+| **How many** | 2 |
+| **Set** | ME02: Phantasmal Flames |
+| **Number** | 087/094 |
+| **Type** | Trainer — Supporter |
+
+> Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.
+
+<br clear="all">
+
+#### General use
+
+Dawn reaches into your deck and pulls out a whole evolution line at once. In this deck that means an [Eevee](#eevee) and the [Flareon ex](#flareon-ex) it grows into, both into your hand, off one card.
+
+Your deck has no Stage 2 Pokémon in it at all. That's fine. You are allowed to find fewer cards than a card asks for, so you take the two that exist and shuffle.
+
+#### Pairing
+
+- **[Eevee](#eevee)** and **[Flareon ex](#flareon-ex)** — the Basic and the Stage 1. This is the pair Dawn is in the deck for.
+- **[Hoothoot](#hoothoot)** and **[Noctowl](#noctowl)** — the other legal pair. Take these when what you're missing is the draw engine, not the attacker.
+- **[Ultra Ball](#ultra-ball)** — Ultra Ball finds the same Flareon ex but charges you 2 cards out of your hand. If you have Dawn, play Dawn and keep the Ultra Ball for later.
+
+#### Strategy
+
+**This is a setup card, so it is at its best on turn one or two.** [Buddy-Buddy Poffin](#buddy-buddy-poffin) fills your Bench with Basics. Dawn does the other half: it hands you the Eevee *and* the thing it evolves into, so your next turn is already decided.
+
+**You only get one Supporter a turn, and you only have 2 Dawn.** Playing Dawn means not playing [Lillie's Determination](#lillies-determination). Early, when you know exactly which card you're missing, Dawn wins. Later, when you just need more cards, Lillie's wins.
+
+**Dead late.** Once your board is built, Dawn finds you two Pokémon you already have in play. If it's still in your hand at that point it's [Gwynn](#gwynn) fuel, not a play.
+
+---
 ---
 
 # Trainers — Items
@@ -724,6 +761,43 @@ It's why discarding to [Ultra Ball](#ultra-ball) and [Gwynn](#gwynn) doesn't rea
 **One card at a time.** Not "a Pokémon and an Energy." One or the other.
 
 **Basic Energy only.** Your deck only has Basic Energy, so this never actually limits you.
+
+---
+
+### Pokegear 3.0
+
+<img src="./assets/642530_pokegear-30.jpg" align="left" width="200">
+
+| Key | Val |
+| :--- | :--- |
+| **How many** | 1 |
+| **Set** | SV: Black Bolt |
+| **Number** | 084/086 |
+| **Type** | Trainer — Item |
+
+> Look at the top 7 cards of your deck. You may reveal a Supporter card you find there and put it into your hand. Shuffle the other cards back into your deck.
+
+<br clear="all">
+
+#### General use
+
+Pokegear looks 7 cards deep and gives you a Supporter out of them.
+
+It's an Item, so it's free. Play it *first*, see which Supporter it finds, then play that Supporter in the same turn.
+
+#### Pairing
+
+- **[Lillie's Determination](#lillies-determination)** — the one you want most often. Pokegear turns a turn with no Supporter into a 6-card draw.
+- **[Crispin](#crispin)** — when the problem is Energy rather than cards.
+- **[Boss's Orders](#bosss-orders-ghetsis)** — you only run 3, so this is a fourth copy on the turn a Prize card is sitting on his Bench.
+
+#### Strategy
+
+**This is your insurance card.** The turn where your hand has no Supporter in it is the turn you lose the game. There are 13 Supporters in your deck, so 7 cards off the top will usually contain one.
+
+**Usually, not always.** If it whiffs, you've lost nothing but the card. Play it early in the turn so a miss still leaves you time to do something else.
+
+**One copy on purpose.** It doesn't do anything by itself. Two Pokegear in one hand is one wasted card.
 
 ---
 ---

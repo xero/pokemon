@@ -55,14 +55,20 @@ Two free Trainers, on demand, twice or three times a game.
 | 3 | Night Stretcher | Item | Shrouded Fable 061 | H |
 | 2 | Gwynn | Supporter | Pitch Black 078 | J |
 | 1 | **Sparkling Crystal** | ACE SPEC Tool | Stellar Crown 142 | H |
-| 3 | *flex* | — | — | — |
+| 2 | Dawn | Supporter | Phantasmal Flames 087 | I |
+| 1 | Pokegear 3.0 | Item | Black Bolt 084 | I |
 
-**Energy (13)** — 10 Basic Fire, 3 Basic Water.
+**Energy (13)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 10 | Basic Fire Energy | Mega Evolution Energies | 002 | - |
+| 3 | Basic Water Energy | Mega Evolution Energies | 003 | - |
 
 **16 + 31 + 13 = 60.** ✅
 
 > [!NOTE]
-> **The 3 flex slots are deliberate.** I verified every card above is Regulation H/I/J, but I did **not** verify the current post-rotation search and draw staples beyond what's listed — I'd be guessing at what replaced Nest Ball and Professor's Research. Fill those three from a current staple list before you build. Everything else is confirmed legal.
+> **The last 3 slots are filled, and here is the working.** They stayed open until the post-rotation search and draw pool got checked properly. Nest Ball and Professor's Research are both out of the legal pool, so the replacements are **2 Dawn** and **1 Pokegear 3.0**, both Regulation I and both already owned. Dawn finds Eevee and Flareon ex together, which is the exact line this deck spends its first two turns hunting. Pokegear covers the hands that open with no Supporter at all. Every card in the list is confirmed legal.
 
 > [!TIP]
 > **"Eevee" and "Eevee ex" are different card names.** The four-copy limit is per name, and the *ex* is part of the name — so 4 Eevee **plus** 4 Eevee ex is perfectly legal. Same trick applies to Flareon and Flareon ex.

@@ -81,7 +81,11 @@ And then there's the payoff card the first draft was missing entirely:
 | 2 | Float Stone | Pokémon Tool | Plasma Freeze 99 |
 | 2 | Old Cemetery | Stadium | Chilling Reign 147 |
 
-**Energy (11)** — 11 Basic Psychic Energy.
+**Energy (11)**
+
+| Qty | Card | Set | Number |
+| --- | --- | --- | --- |
+| 11 | Basic Psychic Energy | Mega Evolution Energies | 005 |
 
 **23 + 26 + 11 = 60.** ✅
 

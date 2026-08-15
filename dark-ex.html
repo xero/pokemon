@@ -488,6 +488,38 @@
 			}
 		}
 
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
 		dl {
 			display: grid;
 			/* max-content sizes the term column to whatever the longest
@@ -848,6 +880,13 @@
 			break-inside: avoid;
 		}
 
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
 		h1,
 		h2,
 		h3,
@@ -915,6 +954,13 @@
 			text-shadow: none;
 		}
 
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
 		/* purple is the one colour left in the text, and it prints as a
 		   flat grey. an anchor is dead on paper regardless. */
 		a {
@@ -958,6 +1004,31 @@
 			</section>
 			<section>
 				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><img src="./assets/660495_gastly.jpg" alt="Gastly" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/684430_haunter.jpg" alt="Haunter" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/684431_gengar.jpg" alt="Gengar" /></figure>
+				<figure><img src="./assets/660411_toxel.jpg" alt="Toxel" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660413_seviper.jpg" alt="Seviper" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660412_sableye.jpg" alt="Sableye" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></figure>
+				<figure><img src="./assets/560349_pecharunt-ex-039-064.jpg" alt="Pecharunt ex" /></figure>
+				<figure><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></figure>
+				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/660414_dawn.jpg" alt="Dawn" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/660418_grimsleys-move.jpg" alt="Grimsley&#x27;s Move" /></figure>
+				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></figure>
+				<figure><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x12</span></figure>
+				<figure><img src="./assets/550211_legacy-energy.jpg" alt="Legacy Energy" /></figure>
+			</article>
 					<p><strong>Pokémon (21)</strong></p>
 					<table>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>

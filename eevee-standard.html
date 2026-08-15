@@ -488,6 +488,38 @@
 			}
 		}
 
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
 		dl {
 			display: grid;
 			/* max-content sizes the term column to whatever the longest
@@ -848,6 +880,13 @@
 			break-inside: avoid;
 		}
 
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
 		h1,
 		h2,
 		h3,
@@ -915,6 +954,13 @@
 			text-shadow: none;
 		}
 
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
 		/* purple is the one colour left in the text, and it prints as a
 		   flat grey. an anchor is dead on paper regardless. */
 		a {
@@ -974,6 +1020,29 @@
 			<section>
 				<h3 id="deck-list">Deck List</h3>
 					<p>This is <strong>Sun and Moon</strong>, the home build. For Fire and Ice, apply <a href="#the-swap">The Swap</a>.</p>
+			<article data-decklist>
+				<figure><img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/550179_eevee-135-167.jpg" alt="Eevee" /></figure>
+				<figure><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/610415_umbreon-ex-060-131.jpg" alt="Umbreon ex" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/610389_espeon-ex-034-131.jpg" alt="Espeon ex" /></figure>
+				<figure><img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/567341_noctowl.jpg" alt="Noctowl" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/642200_hilda.jpg" alt="Hilda" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></figure>
+				<figure><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x6</span></figure>
+				<figure><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x3</span></figure>
+			</article>
 					<p><strong>Pokémon (19)</strong></p>
 					<table>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>

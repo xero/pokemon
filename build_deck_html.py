@@ -411,6 +411,112 @@ def deck_counts(lines):
     return out
 
 
+def deck_list(lines, where=""):
+    """(src, name, qty) for every distinct card the deck runs, in list order.
+
+    Two page shapes feed the same strip. The planning docs carry Qty tables and
+    nothing else, so the scan is looked up in cards.csv from the name, set, and
+    number the table already prints. The older guides have no deck list at all;
+    they give every card its own page, with the scan written into the markdown
+    and the count in its stat table, so those are read off the card pages.
+
+    Keyed on the scan, so a card that appears in both a Qty table and a card
+    page is listed once, and two printings of one card stay two entries.
+    """
+    out, seen = [], set()
+
+    def add(src, name, qty):
+        if not src or src in seen:
+            return
+        seen.add(src)
+        out.append((src, name, qty))
+
+    i, n = 0, len(lines)
+    heading, scan = "", ""
+    while i < n:
+        s = lines[i].strip()
+        if s.startswith("### "):
+            heading, scan = s[4:].strip(), ""
+        elif s.startswith("<img"):
+            m = re.search(r'src="([^"]+)"', s)
+            scan = m.group(1) if m else ""
+        elif s.startswith("|"):
+            table = []
+            while i < n and lines[i].strip().startswith("|"):
+                table.append(lines[i])
+                i += 1
+            grid = parse_table(table)
+            i -= 1
+            if not grid:
+                pass
+            elif grid[0][0].lower() == "qty":
+                head = [c.lower() for c in grid[0]]
+
+                def col(row, want):
+                    j = head.index(want) if want in head else -1
+                    return row[j] if 0 <= j < len(row) else ""
+
+                for r in grid[1:]:
+                    if len(r) < 2 or not r[0].strip("*").isdigit():
+                        continue
+                    name = re.sub(r"\*+|\[.*?\]", "", col(r, "card")).strip()
+                    # fire-standard has no Number column and prints the number
+                    # inside the Set cell instead. without it "Switch" picks a
+                    # printing by set words alone, which is a coin toss.
+                    hint = col(r, "set")
+                    num = col(r, "number").strip("*")
+                    m = re.search(r"(\d{2,3})\s*$", hint)
+                    if not num and m:
+                        num, hint = m.group(1), hint[:m.start()]
+                    if not name or set(hint) <= set("—- "):
+                        continue        # a flex slot, not a card
+                    card = find_card(name, hint, num)
+                    if card and card["image_file"]:
+                        add(f'./assets/{card["image_file"]}', card["name"],
+                            r[0].strip("*"))
+                    else:
+                        print(f"  {where}: no scan for deck list entry {name!r}")
+            else:
+                # a card page's own stat table: "| **Qty** | 4 |". the Set row
+                # is the tell that this is a card and not a table of Fox's
+                # annoying Trainers, which sits under a scan of its own.
+                cells = {re.sub(r"\*+", "", r[0]).strip(): r[1].strip()
+                         for r in grid if len(r) == 2}
+                if "Set" in cells:
+                    src = scan
+                    if not src:
+                        # Basic Water Energy is a card page with no scan
+                        # written into it; the row in cards.csv has one.
+                        card = find_card(heading, cells["Set"],
+                                         cells.get("Number", ""))
+                        src = (f'./assets/{card["image_file"]}'
+                               if card and card["image_file"] else "")
+                    add(src, heading,
+                        cells.get("How many") or cells.get("Qty", ""))
+                scan = ""
+        i += 1
+    return out
+
+
+def gallery(entries, heading, ind="\t\t\t"):
+    """The deck list as a strip of thumbnails, counts sitting on the art.
+
+    One <article> rather than one per card: this is a single picture of the
+    sixty, and the card pages below it are where a card gets its own box.
+    """
+    out = [f"{ind}<article data-decklist>"]
+    if heading:
+        out.append(f'{ind}\t<h3 id="deck-list">Deck List</h3>')
+    for src, name, qty in entries:
+        # singles carry no badge; the whole point of the number is to say
+        # which cards arrive more than one at a time. counts read "4" or
+        # "**1** (ACE SPEC)", so take the number rather than the whole cell.
+        m = re.search(r"\d+", str(qty))
+        badge = count_badge(qty) if m and int(m.group()) > 1 else ""
+        out.append(f"{ind}\t<figure>{img(src, name)}{badge}</figure>")
+    return out + [f"{ind}</article>"]
+
+
 def in_deck(counts, name, number):
     """How many of this card the deck list runs."""
     n = re.sub(r"\s*[—-]\s*.*$", "", name).strip().lower()
@@ -517,6 +623,7 @@ def convert(src):
     seen = Counter()
     flav, seen_flav = FLAVOR.get(src.name, {}), set()
     counts = deck_counts(lines)
+    thumbs, shown = deck_list(lines, src.name), False
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
     sect = None           # the ## section currently being filled in
@@ -552,6 +659,19 @@ def convert(src):
             title = stripped[2:].strip()
             i += 1
             continue
+
+        # the thumbnail strip goes directly above the Pokémon, which the two
+        # page shapes announce differently: the guides open a "# Pokémon"
+        # group, the planning docs label the first table "**Pokémon (22)**"
+        # inside their Deck List section. only the first gets a heading of its
+        # own; in the planning docs it is already under one.
+        if thumbs and not shown and re.match(r"(#{1,2} |\*\*)Pokémon\b", stripped):
+            head = stripped.startswith("#")
+            if head:
+                close_sect()
+            for h in gallery(thumbs, head):
+                emit(h)
+            shown = True
 
         # blockquote run: either a callout, the contents, or a plain aside
         if stripped.startswith(">"):

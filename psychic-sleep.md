@@ -79,7 +79,11 @@ Sleep them cheaply early, sleep them expensively late, and trap them when they w
 | 2 | Switch | Item | any |
 | 2 | Old Cemetery | Stadium | Chilling Reign 147 |
 
-**Energy (12)** — 12 Basic Psychic Energy.
+**Energy (12)**
+
+| Qty | Card | Set | Number |
+| --- | --- | --- | --- |
+| 12 | Basic Psychic Energy | Mega Evolution Energies | 005 |
 
 **23 + 25 + 12 = 60.** ✅
 

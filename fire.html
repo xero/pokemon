@@ -488,6 +488,38 @@
 			}
 		}
 
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
 		dl {
 			display: grid;
 			/* max-content sizes the term column to whatever the longest
@@ -848,6 +880,13 @@
 			break-inside: avoid;
 		}
 
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
 		h1,
 		h2,
 		h3,
@@ -913,6 +952,13 @@
 			border-radius: 3pt;
 			color: #000;
 			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
 		}
 
 		/* purple is the one colour left in the text, and it prints as a
@@ -1042,6 +1088,29 @@
 				</section>
 			</article>
 			</section>
+			<article data-decklist>
+				<h3 id="deck-list">Deck List</h3>
+				<figure><img src="./assets/226392_charmander.jpg" alt="Charmander" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/226395_charizard.jpg" alt="Charizard" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/610429_eevee.jpg" alt="Eevee" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/610368_flareon.jpg" alt="Flareon" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/226508_leon.jpg" alt="Leon" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/257309_kindler.jpg" alt="Kindler" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/246789_zinnias-resolve.jpg" alt="Zinnia&#x27;s Resolve" /></figure>
+				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /></figure>
+				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/208500_ordinary-rod.jpg" alt="Ordinary Rod" /></figure>
+				<figure><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x13</span></figure>
+			</article>
 			<h2 id="pokémon-1">Pokémon</h2>
 			<article>
 				<h3 id="charmander">Charmander<span data-count>x4</span><span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h3>

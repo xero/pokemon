@@ -26,7 +26,7 @@ pokemontcg.io --fetch_regulation.py--> regulation-marks.json --> the reg mark an
 - **`cards.csv` is what we own; this is what exists.** Roughly 200 cards against roughly 3,000. Any question shaped like "what is legal that does X" has to be answered from here. The collection is the wrong pool to search, and the answer is not reliably in anyone's memory.
 - **The legal marks are H, I, and J**, as of the 2026 rotation. `LEGAL_MARKS` in the script is the one line to change when that moves.
 - **The filename carries the fetch time because the answer expires.** Keep the old snapshots rather than replacing them; diffing two shows what a rotation took away.
-- Every card keeps its `rules`, `abilities`, and `attacks`, so grepping card text is the intended use. Prices, ids, and image urls are stripped.
+- **It carries card text, not card stats.** Every card keeps its `rules`, `abilities`, and `attacks`, so grepping card text is the intended use. Prices, ids, and image urls are stripped, and so are `weaknesses`, `convertedRetreatCost`, and `evolvesFrom` — "what does this hit for double", "what is its Retreat Cost", and "what does this evolve from" all need a live API pull. `FIELDS` in the script is where to widen it.
 - The upstream API returns bare 502s in bursts and spells the supertype one way in the query and another in the response. The script already handles both, so reach for it instead of hitting the API by hand.
 
 ## Adding a card
@@ -38,6 +38,9 @@ pokemontcg.io --fetch_regulation.py--> regulation-marks.json --> the reg mark an
 
 A TCGplayer product URL also works as the query and skips the search entirely.
 
+- **TCGplayer's product name is the authority, and it is not always the printed name.** It is `Poke Pad`, not `Poké Pad`. Basic energy is `Basic Water Energy` in the API and `cards.csv` but `Water Energy` on the storefront. A buy block or card heading that guesses wrong resolves to nothing, silently.
+- **Restocking a list is faster through [Mass Entry](https://www.tcgplayer.com/massentry) than the search.** Format is `qty Name [SET]` using the codes behind *Show Set/Series Codes*. Two things the docs get wrong for Pokémon: a trailing collector number does not work, and a card with more than one print in its set needs that number **inside the name** (`3 Mega Chandelure ex - 038/084 [PBL]`). One bad line discards the entire batch with nothing added.
+
 ## The build
 
 ```sh
@@ -46,7 +49,9 @@ python3 build.py --check    # rebuild, then fail if the result differs from git
 python3 build.py --data     # re-fetch cards.csv first
 ```
 
+- **Adding a deck page takes two edits.** `DECKS` in `build_deck_html.py` builds it; `PAGES` in `build_index.py` links it. They are separate lists, so missing the second gives you a page nothing points at. A new page also wants a `MASCOT` pair and `FLAVOR` keys.
 - **Run `build.py`, never the builders individually.** `build_index.py` reads finished pages back off disk, so order matters.
+- **`assets/template.html` has an `@media print` block, and it is load-bearing.** The screen type scale is `vw` clamps that resolve against the sheet and arrive oversized, the dark-mode block has no print guard, and browsers drop backgrounds. Anything that encodes meaning in a fill needs an explicit print rule; the table headers and the `[data-count]` badge already have one.
 - **Every generated file is committed.** `--check` on a clean tree is the regression test; CI runs it. After changing a builder or a deck .md, run a build before committing or the commit is stale.
 - Generated: `collection.html`, every `*-*.html` deck page, `credits.html`, `collection.md`, `index.html`. Hand-written: the deck `.md` files, the tsv files, the Python.
 
@@ -56,6 +61,8 @@ python3 build.py --data     # re-fetch cards.csv first
 
 - **Card headings**: `### Name — Set Words 056 · Reg I`. The regex wants `Name — SetWords NNN`; a matching row in `cards.csv` auto-renders the scan, stat table, and legality badge. No row, no card block, silently. Add the card to the pipeline first.
 - **Deck list tables** whose first header cell is `Qty` feed the count badges on card headings. Card numbers in those tables must be bare (`056`), not `056/094`; the parser fullmatches 2-3 digits.
+- **`deck_counts()` overwrites, so the last `Qty` table wins.** It scans *every* table whose first header cell is `Qty`. Two tables listing the same card at different counts silently render the wrong badge. Keep one canonical set of Qty tables per page and express variants under a different header (`| Out | In |`), which the parser ignores.
+- **The deck list strip is generated, and it reads whichever shape the page has.** `deck_list()` builds one full-width `[data-decklist]` article of 150px scans, one per distinct card, badged with the count where the deck runs more than one. Qty tables feed it on the planning docs, using the Card, Set, and Number columns to pin the printing; the older guides have no deck list, so it reads each card page's `<img>` and its `Qty` or `How many` row instead. A `###` block only counts as a card if its table carries a `Set` row. The strip lands directly above the first `# Pokémon` heading or `**Pokémon (N)**` label, and gets its own heading only in the first case, since the planning docs already sit under one. A row with no set, like fire-standard's flex slots, is skipped; anything else that fails to resolve prints a warning naming the card.
 - **Buy blocks**: fenced ` ```buy ` with lines `query | Set Words NNN | need | note`. Own is looked up live from `cards.csv`, Buy is `max(0, need - own)`. Never hand-write ownership counts in prose tables; they go stale, and the buy block exists so they cannot.
 - A `###` directly under the page `# Title` is the subtitle, not a card.
 - The `> ### Table of Contents` blockquote is discarded and rebuilt from headings in the HTML, but keep it accurate in the .md for GitHub readers.

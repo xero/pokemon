@@ -488,6 +488,38 @@
 			}
 		}
 
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
 		dl {
 			display: grid;
 			/* max-content sizes the term column to whatever the longest
@@ -848,6 +880,13 @@
 			break-inside: avoid;
 		}
 
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
 		h1,
 		h2,
 		h3,
@@ -915,6 +954,13 @@
 			text-shadow: none;
 		}
 
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
 		/* purple is the one colour left in the text, and it prints as a
 		   flat grey. an anchor is dead on paper regardless. */
 		a {
@@ -961,6 +1007,31 @@
 			</section>
 			<section>
 				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><img src="./assets/704793_litwick.jpg" alt="Litwick" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/704794_lampent.jpg" alt="Lampent" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/693536_pumpkaboo.jpg" alt="Pumpkaboo" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/693497_gourgeist-ex-041-086.jpg" alt="Gourgeist ex" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/560328_duskull-018-064.jpg" alt="Duskull" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/560330_dusknoir-020-064.jpg" alt="Dusknoir" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/590059_smoochum.jpg" alt="Smoochum" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/550095_snorunt.jpg" alt="Snorunt" /></figure>
+				<figure><img src="./assets/550097_froslass-053-167.jpg" alt="Froslass" /></figure>
+				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/642200_hilda.jpg" alt="Hilda" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660414_dawn.jpg" alt="Dawn" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/542674_prime-catcher.jpg" alt="Prime Catcher" /></figure>
+				<figure><img src="./assets/684396_telepathic-psychic-energy.jpg" alt="Telepathic Psychic Energy" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x6</span></figure>
+			</article>
 					<p><strong>Pokémon (22)</strong></p>
 					<table>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>

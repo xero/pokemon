@@ -488,6 +488,38 @@
 			}
 		}
 
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
 		dl {
 			display: grid;
 			/* max-content sizes the term column to whatever the longest
@@ -848,6 +880,13 @@
 			break-inside: avoid;
 		}
 
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
 		h1,
 		h2,
 		h3,
@@ -915,6 +954,13 @@
 			text-shadow: none;
 		}
 
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
 		/* purple is the one colour left in the text, and it prints as a
 		   flat grey. an anchor is dead on paper regardless. */
 		a {
@@ -955,6 +1001,31 @@
 				<p><strong>Deck total: 60 cards.</strong> 21 Pokémon, 29 Trainers, 10 Energy. Every attacker is worth <strong>1 Prize card</strong>, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.</p>
 				<p><strong>This is the third build.</strong> The second one traded situational Trainers for Pokémon and an Energy engine. This one fixes where the Energy actually goes: Scramble Switch takes the ACE SPEC slot that was sitting empty, Night Stretcher doubles, half the Shadowy Darkness becomes Basic Darkness that <em>Sinister Surge</em> can still find on turn seven, and Ultra Ball leaves because three Dawn already fetch the whole Gengar line.</p>
 			</aside>
+			<article data-decklist>
+				<h3 id="deck-list">Deck List</h3>
+				<figure><img src="./assets/684429_gastly.jpg" alt="Gastly" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/684431_gengar.jpg" alt="Gengar" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/623518_koffing.jpg" alt="Koffing" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/623519_weezing.jpg" alt="Weezing" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/660412_sableye.jpg" alt="Sableye" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660411_toxel.jpg" alt="Toxel" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660414_dawn.jpg" alt="Dawn" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /></figure>
+				<figure><img src="./assets/590042_scramble-switch.jpg" alt="Scramble Switch" /></figure>
+				<figure><img src="./assets/704832_dark-bell-075-084.jpg" alt="Dark Bell" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/660419_punk-helmet.jpg" alt="Punk Helmet" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654466_risky-ruins.jpg" alt="Risky Ruins" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/704840_shadowy-darkness-energy.jpg" alt="Shadowy Darkness Energy" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x8</span></figure>
+			</article>
 			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="gastly">Gastly<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
