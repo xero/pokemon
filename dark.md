@@ -16,9 +16,9 @@
 >
 > At the bottom is **[Gameplay Strategies](#gameplay-strategies)** — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.
 >
-> **Deck total: 60 cards.** 21 Pokémon, 26 Trainers, 13 Energy. Every attacker is worth **1 Prize card**, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.
+> **Deck total: 60 cards.** 21 Pokémon, 29 Trainers, 10 Energy. Every attacker is worth **1 Prize card**, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.
 >
-> **This is the second build.** After the first five games (1 win, 3 losses) the deck traded six situational Trainers and a card of nothing for seven Pokémon and an Energy engine. Same combo, same closer, twice the fuel.
+> **This is the third build.** The second one traded situational Trainers for Pokémon and an Energy engine. This one fixes where the Energy actually goes: Scramble Switch takes the ACE SPEC slot that was sitting empty, Night Stretcher doubles, half the Shadowy Darkness becomes Basic Darkness that *Sinister Surge* can still find on turn seven, and Ultra Ball leaves because three Dawn already fetch the whole Gengar line.
 
 ---
 
@@ -26,7 +26,7 @@
 >
 > **Pokémon** — [Gastly](#gastly) · [Haunter](#haunter) · [Gengar](#gengar) · [Koffing](#koffing) · [Weezing](#weezing) · [Sableye](#sableye) · [Toxel](#toxel) · [Toxtricity](#toxtricity)
 > **Supporters** — [Dawn](#dawn) · [Lillie's Determination](#lillies-determination) · [Gwynn](#gwynn) · [Boss's Orders](#bosss-orders-ghetsis)
-> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Ultra Ball](#ultra-ball) · [Rare Candy](#rare-candy) · [Night Stretcher](#night-stretcher) · [Switch](#switch) · [Dark Bell](#dark-bell)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Rare Candy](#rare-candy) · [Night Stretcher](#night-stretcher) · [Switch](#switch) · [Scramble Switch](#scramble-switch) · [Dark Bell](#dark-bell)
 > **Tool / Stadium** — [Punk Helmet](#punk-helmet) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Shadowy Darkness Energy](#shadowy-darkness-energy) · [Basic Darkness Energy](#basic-darkness-energy)
 >
@@ -81,9 +81,9 @@ Do not fall in love with *Surprise Attack*. A coin flip for 30 is a last resort 
 
 The Perfect Order print is specifically the one you want. 70 HP instead of 60 is not a rounding error: it is the difference between surviving a Charmander's opening poke and not, and — critically — 70 HP is exactly the ceiling for **Buddy-Buddy Poffin**. A 60 HP Gastly would still work; an 80 HP one would not.
 
-The most common beginner mistake with this card is playing one Gastly and holding the rest. Play them. Two or three Gastly on the Bench early is not overcommitting — it is insurance, because your opponent's Charizard deck can only knock out one thing per turn, and every Gastly you did not bench is a Gengar you cannot build later.
+The most common beginner mistake with this card is playing one Gastly and holding the rest. Play them. Two or three Gastly on the Bench early is not overcommitting — it is insurance, because your opponent can only knock out one thing per turn, and every Gastly you did not bench is a Gengar you cannot build later.
 
-The one real cost of a wide Bench is that it makes your opponent's **Zinnia's Resolve** draw more cards. That is a price worth paying almost every time.
+The one real cost of a wide Bench is that some decks draw more the more Pokémon you have in play. That is a price worth paying almost every time.
 
 ---
 
@@ -174,7 +174,9 @@ Learn this table. It is the most important arithmetic in the deck:
 | 4 | **130** |
 | 5 | **160** |
 
-Against the Charizard deck, **130 knocks out everything except Charizard itself** — Eevee (50), Charmander (70), Charmeleon (90), Sudowoodo (100), Flareon (130) all die to a four-Bench Mind Jack. Charizard has 170 HP, and Mind Jack maxes out at 160, so Gengar alone can never one-shot it. That job belongs to Weezing.
+Read that table against HP tiers rather than against one opponent. **A four-Bench Mind Jack at 130 clears the entire single-prize tier** — the 50 to 130 HP Basics and Stage 1s every deck is built out of. A five-Bench 160 adds most Stage 2 non-ex.
+
+What it can never do is clear the ex tier. Mind Jack maxes at **160**, and Pokémon ex start around 190 and run past 300. Gengar is the card that farms a board; it is not the card that kills their best thing. That job belongs to Weezing, and past that to [Punk Helmet](#punk-helmet) softening the target first.
 
 #### Pairing
 
@@ -188,7 +190,7 @@ Against the Charizard deck, **130 knocks out everything except Charizard itself*
 
 #### Strategy
 
-**The Boss's Orders trap.** Boss's Orders pulls one of your opponent's Benched Pokémon into the Active Spot — which *removes it from their Bench* and therefore lowers Mind Jack by 30. If they have five on the Bench and you Boss up a Charmander, you are now hitting for 130, not 160. That is still plenty to kill a Charmander, but if you were counting on 160 to finish a damaged Charizard, you just talked yourself out of 30 damage. **Count the Bench after the Boss, not before.**
+**The Boss's Orders trap.** Boss's Orders pulls one of your opponent's Benched Pokémon into the Active Spot — which *removes it from their Bench* and therefore lowers Mind Jack by 30. If they have five on the Bench and you Boss up a 70 HP Basic, you are now hitting for 130, not 160. That is still plenty to kill the Basic, but if you were counting on 160 to finish something wounded, you just talked yourself out of 30 damage. **Count the Bench after the Boss, not before.**
 
 **Infinite Shadow is recycling, not immortality.** This is the single most misunderstood card in the deck, so be precise about it:
 
@@ -243,7 +245,7 @@ Koffing is the other seed, and unlike Gastly it only needs *one* step to become 
 
 #### Strategy
 
-At 60 HP, Koffing is fragile — the Charizard deck's **Sudowoodo** is a Fighting type, and Fighting is Koffing's Weakness, so even a small Flail can erase it. Evolve promptly. A Koffing that sits on the Bench for three turns is a Koffing that gets sniped.
+At 60 HP, Koffing is fragile, and every Pokémon in this deck is Weak to **Fighting ×2**, so any Fighting attacker erases it with a rounding error. Evolve promptly. A Koffing that sits on the Bench for three turns is a Koffing that gets sniped.
 
 Three copies, not four, is deliberate. Weezing is the deck's workhorse, but you only ever need one Weezing in play at a time, and the extra slot buys you a Trainer that finds what you actually need.
 
@@ -286,7 +288,9 @@ Weezing is the engine of this deck and the card your son will hate the most. It 
 **Turn one — *Pervasive Gas*.** 30 damage, and their Active is now Confused.
 **Turn two — *Crazy Blast*.** 50 + 120 = **170 damage.**
 
-170 is not an arbitrary number. **Charizard has exactly 170 HP.** Weezing is the only card in this deck that can one-shot the opposing deck's best Pokémon, and it does it on the second turn of a two-card-free combo.
+**170 is the biggest number this deck produces**, and it is the only one that clears the whole single-prize tier in a single attack. Every non-ex Stage 2 Fox owns sits at or under it. It does that on the second turn of a combo that costs no Trainer cards at all.
+
+Against a Pokémon ex it is a two-shot rather than a one-shot, with one loud exception: **Darkness hits Psychic for double**, so a 170 lands as **340** on his Team Rocket's Mewtwo ex.
 
 Meanwhile the Confusion from step one means there is a 50% chance your opponent's turn in between simply does not happen.
 
@@ -310,7 +314,7 @@ Meanwhile the Confusion from step one means there is a 50% chance your opponent'
 
 **Confusion is much better than it looks.** Under current rules, when a Confused Pokémon attacks, its controller flips a coin. On tails the attack does nothing, **3 damage counters (30 damage) go on the Confused Pokémon**, and their turn is over. So *Pervasive Gas* is not "30 damage and an annoyance" — it is 30 damage plus a coin flip where heads means they attack and tails means they take another 30 and waste a turn.
 
-And Confusion only clears when the Pokémon **leaves the Active Spot**. Against the Charizard deck this is brutal: **Charizard's retreat cost is 3.** A Confused Charizard is more or less stuck there unless they spend a Switch on it.
+And Confusion only clears when the Pokémon **leaves the Active Spot**. Against anything with a retreat cost of 2 or 3 that is brutal: a Confused attacker is more or less stuck there unless they spend a Switch on it.
 
 **The Weezing / Gengar handoff.** These two cards want opposite boards. Weezing does a flat 170 regardless of what the opponent has benched. Gengar scales with their Bench. So: **lead with Weezing while your opponent's board is thin, and close with Gengar once it has filled out.** That is the whole rhythm of the deck.
 
@@ -355,7 +359,7 @@ Ninety damage for one Energy, as a Basic, worth one Prize. The condition is a bo
 
 **Read the condition twice: "on your Bench."** A Gengar sitting in the Active Spot turns Cocky Claw off. When Gengar steps forward to close with Mind Jack, know that your Sableyes drop back to 20 until it returns.
 
-Ninety kills a Charmander, an Eevee, and a Charmeleon on the nose, for one Energy, from a body Fox feels silly spending a big attack on. Against his Team Rocket's deck the math is humbler, but a one-Prize 90-per-turn body is exactly the trade that deck hates making.
+Ninety kills most of the single-prize tier on the nose, for one Energy, from a body Fox feels silly spending a big attack on. Against a deck of Pokémon ex the math is humbler, but a one-Prize 90-per-turn body is exactly the trade a two-Prize deck hates making.
 
 The Grass Weakness is irrelevant against Fire, but his Team Rocket's Tarountula and Spidops are Grass. If Spidops is fighting, keep Sableye home.
 
@@ -442,14 +446,14 @@ The price is two damage counters on whatever it feeds. Read that as rent, not da
 
 - **[Weezing](#weezing)** — the main customer. Charge the next Weezing on the Bench while this one fights, and the Two-Turn Fuse never waits on a draw.
 - **[Gengar](#gengar)** — Mind Jack costs one Energy, and Surge pays it without spending your hand attachment.
-- **[Basic Darkness Energy](#basic-darkness-energy)** — nine in the deck so the search never whiffs. **Surge cannot fetch Shadowy Darkness Energy**; Basic only.
+- **[Basic Darkness Energy](#basic-darkness-energy)** — eight in the deck so the search never whiffs. **Surge cannot fetch Shadowy Darkness Energy**; Basic only.
 - **[Night Stretcher](#night-stretcher)** — returns a Basic Darkness to your hand, and Surge puts it back to work from the deck side.
 
 #### Strategy
 
 **Benched Darkness Pokémon only.** Surge cannot feed the Active, and it cannot feed itself a target that is fighting. The rhythm is: hand attachment to the front, Surge to the back.
 
-**Choose the counter-catcher deliberately.** The 2 counters go on whoever received the Energy. Good targets: a Gengar (recycles itself), a Weezing about to trade anyway, a Sableye that expects to die in one hit regardless. Bad target: a Weezing you need to survive a *Royal Blaze* at 150 — two Surges put it in range.
+**Choose the counter-catcher deliberately.** The 2 counters go on whoever received the Energy. Good targets: a Gengar (recycles itself), a Weezing about to trade anyway, a Sableye that expects to die in one hit regardless. Bad target: a Weezing at 130 that you need to survive one more hit — two Surges put it 20 HP inside a range it was outside of.
 
 *Gentle Slap* is a real attack. When both Weezings are down and Gengar is not ready, 100 flat from a 140 HP body holds the fort.
 
@@ -458,7 +462,7 @@ The price is two damage counters on whatever it feeds. Read that as rent, not da
 
 # Trainers — Supporters
 
-> **The one-Supporter rule.** You may play only **one Supporter per turn.** With 8 Supporters in this deck, deciding *which* one is the most frequent real decision you will make. Rule of thumb: **Dawn** when the board is missing pieces, **Lillie's Determination** when your hand is bad, **Gwynn** when your hand is full of the wrong Pokémon, **Boss's Orders** when you can win a Prize this turn.
+> **The one-Supporter rule.** You may play only **one Supporter per turn.** With 10 Supporters in this deck, deciding *which* one is the most frequent real decision you will make. Rule of thumb: **Dawn** when the board is missing pieces, **Lillie's Determination** when your hand is bad, **Gwynn** when your hand is full of the wrong Pokémon, **Boss's Orders** when you can win a Prize this turn.
 
 ---
 
@@ -468,7 +472,7 @@ The price is two damage counters on whatever it feeds. Read that as rent, not da
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 2 |
+| **Qty** | 3 |
 | **Set** | ME02: Phantasmal Flames |
 | **Number** | 087/094 |
 | **Type** | Trainer — Supporter |
@@ -498,7 +502,7 @@ Compare that to spending turn one on Lillie's Determination: you draw eight rand
 
 The flexible slot is the Stage 1. If your Koffing is already down and you would rather have the Weezing than the Haunter, take Weezing — you can always Rare Candy past Haunter later. Dawn does not care which Stage 1 you name.
 
-**Down to two copies in this build.** Dawn is fantastic but it is a setup card, and the deck now carries 21 Pokémon plus Toxel's *Call for Family*; the board fills itself more ways than it used to. Two shows up early often enough without being a dead late-game draw.
+**Three copies in this build, and it is now the deck's main tutor.** Ultra Ball is gone, so Dawn is how a specific Pokémon gets found. One card that hands you a Basic, a Stage 1, and a Stage 2 does Ultra Ball's job better anyway, and it never asks you to discard two cards to do it.
 
 ---
 
@@ -508,7 +512,7 @@ The flexible slot is the Stage 1. If your Koffing is already down and you would 
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 3 |
+| **Qty** | 2 |
 | **Set** | ME01: Mega Evolution |
 | **Number** | 119/132 |
 | **Type** | Trainer — Supporter |
@@ -546,7 +550,7 @@ The clean answer for this deck: **if your opening hand is genuinely bad, use Lil
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 1 |
+| **Qty** | 2 |
 | **Set** | ME05: Pitch Black |
 | **Number** | 078/084 |
 | **Type** | Trainer — Supporter |
@@ -566,7 +570,6 @@ Gwynn turns dead Pokémon into cards. Discard up to two Pokémon from your hand,
 
 - **[Night Stretcher](#night-stretcher)** — the other half of the card. Gwynn throws a Gengar away; Night Stretcher takes it back. Together they are "draw 3, no cost."
 - **[Gastly](#gastly)** / **[Koffing](#koffing)** — the surplus Basics you inevitably accumulate are Gwynn's best fuel.
-- **[Ultra Ball](#ultra-ball)** — competes for the same spare cards. Do not discard your last Gastly to Ultra Ball and then wish you had it for Gwynn.
 
 #### Strategy
 
@@ -574,7 +577,7 @@ Gwynn turns dead Pokémon into cards. Discard up to two Pokémon from your hand,
 
 The advanced line is **deliberate discarding**. If you are holding a Gengar you cannot build this turn, discarding it to Gwynn for three cards and retrieving it later with Night Stretcher is card *advantage*, not a loss. You paid one Item to convert a stuck card into three fresh ones.
 
-**One copy in this build.** Gwynn is conditional — it needs Pokémon in hand to do anything at all — and a Gwynn drawn on turn one with a hand you want to keep is a blank. With 21 Pokémon the fuel is more plentiful than ever, but the Supporter slots got tighter, and the early Supporters you actually want are Dawn and Lillie's. One Gwynn is six cards exactly when the deck is ready for it.
+**Two copies in this build.** Gwynn is conditional — it needs Pokémon in hand to do anything at all — so one copy showed up too rarely to be the draw the deck was counting on. With 21 Pokémon the fuel is plentiful, and with Lillie's down to two, Gwynn is now half of how this deck refills its hand.
 
 ---
 
@@ -584,7 +587,7 @@ The advanced line is **deliberate discarding**. If you are holding a Gengar you 
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 2 |
+| **Qty** | 3 |
 | **Set** | ME01: Mega Evolution |
 | **Number** | 114/132 |
 | **Type** | Trainer — Supporter |
@@ -611,11 +614,11 @@ It is the classic finisher. In the last turns of a game, "I take my sixth Prize"
 > [!WARNING]
 > **Boss's Orders lowers your own Mind Jack.** The Pokémon you drag up is no longer *Benched*, so your opponent's Bench count drops by one and Mind Jack loses 30 damage. Do the math in this order: Boss first, then count the Bench, then check the target's HP.
 
-The strongest use of this card is against **Charizard**. Charizard has a retreat cost of 3 — enormous. If you Boss up a wounded Charizard, they cannot easily retreat it away; they either attack with it and stay in range, or they burn a Switch.
+**Target by retreat cost, not just by HP.** Something at retreat 2 or 3 that you drag up wounded cannot easily be hidden again; they either attack with it and stay in range, or they burn a Switch. Learn the retreat costs on their side the way you already count their Bench.
 
-The second-strongest use is on **Sudowoodo**. Sudowoodo is a Fighting type and every Pokémon in this deck is Weak to Fighting ×2. It is the single card in the Charizard deck that genuinely threatens you. If you can knock it out early — Mind Jack at a four-Bench does exactly 130 into its 100 HP — the matchup gets much simpler.
+**Then target by Weakness.** Every Pokémon in this deck is Weak to Fighting ×2, so any Fighting attacker they play is the card that genuinely threatens you and the one worth spending a Boss's Orders on early. In the other direction, Darkness doubles into Psychic, so a benched Psychic ex is a Boss's Orders away from a one-shot.
 
-**Only two copies, so do not waste one.** Boss's Orders is not a draw card and not a setup card. If playing it does not take a Prize this turn or prevent one next turn, play a different Supporter.
+**Three copies, and still not a card to waste.** Boss's Orders is not a draw card and not a setup card. If playing it does not take a Prize this turn or prevent one next turn, play a different Supporter.
 
 ---
 ---
@@ -668,43 +671,6 @@ Four copies, always. This is the card that makes the deck function.
 
 ---
 
-### Ultra Ball
-
-<img src="./assets/654470_ultra-ball.jpg" align="left" width="200">
-
-| Key | Val |
-| :--- | :--- |
-| **Qty** | 2 |
-| **Set** | ME01: Mega Evolution |
-| **Number** | 131/132 |
-| **Type** | Trainer — Item |
-| **Regulation** | I |
-
-> You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.
-
-<br clear="all">
-
-#### General use
-
-Ultra Ball finds **any** Pokémon in the deck, with no restriction on stage or HP. The price is discarding two cards from your hand first — and you must be able to pay it, so with fewer than two other cards in hand you cannot play it at all.
-
-#### Pairing
-
-- **[Gengar](#gengar)** — Poffin cannot fetch a Stage 2. Ultra Ball can.
-- **[Night Stretcher](#night-stretcher)** — makes the discard cost close to free. Pitch a Pokémon, take it back later.
-- **[Gwynn](#gwynn)** — competes for the same spare Pokémon. Decide which one you would rather feed.
-- **[Rare Candy](#rare-candy)** — Ultra Ball finds the Gengar; Candy puts it in play.
-
-#### Strategy
-
-**The discard is a feature, not just a cost.** Discarding a Pokémon is recoverable with Night Stretcher; discarding a Basic Energy is recoverable with Night Stretcher too. So the ideal Ultra Ball discards a spare Pokémon and a spare Basic Darkness Energy, both of which you can get back.
-
-What you should *not* discard: your last Rare Candy, your last Dawn, or a Supporter you were going to play this turn.
-
-**Order of operations.** Play Ultra Ball *before* your Supporter when you can, because knowing what you fetched changes which Supporter is correct. And be careful about playing it right before **Lillie's Determination** — Lillie's shuffles your hand back into the deck, so you would be searching out a Gengar and then immediately shuffling it away.
-
----
-
 ### Rare Candy
 
 <img src="./assets/654464_rare-candy-125-132.jpg" align="left" width="200">
@@ -734,7 +700,6 @@ Rare Candy is a time machine. Gastly goes straight to Gengar, and the Haunter st
 
 - **[Gastly](#gastly)** → **[Gengar](#gengar)** — the only line it works on in this deck.
 - **[Dawn](#dawn)** — Dawn hands you Gastly and Gengar in one card; Candy welds them together.
-- **[Ultra Ball](#ultra-ball)** — finds the Gengar when Dawn is not around.
 - **[Buddy-Buddy Poffin](#buddy-buddy-poffin)** — sets up the Gastly *a turn early*, so the Candy is legal when you want it.
 
 #### Strategy
@@ -753,7 +718,7 @@ Three copies for one Stage 2 line, backed by two Haunters and Dawn. Rare Candy i
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 2 |
+| **Qty** | 4 |
 | **Set** | SV: Shrouded Fable |
 | **Number** | 061/064 |
 | **Type** | Trainer — Item |
@@ -772,7 +737,6 @@ Because it is an Item and not a Supporter, it costs you nothing but a card slot.
 #### Pairing
 
 - **[Gwynn](#gwynn)** — the intended partnership. Gwynn's discard becomes temporary.
-- **[Ultra Ball](#ultra-ball)** — same logic; the discard cost stops being real.
 - **[Gengar](#gengar)** — the backup plan for a Gengar that got knocked out *without* Infinite Shadow applying.
 - **[Basic Darkness Energy](#basic-darkness-energy)** — Energy recovery matters more than it seems in a 12-Energy deck.
 
@@ -782,7 +746,7 @@ Because it is an Item and not a Supporter, it costs you nothing but a card slot.
 
 **Energy recovery matters less than it did, and differently.** The first build ran dry because knockouts drained twelve Energy with nothing refilling the board; Toxtricity now refills it from the deck every turn. What Night Stretcher does in this build is feed the deck side of that loop — a Basic Darkness pulled back from the discard is a card *Sinister Surge* can find again.
 
-Hold one Night Stretcher in reserve rather than firing both on sight. The turn you most need it is the turn after your Gengar dies.
+**Four copies in this build, up from two.** With only two Shadowy Darkness left, most of your Energy is now Basic and therefore recoverable, and Night Stretcher is what recovers it. It is also the reason Gwynn can discard freely. Still worth holding one back: the turn you most need it is the turn after your Gengar dies.
 
 ---
 
@@ -792,7 +756,7 @@ Hold one Night Stretcher in reserve rather than firing both on sight. The turn y
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 2 |
+| **Qty** | 1 |
 | **Set** | ME01: Mega Evolution |
 | **Number** | 130/132 |
 | **Type** | Trainer — Item |
@@ -820,7 +784,46 @@ In a deck where Weezing has a **retreat cost of 2**, that is a meaningful amount
 
 **Do not Switch mid-combo.** The single most expensive misplay available to you is Switching a Weezing out between *Pervasive Gas* and *Crazy Blast*. Crazy Blast checks whether **this Pokémon** used Pervasive Gas last turn, and a Weezing that went to the Bench and came back has still not lost that history — but a *different* Weezing has no history at all. Keep track of which one is which.
 
-Two copies is a lean count and it is a real constraint. Save them for a stranded attacker, not for convenience.
+**One copy now**, because [Scramble Switch](#scramble-switch) is the second one and it also rescues the Energy. Between them you get two repositions a game, so save both for a stranded attacker rather than for convenience.
+
+---
+
+### Scramble Switch
+
+<img src="./assets/590042_scramble-switch.jpg" align="left" width="200">
+
+| Key | Val |
+| :--- | :--- |
+| **Qty** | 1 |
+| **Set** | SV08: Surging Sparks |
+| **Number** | 186/191 |
+| **Type** | Trainer — Item, **ACE SPEC** |
+| **Regulation** | H |
+
+> Switch your Active Pokémon with 1 of your Benched Pokémon. If you do, you may move any amount of Energy from the Pokémon you moved to your Bench to the new Active Pokémon.
+
+<br clear="all">
+
+#### General use
+
+A Switch that carries the Energy with it. Move your Active to the Bench, bring up whoever you like, and take **any amount of Energy** off the retreating Pokémon and put it on the new one. It is an Item, so it costs you nothing but the card.
+
+This is the deck's one **ACE SPEC**, and you may play exactly one ACE SPEC card of any kind in a deck.
+
+#### Pairing
+
+- **[Weezing](#weezing)** — a Weezing that has finished its fuse is holding two Energy and about to be knocked out. This is how those two Energy survive.
+- **[Toxtricity](#toxtricity)** — *Sinister Surge* can only feed the Bench, so Energy piles up in the back. Scramble Switch is how it reaches the front.
+- **[Gengar](#gengar)** — brings the closer up already powered, using Energy that was going to be discarded anyway.
+- **[Boss's Orders](#bosss-orders-ghetsis)** — an Item, so both happen on the same turn.
+
+#### Strategy
+
+**This is the answer to the deck's real Energy problem.** *Sinister Surge* attaches only to Benched Pokémon, and your hand gives one attachment a turn to the front. So the Active is always the Pokémon that is hardest to fuel, and any Energy on a Pokémon that dies goes to the discard with it. Scramble Switch fixes both halves at once: it moves stranded Energy forward, and it rescues Energy from a body that is about to be knocked out.
+
+**Time it one turn early.** The instinct is to save it until something is about to die. The better habit is to use it the turn *before*, when you can still choose which attacker comes up. A Weezing at 30 HP is a Weezing your opponent has already decided to kill.
+
+**It is not a second Switch.** There is one copy and no replacing it, so a plain retreat or the [Switch](#switch) should cover ordinary repositioning. Spend this one only when the Energy transfer is the point.
 
 ---
 
@@ -844,7 +847,9 @@ Two copies is a lean count and it is a real constraint. Save them for a stranded
 
 Read it carefully: **both Active non-Darkness Pokémon.** It is written as a symmetrical card, and it is completely one-sided in your favour — because **every Pokémon in this deck is Darkness**, yours can never be affected.
 
-Your opponent's Charizard, Flareon, Eevee, and Sudowoodo are none of them Darkness. All of them get Confused. For free, as an Item, without using your attack.
+Almost everything Fox plays is Colorless, Fire, Psychic, Grass, or Water. All of it gets Confused, for free, as an Item, without using your attack.
+
+The exception is his Team Rocket's deck, which is half Darkness. Crobat ex, Weezing, Golbat, Zubat, and Koffing all share your immunity and Dark Bell simply does nothing to them.
 
 #### Pairing
 
@@ -856,9 +861,9 @@ Your opponent's Charizard, Flareon, Eevee, and Sudowoodo are none of them Darkne
 
 **This is the card that unlocks the deck's best turn.** Normally Weezing's combo alternates: Confuse, then hit hard, then Confuse again, then hit hard. Dark Bell breaks the alternation. You Dark Bell for the Confusion and then attack with *Crazy Blast* for 170 on the same turn — Confusion **and** maximum damage, together.
 
-**Confusion is worth more than it looks.** On tails: the attack does nothing, 30 damage goes onto the Confused Pokémon, and the turn ends. So Dark Bell is a coin flip that says "your opponent might just skip this turn and take 30." And Confusion clears **only when the Pokémon leaves the Active Spot** — against a Charizard with a retreat cost of 3, that is a genuine cage.
+**Confusion is worth more than it looks.** On tails: the attack does nothing, 30 damage goes onto the Confused Pokémon, and the turn ends. So Dark Bell is a coin flip that says "your opponent might just skip this turn and take 30." And Confusion clears **only when the Pokémon leaves the Active Spot** — against anything at retreat 2 or 3, that is a genuine cage.
 
-**Save them.** Two copies. The right moment is when their best attacker is Active and fully powered up, not on a turn-one Charmander.
+**Save them.** Two copies. The right moment is when their best attacker is Active and fully powered up, not on a turn-one Basic.
 
 ---
 ---
@@ -873,7 +878,7 @@ Your opponent's Charizard, Flareon, Eevee, and Sudowoodo are none of them Darkne
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 1 |
+| **Qty** | 2 |
 | **Set** | ME02: Phantasmal Flames |
 | **Number** | 092/094 |
 | **Type** | Trainer — Pokémon Tool |
@@ -899,14 +904,14 @@ It is a Pokémon Tool, so it stays attached and keeps working every turn. One To
 
 **It only works in the Active Spot.** A Punk Helmet on a Benched Pokémon is a dead card. Attach it to whoever is about to fight, or to whoever you are about to bring up.
 
-**The math is what makes it good.** 40 damage is not a rounding error against this opponent — it is more than half of a Charmander, and it stacks turn over turn. Two attacks into a helmeted Weezing is 80 damage on their Charizard, which drops it from 170 HP into Mind Jack range at a four-Bench (130) rather than the impossible 170.
+**The math is what makes it good.** 40 damage is more than half of most Basics, and it stacks turn over turn. Two attacks into a helmeted Weezing is 80 free damage on whatever hit it, and 80 is usually the difference between a target being a two-shot and a one-shot.
 
-**That is the real combo.** Gengar cannot one-shot a Charizard. Punk Helmet is the card that closes the gap: let the Charizard chew through a helmeted Weezing, collect 40 or 80 for free, and *then* the Charizard is killable.
+**That is the real combo.** Mind Jack stops at 160 and their best attacker is usually above it. Punk Helmet is the card that closes the gap: let them chew through a helmeted Weezing, collect 40 or 80 for free, and *then* the target is inside range.
 
 > [!TIP]
 > Even when your Pokémon is knocked out, the 40 still happens. So a Weezing that is going to die anyway should die wearing a helmet.
 
-One copy in this build, down from two. It is the deck's best Tool and its most situational card at the same time; the slot it gave up became a Pokémon that attacks.
+**Two copies in this build.** A single Tool turns up in about one game in eight, which is not often enough for a card whose whole job is making your opponent hesitate before attacking. At two it shows up in roughly a quarter of openings and the threat becomes real.
 
 ---
 
@@ -940,9 +945,13 @@ It is a slow, grinding card. It does nothing dramatic on any single turn and qui
 
 #### Strategy
 
-**Understand what the Charizard deck has to do.** It runs Charmander, Eevee, and Sudowoodo as Basics and it *needs* several of them down early. Every one of those costs 20 HP under Risky Ruins. Over a game that is 60 to 100 free damage, and it pushes a 70 HP Charmander to 50 — right into range of things that could not otherwise kill it.
+**It taxes the thing every deck has to do.** Any deck built on evolution lines needs several Basics down early, and each one costs 20 HP under Risky Ruins. Over a game that is 60 to 100 free damage.
 
-**The Stadium war.** Their deck runs **Magma Basin**, which is also a Stadium. Only one Stadium can be in play at a time, and playing a new one discards the old. This is why you run **two** Risky Ruins: so that when they replace yours, you can replace it back. Whoever runs out of Stadiums first loses that sub-game.
+Two details make it better than it reads. The counters **stay on the card when it evolves**, so a 20 you charged a Basic is still there on the Stage 2 later. And because these are damage *counters* rather than attack damage, they go straight through Tera and every other "prevent all damage from attacks" effect on his Bench.
+
+**The Stadium war.** His Team Rocket's deck runs three **Team Rocket's Factory**. Only one Stadium can be in play at a time, and playing a new one discards the old, which is why you run **two** Risky Ruins.
+
+You will lose the last placement to three copies, and that is fine. Ruins only triggers when a Basic is *benched*, which is almost entirely a turn one to four event. He needs his Stadium up all game; you only need yours up early.
 
 > [!CAUTION]
 > **Risky Ruins arms Sudowoodo.** Sudowoodo's *Flail* does 10 damage for each damage counter **on itself**, and it is a Fighting type — which means it hits your Darkness Pokémon for **double**. Risky Ruins putting 2 counters on a benched Sudowoodo is 20 extra Flail damage, doubled to **40** against you.
@@ -962,7 +971,7 @@ It is a slow, grinding card. It does nothing dramatic on any single turn and qui
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 4 |
+| **Qty** | 2 |
 | **Set** | ME05: Pitch Black |
 | **Number** | 083/084 |
 | **Type** | Energy — **Special** |
@@ -989,12 +998,12 @@ Because it counts as Energy, attaching it is never a wasted turn. You get protec
 
 **Attach it to your Bench, not your Active.** This is the whole trick and it is worth saying plainly: the protection only applies **while the Pokémon is on your Bench**. The moment it becomes Active, the shield is off and it is just a Darkness Energy. That is fine — it still pays for attacks — but it means you attach it early, to something in the back, and it protects that thing right up until the turn it steps forward to fight.
 
-**It stops damage from attacks only.** It does not stop damage counters placed by card effects, and it does not stop Special Conditions. Against this particular Charizard deck, attacks are essentially the whole threat, so it is close to absolute.
+**It stops damage from attacks only.** It does not stop damage counters placed by card effects, and it does not stop Special Conditions. Against most of what Fox plays, attacks are essentially the whole threat, so it is close to absolute.
 
 > [!WARNING]
-> **Night Stretcher cannot get this back.** Night Stretcher retrieves "a Pokémon or a **Basic** Energy card." Shadowy Darkness Energy is a **Special** Energy, so once it is discarded — by a knockout, by Infinite Shadow, by an Ultra Ball cost — it is gone permanently. You have exactly four for the whole game.
+> **Night Stretcher cannot get this back.** Night Stretcher retrieves "a Pokémon or a **Basic** Energy card." Shadowy Darkness Energy is a **Special** Energy, so once it is discarded — by a knockout, by Infinite Shadow, or by a discard cost — it is gone permanently. You have exactly two for the whole game.
 
-**Four is the hard cap**, because the four-copy limit applies to Special Energy (only *Basic* Energy is exempt).
+**Two, down from four.** Four is the legal cap, because the four-copy limit applies to Special Energy and only *Basic* Energy is exempt. But two of the four became Basic Darkness on purpose: Special Energy cannot be recovered, and *Sinister Surge* cannot find it either, so every Shadowy in the deck is one fewer card the engine can search for. Two is enough to protect the Gastly that becomes your first Gengar, which is the only job that ever really mattered.
 
 ---
 
@@ -1004,7 +1013,7 @@ Because it counts as Energy, attaching it is never a wasted turn. You get protec
 
 | Key | Val |
 | :--- | :--- |
-| **Qty** | 9 |
+| **Qty** | 8 |
 | **Set** | MEE: Mega Evolution Energies (or any print **2007 or later**) |
 | **Number** | 007 |
 | **Type** | Energy — **Basic** |
@@ -1027,7 +1036,9 @@ Basic Energy is exempt from the four-copy rule — you may run as many as you wa
 
 #### Strategy
 
-**Thirteen Energy total, and the deck now attaches twice a turn.** Your hand attachment is no longer the speed limit. Toxtricity's *Sinister Surge* attaches a second Basic Darkness from the deck to your Bench every turn, free, and nine Basics in the deck is the count that keeps the search from whiffing late.
+**Ten Energy total, and the deck attaches twice a turn.** Your hand attachment is no longer the speed limit. Toxtricity's *Sinister Surge* attaches a second Basic Darkness from the deck to your Bench every turn, free.
+
+**Eight Basics is a floor, not a target.** *Sinister Surge* searches the **deck**, and Night Stretcher only returns Energy to your **hand**, so nothing ever refills what Surge is hunting for. Cut much below eight and the Ability starts whiffing around turn six, which is exactly when you need it most.
 
 The practical consequence: **the hand attachment goes to the front, Surge feeds the back.** The Weezing that is fighting gets your attachment; the Weezing, Sableye, or Gengar waiting behind it gets the Surge. Nobody arrives in the Active Spot empty anymore.
 
@@ -1054,13 +1065,13 @@ Turn A:  Weezing → Pervasive Gas       30 damage + Confused
 Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage
 ```
 
-**170 damage is exactly Charizard's 170 HP.** This deck's single strongest play is a two-turn sequence off one Pokémon, using no Trainer cards at all.
+**170 clears every single-prize Pokémon Fox owns**, and doubles to 340 against anything Psychic. This deck's single strongest play is a two-turn sequence off one Pokémon, using no Trainer cards at all.
 
 **The rules to obey:**
 
 1. **The same Weezing must do both attacks.** Crazy Blast checks "if *this Pokémon* used Pervasive Gas during your last turn." A second Weezing does not inherit the fuse.
 2. **Have both Energy attached before you start.** Crazy Blast costs [D][C] — two Energy. If you light the fuse with only one Energy down and then whiff your draw, you sit there for a turn and the bonus expires.
-3. **Do not retreat or Switch in between** unless you are certain you will bring the same Weezing back. Every turn it is not Active is a turn *Pervasive Gas* was not used "last turn."
+3. **Do not retreat, Switch, or Scramble Switch in between** unless you are certain you will bring the same Weezing back. Every turn it is not Active is a turn *Pervasive Gas* was not used "last turn."
 
 **Why the middle turn is safe.** Between your two attacks, your opponent gets a turn — but their Active is **Confused**. On tails their attack does nothing, they take 30, and their turn ends. That is a coin flip on whether their turn happens at all, and it lands right where you are most exposed.
 
@@ -1099,7 +1110,7 @@ Both are solved by the same habit: **bench your Basics one turn earlier than you
 
 **Gengar and Risky Ruins as a pincer.**
 
-Your opponent's deck wants a wide Bench. Charizard needs Charmander down early. Eevee needs to be benched to become Flareon. Sudowoodo wants to sit and accumulate damage. Zinnia's Resolve draws more the more Pokémon *you* have out, and Welder wants targets.
+Nearly every deck wants a wide Bench. Evolution lines need their Basics down a turn early. Draw abilities want bodies to sit on. Energy accelerators want somewhere to put the Energy.
 
 You attack that from both sides at once:
 
@@ -1108,7 +1119,7 @@ You attack that from both sides at once:
 
 There is no line of play that avoids both. Bench wide and Mind Jack hits for 130-160. Bench narrow and Mind Jack is weak — but they have no board, no evolutions coming, and Weezing beats them down at a flat 170 regardless.
 
-**Piloting note.** This is why the deck runs **two** Risky Ruins. Their **Magma Basin** is also a Stadium, and playing one discards the other. Do not lead with your first Risky Ruins on turn one into an empty board; wait until they have Basics to punish, and keep the second in hand to win the Stadium war back.
+**Piloting note.** This is why the deck runs **two** Risky Ruins. Do not lead with the first one into an empty board on turn one; wait until they have Basics worth punishing, and keep the second in hand for after they replace it.
 
 **Do the Boss's Orders math in the right order.** [Boss's Orders](#bosss-orders-ghetsis) moves a Pokémon *off* their Bench, dropping Mind Jack by 30. Boss first, count second, then check whether the target actually dies.
 
@@ -1116,21 +1127,21 @@ There is no line of play that avoids both. Bench wide and Mind Jack hits for 130
 
 ## 4. Wearing the Helmet
 
-**How to kill a Charizard when Mind Jack cannot.**
+**How to kill the things Mind Jack cannot reach.**
 
-Mind Jack's ceiling is **160**. Charizard's HP is **170**. Gengar can never one-shot it. That is not a flaw in the deck — it is the reason [Punk Helmet](#punk-helmet) is in it.
+Mind Jack's ceiling is **160**, and the target that matters is usually above it: a Pokémon ex at 200 to 310, or a Stage 2 at 170. Gengar can never one-shot those. That is not a flaw in the deck — it is the reason [Punk Helmet](#punk-helmet) is in it.
 
 **The plan:**
 
 1. Put a Punk Helmet on the Weezing you expect to lose.
-2. Let their Charizard attack into it. You take the hit; they take **40**.
+2. Let their attacker chew through it. You take the hit; they take **40**.
 3. If your Weezing survives and gets hit again, that is **80**.
-4. Charizard is now at 130 or 90 HP — comfortably inside Mind Jack range at a four- or five-Bench.
+4. Their attacker has lost 40 or 80 HP without you spending an attack, which is often the difference between two hits and one.
 5. [Boss's Orders](#bosss-orders-ghetsis) it back up if it retreated, and finish it.
 
 **The key clause:** the 40 happens **even if your Pokémon is Knocked Out.** So a Weezing that is going to die anyway should die wearing a helmet. There is no downside — a Punk Helmet in your hand at the end of the game did nothing at all.
 
-**Also remember Charizard's retreat cost is 3.** Once it is Active and damaged, it is expensive for them to hide. Combine with [Dark Bell](#dark-bell) and a Confused, wounded Charizard is stuck in front of you flipping coins.
+**Check their retreat cost before you commit.** Anything at retreat 2 or 3 is expensive for them to hide once it is Active and damaged. Combine with [Dark Bell](#dark-bell) and a Confused, wounded attacker is stuck in front of you flipping coins.
 
 ---
 
@@ -1144,12 +1155,14 @@ Both decks are built entirely from non-ex Pokémon, so **every knockout is worth
 
 - **A Weezing that Pervasive Gassed and then Crazy Blasted has paid for itself.** Two attacks, likely one knockout. If it dies after that, the trade was even and you got 30 chip damage for free.
 - **A Gengar that dies is not really dead.** [Infinite Shadow](#gengar) returns the whole stack — Gastly, Haunter, and Gengar — to your hand. You lose the attached Energy and a Prize, but you keep the pieces. Your opponent has to do that work *three times* to actually remove Gengar from the game.
-- **Do not chase small Prizes with big investments.** Knocking out a fresh 50 HP Eevee with a fully powered Weezing is a poor use of a turn if a Charizard is sitting on the Bench getting ready.
+- **Do not chase small Prizes with big investments.** Knocking out a fresh 50 HP Eevee with a fully powered Weezing is a poor use of a turn if something far bigger is sitting on the Bench getting ready.
 
 > [!WARNING]
 > The most common misunderstanding of this deck: **Infinite Shadow does not deny a Prize.** Your opponent gets their Prize card for the knockout no matter what. The Ability is card recovery, not a shield. Never sandbag a Gengar into a knockout thinking it is free.
 
-**Where the race is actually decided.** Their [Charizard's *Royal Blaze*](./fire.md) does 100 plus 50 for each **Leon** in their discard pile. With one Leon discarded it does 150, which one-shots your 130 HP Gengar and Weezing. So the moment you see a Leon hit their discard, assume everything you own dies in one hit — and start making sure that every Pokémon you play attacks at least once before that happens.
+**Where the race is actually decided.** Your best bodies are 130 HP, and most real attackers clear 130 in one hit. So assume everything you own dies the turn it is looked at, and make sure **every Pokémon you play attacks at least once before that happens.** A Weezing that never got to Crazy Blast is a Prize you handed over for nothing.
+
+That cuts both ways in your favour when he brings a deck of Pokémon ex. Every one of his knockouts costs you one Prize; every one of yours costs him two. You can afford to lose the body count and still win the race.
 
 ---
 
@@ -1187,6 +1200,8 @@ A checklist of the specific mistakes this deck invites.
 | :--- | :--- |
 | Boss's Orders, *then* counting the Bench for Mind Jack | You pulled one off their Bench. Mind Jack just lost 30. |
 | Retreating a Weezing between Pervasive Gas and Crazy Blast | The 120 bonus is gone. You do 50 instead of 170. |
+| Scramble Switching a Weezing mid-fuse | Same mistake wearing a better card. Crazy Blast checks *this Pokémon*, and it left the Active Spot. |
+| Spending Scramble Switch as an ordinary Switch | It is your only ACE SPEC and your only way to rescue Energy from a dying attacker. Retreat, or use the plain Switch. |
 | Rare Candy onto an Active Gastly that is about to die | They take a Prize *and* your Stage 2 in one turn. Candy the Benched one. |
 | Attaching Shadowy Darkness Energy to your Active Pokémon | The protection only works on the **Bench**. You just spent a shield on nothing. |
 | Trying to Night Stretcher a Shadowy Darkness Energy | Basic Energy only. Special Energy is gone forever. |
@@ -1209,4 +1224,31 @@ A checklist of the specific mistakes this deck invites.
 - **The Mind Jack table is the lesson worth teaching.** It is the first time a Pokémon TCG card asks a player to *look at the opponent's board and do arithmetic before choosing an attack*. That is the single biggest skill jump from theme-deck play to real play.
 - **Confusion teaches probability honestly.** Half the time nothing happens. That is not the card being bad; that is the card being a coin flip, and coin flips even out. Good practice for not tilting.
 - **Infinite Shadow is a great "read the card twice" moment.** It looks like it makes Gengar immortal. It does not. Being able to say *why* — "they still get a Prize" — is exactly the kind of careful reading the game rewards.
-- **This deck is deliberately fair.** Every attacker is 1 Prize on both sides, Weezing's 170 exactly answers Charizard's 170, and the Charizard deck's Sudowoodo hits your Fighting Weakness for double. Neither side has a card the other cannot answer. If games are lopsided, it is piloting, not the lists — which is the whole point.
+- **This deck is deliberately fair.** Weezing's 170 clears the single-prize tier but not a Pokémon ex, Mind Jack scales off a Bench your opponent controls, and every card you own is Weak to Fighting ×2. Neither side has a card the other cannot answer. If games are lopsided, it is piloting, not the lists — which is the whole point.
+
+---
+
+## Versus Fox's Decks
+
+Three lists he can put on the table, and they want completely different things from you.
+
+#### Night Watch — Eevee, Flareon ex, Noctowl
+
+Bodies: Eevee 50, Hoothoot 70, Noctowl 100, Eevee ex 200, Flareon ex 270.
+
+- **Mind Jack at a four-Bench clears everything below Eevee ex.** The 130 tier is his whole engine.
+- **His attackers are Pokémon ex, so they are worth 2 Prizes and yours are worth 1.** He needs six knockouts; you need three. Lose the body count and win anyway.
+- **Tera is the wall.** A Benched Eevee ex or Flareon ex takes zero damage from attacks. [Risky Ruins](#risky-ruins) places damage *counters*, not attack damage, so it goes straight through — and the counters ride up when an Eevee evolves into something bigger.
+- His Flareon 013 and Magma Basin are Regulation G and F. Neither is Standard legal, so they only appear in kitchen-table games.
+
+#### The Team Rocket's deck
+
+Bodies: Zubat 50, Tarountula 50, Mimikyu 60, Koffing 70, Golbat 80, Articuno 120, Spidops 130, Weezing 130, Mewtwo ex 280, Crobat ex 310.
+
+- **Team Rocket's Mewtwo ex is Psychic, and Darkness doubles into Psychic.** *Crazy Blast* at 170 lands as **340** into its 280 HP. A clean one-shot on his best card, from a Pokémon worth one Prize. The same is true of his Mimikyu.
+- **This is the matchup where your two one-sided cards go quiet.** Half his deck is Darkness, and both [Dark Bell](#dark-bell) and [Risky Ruins](#risky-ruins) skip Darkness Pokémon. Crobat ex, Weezing, Golbat, Zubat, and Koffing cannot be Confused by Dark Bell, and Zubat and Koffing are not taxed when he benches them.
+- **Crobat ex at 310 needs two hits from anything you own.** Wear a [Punk Helmet](#punk-helmet) into it and let the 40s do the second one.
+
+#### The Charizard starter
+
+Regulation D, so it is not Standard legal and only shows up at the kitchen table. If it does: Charizard is 170 HP and *Crazy Blast* is exactly lethal, which is the number this deck was originally built around.

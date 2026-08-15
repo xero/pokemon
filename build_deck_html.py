@@ -225,6 +225,7 @@ FLAVOR = {
         "5. Trading Ghosts": ["haunter"],
         "7. Things That Will Cost You a Game": ["gengar-booty"],
         "8. Teaching Notes": ["gengar-mega"],
+        "Versus Fox's Decks": ["eevee", "seviper"],
     },
 }
 
