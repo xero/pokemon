@@ -18,6 +18,16 @@ pokemontcg.io --fetch_regulation.py--> regulation-marks.json --> the reg mark an
 - **`quantity` 0 is a real value**: a card a deck plan wants but nobody owns. It still gets a full card block on deck pages and stays off the collection page. Hand-set quantities survive `scrape_quantities.py` re-runs.
 - The collection mixes more than one person's cards. Check the memory notes before treating a quantity as "available."
 
+## The legal card pool
+
+`legal-cards-<epoch>.json` is a snapshot of every Standard-legal card, pulled from pokemontcg.io. `python3 fetch_legal_pool.py` writes a fresh one. It takes a few minutes, and nothing in the build reads the result.
+
+- **`cards.csv` is what we own; this is what exists.** Roughly 200 cards against roughly 3,000. Any question shaped like "what is legal that does X" has to be answered from here. The collection is the wrong pool to search, and the answer is not reliably in anyone's memory.
+- **The legal marks are H, I, and J**, as of the 2026 rotation. `LEGAL_MARKS` in the script is the one line to change when that moves.
+- **The filename carries the fetch time because the answer expires.** Keep the old snapshots rather than replacing them; diffing two shows what a rotation took away.
+- Every card keeps its `rules`, `abilities`, and `attacks`, so grepping card text is the intended use. Prices, ids, and image urls are stripped.
+- The upstream API returns bare 502s in bursts and spells the supertype one way in the query and another in the response. The script already handles both, so reach for it instead of hitting the API by hand.
+
 ## Adding a card
 
 1. Append to `wanted-cards.tsv`: `query<TAB>number<TAB>quantity<TAB>note`. The query must contain enough set words to disambiguate, and the number pins the printing (`056/094`). Both matter; the same number exists in multiple sets, and the same name exists at wildly different prices.
