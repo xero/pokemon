@@ -40,6 +40,10 @@ PAGES = [
      "Witching Hour's tournament heir. Mega Chandelure ex turns the"
      " opponent's own Retreat Cost into damage, and Boss's Orders picks"
      " the victim."),
+    ("eevee-standard.html", ["eevee-ex", "umbreon"],
+     "Fox's Eevee deck, and the only one here that is two decks. Fifty"
+     " cards never move; ten swap between Sun and Moon for home and Fire"
+     " and Ice for game night."),
 ]
 
 

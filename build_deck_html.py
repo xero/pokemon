@@ -48,7 +48,8 @@ MASCOT = {"dark.md": ["gengar", "weezing"],
           "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
           "psychic-lanterns.md": ["chandelure", "gengar"],
           "psychic-sleep.md": ["hypno", "gengar"],
-          "psychic-standard.md": ["chandelure", "gourgeist"]}
+          "psychic-standard.md": ["chandelure", "gourgeist"],
+          "eevee-standard.md": ["eevee-ex", "umbreon"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -150,6 +151,28 @@ FLAVOR = {
         "5. What This Deck Gives Up": ["duskull"],
         "Versus the Kitchen Table": ["charizard"],
         "What To Buy": ["pumpkaboo"],
+    },
+    # umbreon, espeon, and glaceon were promoted from assets/ani for this page.
+    # the two module sections get their pair of Eeveelutions, which is the
+    # fastest way to see at a glance which ten cards each one means.
+    "eevee-standard.md": {
+        "Eevee — Prismatic Evolutions 074 · Reg H": ["eevee"],
+        "Eevee — Twilight Masquerade 135 · Reg H": ["eevee"],
+        "Eevee ex — Prismatic Evolutions 075 · Reg H": ["eevee-ex"],
+        "Flareon ex — Prismatic Evolutions 014 · Reg H": ["flareon-ex"],
+        "Umbreon ex — Prismatic Evolutions 060 · Reg H": ["umbreon"],
+        "Espeon ex — Prismatic Evolutions 034 · Reg H": ["espeon"],
+        "Glaceon — Prismatic Evolutions 025 · Reg H": ["glaceon"],
+        "The Thesis": ["eevee"],
+        "Sun and Moon": ["espeon", "umbreon"],
+        "Fire and Ice": ["flareon", "glaceon"],
+        "Pick Your Ten": ["eevee-ex"],
+        "1. The Bench Is Safe, So Wait": ["hoothoot"],
+        "2. Flareon ex Pays for Everything": ["flareon-ex"],
+        # a back sprite for the honest downside, as in the other files
+        "3. Three Knockouts and It Is Over": ["eevee-back"],
+        "4. Choosing the Crystal's Home": ["noctowl"],
+        "What To Buy": ["flareon"],
     },
     "psychic-sleep.md": {
         "The Thesis": ["gastly"],
@@ -761,7 +784,7 @@ def bullets_or_para(text, ind):
 
 DECKS = ["dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
          "fire-standard.md", "psychic-lanterns.md", "psychic-sleep.md",
-         "psychic-standard.md"]
+         "psychic-standard.md", "eevee-standard.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

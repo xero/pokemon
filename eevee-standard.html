@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Fox's Rainbow DNA</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		body > header,
+		body > footer,
+		main {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: var(--gap);
+			padding-block: var(--pad);
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascot beside the title. bigger than the poké ball, and
+			   a sprite, so it wants nearest-neighbour scaling. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+		}
+
+		nav {
+			width: 100%;
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* group headings on a deck page: Pokémon, Trainers, Energy */
+		/* label in one column, links in the other, so a long run of links wraps
+		   against itself instead of running back under the label. each row
+		   sizes to its own label rather than sharing one width. */
+		nav p {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: baseline;
+			gap: 0.4em;
+			padding-top: 0.35em;
+
+			b {
+				flex: none;
+			}
+
+			span {
+				min-width: 0;
+			}
+
+			@media (width < 34em) {
+				flex-wrap: wrap;
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space either side, so two consecutive tables read as two things.
+			   scoped away from card stat blocks, which sit in a padded article
+			   already and just looked loose with it. */
+			margin: 30px auto 25px auto;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border: 1px solid var(--line);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			padding-block: var(--pad);
+			color: var(--muted);
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1><img src="./assets/pokeball.png" alt="" />Fox's Rainbow DNA <img data-mascot src="./assets/sprites/eevee-ex.gif" alt="" /> <img data-mascot src="./assets/sprites/umbreon.gif" alt="" /></h1>
+			<p>One deck, two modes, and ten cards that decide which</p>
+			<nav>
+	<details open>
+		<summary>Contents</summary>
+		<p><span><a href="#the-thesis">The Thesis</a> · <a href="#deck-list">Deck List</a> · <a href="#the-swap">The Swap</a> · <a href="#sun-and-moon">Sun and Moon</a> · <a href="#fire-and-ice">Fire and Ice</a> · <a href="#pick-your-ten">Pick Your Ten</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#game-plans">Game Plans</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+	</details>
+</nav>
+		</header>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>Fox wants an Eevee deck for the kitchen table and for game night. This is one 60-card deck that covers both, because 50 of those cards never change. Only ten swap, and choosing which ten is a decision he makes before the game starts.</p>
+				<ul>
+					<li><strong><a href="#sun-and-moon">Sun and Moon</a></strong> is the home build. Espeon and Umbreon, aimed at Dad&#x27;s decks.</li>
+					<li><strong><a href="#fire-and-ice">Fire and Ice</a></strong> is the game-night build. Flareon and Glaceon, aimed at the real field.</li>
+				</ul>
+				<p>The <a href="#deck-list">Deck List</a> below is Sun and Moon, because home is where he plays most. <a href="#the-swap">The Swap</a> shows the ten cards that turn it into Fire and Ice. If he wants to make the call himself, hand him <a href="#pick-your-ten">Pick Your Ten</a>.</p>
+				<p>Everything here is Regulation <strong>H</strong>, which rotates around April 2027. See <a href="#what-to-buy">What To Buy</a> before spending.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+					<p>Every Eeveelution ex in Prismatic Evolutions is a <strong>Stage 1 that evolves from Eevee</strong>. Not from Flareon, not from Umbreon. From Eevee. One Basic turns into whichever of eight answers the board needs, and that is the whole deck.</p>
+					<p>That fact is worth stating loudly because it caused an argument at the table. There is no &quot;base Flareon&quot; to find. There cannot be: the only non-ex Flareon ever printed is Prismatic Evolutions 013, it carries Regulation <strong>G</strong>, and it rotated out in April 2026. Playing Eevee straight into Flareon ex was never a house rule. It is the card working as printed.</p>
+					<p><strong><code>Rainbow DNA</code> exists for a narrower reason.</strong> &quot;Eevee ex&quot; is a different card <em>name</em> from &quot;Eevee&quot;, so by default nothing can be played on top of it at all. Rainbow DNA is the permission slip that lets Eevee ex become an Eeveelution ex. It reads &quot;any Pokémon <strong>ex</strong> that evolves from Eevee,&quot; so the one line that genuinely is illegal is Eevee ex into a non-ex Eeveelution. Only a plain Eevee can do that.</p>
+			<article>
+				<h3 id="the-keystone-is-the-ace-spec">The keystone is the ACE SPEC</h3>
+				<section>
+			<aside data-callout="note">
+				<p><strong>Sparkling Crystal.</strong> When the Tera Pokémon this card is attached to uses an attack, that attack costs 1 Energy less. <strong>(The Energy can be of any type.)</strong></p>
+			</aside>
+					<p>That parenthetical is what makes this deck possible. It reduces <strong>coloured</strong> requirements, not just Colorless. Every one of the big &quot;gem&quot; attacks needs Lightning or Grass, and Fox plays neither:</p>
+					<table>
+						<thead><tr><th>Gem attack</th><th>Printed cost</th><th>Payable from his colours</th></tr></thead>
+						<tbody>
+							<tr><td>Flareon ex <em>Carnelian</em> 280</td><td>[R][W][L]</td><td><strong>R + W</strong></td></tr>
+							<tr><td>Umbreon ex <em>Onyx</em>, takes a Prize</td><td>[L][P][D]</td><td><strong>P + D</strong></td></tr>
+							<tr><td>Espeon ex <em>Amazez</em>, devolves their board</td><td>[G][P][D]</td><td><strong>P + D</strong></td></tr>
+							<tr><td>Glaceon ex <em>Euclase</em></td><td>[G][W][D]</td><td>W + D</td></tr>
+						</tbody>
+					</table>
+					<p>One Crystal, one Pokémon, so he picks one gem per game. And the best line in the deck is not a gem at all. <strong>Flareon ex holding the Crystal casts <em>Burning Charge</em> for a single [R]:</strong> 130 damage, and search the deck for two Basic Energy of any types. That is the engine and the attacker in one card, and it happens to be his favourite Pokémon.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+					<p>This is <strong>Sun and Moon</strong>, the home build. For Fire and Ice, apply <a href="#the-swap">The Swap</a>.</p>
+					<p><strong>Pokémon (19)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Eevee</td><td>Prismatic Evolutions</td><td>074</td><td>H</td></tr>
+							<tr><td>1</td><td>Eevee</td><td>Twilight Masquerade</td><td>135</td><td>H</td></tr>
+							<tr><td>2</td><td>Eevee ex</td><td>Prismatic Evolutions</td><td>075</td><td>H</td></tr>
+							<tr><td>3</td><td>Flareon ex</td><td>Prismatic Evolutions</td><td>014</td><td>H</td></tr>
+							<tr><td>3</td><td>Umbreon ex</td><td>Prismatic Evolutions</td><td>060</td><td>H</td></tr>
+							<tr><td>1</td><td>Espeon ex</td><td>Prismatic Evolutions</td><td>034</td><td>H</td></tr>
+							<tr><td>4</td><td>Hoothoot</td><td>Stellar Crown</td><td>114</td><td>H</td></tr>
+							<tr><td>2</td><td>Noctowl</td><td>Stellar Crown</td><td>115</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (28)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>3</td><td>Crispin</td><td>Supporter</td><td>Stellar Crown</td><td>133</td><td>H</td></tr>
+							<tr><td>2</td><td>Hilda</td><td>Supporter</td><td>White Flare</td><td>084</td><td>I</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>3</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>2</td><td>Battle Cage</td><td>Stadium</td><td>Phantasmal Flames</td><td>085</td><td>I</td></tr>
+							<tr><td>1</td><td>Sparkling Crystal</td><td>Tool, ACE SPEC</td><td>Stellar Crown</td><td>142</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (13)</strong></p>
+					<table>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th></tr></thead>
+						<tbody>
+							<tr><td>6</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>7</td></tr>
+							<tr><td>4</td><td>Basic Fire Energy</td><td>Mega Evolution Energies</td><td>2</td></tr>
+							<tr><td>3</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>5</td></tr>
+						</tbody>
+					</table>
+					<p><strong>19 + 28 + 13 = 60.</strong> ✓</p>
+					<p><strong>Basics: 10</strong> (4 Eevee, 2 Eevee ex, 4 Hoothoot). Eight of the ten sit under Buddy-Buddy Poffin&#x27;s 70 HP cap; Eevee ex is the exception at 200.</p>
+			<aside data-callout="tip">
+				<p><strong>&quot;Eevee&quot; and &quot;Eevee ex&quot; are different card names</strong>, so 4 and 2 is legal. But every plain Eevee shares the name &quot;Eevee&quot; no matter which set it came from, so his binder full of prints still only gives him <strong>four</strong> in the deck. Choosing which four is a real decision, not a formality.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="the-swap">The Swap</h3>
+					<p>Ten cards out, ten cards in. Everything else stays exactly where it is.</p>
+					<dl>
+						<dt data-head>Out</dt><dd data-head>In</dd>
+						<dt>1 Umbreon ex &lt;small&gt;PRE 060&lt;/small&gt;</dt><dd><span>1 Flareon ex &lt;small&gt;PRE 014&lt;/small&gt;</span></dd>
+						<dt>1 Espeon ex &lt;small&gt;PRE 034&lt;/small&gt;</dt><dd><span>2 Glaceon &lt;small&gt;PRE 025, the non-ex&lt;/small&gt;</span></dd>
+						<dt>2 Battle Cage &lt;small&gt;PFL 085&lt;/small&gt;</dt><dd><span>1 Night Stretcher &lt;small&gt;SFA 061&lt;/small&gt;</span></dd>
+						<dt>3 Basic Psychic Energy</dt><dd><span>3 Basic Water Energy</span></dd>
+						<dt>3 Basic Darkness Energy</dt><dd><span>3 Basic Fire Energy</span></dd>
+					</dl>
+					<p>That lands Fire and Ice on <strong>20 Pokémon, 27 Trainers, 13 Energy</strong>, also 60.</p>
+					<p><strong>What actually moves is Energy first, Pokémon second, and one Trainer each way.</strong> Every Supporter is shared. The whole draw engine is shared. The ACE SPEC is shared. So the deck <em>plays</em> identically in both modes, which is the point: he learns one deck, not two.</p>
+					<table>
+						<thead><tr><th>Category</th><th>Swaps</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td>Energy</td><td>6 each way</td><td>the biggest chunk by far</td></tr>
+							<tr><td>Pokémon</td><td>2 out, 3 in</td><td>the third attacker, and one count change</td></tr>
+							<tr><td>Stadium</td><td>home only</td><td>2 Battle Cage</td></tr>
+							<tr><td>Items</td><td>away only</td><td>1 Night Stretcher</td></tr>
+							<tr><td>Supporters</td><td>never</td><td>all 12 are shared</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="sun-and-moon">Sun and Moon<span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /></span></h3>
+					<p><strong>Espeon is the Sun evolution and Umbreon is the Moon evolution.</strong> That is where the name comes from, and the pairing is aimed squarely at Dad&#x27;s side of the table.</p>
+					<p><strong>Umbreon ex is the reason this build exists.</strong> Every card in the lantern decks is Darkness Weakness ×2, top to bottom: Mega Chandelure ex, Gourgeist ex, Dusknoir, Litwick, Lampent, Pumpkaboo, Duskull. <em>Moon Mirage</em> does 160, which becomes <strong>320</strong>. That one-shots Gourgeist ex at 270, Dusknoir at 160, and every small body on the board. Mega Chandelure ex survives at 350, but only by 30.</p>
+					<p><strong>Espeon ex is a single copy doing a single job.</strong> <em>Amazez</em> devolves <strong>every</strong> evolved Pokémon the opponent controls, shuffling the top Stage card back into their deck. Against a board of Mega Chandelure ex, Dusknoir, Gengar, and Crobat ex that erases an entire game&#x27;s setup in one attack. It costs [G][P][D], which the Crystal turns into P and D, both of which this build already runs.</p>
+					<p>Espeon is Darkness Weakness ×2 and Dad&#x27;s decks are full of Darkness attackers, so it dies the turn after it fires. That is a fair price for undoing his board, and it is why there is only one.</p>
+					<p><strong>Battle Cage is the sleeper.</strong> Dad wins with damage counters placed by Abilities, and Tera bench-immunity does not stop those. Dusknoir&#x27;s <em>Cursed Blast</em> puts 13 counters anywhere it likes; Froslass pings every Ability Pokémon each Checkup. Battle Cage prevents damage counters being placed on <strong>Benched</strong> Pokémon by the opponent&#x27;s attacks and Abilities. Fox places no counters at all, so a card that reads as symmetric is entirely one-sided in his favour.</p>
+			</section>
+			<section>
+				<h3 id="fire-and-ice">Fire and Ice<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/glaceon.gif" alt="" /></span></h3>
+					<p>Flareon and Glaceon, built for a field of strangers rather than for Dad.</p>
+					<p><strong>Flareon ex is the haymaker.</strong> <em>Carnelian</em> does 280, and <strong>Mega Excadrill ex is Metal</strong>, which means 280 doubles to <strong>560</strong> into its 340 HP. Mega Excadrill is the most-played deck in the format. Fox&#x27;s favourite Pokémon one-shots it, which is a nice thing to be able to tell him.</p>
+					<p>Fire also doubles into Mega Venusaur ex at 380, Dhelmise, and the Grass core of Festival Lead. Between them that is close to a fifth of the field.</p>
+					<p><strong>Glaceon here is the non-ex print, and that is deliberate.</strong> Glaceon <strong>ex</strong> is Metal Weakness ×2, so it dies to the very Excadrill that Flareon beats. The plain Glaceon gives up <strong>one</strong> Prize instead of two, and <em>Permeating Chill</em> does 30 now plus <strong>9 damage counters</strong> at the end of the opponent&#x27;s next turn. That is 120 for a single [W], and counters ignore Weakness and Resistance entirely.</p>
+					<p>Giving up two Prizes for every knockout is this archetype&#x27;s real weakness, and a 1-Prize attacker is the honest fix. It also keeps Fox&#x27;s third-favourite Eeveelution in the deck without the liability.</p>
+			<aside data-callout="important">
+				<p><strong>Eevee ex cannot become the non-ex Glaceon.</strong> <em>Rainbow DNA</em> only permits Pokémon <strong>ex</strong>. Glaceon has to be played onto a plain Eevee.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="pick-your-ten">Pick Your Ten<span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
+					<p><strong>This part is for Fox.</strong></p>
+					<p>Your deck is 50 cards that never change, plus 10 cards you choose. Pick before we start shuffling.</p>
+					<p><strong>Playing Dad at home? Take Sun and Moon.</strong> Espeon and Umbreon. Umbreon hits his ghosts for double damage, which means almost everything he plays falls over twice as fast. Espeon has one job: use <em>Amazez</em> and send his big evolved Pokémon back into his deck. He will not be happy. The two Battle Cage stop him sneaking damage onto your Bench.</p>
+					<p><strong>Going to game night? Take Fire and Ice.</strong> Flareon and Glaceon. Flareon&#x27;s <em>Carnelian</em> hits for 280, and doubles to 560 against the metal Pokémon lots of people play, which knocks out almost anything in one shot. Glaceon is not an ex, so if it gets knocked out your opponent only takes <strong>one</strong> Prize instead of two. That matters more than it sounds like it does.</p>
+					<p><strong>Either way, three things stay true.</strong> Flareon ex fetches your Energy with <em>Burning Charge</em>. Put Sparkling Crystal on whichever Pokémon you want to attack with, because it makes that attack cost one less Energy. And keep your Eeveelutions on the <strong>Bench</strong> until you need them, because Tera means nothing can touch them there.</p>
+			</section>
+			<section>
+				<h3 id="key-card-text">Key Card Text</h3>
+			<article>
+				<h3 id="eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex — Prismatic Evolutions 075 · Reg H<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610430_eevee-ex-075-131.jpg" target="_blank" rel="noopener"><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>075/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>200</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.) Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Coruscating Quartz (200)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, Tera, 200 HP, 2 Prizes.</strong> <em>Rainbow DNA</em> lets it evolve into any Pokémon <strong>ex</strong> that evolves from Eevee. It cannot do this on your first turn or the turn you play it, so it needs a turn on the board first.</p>
+					<p>Its attack, <em>Coruscating Quartz</em>, costs [R][W][L] and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee-prismatic-evolutions-074-reg-h">Eevee — Prismatic Evolutions 074 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610590_eevee-poke-ball-pattern.jpg" target="_blank" rel="noopener"><img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>074/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Reckless Charge (30) - This Pokémon also does 10 damage to itself.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><em>Boosted Evolution</em> lets it evolve <strong>during your first turn or the turn you play it</strong>, as long as it is Active. This is the turn-one Flareon ex, and it is why three copies are here.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee-twilight-masquerade-135-reg-h">Eevee — Twilight Masquerade 135 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/550179_eevee-135-167.jpg" target="_blank" rel="noopener"><img src="./assets/550179_eevee-135-167.jpg" alt="Eevee" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>135/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Ascension - Search your deck for a card that evolves from this Pokémon and put it onto this Pokémon to evolve it. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Quick Attack (20+) - Flip a coin. If heads, this attack does 20 more damage.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><em>Ascension</em> searches your deck for a card that evolves from this Pokémon and puts it straight on. A free tutor into whichever Eeveelution the matchup wants, which matters in a deck built from single copies. One copy, because it costs you the turn.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="flareon-ex-prismatic-evolutions-014-reg-h">Flareon ex — Prismatic Evolutions 014 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610369_flareon-ex-014-131.jpg" target="_blank" rel="noopener"><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>014/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
+						<dt>HP</dt><dd><span>270</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Burning Charge (130) - Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Carnelian (280) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 1 from Eevee, Tera, 270 HP.</strong> <em>Burning Charge</em> does 130 and searches the deck for up to 2 Basic Energy, attaching them to any one of your Pokémon. It does not say Fire. It says <strong>Basic Energy</strong>, which is how a deck with three colours only runs thirteen Energy cards.</p>
+					<p>With Sparkling Crystal attached it costs one [R]. One Fire Energy for 130 damage and two Energy off the deck is the strongest repeatable play in the list.</p>
+					<p><em>Carnelian</em> does 280 and locks it out of attacking next turn. See <a href="#fire-and-ice">Fire and Ice</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="umbreon-ex-prismatic-evolutions-060-reg-h">Umbreon ex — Prismatic Evolutions 060 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/umbreon.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610415_umbreon-ex-060-131.jpg" target="_blank" rel="noopener"><img src="./assets/610415_umbreon-ex-060-131.jpg" alt="Umbreon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>060/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>280</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Moon Mirage (160) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/lightning.png" alt="Lightning" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Onyx - Discard all Energy from this Pokémon, and take a Prize card.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>280 HP</strong>, the highest in the line, and Darkness. <em>Moon Mirage</em> does 160 and Confuses, which forces a coin flip on their attack and costs them 30 and their turn on tails.</p>
+					<p><em>Onyx</em> discards all Energy from this Pokémon and <strong>takes a Prize card</strong>. No attack, no damage, no interaction with HP. With the Crystal it costs two Energy instead of three.</p>
+					<p>Weak to Grass ×2, which is worth remembering against Festival Lead.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="espeon-ex-prismatic-evolutions-034-reg-h">Espeon ex — Prismatic Evolutions 034 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610389_espeon-ex-034-131.jpg" target="_blank" rel="noopener"><img src="./assets/610389_espeon-ex-034-131.jpg" alt="Espeon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>034/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>270</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Psych Out (160) - Discard a random card from your opponent&#x27;s hand.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Amazez - Devolve each of your opponent&#x27;s evolved Pokémon by shuffling the highest Stage Evolution card on it into your opponent&#x27;s deck.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 1 from Eevee, 270 HP.</strong> <em>Psych Out</em> does 160 and discards a random card from their hand. <em>Amazez</em> devolves each of the opponent&#x27;s evolved Pokémon by shuffling the highest Stage card on it into their deck.</p>
+					<p>Weak to Darkness ×2. Against Dad it is a one-shot weapon that will not survive the reply.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="glaceon-prismatic-evolutions-025-reg-h">Glaceon — Prismatic Evolutions 025 · Reg H<span data-flavor><img src="./assets/sprites/glaceon.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610380_glaceon.jpg" target="_blank" rel="noopener"><img src="./assets/610380_glaceon.jpg" alt="Glaceon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>025/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /></span><span>Permeating Chill (30) - At the end of your opponent&#x27;s next turn, put 9 damage counters on the Defending Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Icicle Missile (70)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The non-ex, 120 HP, 1 Prize.</strong> <em>Permeating Chill</em> does 30, then puts <strong>9 damage counters</strong> on the Defending Pokémon at the end of the opponent&#x27;s next turn. Counters ignore Weakness and Resistance.</p>
+					<p>Note the delay. If they retreat the damaged Pokémon, the counters have nowhere to land.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="sparkling-crystal-stellar-crown-142-reg-h">Sparkling Crystal — Stellar Crown 142 · Reg H<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/567416_sparkling-crystal.jpg" target="_blank" rel="noopener"><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>142/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>When the Tera Pokémon this card is attached to uses an attack, that attack costs 1 Energy less. (The Energy can be of any type.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The ACE SPEC, and one per deck total.</strong> Attacks used by the Tera Pokémon it is attached to cost 1 Energy less, of <strong>any type</strong>, which is what lets a three-colour deck cast three-colour attacks. It is a Tool, so it lives on one Pokémon; moving the plan means moving to a different body, not moving the card.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="battle-cage-phantasmal-flames-085-reg-i">Battle Cage — Phantasmal Flames 085 · Reg I<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/662130_battle-cage-085-094.jpg" target="_blank" rel="noopener"><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>085/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Prevent all damage counters from being placed on Benched Pokémon (both yours and your opponent&#x27;s) by effects of attacks and Abilities from the opponent&#x27;s Pokémon. (Damage from attacks is still taken.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stadium.</strong> Prevents all damage counters being placed on <strong>Benched</strong> Pokémon, on both sides, by effects of attacks and Abilities from the opponent&#x27;s Pokémon. Damage from attacks still applies normally.</p>
+					<p>In Sun and Moon this is the answer to a whole deck. See <a href="#sun-and-moon">Sun and Moon</a>.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="game-plans">Game Plans</h3>
+			<article>
+				<h3 id="1-the-bench-is-safe-so-wait">1. The Bench Is Safe, So Wait<span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
+				<section>
+					<p>Every Eeveelution ex is Tera, which prevents all attack damage while it is Benched. The only Pokémon that can be knocked out is the one currently Active.</p>
+					<p>So the deck&#x27;s real skill is patience. Build the Bench, hold Eevee ex undeclared, and only commit to Umbreon or Espeon once you know what you are looking at. Rotate with Switch and it is genuinely possible to go a long game losing one body.</p>
+					<p>The exception, and it matters at home: <strong>Tera does not stop damage counters placed by Abilities.</strong> That is what Battle Cage is for.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-flareon-ex-pays-for-everything">2. Flareon ex Pays for Everything<span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
+				<section>
+					<p><em>Burning Charge</em> is not a fallback attack, it is the Energy engine. Every turn it hits for 130 and puts two more Energy on the board from the deck, which is why the exotic colours can sit at three copies each and still be findable.</p>
+					<p>Lead with it, keep it Active while the Bench fills, and let it fund whichever gem attack the game asks for.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-three-knockouts-and-it-is-over">3. Three Knockouts and It Is Over<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+				<section>
+					<p>Every ex here gives up <strong>2 Prizes</strong>. Three knockouts and Fox has lost, which is a big change from a single-prize deck and the honest cost of the archetype.</p>
+					<p>Two mitigations. Tera keeps the Bench untouchable, so only sloppy rotation loses bodies. And in Fire and Ice, the non-ex Glaceon gives up one Prize rather than two, which is the only real structural fix available.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-choosing-the-crystals-home">4. Choosing the Crystal&#x27;s Home<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
+				<section>
+					<p>One Sparkling Crystal, one Pokémon, and the choice is not obvious.</p>
+					<ul>
+						<li><strong>On Flareon ex</strong> it makes <em>Burning Charge</em> a one-Energy 130 with two Energy attached. Best default, best in a long game.</li>
+						<li><strong>On Umbreon ex</strong> it turns <em>Onyx</em> into a two-Energy free Prize.</li>
+						<li><strong>On Espeon ex</strong> it makes <em>Amazez</em> castable at all from this Energy line.</li>
+					</ul>
+					<p>Decide by asking whether the game is a race or a grind. Races want it on Flareon; grinds want it on the gem.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
+					<p>Counts are the maximum across both modes, so one purchase covers Sun and Moon and Fire and Ice together. Flareon ex is listed at 4 because Fire and Ice wants the fourth; Umbreon ex at 3 because Sun and Moon wants the third.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee (Poké Ball Pattern) <small>SV: Prismatic Evolutions 074/131</small></span></td><td>1</td><td>3</td><td><strong>2</strong></td><td>Boosted Evolution, the turn-one play</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Eevee <small>SV06: Twilight Masquerade 135/167</small></span></td><td>2</td><td>1</td><td>✓</td><td>Ascension, the toolbox tutor</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee ex <small>SV: Prismatic Evolutions 075/131</small></span></td><td>2</td><td>2</td><td>✓</td><td>Rainbow DNA</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Flareon ex <small>SV: Prismatic Evolutions 014/131</small></span></td><td>1</td><td>4</td><td><strong>3</strong></td><td>3 for Sun and Moon, 4 for Fire and Ice</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Umbreon ex <small>SV: Prismatic Evolutions 060/131</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>the plain Double Rare, never the 161 Special Illustration</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Espeon ex <small>SV: Prismatic Evolutions 034/131</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Sun and Moon only</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Glaceon <small>SV: Prismatic Evolutions 025/131</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the non-ex 025, not Glaceon ex 026</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Hoothoot <small>SV07: Stellar Crown 114/142</small></span></td><td>4</td><td>4</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Noctowl <small>SV07: Stellar Crown 115/142</small></span></td><td>3</td><td>2</td><td>✓</td><td>Jewel Seeker, always on</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Crispin <small>SV07: Stellar Crown 133/142</small></span></td><td>4</td><td>3</td><td>✓</td><td>the pinch, see below</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Hilda <small>SV: White Flare 084/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>an Evolution and an Energy, one card</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>carries the whole toolbox</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Battle Cage <small>ME02: Phantasmal Flames 085/094</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Sun and Moon only; 085, not the 116 secret print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Sparkling Crystal <small>SV07: Stellar Crown 142/142</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC</td></tr>
+							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>6</td><td>✓</td><td>any English printing</td></tr>
+							<tr><td><span>Basic Fire Energy <small>MEE: Mega Evolution Energies 2</small></span></td><td>18</td><td>7</td><td>✓</td><td>any English printing</td></tr>
+							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>3</td><td>3</td><td>✓</td><td>any English printing</td></tr>
+							<tr><td><span>Basic Water Energy <small>MEE: Mega Evolution Energies 3</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>any English printing</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>18</strong></td><td></td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="warning">
+				<p><strong>Crispin is the collection pinch.</strong> You own 4, this deck wants 3, and Frostfire wants 2. Unlike the two Psychic decks, this one and yours <strong>will</strong> be sleeved at the same time, so that is a genuine conflict rather than a rounding error. Hilda has the same problem from zero.</p>
+			</aside>
+			<aside data-callout="note">
+				<p><strong>Basic Energy never rotates and every English printing is legal</strong>, so the four Energy lines above come out of a bulk box rather than an order. Fire and Darkness are already deep in the collection.</p>
+			</aside>
+			<aside data-callout="important">
+				<p><strong>Regulation clock.</strong> Every Eevee and every Eeveelution ex exists only at Regulation <strong>H</strong>, from Prismatic Evolutions plus a few promos. There is no I or J printing of any of them, so the whole archetype rotates around <strong>April 2027</strong> unless it gets reprinted.</p>
+				<p>That is fine at the kitchen table forever. For sanctioned play it is roughly eight months, which argues for buying the Flareon and Umbreon core deep and treating Espeon, Glaceon, and Battle Cage as the optional half.</p>
+			</aside>
+			</section>
+		</main>
+		<footer>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+		</footer>
+	</body>
+</html>
