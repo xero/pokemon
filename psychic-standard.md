@@ -8,6 +8,8 @@
 > [Witching Hour](./psychic-lanterns.md) is a kitchen-table deck built from rotated cards, on purpose, and it stays exactly as it is. This is its tournament-legal heir: the same identity (damage counters, lanterns, patience) rebuilt from the current card pool around **Mega Chandelure ex**, the 350 HP Mega printed in Pitch Black.
 >
 > One farewell up front. **Wobbuffet cannot come.** The only Standard-legal Wobbuffet is Team Rocket's, and its attack only works inside a Team Rocket's deck, which is Fox's territory. Wobbuffet keeps his seat in Witching Hour, where he belongs.
+>
+> **Revised August 2026.** The first cut of this list ran thirteen basic Psychic Energy and no way to find, accelerate, or recover any of it, which is the same fault that lost a real game with a different deck. Smoochum, Telepathic Energy, Hilda, and Wondrous Patch replace that hope with an engine. See [The Energy Engine](#the-energy-engine).
 
 ---
 
@@ -15,6 +17,7 @@
 > - [The Thesis](#the-thesis)
 > - [Deck List](#deck-list)
 > - [Key Card Text](#key-card-text)
+> - [The Energy Engine](#the-energy-engine)
 > - [Game Plans](#game-plans)
 > - [Versus the Kitchen Table](#versus-the-kitchen-table)
 > - [What To Buy](#what-to-buy)
@@ -47,40 +50,46 @@ Around that trap, the deck keeps Witching Hour's soul: **Dusknoir** places 13 da
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
-| 4 | Litwick | Pitch Black | 036 | J |
+| 3 | Litwick | Pitch Black | 036 | J |
 | 3 | Lampent | Pitch Black | 037 | J |
 | 3 | Mega Chandelure ex | Pitch Black | 038 | J |
 | 2 | Pumpkaboo | Chaos Rising | 040 | J |
 | 2 | Gourgeist ex | Chaos Rising | 041 | J |
 | 3 | Duskull | Shrouded Fable | 018 | H |
-| 1 | Dusclops | Shrouded Fable | 019 | H |
 | 2 | Dusknoir | Shrouded Fable | 020 | H |
+| 2 | Smoochum | Surging Sparks | 075 | H |
 | 1 | Snorunt | Twilight Masquerade | 051 | H |
 | 1 | Froslass | Twilight Masquerade | 053 | H |
 
-**Trainers (25)**
+**Trainers (28)**
 
 | Qty | Card | Type | Set | Number | Reg |
 | --- | --- | --- | --- | --- | --- |
 | 4 | Lillie's Determination | Supporter | Mega Evolution | 119 | I |
-| 2 | Dawn | Supporter | Phantasmal Flames | 087 | I |
 | 3 | Boss's Orders | Supporter | Mega Evolution | 114 | I |
+| 2 | Hilda | Supporter | White Flare | 084 | I |
+| 2 | Dawn | Supporter | Phantasmal Flames | 087 | I |
 | 4 | Rare Candy | Item | Mega Evolution | 125 | I |
 | 4 | Buddy-Buddy Poffin | Item | Temporal Forces | 144 | H |
 | 2 | Ultra Ball | Item | Mega Evolution | 131 | I |
+| 2 | Wondrous Patch | Item | Phantasmal Flames | 094 | I |
 | 2 | Night Stretcher | Item | Shrouded Fable | 061 | H |
-| 3 | Switch | Item | Mega Evolution | 130 | I |
+| 2 | Switch | Item | Mega Evolution | 130 | I |
 | 1 | Prime Catcher | Item | Temporal Forces | 157 | H |
 
-**Energy (13)**
+**Energy (10)**
 
-| Qty | Card | Set | Number |
-| --- | --- | --- | --- |
-| 13 | Basic Psychic Energy | Mega Evolution Energies | 005 |
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Telepathic Psychic Energy | Perfect Order | 088 | J |
+| 6 | Basic Psychic Energy | Mega Evolution Energies | 005 | - |
 
-**22 + 25 + 13 = 60.** ✓
+**22 + 28 + 10 = 60.** ✓
 
-**Basics: 10** (4 Litwick, 2 Pumpkaboo, 3 Duskull, 1 Snorunt) — about a **26% mulligan rate**, the highest of the three tournament decks and the honest price of running three evolution lines. Every Basic is 70 HP or under, so all four Poffins are always live, which is what makes the count workable.
+**Basics: 11** (3 Litwick, 2 Pumpkaboo, 3 Duskull, 2 Smoochum, 1 Snorunt), for about a **22% mulligan rate**. The earlier build ran 10 Basics and 13 Energy and mulliganed a quarter of its games; trading three Energy for two Smoochum and a deeper trainer count bought both a steadier open and a faster one. Every Basic is 70 HP or under, so all four Poffins stay live, and four of the five are Basic Psychic, so Telepathic Energy fetches them too.
+
+> [!NOTE]
+> **Dusclops is gone and Rare Candy stayed at 4.** The file used to carry a single Dusclops as a bridge and call it "the discount version of what Dusknoir does properly." That was correct, so it went. Dusknoir now arrives by Rare Candy only, which is why the Candy count holds at four even though `Spreading Light` covers the second and third Chandelure for free.
 
 > [!WARNING]
 > **One ACE SPEC per deck.** Prime Catcher is this deck's one, and it must be the **English print** — your Japanese starter-set copy plays at the kitchen table but is not legal at a sanctioned event.
@@ -95,7 +104,11 @@ Generic staples are covered in [Gengar Gang](./dark.md) and [the Dark Box](./dar
 
 **Stage 2 from Lampent. Gives up 3 Prize cards.** 350 HP, and the stat line has two quiet gifts: **Resistance to Fighting**, which is the type that hunts Mega Gengar, and a Darkness Weakness that matters exactly once in this house (see the kitchen-table section).
 
-*Binding Flame* needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. Two Chandelure in play is not twice the effect on damage math you can count on; play to one Binding Flame and treat any stack as a bonus ruling to look up later.
+*Binding Flame* needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. It works from the Bench, so a Chandelure that is not attacking is still doing its job.
+
+**It stacks, and that is settled.** The Pokémon website's own Pitch Black strategy piece says the plain version: "Playing multiple copies of Mega Chandelure ex is the easiest way to continue boosting Phantom Maze's damage." Two in play is +2 to their Retreat Cost and +100 to the attack. An earlier draft of this file hedged on that; it should not have.
+
+Three copies in the list is the ceiling on purpose. Each one on the board is another three Prizes standing in the open, and the second Binding Flame buys far more than the third. See [game plan 5](#5-what-this-deck-gives-up).
 
 ### Litwick — Pitch Black 036 · Reg J
 
@@ -117,10 +130,6 @@ Stage 1, 270 HP, 2 Prizes. ***Horrifying Rondo* does 30 plus 50 for each of your
 
 60 HP seed. *Come and Get You* puts up to 3 Duskull from the discard onto your Bench, which quietly makes every discarded Duskull a future Dusknoir rather than a lost card.
 
-### Dusclops — Shrouded Fable 019 · Reg H
-
-The bridge, and a small bomb of its own: **Cursed Blast, 5 damage counters, then Dusclops Knocks itself Out.** One copy, because Rare Candy usually skips it and five counters is the discount version of what Dusknoir does properly.
-
 ### Dusknoir — Shrouded Fable 020 · Reg H
 
 **The thirteen-counter button.** Once during your turn: put **13 damage counters** on one of your opponent's Pokémon, anywhere on their board, and Dusknoir Knocks itself Out. That is 130 placed damage that ignores Weakness, Resistance, and the Bench, from a card that cost you one Prize and no attack. It also has a real attack — *Shadow Bind*, 150 and the Defending Pokémon cannot retreat, which is a second way to spring the retreat trap.
@@ -135,9 +144,60 @@ The bridge, and a small bomb of its own: **Cursed Blast, 5 damage counters, then
 
 Water type, so it pays no Psychic cost and shares no searcher, and a 1-1 line is deliberately thin. It is the first cut if the Rondo plan underperforms and the first upgrade to 2-2 if it carries games.
 
+### Smoochum — Surging Sparks 075 · Reg H
+
+**Thirty hit points, no Retreat Cost, and the most important attack in the deck.** *Delightful Kiss* costs **nothing at all**: search your deck for up to 2 Basic Psychic Energy and attach them to one of your **Benched** Pokémon.
+
+Read the sequence twice, because it is a full turn faster than anything the old list could do. Bench a Litwick, put Smoochum in the Active Spot, and Delightful Kiss two Energy onto the Litwick. Next turn, Rare Candy that Litwick into Mega Chandelure ex, which inherits the Energy, walk Smoochum away for free, and attack. **Turn two Phantom Maze.**
+
+The part that matters most is where the Energy comes from. It comes from the **deck**, not your hand, so the card works on the turn you have drawn no Energy at all. Thirty hit points means it dies to a stiff breeze and hands over a Prize, and by then it has already done the job it was bought for. It is Basic Psychic, so Telepathic Energy finds it, and 30 HP, so Poffin does too.
+
+### Telepathic Psychic Energy — Perfect Order 088 · Reg J
+
+**An Energy card that is also a Poffin.** It provides [P], and when you attach it from hand to a Psychic Pokémon you search your deck for up to 2 **Basic Psychic Pokémon** and put them straight onto your Bench. Litwick, Pumpkaboo, Duskull, and Smoochum all qualify. Snorunt does not, because it is Water.
+
+Four copies, and no more, for one reason: it is a **Special** Energy, so neither Wondrous Patch nor Night Stretcher can ever recover it. It is a setup card, not a resilience card, and the six basic Psychic underneath it are what keep the recovery loop alive.
+
+### Hilda — White Flare 084 · Reg I
+
+Search your deck for an **Evolution Pokémon and an Energy card**. In this deck that reads "Mega Chandelure ex plus a Telepathic Energy," off one Supporter, which is the exact pair the deck spends its early turns hunting for.
+
+### Wondrous Patch — Phantasmal Flames 094 · Reg I
+
+**The rebuild card.** Attach a basic Psychic Energy from your **discard pile** to one of your **Benched** Psychic Pokémon. It is an Item, and it does not use your attachment for the turn.
+
+This is the answer to the way this deck actually loses: a Mega Chandelure gets knocked out holding two Energy, and you hand over three Prizes and start the climb again from nothing. Wondrous Patch builds the replacement on the Bench while the current one is still swinging.
+
+It also inverts Ultra Ball. Pitching a Psychic Energy to pay Ultra Ball's cost stops being a loss and becomes setup, because the Patch puts it back where you needed it.
+
 ### Prime Catcher — Temporal Forces 157 · Reg H
 
 The ACE SPEC: gust their Bench **and** switch your own Active in one Item, no Supporter spent. In most decks it is tempo. In this one it is the trap trigger — pull the retreat-3 tank forward on the same turn Chandelure steps up, and the Supporter slot is still free for Lillie's.
+
+---
+
+## The Energy Engine
+
+The first version of this deck ran **13 basic Psychic and nothing else**. No search, no acceleration, and no recovery past two Night Stretcher. That is not an Energy plan. It is a hope, and it is the same shape that lost a real game at the kitchen table while this file sat unrevised.
+
+Energy *count* and Energy *velocity* are different numbers, and only one of them wins games. There are three jobs, and the old list did none of them.
+
+| Job | Card | What it does |
+| --- | --- | --- |
+| **Find** | 4 Telepathic Psychic Energy | an Energy that also benches two Basic Psychic Pokémon |
+| **Find** | 2 Hilda | an Evolution Pokémon and an Energy card, together |
+| **Accelerate** | 2 Smoochum | two Energy from the **deck** onto your Bench, for no Energy cost |
+| **Rebuild** | 2 Wondrous Patch | one Energy from the **discard** onto your Bench, no attachment spent |
+| **Recover** | 2 Night Stretcher | a Pokémon or a basic Energy back to hand |
+
+The count came **down** from 13 to 10 and the deck gets fuel faster. Three slots went to the trainer line, which needed them more.
+
+**The fast open.** Going second, bench a Litwick and open with Smoochum. *Delightful Kiss* puts two Psychic on the Litwick from your deck. Turn two, Rare Candy it into Mega Chandelure ex, retreat Smoochum for free, and swing. Going first you lose a turn to the no-attack rule and the line lands on turn three instead, which is still where the old list arrived on a good draw.
+
+**The slow open.** Without Smoochum, one attachment a turn onto a benched Litwick gets Phantom Maze online turn three anyway. Smoochum is the upgrade, not the requirement, which is why two copies is enough.
+
+> [!WARNING]
+> **Keep six basic Psychic in the list.** Telepathic Energy is a Special Energy. Wondrous Patch reads "basic Psychic Energy" and Night Stretcher reads "basic Energy," so neither one can pull a Telepathic back out of the discard. Shave the basic count to make room for a fifth Telepathic and you break the recovery loop that the whole plan rests on.
 
 ---
 
@@ -149,8 +209,8 @@ The ACE SPEC: gust their Bench **and** switch your own Active in one Item, no Su
 
 **The deck's main line, and the reason it wins games it looks behind in.**
 
-1. Build Mega Chandelure on the Bench (Poffin, Rare Candy, Dawn).
-2. Attach two Psychic. Step forward.
+1. Build Mega Chandelure on the Bench (Poffin, Telepathic Energy, Hilda, Dawn, Rare Candy).
+2. Get two Psychic onto it. Smoochum does both in one free attack; otherwise attach across two turns. Step forward.
 3. **Boss's Orders their heaviest Pokémon into the Active Spot.**
 4. Phantom Maze. Their retreat 2 became 3 under Binding Flame: **280**. Their retreat 3 became 4: **330**.
 
@@ -191,7 +251,8 @@ A deck with a 3 Prize core cannot afford to whiff its own arrival, and this is t
 Play it knowing the bill.
 
 - **Three Prizes on the core, no discount.** Mega Gengar bends the prize race; Chandelure just tanks it. Two Mega Knock Outs and a Dusknoir self-KO is a lost game. Position the Megas the way the dark box positions its own: behind cheap bodies, never two exposed at once.
-- **A 26% mulligan rate.** Three evolution lines on ten Basics. The Poffins are load-bearing; dig for them.
+- **A 22% mulligan rate.** Three evolution lines on eleven Basics. Better than the 26% this list opened with, still the worst of the three tournament decks. The Poffins are load-bearing; dig for them.
+- **Every Binding Flame past the second is a bad deal.** Two in play is +100 on Phantom Maze and takes it over the top of nearly everything printed. The third adds another 50 and another **three Prizes** of exposure, and your opponent gets to choose which Chandelure they gust. Three copies in the list is redundancy against Prizes and knockouts, not a board state to aim for. Two on the board is the number; the bullet above still applies to both of them.
 - **The 180 floor.** A disciplined free-retreat deck blunts Phantom Maze all game. Gusts and Shadow Bind are the answer, and they are finite. Against those decks Gourgeist ex quietly becomes the main attacker.
 - **Darkness Weakness on the whole Gengar-hunting profile.** The Fighting Resistance makes this the house's best answer to Mega Lucario style decks, but any Darkness attacker hits Chandelure for double. Including the ones in this repo.
 
@@ -209,30 +270,35 @@ Play it knowing the bill.
 
 ## What To Buy
 
-The lantern lines are all new; the trainer shell is already on the shelf. The Rare Candy math across all three tournament decks lands on exactly the ten you own.
+The lantern lines are all new; the trainer shell is already on the shelf. Four cards on this list were not here before, and they are the ones that fix the deck rather than decorate it: Smoochum, Telepathic Energy, Hilda, and Wondrous Patch.
 
 ```buy
-Litwick | Pitch Black 036 | 4 | the Psychic print; your Fire Litwick do not serve this line
+Litwick | Pitch Black 036 | 3 | the Psychic print; your Fire Litwick do not serve this line
 Lampent | Pitch Black 037 | 3 | Spreading Light
 Mega Chandelure ex | Pitch Black 038 | 3 | Double Rare; skip the collector prints numbered above 084
 Pumpkaboo | Chaos Rising 040 | 2 |
 Gourgeist ex | Chaos Rising 041 | 2 | Double Rare, same trap as above; 041, not 102
 Duskull | Shrouded Fable 018 | 3 |
-Dusclops | Shrouded Fable 019 | 1 |
-Dusknoir | Shrouded Fable 020 | 2 |
+Dusknoir | Shrouded Fable 020 | 2 | Rare Candy is the only route now, Dusclops is cut
+Smoochum | Surging Sparks 075 | 2 | a common; the whole Energy plan turns on it
 Snorunt | Twilight Masquerade 051 | 1 |
 Froslass | Twilight Masquerade 053 | 1 |
 Lillie's Determination | Mega Evolution 119 | 4 | shared with the other decks
-Dawn | Phantasmal Flames 087 | 2 | shared
 Boss's Orders | Mega Evolution 114 | 3 | shared
-Rare Candy | Mega Evolution 125 | 4 | shared; 3 + 3 + 4 across the decks = the 10 owned
+Hilda | White Flare 084 | 2 | an Evolution and an Energy on one Supporter
+Dawn | Phantasmal Flames 087 | 2 | shared
+Rare Candy | Mega Evolution 125 | 4 | shared; stays at 4 because Dusknoir needs it
 Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared; a third deck oversubscribes the 9 owned, buy 3 if all stay sleeved
 Ultra Ball | Mega Evolution 131 | 2 | shared
+Wondrous Patch | Phantasmal Flames 094 | 2 | the rebuild card; POR 117 is the same card
 Night Stretcher | Shrouded Fable 061 | 2 | shared
-Switch | Mega Evolution 130 | 3 |
+Switch | Mega Evolution 130 | 2 |
 Prime Catcher | Temporal Forces 157 | 1 | ACE SPEC; the English print, the Japanese copy is not US-legal
-Basic Psychic Energy | Mega Evolution Energies 005 | 13 | never rotates
+Telepathic Psychic Energy | Perfect Order 088 | 4 | Special Energy, so Night Stretcher cannot bring it back
+Basic Psychic Energy | Mega Evolution Energies 005 | 6 | never rotates
 ```
 
+This deck and Frostfire share most of a box and are never sleeved at the same time, so buying for both costs far less than adding the two lists together. [The pull list](./psychic-pull-list.md) works out the combined count.
+
 > [!IMPORTANT]
-> **Regulation check.** Everything above carries mark H, I, or J and is Standard legal as of August 2026. The H cards (the Duskull and Snorunt lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black and Chaos Rising core is Reg J and has years left. Budget accordingly: the soul of the deck outlives its shell.
+> **Regulation check.** Everything above carries mark H, I, or J and is Standard legal as of August 2026. The H cards (the Duskull and Snorunt lines, Smoochum, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order cards are Reg J and have years left. Budget accordingly: the soul of the deck outlives its shell.

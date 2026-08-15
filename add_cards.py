@@ -226,4 +226,10 @@ def main():
         print("  --dry-run, nothing written")
 
 
-main()
+# Guarded because search(), resolve(), and wanted_rows() are the obvious things
+# to reuse from another script or a REPL, and without this an `import add_cards`
+# silently runs the whole batch and rewrites product-ids.tsv. Not hypothetical;
+# it has happened. Nothing here imports the module, so running it as a script is
+# unaffected.
+if __name__ == "__main__":
+    main()

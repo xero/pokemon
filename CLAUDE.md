@@ -15,7 +15,8 @@ pokemontcg.io --fetch_regulation.py--> regulation-marks.json --> the reg mark an
 
 - **`product-ids.tsv` is the seed.** Everything else derives from it. Never invent a row by hand; it needs a TCGplayer product id, and `add_cards.py` is the lookup.
 - **`cards.csv` is generated.** Do not hand-edit it. Columns worth knowing: `name`, `set_name`, `card_number`, `card_text`, `attack1-4`, `regulation_mark`, `standard_legal`, `image_file`, `quantity`, `category`, `source_url`. Card text in it comes from TCGplayer and is the authoritative text to quote in deck prose.
-- **`quantity` 0 is a real value**: a card a deck plan wants but nobody owns. It still gets a full card block on deck pages and stays off the collection page. Hand-set quantities survive `scrape_quantities.py` re-runs.
+- **`quantity` 0 is a real value**: a card a deck plan wants but nobody owns. It still gets a full card block on deck pages and stays off the collection page.
+- **A hand-set quantity only survives `scrape_quantities.py` if the merge has never heard of the row.** Wishlist rows sitting at 0 are safe. Anything listed in `order-quantities.tsv` or `sealed-contents.tsv` gets recomputed as ordered plus sealed, and a hand edit there is silently overwritten on the next run. Correct the source tsv instead, or the edit will not survive.
 - The collection mixes more than one person's cards. Check the memory notes before treating a quantity as "available."
 
 ## The legal card pool

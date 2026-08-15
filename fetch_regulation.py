@@ -33,7 +33,12 @@ SET_IDS = {
     "TEF": "sv5", "TWM": "sv6", "SFA": "sv6pt5", "SCR": "sv7", "PRE": "sv8pt5",
     "JTG": "sv9", "DRI": "sv10",
     "MEG": "me1", "PFL": "me2", "ASC": "me2pt5", "POR": "me3", "CRI": "me4",
-    "PBL": "me5",
+    "PBL": "me5", "WHT": "rsv10pt5",
+    # SVP has to be resolved per card and cannot be a MANUAL_MARKS set entry:
+    # the promo series has outlived several marks, so one set carries G through
+    # J. Upstream numbering agrees with TCGplayer here (Lapras ex is 164 in
+    # both), which is what makes the per-card lookup land.
+    "SVP": "svp",
     # No upstream equivalent: BTA (Battle Academy), MEE (Mega Evolution
     # Energies), and the three Trick or Trade bundles. Handled in
     # normalize_cards.py, which knows why each one is safe to decide without.
@@ -82,9 +87,16 @@ for p in products:
 # is. Costs a dozen or so extra requests and changes no verdicts.
 fetch_all = "--all" in sys.argv
 
+# A promo series is stamped with the date the series began, not the date the
+# card was printed: every SVP product carries 2023-03-31, Lapras ex 164
+# included, and that one is an H. Skipping on release date would write off a
+# legal card, so promo series stay in scope and get resolved card by card.
+DATELESS_SETS = {"SVP"}
+
 wanted = sorted(c for c, rd in released.items()
-                if fetch_all or rd >= FIRST_H_SET_RELEASE)
-old = sorted(c for c, rd in released.items() if rd < FIRST_H_SET_RELEASE)
+                if fetch_all or rd >= FIRST_H_SET_RELEASE or c in DATELESS_SETS)
+old = sorted(c for c, rd in released.items()
+             if rd < FIRST_H_SET_RELEASE and c not in DATELESS_SETS)
 todo = [c for c in wanted if c in SET_IDS and c not in done]
 skipped = [c for c in wanted if c not in SET_IDS]
 

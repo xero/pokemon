@@ -134,3 +134,59 @@ Basic Grass Energy Mega Evolution Energies	001	0	wishlist
 #
 # --- dark-ex.md explains why this one does NOT work; it needs the card art ----
 Gengar Spirit Link Phantom Forces	095/119	0	wishlist, only to show the card while explaining why to skip it
+#
+# --- energy acceleration, generic only ---------------------------------------
+# Pulled from legal-cards-1786763436.json, then cut to cards with no type,
+# color, Tera/Future, or trainer-owner gate. Restricted accel is deliberately
+# absent: Reboot Pod, Janine's Secret Art, Glass Trumpet, N's PP Up and the
+# rest only work in one deck each.
+#
+# Tier 1, attaches straight off the deck or out of the discard pile.
+Blaziken ex Journey Together	024/159	0	wishlist, energy accel tier 1
+Grumpig Mega Evolution	063/132	0	wishlist, energy accel tier 1
+Team Rocket's Spidops Destined Rivals	020/182	0	wishlist, energy accel tier 1
+Powerglass Shrouded Fable	063/064	0	wishlist, energy accel tier 1
+Crispin Stellar Crown	133/142	0	wishlist, energy accel tier 1
+Waitress Ascended Heroes	215/217	0	wishlist, energy accel tier 1
+Energy Coin Black Bolt	081/086	0	wishlist, energy accel tier 1
+Lapras ex Scarlet & Violet Black Star Promo	164	0	wishlist, energy accel tier 1
+Mega Audino ex Ascended Heroes	172/217	0	wishlist, energy accel tier 1
+Cinderace Mega Evolution	028/132	0	wishlist, energy accel tier 1
+Whimsicott ex White Flare	005/086	0	wishlist, energy accel tier 1
+Altaria Surging Sparks	134/191	0	wishlist, energy accel tier 1
+Houndoom Prismatic Evolutions	063/131	0	wishlist, energy accel tier 1
+Flareon ex Prismatic Evolutions	014/131	0	wishlist, energy accel tier 1
+Morpeko Twilight Masquerade	072/167	0	wishlist, energy accel tier 1
+Oricorio Surging Sparks	026/191	0	wishlist, energy accel tier 1
+Furfrou Shrouded Fable	051/064	0	wishlist, energy accel tier 1
+Jirachi Stellar Crown	098/142	0	wishlist, energy accel tier 1
+Landorus Surging Sparks	110/191	0	wishlist, energy accel tier 1
+Bewear Shrouded Fable	053/064	0	wishlist, energy accel tier 1
+#
+# Tier 2, fetches to hand, or shuffles the discard back into the deck.
+Night Stretcher Shrouded Fable	061/064	0	wishlist, energy accel tier 2
+Energy Retrieval White Flare	082/086	0	wishlist, energy accel tier 2
+Max Rod Prismatic Evolutions	116/131	0	wishlist, energy accel tier 2
+Lana's Aid Twilight Masquerade	155/167	0	wishlist, energy accel tier 2
+Energy Search Pro Surging Sparks	176/191	0	wishlist, energy accel tier 2
+Energy Search Perfect Order	072/088	0	wishlist, energy accel tier 2
+Colress's Tenacity Shrouded Fable	057/064	0	wishlist, energy accel tier 2
+Larry's Skill Prismatic Evolutions	115/131	0	wishlist, energy accel tier 2
+Hilda White Flare	084/086	0	wishlist, energy accel tier 2
+Energy Recycler Destined Rivals	164/182	0	wishlist, energy accel tier 2
+Heliolisk Surging Sparks	155/191	0	wishlist, energy accel tier 2
+Eevee Shrouded Fable	050/064	0	wishlist, energy accel tier 2
+Floette Twilight Masquerade	087/167	0	wishlist, energy accel tier 2
+Gimmighoul Surging Sparks	097/191	0	wishlist, energy accel tier 2
+Axew Black Bolt	068/086	0	wishlist, energy accel tier 2
+Charcadet Phantasmal Flames	019/094	0	wishlist, energy accel tier 2
+Emolga Chaos Rising	030/086	0	wishlist, energy accel tier 2
+Larry's Starly Ascended Heroes	168/217	0	wishlist, energy accel tier 2
+Teal Mask Ogerpon Scarlet & Violet Black Star Promo	123	0	wishlist, energy accel tier 2
+Ponyta Temporal Forces	026/162	0	wishlist, energy accel tier 2
+Smoochum Surging Sparks	075/191	0	wishlist, psychic-standard
+Telepathic Psychic Energy Perfect Order	088/088	0	wishlist, psychic-standard
+Wondrous Patch Phantasmal Flames	094/094	0	wishlist, psychic-standard
+Glalie Twilight Masquerade	052/167	0	wishlist, frostfire
+Chandelure Twilight Masquerade	038/167	0	wishlist, frostfire
+Poké Pad Perfect Order	081/088	0	wishlist, frostfire

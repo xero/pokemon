@@ -36,9 +36,11 @@ Set the date filter to the year rather than "Last 30 Days" or older orders are
 silently dropped. Check every year with orders in it; the pager is ?PageNumber=N.
 
 A row the merge knows nothing about keeps whatever quantity it already has, so
-wishlist rows sitting at 0 survive a re-run untouched.
+wishlist rows sitting at 0 survive a re-run untouched. The converse is the part
+that bites: a row this script does know about is recomputed from scratch every
+run, so hand-editing its quantity here is pointless. Fix the source tsv.
 """
-import re, sys
+import argparse, re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -89,7 +91,15 @@ def read_sealed():
 
 
 def main():
-    dry = "--dry-run" in sys.argv
+    # argparse rather than a sys.argv membership test, which treated every
+    # unrecognised flag as "not --dry-run" and ran a live scrape. `--help` was
+    # enough to overwrite a hand-set quantity. Now an unknown flag exits 2.
+    p = argparse.ArgumentParser(
+        description="Fill in the quantity column of product-ids.tsv.")
+    p.add_argument("--dry-run", action="store_true",
+                   help="say what would change, write nothing")
+    args = p.parse_args()
+    dry = args.dry_run
     orders = read_orders()
     sealed, unlinked = read_sealed()
 
@@ -144,4 +154,5 @@ def main():
     SEED.write_text("\n".join(rows) + "\n", encoding="utf-8")
 
 
-main()
+if __name__ == "__main__":
+    main()
