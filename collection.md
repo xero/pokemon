@@ -21,6 +21,10 @@
   - [Charmeleon](#charmeleon-4) _SV: Scarlet & Violet 151_
   - [Charmeleon](#charmeleon-5) _SWSH04: Vivid Voltage_
   - [Charmeleon (Delta Species)](#charmeleon-delta-species) _EX Crystal Guardians_
+- **D**
+  - [Dusclops](#dusclops) _SV: Shrouded Fable_
+  - [Dusknoir](#dusknoir) _SV: Shrouded Fable_
+  - [Duskull](#duskull) _SV: Shrouded Fable_
 - **E**
   - [Eevee](#eevee) _Hidden Fates_
   - [Eevee](#eevee-1) _SV06: Twilight Masquerade_
@@ -82,7 +86,9 @@
   - [Koffing](#koffing) _SV09: Journey Together_
   - [Koffing](#koffing-1) _SWSH06: Chilling Reign_
 - **L**
-  - [Litwick](#litwick) _Trick or Trade BOOster Bundle_
+  - [Lampent](#lampent) _ME05: Pitch Black_
+  - [Litwick](#litwick) _ME05: Pitch Black_
+  - [Litwick](#litwick-1) _Trick or Trade BOOster Bundle_
   - [Lugia](#lugia) _SWSH03: Darkness Ablaze_
 - **M**
   - [Magcargo](#magcargo) _SWSH04: Vivid Voltage_
@@ -104,6 +110,7 @@
   - [Seviper](#seviper) _ME02: Phantasmal Flames_
   - [Sinistcha (Cosmos Holo)](#sinistcha-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Slugma](#slugma) _SWSH04: Vivid Voltage_
+  - [Snorunt](#snorunt) _SV06: Twilight Masquerade_
   - [Spiritomb](#spiritomb) _SWSH06: Chilling Reign_
   - [Sudowoodo](#sudowoodo) _SWSH01: Sword & Shield Base Set_
 - **T**
@@ -428,6 +435,61 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="dusclops">Dusclops <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/560329_dusclops-019-064.jpg"><img src="./assets/560329_dusclops-019-064.jpg" width="350" alt="Dusclops"></a></th>
+  </tr>
+  <tr><td><b>SV: Shrouded Fable</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png"><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" height="22" align="top"></picture> 019/064</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 90</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Cursed Blast - Once during your turn, you may put 5 damage counters on 1 of your opponent&#x27;s Pokémon. If you use this Ability, this Pokémon is Knocked Out.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Will-O-Wisp (50)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="dusknoir">Dusknoir <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/560330_dusknoir-020-064.jpg"><img src="./assets/560330_dusknoir-020-064.jpg" width="350" alt="Dusknoir"></a></th>
+  </tr>
+  <tr><td><b>SV: Shrouded Fable</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png"><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" height="22" align="top"></picture> 020/064</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 160</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Cursed Blast - Once during your turn, you may put 13 damage counters on 1 of your opponent&#x27;s Pokémon. If you use this Ability, this Pokémon is Knocked Out.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Shadow Bind (150) - During your opponent&#x27;s next turn, the Defending Pokémon can&#x27;t retreat.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="duskull">Duskull <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/560328_duskull-018-064.jpg"><img src="./assets/560328_duskull-018-064.jpg" width="350" alt="Duskull"></a></th>
+  </tr>
+  <tr><td><b>SV: Shrouded Fable</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png"><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" height="22" align="top"></picture> 018/064</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Come and Get You - Put up to 3 Duskull from your discard pile onto your Bench.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Mumble (30)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -1421,7 +1483,43 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="litwick">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="lampent">Lampent <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/704794_lampent.jpg"><img src="./assets/704794_lampent.jpg" width="350" alt="Lampent"></a></th>
+  </tr>
+  <tr><td><b>ME05: Pitch Black</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png"><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" height="22" align="top"></picture> 037/084</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 90</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Spreading Light - Search your deck for up to 3 Lampent and put them onto your Bench. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="litwick">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/704793_litwick.jpg"><img src="./assets/704793_litwick.jpg" width="350" alt="Litwick"></a></th>
+  </tr>
+  <tr><td><b>ME05: Pitch Black</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png"><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" height="22" align="top"></picture> 036/084</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Will-O-Wisp (20)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="litwick-1">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283824_litwick.jpg"><img src="./assets/283824_litwick.jpg" width="350" alt="Litwick"></a></th>
   </tr>
@@ -1730,6 +1828,24 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="snorunt">Snorunt <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/550095_snorunt.jpg"><img src="./assets/550095_snorunt.jpg" width="350" alt="Snorunt"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 051/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Astonish (20) - Choose a random card from your opponent&#x27;s hand. Your opponent reveals that card and shuffles it into their deck.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>

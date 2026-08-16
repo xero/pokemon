@@ -20,6 +20,8 @@
 # mewtwo-lbd    Team Rocket's Mewtwo ex League Battle Deck, opened, Fox's birthday gift
 #               https://bulbapedia.bulbagarden.net/wiki/Team_Rocket%27s_Mewtwo_ex_League_Battle_Deck_(TCG)
 # other         loose cards whose origin was never written down, counted by hand
+# lgs-2026-08-16  singles bought at the local card shop on 2026-08-16 off the
+#               psychic pull list, counted by hand
 #
 # All decklists verified against Bulbapedia wikitext and each totals exactly 60.
 #
@@ -118,3 +120,11 @@ gengar-mbd	no	2	/pokemon/me02-phantasmal-flames/punk-helmet	Punk Helmet, Phantas
 gengar-mbd	no	2	/pokemon/me01-mega-evolution/risky-ruins	Risky Ruins, Mega Evolution 127
 gengar-mbd	no	13	/pokemon/mee-mega-evolution-energies/basic-darkness-energy-007	Darkness Energy (basic energy is fungible)
 other	no	1	/pokemon/trick-or-trade-booster-bundle/gengar-2021-copyright-date	Gengar (2021 Copyright Date), counted by hand
+lgs-2026-08-16	no	3	/pokemon/me05-pitch-black/litwick	Litwick, Pitch Black 036
+lgs-2026-08-16	no	2	/pokemon/me05-pitch-black/lampent	Lampent, Pitch Black 037
+lgs-2026-08-16	no	3	/pokemon/sv-shrouded-fable/duskull-018-064	Duskull, Shrouded Fable 018
+lgs-2026-08-16	no	1	/pokemon/sv-shrouded-fable/dusclops-019-064	Dusclops, Shrouded Fable 019
+lgs-2026-08-16	no	2	/pokemon/sv-shrouded-fable/dusknoir-020-064	Dusknoir, Shrouded Fable 020
+lgs-2026-08-16	no	1	/pokemon/sv06-twilight-masquerade/snorunt	Snorunt, Twilight Masquerade 051
+lgs-2026-08-16	no	1	/pokemon/me04-chaos-rising/pumpkaboo	Pumpkaboo, Chaos Rising 040
+lgs-2026-08-16	no	12	/pokemon/mee-mega-evolution-energies/basic-psychic-energy-005	Psychic Energy (basic energy is fungible)
