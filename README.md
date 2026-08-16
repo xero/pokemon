@@ -11,9 +11,8 @@ tcg deck planning for me and my son
 
 ## future plans
 
-- [xero's witching hour](./psychic-lanterns.md)
+- [xero's night parade](./psychic-lanterns.md)
 - [xero's long night](./psychic-sleep.md)
-- [xero's lanterns reborn](./psychic-standard.md)
 - [dark ex](./dark-ex.md)
 - [xero's shadow syndicate](./dark-rocket.md)
 - [xero's hostile takeover](./rocket-mewtwo.md)

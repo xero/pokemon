@@ -7,7 +7,7 @@
 >
 > This is the second of **two** paper builds for your Psychic Gengars. Both are "versus Fox" future plans; both lean on old cards deliberately.
 >
-> - **[Build A — Witching Hour](./psychic-lanterns.md)** is built on **Gengar, Lost Origin 066**. It's a **spread** deck: damage counters on everything, including the Bench.
+> - **Build A — Witching Hour** was built on **Gengar, Lost Origin 066**, a **spread** deck: damage counters on everything, including the Bench. It was retired in August 2026; its file now holds [Night Parade](./psychic-lanterns.md), the tournament lantern deck, and the old list lives in git history.
 > - **This file (Build B)** is built on **Gengar, Sword & Shield 085** — the *Life Shaker* / *Hypnoblast* one. It's a **lock** deck: it wins by making sure the Pokémon in front of you never does anything.
 >
 > They share a Gastly line and about eight Trainers. Otherwise they play nothing alike. Build A grinds; this one strangles.
@@ -335,7 +335,7 @@ The Gastly, Haunter, and Pumpkaboo lines are already covered. Skip **151 093** f
 
 ## Build A or Build B?
 
-| | **[A — Witching Hour](./psychic-lanterns.md)** | **B — Long Night** |
+| | **A — Witching Hour** *(retired)* | **B — Long Night** |
 | :--- | :--- | :--- |
 | **Built on** | Gengar LOR 066 | Gengar SSH 085 |
 | **Wins by** | Damage counters everywhere, incl. their Bench | Denying turns |

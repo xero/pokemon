@@ -46,9 +46,8 @@ MASCOT = {"dark.md": ["gengar", "weezing"],
           "fire-tournament.md": ["flareon", "noctowl"],
           "fire-standard.md": ["eevee", "flareon"],
           "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
-          "psychic-lanterns.md": ["chandelure", "gengar"],
+          "psychic-lanterns.md": ["chandelure", "gourgeist"],
           "psychic-sleep.md": ["hypno", "gengar"],
-          "psychic-standard.md": ["chandelure", "gourgeist"],
           "eevee-standard.md": ["eevee-ex", "umbreon"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
@@ -115,41 +114,29 @@ FLAVOR = {
         "Honest Weaknesses": ["eevee-back"],
     },
     "psychic-lanterns.md": {
-        "The Thesis": ["gastly"],
-        "Chandelure — Noble Victories 060": ["chandelure"],
-        "Litwick — Noble Victories 058": ["litwick"],
-        "Lampent — Noble Victories 059": ["lampent"],
-        "Wobbuffet — Phantom Forces 036": ["wobbuffet"],
-        "Gengar — Lost Origin 066 *(you own the Trick or Trade 2023 reprint)*":
-            ["gengar"],
-        "Gengar — Sword & Shield 085": ["gengar-booty"],
-        "Gourgeist — Evolving Skies 077 *(you own this as Trick or Trade 077)*":
-            ["gourgeist"],
-        "2. The Traffic Jam": ["pumpkaboo"],
-        "Versus Fox": ["charizard"],
-        "Build A or Build B?": ["drowzee"],
-    },
-    "psychic-standard.md": {
         # the ghost and ice lines came from assets/ani; no Mega Chandelure
         # sprite exists, so the base form stands in for it.
+        "The Thesis": ["litwick"],
         "Mega Chandelure ex — Pitch Black 038 · Reg J": ["chandelure"],
         "Litwick — Pitch Black 036 · Reg J": ["litwick"],
         "Lampent — Pitch Black 037 · Reg J": ["lampent"],
         "Pumpkaboo — Chaos Rising 040 · Reg J": ["pumpkaboo"],
         "Gourgeist ex — Chaos Rising 041 · Reg J": ["gourgeist"],
-        "Duskull — Shrouded Fable 018 · Reg H": ["duskull"],
-        "Dusknoir — Shrouded Fable 020 · Reg H": ["dusknoir"],
         "Snorunt — Twilight Masquerade 051 · Reg H": ["snorunt"],
         "Froslass — Twilight Masquerade 053 · Reg H": ["froslass"],
-        "Smoochum — Surging Sparks 075 · Reg H": ["smoochum"],
-        "The Thesis": ["litwick"],
-        "The Energy Engine": ["smoochum"],
+        "Duskull — Shrouded Fable 018 · Reg H": ["duskull"],
+        "Dusknoir — Shrouded Fable 020 · Reg H": ["dusknoir"],
+        "The Energy Engine": ["snorunt"],
         "1. The Trap": ["chandelure"],
         "2. Feeding the Rondo": ["gourgeist"],
         "3. The Thirteen-Counter Button": ["dusknoir"],
         "4. The Spreading Light Endgame": ["lampent"],
-        "5. What This Deck Gives Up": ["duskull"],
+        "5. Bench Discipline": ["pumpkaboo"],
+        "6. What This Deck Gives Up": ["duskull"],
         "Versus the Kitchen Table": ["charizard"],
+        "Versus the Card Shop": ["froslass"],
+        # gastly is the nod to Witching Hour, the build this one retired
+        "Alternatives": ["gastly"],
         "What To Buy": ["pumpkaboo"],
     },
     # umbreon, espeon, and glaceon were promoted from assets/ani for this page.
@@ -905,7 +892,7 @@ def bullets_or_para(text, ind):
 
 DECKS = ["dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
          "fire-standard.md", "psychic-lanterns.md", "psychic-sleep.md",
-         "psychic-standard.md", "eevee-standard.md"]
+         "eevee-standard.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

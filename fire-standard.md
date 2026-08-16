@@ -153,7 +153,7 @@ This inverts the biggest weakness of his current deck. Charmanders on the Bench 
 **So the play pattern is:** build on the Bench in total safety, step forward, attack, and if it's about to die, Switch it back to safety. Two Switch plus three Night Stretcher makes that a real rotation, not a fantasy.
 
 > [!NOTE]
-> *Tera* stops **damage from attacks**. It does **not** stop damage counters placed by card effects — which is exactly what dad's psychic builds do. If you ever build [Witching Hour](./psychic-lanterns.md), *Cursed Shadow* goes straight through Tera. Good matchup lesson for both of them.
+> *Tera* stops **damage from attacks**. It does **not** stop damage counters placed by card effects — which is exactly what dad's psychic builds do. In [Night Parade](./psychic-lanterns.md), Dusknoir's *Cursed Blast* and Froslass's Checkup pings go straight through Tera. Good matchup lesson for both of them.
 
 ### 4. Carnelian Is a Trap Most of the Time
 

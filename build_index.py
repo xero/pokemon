@@ -27,19 +27,16 @@ PAGES = [
     ("dark.html", ["gengar", "weezing"],
      "Xero's deck. The dark duo of Gengar and Weezing, and the two-turn combo"
      " dad's whole deck is built around."),
-    ("psychic-lanterns.html", ["chandelure", "gengar-mega-shiny"],
-     "Paper plan. Chandelure dropping three damage counters anywhere on the"
-     " board, every turn, for free — including on the Bench."),
+    ("psychic-lanterns.html", ["chandelure", "gourgeist"],
+     "Xero's lantern deck, finished. Mega Chandelure ex turns the opponent's"
+     " own Retreat Cost into damage, Boss's Orders picks the victim, and"
+     " Gourgeist ex cashes in the counters."),
     ("psychic-sleep.html", ["hypno", "drowzee"],
      "Paper plan. The other way to build the Psychic Gengars: put them to"
      " sleep on turn one and never let them wake up."),
     ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
      "Xero's tournament deck. Mega Gengar ex over a bench of zero-prize"
      " attackers, and the prize ladder that bends every trade."),
-    ("psychic-standard.html", ["chandelure", "dusknoir"],
-     "Witching Hour's tournament heir. Mega Chandelure ex turns the"
-     " opponent's own Retreat Cost into damage, and Boss's Orders picks"
-     " the victim."),
     ("eevee-standard.html", ["eevee-ex", "umbreon"],
      "Fox's Eevee deck, and the only one here that is two decks. Fifty"
      " cards never move; ten swap between Sun and Moon for home and Fire"

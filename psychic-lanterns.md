@@ -1,18 +1,13 @@
-# Xero's Witching Hour
+# Xero's Night Parade
 
-### Build A — Damage counters, everywhere, forever
+### The final lantern build · one deck for the kitchen table and the card shop
 
 > [!NOTE]
-> **How to read this file.**
+> **What this file is for.**
 >
-> This is one of **two** paper builds for your Psychic Gengars. Both are "versus Fox" future plans; both use old cards on purpose.
+> This is the lantern deck, finished. It consolidates two earlier documents into one tournament-legal 60: Witching Hour, the rotated kitchen-table spread deck that used to live in this file, and Lanterns Reborn, the first Mega Chandelure draft that lived in `psychic-standard.md`. Both are retired; the old lists live in git history.
 >
-> - **This file (Build A)** leans on **Gengar, Lost Origin 066** — *Screaming Circle* and *Netherworld Gate*. It is a **spread** deck: it wins by putting damage counters on everything at once, including the Bench.
-> - **[Build B](./psychic-sleep.md)** leans on **Gengar, Sword & Shield 085** — *Hypnoblast*. It is a **lock** deck: it wins by making sure your opponent's Active Pokémon never gets to do anything.
->
-> They are genuinely different decks that happen to share a Gastly line. Read both, pick one.
->
-> `psychic.md` — the first draft with Psyduck in it — is untouched. You were right that Water didn't fit; this build replaces that slot with something much better.
+> Every card here carries regulation mark H, I, or J, so the same sleeves work against Fox at home and against strangers at the shop. The design decisions, the fork this build resolved, and the roads not taken are recorded in [Alternatives](#alternatives).
 
 ---
 
@@ -20,139 +15,175 @@
 > - [The Thesis](#the-thesis)
 > - [Deck List](#deck-list)
 > - [Key Card Text](#key-card-text)
+> - [The Energy Engine](#the-energy-engine)
 > - [Game Plans](#game-plans)
-> - [Versus Fox](#versus-fox)
+> - [Versus the Kitchen Table](#versus-the-kitchen-table)
+> - [Versus the Card Shop](#versus-the-card-shop)
+> - [Test and Tune](#test-and-tune)
+> - [Alternatives](#alternatives)
 > - [What To Buy](#what-to-buy)
-> - [Build A or Build B?](#build-a-or-build-b)
 
 ---
 
 ## The Thesis
 
-Same foundation as before, because it is still the best thing this colour does:
+Mega Chandelure ex reads like a midrange attacker and plays like a trap.
 
-> **The rule:** Weakness, Resistance, and every "prevent all damage" effect apply only to **damage from attacks**. An attack or Ability that says *"put damage counters on"* is not dealing damage, so none of those modifiers apply. ([JustinBasil — Damage Control](https://www.justinbasil.com/guide/damage))
+*Phantom Maze* does 130 plus **50 for each [C] in the opponent's Active Pokémon's Retreat Cost**, and its own Ability, *Binding Flame*, adds one to that cost from anywhere on your board. The damage is not a number. It is a question: what is standing in front of it, and how much does that thing weigh?
 
-What's new is the **volume**. The first draft had exactly one counter-placement effect. This build has four, and one of them is free every single turn:
+| Their Active's printed Retreat | One Flame | Two Flames |
+| :--- | ---: | ---: |
+| 0 | 180 | 230 |
+| 1 | 230 | 280 |
+| 2 | 280 | **330** |
+| 3 | **330** | **380** |
 
-| Source | Counters | Cost | Can it hit the Bench? |
-| :--- | :--- | :--- | :--- |
-| **Cursed Shadow** (Chandelure) | 3, anywhere | **free, every turn** | ✅ **yes** |
-| **Screaming Circle** (Gengar) | 2 × their Bench | 1 Energy, your attack | ❌ Active only |
-| **Burned** (from Eerie Glow) | 2 per Checkup | already applied | ❌ Active only |
-| **Netherworld Gate** | 3, on your own Gengar | free | your Bench |
+A good opponent keeps something light up front, so the deck's real engine is choosing their Active for them. Boss's Orders or Prime Catcher drags the heavy thing forward, Binding Flame makes it heavier, and Phantom Maze converts its Retreat Cost into damage. At 330 you one-shot nearly every ex in the format; at 380 you one-shot every card ever printed.
 
-**Cursed Shadow is the card that changes the deck's identity.** Three damage counters, placed anywhere you like, once per turn, for zero cost, forever. It reaches the Bench — which nothing in your Dark deck can do, and which is precisely where Fox keeps his Charmanders while they grow into Charizards.
+The second payoff is the one no other Mega Chandelure list on Limitless runs, and it is the soul this deck kept from Witching Hour. **Froslass** pings every Ability Pokémon on both boards at every Checkup. Your own Megas and Dusknoir barely feel it, but each lightly singed bencher turns **Gourgeist ex's** *Horrifying Rondo* into 130 to 180 damage for a single Energy, from a 270 HP body worth only two Prizes. The opponent's Ability Pokémon take the same drip, and drips close breakpoints. Damage counters ignore Weakness, Resistance, and bench immunity, exactly as they always did.
 
-And then there's the payoff card the first draft was missing entirely:
-
-**Wobbuffet's *Psychic Assault* costs one Psychic Energy and does 10 damage, plus 10 more for each damage counter on your opponent's Active Pokémon.** A deck that spends the whole game piling counters onto one target finally has a button that cashes them all in.
+Fittingly, the deck that beats Mega Chandelure hardest in the online meta wins with retreat-cost scaling plus Froslass chip. The best anti-lantern tech in the format is this deck's own idea. We aim it forward.
 
 ---
 
 ## Deck List
 
-**Pokémon (23)**
+**Pokémon (22)**
 
-| Qty | Card | Set | Number | Own | Need |
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Litwick | Pitch Black | 036 | J |
+| 4 | Lampent | Pitch Black | 037 | J |
+| 3 | Mega Chandelure ex | Pitch Black | 038 | J |
+| 2 | Pumpkaboo | Chaos Rising | 040 | J |
+| 2 | Gourgeist ex | Chaos Rising | 041 | J |
+| 2 | Snorunt | Twilight Masquerade | 051 | H |
+| 2 | Froslass | Twilight Masquerade | 053 | H |
+| 2 | Duskull | Shrouded Fable | 018 | H |
+| 1 | Dusknoir | Shrouded Fable | 020 | H |
+
+**Trainers (28)**
+
+| Qty | Card | Type | Set | Number | Reg |
 | --- | --- | --- | --- | --- | --- |
-| 4 | Gastly | any Psychic print | — | **4** | 0 |
-| 1 | Haunter | any Psychic print | — | **5** | 0 |
-| 3 | Gengar | Lost Origin | 066 | **1** | 2 |
-| 1 | Gengar | Sword & Shield | 085 | **1** | 0 |
-| 4 | Litwick | Noble Victories | 058 | 0 | 4 |
-| 1 | Lampent | Noble Victories | 059 | 0 | 1 |
-| 3 | Chandelure | Noble Victories | 060 | 0 | 3 |
-| 2 | Wobbuffet | Phantom Forces | 036 | 0 | 2 |
-| 2 | Pumpkaboo | any Psychic print | — | **3** | 0 |
-| 2 | Gourgeist | Evolving Skies | 077 | **1** | 1 |
+| 4 | Lillie's Determination | Supporter | Mega Evolution | 119 | I |
+| 3 | Hilda | Supporter | White Flare | 084 | I |
+| 3 | Boss's Orders | Supporter | Mega Evolution | 114 | I |
+| 1 | Wally's Compassion | Supporter | Mega Evolution | 132 | I |
+| 4 | Buddy-Buddy Poffin | Item | Temporal Forces | 144 | H |
+| 4 | Rare Candy | Item | Mega Evolution | 125 | I |
+| 3 | Poke Pad | Item | Perfect Order | 081 | J |
+| 2 | Night Stretcher | Item | Shrouded Fable | 061 | H |
+| 1 | Wondrous Patch | Item | Phantasmal Flames | 094 | I |
+| 1 | Switch | Item | Mega Evolution | 130 | I |
+| 1 | Air Balloon | Tool | Ascended Heroes | 181 | I |
+| 1 | Prime Catcher | Item | Temporal Forces | 157 | H |
 
-**Trainers (26)**
+**Energy (10)**
 
-| Qty | Card | Type | Set |
-| --- | --- | --- | --- |
-| 4 | Rare Candy | Item | any |
-| 4 | Ultra Ball | Item | any |
-| 4 | Professor's Research | Supporter | any |
-| 3 | Mysterious Treasure | Item | Forbidden Light 113 |
-| 3 | N | Supporter | Noble Victories 92 |
-| 2 | Level Ball | Item | Battle Styles 129 |
-| 2 | Switch | Item | any |
-| 2 | Float Stone | Pokémon Tool | Plasma Freeze 99 |
-| 2 | Old Cemetery | Stadium | Chilling Reign 147 |
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Telepathic Psychic Energy | Perfect Order | 088 | J |
+| 6 | Basic Psychic Energy | Mega Evolution Energies | 005 | - |
 
-**Energy (11)**
+**22 + 28 + 10 = 60.** ✓
 
-| Qty | Card | Set | Number |
-| --- | --- | --- | --- |
-| 11 | Basic Psychic Energy | Mega Evolution Energies | 005 |
-
-**23 + 26 + 11 = 60.** ✅
-
-**Basics: 12** (4 Gastly, 4 Litwick, 2 Wobbuffet, 2 Pumpkaboo) — about a **19% mulligan rate**. That is the healthiest of any deck on this table; Gengar Gang sits at 40%.
+**Basics: 10** (4 Litwick, 2 Pumpkaboo, 2 Snorunt, 2 Duskull), which works out to roughly a 26% mulligan rate. That is the worst number in the deck and the first thing [Test and Tune](#test-and-tune) watches. Every Basic is 70 HP or under, so all four Poffins stay live, and three of the four names are Basic Psychic, so Telepathic Energy fetches them too. Snorunt is the exception; it is Water, and only Poffin, Poke Pad, or Dawn-style search can find it.
 
 > [!WARNING]
-> **Two separate copy limits are doing work here.**
->
-> **Gengar** — both prints share one four-card allowance, so it is 3 + 1, never 4 + 2. Same for **Gastly**, **Haunter**, **Litwick**, **Pumpkaboo**, and **Gourgeist**: mix prints freely, never exceed four of a name.
->
-> **Litwick note:** the Litwick and Chandelure you already own are the **Fire** prints, and Chandelure NVI evolves from **Lampent**, not from your Fire Chandelure. Evolution goes by *name*, so your Fire Litwick would legally become a Psychic Lampent — but it counts against the four, it can't be fetched by a Psychic-only searcher, and Old Cemetery would tax it. Buy four Psychic Litwick and keep the Fire line for the binder.
+> **One ACE SPEC per deck.** Prime Catcher is this deck's one, and it must be the English print. The Japanese starter-set copy plays at the kitchen table and nowhere else.
 
 ---
 
 ## Key Card Text
 
-### Chandelure — Noble Victories 060
+Generic staples are covered in [Gengar Gang](./dark.md) and [the Dark Box](./dark-ex.md); this section covers the lanterns and their crew.
 
-Stage 2 from Lampent.
+### Mega Chandelure ex — Pitch Black 038 · Reg J
 
-**Read the Ability's condition twice: *Cursed Shadow* only works while Chandelure is your Active Pokémon.** Not from the Bench. That one word is what makes this deck harder to pilot than it looks.
+**Stage 2 from Lampent. Gives up 3 Prize cards.** 350 HP, Retreat 2, and the stat line carries two quiet gifts: Resistance to Fighting, which blunts Mega Zygarde and the Fighting decks that hunt Gengar, and a Darkness Weakness that this house will absolutely exploit in the mirror.
 
-### Litwick — Noble Victories 058
+*Binding Flame* needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. It works from the Bench, so a Chandelure that is not attacking is still doing its job. **It stacks.** Two in play is plus 2 to their Retreat Cost and plus 100 to the attack, and that is settled; the official Pitch Black strategy article says to play multiple copies for exactly this reason.
 
-The bottom of the line into Chandelure. Four of them, because a Stage 2 needs a Basic underneath it before anything else can happen.
+Three copies is the ceiling on purpose. Each one on the board is three Prizes standing in the open, and the second Flame buys far more than the third. Two on the board is the number.
 
-### Lampent — Noble Victories 059
+### Litwick — Pitch Black 036 · Reg J
 
-**Lampent's *Luring Light* is a free Boss's Orders on a Stage 1**, worth remembering when you are one Prize from winning.
+The Basic the deck stands on, and the only Psychic Litwick ever printed. The White Flare and Twilight Masquerade prints are Fire and cannot pay a [P] cost, and your old Fire copies do not serve this line. 70 HP keeps it inside Poffin range.
 
-> *Luring Light* is **Boss's Orders stapled to an attack, for one Colorless.** It is the reason this deck runs zero copies of Boss's Orders.
+### Lampent — Pitch Black 037 · Reg J
 
-### Wobbuffet — Phantom Forces 036
+***Spreading Light* is the endgame in one attack**: search your deck for up to 3 Lampent and bench them. They arrive as Lampent, not as Litwick, so each one is a Mega Chandelure next turn with no Rare Candy spent. This attack is why the line runs a fat 4 Lampent, and it is the trick that started this whole build. See [game plan 4](#4-the-spreading-light-endgame).
 
-Basic, and **Weak to Psychic ×2**, which only ever matters against your own other Psychic build.
+### Pumpkaboo — Chaos Rising 040 · Reg J
 
-*Psychic Assault* is how you cash in every counter you have piled up:
+60 HP, Poffin-legal, and its whole job is becoming Gourgeist ex.
 
-| Counters on their Active | Psychic Assault |
-| :--- | :--- |
-| 3 (one Cursed Shadow) | 40 |
-| 6 | 70 |
-| 8 (Screaming Circle, 4 Bench) | **90** |
-| 10 | **110** |
-| 12 | **130** |
+### Gourgeist ex — Chaos Rising 041 · Reg J
 
-### Gengar — Lost Origin 066 *(you own the Trick or Trade 2023 reprint)*
+Stage 1, 270 HP, 2 Prizes, and no Ability, which means Froslass never pings it. ***Horrifying Rondo* does 30 plus 50 for each of your Benched Pokémon that has damage on it.** Your Bench, not theirs. In most decks that clause is dead text; here Froslass arms it every single Checkup. *Ghostly Touch* is the other half: 140 and a random card ripped from their hand, for two Energy, with no setup at all. Rondo and Ghostly Touch both ignore Retreat Cost entirely, which makes Gourgeist the answer to every opponent the trap cannot reach.
 
-Stage 2 from Haunter. ***Netherworld Gate* works from the discard pile**, which is why one copy earns its slot even on the turns you never draw it.
+### Snorunt — Twilight Masquerade 051 · Reg H
 
-### Gengar — Sword & Shield 085
+60 HP, Poffin-legal, and it exists to become Froslass. Its attack costs [W][C], and this deck runs no Water, so it never attacks. That is fine. Furniture does not need to fight.
 
-Stage 2 from Haunter. ***Life Shaker* has no once-per-turn limit**, so damage already on your own board is fluid rather than fixed.
+### Froslass — Twilight Masquerade 053 · Reg H
 
-### Gourgeist — Evolving Skies 077 *(you own this as Trick or Trade 077)*
+***Freezing Shroud*: at every Pokémon Checkup, put 1 damage counter on each Pokémon that has an Ability, both yours and theirs, except any Froslass.** Read what that does here twice. Their board is full of Ability Pokémon, so it is a global slow poison. Your board is full of Ability Pokémon too, and that is the point: every ping on your own Chandelure and Dusknoir is 50 more on Horrifying Rondo.
 
-Stage 1 from Pumpkaboo. *Pandemonium* shuffles the Psychic Pokémon it finds back in and discards the rest.
+Water type, so no searcher shares her and no Energy here pays her attack; she is a 90 HP support piece who never fights. The earlier draft ran her 1-1 and pretended she was part of the plan. A 1-of opens in hand 12% of the time and sits in the Prizes 10% of the time, so 1-1 was a coin-flip cameo. At 2-2 she is a plan.
 
-> With **23** Psychic Pokémon in 60 cards, expected hit is ~2.3 → **~140 damage**. That is a real number now. In the first draft this card was a coin toss; here it is a legitimate second plan.
+### Duskull — Shrouded Fable 018 · Reg H
 
-### Old Cemetery — Chilling Reign 147 *(Stadium)*
+60 HP seed. *Come and Get You* benches up to 3 Duskull from the discard pile, which quietly turns every discarded Duskull into a future Dusknoir rather than a lost card.
 
-> Whenever a player attaches an Energy card **from their hand** to 1 of their **non-Psychic** Pokémon, put 2 damage counters on that Pokémon.
+### Dusknoir — Shrouded Fable 020 · Reg H
 
-### Float Stone — Plasma Freeze 099 *(Pokémon Tool)*
+**The thirteen-counter button.** Once during your turn: put 13 damage counters on one opposing Pokémon, anywhere on their board, and Dusknoir Knocks itself Out. That is 130 placed damage that ignores Weakness, Resistance, bench immunity, and damage-reduction shields, from a card that costs you one Prize and no attack. *Shadow Bind* is the backup: 150 for [P][P][C] and the Defending Pokémon cannot retreat, a second way to spring the trap.
 
-> The Pokémon this card is attached to has no Retreat Cost.
+One copy, because it is a tool rather than a line, and because Poke Pad, Night Stretcher, and *Come and Get You* all point at it when you want it.
+
+### Wally's Compassion — Mega Evolution 132 · Reg I
+
+> Heal all damage from 1 of your Mega Evolution Pokémon ex. If you healed any damage in this way, put all Energy attached to that Pokémon into your hand.
+
+Nothing at this table one-shots a healthy 350. Every opponent is therefore playing a two-turn KO game, and Wally's deletes their first turn of work. It also erases the Freezing Shroud pings that would otherwise put a chipped Mega into Moon Mirage range. The Energy comes back to hand, not the discard, so the healed Mega re-arms by ordinary attachments while Gourgeist holds the front for one Energy.
+
+### Hilda — White Flare 084 · Reg I
+
+Search your deck for an Evolution Pokémon and an Energy card. In this deck that reads "Mega Chandelure ex plus a Telepathic Energy" off one Supporter, which is the exact pair the early turns hunt.
+
+### Poke Pad — Perfect Order 081 · Reg J
+
+Search your deck for a Pokémon without a Rule Box. That is every name in the deck except Mega Chandelure ex and Gourgeist ex, which means Poke Pad is what makes the 1-of Dusknoir and the 2-2 Froslass honest. Three copies is the glue holding the thin lines together. The card is printed Poké Pad; the database drops the accent, and so does this page.
+
+### Wondrous Patch — Phantasmal Flames 094 · Reg I
+
+Attach a basic Psychic Energy from your discard pile to one of your Benched Psychic Pokémon, as an Item, without spending your attachment for the turn. The main event that puts basic Psychic in your discard is a loaded Mega dying, which is precisely the moment you need to rebuild on the Bench. The card is shaped like the deck's worst turn.
+
+### Telepathic Psychic Energy — Perfect Order 088 · Reg J
+
+An Energy card that is also a Poffin. It provides [P], and when you attach it from hand to a Psychic Pokémon you search your deck for up to 2 Basic Psychic Pokémon and bench them. Litwick, Pumpkaboo, and Duskull qualify; Snorunt does not, because it is Water.
+
+Four copies and no more, for one reason: it is a Special Energy, so neither Wondrous Patch nor Night Stretcher can ever recover it, and Ruffian can knock it off a Pokémon permanently. It is a setup card. The six basic Psychic underneath it are the resilience.
+
+---
+
+## The Energy Engine
+
+Froslass and Snorunt do not make this a two-color deck. Freezing Shroud is an Ability and costs nothing, so the Water types never attack and the Energy line stays the most mono thing on this shelf: **4 Telepathic, 6 basic Psychic, zero Water.**
+
+Every attack you will actually use costs [P], [P][P], or [P][P][C] at the worst. The deck makes exactly one attachment per turn with no acceleration, and that works because the curve is honest: the Mega needs exactly two, Rondo needs one, and the one-Energy attacks mean a board that just lost its loaded Mega still attacks the same turn it starts rebuilding.
+
+| Job | Card | What it does |
+| --- | --- | --- |
+| Find | 4 Telepathic Psychic Energy | an Energy that also benches two Basic Psychic Pokémon |
+| Find | 3 Hilda | an Evolution Pokémon and an Energy, together |
+| Rebuild | 1 Wondrous Patch | one Energy from the discard onto the Bench, no attachment spent |
+| Recover | 2 Night Stretcher | a Pokémon or a basic Energy back to hand |
+
+> [!WARNING]
+> **Keep six basic Psychic in the list.** Wondrous Patch reads "basic Psychic Energy" and Night Stretcher reads "basic Energy," so neither one can pull a Telepathic back out of the discard. Shave the basic count for a fifth anything and you break the recovery loop the whole plan rests on.
 
 ---
 
@@ -160,233 +191,160 @@ Stage 1 from Pumpkaboo. *Pandemonium* shuffles the Psychic Pokémon it finds bac
 
 ---
 
-### 1. Three Counters, Anywhere, Forever
+### 1. The Trap
 
-**The engine. Everything else supports this.**
+**The main line, and the reason this deck wins games it looks behind in.**
 
-*Cursed Shadow* is free, repeatable, and — uniquely on this table — **it reaches the Bench**.
+1. Build Mega Chandelure on the Bench: Poffin, Telepathic, Hilda, Rare Candy.
+2. Get two Psychic onto it across two turns, then step forward.
+3. **Boss's Orders their heaviest Pokémon into the Active Spot.**
+4. Phantom Maze. Their Retreat 2 became 3 under one Flame: 280. Their Retreat 3 became 4: 330.
 
-Fox plays a Stage 2 deck. That means his Charmanders sit on the Bench for two or three turns while they grow into Charizards. They are safe there from every attack in your Dark deck. They are not safe from this.
+The targets worth dragging are the ones every deck benches and babies: the fat Stage 2 charging up, the support Pokémon with Retreat 2 that never planned to fight. Their printed Retreat Cost is the targeting computer. Learn your opponents' Retreat Costs the way the dark deck learns Bench counts.
 
-| Fox's Pokémon | HP | Cursed Shadows to kill it on the Bench |
-| :--- | :--- | :--- |
-| Eevee | 50 | **2** |
-| Charmander | 70 | **3** |
-| Charmeleon | 90 | 3 |
-| Sudowoodo | 100 | 4 |
+Against a disciplined free-retreat pivot the attack floors at 180, and against those boards you stop feeding the trap and hand the game to Gourgeist, whose attacks never cared about retreat in the first place. Every gust in the deck exists to go around a pivot; *Shadow Bind* pins whatever is up front so the pivot never comes back out.
 
-**Three free turns kills a Charmander that never got to be a Charizard.** That is not chip damage — that is deleting his game plan two turns before it starts, and it is the single most obnoxious thing this deck does.
+### 2. Feeding the Rondo
 
-> [!IMPORTANT]
-> **Cursed Shadow requires Chandelure to be your ACTIVE Pokémon.** Not on the Bench. Active.
->
-> And you may only **retreat once per turn** — that limit holds even with Float Stone giving a Pokémon zero retreat cost. ([Pokégym Compendium — Retreating](https://compendium.pokegym.net/category/7-gameplay/retreating/))
->
-> **But Switch cards are not "retreating"** and can be played as many times as you can afford. That is how you use more than one Cursed Shadow in a turn.
+**Gourgeist ex is the cheapest big attack in the deck, and your own Froslass is its supply line.**
 
-**Stacking Cursed Shadows in one turn:**
+Freezing Shroud pings every Ability Pokémon at every Checkup. After two Checkups with a normal board, two benched Chandelure lightly singed and a Dusknoir beside them, *Horrifying Rondo* reads 30 + 50 + 50 + 50 = **180, for one Energy, from a body worth two Prizes.** The counters on your own board cost almost nothing; ten a turn is noise against 350 HP. The one exception is written in [the kitchen-table section](#versus-the-kitchen-table): against Umbreon, those pings are a fuse, and Froslass waits.
 
-```
-Chandelure A Active   → Cursed Shadow (3 counters)
-retreat (free, Float Stone)   → Chandelure B Active
-                      → Cursed Shadow (3 more)
-play Switch           → Chandelure C Active
-                      → Cursed Shadow (3 more)
-                      → attack
-```
+Gourgeist itself has no Ability, so the Shroud never touches it. Trade it while it is ahead; 270 HP in an ex fight is a body you spend, not a body you keep.
 
-That is **9 damage counters — 90 damage — placed wherever you like**, in a single turn, and you still get to attack. It costs one retreat, one Switch, and having three Chandelure in play.
+### 3. The Thirteen-Counter Button
 
-Each Chandelure's Ability is its own, and each is once per turn. A Chandelure that already used Cursed Shadow this turn does not get a second use if it returns to the Active Spot.
+**Dusknoir is Witching Hour's Cursed Shadow, graduated.**
 
----
+Thirteen counters, placed anywhere on their board, once, then Dusknoir dies. The three uses, best first:
 
-### 2. The Traffic Jam
+- **Delete a Bench threat before it evolves.** The 130 lands on the Basic their whole deck is waiting on, through Tera, through everything.
+- **Fix a breakpoint.** Phantom Maze left a big body 100 short; Cursed Blast erases the gap and the Prize math flips.
+- **Un-shield a tank.** Counters ignore damage-reduction effects like Gaia Wave's, so the button finishes what the attack could not.
 
-**The deck's central tension, and the thing that will actually decide your games.**
+The price is honest: the self-KO hands over a Prize. Press the button to convert, never to vent.
 
-Three of your best effects all demand the Active Spot, and you have one:
+### 4. The Spreading Light Endgame
 
-| Card | Needs to be Active? | Why |
-| :--- | :--- | :--- |
-| **Chandelure** | ✅ | *Cursed Shadow* says so |
-| **Wobbuffet** | ✅ | *Bide Barricade* says so |
-| **Gengar (LOR)** | ✅ | to use *Screaming Circle* |
-| **Gengar (SSH)** | ❌ | *Life Shaker* works from the Bench |
+**One attack that schedules the rest of the game.**
 
-**Life Shaker is the exception, and that is why one copy is enough.** It has no location requirement, so the Sword & Shield Gengar sits on your Bench all game quietly cleaning up *Netherworld Gate*'s self-damage and never competes for the front.
+Turn two, if the trap is not ready: Lampent Active, one Psychic, *Spreading Light*, up to 3 Lampent from the deck straight onto the Bench. Next turn those are Mega Chandelure with no Candy spent, and the deck's centerpiece stops being a card you draw and becomes a card you schedule.
 
-**How to sequence the other three.** There is no formula, but there is a priority order that holds up:
+Fetch what you can seat, not what you can fetch. Two Lampent is the usual right number; the third is a deliberate overfetch you make only when you want a 90 HP single-prize speed bump for the opponent to chew on.
 
-1. **Early — Chandelure Active.** Cursed Shadow every turn is worth more than any single attack, because it compounds. Get Chandelure up and leave it there.
-2. **Middle — Wobbuffet Active** on the turn Fox most needs his Abilities. Turning off *Battle Sense* the turn he's digging for a Rare Candy costs him the game far more than 30 damage would.
-3. **Late — Gengar or Wobbuffet Active** to cash out. Screaming Circle if his Bench is wide; *Psychic Assault* if you've already buried his Active in counters.
+### 5. Bench Discipline
 
-> [!TIP]
-> **Float Stone goes on Chandelure**, always. It is the Pokémon you most want to move in and out of the front, and its printed retreat cost is 2 — which is real money in an eleven-Energy deck.
+**Five seats, six claimants. This is the deck's real skill test.**
+
+The steady-state Bench is Mega #2, Gourgeist, Froslass, the Dusk slot, and one flex. Everything competes for that flex seat: the third Lampent, the second Froslass, a rebuilding Litwick. Three rules keep it honest:
+
+- **Dusknoir frees his own seat.** The thirteen counters and the vacancy arrive together, so the Dusk slot is a revolving door, not a resident.
+- **Never bench the third Mega.** Two Flames is the whole payoff; the third is three more Prizes standing in the open.
+- **Spreading Light is "up to," not "exactly."** See game plan 4.
+
+There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists and costs the Prime Catcher slot. That trade is written up in [Alternatives](#alternatives).
+
+### 6. What This Deck Gives Up
+
+- **Three Prizes on the core, no discount.** Two Mega knockouts plus a Dusknoir self-KO is a lost game. Position the Megas behind cheap bodies, never two exposed at once.
+- **A 26% mulligan rate.** Four evolution lines on ten Basics. The Poffins are load-bearing; dig for them.
+- **The 180 floor.** A disciplined free-retreat deck blunts Phantom Maze all game. Gourgeist is the answer, and games against those decks are honest grinds.
+- **Darkness Weakness on almost everything.** Every Gengar, Weezing, and Umbreon in this house strikes it. That is not a flaw; that is the rock-paper-scissors the table needed.
 
 ---
 
-### 3. Bide Barricade Is a One-Sided Lock
+## Versus the Kitchen Table
 
-**The Wobbuffet turn.**
+**[Fox's Flareon ex](./fire-standard.md).** Your counters ignore Tera. Dusknoir's thirteen erase any benched Eevee or Hoothoot, and Freezing Shroud pings Eevee, Eevee ex, and Noctowl every Checkup; only Flareon ex itself goes untouched, because Tera is a rule, not an Ability. Check his Retreat Costs at the table: at Retreat 2, one Flame makes Phantom Maze exactly 280, which is exactly one Flareon ex. Respect *Carnelian*: 280 one-shots Gourgeist, so never leave her Active into a loaded Flareon. He cannot one-shot a healthy Mega, which makes his math two-turn math, which is what Wally's Compassion deletes.
 
-> …each Pokémon in play, in each player's hand, and in each player's discard pile has no Abilities **(except for [P] Pokémon)**.
+**[Fox's Sun and Moon](./eevee-standard.md), the hardest game in the house.** *Moon Mirage* is 320 into your all-Dark-weak board. The Mega survives on 30 HP, so every Froslass ping on your own Mega is a lit fuse: three Checkups and Umbreon one-shots it. Hold Froslass back until the Rondo turn, lead on Wally's, and never bench the second Mega until the first is spent. Watch the sneaky lethal: *Amazez* devolving a Mega leaves a 90 HP Lampent holding all of its damage, and 90 or more means it is Knocked Out on the spot. His Battle Cage stops Dusknoir reaching his Bench but not Froslass arming yours; the Rondo engine runs straight through it. Win by trapping Eevee ex early and trading Gourgeist into his 2-prize bodies. Expect to lose this one more than you win it. That is the design.
 
-Read the exemption twice. **Psychic Pokémon keep their Abilities.** Every Pokémon in this deck is Psychic. So while Wobbuffet is Active:
+**[Fox's Team Rocket's Mewtwo](./rocket-mewtwo.md), the dream matchup.** Mewtwo retreats for 3: one Flame, 330 into 280 HP, one shot, two Prizes. His board is wall-to-wall Abilities (Mewtwo, Spidops, Golbat, Crobat, Articuno), so the Shroud poisons everything, and his own *Biting Spree* counters on your Bench feed your Rondo. Two cautions. *Assassin's Return* is 240 into your Weakness, so trade Gourgeist into Crobat and save Phantom Maze for Mewtwo. And Articuno's *Repelling Veil* blocks *Shadow Bind*'s retreat lock on his Basics, but Abilities are not attack effects, so Cursed Blast and the Shroud sail through.
 
-| Yours | Status |
-| :--- | :--- |
-| *Life Shaker* (Gengar, Bench) | ✅ still works |
-| *Netherworld Gate* (Gengar, discard) | ✅ still works — the clause covers discard piles, but Gengar is Psychic |
-| *Cursed Shadow* | ❌ only because Chandelure isn't Active, not because of Wobbuffet |
+**[Fox's Ground Zero](./fighting-standard.md), if it gets built.** Your Fighting Resistance makes this the house answer to Mega Zygarde: *Gaia Wave* lands on the Mega for 170, a three-hit kill against a deck that only needs to land two. Zygarde has Retreat 2 and no Ability, so the line is Phantom Maze for 280, then Cursed Blast for the rest; the counters ignore his 30-damage shield. Two Zygarde knockouts is the whole game.
 
-| Fox's | Status |
-| :--- | :--- |
-| **Charizard — *Battle Sense*** | ❌ **off** |
-| **Eevee — *Boosted Evolution*** | ❌ **off** |
-
-**Battle Sense is Fox's whole draw engine** — "look at 3, keep 1, every turn, free." His document tells him to use it every single turn. Wobbuffet deletes it.
-
-**Boosted Evolution is his fast start** — the Ability that lets an Active Eevee become Flareon the turn it's played. Wobbuffet deletes that too, and Eevee becomes a 50 HP Basic that has to wait a turn like everything else.
-
-The cost is one turn of not using Cursed Shadow. Against a deck that leans on two Abilities, that trade is usually worth it — and *Psychic Assault* means the Wobbuffet turn is not a wasted attack.
+**[Xero's dark decks](./dark.md).** The underdog on purpose. Everything here except Froslass is Darkness-weak, and *Void Gale* one-shots a Mega through its Weakness. When the lanterns face the Gengars, the lanterns are the challenger.
 
 ---
 
-### 4. Eerie Glow, and Charizard's Three
+## Versus the Card Shop
 
-**Two Special Conditions on one attack, into a Pokémon that can't afford to leave.**
+**Latias ex is the trap's off switch.** *Skyliner* gives all their Basic Pokémon free retreat, and a ruling confirms "no Retreat Cost" overrides every increase, so Phantom Maze floors at a flat 130 against their Basics. Do not fight the ruling. Boss's Orders the Latias itself: 210 HP, Retreat 2, one Flame, 280, dead, two Prizes, and the switch turns back off. Until then, Gourgeist and Dusknoir never cared about retreat.
 
-*Eerie Glow* [P][C][C] does 50 and applies **Burned and Confused**. Those two stack — Burned uses a marker, Confused rotates the card, so they don't replace each other. ([Bulbapedia — Special Conditions](https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG)))
+**Single-prize grinder decks** make Phantom Maze overkill and the 3-prize Mega a liability. Gourgeist becomes the main attacker and the Prize race runs honest. These are the shop's hardest games.
 
-What that costs your opponent, per turn, while it sticks:
+**Anything Darkness** is a bad night. Know it walking in.
 
-| Condition | Effect |
-| :--- | :--- |
-| **Burned** | 2 damage counters at every Pokémon Checkup, then a coin flip to cure — so ~20 per turn and half the time it stays |
-| **Confused** | Flip to attack. Tails: **the attack does nothing, 3 damage counters go on it, and their turn ends.** |
-
-**And Special Conditions only clear when the Pokémon leaves the Active Spot.**
-
-**Charizard's retreat cost is 3.** In a deck running two Switch. Land *Eerie Glow* on a Charizard and it is standing there burning, flipping a coin to see whether it gets a turn at all, and paying three Energy to leave.
-
-Expected damage while locked, doing nothing else: **~20 from Burn, plus ~15 from failed Confusion flips = ~35 per turn**, on top of everything Cursed Shadow is doing. And half his turns simply do not happen.
-
-> [!NOTE]
-> **Confusion is the reason Psyduck almost worked.** Psyduck's *Overthink* forces the opponent's coin flips to tails, which would make every Confusion flip an automatic failure — a genuine hard lock. The problem was never the combo; it was that Psyduck is a **Water** Pokémon with a Water attack cost in a mono-Psychic deck. *Eerie Glow* gets you the Confusion; nothing legal in this colour gets you the coin lock. Live with the 50%.
+**Ruffian** discards a Tool and a Special Energy in one Supporter. It pops Air Balloon and an attached Telepathic in the same breath, so against Ruffian decks, attach Telepathic to bodies that already did their searching.
 
 ---
 
-### 5. The Discard Is a Second Bench
+## Test and Tune
 
-**Carried over from the first draft, still true, now with a caveat.**
+The list is a hypothesis; games are the data. Symptoms and their fixes:
 
-*Netherworld Gate* puts a Gengar from your **discard pile** onto your Bench, once per turn, free — skipping Gastly, Haunter, and Rare Candy entirely. So every card that normally *costs* you a discard is instead building your board:
-
-| Card | Normal cost | Cost here |
-| :--- | :--- | :--- |
-| Ultra Ball | discard 2 | discard a Gengar → it walks back next turn |
-| Mysterious Treasure | discard 1 | same |
-| Professor's Research | discard your hand | you are loading the Bench |
-
-Each Gengar's Ability is its own, so three Gengar in the discard is three separate uses in one turn, Bench space allowing.
-
-*Life Shaker* mops up the 3 counters each return leaves behind. "As often as you like" is not a once-per-turn cap — there is no limit.
-
-> [!WARNING]
-> **This is still not free.** Every knockout awards a Prize card regardless of where the card ends up. *Netherworld Gate* means you never run out of **attackers**; it does not mean you never run out of **game**. Six knockouts is six knockouts.
-
-> [!CAUTION]
-> **Pandemonium does not fuel Netherworld Gate.** It shuffles the Psychic Pokémon it reveals **back into your deck** and discards only the other cards. Your Gengars go home, not to the graveyard. This is the one real anti-synergy in the build and it's why Gourgeist stays a 2-of.
+| Symptom | Fix |
+| --- | --- |
+| Mulligans sting | add a 12th Basic over the 4th Rare Candy |
+| Rebuild turns whiff after a Mega dies | 2nd Wondrous Patch over the 4th Rare Candy |
+| Umbreon keeps cashing 3-prize KOs | 2nd Wally's Compassion; reread the Scoop Up Cyclone note below |
+| The trap never springs against pivots | Gravity Gemstone in the flex slot |
+| Bench-locked with cards in hand | fetch fewer Lampent; if it persists, Scoop Up Cyclone |
+| Mega-finding whiffs | Mega Signal over Switch |
 
 ---
 
-## Versus Fox
+## Alternatives
 
-**This is the matchup the deck is designed for, and it is a good one.**
+The planning sessions produced more good cards than seats. These are the roads not taken, kept warm.
 
-### The type chart does nothing, in both directions
+| Card | Swaps for | Play it when |
+| --- | --- | --- |
+| Scoop Up Cyclone (ACE) | Prime Catcher | bench-lock or 3-prize losses decide games; scooping a damaged Mega denies three Prizes and empties a seat, at the cost of the 4th gust |
+| Wally's Compassion #2 | Switch | Sun and Moon dominates the kitchen table |
+| Wondrous Patch #2 | 4th Rare Candy | the post-knockout rebuild keeps whiffing |
+| Marshadow (Pitch Black 040) | 4th Lampent | you want a 1-prize attacker; *Shadowy Knot* is a baby Phantom Maze at 30 per [C] of their retreat |
+| Uxie (Surging Sparks 078) | 2nd Duskull | you miss Screaming Circle; 2 counters on each opposing Pokémon for [P], through Tera |
+| Gravity Gemstone | Air Balloon | pivot decks blunt the trap; a Flame that survives the Mega being gusted |
+| Team Rocket's Watchtower | Switch | shop tech; Colorless Pokémon lose their Abilities, which also switches off Jewel Seeker and Boosted Evolution at home. Decide if that is fun before sleeving it |
+| Gwynn package (2 Gwynn for 1 Lillie's + 1 Poke Pad) | see left | you want the dark deck's discard-draw rhythm; Duskull loves the discard pile |
+| Mega Signal | Switch | Hilda alone is not finding the Megas |
+| Dusclops (Shrouded Fable 019) | 2nd Duskull's evolution | already owned; a 5-counter Cursed Blast with no Candy required |
+| Jynx (Pitch Black 032) | flex | shop walls only; *Intense Kiss* discards the Defending Pokémon outright, takes no Prizes, and feels bad at home |
 
-Every Pokémon in this deck is Weak to **Darkness** or **Psychic**. Fox plays **Fire**, **Fighting**, and **Colorless**. He cannot hit a single Weakness — but Psychic doesn't hit Fire's Water Weakness either.
-
-**So the type chart cancels out completely and the game is decided by mechanics.** That is exactly the fight this deck wants.
-
-### What you have that he can't answer
-
-| Your tool | Effect on him |
-| :--- | :--- |
-| **Cursed Shadow** | Kills Charmanders and Eevees **on the Bench** — nothing in his deck protects against that |
-| **Bide Barricade** | *Battle Sense* and *Boosted Evolution* switch off |
-| **Old Cemetery** | 20 damage per Energy attached from hand, all game |
-| **Old Cemetery + Welder** | **40 damage.** Welder is *two* attachment events, so the Stadium fires twice |
-| **Eerie Glow** | Burn + Confusion onto a Charizard with retreat 3 |
-| **Screaming Circle** | Punishes the wide Bench his Zinnia's Resolve and evolution lines require |
-| **Fighting Resistance −30** | Sudowoodo's *Flail* is blunted — on Gengar and Gourgeist |
-
-> [!TIP]
-> **Magma Basin does not trigger Old Cemetery.** It attaches from the **discard pile**, and the Stadium specifies "from their hand." Expect him to lean on it once he works that out — which is a good lesson for him to learn on his own.
-
-### What he has that hurts
-
-**Royal Blaze one-shots everything you own.** With a single Leon in his discard it does 150, and your biggest body is a 130 HP Chandelure. Assume every Pokémon you place will die in one hit from the moment you see a Leon go to the graveyard.
-
-**Sudowoodo still hurts Chandelure.** Chandelure NVI has **no Fighting Resistance** — that's an SV-era printing convention your Gengars and Gourgeist have and this 2011 card doesn't. Flail hits Chandelure for full. Your Gengars take 30 less.
-
-**Your answer is width, not height.** You have 23 Pokémon, a free Stage 2 recursion engine, and an Ability that does 30 damage per turn without attacking. He has to earn six knockouts while you place counters he can't remove.
-
-### Honest verdict
-
-**Favourable, and close enough to be fun.** He wins by drawing well and one-shotting you repeatedly. You win by killing his Basics before they evolve and taxing every Energy he attaches. Neither line is degenerate. Both players have to think.
+Two cards were considered and rejected outright. Battle Cage would block this deck's own Dusknoir, and Neo Upper Energy is an ACE SPEC, so it costs Prime Catcher and buys nothing Telepathic does not already do.
 
 ---
 
 ## What To Buy
 
-You already own the entire Gastly line and most of the Gourgeist line.
+Own counts are live from the collection database; the Rare Candy, Poffin, Boss's, and Lillie's rows are shared with the other sleeved decks, so check [the box](./collection.md) before ordering.
 
 ```buy
-Gengar | Lost Origin 066 | 3 | Your ToT 2023 066 is the same card and counts
-Chandelure | Noble Victories 060 | 3 | The expensive one, Rare Holo, 2011
-Lampent | Noble Victories 059 | 1 |
-Litwick | Noble Victories 058 | 4 | Common, cents. The Fire prints you own do **not** serve this line
-Wobbuffet | Phantom Forces 036 | 2 | Common
-Gourgeist | Evolving Skies 077 | 2 | Yours is the ToT 077 print of the same card
-Gengar | Sword & Shield 085 | 1 | *Life Shaker*
-Old Cemetery | Chilling Reign 147 | 2 |
-Float Stone | Plasma Freeze 099 | 2 |
-Mysterious Treasure | Forbidden Light 113 | 3 | **113**, not the 145 gold Secret print
-Level Ball | Battle Styles 129 | 2 |
-N | Noble Victories 092 | 3 |
-Rare Candy | Mega Evolution 125 | 4 | Shared with the Fire and Dark decks
-Ultra Ball | Mega Evolution 131 | 4 | Shared with the Fire and Dark decks
-Professor's Research | Prismatic Evolutions 122 | 4 | Shared with the Fire deck
-Switch | Mega Evolution 130 | 2 | Shared with the Fire and Dark decks
-Basic Psychic Energy | Mega Evolution Energies 005 | 11 | Never rotates
+Litwick | Pitch Black 036 | 4 | the Psychic print; the Fire copies do not serve this line
+Lampent | Pitch Black 037 | 4 | Spreading Light
+Mega Chandelure ex | Pitch Black 038 | 3 | Double Rare; skip the collector prints numbered above 084
+Pumpkaboo | Chaos Rising 040 | 2 |
+Gourgeist ex | Chaos Rising 041 | 2 | Double Rare; 041, not 102
+Snorunt | Twilight Masquerade 051 | 2 |
+Froslass | Twilight Masquerade 053 | 2 | the engine; 2-2, never 1-1
+Duskull | Shrouded Fable 018 | 2 |
+Dusknoir | Shrouded Fable 020 | 1 |
+Lillie's Determination | Mega Evolution 119 | 4 | shared
+Hilda | White Flare 084 | 3 |
+Boss's Orders | Mega Evolution 114 | 3 | shared
+Wally's Compassion | Mega Evolution 132 | 1 |
+Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared
+Rare Candy | Mega Evolution 125 | 4 | shared
+Poke Pad | Perfect Order 081 | 3 | printed Poké Pad; the database drops the accent
+Night Stretcher | Shrouded Fable 061 | 2 | shared
+Wondrous Patch | Phantasmal Flames 094 | 1 |
+Switch | Mega Evolution 130 | 1 | shared
+Air Balloon | Ascended Heroes 181 | 1 |
+Prime Catcher | Temporal Forces 157 | 1 | ACE SPEC; the English print
+Telepathic Psychic Energy | Perfect Order 088 | 4 | Special Energy; nothing recovers it once discarded
+Basic Psychic Energy | Mega Evolution Energies 005 | 6 | never rotates
 ```
 
-The Gastly, Haunter, and Pumpkaboo lines are already covered. Skip **151 093** for Haunter; its Ability helps your opponent.
-
-**Not Standard legal and cannot be made so** — Noble Victories, Phantom Forces, Plasma Freeze, Chilling Reign, Battle Styles, Forbidden Light, and Lost Origin are all rotated. That's the point, and it's what keeps the parts cheap.
-
----
-
-## Build A or Build B?
-
-| | **A — Witching Hour** | **[B — Long Night](./psychic-sleep.md)** |
-| :--- | :--- | :--- |
-| **Built on** | Gengar LOR 066 | Gengar SSH 085 |
-| **Wins by** | Damage counters everywhere, incl. their Bench | Denying turns |
-| **Signature card** | Chandelure, *Cursed Shadow* | Drowzee, *Hypnosis* |
-| **Main attack cost** | 1 Energy | 3 Energy |
-| **Energy count** | 11 | 12 |
-| **Reaches their Bench?** | ✅ Yes, every turn, free | ❌ Active only |
-| **Consistency** | High — grinds, compounds, forgiving | Swingy — coin flips decide clumps of turns |
-| **Cost to build** | Higher (3× Chandelure NVI) | **Lower** |
-| **Fun to play against?** | Yes — he can learn to play around it | Not especially |
-
-**My recommendation: build A**, this one. Cursed Shadow reaching the Bench is a genuinely novel thing that neither of the other two decks on your table can do, it teaches Fox a real skill (protect your Basics), and it doesn't depend on coin flips to function.
-
-**[Build B](./psychic-sleep.md) is the better *deck* in a vacuum** — turn denial is the strongest effect in the game — and it's cheaper. It's just a worse thing to point at a kid.
-
-If you want a middle path: **run this build and swap in 2 Drowzee** over the Gourgeist line. You get *Hypnosis* as a turn-one tempo play without committing to the full lock, and Cursed Shadow stays the engine.
+> [!IMPORTANT]
+> **Regulation clock.** Everything above is Standard legal as of August 2026. The H cards (the Snorunt and Duskull lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order core is Reg J with years left. The soul of the deck outlives its shell.
