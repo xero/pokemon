@@ -57,7 +57,8 @@ Fittingly, the deck that beats Mega Chandelure hardest in the online meta wins w
 | 3 | Mega Chandelure ex | Pitch Black | 038 | J |
 | 2 | Pumpkaboo | Chaos Rising | 040 | J |
 | 2 | Gourgeist ex | Chaos Rising | 041 | J |
-| 2 | Snorunt | Twilight Masquerade | 051 | H |
+| 1 | Snorunt | Twilight Masquerade | 051 | H |
+| 1 | Snorunt | Ascended Heroes | 046 | I |
 | 2 | Froslass | Twilight Masquerade | 053 | H |
 | 2 | Duskull | Shrouded Fable | 018 | H |
 | 1 | Dusknoir | Shrouded Fable | 020 | H |
@@ -77,7 +78,7 @@ Fittingly, the deck that beats Mega Chandelure hardest in the online meta wins w
 | 1 | Wondrous Patch | Item | Phantasmal Flames | 094 | I |
 | 1 | Switch | Item | Mega Evolution | 130 | I |
 | 1 | Air Balloon | Tool | Ascended Heroes | 181 | I |
-| 1 | Prime Catcher | Item | Temporal Forces | 157 | H |
+| 1 | Prime Catcher | Item | Prismatic Evolutions | 119 | H |
 
 **Energy (10)**
 
@@ -126,6 +127,8 @@ Stage 1, 270 HP, 2 Prizes, and no Ability, which means Froslass never pings it. 
 ### Snorunt — Twilight Masquerade 051 · Reg H
 
 60 HP, Poffin-legal, and it exists to become Froslass. Its attack costs [W][C], and this deck runs no Water, so it never attacks. That is fine. Furniture does not need to fight.
+
+The second copy is the Ascended Heroes print (046, the Love Ball pattern). Same name, so Froslass evolves from it all the same, and it is the better half of the pair: 70 HP instead of 60, still inside Poffin range, and its Reg I mark outlives the TWM print's April 2027 rotation.
 
 ### Froslass — Twilight Masquerade 053 · Reg H
 
@@ -326,7 +329,8 @@ Lampent | Pitch Black 037 | 4 | Spreading Light
 Mega Chandelure ex | Pitch Black 038 | 3 | Double Rare; skip the collector prints numbered above 084
 Pumpkaboo | Chaos Rising 040 | 2 |
 Gourgeist ex | Chaos Rising 041 | 2 | Double Rare; 041, not 102
-Snorunt | Twilight Masquerade 051 | 2 |
+Snorunt | Twilight Masquerade 051 | 1 |
+Snorunt | Ascended Heroes 046 | 1 | the Love Ball print; Reg I, outlives the TWM copy
 Froslass | Twilight Masquerade 053 | 2 | the engine; 2-2, never 1-1
 Duskull | Shrouded Fable 018 | 2 |
 Dusknoir | Shrouded Fable 020 | 1 |
@@ -341,7 +345,7 @@ Night Stretcher | Shrouded Fable 061 | 2 | shared
 Wondrous Patch | Phantasmal Flames 094 | 1 |
 Switch | Mega Evolution 130 | 1 | shared
 Air Balloon | Ascended Heroes 181 | 1 |
-Prime Catcher | Temporal Forces 157 | 1 | ACE SPEC; the English print
+Prime Catcher | Prismatic Evolutions 119 | 1 | ACE SPEC; the PRE reprint of TEF 157, same card, English
 Telepathic Psychic Energy | Perfect Order 088 | 4 | Special Energy; nothing recovers it once discarded
 Basic Psychic Energy | Mega Evolution Energies 005 | 6 | never rotates
 ```

@@ -6,7 +6,8 @@
 - **A**
   - [Absol](#absol) _MBG: MEGA Starter Set Mega Gengar ex_
 - **C**
-  - [Chandelure](#chandelure) _Trick or Trade BOOster Bundle_
+  - [Chandelure](#chandelure) _SV: White Flare_
+  - [Chandelure](#chandelure-1) _Trick or Trade BOOster Bundle_
   - [Charizard](#charizard) _SWSH04: Vivid Voltage_
   - [Charmander](#charmander) _ME02: Phantasmal Flames_
   - [Charmander](#charmander-1) _Pokémon GO_
@@ -40,6 +41,7 @@
   - [Flareon ex](#flareon-ex) _SV: Prismatic Evolutions_
   - [Flareon V](#flareon-v) _SWSH: Sword & Shield Promo Cards_
   - [Flareon VMAX](#flareon-vmax) _SWSH07: Evolving Skies_
+  - [Froslass](#froslass) _SV06: Twilight Masquerade_
 - **G**
   - [Galarian Weezing](#galarian-weezing) _SWSH06: Chilling Reign_
   - [Galarian Weezing](#galarian-weezing-1) _Shining Fates_
@@ -53,30 +55,35 @@
   - [Gastly](#gastly-7) _Trick or Trade BOOster Bundle 2023_
   - [Gastly](#gastly-8) _XY - Evolutions_
   - [Gastly (Energy Symbol Pattern)](#gastly-energy-symbol-pattern) _ME: Ascended Heroes_
-  - [Gengar](#gengar) _ME03: Perfect Order_
-  - [Gengar](#gengar-1) _S6K: Jet-Black Spirit_
-  - [Gengar](#gengar-2) _SV2a: Pokémon Card 151_
-  - [Gengar](#gengar-3) _SV3a: Raging Surf_
-  - [Gengar](#gengar-4) _SWSH01: Sword & Shield Base Set_
+  - [Gengar](#gengar) _Fossil_
+  - [Gengar](#gengar-1) _ME03: Perfect Order_
+  - [Gengar](#gengar-2) _S6K: Jet-Black Spirit_
+  - [Gengar](#gengar-3) _SV2a: Pokémon Card 151_
+  - [Gengar](#gengar-4) _SV3a: Raging Surf_
+  - [Gengar](#gengar-5) _SWSH01: Sword & Shield Base Set_
   - [Gengar (2021 Copyright Date)](#gengar-2021-copyright-date) _Trick or Trade BOOster Bundle_
   - [Gengar (2022 Copyright Date)](#gengar-2022-copyright-date) _Trick or Trade BOOster Bundle 2023_
   - [Gengar (Cosmos Holo)](#gengar-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Gengar V](#gengar-v) _SWSH08: Fusion Strike_
-  - [Gourgeist](#gourgeist) _Trick or Trade BOOster Bundle_
+  - [Glaceon](#glaceon) _SV: Prismatic Evolutions_
+  - [Gourgeist](#gourgeist) _SV04: Paradox Rift_
+  - [Gourgeist](#gourgeist-1) _Trick or Trade BOOster Bundle_
+  - [Gourgeist ex](#gourgeist-ex) _ME04: Chaos Rising_
 - **H**
   - [Haunter](#haunter) _Base Set 2_
-  - [Haunter](#haunter-1) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Haunter](#haunter-1) _Fossil_
   - [Haunter](#haunter-2) _MBG: MEGA Starter Set Mega Gengar ex_
-  - [Haunter](#haunter-3) _ME02: Phantasmal Flames_
-  - [Haunter](#haunter-4) _ME03: Perfect Order_
-  - [Haunter](#haunter-5) _ME: Mega Evolution Promo_
-  - [Haunter](#haunter-6) _SM - Crimson Invasion_
-  - [Haunter](#haunter-7) _SV: Paldean Fates_
-  - [Haunter](#haunter-8) _SV: Scarlet & Violet 151_
-  - [Haunter](#haunter-9) _SWSH01: Sword & Shield Base Set_
-  - [Haunter](#haunter-10) _Trick or Trade BOOster Bundle_
-  - [Haunter](#haunter-11) _Trick or Trade BOOster Bundle 2023_
-  - [Haunter](#haunter-12) _Trick or Trade BOOster Bundle 2024_
+  - [Haunter](#haunter-3) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Haunter](#haunter-4) _ME02: Phantasmal Flames_
+  - [Haunter](#haunter-5) _ME03: Perfect Order_
+  - [Haunter](#haunter-6) _ME: Mega Evolution Promo_
+  - [Haunter](#haunter-7) _SM - Crimson Invasion_
+  - [Haunter](#haunter-8) _SV: Paldean Fates_
+  - [Haunter](#haunter-9) _SV: Scarlet & Violet 151_
+  - [Haunter](#haunter-10) _SWSH01: Sword & Shield Base Set_
+  - [Haunter](#haunter-11) _Trick or Trade BOOster Bundle_
+  - [Haunter](#haunter-12) _Trick or Trade BOOster Bundle 2023_
+  - [Haunter](#haunter-13) _Trick or Trade BOOster Bundle 2024_
   - [Honchkrow](#honchkrow) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Hoothoot](#hoothoot) _SV07: Stellar Crown_
   - [Houndoom](#houndoom) _Trick or Trade BOOster Bundle 2023_
@@ -88,10 +95,15 @@
 - **L**
   - [Lampent](#lampent) _ME05: Pitch Black_
   - [Litwick](#litwick) _ME05: Pitch Black_
-  - [Litwick](#litwick-1) _Trick or Trade BOOster Bundle_
+  - [Litwick](#litwick-1) _SV06: Twilight Masquerade_
+  - [Litwick](#litwick-2) _SV: White Flare_
+  - [Litwick](#litwick-3) _SWSH11: Lost Origin_
+  - [Litwick](#litwick-4) _Trick or Trade BOOster Bundle_
   - [Lugia](#lugia) _SWSH03: Darkness Ablaze_
 - **M**
   - [Magcargo](#magcargo) _SWSH04: Vivid Voltage_
+  - [Marshadow](#marshadow) _ME05: Pitch Black_
+  - [Mega Chandelure ex](#mega-chandelure-ex) _ME05: Pitch Black_
   - [Mega Gengar ex](#mega-gengar-ex) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Mega Gengar ex](#mega-gengar-ex-1) _ME02: Phantasmal Flames_
   - [Mew V](#mew-v) _SWSH08: Fusion Strike_
@@ -111,6 +123,7 @@
   - [Sinistcha (Cosmos Holo)](#sinistcha-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Slugma](#slugma) _SWSH04: Vivid Voltage_
   - [Snorunt](#snorunt) _SV06: Twilight Masquerade_
+  - [Snorunt (Love Ball)](#snorunt-love-ball) _ME: Ascended Heroes_
   - [Spiritomb](#spiritomb) _SWSH06: Chilling Reign_
   - [Sudowoodo](#sudowoodo) _SWSH01: Sword & Shield Base Set_
 - **T**
@@ -160,7 +173,26 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="chandelure">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="chandelure">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/642466_chandelure.jpg"><img src="./assets/642466_chandelure.jpg" width="350" alt="Chandelure"></a></th>
+  </tr>
+  <tr><td><b>SV: White Flare</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png"><img src="./assets/sets/white-flare.png" alt="SV: White Flare" height="22" align="top"></picture> 018/086</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 150</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Incendiary Pillar (50+) - If you have 10 or more Basic Fire Energy cards in your discard pile, this attack does 100 more damage.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Burn It All Up (180) - Discard all Energy from this Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="chandelure-1">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283790_chandelure.jpg"><img src="./assets/283790_chandelure.jpg" width="350" alt="Chandelure"></a></th>
   </tr>
@@ -735,6 +767,24 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="froslass">Froslass <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/550097_froslass-053-167.jpg"><img src="./assets/550097_froslass-053-167.jpg" width="350" alt="Froslass"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 053/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 90</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Freezing Shroud - During Pokémon Checkup, put 1 damage counter on each Pokémon that has an Ability (both yours and your opponent&#x27;s), except any Froslass.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Frost Smash (60)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="galarian-weezing">Galarian Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/241765_galarian-weezing.jpg"><img src="./assets/241765_galarian-weezing.jpg" width="350" alt="Galarian Weezing"></a></th>
@@ -954,7 +1004,25 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gengar">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gengar">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/106521_gengar-5.jpg"><img src="./assets/106521_gengar-5.jpg" width="350" alt="Gengar"></a></th>
+  </tr>
+  <tr><td><b>Fossil</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fossil.png"><img src="./assets/sets/fossil.png" alt="Fossil" height="22" align="top"></picture> 05/62</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="16" align="top"></picture> Holo Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Pokémon Power: Curse - Once during your turn (before your attack), you may move 1 damage counter from 1 of your opponent&#x27;s Pokémon to another (even if it would Knock Out the other Pokémon) This power can&#x27;t be used if Gengar is Asleep, Confused, or Paralyzed.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Dark Mind (30) - If your opponent has any Benched Pokémon, choose 1 of them and this attack does 10 damage to it. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Weakness</b>: -</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="gengar-1">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/684431_gengar.jpg"><img src="./assets/684431_gengar.jpg" width="350" alt="Gengar"></a></th>
   </tr>
@@ -972,7 +1040,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gengar-1">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gengar-2">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/569255_gengar.jpg"><img src="./assets/569255_gengar.jpg" width="350" alt="Gengar"></a></th>
   </tr>
@@ -990,7 +1058,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gengar-2">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gengar-3">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/566439_gengar.jpg"><img src="./assets/566439_gengar.jpg" width="350" alt="Gengar"></a></th>
   </tr>
@@ -1009,7 +1077,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gengar-3">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gengar-4">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/566893_gengar.jpg"><img src="./assets/566893_gengar.jpg" width="350" alt="Gengar"></a></th>
   </tr>
@@ -1027,7 +1095,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gengar-4">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="gengar-5">Gengar <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Holo Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/208393_gengar.jpg"><img src="./assets/208393_gengar.jpg" width="350" alt="Gengar"></a></th>
   </tr>
@@ -1118,7 +1186,44 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="gourgeist">Gourgeist <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="glaceon">Glaceon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/610380_glaceon.jpg"><img src="./assets/610380_glaceon.jpg" width="350" alt="Glaceon"></a></th>
+  </tr>
+  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 025/131</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 120</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"> Permeating Chill (30) - At the end of your opponent&#x27;s next turn, put 9 damage counters on the Defending Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Icicle Missile (70)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="gourgeist">Gourgeist <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/523744_gourgeist.jpg"><img src="./assets/523744_gourgeist.jpg" width="350" alt="Gourgeist"></a></th>
+  </tr>
+  <tr><td><b>SV04: Paradox Rift</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/paradox-rift.png"><img src="./assets/sets/paradox-rift.png" alt="SV04: Paradox Rift" height="22" align="top"></picture> 078/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 110</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Startling Pumpkin - If this Pokémon is Knocked Out by damage from an attack from your opponent’s Pokémon, discard 2 random cards from your opponent’s hand.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Shadow Bind (100) - During your opponent’s next turn, the Defending Pokémon can’t retreat.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="gourgeist-1">Gourgeist <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283795_gourgeist.jpg"><img src="./assets/283795_gourgeist.jpg" width="350" alt="Gourgeist"></a></th>
   </tr>
@@ -1133,6 +1238,25 @@
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="gourgeist-ex">Gourgeist ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/693497_gourgeist-ex-041-086.jpg"><img src="./assets/693497_gourgeist-ex-041-086.jpg" width="350" alt="Gourgeist ex"></a></th>
+  </tr>
+  <tr><td><b>ME04: Chaos Rising</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png"><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" height="22" align="top"></picture> 041/086</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 270</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Horrifying Rondo (30+) - This attack does 50 more damage for each of your Benched Pokémon that has any damage counters on it.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Ghostly Touch (140) - Discard a random card from your opponent&#x27;s hand.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -1155,7 +1279,25 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-1">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-1">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/44429_haunter-21.jpg"><img src="./assets/44429_haunter-21.jpg" width="350" alt="Haunter"></a></th>
+  </tr>
+  <tr><td><b>Fossil</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/fossil.png"><img src="./assets/sets/fossil.png" alt="Fossil" height="22" align="top"></picture> 21/62</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 50</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Pokémon Power: Transparency - Whenever an attack does anything to Haunter, flip a coin. If heads, prevent all effects of that attack, including damage, done to Haunter. This power stops working while Haunter is Asleep, Confused, or Paralyzed.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Nightmare (10) - The Defending Pokémon is now Asleep.</td></tr>
+  <tr><td><b>Weakness</b>: -</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: -</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="haunter-2">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/660120_haunter-002-021.jpg"><img src="./assets/660120_haunter-002-021.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1173,7 +1315,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-2">Haunter <img src="./assets/rarities/illustration-rare.png" alt="Art Rare" height="18" align="top"></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-3">Haunter <img src="./assets/rarities/illustration-rare.png" alt="Art Rare" height="18" align="top"></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/654108_haunter-022-021.jpg"><img src="./assets/654108_haunter-022-021.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1191,7 +1333,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-3">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-4">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/660408_haunter-055-094.jpg"><img src="./assets/660408_haunter-055-094.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1209,7 +1351,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-4">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-5">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/684430_haunter.jpg"><img src="./assets/684430_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1227,7 +1369,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-5">Haunter</h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-6">Haunter</h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/659232_haunter-027.jpg"><img src="./assets/659232_haunter-027.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1245,7 +1387,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-6">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/149060_haunter.jpg"><img src="./assets/149060_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1263,7 +1405,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-7">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/534418_haunter.jpg"><img src="./assets/534418_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1281,7 +1423,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-8">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/516662_haunter.jpg"><img src="./assets/516662_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1299,7 +1441,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-9">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/208390_haunter.jpg"><img src="./assets/208390_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1318,7 +1460,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-10">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283812_haunter.jpg"><img src="./assets/283812_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1336,7 +1478,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-11">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-12">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/515660_haunter.jpg"><img src="./assets/515660_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1354,7 +1496,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="haunter-12">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="haunter-13">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/570361_haunter.jpg"><img src="./assets/570361_haunter.jpg" width="350" alt="Haunter"></a></th>
   </tr>
@@ -1519,7 +1661,62 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="litwick-1">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="litwick-1">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/550080_litwick.jpg"><img src="./assets/550080_litwick.jpg" width="350" alt="Litwick"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 036/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Call for Family - Search your deck for a basic Pokémon and put it onto your Bench. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Live Coal (20)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="litwick-2">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/642464_litwick.jpg"><img src="./assets/642464_litwick.jpg" width="350" alt="Litwick"></a></th>
+  </tr>
+  <tr><td><b>SV: White Flare</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png"><img src="./assets/sets/white-flare.png" alt="SV: White Flare" height="22" align="top"></picture> 016/086</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Brighten and Burn - Look at the top card of your deck. You may discard that card.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="litwick-3">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/283895_litwick.jpg"><img src="./assets/283895_litwick.jpg" width="350" alt="Litwick"></a></th>
+  </tr>
+  <tr><td><b>SWSH11: Lost Origin</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/lost-origin.png"><img src="./assets/sets/lost-origin.png" alt="SWSH11: Lost Origin" height="22" align="top"></picture> 024/196</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 60</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Kindling Panic - Discard the top card of your opponent&#x27;s deck.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="litwick-4">Litwick <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283824_litwick.jpg"><img src="./assets/283824_litwick.jpg" width="350" alt="Litwick"></a></th>
   </tr>
@@ -1572,6 +1769,42 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="marshadow">Marshadow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/704797_marshadow.jpg"><img src="./assets/704797_marshadow.jpg" width="350" alt="Marshadow"></a></th>
+  </tr>
+  <tr><td><b>ME05: Pitch Black</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png"><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" height="22" align="top"></picture> 040/084</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 90</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Shadowy Knot (30x) - This attack does 30 damage for each Retreat Cost.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="mega-chandelure-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" height="20" align="top"> Mega Chandelure ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/704795_mega-chandelure-ex-038-084.jpg"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" width="350" alt="Mega Chandelure ex"></a></th>
+  </tr>
+  <tr><td><b>ME05: Pitch Black</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png"><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" height="22" align="top"></picture> 038/084</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 350</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Binding Flame - Your opponent&#x27;s Active Pokémon&#x27;s Retreat Cost is {{e}} more.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Phantom Maze (130+) - This attack does 50 more damage for each Retreat Cost.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -1842,6 +2075,24 @@
   <tr><td><b>Stage</b>: Basic</td></tr>
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Astonish (20) - Choose a random card from your opponent&#x27;s hand. Your opponent reveals that card and shuffles it into their deck.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="snorunt-love-ball">Snorunt (Love Ball) <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/676890_snorunt-046-217-love-ball.jpg"><img src="./assets/676890_snorunt-046-217-love-ball.jpg" width="350" alt="Snorunt (Love Ball)"></a></th>
+  </tr>
+  <tr><td><b>ME: Ascended Heroes</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png"><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" height="22" align="top"></picture> 046/217</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"> Chilly (10)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
