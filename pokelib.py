@@ -278,7 +278,11 @@ def anchor(text, seen):
     return s if n == 0 else f"{s}-{n}"
 
 
-def page(dest, title, subtitle, nav, body, notes="", sprite="", script=""):
+BACK = '<a data-back href="./index.html">← back to all decks</a>'
+
+
+def page(dest, title, subtitle, nav, body, notes="", sprite="", script="",
+         back=BACK):
     """Fill the shared template and write it out.
 
     sprite names one file in assets/sprites, or several, shown beside the
@@ -287,8 +291,13 @@ def page(dest, title, subtitle, nav, body, notes="", sprite="", script=""):
     script is a path in assets. Only the collection asks for one, so the tag
     is dropped entirely everywhere else rather than shipping nine pages that
     fetch a file with nothing to do on them.
+
+    back is the banner's way home to the index. Every page gets it by
+    default; the index itself passes "" rather than linking to itself.
     """
     out = TEMPLATE.read_text(encoding="utf-8")
+    if not back:                      # the index, which is already home
+        out = re.sub(r"\n\t*\$\{BACK\}", "", out)
     names = [sprite] if isinstance(sprite, str) else list(sprite or [])
     tag = "".join(
         f' <img data-mascot src="./assets/sprites/{s}.gif" alt="" />'
@@ -304,7 +313,7 @@ def page(dest, title, subtitle, nav, body, notes="", sprite="", script=""):
         out = re.sub(r"\n\t*\$\{SCRIPT\}", "", out)
     for token, repl in (("${TITLE}", title), ("${SUBTITLE}", subtitle),
                         ("${NAV}", nav), ("${ARTICLES}", body),
-                        ("${NOTES}", notes)):
+                        ("${NOTES}", notes), ("${BACK}", back)):
         out = out.replace(token, repl)
     dest.write_text(out, encoding="utf-8")
     return out

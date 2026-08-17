@@ -28,12 +28,9 @@ PAGES = [
      "Xero's deck. The dark duo of Gengar and Weezing, and the two-turn combo"
      " dad's whole deck is built around."),
     ("psychic-lanterns.html", ["chandelure", "gourgeist"],
-     "Xero's lantern deck, finished. Mega Chandelure ex turns the opponent's"
-     " own Retreat Cost into damage, Boss's Orders picks the victim, and"
-     " Gourgeist ex cashes in the counters."),
-    ("psychic-sleep.html", ["hypno", "drowzee"],
-     "Paper plan. The other way to build the Psychic Gengars: put them to"
-     " sleep on turn one and never let them wake up."),
+     "Xero's lantern deck. Mega Chandelure ex turns the opponent's own"
+     " Retreat Cost into damage at the shop, and three card swaps turn the"
+     " whole thing into the Night Parade at home."),
     ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
      "Xero's tournament deck. Mega Gengar ex over a bench of zero-prize"
      " attackers, and the prize ladder that bends every trade."),
@@ -94,6 +91,6 @@ for name, sprites, blurb in PAGES:
 
 out = page(ROOT / "index.html", "Pokémon TCG",
            "Deck planning for me and my son.",
-           "", "\n".join(body), CREDITS_NOTE)
+           "", "\n".join(body), CREDITS_NOTE, back="")
 print(f"index.html: {len(PAGES)} pages, {total} cards linked, "
       f"{len(out.splitlines())} lines")

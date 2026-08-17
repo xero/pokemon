@@ -37,7 +37,6 @@
   - [Eternatus](#eternatus) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Eternatus](#eternatus-1) _ME02: Phantasmal Flames_
 - **F**
-  - [Flareon](#flareon) _SV: Prismatic Evolutions_
   - [Flareon ex](#flareon-ex) _SV: Prismatic Evolutions_
   - [Flareon V](#flareon-v) _SWSH: Sword & Shield Promo Cards_
   - [Flareon VMAX](#flareon-vmax) _SWSH07: Evolving Skies_
@@ -689,25 +688,6 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
-</table>
-
-<table>
-  <tr><td colspan="2"><h3 id="flareon">Flareon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
-  <tr>
-    <th rowspan="13" width="400"><a href="./assets/610368_flareon.jpg"><img src="./assets/610368_flareon.jpg" width="350" alt="Flareon"></a></th>
-  </tr>
-  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 013/131</td></tr>
-  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
-  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
-  <tr><td><b>HP</b>: 130</td></tr>
-  <tr><td><b>Stage</b>: Stage 1</td></tr>
-  <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Destructive Flame (30) - Flip a coin. If heads, discard an Energy from your opponent&#x27;s Active Pokémon.</td></tr>
-  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Fighting Blaze (90+) - If your opponent&#x27;s Active Pokémon is a Pokémon ex or Pokémon V, this attack does 90 more damage.</td></tr>
-  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
-  <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
 </table>
 
 <table>

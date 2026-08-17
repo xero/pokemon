@@ -48,6 +48,14 @@
 			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
 			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
 
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
 			/* theme vars, light */
 			--bg:      var(--chalk);
 			--surface: var(--paper);
@@ -70,6 +78,10 @@
 			--line:    var(--slate);
 			--heading: var(--ghost);
 			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-footer-ratio: 1376 / 470;
 		}
 		}
 
@@ -120,26 +132,53 @@
 			}
 		}
 
-		body > header,
-		body > footer,
-		main {
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
 			width: min(100% - var(--pad) * 2, 78rem);
 			margin-inline: auto;
 		}
 
-		body > header {
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
 			display: flex;
-			flex-flow: row wrap;
-			align-items: center;
-			gap: var(--gap);
+			flex-direction: column;
 			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
 
 			h1 {
 				display: flex;
 				align-items: center;
 				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
 				font-size: var(--text-xl);
 				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
 			}
 
 			img {
@@ -147,21 +186,45 @@
 				width: auto;
 			}
 
-			/* the deck mascot beside the title. bigger than the poké ball, and
-			   a sprite, so it wants nearest-neighbour scaling. */
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
 			[data-mascot] {
 				height: 2.2em;
 				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
 			}
 
 			p {
 				flex: 1 1 100%;
 				color: var(--muted);
 			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
 		}
 
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
 		nav {
-			width: 100%;
+			padding-top: var(--pad);
 
 			summary {
 				cursor: pointer;
@@ -530,7 +593,11 @@
 			gap: 0.3em var(--gap);
 			align-items: baseline;
 
-			dt {
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
 				color: var(--muted);
 				font-size: 0.85em;
 				letter-spacing: 0.04em;
@@ -612,10 +679,12 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
-			/* space either side, so two consecutive tables read as two things.
-			   scoped away from card stat blocks, which sit in a padded article
-			   already and just looked loose with it. */
-			margin: 30px auto 25px auto;
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
 
 			dt,
 			dd {
@@ -807,11 +876,22 @@
 		}
 
 		body > footer {
-			display: flex;
-			flex-flow: row wrap;
-			gap: var(--gap);
-			padding-block: var(--pad);
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
 			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
 		}
 
 		/* ------------------------------------------------------------------
@@ -867,6 +947,15 @@
 			font-size: var(--text);
 		}
 
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -911,7 +1000,8 @@
 		   [data-sprite] in particular is a 15rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
-		[data-flavor] {
+		[data-flavor],
+		[data-back] {
 			display: none;
 		}
 
@@ -972,8 +1062,11 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="./assets/pokeball.png" alt="" />Credits</h1>
-			<p>Where the card text, images, and symbols came from.</p>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Credits</h1>
+				<p>Where the card text, images, and symbols came from.</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
 		</header>
 		<main>
 			<article>
@@ -1037,7 +1130,9 @@
 			</aside>
 		</main>
 		<footer>
+			<div>
 			<p><a href="./index.html">Back to the decks</a></p>
+			</div>
 		</footer>
 	</body>
 </html>

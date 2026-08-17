@@ -96,7 +96,7 @@ Be honest about the ceiling. The standalone box is a league-night deck, not a Re
 
 ## Key Card Text
 
-Generic staples are covered card by card in [Gengar Gang](./dark.md); this section covers what is new or non-obvious here.
+Every card in the 60, in this deck's terms, staples included. Some of these also serve other decks in the house; each page carries its own copy of the story.
 
 ### Mega Gengar ex — Phantasmal Flames 056 · Reg I
 
@@ -164,9 +164,37 @@ One honest caveat the first draft missed. **Munkidori is Psychic, not Darkness**
 
 *Flip the Script* draws 3 whenever one of your Pokémon was Knocked Out on their last turn, and this deck plans to lose a cheap body most turns. A 2-prize liability that Concealment discounts to 1.
 
+### Lillie's Determination — Mega Evolution 119 · Reg I
+
+Shuffle your hand into your deck, then draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four, because this deck digs on a schedule: Rare Candy, the right attacker, and the Energy that pays for it all need to arrive in order. The 8-card mode only fires while you have taken no Prizes, which is a setting-up bonus, and this deck spends its first two turns setting up.
+
+### Dawn — Phantasmal Flames 087 · Reg I
+
+Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, all three to hand. One Supporter fetches Gastly, Haunter, and Mega Gengar together, or a Toxel line to rebuild the Energy engine. Dawn is the play when the board is behind and the hand is fine; Lillie's is the play when the hand is the problem.
+
+### Boss's Orders — Mega Evolution 114 · Reg I
+
+Switch in 1 of your opponent's Benched Pokémon to the Active Spot. [How To Play ex Style](#how-to-play-ex-style) calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.
+
 ### Grimsley's Move — Phantasmal Flames 090 · Reg I
 
 Look at the top 7, bench a Darkness Pokémon you find. Not usable turn one. It is the Supporter version of what the deck already wants: more bodies, fewer dead turns. You own one from the Mega Battle Deck.
+
+### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
+
+Bench up to 2 Basic Pokémon with 70 HP or less from the deck. Here that means Gastly and Toxel, the bottoms of both engines; Sableye at 80 HP just misses, and Seviper is far outside. Four copies because turn one wants two seeds down, and the deck's other search picks up what Poffin cannot lift.
+
+### Rare Candy — Mega Evolution 125 · Reg I
+
+Choose 1 of your Basic Pokémon in play; if a Stage 2 card in your hand evolves from it, play it onto the Basic, skipping the Stage 1. Gastly straight to Mega Gengar. Two riders: not on your first turn, and not on a Basic that came into play this turn. Three copies rather than four, because Haunter is not a stage this deck skips lightly; *Haunt*'s three counters a turn open the chip math.
+
+### Ultra Ball — Mega Evolution 131 · Reg I
+
+Discard 2 other cards from your hand, then search your deck for any Pokémon. The unconditional search that lifts what Poffin cannot: Seviper, Sableye, the ex support pieces, and the Mega itself. The discard is a real price in a deck with only Night Stretcher for recursion, so pitch spare Energy and late-game Poffins, not attackers.
+
+### Night Stretcher — Shrouded Fable 061 · Reg H
+
+Put a Pokémon or a basic Energy card from your discard pile into your hand. Three copies, the most of any deck in the house, because this deck plans to lose a body nearly every turn and Ultra Ball feeds the same pile. It cannot recover Legacy Energy; the ACE SPEC's once per game is final.
 
 ### Energy Switch — Mega Evolution 115 · Reg I
 

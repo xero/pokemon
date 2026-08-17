@@ -48,6 +48,14 @@
 			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
 			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
 
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
 			/* theme vars, light */
 			--bg:      var(--chalk);
 			--surface: var(--paper);
@@ -70,6 +78,10 @@
 			--line:    var(--slate);
 			--heading: var(--ghost);
 			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-footer-ratio: 1376 / 470;
 		}
 		}
 
@@ -120,26 +132,53 @@
 			}
 		}
 
-		body > header,
-		body > footer,
-		main {
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
 			width: min(100% - var(--pad) * 2, 78rem);
 			margin-inline: auto;
 		}
 
-		body > header {
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
 			display: flex;
-			flex-flow: row wrap;
-			align-items: center;
-			gap: var(--gap);
+			flex-direction: column;
 			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
 
 			h1 {
 				display: flex;
 				align-items: center;
 				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
 				font-size: var(--text-xl);
 				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
 			}
 
 			img {
@@ -147,21 +186,45 @@
 				width: auto;
 			}
 
-			/* the deck mascot beside the title. bigger than the poké ball, and
-			   a sprite, so it wants nearest-neighbour scaling. */
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
 			[data-mascot] {
 				height: 2.2em;
 				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
 			}
 
 			p {
 				flex: 1 1 100%;
 				color: var(--muted);
 			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
 		}
 
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
 		nav {
-			width: 100%;
+			padding-top: var(--pad);
 
 			summary {
 				cursor: pointer;
@@ -530,7 +593,11 @@
 			gap: 0.3em var(--gap);
 			align-items: baseline;
 
-			dt {
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
 				color: var(--muted);
 				font-size: 0.85em;
 				letter-spacing: 0.04em;
@@ -612,10 +679,12 @@
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
 		dl:not(.card) {
-			/* space either side, so two consecutive tables read as two things.
-			   scoped away from card stat blocks, which sit in a padded article
-			   already and just looked loose with it. */
-			margin: 30px auto 25px auto;
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
 
 			dt,
 			dd {
@@ -807,11 +876,22 @@
 		}
 
 		body > footer {
-			display: flex;
-			flex-flow: row wrap;
-			gap: var(--gap);
-			padding-block: var(--pad);
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
 			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
 		}
 
 		/* ------------------------------------------------------------------
@@ -867,6 +947,15 @@
 			font-size: var(--text);
 		}
 
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -911,7 +1000,8 @@
 		   [data-sprite] in particular is a 15rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
-		[data-flavor] {
+		[data-flavor],
+		[data-back] {
 			display: none;
 		}
 
@@ -972,15 +1062,18 @@
 	</head>
 	<body>
 		<header>
-			<h1><img src="./assets/pokeball.png" alt="" />Xero's Dark Box — Tournament EX <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></h1>
-			<p>Mega Gengar ex, rebuilt as a complete 60 from the 2026 tournament data</p>
-			<nav>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Xero's Dark Box — Tournament EX <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></h1>
+				<p>Mega Gengar ex, rebuilt as a complete 60 from the 2026 tournament data</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
 	<details open>
 		<summary>Contents</summary>
 		<p><span><a href="#what-the-research-says">What The Research Says</a> · <a href="#deck-list">Deck List</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack</a> · <a href="#game-plans">Game Plans</a> · <a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a> · <a href="#versus-the-kitchen-table">Versus the Kitchen Table</a> · <a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a> · <a href="#how-to-play-ex-style">How To Play ex Style</a> · <a href="#what-to-buy">What To Buy</a></span></p>
 	</details>
 </nav>
-		</header>
 		<main>
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
@@ -1078,7 +1171,7 @@
 			</section>
 			<section>
 				<h3 id="key-card-text">Key Card Text</h3>
-					<p>Generic staples are covered card by card in <a href="./dark.html">Gengar Gang</a>; this section covers what is new or non-obvious here.</p>
+					<p>Every card in the 60, in this deck&#x27;s terms, staples included. Some of these also serve other decks in the house; each page carries its own copy of the story.</p>
 			<article>
 				<h3 id="mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex — Phantasmal Flames 056 · Reg I<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
 				<aside>
@@ -1345,6 +1438,60 @@
 				</section>
 			</article>
 			<article>
+				<h3 id="lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination — Mega Evolution 119 · Reg I<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Shuffle your hand into your deck, then draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four, because this deck digs on a schedule: Rare Candy, the right attacker, and the Energy that pays for it all need to arrive in order. The 8-card mode only fires while you have taken no Prizes, which is a setting-up bonus, and this deck spends its first two turns setting up.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dawn-phantasmal-flames-087-reg-i">Dawn — Phantasmal Flames 087 · Reg I<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/660414_dawn.jpg" target="_blank" rel="noopener"><img src="./assets/660414_dawn.jpg" alt="Dawn" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>087/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, all three to hand. One Supporter fetches Gastly, Haunter, and Mega Gengar together, or a Toxel line to rebuild the Energy engine. Dawn is the play when the board is behind and the hand is fine; Lillie&#x27;s is the play when the hand is the problem.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders — Mega Evolution 114 · Reg I<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. <a href="#how-to-play-ex-style">How To Play ex Style</a> calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.</p>
+				</section>
+			</article>
+			<article>
 				<h3 id="grimsleys-move-phantasmal-flames-090-reg-i">Grimsley&#x27;s Move — Phantasmal Flames 090 · Reg I<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/660418_grimsleys-move.jpg" target="_blank" rel="noopener"><img src="./assets/660418_grimsleys-move.jpg" alt="Grimsley&#x27;s Move" /></a>
@@ -1360,6 +1507,78 @@
 				</section>
 				<section>
 					<p>Look at the top 7, bench a Darkness Pokémon you find. Not usable turn one. It is the Supporter version of what the deck already wants: more bodies, fewer dead turns. You own one from the Mega Battle Deck.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin — Temporal Forces 144 · Reg H</h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Bench up to 2 Basic Pokémon with 70 HP or less from the deck. Here that means Gastly and Toxel, the bottoms of both engines; Sableye at 80 HP just misses, and Seviper is far outside. Four copies because turn one wants two seeds down, and the deck&#x27;s other search picks up what Poffin cannot lift.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="rare-candy-mega-evolution-125-reg-i">Rare Candy — Mega Evolution 125 · Reg I<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654464_rare-candy-125-132.jpg" target="_blank" rel="noopener"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>125/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can&#x27;t use this card during your first turn or on a Basic Pokémon that was put into play this turn.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Choose 1 of your Basic Pokémon in play; if a Stage 2 card in your hand evolves from it, play it onto the Basic, skipping the Stage 1. Gastly straight to Mega Gengar. Two riders: not on your first turn, and not on a Basic that came into play this turn. Three copies rather than four, because Haunter is not a stage this deck skips lightly; <em>Haunt</em>&#x27;s three counters a turn open the chip math.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="ultra-ball-mega-evolution-131-reg-i">Ultra Ball — Mega Evolution 131 · Reg I<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard 2 other cards from your hand, then search your deck for any Pokémon. The unconditional search that lifts what Poffin cannot: Seviper, Sableye, the ex support pieces, and the Mega itself. The discard is a real price in a deck with only Night Stretcher for recursion, so pitch spare Energy and late-game Poffins, not attackers.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher-shrouded-fable-061-reg-h">Night Stretcher — Shrouded Fable 061 · Reg H<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Put a Pokémon or a basic Energy card from your discard pile into your hand. Three copies, the most of any deck in the house, because this deck plans to lose a body nearly every turn and Ultra Ball feeds the same pile. It cannot recover Legacy Energy; the ACE SPEC&#x27;s once per game is final.</p>
 				</section>
 			</article>
 			<article>
@@ -1649,8 +1868,10 @@ discard --Night Stretcher-&gt; hand</code></pre>
 			</section>
 		</main>
 		<footer>
+			<div>
 			<p><a href="./credits.html">Credits and sources</a></p>
 			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
 		</footer>
 	</body>
 </html>

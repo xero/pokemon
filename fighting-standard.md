@@ -62,7 +62,7 @@ That is not a reason to skip the deck. It's the *reason to play it*, once. Prize
 
 Every Pokémon in `dark.csv` is Weak to Fighting ×2. Fox currently has exactly one answer to that — a rotated Sudowoodo — and this deck makes it the whole plan.
 
-**Dad's lantern deck is the wrong target, though.** Mega Chandelure ex in [Night Parade](./psychic-lanterns.md) resists Fighting and carries 350 HP, so *Gaia Wave* lands at 170 and needs three clean hits against a deck that one-shots back. The Gengars in [Long Night](./psychic-sleep.md) also resist, but their 110-130 HP bodies still fall to one 170.
+**Dad's lantern deck is the wrong target, though.** Mega Chandelure ex in [Psychic Lanterns](./psychic-lanterns.md) resists Fighting and carries 350 HP, so *Gaia Wave* lands at 170 and needs three clean hits against a deck that one-shots back.
 
 > [!NOTE]
 > **Nullifying Zero is a board wipe, and it's the flashiest card in this whole project.** Five Energy, then flip a coin for *every* Pokémon your opponent has in play — Active and Bench — and each heads does **150 to that Pokémon**.

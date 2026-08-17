@@ -1,13 +1,13 @@
-# Xero's Night Parade
+# Xero's Psychic Lanterns
 
-### The final lantern build · one deck for the kitchen table and the card shop
+### One box, two decks · a legal tourney 60 that runs the Night Parade at home
 
 > [!NOTE]
 > **What this file is for.**
 >
-> This is the lantern deck, finished. It consolidates two earlier documents into one tournament-legal 60: Witching Hour, the rotated kitchen-table spread deck that used to live in this file, and Lanterns Reborn, the first Mega Chandelure draft that lived in `psychic-standard.md`. Both are retired; the old lists live in git history.
+> This is one box holding two decks. Sleeved as written it is a tournament-legal 60 built around Mega Chandelure ex; every card carries regulation mark H, I, or J, so the sleeves that face Fox at the kitchen table are welcome at the card shop exactly as they sit. Swap three cards and it becomes [Night Parade](#night-parade), a home-only deck that stops springing traps and starts cashing in damage counters.
 >
-> Every card here carries regulation mark H, I, or J, so the same sleeves work against Fox at home and against strangers at the shop. The design decisions, the fork this build resolved, and the roads not taken are recorded in [Alternatives](#alternatives).
+> The design decisions and the roads not taken are recorded in [Alternatives](#alternatives).
 
 ---
 
@@ -21,6 +21,7 @@
 > - [Versus the Card Shop](#versus-the-card-shop)
 > - [Test and Tune](#test-and-tune)
 > - [Alternatives](#alternatives)
+> - [Night Parade](#night-parade)
 > - [What To Buy](#what-to-buy)
 
 ---
@@ -40,7 +41,7 @@ Mega Chandelure ex reads like a midrange attacker and plays like a trap.
 
 A good opponent keeps something light up front, so the deck's real engine is choosing their Active for them. Boss's Orders or Prime Catcher drags the heavy thing forward, Binding Flame makes it heavier, and Phantom Maze converts its Retreat Cost into damage. At 330 you one-shot nearly every ex in the format; at 380 you one-shot every card ever printed.
 
-The second payoff is the one no other Mega Chandelure list on Limitless runs, and it is the soul this deck kept from Witching Hour. **Froslass** pings every Ability Pokémon on both boards at every Checkup. Your own Megas and Dusknoir barely feel it, but each lightly singed bencher turns **Gourgeist ex's** *Horrifying Rondo* into 130 to 180 damage for a single Energy, from a 270 HP body worth only two Prizes. The opponent's Ability Pokémon take the same drip, and drips close breakpoints. Damage counters ignore Weakness, Resistance, and bench immunity, exactly as they always did.
+The second payoff is the one no other Mega Chandelure list on Limitless runs. **Froslass** pings every Ability Pokémon on both boards at every Checkup. Your own Megas and Dusknoir barely feel it, but each lightly singed bencher turns **Gourgeist ex's** *Horrifying Rondo* into 130 to 180 damage for a single Energy, from a 270 HP body worth only two Prizes. The opponent's Ability Pokémon take the same drip, and drips close breakpoints. Damage counters ignore Weakness, Resistance, and bench immunity, exactly as they always did.
 
 Fittingly, the deck that beats Mega Chandelure hardest in the online meta wins with retreat-cost scaling plus Froslass chip. The best anti-lantern tech in the format is this deck's own idea. We aim it forward.
 
@@ -98,7 +99,7 @@ Fittingly, the deck that beats Mega Chandelure hardest in the online meta wins w
 
 ## Key Card Text
 
-Generic staples are covered in [Gengar Gang](./dark.md) and [the Dark Box](./dark-ex.md); this section covers the lanterns and their crew.
+Every card in the 60, what it does in this deck, and why it is this print. The staples appear in the other decks too, and each page tells its own copy of the story.
 
 ### Mega Chandelure ex — Pitch Black 038 · Reg J
 
@@ -146,6 +147,14 @@ Water type, so no searcher shares her and no Energy here pays her attack; she is
 
 One copy, because it is a tool rather than a line, and because Poke Pad, Night Stretcher, and *Come and Get You* all point at it when you want it.
 
+### Lillie's Determination — Mega Evolution 119 · Reg I
+
+The draw engine, at the full four. Shuffle your hand into your deck and draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The bonus clause reads "while you are still setting up," which is precisely when four evolution lines need the dig. The shuffle half matters too. Spare Stage 2s clogging your hand go back into the deck, where Hilda finds them again on the turn they actually matter.
+
+### Boss's Orders — Mega Evolution 114 · Reg I
+
+Switch in 1 of your opponent's Benched Pokémon to the Active Spot. The whole thesis stands on this card. Phantom Maze's damage table is a menu, and Boss's Orders is how you order off it; the trap does not spring until something heavy is standing in front of it. Three copies, the Ghetsis print, shared across every deck in the house.
+
 ### Wally's Compassion — Mega Evolution 132 · Reg I
 
 > Heal all damage from 1 of your Mega Evolution Pokémon ex. If you healed any damage in this way, put all Energy attached to that Pokémon into your hand.
@@ -156,13 +165,37 @@ Nothing at this table one-shots a healthy 350. Every opponent is therefore playi
 
 Search your deck for an Evolution Pokémon and an Energy card. In this deck that reads "Mega Chandelure ex plus a Telepathic Energy" off one Supporter, which is the exact pair the early turns hunt.
 
+### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
+
+Search your deck for up to 2 Basic Pokémon with 70 HP or less and bench them. Every Basic in this deck sits at 70 HP or under on purpose, so Poffin is never a dead draw, and two seeds for one Item is the only way four evolution lines fit into the early turns. Four copies, because a deck with a 26% mulligan rate cannot afford to miss its seeds.
+
+### Rare Candy — Mega Evolution 125 · Reg I
+
+Choose 1 of your Basic Pokémon in play; if a Stage 2 card in your hand evolves from it, play that card onto it, skipping the Stage 1. Litwick straight to Mega Chandelure with no Lampent spent, which is the fast road to the turn-three trap. Two riders bite: not on your first turn, and not on a Basic that came into play this turn. Spreading Light is the other road, and the deck runs both because the trap wants a Mega standing before the opponent's board finishes forming.
+
 ### Poke Pad — Perfect Order 081 · Reg J
 
 Search your deck for a Pokémon without a Rule Box. That is every name in the deck except Mega Chandelure ex and Gourgeist ex, which means Poke Pad is what makes the 1-of Dusknoir and the 2-2 Froslass honest. Three copies is the glue holding the thin lines together. The card is printed Poké Pad; the database drops the accent, and so does this page.
 
+### Night Stretcher — Shrouded Fable 061 · Reg H
+
+Put a Pokémon or a basic Energy card from your discard pile into your hand. In a deck whose plan includes losing a loaded Mega, this is the rebuild. The dead Chandelure comes back to hand while Wondrous Patch re-arms the Bench, and the same card recovers the basic Psychic that went down with it. The one thing it can never touch is Telepathic Energy; special Energy stays where it falls.
+
 ### Wondrous Patch — Phantasmal Flames 094 · Reg I
 
 Attach a basic Psychic Energy from your discard pile to one of your Benched Psychic Pokémon, as an Item, without spending your attachment for the turn. The main event that puts basic Psychic in your discard is a loaded Mega dying, which is precisely the moment you need to rebuild on the Bench. The card is shaped like the deck's worst turn.
+
+### Switch — Mega Evolution 130 · Reg I
+
+Switch your Active Pokémon with 1 of your Benched Pokémon. The plain escape hatch for the deck's own heavy bodies, because Binding Flame taxes the opponent's retreat and does nothing about yours. One copy. The trap wants gusts, not exits, and the [Alternatives](#alternatives) table trades this slot away more often than any other.
+
+### Air Balloon — Ascended Heroes 181 · Reg I
+
+The Pokémon this card is attached to retreats for 2 less. It lives on the Active Mega, whose Retreat 2 becomes free, and it turns an opposing Boss's Orders into a shrug. Ruffian pops it in one breath, which is half of the [card shop warning](#versus-the-card-shop) about where Telepathic sits.
+
+### Prime Catcher — Prismatic Evolutions 119 · Reg H
+
+The ACE SPEC, and the deck's fourth gust. Switch in one of the opponent's Benched Pokémon, and if you do, switch your own Active with a Benched Pokémon. It is Boss's Orders with a free pivot stapled on, as an Item, so it plays alongside a Supporter on the turn the trap closes. The deck-list warning already covers the print rule. Play the English Prismatic Evolutions copy, never the Japanese starter one.
 
 ### Telepathic Psychic Energy — Perfect Order 088 · Reg J
 
@@ -217,7 +250,7 @@ Gourgeist itself has no Ability, so the Shroud never touches it. Trade it while 
 
 ### 3. The Thirteen-Counter Button
 
-**Dusknoir is Witching Hour's Cursed Shadow, graduated.**
+**Dusknoir trades one Prize for 130 damage placed with tweezers.**
 
 Thirteen counters, placed anywhere on their board, once, then Dusknoir dies. The three uses, best first:
 
@@ -260,7 +293,7 @@ There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists a
 
 **[Fox's Flareon ex](./fire-standard.md).** Your counters ignore Tera. Dusknoir's thirteen erase any benched Eevee or Hoothoot, and Freezing Shroud pings Eevee, Eevee ex, and Noctowl every Checkup; only Flareon ex itself goes untouched, because Tera is a rule, not an Ability. Check his Retreat Costs at the table: at Retreat 2, one Flame makes Phantom Maze exactly 280, which is exactly one Flareon ex. Respect *Carnelian*: 280 one-shots Gourgeist, so never leave her Active into a loaded Flareon. He cannot one-shot a healthy Mega, which makes his math two-turn math, which is what Wally's Compassion deletes.
 
-**[Fox's Sun and Moon](./eevee-standard.md), the hardest game in the house.** *Moon Mirage* is 320 into your all-Dark-weak board. The Mega survives on 30 HP, so every Froslass ping on your own Mega is a lit fuse: three Checkups and Umbreon one-shots it. Hold Froslass back until the Rondo turn, lead on Wally's, and never bench the second Mega until the first is spent. Watch the sneaky lethal: *Amazez* devolving a Mega leaves a 90 HP Lampent holding all of its damage, and 90 or more means it is Knocked Out on the spot. His Battle Cage stops Dusknoir reaching his Bench but not Froslass arming yours; the Rondo engine runs straight through it. Win by trapping Eevee ex early and trading Gourgeist into his 2-prize bodies. Expect to lose this one more than you win it. That is the design.
+**[Fox's Sun and Moon](./eevee-standard.md), the hardest game in the house.** *Moon Mirage* is 320 into your all-Dark-weak board. The Mega survives on 30 HP, so every Froslass ping on your own Mega is a lit fuse: three Checkups and Umbreon one-shots it. Hold Froslass back until the Rondo turn, lead on Wally's, and never bench the second Mega until the first is spent. Watch the sneaky lethal: *Amazez* devolving a Mega leaves a 90 HP Lampent holding all of its damage, and 90 or more means it is Knocked Out on the spot. His Battle Cage stops Dusknoir reaching his Bench but not Froslass arming yours; the Rondo engine runs straight through it. Win by trapping Eevee ex early and trading Gourgeist into his 2-prize bodies. Expect to lose this one more than you win it. That is the design, and [Night Parade](#night-parade) is the deck that renegotiates it.
 
 **[Fox's Team Rocket's Mewtwo](./rocket-mewtwo.md), the dream matchup.** Mewtwo retreats for 3: one Flame, 330 into 280 HP, one shot, two Prizes. His board is wall-to-wall Abilities (Mewtwo, Spidops, Golbat, Crobat, Articuno), so the Shroud poisons everything, and his own *Biting Spree* counters on your Bench feed your Rondo. Two cautions. *Assassin's Return* is 240 into your Weakness, so trade Gourgeist into Crobat and save Phantom Maze for Mewtwo. And Articuno's *Repelling Veil* blocks *Shadow Bind*'s retreat lock on his Basics, but Abilities are not attack effects, so Cursed Blast and the Shroud sail through.
 
@@ -314,8 +347,44 @@ The planning sessions produced more good cards than seats. These are the roads n
 | Mega Signal | Switch | Hilda alone is not finding the Megas |
 | Dusclops (Shrouded Fable 019) | 2nd Duskull's evolution | already owned; a 5-counter Cursed Blast with no Candy required |
 | Jynx (Pitch Black 032) | flex | shop walls only; *Intense Kiss* discards the Defending Pokémon outright, takes no Prizes, and feels bad at home |
+| Night Parade module | 3rd Mega, Switch, 4th Rare Candy | home nights; three rotated prints of plain "Chandelure," written up in [Night Parade](#night-parade) |
 
 Two cards were considered and rejected outright. Battle Cage would block this deck's own Dusknoir, and Neo Upper Energy is an ACE SPEC, so it costs Prime Catcher and buys nothing Telepathic does not already do.
+
+---
+
+## Night Parade
+
+The three-sleeve home deck. Swap three cards in at the kitchen table and the lanterns stop springing traps and start marching. Every damage counter the deck scatters becomes ammunition for one attack, and the deck scatters a lot of them. Swap the three back and the list above is shop-legal again. Both prints below rotated out of Standard years ago, so they stay home the way the Japanese Prime Catcher does.
+
+The trick is the name on the card. "Chandelure" and "Mega Chandelure ex" are different names with separate four-copy allowances, and every card ever named Chandelure evolves from Lampent. The line this deck already runs feeds either fork. Spreading Light does not care which Chandelure a benched Lampent grows into, and neither does Rare Candy.
+
+| Out | In | Why |
+| --- | --- | --- |
+| 3rd Mega Chandelure ex | Chandelure, Lost Thunder 103 | two Flames is the whole payoff; the third Mega is three more Prizes in the open |
+| Switch | Chandelure, Lost Thunder 103 | half the Alternatives table already trades Switch away |
+| 4th Rare Candy | Chandelure, Guardians Rising 013 | the forks grow out of Spreading Light Lampent and never need Candy |
+
+### Chandelure — Lost Thunder 103
+
+**The cash register.** *Cursed Drop* places 4 damage counters anywhere on their board for [P]. *Vortex of Pain* does 20 for every damage counter sitting anywhere on their board, Active and Bench alike, for [P][P], which Telepathic pays. This deck already generates counters in its sleep: Freezing Shroud pings every Ability Pokémon they own at every Checkup and those pings never heal, while a Dusknoir button that does not kill is 13 counters of stored damage. Ten Shroud pings plus one un-cashed button reads 460, from a 140 HP body worth one Prize.
+
+Two rules make it stronger than it looks. Putting the counters down is placement, so it ignores Weakness, Resistance, and every shield, exactly like the rest of this deck. The Vortex itself is attack damage, so their Weakness applies on top of the total.
+
+Play it like a banker, not an arsonist. Spread counters where nothing dies, because a Knocked Out Pokémon takes its counters to the discard pile with it. Then Boss's Orders drags the fattest thing forward and the whole board's ledger lands on it at once. Against Umbreon this is the trade the Megas could never offer, since Moon Mirage now spends 320 damage to buy one Prize.
+
+### Chandelure — Guardians Rising 013
+
+**The counter that walks.** *Shady Move* relocates 1 damage counter from any Pokémon to any other Pokémon, once per turn per copy, and [the published ruling](https://compendium.pokegym.net/ruling/240/) confirms it moves them across the table, off your Pokémon and onto theirs. That is the Umbreon fuse from [the kitchen-table section](#versus-the-kitchen-table) defused one tick per turn, with each tick landing on Fox's board as another 20 of Vortex.
+
+Fire type, and *Super Singe* costs [R], so it never attacks. Furniture does not need to fight; this chair moves damage for a living. Retreat 1, and it wears its own Shroud ping happily, because a damaged bencher is 50 more on Horrifying Rondo.
+
+The whole module costs about six dollars.
+
+```buy
+Chandelure | Lost Thunder 103 | 2 | Vortex of Pain; foil only, about $3 a copy shipped
+Chandelure | Guardians Rising 013 | 1 | Shady Move; under a dollar
+```
 
 ---
 
@@ -351,4 +420,4 @@ Basic Psychic Energy | Mega Evolution Energies 005 | 6 | never rotates
 ```
 
 > [!IMPORTANT]
-> **Regulation clock.** Everything above is Standard legal as of August 2026. The H cards (the Snorunt and Duskull lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order core is Reg J with years left. The soul of the deck outlives its shell.
+> **Regulation clock.** Everything in this list is Standard legal as of August 2026; the [Night Parade](#night-parade) prints, by design, are not. The H cards (the Snorunt and Duskull lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order core is Reg J with years left. The soul of the deck outlives its shell.

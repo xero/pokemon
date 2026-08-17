@@ -47,7 +47,6 @@ MASCOT = {"dark.md": ["gengar", "weezing"],
           "fire-standard.md": ["eevee", "flareon"],
           "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
-          "psychic-sleep.md": ["hypno", "gengar"],
           "eevee-standard.md": ["eevee-ex", "umbreon"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
@@ -135,8 +134,13 @@ FLAVOR = {
         "6. What This Deck Gives Up": ["duskull"],
         "Versus the Kitchen Table": ["charizard"],
         "Versus the Card Shop": ["froslass"],
-        # gastly is the nod to Witching Hour, the build this one retired
-        "Alternatives": ["gastly"],
+        # dusclops sits in the alternatives table, already owned
+        "Alternatives": ["dusclops"],
+        # the swap module forks the same line, so it gets the two stages the
+        # forks grow from; no back sprites exist for the lantern line.
+        "Night Parade": ["litwick", "lampent"],
+        "Chandelure — Lost Thunder 103": ["chandelure"],
+        "Chandelure — Guardians Rising 013": ["chandelure"],
         "What To Buy": ["pumpkaboo"],
     },
     # umbreon, espeon, and glaceon were promoted from assets/ani for this page.
@@ -160,20 +164,6 @@ FLAVOR = {
         "3. Three Knockouts and It Is Over": ["eevee-back"],
         "4. Choosing the Crystal's Home": ["noctowl"],
         "What To Buy": ["flareon"],
-    },
-    "psychic-sleep.md": {
-        "The Thesis": ["gastly"],
-        "Drowzee — Unbroken Bonds 071": ["drowzee"],
-        "Hypno — Unbroken Bonds 072": ["hypno"],
-        "Gengar — Sword & Shield 085": ["gengar"],
-        "Gourgeist — Paradox Rift 078": ["gourgeist"],
-        "Wobbuffet — Phantom Forces 036": ["wobbuffet"],
-        "Gengar — Lost Origin 066 *(single copy)*": ["gengar-booty"],
-        "4. Bide Barricade, and the One Thing It Costs You":
-            ["wobbuffet-back"],
-        "6. The Cemetery Tax": ["pumpkaboo"],
-        "Versus Fox": ["charizard"],
-        "Build A or Build B?": ["chandelure"],
     },
     "fire-tournament.md": {
         # the Pokemon card pages
@@ -250,7 +240,9 @@ def inline(s):
         keep.append(m.group(0))
         return f"\x00{len(keep) - 1}\x00"
 
-    s = re.sub(r"<(?:img|br)\b[^>]*/?>", stash, s)
+    # the tags the hand-written pages actually use; anything else is text.
+    # </?  so closing tags survive too, which <small>...</small> needs.
+    s = re.sub(r"</?(?:img|br|small)\b[^>]*/?>", stash, s)
     s = esc(s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
     s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
@@ -369,7 +361,7 @@ def deck_counts(lines):
     A card page shows how many that deck runs, and on the planning docs that
     number lives only in the deck list, not on the card entry. Keyed by number
     as well as name because a list can run two printings of one card at
-    different counts, as psychic-sleep does with Gengar.
+    different counts.
     """
     out, cols = {}, None
     for l in lines:
@@ -891,8 +883,7 @@ def bullets_or_para(text, ind):
 
 
 DECKS = ["dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
-         "fire-standard.md", "psychic-lanterns.md", "psychic-sleep.md",
-         "eevee-standard.md"]
+         "fire-standard.md", "psychic-lanterns.md", "eevee-standard.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name
