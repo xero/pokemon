@@ -487,6 +487,38 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
 		}
 
 		article {
@@ -549,6 +581,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
 		}
 
 		/* the deck list: every distinct card in the deck at thumbnail size, in
@@ -956,6 +995,21 @@
 			background: none;
 		}
 
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1075,7 +1129,8 @@
 		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> · <a href="#rare-candy">Rare Candy</a> · <a href="#night-stretcher">Night Stretcher</a> · <a href="#switch">Switch</a> · <a href="#scramble-switch">Scramble Switch</a> · <a href="#dark-bell">Dark Bell</a></span></p>
 		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#punk-helmet">Punk Helmet</a> · <a href="#risky-ruins">Risky Ruins</a></span></p>
 		<p><b>Energy —</b><span><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a> · <a href="#basic-darkness-energy">Basic Darkness Energy</a></span></p>
-		<p><b>Gameplay Strategies —</b><span><a href="#1-the-two-turn-fuse">1. The Two-Turn Fuse</a> · <a href="#2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark</a> · <a href="#3-the-bench-tax">3. The Bench Tax</a> · <a href="#4-wearing-the-helmet">4. Wearing the Helmet</a> · <a href="#5-trading-ghosts">5. Trading Ghosts</a> · <a href="#6-reading-the-opening-hand">6. Reading the Opening Hand</a> · <a href="#7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</a> · <a href="#8-teaching-notes">8. Teaching Notes</a> · <a href="#versus-foxs-decks">Versus Fox&#x27;s Decks</a></span></p>
+		<p><b>Game Plans —</b><span><a href="#1-the-two-turn-fuse">1. The Two-Turn Fuse</a> · <a href="#2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark</a> · <a href="#3-the-bench-tax">3. The Bench Tax</a> · <a href="#4-wearing-the-helmet">4. Wearing the Helmet</a> · <a href="#5-trading-ghosts">5. Trading Ghosts</a> · <a href="#6-reading-the-opening-hand">6. Reading the Opening Hand</a> · <a href="#7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</a> · <a href="#8-teaching-notes">8. Teaching Notes</a></span></p>
+		<p><b><a href="#versus-foxs-decks">Versus Fox&#x27;s Decks</a></b></p>
 	</details>
 </nav>
 		<main>
@@ -1090,7 +1145,7 @@
 					<li><strong>Evolution</strong> (Pokémon only) — where this card sits in its chain, so you can see at a glance what it needs and what it becomes.</li>
 				</ul>
 				<p>The stat table repeats what is printed on the card, so you can check a number without getting up.</p>
-				<p>At the bottom is <strong><a href="#gameplay-strategies">Gameplay Strategies</a></strong> — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.</p>
+				<p>At the bottom is <strong><a href="#game-plans">Game Plans</a></strong> — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.</p>
 				<p><strong>Deck total: 60 cards.</strong> 21 Pokémon, 29 Trainers, 10 Energy. Every attacker is worth <strong>1 Prize card</strong>, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.</p>
 				<p><strong>This is the third build.</strong> The second one traded situational Trainers for Pokémon and an Energy engine. This one fixes where the Energy actually goes: Scramble Switch takes the ACE SPEC slot that was sitting empty, Night Stretcher doubles, half the Shadowy Darkness becomes Basic Darkness that <em>Sinister Surge</em> can still find on turn seven, and Ultra Ball leaves because three Dawn already fetch the whole Gengar line.</p>
 			</aside>
@@ -1863,7 +1918,7 @@
 			</aside>
 				</section>
 			</article>
-			<h2 id="gameplay-strategies">Gameplay Strategies</h2>
+			<h2 id="game-plans">Game Plans</h2>
 			<aside data-callout="note">
 				<p>These are the named plans. Learn the six below and you know how to pilot the deck. Everything above is just the parts list.</p>
 			</aside>

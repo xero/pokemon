@@ -12,17 +12,19 @@
 ---
 
 > ### Table of Contents
-> - [The Thesis](#the-thesis)
-> - [Deck List](#deck-list)
-> - [Key Card Text](#key-card-text)
-> - [The Energy Engine](#the-energy-engine)
-> - [Game Plans](#game-plans)
-> - [Versus the Kitchen Table](#versus-the-kitchen-table)
-> - [Versus the Card Shop](#versus-the-card-shop)
-> - [Test and Tune](#test-and-tune)
-> - [Alternatives](#alternatives)
-> - [Night Parade](#night-parade)
-> - [What To Buy](#what-to-buy)
+>
+> [The Thesis](#the-thesis) · [Deck List](#deck-list)
+>
+> **Pokémon** — [Litwick](#litwick--pitch-black-036--reg-j) · [Lampent](#lampent--pitch-black-037--reg-j) · [Mega Chandelure ex](#mega-chandelure-ex--pitch-black-038--reg-j) · [Pumpkaboo](#pumpkaboo--chaos-rising-040--reg-j) · [Gourgeist ex](#gourgeist-ex--chaos-rising-041--reg-j) · [Snorunt](#snorunt--twilight-masquerade-051--reg-h) · [Froslass](#froslass--twilight-masquerade-053--reg-h) · [Duskull](#duskull--shrouded-fable-018--reg-h) · [Dusknoir](#dusknoir--shrouded-fable-020--reg-h)
+> **Supporters** — [Lillie's Determination](#lillies-determination--mega-evolution-119--reg-i) · [Hilda](#hilda--white-flare-084--reg-i) · [Boss's Orders](#bosss-orders--mega-evolution-114--reg-i) · [Wally's Compassion](#wallys-compassion--mega-evolution-132--reg-i)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin--temporal-forces-144--reg-h) · [Rare Candy](#rare-candy--mega-evolution-125--reg-i) · [Poke Pad](#poke-pad--perfect-order-081--reg-j) · [Night Stretcher](#night-stretcher--shrouded-fable-061--reg-h) · [Wondrous Patch](#wondrous-patch--phantasmal-flames-094--reg-i) · [Switch](#switch--mega-evolution-130--reg-i) · [Prime Catcher](#prime-catcher--prismatic-evolutions-119--reg-h)
+> **Tool / Stadium** — [Air Balloon](#air-balloon--ascended-heroes-181--reg-i)
+> **Energy** — [Telepathic Psychic Energy](#telepathic-psychic-energy--perfect-order-088--reg-j) · [Basic Psychic Energy](#basic-psychic-energy--mega-evolution-energies-005)
+>
+> [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
+> [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Versus the Card Shop**](#versus-the-card-shop)
+> [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
+> [**Night Parade**](#night-parade) · [**What To Buy**](#what-to-buy)
 
 ---
 
@@ -97,17 +99,7 @@ Fittingly, the deck that beats Mega Chandelure hardest in the online meta wins w
 
 ---
 
-## Key Card Text
-
-Every card in the 60, what it does in this deck, and why it is this print. The staples appear in the other decks too, and each page tells its own copy of the story.
-
-### Mega Chandelure ex — Pitch Black 038 · Reg J
-
-**Stage 2 from Lampent. Gives up 3 Prize cards.** 350 HP, Retreat 2, and the stat line carries two quiet gifts: Resistance to Fighting, which blunts Mega Zygarde and the Fighting decks that hunt Gengar, and a Darkness Weakness that this house will absolutely exploit in the mirror.
-
-*Binding Flame* needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. It works from the Bench, so a Chandelure that is not attacking is still doing its job. **It stacks.** Two in play is plus 2 to their Retreat Cost and plus 100 to the attack, and that is settled; the official Pitch Black strategy article says to play multiple copies for exactly this reason.
-
-Three copies is the ceiling on purpose. Each one on the board is three Prizes standing in the open, and the second Flame buys far more than the third. Two on the board is the number.
+# Pokémon
 
 ### Litwick — Pitch Black 036 · Reg J
 
@@ -116,6 +108,14 @@ The Basic the deck stands on, and the only Psychic Litwick ever printed. The Whi
 ### Lampent — Pitch Black 037 · Reg J
 
 ***Spreading Light* is the endgame in one attack**: search your deck for up to 3 Lampent and bench them. They arrive as Lampent, not as Litwick, so each one is a Mega Chandelure next turn with no Rare Candy spent. This attack is why the line runs a fat 4 Lampent, and it is the trick that started this whole build. See [game plan 4](#4-the-spreading-light-endgame).
+
+### Mega Chandelure ex — Pitch Black 038 · Reg J
+
+**Stage 2 from Lampent. Gives up 3 Prize cards.** 350 HP, Retreat 2, and the stat line carries two quiet gifts: Resistance to Fighting, which blunts Mega Zygarde and the Fighting decks that hunt Gengar, and a Darkness Weakness that this house will absolutely exploit in the mirror.
+
+*Binding Flame* needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. It works from the Bench, so a Chandelure that is not attacking is still doing its job. **It stacks.** Two in play is plus 2 to their Retreat Cost and plus 100 to the attack, and that is settled; the official Pitch Black strategy article says to play multiple copies for exactly this reason.
+
+Three copies is the ceiling on purpose. Each one on the board is three Prizes standing in the open, and the second Flame buys far more than the third. Two on the board is the number.
 
 ### Pumpkaboo — Chaos Rising 040 · Reg J
 
@@ -147,9 +147,17 @@ Water type, so no searcher shares her and no Energy here pays her attack; she is
 
 One copy, because it is a tool rather than a line, and because Poke Pad, Night Stretcher, and *Come and Get You* all point at it when you want it.
 
+---
+
+# Trainers — Supporters
+
 ### Lillie's Determination — Mega Evolution 119 · Reg I
 
 The draw engine, at the full four. Shuffle your hand into your deck and draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The bonus clause reads "while you are still setting up," which is precisely when four evolution lines need the dig. The shuffle half matters too. Spare Stage 2s clogging your hand go back into the deck, where Hilda finds them again on the turn they actually matter.
+
+### Hilda — White Flare 084 · Reg I
+
+Search your deck for an Evolution Pokémon and an Energy card. In this deck that reads "Mega Chandelure ex plus a Telepathic Energy" off one Supporter, which is the exact pair the early turns hunt.
 
 ### Boss's Orders — Mega Evolution 114 · Reg I
 
@@ -161,9 +169,9 @@ Switch in 1 of your opponent's Benched Pokémon to the Active Spot. The whole th
 
 Nothing at this table one-shots a healthy 350. Every opponent is therefore playing a two-turn KO game, and Wally's deletes their first turn of work. It also erases the Freezing Shroud pings that would otherwise put a chipped Mega into Moon Mirage range. The Energy comes back to hand, not the discard, so the healed Mega re-arms by ordinary attachments while Gourgeist holds the front for one Energy.
 
-### Hilda — White Flare 084 · Reg I
+---
 
-Search your deck for an Evolution Pokémon and an Energy card. In this deck that reads "Mega Chandelure ex plus a Telepathic Energy" off one Supporter, which is the exact pair the early turns hunt.
+# Trainers — Items
 
 ### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
 
@@ -189,19 +197,31 @@ Attach a basic Psychic Energy from your discard pile to one of your Benched Psyc
 
 Switch your Active Pokémon with 1 of your Benched Pokémon. The plain escape hatch for the deck's own heavy bodies, because Binding Flame taxes the opponent's retreat and does nothing about yours. One copy. The trap wants gusts, not exits, and the [Alternatives](#alternatives) table trades this slot away more often than any other.
 
+### Prime Catcher — Prismatic Evolutions 119 · Reg H
+
+The ACE SPEC, and the deck's fourth gust. Switch in one of the opponent's Benched Pokémon, and if you do, switch your own Active with a Benched Pokémon. It is Boss's Orders with a free pivot stapled on, as an Item, so it plays alongside a Supporter on the turn the trap closes. The deck-list warning already covers the print rule. Play the English Prismatic Evolutions copy, never the Japanese starter one.
+
+---
+
+# Trainers — Tool & Stadium
+
 ### Air Balloon — Ascended Heroes 181 · Reg I
 
 The Pokémon this card is attached to retreats for 2 less. It lives on the Active Mega, whose Retreat 2 becomes free, and it turns an opposing Boss's Orders into a shrug. Ruffian pops it in one breath, which is half of the [card shop warning](#versus-the-card-shop) about where Telepathic sits.
 
-### Prime Catcher — Prismatic Evolutions 119 · Reg H
+---
 
-The ACE SPEC, and the deck's fourth gust. Switch in one of the opponent's Benched Pokémon, and if you do, switch your own Active with a Benched Pokémon. It is Boss's Orders with a free pivot stapled on, as an Item, so it plays alongside a Supporter on the turn the trap closes. The deck-list warning already covers the print rule. Play the English Prismatic Evolutions copy, never the Japanese starter one.
+# Energy
 
 ### Telepathic Psychic Energy — Perfect Order 088 · Reg J
 
 An Energy card that is also a Poffin. It provides [P], and when you attach it from hand to a Psychic Pokémon you search your deck for up to 2 Basic Psychic Pokémon and bench them. Litwick, Pumpkaboo, and Duskull qualify; Snorunt does not, because it is Water.
 
 Four copies and no more, for one reason: it is a Special Energy, so neither Wondrous Patch nor Night Stretcher can ever recover it, and Ruffian can knock it off a Pokémon permanently. It is a setup card. The six basic Psychic underneath it are the resilience.
+
+### Basic Psychic Energy — Mega Evolution Energies 005
+
+Six copies and never fewer. Basic Psychic is what Wondrous Patch re-attaches and Night Stretcher recovers, so these six are the renewable half of the Energy line, and [The Energy Engine](#the-energy-engine) is built on them. Basic Energy never rotates, and any English print is legal.
 
 ---
 
@@ -223,11 +243,11 @@ Every attack you will actually use costs [P], [P][P], or [P][P][C] at the worst.
 
 ---
 
-## Game Plans
+# Game Plans
 
 ---
 
-### 1. The Trap
+## 1. The Trap
 
 **The main line, and the reason this deck wins games it looks behind in.**
 
@@ -240,7 +260,7 @@ The targets worth dragging are the ones every deck benches and babies: the fat S
 
 Against a disciplined free-retreat pivot the attack floors at 180, and against those boards you stop feeding the trap and hand the game to Gourgeist, whose attacks never cared about retreat in the first place. Every gust in the deck exists to go around a pivot; *Shadow Bind* pins whatever is up front so the pivot never comes back out.
 
-### 2. Feeding the Rondo
+## 2. Feeding the Rondo
 
 **Gourgeist ex is the cheapest big attack in the deck, and your own Froslass is its supply line.**
 
@@ -248,7 +268,7 @@ Freezing Shroud pings every Ability Pokémon at every Checkup. After two Checkup
 
 Gourgeist itself has no Ability, so the Shroud never touches it. Trade it while it is ahead; 270 HP in an ex fight is a body you spend, not a body you keep.
 
-### 3. The Thirteen-Counter Button
+## 3. The Thirteen-Counter Button
 
 **Dusknoir trades one Prize for 130 damage placed with tweezers.**
 
@@ -260,7 +280,7 @@ Thirteen counters, placed anywhere on their board, once, then Dusknoir dies. The
 
 The price is honest: the self-KO hands over a Prize. Press the button to convert, never to vent.
 
-### 4. The Spreading Light Endgame
+## 4. The Spreading Light Endgame
 
 **One attack that schedules the rest of the game.**
 
@@ -268,7 +288,7 @@ Turn two, if the trap is not ready: Lampent Active, one Psychic, *Spreading Ligh
 
 Fetch what you can seat, not what you can fetch. Two Lampent is the usual right number; the third is a deliberate overfetch you make only when you want a 90 HP single-prize speed bump for the opponent to chew on.
 
-### 5. Bench Discipline
+## 5. Bench Discipline
 
 **Five seats, six claimants. This is the deck's real skill test.**
 
@@ -280,7 +300,7 @@ The steady-state Bench is Mega #2, Gourgeist, Froslass, the Dusk slot, and one f
 
 There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists and costs the Prime Catcher slot. That trade is written up in [Alternatives](#alternatives).
 
-### 6. What This Deck Gives Up
+## 6. What This Deck Gives Up
 
 - **Three Prizes on the core, no discount.** Two Mega knockouts plus a Dusknoir self-KO is a lost game. Position the Megas behind cheap bodies, never two exposed at once.
 - **A 26% mulligan rate.** Four evolution lines on ten Basics. The Poffins are load-bearing; dig for them.

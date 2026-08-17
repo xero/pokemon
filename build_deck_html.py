@@ -87,8 +87,7 @@ FLAVOR = {
         "Gengar — Perfect Order 050 · Reg J": ["gengar"],
         "Seviper — Phantasmal Flames 062 · Reg I": ["seviper"],
         "Sableye — Phantasmal Flames 059 · Reg I": ["sableye"],
-        "✗ Gengar Spirit Link — Skip It": ["wobbuffet-back"],
-        "Gengar Spirit Link — Phantom Forces 095": ["gengar-mega-shiny"],
+        "✗ Gengar Spirit Link — Skip It": ["wobbuffet-back", "gengar-mega-shiny"],
         "The Real Card Is the Ability, Not the Attack": ["gengar-booty"],
         "Versus the Kitchen Table": ["weezing"],
         "How To Play ex Style": ["charizard"],
@@ -618,6 +617,8 @@ def convert(src):
         nonlocal sect
         close_art()
         if sect is not None:
+            if sect and sect[0].lstrip() == "<details>":
+                sect.append("\t\t\t\t</details>")
             body.append("\n".join(["\t\t\t<section>"] + sect + ["\t\t\t</section>"]))
             sect = None
 
@@ -736,7 +737,10 @@ def convert(src):
                 # a table means this is a card or a glossary entry, both worth
                 # indexing. a ### with no table is a prose subsection inside a
                 # game plan, and listing those buries the plans themselves.
-                toc.append((3, name, a))
+                # the contents list shows the card's name, not the whole
+                # "Name — Set NNN · Reg X" heading, which reads like a deck
+                # list pasted into the nav.
+                toc.append((3, re.split(r"\s+[—-]\s+", name)[0], a))
             elif not has_image:
                 # no hand-written table. if the heading names a card, build one
                 # from cards.csv; the planning docs get their art this way.
@@ -747,7 +751,7 @@ def convert(src):
                     # each card is its own aside+section pair; the trailing
                     # open <section> then takes the hand-written prose
                     art = art[:-1] + blocks + [art[-1]]
-                    toc.append((3, name, a))
+                    toc.append((3, re.split(r"\s+[—-]\s+", name)[0], a))
             art[0] = art[0].replace("\x00", badge)
             i += 1
             continue
@@ -762,10 +766,17 @@ def convert(src):
             name = stripped[3:].strip()
             a = anchor(name, seen)
             toc.append((2, name, a))
+            head = (f'<h3 id="{a}">{inline(name)}'
+                    f'{flavor(name, flav, seen_flav)}</h3>')
             # a game plan gets its own box, the way a card does. left loose in
             # <main> its list markers hang outside the text column.
-            sect = [f'\t\t\t\t<h3 id="{a}">{inline(name)}'
-                    f'{flavor(name, flav, seen_flav)}</h3>']
+            if name == "What To Buy":
+                # the shopping list collapses behind its own heading; the box
+                # and the corner sprite stay, the contents wait to be asked.
+                sect = ["\t\t\t\t<details>",
+                        f"\t\t\t\t\t<summary>{head}</summary>"]
+            else:
+                sect = [f"\t\t\t\t{head}"]
             i += 1
             continue
 
@@ -799,7 +810,16 @@ def convert(src):
             while i < n and lines[i].strip().startswith("|"):
                 table.append(lines[i])
                 i += 1
-            for h in render_table(parse_table(table), "\t\t\t\t\t"):
+            grid = parse_table(table)
+            rendered = render_table(grid, "\t\t\t\t\t")
+            # a Qty table exists to feed the badges and the deck-list strip.
+            # on a page that draws the strip, the strip IS the deck list, so
+            # the rows stay in the markdown and out of the rendered page.
+            if (thumbs and rendered and grid and grid[0]
+                    and grid[0][0].strip().strip("*").strip().lower() == "qty"):
+                rendered[0] = rendered[0].replace(
+                    "<table>", "<table data-deck-rows>", 1)
+            for h in rendered:
                 emit(h)
             continue
 
@@ -828,40 +848,59 @@ def convert(src):
 def build_nav(toc):
     """A contents list grouped by the document's own headings.
 
-    Groups come from the top-level headings. Inside a group that has named
-    subsections, only those are listed: the game plans each contain their own
-    prose headings, and listing those buries the plans they belong to. A
-    heading that appears before any group, like Fox's word list, becomes a
-    group in its own right rather than being dropped.
+    Top-level headings are groups: an unlinked label followed by whatever
+    they contain. Inside a group that has numbered subsections, only those
+    are listed: the game plans each contain their own prose headings, and
+    listing those buries the plans they belong to.
+
+    A ## heading that is not a numbered plan is a section of its own, not a
+    child of the last group: The Thesis, the Versus pages, What To Buy. It
+    gets its own linked row, and if it carries indexed subsections of its own,
+    like Fox's word list, they follow it after the dash.
     """
     out = ["<nav>", "\t<details open>", "\t\t<summary>Contents</summary>"]
-    group, kids = None, []
-    # the planning docs have no top-level groups at all, only ## sections. with
-    # nothing to group under, promoting the first one turned it into a label
-    # for its own siblings and cost it its link.
+    # (origin level, label text, anchor or None, kids)
+    rows = []
+    # a page with no top-level groups at all, only ## sections, stays a flat
+    # list of links rather than promoting the first section into a label.
     grouped = any(lvl == 1 for lvl, _, _ in toc)
 
-    def flush():
-        nonlocal group
-        if kids:
-            if any(lvl == 2 for lvl, _, _ in kids):
-                kids[:] = [k for k in kids if k[0] == 2]
-            links = " · ".join(f'<a href="#{a}">{esc(x)}</a>' for _, x, a in kids)
-            name = NAV_LABEL.get(group, group)
-            label = f"<b>{esc(name)} —</b>" if group else ""
-            out.append(f"\t\t<p>{label}<span>{links}</span></p>")
-        elif group:
-            out.append(f'\t\t<p><b>{esc(NAV_LABEL.get(group, group))}</b></p>')
-        kids.clear()
-        group = None
+    kids = []
+    def start(origin, text, a):
+        nonlocal kids
+        kids = []
+        rows.append((origin, text, a, kids))
 
     for level, text, a in toc:
-        if level == 1 or (grouped and level == 2 and group is None and not kids):
-            flush()
-            group = text
+        if level == 1:
+            start(1, text, None)
+        elif level == 2 and grouped:
+            # a numbered heading ("3. The Bench Tax", "Reason 1: ...") is a
+            # child of the group above it; anything else is a section of its
+            # own, however far down the page it sits.
+            if rows and rows[-1][0] == 1 and re.match(r"(?:[A-Za-z]+ )?\d+[.:]", text):
+                kids.append((level, text, a))
+            else:
+                start(2, text, a)
         else:
+            if not rows:
+                start(0, "", None)
             kids.append((level, text, a))
-    flush()
+
+    for origin, text, a, ks in rows:
+        if any(lvl == 2 for lvl, _, _ in ks):
+            ks = [k for k in ks if k[0] == 2]
+        links = " · ".join(f'<a href="#{ka}">{esc(x)}</a>' for _, x, ka in ks)
+        name = NAV_LABEL.get(text, text)
+        if origin == 1:
+            label = f"<b>{esc(name)} —</b>" if ks else f"<b>{esc(name)}</b>"
+        elif origin == 2:
+            label = (f'<b><a href="#{a}">{esc(name)}</a>'
+                     + (" —</b>" if ks else "</b>"))
+        else:
+            label = ""
+        row_ = f"\t\t<p>{label}" + (f"<span>{links}</span>" if links else "") + "</p>"
+        out.append(row_)
     out += ["\t</details>", "</nav>"]
     return "\n".join(out)
 

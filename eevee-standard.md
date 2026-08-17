@@ -17,15 +17,17 @@
 ---
 
 > ### Table of Contents
-> - [The Thesis](#the-thesis)
-> - [Deck List](#deck-list)
-> - [The Swap](#the-swap)
-> - [Sun and Moon](#sun-and-moon)
-> - [Fire and Ice](#fire-and-ice)
-> - [Pick Your Ten](#pick-your-ten)
-> - [Key Card Text](#key-card-text)
-> - [Game Plans](#game-plans)
-> - [What To Buy](#what-to-buy)
+>
+> [The Thesis](#the-thesis) · [Deck List](#deck-list)
+> [The Swap](#the-swap) · [Sun and Moon](#sun-and-moon) · [Fire and Ice](#fire-and-ice) · [Pick Your Ten](#pick-your-ten)
+>
+> **Pokémon** — [Eevee](#eevee--prismatic-evolutions-074--reg-h) · [Eevee](#eevee--twilight-masquerade-135--reg-h) · [Eevee ex](#eevee-ex--prismatic-evolutions-075--reg-h) · [Flareon ex](#flareon-ex--prismatic-evolutions-014--reg-h) · [Umbreon ex](#umbreon-ex--prismatic-evolutions-060--reg-h) · [Espeon ex](#espeon-ex--prismatic-evolutions-034--reg-h) · [Glaceon](#glaceon--prismatic-evolutions-025--reg-h) · [Hoothoot](#hoothoot--stellar-crown-114--reg-h) · [Noctowl](#noctowl--stellar-crown-115--reg-h)
+> **Supporters** — [Lillie's Determination](#lillies-determination--mega-evolution-119--reg-i) · [Boss's Orders](#bosss-orders--mega-evolution-114--reg-i) · [Crispin](#crispin--stellar-crown-133--reg-h) · [Hilda](#hilda--white-flare-084--reg-i)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin--temporal-forces-144--reg-h) · [Ultra Ball](#ultra-ball--mega-evolution-131--reg-i) · [Switch](#switch--mega-evolution-130--reg-i) · [Night Stretcher](#night-stretcher--shrouded-fable-061--reg-h)
+> **Tool / Stadium** — [Sparkling Crystal](#sparkling-crystal--stellar-crown-142--reg-h) · [Battle Cage](#battle-cage--phantasmal-flames-085--reg-i)
+> **Energy** — [Darkness](#basic-darkness-energy--mega-evolution-energies-007) · [Fire](#basic-fire-energy--mega-evolution-energies-002) · [Psychic](#basic-psychic-energy--mega-evolution-energies-005) · [Water](#basic-water-energy--mega-evolution-energies-003)
+>
+> [**Game Plans**](#game-plans) · [**What To Buy**](#what-to-buy)
 
 ---
 
@@ -174,13 +176,7 @@ Your deck is 50 cards that never change, plus 10 cards you choose. Pick before w
 
 ---
 
-## Key Card Text
-
-### Eevee ex — Prismatic Evolutions 075 · Reg H
-
-**Basic, Tera, 200 HP, 2 Prizes.** *Rainbow DNA* lets it evolve into any Pokémon **ex** that evolves from Eevee. It cannot do this on your first turn or the turn you play it, so it needs a turn on the board first.
-
-Its attack, *Coruscating Quartz*, costs [R][W][L] and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.
+# Pokémon
 
 ### Eevee — Prismatic Evolutions 074 · Reg H
 
@@ -189,6 +185,12 @@ Its attack, *Coruscating Quartz*, costs [R][W][L] and will almost never be paid.
 ### Eevee — Twilight Masquerade 135 · Reg H
 
 *Ascension* searches your deck for a card that evolves from this Pokémon and puts it straight on. A free tutor into whichever Eeveelution the matchup wants, which matters in a deck built from single copies. One copy, because it costs you the turn.
+
+### Eevee ex — Prismatic Evolutions 075 · Reg H
+
+**Basic, Tera, 200 HP, 2 Prizes.** *Rainbow DNA* lets it evolve into any Pokémon **ex** that evolves from Eevee. It cannot do this on your first turn or the turn you play it, so it needs a turn on the board first.
+
+Its attack, *Coruscating Quartz*, costs [R][W][L] and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.
 
 ### Flareon ex — Prismatic Evolutions 014 · Reg H
 
@@ -218,6 +220,58 @@ Weak to Darkness ×2. Against Dad it is a one-shot weapon that will not survive 
 
 Note the delay. If they retreat the damaged Pokémon, the counters have nowhere to land.
 
+### Hoothoot — Stellar Crown 114 · Reg H
+
+Basic, and 70 HP exactly, which is what lets Buddy-Buddy Poffin fetch it. Four copies, because the owl line is the deck's Trainer engine and it cannot start without the bottom half.
+
+### Noctowl — Stellar Crown 115 · Reg H
+
+Stage 1 from Hoothoot. *Jewel Seeker*: when you play it from your hand to evolve, with any Tera Pokémon in play, search your deck for up to 2 Trainer cards. Every Eeveelution ex is Tera, so the condition is on from turn one. Two copies here rather than the pure Flareon build's three, because this deck spends more seats on Eeveelutions.
+
+---
+
+# Trainers — Supporters
+
+### Lillie's Determination — Mega Evolution 119 · Reg I
+
+Shuffle your hand into your deck and draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four and the only raw draw in the list. The shuffle half quietly returns whichever Eeveelution this matchup does not want, back into the deck where Hilda and Ultra Ball can find its replacement.
+
+### Boss's Orders — Mega Evolution 114 · Reg I
+
+Switch in 1 of your opponent's Benched Pokémon to the Active Spot. Tera makes Fox's Bench untouchable, and Boss's Orders is the reminder that the rule never protected the other side of the table. Three copies, the Ghetsis print, shared across the house.
+
+### Crispin — Stellar Crown 133 · Reg H
+
+Search your deck for up to 2 Basic Energy cards of **different types**: one to hand, one attached to a Pokémon. In a three-colour list this is the repair kit for a hand that opened all one colour. The buy warning below is about this card; the collection is genuinely pinched on it.
+
+### Hilda — White Flare 084 · Reg I
+
+Search your deck for an Evolution Pokémon and an Energy card, both to hand. Here that reads "the right Eeveelution plus the colour that casts it" off one Supporter, which is exactly the decision *Rainbow DNA* keeps asking. Two copies, and the same buy pinch as Crispin.
+
+---
+
+# Trainers — Items
+
+### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
+
+Bench up to 2 Basic Pokémon with 70 HP or less from the deck. Eight of the deck's ten Basics qualify; Eevee ex at 200 is the exception. Four copies, the setup engine, and the reason the Basic count can stay at a lean ten.
+
+### Ultra Ball — Mega Evolution 131 · Reg I
+
+Discard 2 other cards from your hand, then search your deck for any Pokémon. This is what lifts what Poffin cannot: Eevee ex and every single-copy Eeveelution. Four copies carry the whole toolbox. The discard is a real cost in a deck of one-ofs, so pitch spare Energy, never the gems.
+
+### Switch — Mega Evolution 130 · Reg I
+
+Switch your Active Pokémon with 1 of your Benched Pokémon. The fortress play in one Item: attack, then step the damaged Eeveelution back behind Tera where nothing can touch it. Three copies because the rotation is the defence.
+
+### Night Stretcher — Shrouded Fable 061 · Reg H
+
+Put a Pokémon or a basic Energy card from your discard pile into your hand. The single-copy Eeveelutions only stay safe at one copy because this brings them back. Two at home; the third comes in with [The Swap](#the-swap) for game night.
+
+---
+
+# Trainers — Tool & Stadium
+
 ### Sparkling Crystal — Stellar Crown 142 · Reg H
 
 **The ACE SPEC, and one per deck total.** Attacks used by the Tera Pokémon it is attached to cost 1 Energy less, of **any type**, which is what lets a three-colour deck cast three-colour attacks. It is a Tool, so it lives on one Pokémon; moving the plan means moving to a different body, not moving the card.
@@ -230,9 +284,29 @@ In Sun and Moon this is the answer to a whole deck. See [Sun and Moon](#sun-and-
 
 ---
 
-## Game Plans
+# Energy
 
-### 1. The Bench Is Safe, So Wait
+### Basic Darkness Energy — Mega Evolution Energies 007
+
+Six at home, the fuel for *Moon Mirage* and the ante for *Onyx*. Three of the six leave in Fire and Ice; the Energy line is most of what [The Swap](#the-swap) actually moves. Basic Energy never rotates, and any English print is legal.
+
+### Basic Fire Energy — Mega Evolution Energies 002
+
+Four at home, seven on game night. *Burning Charge* fetches Basic Energy straight from the deck, which is why a three-colour list gets away with thirteen total.
+
+### Basic Psychic Energy — Mega Evolution Energies 005
+
+Three, Sun and Moon only: the [P] in *Onyx* and *Amazez* once the Crystal has dropped the off-colour cost. They trade seats with the Water on game night.
+
+### Basic Water Energy — Mega Evolution Energies 003
+
+Three, Fire and Ice only: the [W] half of *Carnelian* and *Euclase*. At home they live in the swap pile, not the deck box.
+
+---
+
+# Game Plans
+
+## 1. The Bench Is Safe, So Wait
 
 Every Eeveelution ex is Tera, which prevents all attack damage while it is Benched. The only Pokémon that can be knocked out is the one currently Active.
 
@@ -240,19 +314,19 @@ So the deck's real skill is patience. Build the Bench, hold Eevee ex undeclared,
 
 The exception, and it matters at home: **Tera does not stop damage counters placed by Abilities.** That is what Battle Cage is for.
 
-### 2. Flareon ex Pays for Everything
+## 2. Flareon ex Pays for Everything
 
 *Burning Charge* is not a fallback attack, it is the Energy engine. Every turn it hits for 130 and puts two more Energy on the board from the deck, which is why the exotic colours can sit at three copies each and still be findable.
 
 Lead with it, keep it Active while the Bench fills, and let it fund whichever gem attack the game asks for.
 
-### 3. Three Knockouts and It Is Over
+## 3. Three Knockouts and It Is Over
 
 Every ex here gives up **2 Prizes**. Three knockouts and Fox has lost, which is a big change from a single-prize deck and the honest cost of the archetype.
 
 Two mitigations. Tera keeps the Bench untouchable, so only sloppy rotation loses bodies. And in Fire and Ice, the non-ex Glaceon gives up one Prize rather than two, which is the only real structural fix available.
 
-### 4. Choosing the Crystal's Home
+## 4. Choosing the Crystal's Home
 
 One Sparkling Crystal, one Pokémon, and the choice is not obvious.
 

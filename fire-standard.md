@@ -2,6 +2,20 @@
 
 ### Tournament-proven Fire Deck
 
+> ### Table of Contents
+>
+> [The Thesis](#the-thesis) · [Deck List](#deck-list)
+>
+> **Pokémon** — [Eevee](#eevee--prismatic-evolutions-074--reg-h) · [Eevee ex](#eevee-ex--prismatic-evolutions-075--reg-h) · [Flareon ex](#flareon-ex--prismatic-evolutions-014--reg-h) · [Hoothoot](#hoothoot--stellar-crown-114--reg-h) · [Noctowl](#noctowl--stellar-crown-115--reg-h)
+> **Supporters** — [Lillie's Determination](#lillies-determination--mega-evolution-119--reg-i) · [Crispin](#crispin--stellar-crown-133--reg-h) · [Boss's Orders](#bosss-orders--mega-evolution-114--reg-i) · [Gwynn](#gwynn--pitch-black-078--reg-j) · [Dawn](#dawn--phantasmal-flames-087--reg-i)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin--temporal-forces-144--reg-h) · [Ultra Ball](#ultra-ball--mega-evolution-131--reg-i) · [Switch](#switch--mega-evolution-130--reg-i) · [Night Stretcher](#night-stretcher--shrouded-fable-061--reg-h) · [Pokegear 3.0](#pokegear-30--black-bolt-084--reg-i)
+> **Tool / Stadium** — [Sparkling Crystal](#sparkling-crystal--stellar-crown-142--reg-h--ace-spec)
+> **Energy** — [Basic Fire Energy](#basic-fire-energy--mega-evolution-energies-002) · [Basic Water Energy](#basic-water-energy--mega-evolution-energies-003)
+>
+> [**Game Plans**](#game-plans) · [**Honest Weaknesses**](#honest-weaknesses)
+
+---
+
 ## The Thesis
 
 **Flareon ex is not an attacker that happens to accelerate Energy. It is an Energy engine that happens to hit for 130.**
@@ -82,31 +96,81 @@ Two free Trainers, on demand, twice or three times a game.
 
 ---
 
-## Key Card Text
-
-### Flareon ex — Prismatic Evolutions 014 · Reg H
-
-Stage 1 from Eevee. **Gives up 2 Prize cards.**
-
-### Eevee ex — Prismatic Evolutions 075 · Reg H
-
-Basic, so nothing evolves into it. **Gives up 2 Prize cards.**
+# Pokémon
 
 ### Eevee — Prismatic Evolutions 074 · Reg H
 
-The 50 HP body that turns into a Flareon ex on turn one.
+The 50 HP body that turns into a Flareon ex on turn one. *Boosted Evolution* is the trick, and [game plan 1](#1-turn-one-flareon) is the manual: it only works in the Active Spot.
+
+### Eevee ex — Prismatic Evolutions 075 · Reg H
+
+Basic, so nothing evolves into it. **Gives up 2 Prize cards.** 200 HP instead of 50, so it survives the early turns Eevee cannot — but it has no *Boosted Evolution*, so it always waits a turn before becoming Flareon ex. The patient start next to Eevee's fast one.
+
+### Flareon ex — Prismatic Evolutions 014 · Reg H
+
+Stage 1 from Eevee. **Gives up 2 Prize cards.** *Burning Charge* is the engine the whole [Thesis](#the-thesis) is about, and *Carnelian* is the 280 haymaker that [game plan 4](#4-carnelian-is-a-trap-most-of-the-time) tells you mostly not to use.
 
 ### Hoothoot — Stellar Crown 114 · Reg H
 
-Basic, and 70 HP exactly, which is what lets [Buddy-Buddy Poffin](#deck-list) fetch it.
+Basic, and 70 HP exactly, which is what lets [Buddy-Buddy Poffin](#buddy-buddy-poffin--temporal-forces-144--reg-h) fetch it.
 
 ### Noctowl — Stellar Crown 115 · Reg H
 
 Stage 1 from Hoothoot. *Jewel Seeker* only fires on the turn you evolve, and only while a **Tera** Pokémon is in play.
 
-### Crispin — Stellar Crown 133 · Reg H *(Supporter)*
+---
+
+# Trainers — Supporters
+
+### Lillie's Determination — Mega Evolution 119 · Reg I
+
+Shuffle your hand into your deck, then draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four, and the whole raw-draw engine: Jewel Seeker fetches the specific Trainers, so Lillie's is free to just refill the hand. The 8-card mode only works before your first Knock Out, which is exactly when this deck is digging for its line.
+
+### Crispin — Stellar Crown 133 · Reg H
 
 > Search your deck for up to 2 Basic Energy cards of **different types**. Put 1 into your hand and attach the other to 1 of your Pokémon.
+
+Note the words *different types*. The three Water are not filler; they are what keeps Crispin finding two cards instead of one.
+
+### Boss's Orders — Mega Evolution 114 · Reg I
+
+Switch in 1 of your opponent's Benched Pokémon to the Active Spot. This deck's own Bench is a fortress; Boss's Orders is how you make sure the opponent's is not. Three copies, and Jewel Seeker can go get one on the turn it wins the game.
+
+### Gwynn — Pitch Black 078 · Reg J
+
+Discard up to 2 Pokémon that don't have a Rule Box from your hand, and draw 3 cards for each one. Here the non-Rule-Box Pokémon are Eevee, Hoothoot, and Noctowl, so a spare seed late in the game becomes six cards. Two copies, a rhythm borrowed from dad's dark deck, and the discarded bodies are not lost: Night Stretcher brings them back.
+
+### Dawn — Phantasmal Flames 087 · Reg I
+
+Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, all three to hand. This deck has no Stage 2, so Dawn reads "an Eevee and a Flareon ex in one Supporter," which is the exact pair the first two turns hunt.
+
+---
+
+# Trainers — Items
+
+### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
+
+Bench up to 2 Basic Pokémon with 70 HP or less from the deck. Eevee at 50 and Hoothoot at exactly 70 qualify; Eevee ex at 200 does not. Remember the trap in [game plan 1](#1-turn-one-flareon): Poffin puts its Pokémon on the **Bench**, and *Boosted Evolution* only works in the Active Spot, so the Eevee you evolve immediately comes from your hand.
+
+### Ultra Ball — Mega Evolution 131 · Reg I
+
+Discard 2 other cards from your hand, then search your deck for any Pokémon. The one search that lifts what Poffin cannot: Eevee ex, Flareon ex, and the Noctowl you are saving for the right turn. Four copies, because the whole deck is a race to have the line standing by turn two.
+
+### Switch — Mega Evolution 130 · Reg I
+
+Switch your Active Pokémon with 1 of your Benched Pokémon. The fortress only protects the Bench, so the rotation is the defence: step forward, attack, step back to safety. Three copies makes that a habit rather than a luxury.
+
+### Night Stretcher — Shrouded Fable 061 · Reg H
+
+Put a Pokémon or a basic Energy card from your discard pile into your hand. Three copies. It re-buys whatever Gwynn pitched, brings a Knocked Out Flareon ex back for the next Eevee, and rescues an Energy when Crispin and Burning Charge have run the deck dry.
+
+### Pokegear 3.0 — Black Bolt 084 · Reg I
+
+Look at the top 7 cards of your deck and take a Supporter. The insurance policy for hands that open with no Supporter at all, which is the one kind of hand this deck cannot play its way out of. One copy filled the last slot for exactly that reason.
+
+---
+
+# Trainers — Tool & Stadium
 
 ### Sparkling Crystal — Stellar Crown 142 · Reg H · **ACE SPEC**
 
@@ -117,9 +181,21 @@ Stage 1 from Hoothoot. *Jewel Seeker* only fires on the turn you evolve, and onl
 
 ---
 
-## Game Plans
+# Energy
 
-### 1. Turn One, Flareon
+### Basic Fire Energy — Mega Evolution Energies 002
+
+Ten copies, and the count can stay this lean because *Burning Charge* attaches two more from the deck every time it lands. Basic Energy never rotates, and any English print is legal.
+
+### Basic Water Energy — Mega Evolution Energies 003
+
+Three copies with two jobs: the second type that keeps [Crispin](#crispin--stellar-crown-133--reg-h) finding a full two cards, and the [W] half of a 280-damage *Carnelian* once Sparkling Crystal drops the [L]. *Burning Charge* fetches them itself; nobody draws these on purpose.
+
+---
+
+# Game Plans
+
+## 1. Turn One, Flareon
 
 Eevee's *Boosted Evolution* breaks the "no evolving the turn you play it" rule — **but only in the Active Spot.**
 
@@ -136,7 +212,7 @@ Turn 2   Burning Charge: 130 damage + 2 free Energy attached anywhere
 
 **Eevee ex is the better body when you can afford the wait.** 200 HP versus 50, and *Rainbow DNA* means it evolves into any eeveelution ex — but it has no *Boosted Evolution*, so it cannot evolve the turn you play it. Plain Eevee is the fast start; Eevee ex is the resilient one.
 
-### 2. Jewel Seeker Is Your Real Draw Engine
+## 2. Jewel Seeker Is Your Real Draw Engine
 
 Two Trainer cards, searched, whenever a Noctowl evolves — as long as any Tera Pokémon is in play. Every eeveelution ex is Tera, so that condition is satisfied from turn one.
 
@@ -144,7 +220,7 @@ Two Trainer cards, searched, whenever a Noctowl evolves — as long as any Tera 
 
 Best targets: **Boss's Orders** to close a game, **Switch** to escape a lock, **Sparkling Crystal** if it hasn't shown up.
 
-### 3. The Bench Is a Fortress
+## 3. The Bench Is a Fortress
 
 Every eeveelution ex has *Tera*: **zero damage from attacks while Benched.**
 
@@ -155,7 +231,7 @@ This inverts the biggest weakness of his current deck. Charmanders on the Bench 
 > [!NOTE]
 > *Tera* stops **damage from attacks**. It does **not** stop damage counters placed by card effects — which is exactly what dad's psychic builds do. In [Psychic Lanterns](./psychic-lanterns.md), Dusknoir's *Cursed Blast* and Froslass's Checkup pings go straight through Tera. Good matchup lesson for both of them.
 
-### 4. Carnelian Is a Trap Most of the Time
+## 4. Carnelian Is a Trap Most of the Time
 
 280 damage for [R][W][L] is the biggest number in the deck. It also means **Flareon ex cannot attack next turn**, which in a 2-Prize deck usually hands the opponent a free turn to knock it out and take two.
 

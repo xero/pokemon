@@ -487,6 +487,38 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
 		}
 
 		article {
@@ -549,6 +581,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
 		}
 
 		/* the deck list: every distinct card in the deck at thumbnail size, in
@@ -956,6 +995,21 @@
 			background: none;
 		}
 
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1071,7 +1125,21 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><span><a href="#the-thesis">The Thesis</a> · <a href="#deck-list">Deck List</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#the-energy-engine">The Energy Engine</a> · <a href="#game-plans">Game Plans</a> · <a href="#versus-the-kitchen-table">Versus the Kitchen Table</a> · <a href="#versus-the-card-shop">Versus the Card Shop</a> · <a href="#test-and-tune">Test and Tune</a> · <a href="#alternatives">Alternatives</a> · <a href="#night-parade">Night Parade</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+		<p><b><a href="#the-thesis">The Thesis</a></b></p>
+		<p><b><a href="#deck-list">Deck List</a></b></p>
+		<p><b>Pokémon —</b><span><a href="#litwick-pitch-black-036-reg-j">Litwick</a> · <a href="#lampent-pitch-black-037-reg-j">Lampent</a> · <a href="#mega-chandelure-ex-pitch-black-038-reg-j">Mega Chandelure ex</a> · <a href="#pumpkaboo-chaos-rising-040-reg-j">Pumpkaboo</a> · <a href="#gourgeist-ex-chaos-rising-041-reg-j">Gourgeist ex</a> · <a href="#snorunt-twilight-masquerade-051-reg-h">Snorunt</a> · <a href="#froslass-twilight-masquerade-053-reg-h">Froslass</a> · <a href="#duskull-shrouded-fable-018-reg-h">Duskull</a> · <a href="#dusknoir-shrouded-fable-020-reg-h">Dusknoir</a></span></p>
+		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination</a> · <a href="#hilda-white-flare-084-reg-i">Hilda</a> · <a href="#bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders</a> · <a href="#wallys-compassion-mega-evolution-132-reg-i">Wally&#x27;s Compassion</a></span></p>
+		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin</a> · <a href="#rare-candy-mega-evolution-125-reg-i">Rare Candy</a> · <a href="#poke-pad-perfect-order-081-reg-j">Poke Pad</a> · <a href="#night-stretcher-shrouded-fable-061-reg-h">Night Stretcher</a> · <a href="#wondrous-patch-phantasmal-flames-094-reg-i">Wondrous Patch</a> · <a href="#switch-mega-evolution-130-reg-i">Switch</a> · <a href="#prime-catcher-prismatic-evolutions-119-reg-h">Prime Catcher</a></span></p>
+		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#air-balloon-ascended-heroes-181-reg-i">Air Balloon</a></span></p>
+		<p><b>Energy —</b><span><a href="#telepathic-psychic-energy-perfect-order-088-reg-j">Telepathic Psychic Energy</a> · <a href="#basic-psychic-energy-mega-evolution-energies-005">Basic Psychic Energy</a></span></p>
+		<p><b><a href="#the-energy-engine">The Energy Engine</a></b></p>
+		<p><b>Game Plans —</b><span><a href="#1-the-trap">1. The Trap</a> · <a href="#2-feeding-the-rondo">2. Feeding the Rondo</a> · <a href="#3-the-thirteen-counter-button">3. The Thirteen-Counter Button</a> · <a href="#4-the-spreading-light-endgame">4. The Spreading Light Endgame</a> · <a href="#5-bench-discipline">5. Bench Discipline</a> · <a href="#6-what-this-deck-gives-up">6. What This Deck Gives Up</a></span></p>
+		<p><b><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></b></p>
+		<p><b><a href="#versus-the-card-shop">Versus the Card Shop</a></b></p>
+		<p><b><a href="#test-and-tune">Test and Tune</a></b></p>
+		<p><b><a href="#alternatives">Alternatives</a></b></p>
+		<p><b><a href="#night-parade">Night Parade</a> —</b><span><a href="#chandelure-lost-thunder-103">Chandelure</a> · <a href="#chandelure-guardians-rising-013">Chandelure</a></span></p>
+		<p><b><a href="#what-to-buy">What To Buy</a></b></p>
 	</details>
 </nav>
 		<main>
@@ -1126,7 +1194,7 @@
 				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x6</span></figure>
 			</article>
 					<p><strong>Pokémon (22)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>4</td><td>Litwick</td><td>Pitch Black</td><td>036</td><td>J</td></tr>
@@ -1142,7 +1210,7 @@
 						</tbody>
 					</table>
 					<p><strong>Trainers (28)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
@@ -1160,7 +1228,7 @@
 						</tbody>
 					</table>
 					<p><strong>Energy (10)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>4</td><td>Telepathic Psychic Energy</td><td>Perfect Order</td><td>088</td><td>J</td></tr>
@@ -1173,35 +1241,7 @@
 				<p><strong>One ACE SPEC per deck.</strong> Prime Catcher is this deck&#x27;s one, and it must be the English print. The Japanese starter-set copy plays at the kitchen table and nowhere else.</p>
 			</aside>
 			</section>
-			<section>
-				<h3 id="key-card-text">Key Card Text</h3>
-					<p>Every card in the 60, what it does in this deck, and why it is this print. The staples appear in the other decks too, and each page tells its own copy of the story.</p>
-			<article>
-				<h3 id="mega-chandelure-ex-pitch-black-038-reg-j">Mega Chandelure ex — Pitch Black 038 · Reg J<span data-count>x3</span><span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
-				<aside>
-					<a data-art href="./assets/704795_mega-chandelure-ex-038-084.jpg" target="_blank" rel="noopener"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /></a>
-				</aside>
-				<section>
-					<dl class="card">
-						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>038/084</small></span></dd>
-						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
-						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
-						<dt>HP</dt><dd><span>350</span></dd>
-						<dt>Stage</dt><dd><span>Stage 2</span></dd>
-						<dt>Ability</dt><dd><span>Binding Flame - Your opponent&#x27;s Active Pokémon&#x27;s Retreat Cost is {{e}} more.</span></dd>
-						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
-						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
-						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
-						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Phantom Maze (130+) - This attack does 50 more damage for each Retreat Cost.</span></dd>
-					</dl>
-				</section>
-				<section>
-					<p><strong>Stage 2 from Lampent. Gives up 3 Prize cards.</strong> 350 HP, Retreat 2, and the stat line carries two quiet gifts: Resistance to Fighting, which blunts Mega Zygarde and the Fighting decks that hunt Gengar, and a Darkness Weakness that this house will absolutely exploit in the mirror.</p>
-					<p><em>Binding Flame</em> needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. It works from the Bench, so a Chandelure that is not attacking is still doing its job. <strong>It stacks.</strong> Two in play is plus 2 to their Retreat Cost and plus 100 to the attack, and that is settled; the official Pitch Black strategy article says to play multiple copies for exactly this reason.</p>
-					<p>Three copies is the ceiling on purpose. Each one on the board is three Prizes standing in the open, and the second Flame buys far more than the third. Two on the board is the number.</p>
-				</section>
-			</article>
+			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="litwick-pitch-black-036-reg-j">Litwick — Pitch Black 036 · Reg J<span data-count>x4</span><span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>
 				<aside>
@@ -1246,6 +1286,32 @@
 				</section>
 				<section>
 					<p><strong><em>Spreading Light</em> is the endgame in one attack</strong>: search your deck for up to 3 Lampent and bench them. They arrive as Lampent, not as Litwick, so each one is a Mega Chandelure next turn with no Rare Candy spent. This attack is why the line runs a fat 4 Lampent, and it is the trick that started this whole build. See <a href="#4-the-spreading-light-endgame">game plan 4</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mega-chandelure-ex-pitch-black-038-reg-j">Mega Chandelure ex — Pitch Black 038 · Reg J<span data-count>x3</span><span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704795_mega-chandelure-ex-038-084.jpg" target="_blank" rel="noopener"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>038/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Binding Flame - Your opponent&#x27;s Active Pokémon&#x27;s Retreat Cost is {{e}} more.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Phantom Maze (130+) - This attack does 50 more damage for each Retreat Cost.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2 from Lampent. Gives up 3 Prize cards.</strong> 350 HP, Retreat 2, and the stat line carries two quiet gifts: Resistance to Fighting, which blunts Mega Zygarde and the Fighting decks that hunt Gengar, and a Darkness Weakness that this house will absolutely exploit in the mirror.</p>
+					<p><em>Binding Flame</em> needs no Energy and no activation; it sits there making every retreat more expensive and every Phantom Maze 50 harder. It works from the Bench, so a Chandelure that is not attacking is still doing its job. <strong>It stacks.</strong> Two in play is plus 2 to their Retreat Cost and plus 100 to the attack, and that is settled; the official Pitch Black strategy article says to play multiple copies for exactly this reason.</p>
+					<p>Three copies is the ceiling on purpose. Each one on the board is three Prizes standing in the open, and the second Flame buys far more than the third. Two on the board is the number.</p>
 				</section>
 			</article>
 			<article>
@@ -1391,6 +1457,7 @@
 					<p>One copy, because it is a tool rather than a line, and because Poke Pad, Night Stretcher, and <em>Come and Get You</em> all point at it when you want it.</p>
 				</section>
 			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
 			<article>
 				<h3 id="lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination — Mega Evolution 119 · Reg I<span data-count>x4</span></h3>
 				<aside>
@@ -1407,6 +1474,24 @@
 				</section>
 				<section>
 					<p>The draw engine, at the full four. Shuffle your hand into your deck and draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The bonus clause reads &quot;while you are still setting up,&quot; which is precisely when four evolution lines need the dig. The shuffle half matters too. Spare Stage 2s clogging your hand go back into the deck, where Hilda finds them again on the turn they actually matter.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="hilda-white-flare-084-reg-i">Hilda — White Flare 084 · Reg I<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>084/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for an Evolution Pokémon and an Energy card. In this deck that reads &quot;Mega Chandelure ex plus a Telepathic Energy&quot; off one Supporter, which is the exact pair the early turns hunt.</p>
 				</section>
 			</article>
 			<article>
@@ -1448,24 +1533,7 @@
 					<p>Nothing at this table one-shots a healthy 350. Every opponent is therefore playing a two-turn KO game, and Wally&#x27;s deletes their first turn of work. It also erases the Freezing Shroud pings that would otherwise put a chipped Mega into Moon Mirage range. The Energy comes back to hand, not the discard, so the healed Mega re-arms by ordinary attachments while Gourgeist holds the front for one Energy.</p>
 				</section>
 			</article>
-			<article>
-				<h3 id="hilda-white-flare-084-reg-i">Hilda — White Flare 084 · Reg I<span data-count>x3</span></h3>
-				<aside>
-					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
-				</aside>
-				<section>
-					<dl class="card">
-						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>084/086</small></span></dd>
-						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
-						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
-						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
-					</dl>
-				</section>
-				<section>
-					<p>Search your deck for an Evolution Pokémon and an Energy card. In this deck that reads &quot;Mega Chandelure ex plus a Telepathic Energy&quot; off one Supporter, which is the exact pair the early turns hunt.</p>
-				</section>
-			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
 			<article>
 				<h3 id="buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin — Temporal Forces 144 · Reg H</h3>
 				<aside>
@@ -1575,24 +1643,6 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="air-balloon-ascended-heroes-181-reg-i">Air Balloon — Ascended Heroes 181 · Reg I<span data-count>x1</span></h3>
-				<aside>
-					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
-				</aside>
-				<section>
-					<dl class="card">
-						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>181/217</small></span></dd>
-						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
-						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
-						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
-					</dl>
-				</section>
-				<section>
-					<p>The Pokémon this card is attached to retreats for 2 less. It lives on the Active Mega, whose Retreat 2 becomes free, and it turns an opposing Boss&#x27;s Orders into a shrug. Ruffian pops it in one breath, which is half of the <a href="#versus-the-card-shop">card shop warning</a> about where Telepathic sits.</p>
-				</section>
-			</article>
-			<article>
 				<h3 id="prime-catcher-prismatic-evolutions-119-reg-h">Prime Catcher — Prismatic Evolutions 119 · Reg H<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/610474_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></a>
@@ -1610,6 +1660,26 @@
 					<p>The ACE SPEC, and the deck&#x27;s fourth gust. Switch in one of the opponent&#x27;s Benched Pokémon, and if you do, switch your own Active with a Benched Pokémon. It is Boss&#x27;s Orders with a free pivot stapled on, as an Item, so it plays alongside a Supporter on the turn the trap closes. The deck-list warning already covers the print rule. Play the English Prismatic Evolutions copy, never the Japanese starter one.</p>
 				</section>
 			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="air-balloon-ascended-heroes-181-reg-i">Air Balloon — Ascended Heroes 181 · Reg I<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>181/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Pokémon this card is attached to retreats for 2 less. It lives on the Active Mega, whose Retreat 2 becomes free, and it turns an opposing Boss&#x27;s Orders into a shrug. Ruffian pops it in one breath, which is half of the <a href="#versus-the-card-shop">card shop warning</a> about where Telepathic sits.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
 			<article>
 				<h3 id="telepathic-psychic-energy-perfect-order-088-reg-j">Telepathic Psychic Energy — Perfect Order 088 · Reg J<span data-count>x4</span></h3>
 				<aside>
@@ -1629,7 +1699,23 @@
 					<p>Four copies and no more, for one reason: it is a Special Energy, so neither Wondrous Patch nor Night Stretcher can ever recover it, and Ruffian can knock it off a Pokémon permanently. It is a setup card. The six basic Psychic underneath it are the resilience.</p>
 				</section>
 			</article>
-			</section>
+			<article>
+				<h3 id="basic-psychic-energy-mega-evolution-energies-005">Basic Psychic Energy — Mega Evolution Energies 005<span data-count>x6</span></h3>
+				<aside>
+					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>5</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Six copies and never fewer. Basic Psychic is what Wondrous Patch re-attaches and Night Stretcher recovers, so these six are the renewable half of the Energy line, and <a href="#the-energy-engine">The Energy Engine</a> is built on them. Basic Energy never rotates, and any English print is legal.</p>
+				</section>
+			</article>
 			<section>
 				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/snorunt.gif" alt="" /></span></h3>
 					<p>Froslass and Snorunt do not make this a two-color deck. Freezing Shroud is an Ability and costs nothing, so the Water types never attack and the Energy line stays the most mono thing on this shelf: <strong>4 Telepathic, 6 basic Psychic, zero Water.</strong></p>
@@ -1647,11 +1733,9 @@
 				<p><strong>Keep six basic Psychic in the list.</strong> Wondrous Patch reads &quot;basic Psychic Energy&quot; and Night Stretcher reads &quot;basic Energy,&quot; so neither one can pull a Telepathic back out of the discard. Shave the basic count for a fifth anything and you break the recovery loop the whole plan rests on.</p>
 			</aside>
 			</section>
+			<h2 id="game-plans">Game Plans</h2>
 			<section>
-				<h3 id="game-plans">Game Plans</h3>
-			<article>
 				<h3 id="1-the-trap">1. The Trap<span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
-				<section>
 					<p><strong>The main line, and the reason this deck wins games it looks behind in.</strong></p>
 					<ol>
 						<li>Build Mega Chandelure on the Bench: Poffin, Telepathic, Hilda, Rare Candy.</li>
@@ -1661,19 +1745,15 @@
 					</ol>
 					<p>The targets worth dragging are the ones every deck benches and babies: the fat Stage 2 charging up, the support Pokémon with Retreat 2 that never planned to fight. Their printed Retreat Cost is the targeting computer. Learn your opponents&#x27; Retreat Costs the way the dark deck learns Bench counts.</p>
 					<p>Against a disciplined free-retreat pivot the attack floors at 180, and against those boards you stop feeding the trap and hand the game to Gourgeist, whose attacks never cared about retreat in the first place. Every gust in the deck exists to go around a pivot; <em>Shadow Bind</em> pins whatever is up front so the pivot never comes back out.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="2-feeding-the-rondo">2. Feeding the Rondo<span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /></span></h3>
-				<section>
 					<p><strong>Gourgeist ex is the cheapest big attack in the deck, and your own Froslass is its supply line.</strong></p>
 					<p>Freezing Shroud pings every Ability Pokémon at every Checkup. After two Checkups with a normal board, two benched Chandelure lightly singed and a Dusknoir beside them, <em>Horrifying Rondo</em> reads 30 + 50 + 50 + 50 = <strong>180, for one Energy, from a body worth two Prizes.</strong> The counters on your own board cost almost nothing; ten a turn is noise against 350 HP. The one exception is written in <a href="#versus-the-kitchen-table">the kitchen-table section</a>: against Umbreon, those pings are a fuse, and Froslass waits.</p>
 					<p>Gourgeist itself has no Ability, so the Shroud never touches it. Trade it while it is ahead; 270 HP in an ex fight is a body you spend, not a body you keep.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="3-the-thirteen-counter-button">3. The Thirteen-Counter Button<span data-flavor><img src="./assets/sprites/dusknoir.gif" alt="" /></span></h3>
-				<section>
 					<p><strong>Dusknoir trades one Prize for 130 damage placed with tweezers.</strong></p>
 					<p>Thirteen counters, placed anywhere on their board, once, then Dusknoir dies. The three uses, best first:</p>
 					<ul>
@@ -1682,19 +1762,15 @@
 						<li><strong>Un-shield a tank.</strong> Counters ignore damage-reduction effects like Gaia Wave&#x27;s, so the button finishes what the attack could not.</li>
 					</ul>
 					<p>The price is honest: the self-KO hands over a Prize. Press the button to convert, never to vent.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="4-the-spreading-light-endgame">4. The Spreading Light Endgame<span data-flavor><img src="./assets/sprites/lampent.gif" alt="" /></span></h3>
-				<section>
 					<p><strong>One attack that schedules the rest of the game.</strong></p>
 					<p>Turn two, if the trap is not ready: Lampent Active, one Psychic, <em>Spreading Light</em>, up to 3 Lampent from the deck straight onto the Bench. Next turn those are Mega Chandelure with no Candy spent, and the deck&#x27;s centerpiece stops being a card you draw and becomes a card you schedule.</p>
 					<p>Fetch what you can seat, not what you can fetch. Two Lampent is the usual right number; the third is a deliberate overfetch you make only when you want a 90 HP single-prize speed bump for the opponent to chew on.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="5-bench-discipline">5. Bench Discipline<span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3>
-				<section>
 					<p><strong>Five seats, six claimants. This is the deck&#x27;s real skill test.</strong></p>
 					<p>The steady-state Bench is Mega #2, Gourgeist, Froslass, the Dusk slot, and one flex. Everything competes for that flex seat: the third Lampent, the second Froslass, a rebuilding Litwick. Three rules keep it honest:</p>
 					<ul>
@@ -1703,19 +1779,15 @@
 						<li><strong>Spreading Light is &quot;up to,&quot; not &quot;exactly.&quot;</strong> See game plan 4.</li>
 					</ul>
 					<p>There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists and costs the Prime Catcher slot. That trade is written up in <a href="#alternatives">Alternatives</a>.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="6-what-this-deck-gives-up">6. What This Deck Gives Up<span data-flavor><img src="./assets/sprites/duskull.gif" alt="" /></span></h3>
-				<section>
 					<ul>
 						<li><strong>Three Prizes on the core, no discount.</strong> Two Mega knockouts plus a Dusknoir self-KO is a lost game. Position the Megas behind cheap bodies, never two exposed at once.</li>
 						<li><strong>A 26% mulligan rate.</strong> Four evolution lines on ten Basics. The Poffins are load-bearing; dig for them.</li>
 						<li><strong>The 180 floor.</strong> A disciplined free-retreat deck blunts Phantom Maze all game. Gourgeist is the answer, and games against those decks are honest grinds.</li>
 						<li><strong>Darkness Weakness on almost everything.</strong> Every Gengar, Weezing, and Umbreon in this house strikes it. That is not a flaw; that is the rock-paper-scissors the table needed.</li>
 					</ul>
-				</section>
-			</article>
 			</section>
 			<section>
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
@@ -1840,7 +1912,8 @@
 			</article>
 			</section>
 			<section>
-				<h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3></summary>
 					<p>Own counts are live from the collection database; the Rare Candy, Poffin, Boss&#x27;s, and Lillie&#x27;s rows are shared with the other sleeved decks, so check <a href="./collection.html">the box</a> before ordering.</p>
 					<table>
 						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
@@ -1875,6 +1948,7 @@
 			<aside data-callout="important">
 				<p><strong>Regulation clock.</strong> Everything in this list is Standard legal as of August 2026; the <a href="#night-parade">Night Parade</a> prints, by design, are not. The H cards (the Snorunt and Duskull lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order core is Reg J with years left. The soul of the deck outlives its shell.</p>
 			</aside>
+				</details>
 			</section>
 		</main>
 		<footer>

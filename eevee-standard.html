@@ -487,6 +487,38 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
 		}
 
 		article {
@@ -549,6 +581,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
 		}
 
 		/* the deck list: every distinct card in the deck at thumbnail size, in
@@ -956,6 +995,21 @@
 			background: none;
 		}
 
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1071,7 +1125,19 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><span><a href="#the-thesis">The Thesis</a> · <a href="#deck-list">Deck List</a> · <a href="#the-swap">The Swap</a> · <a href="#sun-and-moon">Sun and Moon</a> · <a href="#fire-and-ice">Fire and Ice</a> · <a href="#pick-your-ten">Pick Your Ten</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#game-plans">Game Plans</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+		<p><b><a href="#the-thesis">The Thesis</a></b></p>
+		<p><b><a href="#deck-list">Deck List</a></b></p>
+		<p><b><a href="#the-swap">The Swap</a></b></p>
+		<p><b><a href="#sun-and-moon">Sun and Moon</a></b></p>
+		<p><b><a href="#fire-and-ice">Fire and Ice</a></b></p>
+		<p><b><a href="#pick-your-ten">Pick Your Ten</a></b></p>
+		<p><b>Pokémon —</b><span><a href="#eevee-prismatic-evolutions-074-reg-h">Eevee</a> · <a href="#eevee-twilight-masquerade-135-reg-h">Eevee</a> · <a href="#eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex</a> · <a href="#flareon-ex-prismatic-evolutions-014-reg-h">Flareon ex</a> · <a href="#umbreon-ex-prismatic-evolutions-060-reg-h">Umbreon ex</a> · <a href="#espeon-ex-prismatic-evolutions-034-reg-h">Espeon ex</a> · <a href="#glaceon-prismatic-evolutions-025-reg-h">Glaceon</a> · <a href="#hoothoot-stellar-crown-114-reg-h">Hoothoot</a> · <a href="#noctowl-stellar-crown-115-reg-h">Noctowl</a></span></p>
+		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination</a> · <a href="#bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders</a> · <a href="#crispin-stellar-crown-133-reg-h">Crispin</a> · <a href="#hilda-white-flare-084-reg-i">Hilda</a></span></p>
+		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin</a> · <a href="#ultra-ball-mega-evolution-131-reg-i">Ultra Ball</a> · <a href="#switch-mega-evolution-130-reg-i">Switch</a> · <a href="#night-stretcher-shrouded-fable-061-reg-h">Night Stretcher</a></span></p>
+		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#sparkling-crystal-stellar-crown-142-reg-h">Sparkling Crystal</a> · <a href="#battle-cage-phantasmal-flames-085-reg-i">Battle Cage</a></span></p>
+		<p><b>Energy —</b><span><a href="#basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy</a> · <a href="#basic-fire-energy-mega-evolution-energies-002">Basic Fire Energy</a> · <a href="#basic-psychic-energy-mega-evolution-energies-005">Basic Psychic Energy</a> · <a href="#basic-water-energy-mega-evolution-energies-003">Basic Water Energy</a></span></p>
+		<p><b>Game Plans —</b><span><a href="#1-the-bench-is-safe-so-wait">1. The Bench Is Safe, So Wait</a> · <a href="#2-flareon-ex-pays-for-everything">2. Flareon ex Pays for Everything</a> · <a href="#3-three-knockouts-and-it-is-over">3. Three Knockouts and It Is Over</a> · <a href="#4-choosing-the-crystals-home">4. Choosing the Crystal&#x27;s Home</a></span></p>
+		<p><b><a href="#what-to-buy">What To Buy</a></b></p>
 	</details>
 </nav>
 		<main>
@@ -1137,7 +1203,7 @@
 				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x3</span></figure>
 			</article>
 					<p><strong>Pokémon (19)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>3</td><td>Eevee</td><td>Prismatic Evolutions</td><td>074</td><td>H</td></tr>
@@ -1151,7 +1217,7 @@
 						</tbody>
 					</table>
 					<p><strong>Trainers (28)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
@@ -1167,7 +1233,7 @@
 						</tbody>
 					</table>
 					<p><strong>Energy (13)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th></tr></thead>
 						<tbody>
 							<tr><td>6</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>7</td></tr>
@@ -1232,32 +1298,7 @@
 					<p><strong>Going to game night? Take Fire and Ice.</strong> Flareon and Glaceon. Flareon&#x27;s <em>Carnelian</em> hits for 280, and doubles to 560 against the metal Pokémon lots of people play, which knocks out almost anything in one shot. Glaceon is not an ex, so if it gets knocked out your opponent only takes <strong>one</strong> Prize instead of two. That matters more than it sounds like it does.</p>
 					<p><strong>Either way, three things stay true.</strong> Flareon ex fetches your Energy with <em>Burning Charge</em>. Put Sparkling Crystal on whichever Pokémon you want to attack with, because it makes that attack cost one less Energy. And keep your Eeveelutions on the <strong>Bench</strong> until you need them, because Tera means nothing can touch them there.</p>
 			</section>
-			<section>
-				<h3 id="key-card-text">Key Card Text</h3>
-			<article>
-				<h3 id="eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex — Prismatic Evolutions 075 · Reg H<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
-				<aside>
-					<a data-art href="./assets/610430_eevee-ex-075-131.jpg" target="_blank" rel="noopener"><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></a>
-				</aside>
-				<section>
-					<dl class="card">
-						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>075/131</small></span></dd>
-						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
-						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
-						<dt>HP</dt><dd><span>200</span></dd>
-						<dt>Stage</dt><dd><span>Basic</span></dd>
-						<dt>Ability</dt><dd><span>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.) Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
-						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
-						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
-						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Coruscating Quartz (200)</span></dd>
-					</dl>
-				</section>
-				<section>
-					<p><strong>Basic, Tera, 200 HP, 2 Prizes.</strong> <em>Rainbow DNA</em> lets it evolve into any Pokémon <strong>ex</strong> that evolves from Eevee. It cannot do this on your first turn or the turn you play it, so it needs a turn on the board first.</p>
-					<p>Its attack, <em>Coruscating Quartz</em>, costs [R][W][L] and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.</p>
-				</section>
-			</article>
+			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="eevee-prismatic-evolutions-074-reg-h">Eevee — Prismatic Evolutions 074 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside>
@@ -1302,6 +1343,30 @@
 				</section>
 				<section>
 					<p><em>Ascension</em> searches your deck for a card that evolves from this Pokémon and puts it straight on. A free tutor into whichever Eeveelution the matchup wants, which matters in a deck built from single copies. One copy, because it costs you the turn.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex — Prismatic Evolutions 075 · Reg H<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610430_eevee-ex-075-131.jpg" target="_blank" rel="noopener"><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>075/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>200</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.) Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Coruscating Quartz (200)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, Tera, 200 HP, 2 Prizes.</strong> <em>Rainbow DNA</em> lets it evolve into any Pokémon <strong>ex</strong> that evolves from Eevee. It cannot do this on your first turn or the turn you play it, so it needs a turn on the board first.</p>
+					<p>Its attack, <em>Coruscating Quartz</em>, costs [R][W][L] and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.</p>
 				</section>
 			</article>
 			<article>
@@ -1405,6 +1470,200 @@
 				</section>
 			</article>
 			<article>
+				<h3 id="hoothoot-stellar-crown-114-reg-h">Hoothoot — Stellar Crown 114 · Reg H<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/567340_hoothoot.jpg" target="_blank" rel="noopener"><img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>114/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Triple Stab (10x) - Flip 3 coins. This attack does 10 damage for each heads.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Basic, and 70 HP exactly, which is what lets Buddy-Buddy Poffin fetch it. Four copies, because the owl line is the deck&#x27;s Trainer engine and it cannot start without the bottom half.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="noctowl-stellar-crown-115-reg-h">Noctowl — Stellar Crown 115 · Reg H<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/567341_noctowl.jpg" target="_blank" rel="noopener"><img src="./assets/567341_noctowl.jpg" alt="Noctowl" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>115/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Jewel Seeker - Once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, if you have any Tera Pokémon in play, you may search your deck for up to 2 Trainer cards, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Speed Wing (60)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Stage 1 from Hoothoot. <em>Jewel Seeker</em>: when you play it from your hand to evolve, with any Tera Pokémon in play, search your deck for up to 2 Trainer cards. Every Eeveelution ex is Tera, so the condition is on from turn one. Two copies here rather than the pure Flareon build&#x27;s three, because this deck spends more seats on Eeveelutions.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination — Mega Evolution 119 · Reg I<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Shuffle your hand into your deck and draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four and the only raw draw in the list. The shuffle half quietly returns whichever Eeveelution this matchup does not want, back into the deck where Hilda and Ultra Ball can find its replacement.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders — Mega Evolution 114 · Reg I<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. Tera makes Fox&#x27;s Bench untouchable, and Boss&#x27;s Orders is the reminder that the rule never protected the other side of the table. Three copies, the Ghetsis print, shared across the house.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="crispin-stellar-crown-133-reg-h">Crispin — Stellar Crown 133 · Reg H<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/567390_crispin-133-142.jpg" target="_blank" rel="noopener"><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>133/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Energy cards of different types, reveal them, and put 1 of them into your hand. Attach the other to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for up to 2 Basic Energy cards of <strong>different types</strong>: one to hand, one attached to a Pokémon. In a three-colour list this is the repair kit for a hand that opened all one colour. The buy warning below is about this card; the collection is genuinely pinched on it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="hilda-white-flare-084-reg-i">Hilda — White Flare 084 · Reg I<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>084/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for an Evolution Pokémon and an Energy card, both to hand. Here that reads &quot;the right Eeveelution plus the colour that casts it&quot; off one Supporter, which is exactly the decision <em>Rainbow DNA</em> keeps asking. Two copies, and the same buy pinch as Crispin.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin — Temporal Forces 144 · Reg H</h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Bench up to 2 Basic Pokémon with 70 HP or less from the deck. Eight of the deck&#x27;s ten Basics qualify; Eevee ex at 200 is the exception. Four copies, the setup engine, and the reason the Basic count can stay at a lean ten.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="ultra-ball-mega-evolution-131-reg-i">Ultra Ball — Mega Evolution 131 · Reg I<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard 2 other cards from your hand, then search your deck for any Pokémon. This is what lifts what Poffin cannot: Eevee ex and every single-copy Eeveelution. Four copies carry the whole toolbox. The discard is a real cost in a deck of one-ofs, so pitch spare Energy, never the gems.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch-mega-evolution-130-reg-i">Switch — Mega Evolution 130 · Reg I<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch your Active Pokémon with 1 of your Benched Pokémon. The fortress play in one Item: attack, then step the damaged Eeveelution back behind Tera where nothing can touch it. Three copies because the rotation is the defence.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher-shrouded-fable-061-reg-h">Night Stretcher — Shrouded Fable 061 · Reg H<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Put a Pokémon or a basic Energy card from your discard pile into your hand. The single-copy Eeveelutions only stay safe at one copy because this brings them back. Two at home; the third comes in with <a href="#the-swap">The Swap</a> for game night.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
 				<h3 id="sparkling-crystal-stellar-crown-142-reg-h">Sparkling Crystal — Stellar Crown 142 · Reg H<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/567416_sparkling-crystal.jpg" target="_blank" rel="noopener"><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></a>
@@ -1441,34 +1700,94 @@
 					<p>In Sun and Moon this is the answer to a whole deck. See <a href="#sun-and-moon">Sun and Moon</a>.</p>
 				</section>
 			</article>
-			</section>
-			<section>
-				<h3 id="game-plans">Game Plans</h3>
+			<h2 id="energy">Energy</h2>
 			<article>
-				<h3 id="1-the-bench-is-safe-so-wait">1. The Bench Is Safe, So Wait<span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
+				<h3 id="basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy — Mega Evolution Energies 007<span data-count>x6</span></h3>
+				<aside>
+					<a data-art href="./assets/656269_basic-darkness-energy-007.jpg" target="_blank" rel="noopener"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></a>
+				</aside>
 				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>7</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Six at home, the fuel for <em>Moon Mirage</em> and the ante for <em>Onyx</em>. Three of the six leave in Fire and Ice; the Energy line is most of what <a href="#the-swap">The Swap</a> actually moves. Basic Energy never rotates, and any English print is legal.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-fire-energy-mega-evolution-energies-002">Basic Fire Energy — Mega Evolution Energies 002<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/656264_basic-fire-energy-002.jpg" target="_blank" rel="noopener"><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>2</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Four at home, seven on game night. <em>Burning Charge</em> fetches Basic Energy straight from the deck, which is why a three-colour list gets away with thirteen total.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-psychic-energy-mega-evolution-energies-005">Basic Psychic Energy — Mega Evolution Energies 005<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>5</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three, Sun and Moon only: the [P] in <em>Onyx</em> and <em>Amazez</em> once the Crystal has dropped the off-colour cost. They trade seats with the Water on game night.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-water-energy-mega-evolution-energies-003">Basic Water Energy — Mega Evolution Energies 003</h3>
+				<aside>
+					<a data-art href="./assets/656265_basic-water-energy-003.jpg" target="_blank" rel="noopener"><img src="./assets/656265_basic-water-energy-003.jpg" alt="Basic Water Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>3</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three, Fire and Ice only: the [W] half of <em>Carnelian</em> and <em>Euclase</em>. At home they live in the swap pile, not the deck box.</p>
+				</section>
+			</article>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-the-bench-is-safe-so-wait">1. The Bench Is Safe, So Wait<span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
 					<p>Every Eeveelution ex is Tera, which prevents all attack damage while it is Benched. The only Pokémon that can be knocked out is the one currently Active.</p>
 					<p>So the deck&#x27;s real skill is patience. Build the Bench, hold Eevee ex undeclared, and only commit to Umbreon or Espeon once you know what you are looking at. Rotate with Switch and it is genuinely possible to go a long game losing one body.</p>
 					<p>The exception, and it matters at home: <strong>Tera does not stop damage counters placed by Abilities.</strong> That is what Battle Cage is for.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="2-flareon-ex-pays-for-everything">2. Flareon ex Pays for Everything<span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
-				<section>
 					<p><em>Burning Charge</em> is not a fallback attack, it is the Energy engine. Every turn it hits for 130 and puts two more Energy on the board from the deck, which is why the exotic colours can sit at three copies each and still be findable.</p>
 					<p>Lead with it, keep it Active while the Bench fills, and let it fund whichever gem attack the game asks for.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="3-three-knockouts-and-it-is-over">3. Three Knockouts and It Is Over<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
-				<section>
 					<p>Every ex here gives up <strong>2 Prizes</strong>. Three knockouts and Fox has lost, which is a big change from a single-prize deck and the honest cost of the archetype.</p>
 					<p>Two mitigations. Tera keeps the Bench untouchable, so only sloppy rotation loses bodies. And in Fire and Ice, the non-ex Glaceon gives up one Prize rather than two, which is the only real structural fix available.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="4-choosing-the-crystals-home">4. Choosing the Crystal&#x27;s Home<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
-				<section>
 					<p>One Sparkling Crystal, one Pokémon, and the choice is not obvious.</p>
 					<ul>
 						<li><strong>On Flareon ex</strong> it makes <em>Burning Charge</em> a one-Energy 130 with two Energy attached. Best default, best in a long game.</li>
@@ -1476,11 +1795,10 @@
 						<li><strong>On Espeon ex</strong> it makes <em>Amazez</em> castable at all from this Energy line.</li>
 					</ul>
 					<p>Decide by asking whether the game is a race or a grind. Races want it on Flareon; grinds want it on the gem.</p>
-				</section>
-			</article>
 			</section>
 			<section>
-				<h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3></summary>
 					<p>Counts are the maximum across both modes, so one purchase covers Sun and Moon and Fire and Ice together. Flareon ex is listed at 4 because Fire and Ice wants the fourth; Umbreon ex at 3 because Sun and Moon wants the third.</p>
 					<table>
 						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
@@ -1521,6 +1839,7 @@
 				<p><strong>Regulation clock.</strong> Every Eevee and every Eeveelution ex exists only at Regulation <strong>H</strong>, from Prismatic Evolutions plus a few promos. There is no I or J printing of any of them, so the whole archetype rotates around <strong>April 2027</strong> unless it gets reprinted.</p>
 				<p>That is fine at the kitchen table forever. For sanctioned play it is roughly eight months, which argues for buying the Flareon and Umbreon core deep and treating Espeon, Glaceon, and Battle Cage as the optional half.</p>
 			</aside>
+				</details>
 			</section>
 		</main>
 		<footer>

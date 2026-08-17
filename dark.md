@@ -14,7 +14,7 @@
 >
 > The stat table repeats what is printed on the card, so you can check a number without getting up.
 >
-> At the bottom is **[Gameplay Strategies](#gameplay-strategies)** — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.
+> At the bottom is **[Game Plans](#game-plans)** — the named game plans. Those are the part worth memorizing. The card entries teach you the pieces; that section teaches you the game.
 >
 > **Deck total: 60 cards.** 21 Pokémon, 29 Trainers, 10 Energy. Every attacker is worth **1 Prize card**, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.
 >
@@ -30,7 +30,7 @@
 > **Tool / Stadium** — [Punk Helmet](#punk-helmet) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Shadowy Darkness Energy](#shadowy-darkness-energy) · [Basic Darkness Energy](#basic-darkness-energy)
 >
-> [**Gameplay Strategies**](#gameplay-strategies)
+> [**Game Plans**](#game-plans)
 
 ---
 ---
@@ -1050,7 +1050,7 @@ The practical consequence: **the hand attachment goes to the front, Surge feeds 
 ---
 ---
 
-# Gameplay Strategies
+# Game Plans
 
 > These are the named plans. Learn the six below and you know how to pilot the deck. Everything above is just the parts list.
 

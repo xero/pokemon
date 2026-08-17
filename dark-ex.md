@@ -15,16 +15,19 @@
 ---
 
 > ### Table of Contents
-> - [What The Research Says](#what-the-research-says)
-> - [Deck List](#deck-list)
-> - [Key Card Text](#key-card-text)
-> - [The Real Card Is the Ability, Not the Attack](#the-real-card-is-the-ability-not-the-attack)
-> - [Game Plans](#game-plans)
-> - [The Meta This Deck Lives In](#the-meta-this-deck-lives-in)
-> - [Versus the Kitchen Table](#versus-the-kitchen-table)
-> - [✗ Gengar Spirit Link — Skip It](#-gengar-spirit-link--skip-it)
-> - [How To Play ex Style](#how-to-play-ex-style)
-> - [What To Buy](#what-to-buy)
+>
+> [What The Research Says](#what-the-research-says) · [Deck List](#deck-list)
+>
+> **Pokémon** — [Gastly](#gastly--phantasmal-flames-054--reg-i) · [Haunter](#haunter--perfect-order-049--reg-j) · [Mega Gengar ex](#mega-gengar-ex--phantasmal-flames-056--reg-i) · [Gengar](#gengar--perfect-order-050--reg-j) · [Toxel](#toxel--phantasmal-flames-067--reg-i) · [Toxtricity](#toxtricity--phantasmal-flames-068--reg-i) · [Seviper](#seviper--phantasmal-flames-062--reg-i) · [Sableye](#sableye--phantasmal-flames-059--reg-i) · [Munkidori](#munkidori--twilight-masquerade-095--reg-h) · [Pecharunt ex](#pecharunt-ex--shrouded-fable-039--reg-h) · [Fezandipiti ex](#fezandipiti-ex--shrouded-fable-038--reg-h)
+> **Supporters** — [Lillie's Determination](#lillies-determination--mega-evolution-119--reg-i) · [Dawn](#dawn--phantasmal-flames-087--reg-i) · [Boss's Orders](#bosss-orders--mega-evolution-114--reg-i) · [Grimsley's Move](#grimsleys-move--phantasmal-flames-090--reg-i)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin--temporal-forces-144--reg-h) · [Rare Candy](#rare-candy--mega-evolution-125--reg-i) · [Ultra Ball](#ultra-ball--mega-evolution-131--reg-i) · [Night Stretcher](#night-stretcher--shrouded-fable-061--reg-h) · [Energy Switch](#energy-switch--mega-evolution-115--reg-i)
+> **Tool / Stadium** — [Air Balloon](#air-balloon--ascended-heroes-181--reg-i)
+> **Energy** — [Legacy Energy](#legacy-energy--twilight-masquerade-167--reg-h) · [Basic Darkness Energy](#basic-darkness-energy--mega-evolution-energies-007)
+>
+> [**The Real Card Is the Ability, Not the Attack**](#the-real-card-is-the-ability-not-the-attack)
+> [**Game Plans**](#game-plans) · [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in)
+> [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**✗ Gengar Spirit Link — Skip It**](#-gengar-spirit-link--skip-it)
+> [**How To Play ex Style**](#how-to-play-ex-style) · [**What To Buy**](#what-to-buy)
 
 ---
 
@@ -94,9 +97,15 @@ Be honest about the ceiling. The standalone box is a league-night deck, not a Re
 
 ---
 
-## Key Card Text
+# Pokémon
 
-Every card in the 60, in this deck's terms, staples included. Some of these also serve other decks in the house; each page carries its own copy of the story.
+### Gastly — Phantasmal Flames 054 · Reg I
+
+The Basic everything is built on, and deliberately the **Phantasmal Flames print**, because Gengar Gang runs the Perfect Order print. Keeping the two decks on different printings means both can stay sleeved at once. Same 70 HP, so it stays a legal Buddy-Buddy Poffin target.
+
+### Haunter — Perfect Order 049 · Reg J
+
+***Haunt* places 3 damage counters for one Energy**, and placed counters ignore Weakness and Resistance. This print replaces the *Spooky Shot* Haunter from the first draft; a flat 40 is fine, but 30 that finishes what *Void Gale* started is better. The chip math section below is built on this card.
 
 ### Mega Gengar ex — Phantasmal Flames 056 · Reg I
 
@@ -108,14 +117,6 @@ Three printings exist and they are the same card: Phantasmal Flames 056 (cheapes
 
 > [!TIP]
 > **"Mega Gengar ex" and "Gengar" are different names**, so this list legally runs three of one and one of the other, and both evolve from the same Haunter line. One Gastly feeds either payoff.
-
-### Gastly — Phantasmal Flames 054 · Reg I
-
-The Basic everything is built on, and deliberately the **Phantasmal Flames print**, because Gengar Gang runs the Perfect Order print. Keeping the two decks on different printings means both can stay sleeved at once. Same 70 HP, so it stays a legal Buddy-Buddy Poffin target.
-
-### Haunter — Perfect Order 049 · Reg J
-
-***Haunt* places 3 damage counters for one Energy**, and placed counters ignore Weakness and Resistance. This print replaces the *Spooky Shot* Haunter from the first draft; a flat 40 is fine, but 30 that finishes what *Void Gale* started is better. The chip math section below is built on this card.
 
 ### Gengar — Perfect Order 050 · Reg J
 
@@ -164,6 +165,10 @@ One honest caveat the first draft missed. **Munkidori is Psychic, not Darkness**
 
 *Flip the Script* draws 3 whenever one of your Pokémon was Knocked Out on their last turn, and this deck plans to lose a cheap body most turns. A 2-prize liability that Concealment discounts to 1.
 
+---
+
+# Trainers — Supporters
+
 ### Lillie's Determination — Mega Evolution 119 · Reg I
 
 Shuffle your hand into your deck, then draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four, because this deck digs on a schedule: Rare Candy, the right attacker, and the Energy that pays for it all need to arrive in order. The 8-card mode only fires while you have taken no Prizes, which is a setting-up bonus, and this deck spends its first two turns setting up.
@@ -179,6 +184,10 @@ Switch in 1 of your opponent's Benched Pokémon to the Active Spot. [How To Play
 ### Grimsley's Move — Phantasmal Flames 090 · Reg I
 
 Look at the top 7, bench a Darkness Pokémon you find. Not usable turn one. It is the Supporter version of what the deck already wants: more bodies, fewer dead turns. You own one from the Mega Battle Deck.
+
+---
+
+# Trainers — Items
 
 ### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
 
@@ -200,15 +209,27 @@ Put a Pokémon or a basic Energy card from your discard pile into your hand. Thr
 
 Moves a **basic** Energy between your Pokémon. It cannot move Legacy Energy. This is how a stranded Energy reaches Seviper, and how Munkidori gets his Darkness without costing your attachment for the turn.
 
+---
+
+# Trainers — Tool & Stadium
+
 ### Air Balloon — Ascended Heroes 181 · Reg I
 
 Retreat cost minus two. It lives on Mega Gengar, whose retreat of 2 becomes free. Your two Japanese starter-set copies are the same card but are not legal at US events; this buys one English print.
+
+---
+
+# Energy
 
 ### Legacy Energy — Twilight Masquerade 167 · Reg H
 
 The ACE SPEC. It provides one Energy of any type, and **if the Pokémon holding it is Knocked Out by an attack, the opponent takes one fewer Prize card, once per game.**
 
 That clause stacks with *Shadowy Concealment*. A Seviper holding Legacy Energy, Knocked Out by an opposing ex, awards **zero** prizes twice over; a Fezandipiti ex holding it awards zero; Mega Gengar itself holding it awards one instead of three. Night Stretcher cannot recover it, so the once per game is truly once.
+
+### Basic Darkness Energy — Mega Evolution Energies 007
+
+Twelve copies, the deepest Energy line in the house, because Sinister Surge feeds it out of the deck and Void Gale only moves what already arrived. Every recovery effect in the list reads basic Energy, so these twelve recycle forever; Legacy Energy does not. Basic Energy never rotates, and any English print is legal.
 
 ---
 
@@ -234,11 +255,11 @@ They Knock Out your 240-damage Seviper with a Dragapult ex and collect nothing. 
 
 ---
 
-## Game Plans
+# Game Plans
 
 ---
 
-### 1. The Energy River
+## 1. The Energy River
 
 Energy in this deck flows in a loop, and the loop is the engine.
 
@@ -254,7 +275,7 @@ Toxtricity is the only piece that needs setting up, and it is a Stage 1 off a Ba
 
 The counters Sinister Surge leaves behind are not a cost. They are Munkidori's ammunition, thrown at the opponent three at a time.
 
-### 2. Seviper Does the Fighting
+## 2. Seviper Does the Fighting
 
 The deck's default posture, most turns of most games. **Mega Gengar sits on the Bench; Seviper sits in front.**
 
@@ -262,7 +283,7 @@ While the Mega is in play, Seviper hits 240 and gives up nothing to an ex. So th
 
 Send Mega Gengar itself forward when the numbers demand 230, when a second Seviper is not ready, or when 350 HP needs to absorb two hits while the Bench rebuilds. Just count first. Its death hands over 2 Prizes even under its own ability, a third of their game in one Knock Out.
 
-### 3. Chip Math
+## 3. Chip Math
 
 The two-shot problem from the first draft is still the deck's central math problem. *Void Gale* does 230 and the format's big Megas carry 330 to 380 HP. The fix is that this list now places free damage counters from three directions, and counters ignore Weakness and Resistance.
 
@@ -280,7 +301,7 @@ The standard kill sequences, worth memorizing:
 
 Haunter earns its Active turns early, before Rare Candy arrives. Three counters a turn from a 100 HP body your opponent feels silly killing is how 230 becomes lethal later.
 
-### 4. The Pecharunt Pivot
+## 4. The Pecharunt Pivot
 
 *Subjugating Chains* is the deck's tempo. Once every turn, for free: the damaged Mega walks to the Bench and a fresh Seviper walks out Poisoned, or the Seviper that just traded walks back and Mega Gengar comes forward with Air Balloon already attached.
 
@@ -288,7 +309,7 @@ The Poison costs 10 a turn. On a 350 HP Mega or a Seviper that expects to trade 
 
 The pivot also un-does the opponent's Boss's Orders. They drag Mega Gengar Active to force bad trades; you pivot it right back out on your turn without spending a card. That exchange, their Supporter against your free ability, wins long games.
 
-### 5. When Concealment Is Blank
+## 5. When Concealment Is Blank
 
 Against single-prize decks the ability does nothing, and this is the matchup class the deck genuinely fears. The plan changes.
 
@@ -329,7 +350,7 @@ The honest summary: this deck preys on the Dragapult third of the room, holds it
 
 A card that looks purpose-built for this deck and does nothing in it. Kept from the first draft because the reasons still teach.
 
-### Gengar Spirit Link — Phantom Forces 095
+#### Gengar Spirit Link — Phantom Forces 095
 
 | Problem | Detail |
 | :--- | :--- |

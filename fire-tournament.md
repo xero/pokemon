@@ -802,7 +802,7 @@ It's an Item, so it's free. Play it *first*, see which Supporter it finds, then 
 ---
 ---
 
-# Trainers — Tool
+# Trainers — Tool & Stadium
 
 ---
 

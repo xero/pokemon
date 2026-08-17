@@ -103,7 +103,7 @@ Every game word you need, in order of how much you'll use it.
 > **Pokémon** — [Charmander](#charmander) · [Charmeleon](#charmeleon) · [Charizard](#charizard) · [Eevee](#eevee) · [Flareon](#flareon) · [Sudowoodo](#sudowoodo)
 > **Supporters** — [Leon](#leon) · [Welder](#welder) · [Professor's Research](#professors-research-professor-oak) · [Boss's Orders](#bosss-orders-ghetsis) · [Kindler](#kindler) · [Zinnia's Resolve](#zinnias-resolve)
 > **Items** — [Rare Candy](#rare-candy) · [Ultra Ball](#ultra-ball) · [Nest Ball](#nest-ball) · [Evolution Incense](#evolution-incense) · [Switch](#switch) · [Ordinary Rod](#ordinary-rod)
-> **Stadium** — [Magma Basin](#magma-basin)
+> **Trainers (Tool / Stadium)** — [Magma Basin](#magma-basin)
 > **Energy** — [Basic Fire Energy](#basic-fire-energy)
 >
 > [**Game Plans**](#game-plans) · [**Your Other Eevees and Charizards**](#your-other-eevees-and-charizards)
@@ -952,7 +952,7 @@ The undo button. Takes up to **2 Pokémon and up to 2 Energy** back out of your 
 ---
 ---
 
-# Stadium
+# Trainers — Tool & Stadium
 
 ---
 

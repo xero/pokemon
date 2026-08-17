@@ -487,6 +487,38 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
 		}
 
 		article {
@@ -549,6 +581,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
 		}
 
 		/* the deck list: every distinct card in the deck at thumbnail size, in
@@ -956,6 +995,21 @@
 			background: none;
 		}
 
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1071,7 +1125,20 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><span><a href="#what-the-research-says">What The Research Says</a> · <a href="#deck-list">Deck List</a> · <a href="#key-card-text">Key Card Text</a> · <a href="#the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack</a> · <a href="#game-plans">Game Plans</a> · <a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a> · <a href="#versus-the-kitchen-table">Versus the Kitchen Table</a> · <a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a> · <a href="#how-to-play-ex-style">How To Play ex Style</a> · <a href="#what-to-buy">What To Buy</a></span></p>
+		<p><b><a href="#what-the-research-says">What The Research Says</a></b></p>
+		<p><b><a href="#deck-list">Deck List</a></b></p>
+		<p><b>Pokémon —</b><span><a href="#gastly-phantasmal-flames-054-reg-i">Gastly</a> · <a href="#haunter-perfect-order-049-reg-j">Haunter</a> · <a href="#mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex</a> · <a href="#gengar-perfect-order-050-reg-j">Gengar</a> · <a href="#toxel-phantasmal-flames-067-reg-i">Toxel</a> · <a href="#toxtricity-phantasmal-flames-068-reg-i">Toxtricity</a> · <a href="#seviper-phantasmal-flames-062-reg-i">Seviper</a> · <a href="#sableye-phantasmal-flames-059-reg-i">Sableye</a> · <a href="#munkidori-twilight-masquerade-095-reg-h">Munkidori</a> · <a href="#pecharunt-ex-shrouded-fable-039-reg-h">Pecharunt ex</a> · <a href="#fezandipiti-ex-shrouded-fable-038-reg-h">Fezandipiti ex</a></span></p>
+		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination</a> · <a href="#dawn-phantasmal-flames-087-reg-i">Dawn</a> · <a href="#bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders</a> · <a href="#grimsleys-move-phantasmal-flames-090-reg-i">Grimsley&#x27;s Move</a></span></p>
+		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin</a> · <a href="#rare-candy-mega-evolution-125-reg-i">Rare Candy</a> · <a href="#ultra-ball-mega-evolution-131-reg-i">Ultra Ball</a> · <a href="#night-stretcher-shrouded-fable-061-reg-h">Night Stretcher</a> · <a href="#energy-switch-mega-evolution-115-reg-i">Energy Switch</a></span></p>
+		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#air-balloon-ascended-heroes-181-reg-i">Air Balloon</a></span></p>
+		<p><b>Energy —</b><span><a href="#legacy-energy-twilight-masquerade-167-reg-h">Legacy Energy</a> · <a href="#basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy</a></span></p>
+		<p><b><a href="#the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack</a></b></p>
+		<p><b>Game Plans —</b><span><a href="#1-the-energy-river">1. The Energy River</a> · <a href="#2-seviper-does-the-fighting">2. Seviper Does the Fighting</a> · <a href="#3-chip-math">3. Chip Math</a> · <a href="#4-the-pecharunt-pivot">4. The Pecharunt Pivot</a> · <a href="#5-when-concealment-is-blank">5. When Concealment Is Blank</a></span></p>
+		<p><b><a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a></b></p>
+		<p><b><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></b></p>
+		<p><b><a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a></b></p>
+		<p><b><a href="#how-to-play-ex-style">How To Play ex Style</a> —</b><span><a href="#3-the-trade-is-the-whole-game">3. The trade is the whole game</a> · <a href="#7-errors-to-expect-on-the-way-over">7. Errors to expect on the way over</a></span></p>
+		<p><b><a href="#what-to-buy">What To Buy</a></b></p>
 	</details>
 </nav>
 		<main>
@@ -1123,7 +1190,7 @@
 				<figure><img src="./assets/550211_legacy-energy.jpg" alt="Legacy Energy" /></figure>
 			</article>
 					<p><strong>Pokémon (21)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>4</td><td>Gastly</td><td>Phantasmal Flames</td><td>054</td><td>I</td></tr>
@@ -1140,7 +1207,7 @@
 						</tbody>
 					</table>
 					<p><strong>Trainers (26)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
@@ -1156,7 +1223,7 @@
 						</tbody>
 					</table>
 					<p><strong>Energy (13)</strong></p>
-					<table>
+					<table data-deck-rows>
 						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
 						<tbody>
 							<tr><td>12</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>007</td><td>-</td></tr>
@@ -1169,37 +1236,7 @@
 				<p><strong>One ACE SPEC per deck, total.</strong> Legacy Energy is this deck&#x27;s one. You also own Prime Catcher and Scramble Switch; either could take the slot instead, but not alongside it.</p>
 			</aside>
 			</section>
-			<section>
-				<h3 id="key-card-text">Key Card Text</h3>
-					<p>Every card in the 60, in this deck&#x27;s terms, staples included. Some of these also serve other decks in the house; each page carries its own copy of the story.</p>
-			<article>
-				<h3 id="mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex — Phantasmal Flames 056 · Reg I<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
-				<aside>
-					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
-				</aside>
-				<section>
-					<dl class="card">
-						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
-						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
-						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
-						<dt>HP</dt><dd><span>350</span></dd>
-						<dt>Stage</dt><dd><span>Stage 2</span></dd>
-						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
-						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
-						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
-						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
-					</dl>
-				</section>
-				<section>
-					<p><strong>Stage 2 from Haunter. Gives up 3 Prize cards.</strong> Unlike the XY-era &quot;M&quot; cards, playing it does not end your turn; it evolves like any other Stage 2. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56">Bulbapedia</a>))</p>
-					<p>Read <em>Void Gale</em> precisely. It moves <strong>one Energy, of any type</strong>, from this Pokémon to a Benched Pokémon. Attack for 230, then bank an Energy on whoever attacks next. The attack never strands its own fuel.</p>
-					<p>Three printings exist and they are the same card: Phantasmal Flames 056 (cheapest), Ascended Heroes 125, and the Mega Evolution promo 073. They share one four-copy limit because the limit counts names. Ignore anything numbered above the set size; those are the collector prints.</p>
-			<aside data-callout="tip">
-				<p><strong>&quot;Mega Gengar ex&quot; and &quot;Gengar&quot; are different names</strong>, so this list legally runs three of one and one of the other, and both evolve from the same Haunter line. One Gastly feeds either payoff.</p>
-			</aside>
-				</section>
-			</article>
+			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="gastly-phantasmal-flames-054-reg-i">Gastly — Phantasmal Flames 054 · Reg I<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
 				<aside>
@@ -1242,6 +1279,34 @@
 				</section>
 				<section>
 					<p><strong><em>Haunt</em> places 3 damage counters for one Energy</strong>, and placed counters ignore Weakness and Resistance. This print replaces the <em>Spooky Shot</em> Haunter from the first draft; a flat 40 is fine, but 30 that finishes what <em>Void Gale</em> started is better. The chip math section below is built on this card.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex — Phantasmal Flames 056 · Reg I<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2 from Haunter. Gives up 3 Prize cards.</strong> Unlike the XY-era &quot;M&quot; cards, playing it does not end your turn; it evolves like any other Stage 2. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56">Bulbapedia</a>))</p>
+					<p>Read <em>Void Gale</em> precisely. It moves <strong>one Energy, of any type</strong>, from this Pokémon to a Benched Pokémon. Attack for 230, then bank an Energy on whoever attacks next. The attack never strands its own fuel.</p>
+					<p>Three printings exist and they are the same card: Phantasmal Flames 056 (cheapest), Ascended Heroes 125, and the Mega Evolution promo 073. They share one four-copy limit because the limit counts names. Ignore anything numbered above the set size; those are the collector prints.</p>
+			<aside data-callout="tip">
+				<p><strong>&quot;Mega Gengar ex&quot; and &quot;Gengar&quot; are different names</strong>, so this list legally runs three of one and one of the other, and both evolve from the same Haunter line. One Gastly feeds either payoff.</p>
+			</aside>
 				</section>
 			</article>
 			<article>
@@ -1437,6 +1502,7 @@
 					<p><em>Flip the Script</em> draws 3 whenever one of your Pokémon was Knocked Out on their last turn, and this deck plans to lose a cheap body most turns. A 2-prize liability that Concealment discounts to 1.</p>
 				</section>
 			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
 			<article>
 				<h3 id="lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination — Mega Evolution 119 · Reg I<span data-count>x4</span></h3>
 				<aside>
@@ -1509,6 +1575,7 @@
 					<p>Look at the top 7, bench a Darkness Pokémon you find. Not usable turn one. It is the Supporter version of what the deck already wants: more bodies, fewer dead turns. You own one from the Mega Battle Deck.</p>
 				</section>
 			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
 			<article>
 				<h3 id="buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin — Temporal Forces 144 · Reg H</h3>
 				<aside>
@@ -1599,6 +1666,7 @@
 					<p>Moves a <strong>basic</strong> Energy between your Pokémon. It cannot move Legacy Energy. This is how a stranded Energy reaches Seviper, and how Munkidori gets his Darkness without costing your attachment for the turn.</p>
 				</section>
 			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
 			<article>
 				<h3 id="air-balloon-ascended-heroes-181-reg-i">Air Balloon — Ascended Heroes 181 · Reg I<span data-count>x1</span></h3>
 				<aside>
@@ -1617,6 +1685,7 @@
 					<p>Retreat cost minus two. It lives on Mega Gengar, whose retreat of 2 becomes free. Your two Japanese starter-set copies are the same card but are not legal at US events; this buys one English print.</p>
 				</section>
 			</article>
+			<h2 id="energy">Energy</h2>
 			<article>
 				<h3 id="legacy-energy-twilight-masquerade-167-reg-h">Legacy Energy — Twilight Masquerade 167 · Reg H<span data-count>x1</span></h3>
 				<aside>
@@ -1636,7 +1705,23 @@
 					<p>That clause stacks with <em>Shadowy Concealment</em>. A Seviper holding Legacy Energy, Knocked Out by an opposing ex, awards <strong>zero</strong> prizes twice over; a Fezandipiti ex holding it awards zero; Mega Gengar itself holding it awards one instead of three. Night Stretcher cannot recover it, so the once per game is truly once.</p>
 				</section>
 			</article>
-			</section>
+			<article>
+				<h3 id="basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy — Mega Evolution Energies 007<span data-count>x12</span></h3>
+				<aside>
+					<a data-art href="./assets/656269_basic-darkness-energy-007.jpg" target="_blank" rel="noopener"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>7</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Twelve copies, the deepest Energy line in the house, because Sinister Surge feeds it out of the deck and Void Gale only moves what already arrived. Every recovery effect in the list reads basic Energy, so these twelve recycle forever; Legacy Energy does not. Basic Energy never rotates, and any English print is legal.</p>
+				</section>
+			</article>
 			<section>
 				<h3 id="the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack<span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
 					<p><em>Void Gale</em> is a fine attack. <strong><em>Shadowy Concealment</em> is the deck.</strong></p>
@@ -1658,11 +1743,9 @@
 				<p><strong>Read the trigger twice.</strong> The Knock Out must come from an attack, by a Pokémon ex. Against a deck that attacks with non-ex Pokémon, <em>Shadowy Concealment</em> does nothing at all. Roughly a third of the current meta attacks with single-prize Pokémon precisely to beat abilities like this one. <a href="#5-when-concealment-is-blank">Game plan 5</a> is about those games.</p>
 			</aside>
 			</section>
+			<h2 id="game-plans">Game Plans</h2>
 			<section>
-				<h3 id="game-plans">Game Plans</h3>
-			<article>
 				<h3 id="1-the-energy-river">1. The Energy River</h3>
-				<section>
 					<p>Energy in this deck flows in a loop, and the loop is the engine.</p>
 <pre><code>deck  --Sinister Surge--&gt;  benched Darkness Pokémon  (+2 counters, once per turn)
 hand  --attachment-----&gt;   whoever attacks next
@@ -1671,19 +1754,15 @@ board --Energy Switch---&gt;  wherever the math needs it
 discard --Night Stretcher-&gt; hand</code></pre>
 					<p>Toxtricity is the only piece that needs setting up, and it is a Stage 1 off a Basic that searches itself with <em>Call for Family</em>. Get one Toxtricity going by turn two or three and the deck never spends a hand attachment on Seviper again; Sinister Surge and Void Gale carry the fuel to the front while your one attachment per turn goes to the next Mega or to Munkidori.</p>
 					<p>The counters Sinister Surge leaves behind are not a cost. They are Munkidori&#x27;s ammunition, thrown at the opponent three at a time.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="2-seviper-does-the-fighting">2. Seviper Does the Fighting</h3>
-				<section>
 					<p>The deck&#x27;s default posture, most turns of most games. <strong>Mega Gengar sits on the Bench; Seviper sits in front.</strong></p>
 					<p>While the Mega is in play, Seviper hits 240 and gives up nothing to an ex. So the opponent faces a choice with no good answer. Kill the Seviper and collect zero Prizes; ignore it and lose a 2-prize attacker every other turn; or come after Mega Gengar on the Bench with a gust effect, which is the one line you must respect. When they spend Boss&#x27;s Orders dragging your Mega forward, that is your cue to be somewhere else next turn: Pecharunt pivots it back out for free.</p>
 					<p>Send Mega Gengar itself forward when the numbers demand 230, when a second Seviper is not ready, or when 350 HP needs to absorb two hits while the Bench rebuilds. Just count first. Its death hands over 2 Prizes even under its own ability, a third of their game in one Knock Out.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="3-chip-math">3. Chip Math</h3>
-				<section>
 					<p>The two-shot problem from the first draft is still the deck&#x27;s central math problem. <em>Void Gale</em> does 230 and the format&#x27;s big Megas carry 330 to 380 HP. The fix is that this list now places free damage counters from three directions, and counters ignore Weakness and Resistance.</p>
 					<table>
 						<thead><tr><th>Source</th><th>Counters per turn</th><th>Cost</th></tr></thead>
@@ -1700,25 +1779,19 @@ discard --Night Stretcher-&gt; hand</code></pre>
 						<li><strong>Two Void Gales = 460.</strong> Nothing printed survives it. The question is only whether Mega Gengar survives the turn in between, and at 350 HP against most attackers, it does.</li>
 					</ul>
 					<p>Haunter earns its Active turns early, before Rare Candy arrives. Three counters a turn from a 100 HP body your opponent feels silly killing is how 230 becomes lethal later.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="4-the-pecharunt-pivot">4. The Pecharunt Pivot</h3>
-				<section>
 					<p><em>Subjugating Chains</em> is the deck&#x27;s tempo. Once every turn, for free: the damaged Mega walks to the Bench and a fresh Seviper walks out Poisoned, or the Seviper that just traded walks back and Mega Gengar comes forward with Air Balloon already attached.</p>
 					<p>The Poison costs 10 a turn. On a 350 HP Mega or a Seviper that expects to trade anyway, that is nothing; on a 70 HP Gastly it is not, so pivot the big bodies, not the seeds.</p>
 					<p>The pivot also un-does the opponent&#x27;s Boss&#x27;s Orders. They drag Mega Gengar Active to force bad trades; you pivot it right back out on your turn without spending a card. That exchange, their Supporter against your free ability, wins long games.</p>
-				</section>
-			</article>
-			<article>
+			</section>
+			<section>
 				<h3 id="5-when-concealment-is-blank">5. When Concealment Is Blank</h3>
-				<section>
 					<p>Against single-prize decks the ability does nothing, and this is the matchup class the deck genuinely fears. The plan changes.</p>
 					<p><strong>Stop leading with the Mega.</strong> Against one-prize attackers, Mega Gengar is pure liability; two Knock Outs on it is their whole game. It becomes a Bench-sitting battery for Seviper&#x27;s ability and Void Gale turns only when lethal.</p>
 					<p><strong>Trade one for one with better bodies.</strong> Seviper at 240 and Sableye at 90-for-one out-stat almost every single-prize attacker in the format. Without Concealment the deck is still a fair deck with above-rate attackers; play the fair game.</p>
 					<p><strong>Spend Legacy Energy here.</strong> Its prize denial works against any attack Knock Out, not just ex attacks. Against single-prize decks it is the only denial you have; make the once per game count.</p>
-				</section>
-			</article>
 			</section>
 			<section>
 				<h3 id="the-meta-this-deck-lives-in">The Meta This Deck Lives In</h3>
@@ -1742,19 +1815,15 @@ discard --Night Stretcher-&gt; hand</code></pre>
 					<p><strong>Fox&#x27;s Charizard deck turns Concealment off completely.</strong> No ex attackers, no discount. You still have a 240 Seviper into a field of 170 HP Pokémon, so the games are fine; they are just fair. <em>Royal Blaze</em> with one Leon discarded one-shots everything here except Mega Gengar, so expect one-for-one trades and win them on stats.</p>
 			</section>
 			<section>
-				<h3 id="gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+				<h3 id="gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>
 					<p>A card that looks purpose-built for this deck and does nothing in it. Kept from the first draft because the reasons still teach.</p>
-			<article>
-				<h3 id="gengar-spirit-link-phantom-forces-095">Gengar Spirit Link — Phantom Forces 095<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>
-				<section>
+					<h4>Gengar Spirit Link — Phantom Forces 095</h4>
 					<dl>
 						<dt data-head>Problem</dt><dd data-head>Detail</dd>
 						<dt><strong>Wrong card name</strong></dt><dd><span>It names <em>M Gengar-EX</em>, the XY-era card. Mega Gengar ex is a different name; the Tool never triggers.</span></dd>
 						<dt><strong>Solves a dead rule</strong></dt><dd><span>XY-era Mega Evolution ended your turn; Spirit Links existed to fix that. Modern Megas evolve normally. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG">Bulbapedia</a>))</span></dd>
 						<dt><strong>Not Standard legal</strong></dt><dd><span>Phantom Forces is 2014. Rotated many times over.</span></dd>
 					</dl>
-				</section>
-			</article>
 			</section>
 			<section>
 				<h3 id="how-to-play-ex-style">How To Play ex Style<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
@@ -1831,7 +1900,8 @@ discard --Night Stretcher-&gt; hand</code></pre>
 			</article>
 			</section>
 			<section>
-				<h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3></summary>
 					<p>Nine cards. Everything else is already in the binder, and the deck deliberately uses the Phantasmal Flames Gastly so Gengar Gang keeps its Perfect Order copies.</p>
 					<table>
 						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
@@ -1865,6 +1935,7 @@ discard --Night Stretcher-&gt; hand</code></pre>
 			<aside data-callout="important">
 				<p><strong>Decide which game you are buying for, still.</strong> <em>Shadowy Concealment</em> is a metagame card. It is excellent at a league night full of Dragapult and it is fully live against Fox&#x27;s new Team Rocket&#x27;s Mewtwo deck, which attacks almost entirely with ex Pokémon. Against his Charizard deck it does nothing, and the fair game is closer. If the goal is tournament play or beating the Mewtwo deck, build this. If the goal is even games against the Charizard deck, Gengar Gang already does that.</p>
 			</aside>
+				</details>
 			</section>
 		</main>
 		<footer>
