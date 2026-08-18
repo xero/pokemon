@@ -1148,11 +1148,9 @@ Put it on whatever will be attacking soonest. Usually that's the Active Eevee or
 
 ---
 
-## 6. What Your Dad's Deck Is Trying To Do
+## 6. Beating Dad's Gengar Gang
 
-**Know the other side and you'll see plays coming.**
-
-His deck is all **Darkness** Pokémon. Two main threats:
+[His deck](./dark.md) is all **Darkness** Pokémon. Two main threats:
 
 ### Weezing — his early attacker (130 HP)
 
@@ -1365,24 +1363,3 @@ So why aren't they in? Two reasons, and neither is "they're bad."
 Your dad's entire deck is **1-Prize** Pokémon. Every single one.
 
 Games go to **6 Prize cards**. So if you play a Flareon VMAX and he knocks it out, he's taken **half the game from one attack.** He'd only need three good turns instead of six. You'd be handing him a shortcut every time something died.
-
-### They're too strong for his deck to answer
-
-His hardest hit is Weezing's *Crazy Blast* at **170 damage**, and that takes him two full turns to set up.
-
-A **Flareon ex** with 270 HP would need him to land that combo **twice** — around four turns — while your Flareon ex knocks out a 130 HP Gengar every single turn. That's not a close game. That's not really a game.
-
-> [!IMPORTANT]
-> The plan is that both decks **level up together.** When your dad adds his **Mega Gengar ex** (350 HP, gives up **3** Prizes), that's the day your Flareon ex and Eevee ex come out of the box. Then it's fair again, and it'll be awesome.
->
-> Until then, your job is beating a 130 HP Gengar with a 170 HP Charizard, which is a *much* better game than either of us steamrolling the other.
-
-> [!TIP]
-> **Flareon VMAX has a hidden catch.** A VMAX evolves from a **V**. So you can't play Flareon VMAX without also playing Flareon V first — that's two cards, two turns, and if it gets knocked out it's **3 Prizes**. It's the coolest card you own and one of the riskiest to actually use.
-
-> [!NOTE]
-> **Here's the fun part.** Look back at your own [Flareon's](#flareon) *Fighting Blaze*: **90 damage, +90 more if your opponent's Active Pokémon is a Pokémon ex or V.**
->
-> Right now that bonus never happens, because your dad plays none. But the day he brings out Mega Gengar ex, your regular little Flareon suddenly hits for **180**.
->
-> Your deck already has the answer to his upgrade built into it. It's just waiting.

@@ -21,8 +21,8 @@ from collections import Counter
 from pathlib import Path
 
 from pokelib import (CREDITS_NOTE, RARITY_SLUG, anchor, card_art,
-                     cost_icons, count_badge, esc, icon, legal_cell,
-                     mega_sigil, page, row, stat_cell)
+                     cost_icons, count_badge, energy_glyphs, esc, icon,
+                     legal_cell, mega_sigil, page, row, stat_cell)
 
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
@@ -101,9 +101,11 @@ def attack(text):
     """An attack with its leading energy cost swapped for glyphs."""
     m = re.match(r"\[([A-Z]+)\]\s*(.*)$", text, re.S)
     if not m:
-        return esc(text)
+        return energy_glyphs(esc(text))
     icons = cost_icons(m.group(1))
-    return row(icons, esc(m.group(2)), "cost") if icons else esc(text)
+    if not icons:
+        return energy_glyphs(esc(text))
+    return row(icons, energy_glyphs(esc(m.group(2))), "cost")
 
 
 def stats(r):

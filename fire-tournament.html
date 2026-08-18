@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -938,6 +948,10 @@
 				float: right;
 				margin: auto;
 			}
+
+			a {
+				text-decoration: none;
+			}
 		}
 
 		/* ------------------------------------------------------------------
@@ -1143,7 +1157,7 @@
 			<aside data-callout="note">
 				<p><strong>How to read this file.</strong></p>
 				<p>This is your tournament deck. All 60 cards are in here, one at a time.</p>
-				<p>The game words live in <strong><a href="./rules.html">the table rules</a></strong>. Most of them you already know from Fire Force; the ones in <a href="./rules.md#the-big-card-words">the big-card words</a> — ex, Rule Box, Tera, ACE SPEC — are the ones that make this deck different, and those matter.</p>
+				<p>The game words live in <strong><a href="./rules.html">the table rules</a></strong>. Most of them you already know from Fire Force; the ones in <a href="./rules.html#the-big-card-words">the big-card words</a> — ex, Rule Box, Tera, ACE SPEC — are the ones that make this deck different, and those matter.</p>
 				<p>Then each card has its own page. Every card page has the same parts:</p>
 				<ul>
 					<li><strong>General use</strong> — what the card is <em>for</em>. Plain and short. If you only read one part, read this one.</li>
@@ -1157,11 +1171,6 @@
 			<aside data-callout="tip">
 				<p><strong>Your deck is 60 cards.</strong> 16 Pokémon, 31 Trainers, 13 Energy.</p>
 				<p>This deck is <strong>legal at real tournaments.</strong> Your Fire Force deck isn&#x27;t, because some of those cards are too old. Every card in here has the right letter on it.</p>
-			</aside>
-			<aside data-callout="note">
-				<p><strong>The last three Trainer slots are filled now.</strong></p>
-				<p>They sat empty for a while because nobody had checked which search and draw cards survived the rotation. Both of the old standbys, Nest Ball and Professor&#x27;s Research, are gone from the legal pool. The three slots are <strong>2 <a href="#dawn">Dawn</a></strong> and <strong>1 <a href="#pokegear-30">Pokegear 3.0</a></strong>, and every copy is already in the binder.</p>
-				<p><strong>This is a full 60 now.</strong> Count the Trainer pages and you get 31.</p>
 			</aside>
 			<aside data-callout="warning">
 				<p><strong>This deck plays by different Prize rules, and it&#x27;s the biggest change.</strong></p>
@@ -1204,7 +1213,7 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt><strong>Ability</strong></dt><dd><span><em>Boosted Evolution</em> — as long as this Pokémon is in the <strong>Active Spot</strong>, it can evolve during your first turn or the turn you play it.</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Reckless Charge</em> <strong>[C][C] 30</strong> — this Pokémon also does 10 damage to itself.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Reckless Charge</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 30</strong> — this Pokémon also does 10 damage to itself.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>eevee</strong> → flareon ex</p>
@@ -1245,7 +1254,7 @@
 						<dt><strong>Prizes given up</strong></dt><dd><span><strong>2</strong></span></dd>
 						<dt><strong>Ability 1</strong></dt><dd><span><em>Rainbow DNA</em> — this Pokémon can evolve into <strong>any Pokémon ex that evolves from Eevee</strong> if you play it from your hand onto this Pokémon.</span></dd>
 						<dt><strong>Ability 2</strong></dt><dd><span><em>Tera</em> — as long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Coruscating Quartz</em> <strong>[R][W][L] 200</strong></span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Coruscating Quartz</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span> 200</strong></span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>eevee ex</strong> → flareon ex</p>
@@ -1265,9 +1274,9 @@
 					<p><strong>It is worth 2 Prize cards.</strong> A 200 HP Pokémon feels safe, and then your dad chips it down over three turns and takes a third of the game for it. Big is not the same as safe when the prize is doubled.</p>
 					<p><strong>Buddy-Buddy Poffin cannot find it.</strong> Poffin only fetches Basics with <strong>70 HP or less</strong>. Eevee ex has 200. <a href="#ultra-ball">Ultra Ball</a> is your search card for this one.</p>
 			<aside data-callout="important">
-				<p><strong>Normally you cannot use <em>Coruscating Quartz</em>.</strong> It costs <strong>[R][W][L]</strong> — Fire, Water, <strong>and Lightning</strong>. Your deck has 10 Fire and 3 Water and <strong>zero Lightning</strong>.</p>
+				<p><strong>Normally you cannot use <em>Coruscating Quartz</em>.</strong> It costs <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span></strong> — Fire, Water, <strong>and Lightning</strong>. Your deck has 10 Fire and 3 Water and <strong>zero Lightning</strong>.</p>
 				<p>So most of the time Eevee ex isn&#x27;t in here to attack. It&#x27;s a 200 HP body that turns into a Flareon ex, and that&#x27;s fine.</p>
-				<p><strong>The exception is <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> It takes 1 Energy off the cost, <strong>of any type</strong>. Take off the Lightning and <em>Coruscating Quartz</em> costs <strong>[R][W]</strong> — one Fire, one Water, both of which you have. That&#x27;s a real 200-damage attack off a 200 HP Basic.</p>
+				<p><strong>The exception is <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> It takes 1 Energy off the cost, <strong>of any type</strong>. Take off the Lightning and <em>Coruscating Quartz</em> costs <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span></strong> — one Fire, one Water, both of which you have. That&#x27;s a real 200-damage attack off a 200 HP Basic.</p>
 			</aside>
 				</section>
 			</article>
@@ -1285,8 +1294,8 @@
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
 						<dt><strong>Prizes given up</strong></dt><dd><span><strong>2</strong></span></dd>
 						<dt><strong>Ability</strong></dt><dd><span><em>Tera</em> — as long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Burning Charge</em> <strong>[R][C] 130</strong> — search your deck for up to <strong>2 Basic Energy</strong> cards and attach them to 1 of your Pokémon.</span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Carnelian</em> <strong>[R][W][L] 280</strong> — during your next turn, this Pokémon can&#x27;t attack.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Burning Charge</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 130</strong> — search your deck for up to <strong>2 Basic Energy</strong> cards and attach them to 1 of your Pokémon.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Carnelian</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span> 280</strong> — during your next turn, this Pokémon can&#x27;t attack.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p>eevee → <strong>flareon ex</strong></p>
@@ -1309,8 +1318,8 @@
 					<p><strong>So the pattern is: build on the Bench, step forward, hit, step back.</strong> Attack with one Flareon ex, and when it gets low, <a href="#switch">Switch</a> it to the Bench and bring up a fresh one. The hurt one is now completely safe.</p>
 					<p><strong>Free Energy every turn adds up fast.</strong> <em>Burning Charge</em> attaches 2 Energy on top of the 1 you attach by hand. That&#x27;s 3 Energy a turn while you&#x27;re also doing 130 damage. Put them on the Flareon ex sitting on your Bench, so your <em>next</em> attacker is already loaded before it ever steps out.</p>
 			<aside data-callout="important">
-				<p><strong><em>Carnelian</em> costs [R][W][L], and your deck has no Lightning Energy.</strong> So normally you can&#x27;t use it at all.</p>
-				<p><strong>Unless you have <a href="#sparkling-crystal">Sparkling Crystal</a> attached.</strong> It takes 1 Energy off the cost, <strong>of any type</strong>. Drop the Lightning and <em>Carnelian</em> costs <strong>[R][W]</strong> — one Fire, one Water. That you can do, and <em>Burning Charge</em> can go and fetch you the Water.</p>
+				<p><strong><em>Carnelian</em> costs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span>, and your deck has no Lightning Energy.</strong> So normally you can&#x27;t use it at all.</p>
+				<p><strong>Unless you have <a href="#sparkling-crystal">Sparkling Crystal</a> attached.</strong> It takes 1 Energy off the cost, <strong>of any type</strong>. Drop the Lightning and <em>Carnelian</em> costs <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span></strong> — one Fire, one Water. That you can do, and <em>Burning Charge</em> can go and fetch you the Water.</p>
 				<p>Even then, think before using it. 280 damage looks amazing, but <em>&quot;this Pokémon can&#x27;t attack next turn&quot;</em> means you give your dad a completely free turn. In a deck where losing a Flareon ex costs you <strong>2 Prize cards</strong>, a free turn is exactly what he wants.</p>
 				<p>Two <em>Burning Charges</em> do <strong>260</strong> across two turns and never skip. That&#x27;s almost the same damage and none of the risk. Use <em>Burning Charge</em>.</p>
 			</aside>
@@ -1329,7 +1338,7 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
 						<dt><strong>Resistance</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting −30</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Triple Stab</em> <strong>[C] 10×</strong> — flip 3 coins. This attack does 10 damage for each heads.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Triple Stab</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> 10×</strong> — flip 3 coins. This attack does 10 damage for each heads.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>hoothoot</strong> → noctowl</p>
@@ -1362,7 +1371,7 @@
 						<dt><strong>Resistance</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting −30</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt><strong>Ability</strong></dt><dd><span><em>Jewel Seeker</em> — once during your turn, when you play this Pokémon from your hand to evolve 1 of your Pokémon, <strong>if you have any Tera Pokémon in play</strong>, search your deck for up to <strong>2 Trainer cards</strong> and put them into your hand.</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Speed Wing</em> <strong>[C][C] 60</strong></span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Speed Wing</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 60</strong></span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p>hoothoot → <strong>noctowl</strong></p>
@@ -1698,8 +1707,8 @@
 					<p><strong>It only works on Tera Pokémon.</strong> You cannot put it on <a href="#noctowl">Noctowl</a>, <a href="#hoothoot">Hoothoot</a>, or plain <a href="#eevee">Eevee</a>. Flareon ex and Eevee ex are your only two targets.</p>
 			<aside data-callout="tip">
 				<p><strong>The hidden trick: it can turn on an attack you couldn&#x27;t pay for.</strong></p>
-				<p><em>Carnelian</em> costs [R][W][<strong>L</strong>] and you own no Lightning. Sparkling Crystal takes off <strong>1 Energy of any type</strong> — so take off the Lightning, and it costs [R][W]. One Fire, one Water. Suddenly it&#x27;s a real 280-damage attack.</p>
-				<p>Same trick makes Eevee ex&#x27;s <em>Coruscating Quartz</em> cost [R][W] for 200.</p>
+				<p><em>Carnelian</em> costs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span>[<strong>L</strong>] and you own no Lightning. Sparkling Crystal takes off <strong>1 Energy of any type</strong> — so take off the Lightning, and it costs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span>. One Fire, one Water. Suddenly it&#x27;s a real 280-damage attack.</p>
+				<p>Same trick makes Eevee ex&#x27;s <em>Coruscating Quartz</em> cost <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span> for 200.</p>
 				<p><strong>This one card quietly unlocks two attacks the deck otherwise cannot use at all.</strong> It&#x27;s the main reason it&#x27;s worth the ACE SPEC slot.</p>
 			</aside>
 				</section>
@@ -1715,10 +1724,10 @@
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p><em>Provides [R] Fire Energy.</em></p>
+				<p><em>Provides <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> Fire Energy.</em></p>
 			</aside>
 					<h4>General use</h4>
-					<p>The Energy that actually runs your deck. <em>Burning Charge</em> costs <strong>[R][C]</strong> — one Fire, plus one of anything. Both of those can be Fire.</p>
+					<p>The Energy that actually runs your deck. <em>Burning Charge</em> costs <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></strong> — one Fire, plus one of anything. Both of those can be Fire.</p>
 					<h4>Pairing</h4>
 					<ul>
 						<li><strong><a href="#flareon-ex">Flareon ex</a></strong> — <em>Burning Charge</em> searches your deck for more of these every time you attack.</li>
@@ -1738,12 +1747,12 @@
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p><em>Provides [W] Water Energy.</em></p>
+				<p><em>Provides <span data-icons="inline"><img src="./assets/types/water.png" alt="Water" /></span> Water Energy.</em></p>
 			</aside>
 					<h4>General use</h4>
 					<p>Water does two jobs in this deck, and neither one is obvious.</p>
 					<p><strong>Job 1: it makes <a href="#crispin">Crispin</a> work.</strong> Crispin makes you take two Basic Energy of <strong>different types</strong>. With only Fire in the deck, Crispin would only ever find one card.</p>
-					<p><strong>Job 2: it pays for the big attacks, but only with <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> <em>Carnelian</em> and <em>Coruscating Quartz</em> both cost [R][W][<strong>L</strong>], and you own no Lightning. Sparkling Crystal takes off 1 Energy of any type. Take off the Lightning and both attacks cost <strong>[R][W]</strong> — one Fire, one Water.</p>
+					<p><strong>Job 2: it pays for the big attacks, but only with <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> <em>Carnelian</em> and <em>Coruscating Quartz</em> both cost <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span>[<strong>L</strong>], and you own no Lightning. Sparkling Crystal takes off 1 Energy of any type. Take off the Lightning and both attacks cost <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span></strong> — one Fire, one Water.</p>
 					<h4>Pairing</h4>
 					<ul>
 						<li><strong><a href="#crispin">Crispin</a></strong> — the card that needs a second Energy type to exist.</li>
@@ -2012,7 +2021,7 @@ You need 6 knockouts to win.   (6 x 1 Prize  = 6)</code></pre>
 					<p>The specific traps in <em>this</em> deck. Read this one twice.</p>
 					<p><strong>Playing Eevee to the Bench and expecting to evolve it.</strong> <em>Boosted Evolution</em> only works in the <strong>Active Spot</strong>. This is the number one mistake with this deck.</p>
 					<p><strong>Using Buddy-Buddy Poffin to find the Eevee you want to evolve now.</strong> Poffin puts them on the <strong>Bench</strong>. Same mistake, one step earlier.</p>
-					<p><strong>Trying to use <em>Carnelian</em> or <em>Coruscating Quartz</em>.</strong> Both cost <strong>[L] Lightning</strong> and your deck has none. They are not options.</p>
+					<p><strong>Trying to use <em>Carnelian</em> or <em>Coruscating Quartz</em>.</strong> Both cost <strong><span data-icons="inline"><img src="./assets/types/lightning.png" alt="Lightning" /></span> Lightning</strong> and your deck has none. They are not options.</p>
 					<p><strong>Leaving a hurt Flareon ex in the Active Spot.</strong> Below 170 HP a Weezing finishes it. That&#x27;s 2 Prize cards you handed over for free. <a href="#switch">Switch</a> it out.</p>
 					<p><strong>Leaving a Hoothoot or Noctowl Active when his Gengar is ready.</strong> <em>Mind Jack</em> eats them. Keep a Flareon ex out front.</p>
 					<p><strong>Evolving all three Noctowl at once.</strong> You only get 3 <em>Jewel Seeker</em> uses in the whole game. Save one for when you actually need a specific card.</p>

@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -937,6 +947,10 @@
 			img {
 				float: right;
 				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
 			}
 		}
 

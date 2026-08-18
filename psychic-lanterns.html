@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -937,6 +947,10 @@
 			img {
 				float: right;
 				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
 			}
 		}
 
@@ -1158,7 +1172,7 @@
 			<section>
 				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>
 					<p>Mega Chandelure ex reads like a midrange attacker and plays like a trap.</p>
-					<p><em>Phantom Maze</em> does 130 plus <strong>50 for each [C] in the opponent&#x27;s Active Pokémon&#x27;s Retreat Cost</strong>, and its own Ability, <em>Binding Flame</em>, adds one to that cost from anywhere on your board. The damage is not a number. It is a question: what is standing in front of it, and how much does that thing weigh?</p>
+					<p><em>Phantom Maze</em> does 130 plus <strong>50 for each <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> in the opponent&#x27;s Active Pokémon&#x27;s Retreat Cost</strong>, and its own Ability, <em>Binding Flame</em>, adds one to that cost from anywhere on your board. The damage is not a number. It is a question: what is standing in front of it, and how much does that thing weigh?</p>
 					<table>
 						<thead><tr><th>Their Active&#x27;s printed Retreat</th><th>One Flame</th><th>Two Flames</th></tr></thead>
 						<tbody>
@@ -1269,7 +1283,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>The Basic the deck stands on, and the only Psychic Litwick ever printed. The White Flare and Twilight Masquerade prints are Fire and cannot pay a [P] cost, and your old Fire copies do not serve this line. 70 HP keeps it inside Poffin range.</p>
+					<p>The Basic the deck stands on, and the only Psychic Litwick ever printed. The White Flare and Twilight Masquerade prints are Fire and cannot pay a <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> cost, and your old Fire copies do not serve this line. 70 HP keeps it inside Poffin range.</p>
 				</section>
 			</article>
 			<article>
@@ -1387,7 +1401,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>60 HP, Poffin-legal, and it exists to become Froslass. Its attack costs [W][C], and this deck runs no Water, so it never attacks. That is fine. Furniture does not need to fight.</p>
+					<p>60 HP, Poffin-legal, and it exists to become Froslass. Its attack costs <span data-icons="inline"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, and this deck runs no Water, so it never attacks. That is fine. Furniture does not need to fight.</p>
 					<p>The second copy is the Ascended Heroes print (046, the Love Ball pattern). Same name, so Froslass evolves from it all the same, and it is the better half of the pair: 70 HP instead of 60, still inside Poffin range, and its Reg I mark outlives the TWM print&#x27;s April 2027 rotation.</p>
 				</section>
 			</article>
@@ -1460,7 +1474,7 @@
 					</dl>
 				</section>
 				<section>
-					<p><strong>The thirteen-counter button.</strong> Once during your turn: put 13 damage counters on one opposing Pokémon, anywhere on their board, and Dusknoir Knocks itself Out. That is 130 placed damage that ignores Weakness, Resistance, bench immunity, and damage-reduction shields, from a card that costs you one Prize and no attack. <em>Shadow Bind</em> is the backup: 150 for [P][P][C] and the Defending Pokémon cannot retreat, a second way to spring the trap.</p>
+					<p><strong>The thirteen-counter button.</strong> Once during your turn: put 13 damage counters on one opposing Pokémon, anywhere on their board, and Dusknoir Knocks itself Out. That is 130 placed damage that ignores Weakness, Resistance, bench immunity, and damage-reduction shields, from a card that costs you one Prize and no attack. <em>Shadow Bind</em> is the backup: 150 for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> and the Defending Pokémon cannot retreat, a second way to spring the trap.</p>
 					<p>One copy, because it is a tool rather than a line, and because Poke Pad, Night Stretcher, and <em>Come and Get You</em> all point at it when you want it.</p>
 				</section>
 			</article>
@@ -1697,12 +1711,12 @@
 						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>088/088</small></span></dd>
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt>Type</dt><dd><span>Energy - Special Psychic</span></dd>
-						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides [P] Energy. When you attach this card from your hand to a [P] Pokémon, search your deck for up to 2 Basic [P] Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Energy. When you attach this card from your hand to a <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Pokémon, search your deck for up to 2 Basic <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
 						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
 					</dl>
 				</section>
 				<section>
-					<p>An Energy card that is also a Poffin. It provides [P], and when you attach it from hand to a Psychic Pokémon you search your deck for up to 2 Basic Psychic Pokémon and bench them. Litwick, Pumpkaboo, and Duskull qualify; Snorunt does not, because it is Water.</p>
+					<p>An Energy card that is also a Poffin. It provides <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>, and when you attach it from hand to a Psychic Pokémon you search your deck for up to 2 Basic Psychic Pokémon and bench them. Litwick, Pumpkaboo, and Duskull qualify; Snorunt does not, because it is Water.</p>
 					<p>Four copies and no more, for one reason: it is a Special Energy, so neither Wondrous Patch nor Night Stretcher can ever recover it, and Ruffian can knock it off a Pokémon permanently. It is a setup card. The six basic Psychic underneath it are the resilience.</p>
 				</section>
 			</article>
@@ -1726,7 +1740,7 @@
 			<section>
 				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/snorunt.gif" alt="" /></span></h3>
 					<p>Froslass and Snorunt do not make this a two-color deck. Freezing Shroud is an Ability and costs nothing, so the Water types never attack and the Energy line stays the most mono thing on this shelf: <strong>4 Telepathic, 6 basic Psychic, zero Water.</strong></p>
-					<p>Every attack you will actually use costs [P], [P][P], or [P][P][C] at the worst. The deck makes exactly one attachment per turn with no acceleration, and that works because the curve is honest: the Mega needs exactly two, Rondo needs one, and the one-Energy attacks mean a board that just lost its loaded Mega still attacks the same turn it starts rebuilding.</p>
+					<p>Every attack you will actually use costs <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>, <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span>, or <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> at the worst. The deck makes exactly one attachment per turn with no acceleration, and that works because the curve is honest: the Mega needs exactly two, Rondo needs one, and the one-Energy attacks mean a board that just lost its loaded Mega still attacks the same turn it starts rebuilding.</p>
 					<table>
 						<thead><tr><th>Job</th><th>Card</th><th>What it does</th></tr></thead>
 						<tbody>
@@ -1833,8 +1847,8 @@
 							<tr><td>Scoop Up Cyclone (ACE)</td><td>Prime Catcher</td><td>bench-lock or 3-prize losses decide games; scooping a damaged Mega denies three Prizes and empties a seat, at the cost of the 4th gust</td></tr>
 							<tr><td>Wally&#x27;s Compassion #2</td><td>Switch</td><td>Sun and Moon dominates the kitchen table</td></tr>
 							<tr><td>Wondrous Patch #2</td><td>4th Rare Candy</td><td>the post-knockout rebuild keeps whiffing</td></tr>
-							<tr><td>Marshadow (Pitch Black 040)</td><td>4th Lampent</td><td>you want a 1-prize attacker; <em>Shadowy Knot</em> is a baby Phantom Maze at 30 per [C] of their retreat</td></tr>
-							<tr><td>Uxie (Surging Sparks 078)</td><td>2nd Duskull</td><td>you miss Screaming Circle; 2 counters on each opposing Pokémon for [P], through Tera</td></tr>
+							<tr><td>Marshadow (Pitch Black 040)</td><td>4th Lampent</td><td>you want a 1-prize attacker; <em>Shadowy Knot</em> is a baby Phantom Maze at 30 per <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> of their retreat</td></tr>
+							<tr><td>Uxie (Surging Sparks 078)</td><td>2nd Duskull</td><td>you miss Screaming Circle; 2 counters on each opposing Pokémon for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>, through Tera</td></tr>
 							<tr><td>Gravity Gemstone</td><td>Air Balloon</td><td>pivot decks blunt the trap; a Flame that survives the Mega being gusted</td></tr>
 							<tr><td>Team Rocket&#x27;s Watchtower</td><td>Switch</td><td>shop tech; Colorless Pokémon lose their Abilities, which also switches off Jewel Seeker and Boosted Evolution at home. Decide if that is fun before sleeving it</td></tr>
 							<tr><td>Gwynn package (2 Gwynn for 1 Lillie&#x27;s + 1 Poke Pad)</td><td>see left</td><td>you want the dark deck&#x27;s discard-draw rhythm; Duskull loves the discard pile</td></tr>
@@ -1879,7 +1893,7 @@
 					</dl>
 				</section>
 				<section>
-					<p><strong>The cash register.</strong> <em>Cursed Drop</em> places 4 damage counters anywhere on their board for [P]. <em>Vortex of Pain</em> does 20 for every damage counter sitting anywhere on their board, Active and Bench alike, for [P][P], which Telepathic pays. This deck already generates counters in its sleep: Freezing Shroud pings every Ability Pokémon they own at every Checkup and those pings never heal, while a Dusknoir button that does not kill is 13 counters of stored damage. Ten Shroud pings plus one un-cashed button reads 460, from a 140 HP body worth one Prize.</p>
+					<p><strong>The cash register.</strong> <em>Cursed Drop</em> places 4 damage counters anywhere on their board for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>. <em>Vortex of Pain</em> does 20 for every damage counter sitting anywhere on their board, Active and Bench alike, for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span>, which Telepathic pays. This deck already generates counters in its sleep: Freezing Shroud pings every Ability Pokémon they own at every Checkup and those pings never heal, while a Dusknoir button that does not kill is 13 counters of stored damage. Ten Shroud pings plus one un-cashed button reads 460, from a 140 HP body worth one Prize.</p>
 					<p>Two rules make it stronger than it looks. Putting the counters down is placement, so it ignores Weakness, Resistance, and every shield, exactly like the rest of this deck. The Vortex itself is attack damage, so their Weakness applies on top of the total.</p>
 					<p>Play it like a banker, not an arsonist. Spread counters where nothing dies, because a Knocked Out Pokémon takes its counters to the discard pile with it. Then Boss&#x27;s Orders drags the fattest thing forward and the whole board&#x27;s ledger lands on it at once. Against Umbreon this is the trade the Megas could never offer, since Moon Mirage now spends 320 damage to buy one Prize.</p>
 				</section>
@@ -1905,7 +1919,7 @@
 				</section>
 				<section>
 					<p><strong>The counter that walks.</strong> <em>Shady Move</em> relocates 1 damage counter from any Pokémon to any other Pokémon, once per turn per copy, and <a href="https://compendium.pokegym.net/ruling/240/">the published ruling</a> confirms it moves them across the table, off your Pokémon and onto theirs. That is the Umbreon fuse from <a href="#versus-the-kitchen-table">the kitchen-table section</a> defused one tick per turn, with each tick landing on Fox&#x27;s board as another 20 of Vortex.</p>
-					<p>Fire type, and <em>Super Singe</em> costs [R], so it never attacks. Furniture does not need to fight; this chair moves damage for a living. Retreat 1, and it wears its own Shroud ping happily, because a damaged bencher is 50 more on Horrifying Rondo.</p>
+					<p>Fire type, and <em>Super Singe</em> costs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span>, so it never attacks. Furniture does not need to fight; this chair moves damage for a living. Retreat 1, and it wears its own Shroud ping happily, because a damaged bencher is 50 more on Horrifying Rondo.</p>
 					<p>The whole module costs about six dollars.</p>
 					<table>
 						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>

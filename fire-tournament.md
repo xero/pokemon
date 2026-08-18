@@ -25,13 +25,6 @@
 >
 > This deck is **legal at real tournaments.** Your Fire Force deck isn't, because some of those cards are too old. Every card in here has the right letter on it.
 
-> [!NOTE]
-> **The last three Trainer slots are filled now.**
->
-> They sat empty for a while because nobody had checked which search and draw cards survived the rotation. Both of the old standbys, Nest Ball and Professor's Research, are gone from the legal pool. The three slots are **2 [Dawn](#dawn)** and **1 [Pokegear 3.0](#pokegear-30)**, and every copy is already in the binder.
->
-> **This is a full 60 now.** Count the Trainer pages and you get 31.
-
 > [!WARNING]
 > **This deck plays by different Prize rules, and it's the biggest change.**
 >

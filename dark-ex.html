@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -938,6 +948,10 @@
 				float: right;
 				margin: auto;
 			}
+
+			a {
+				text-decoration: none;
+			}
 		}
 
 		/* ------------------------------------------------------------------
@@ -1144,7 +1158,7 @@
 		<p><b><a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a></b></p>
 		<p><b><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></b></p>
 		<p><b><a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a></b></p>
-		<p><b><a href="#how-to-play-ex-style">How To Play ex Style</a> —</b><span><a href="#3-the-trade-is-the-whole-game">3. The trade is the whole game</a> · <a href="#7-errors-to-expect-on-the-way-over">7. Errors to expect on the way over</a></span></p>
+		<p><b><a href="#how-to-play-ex-style">How To Play ex Style</a></b></p>
 		<p><b><a href="#what-to-buy">What To Buy</a></b></p>
 	</details>
 </nav>
@@ -1155,7 +1169,7 @@
 				<p>Two parts still matter more than the list itself.</p>
 				<ul>
 					<li><strong><a href="#the-real-card-is-the-ability-not-the-attack">The prize ladder</a></strong>, which is the reason the deck exists.</li>
-					<li><strong><a href="#how-to-play-ex-style">How To Play ex Style</a></strong>, the primer. It transfers to any ex deck, not just this one.</li>
+					<li><strong><a href="./rules.html#how-to-play-ex-style">How To Play ex Style</a></strong>, the primer. It transfers to any ex deck, not just this one, which is why it lives in the rulebook.</li>
 				</ul>
 				<p>Game words are defined in <a href="./rules.html">the table rules</a>.</p>
 			</aside>
@@ -1309,7 +1323,7 @@
 					</dl>
 				</section>
 				<section>
-					<p><strong>Stage 2 from Haunter. Gives up 3 Prize cards.</strong> Unlike the XY-era &quot;M&quot; cards, playing it does not end your turn; it evolves like any other Stage 2. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56">Bulbapedia</a>))</p>
+					<p><strong>Stage 2 from Haunter. Gives up 3 Prize cards.</strong> Unlike the XY-era &quot;M&quot; cards, playing it does not end your turn; it evolves like any other Stage 2. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56)">Bulbapedia</a>)</p>
 					<p>Read <em>Void Gale</em> precisely. It moves <strong>one Energy, of any type</strong>, from this Pokémon to a Benched Pokémon. Attack for 230, then bank an Energy on whoever attacks next. The attack never strands its own fuel.</p>
 					<p>Three printings exist and they are the same card: Phantasmal Flames 056 (cheapest), Ascended Heroes 125, and the Mega Evolution promo 073. They share one four-copy limit because the limit counts names. Ignore anything numbered above the set size; those are the collector prints.</p>
 			<aside data-callout="tip">
@@ -1562,7 +1576,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. <a href="#how-to-play-ex-style">How To Play ex Style</a> calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.</p>
+					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. <a href="./rules.html#5-gust-effects-are-the-most-valuable-cards-in-the-format">How To Play ex Style</a> calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.</p>
 				</section>
 			</article>
 			<article>
@@ -1829,83 +1843,13 @@ discard --Night Stretcher-&gt; hand</code></pre>
 					<dl>
 						<dt data-head>Problem</dt><dd data-head>Detail</dd>
 						<dt><strong>Wrong card name</strong></dt><dd><span>It names <em>M Gengar-EX</em>, the XY-era card. Mega Gengar ex is a different name; the Tool never triggers.</span></dd>
-						<dt><strong>Solves a dead rule</strong></dt><dd><span>XY-era Mega Evolution ended your turn; Spirit Links existed to fix that. Modern Megas evolve normally. (<a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG">Bulbapedia</a>))</span></dd>
+						<dt><strong>Solves a dead rule</strong></dt><dd><span>XY-era Mega Evolution ended your turn; Spirit Links existed to fix that. Modern Megas evolve normally. See: <a href="https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG)">Bulbapedia</a></span></dd>
 						<dt><strong>Not Standard legal</strong></dt><dd><span>Phantom Forces is 2014. Rotated many times over.</span></dd>
 					</dl>
 			</section>
 			<section>
 				<h3 id="how-to-play-ex-style">How To Play ex Style<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
-					<p><strong>This is the part that transfers.</strong> Everything below applies to any ex deck, including Fox&#x27;s.</p>
-			<article>
-				<h3 id="1-you-are-not-fighting-you-are-racing-to-six">1. You are not fighting. You are racing to six.</h3>
-				<section>
-					<p>The single biggest mental shift from the casual deck. In Gengar Gang every Pokémon is worth 1 Prize, so &quot;knock out more stuff than they do&quot; and &quot;win&quot; are the same sentence. In an ex format they come apart:</p>
-					<dl>
-						<dt data-head>Pokémon type</dt><dd data-head>Prizes</dd>
-						<dt>Non-ex</dt><dd><span><strong>1</strong></span></dd>
-						<dt>Pokémon ex</dt><dd><span><strong>2</strong></span></dd>
-						<dt><strong>Mega Evolution Pokémon ex</strong></dt><dd><span><strong>3</strong></span></dd>
-					</dl>
-					<p><strong>Two Mega Knock Outs is a whole game.</strong> You are not playing a war of attrition; you are playing a sprint where each turn is worth a third of the game.</p>
-				</section>
-			</article>
-			<article>
-				<h3 id="2-build-a-prize-map-before-you-start">2. Build a Prize map before you start</h3>
-				<section>
-					<p>Before the first attack, decide which six Prizes you are taking. Three Knock Outs on their 2-prize attackers is the standard plan. Two on their Megas is faster if the chip math is there. Six on single-prize Pokémon is a race you will lose; do not plan it.</p>
-					<p>Then ask the mirror question, which <em>Shadowy Concealment</em> rewrites in your favor: which of yours can they afford to Knock Out? In this deck the answer is &quot;almost everything,&quot; and that asymmetry is the strategy.</p>
-				</section>
-			</article>
-			<article>
-				<h3 id="3-the-trade-is-the-whole-game">3. The trade is the whole game</h3>
-				<section>
-					<table>
-						<thead><tr><th>You lose</th><th>They lose</th><th>Verdict</th></tr></thead>
-						<tbody>
-							<tr><td>1-prizer (0 under Concealment)</td><td>their 2-prize ex</td><td><strong>The dream.</strong> This deck&#x27;s whole design.</td></tr>
-							<tr><td>2-prize ex</td><td>their 2-prize ex</td><td>Even. Fine.</td></tr>
-							<tr><td><strong>3-prize Mega</strong></td><td>their 2-prize ex</td><td><strong>Bad.</strong> You won the fight and lost the exchange.</td></tr>
-							<tr><td>1-prizer</td><td>nothing</td><td>Bad, unless it bought setup.</td></tr>
-						</tbody>
-					</table>
-				</section>
-			</article>
-			<article>
-				<h3 id="4-the-two-shot-problem-beats-hp-every-time">4. The two-shot problem beats HP every time</h3>
-				<section>
-					<p>If your attacker needs two turns to Knock Out and theirs needs one, you lose, regardless of HP. Chip damage is not a nice extra in ex decks; it is the difference between one-shotting and losing. This deck&#x27;s answer is <a href="#3-chip-math">game plan 3</a>.</p>
-				</section>
-			</article>
-			<article>
-				<h3 id="5-gust-effects-are-the-most-valuable-cards-in-the-format">5. Gust effects are the most valuable cards in the format</h3>
-				<section>
-					<p><strong>Boss&#x27;s Orders wins more ex games than any attacker</strong>, because in an ex format the whole game is deciding what you are allowed to Knock Out. This list runs three, and drawing one starts a plan; it does not fill a turn.</p>
-				</section>
-			</article>
-			<article>
-				<h3 id="6-rules-that-bite-harder-in-ex-decks">6. Rules that bite harder in ex decks</h3>
-				<section>
-					<ul>
-						<li>Going first, you cannot attack. Going second, Toxel&#x27;s <em>Call for Family</em> makes the free attack a real turn.</li>
-						<li><strong>ACE SPEC: exactly one per deck, total.</strong> Not one per name.</li>
-						<li><em>Shadowy Concealment</em> does not stack. Three Megas in play still reduce by exactly 1.</li>
-						<li>Rule Box Pokémon cannot be discarded to Gwynn. This deck does not run her, and her presence in Gengar Gang is one more reason the two decks stay separate.</li>
-					</ul>
-				</section>
-			</article>
-			<article>
-				<h3 id="7-errors-to-expect-on-the-way-over">7. Errors to expect on the way over<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
-				<section>
-					<dl>
-						<dt data-head>Habit from Gengar Gang</dt><dd data-head>Why it fails in ex</dd>
-						<dt>Leading with the best attacker</dt><dd><span>It is worth 3 Prizes. Lead with something cheap.</span></dd>
-						<dt>Trading freely because everything is 1 Prize</dt><dd><span>Trades have prices now. Score them first.</span></dd>
-						<dt>Building the widest possible Bench</dt><dd><span>Wide boards feed Dragapult&#x27;s spread and every Bench-damage attack in the format.</span></dd>
-						<dt>Treating chip damage as optional</dt><dd><span>It is how 230 beats 350.</span></dd>
-						<dt>Saving Boss&#x27;s Orders for the end</dt><dd><span>The end arrives on turn four.</span></dd>
-					</dl>
-				</section>
-			</article>
+					<p>See the <strong><a href="./rules.html#how-to-play-ex-style">rules</a></strong> for ex-format habits such as racing to six, prize maps, and scoring a trade before you take it.</p>
 			</section>
 			<section>
 				<details>

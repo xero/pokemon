@@ -137,6 +137,17 @@ def cost_icons(letters):
     return "".join(type_icon(COST_TYPE[c]) for c in letters)
 
 
+def energy_glyphs(html):
+    """Already-escaped prose with its [R][W]-style energy notation swapped
+    for type glyphs. A run of brackets becomes one span, so [P][P] reads as
+    a pair of symbols rather than two separated ones."""
+    def swap(m):
+        icons = cost_icons(re.sub(r"[\[\]]", "", m.group(0)))
+        return f'<span data-icons="inline">{icons}</span>' if icons else m.group(0)
+
+    return re.sub(r"(?:\[[RWLGPDFMC]+\])+", swap, html)
+
+
 def set_slug(name):
     if name in SET_SLUG:
         return SET_SLUG[name]
@@ -199,7 +210,7 @@ def stat_cell(key, r):
     if key == "card_text":
         # the name is already the <dt>; "Ability: Agile" would say it twice
         v = re.sub(r"^Ability:\s*", "", v)
-    return row("", esc(v))
+    return row("", energy_glyphs(esc(v)))
 
 
 _CARDS = None

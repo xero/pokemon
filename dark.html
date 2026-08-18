@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -937,6 +947,10 @@
 			img {
 				float: right;
 				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
 			}
 		}
 
@@ -1248,7 +1262,7 @@
 					<p>Here is the timing rule that matters: <strong>Rare Candy cannot be used on your first turn, and cannot be used on a Basic you played that same turn.</strong> So the fastest possible Gengar is turn two — bench Gastly turn one, Candy it turn two. If you miss that window, Haunter becomes your path, and evolving Gastly → Haunter on turn two still lets you reach Gengar on turn three.</p>
 					<p>That means Haunter is rarely a wasted play even when you <em>do</em> draw Rare Candy later. A Haunter on the board on turn two is a Gengar on turn three. A Gastly on the board on turn two that is waiting for a Candy might be a Gengar on turn three, or might be a Gastly on turn five.</p>
 			<aside data-callout="tip">
-				<p>You already own three Standard-legal Haunters: <strong>POR 049</strong> (<em>Haunt</em> — 3 damage counters, placed wherever you like), <strong>PFL 055</strong> (<em>Spooky Shot</em> 40), and <strong>TEF 103</strong> (<em>Super Poison Breath</em> [DD] 30 + Poisoned). Any two of them work. PFL 055 is listed here because flat 40 is the most beginner-friendly, but POR 049 is arguably stronger since damage counters ignore Weakness and Resistance and can be aimed at a Benched Pokémon.</p>
+				<p>You already own three Standard-legal Haunters: <strong>POR 049</strong> (<em>Haunt</em> — 3 damage counters, placed wherever you like), <strong>PFL 055</strong> (<em>Spooky Shot</em> 40), and <strong>TEF 103</strong> (<em>Super Poison Breath</em> <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> 30 + Poisoned). Any two of them work. PFL 055 is listed here because flat 40 is the most beginner-friendly, but POR 049 is arguably stronger since damage counters ignore Weakness and Resistance and can be aimed at a Benched Pokémon.</p>
 			</aside>
 				</section>
 			</article>
@@ -1303,7 +1317,7 @@
 				<p>So it is excellent value — three cards back for free — but it is never a reason to <em>let</em> Gengar die. Losing Gengar still costs you a Prize and a full turn of re-setup.</p>
 			</aside>
 					<p>The right way to think about it: Infinite Shadow means you can play Gengar aggressively without fearing that a knockout ends your Gengar plan for the game. You will get it back. You just would rather not need to.</p>
-					<p><strong>One Energy.</strong> Do not over-invest. Mind Jack costs exactly one [D] and never wants a second. Every Energy past the first on a Gengar is an Energy that should have gone on a Weezing.</p>
+					<p><strong>One Energy.</strong> Do not over-invest. Mind Jack costs exactly one <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> and never wants a second. Every Energy past the first on a Gengar is an Energy that should have gone on a Weezing.</p>
 				</section>
 			</article>
 			<article>
@@ -1319,15 +1333,15 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt><strong>Resistance</strong></dt><dd><span>—</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Tackle</em> <strong>[C] 10</strong></span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Suffocating Gas</em> <strong>[D][C] 20</strong></span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Tackle</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> 10</strong></span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Suffocating Gas</em> <strong><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 20</strong></span></dd>
 						<dt><strong>Regulation</strong></dt><dd><span>I</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>koffing</strong> → weezing</p>
 					<h4>General use</h4>
 					<p>Koffing is the other seed, and unlike Gastly it only needs <em>one</em> step to become a real threat. That makes it the Basic you most want in your opening hand. Bench it turn one, evolve it turn two, and you are attacking with a 130 HP Weezing while your Gengar is still growing.</p>
-					<p><em>Tackle</em> for [C] is worth knowing about: it is the only attack in the deck that does not require Darkness Energy, so a Koffing can attack off a Shadowy Darkness Energy or any Energy at all in a pinch.</p>
+					<p><em>Tackle</em> for <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> is worth knowing about: it is the only attack in the deck that does not require Darkness Energy, so a Koffing can attack off a Shadowy Darkness Energy or any Energy at all in a pinch.</p>
 					<h4>Pairing</h4>
 					<ul>
 						<li><strong><a href="#weezing">Weezing</a></strong> — the whole point.</li>
@@ -1356,8 +1370,8 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt><strong>Resistance</strong></dt><dd><span>—</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Pervasive Gas</em> <strong>[D] 30</strong> — Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Crazy Blast</em> <strong>[D][C] 50+</strong> — If this Pokémon used Pervasive Gas during your last turn, this attack does 120 more damage.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Pervasive Gas</em> <strong><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> 30</strong> — Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Crazy Blast</em> <strong><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 50+</strong> — If this Pokémon used Pervasive Gas during your last turn, this attack does 120 more damage.</span></dd>
 						<dt><strong>Regulation</strong></dt><dd><span>I</span></dd>
 					</dl>
 					<h4>Evolution</h4>
@@ -1440,8 +1454,8 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt><strong>Resistance</strong></dt><dd><span>—</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Call for Family</em> <strong>[D]</strong> — Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Playful Kick</em> <strong>[D][C] 20</strong></span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Call for Family</em> <strong><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span></strong> — Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Playful Kick</em> <strong><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 20</strong></span></dd>
 						<dt><strong>Regulation</strong></dt><dd><span>I</span></dd>
 					</dl>
 					<h4>Evolution</h4>
@@ -1473,7 +1487,7 @@
 						<dt><strong>Resistance</strong></dt><dd><span>—</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
 						<dt><strong>Ability</strong></dt><dd><span><em>Sinister Surge</em> — Once during your turn, you may search your deck for a Basic Darkness Energy card and attach it to 1 of your Benched Darkness Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, place 2 damage counters on that Pokémon.</span></dd>
-						<dt><strong>Attack</strong></dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span><em>Gentle Slap</em> <strong>[D][C] 100</strong></span></dd>
+						<dt><strong>Attack</strong></dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span><em>Gentle Slap</em> <strong><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 100</strong></span></dd>
 						<dt><strong>Regulation</strong></dt><dd><span>I</span></dd>
 					</dl>
 					<h4>Evolution</h4>
@@ -1873,7 +1887,7 @@
 						<dt><strong>Regulation</strong></dt><dd><span>J</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p>As long as this card is attached to a Pokémon, it provides [D] Energy. As long as the [D] Pokémon this card is attached to is on your Bench, prevent all damage done to it by attacks from your opponent&#x27;s Pokémon.</p>
+				<p>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> Energy. As long as the <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> Pokémon this card is attached to is on your Bench, prevent all damage done to it by attacks from your opponent&#x27;s Pokémon.</p>
 			</aside>
 					<h4>General use</h4>
 					<p>Two cards in one. It is a Darkness Energy — it pays for Mind Jack, Pervasive Gas, everything — <strong>and</strong> while the Pokémon holding it sits on your <strong>Bench</strong>, that Pokémon takes <strong>zero damage from attacks.</strong> Not reduced. Zero.</p>
@@ -1905,7 +1919,7 @@
 						<dt><strong>Regulation</strong></dt><dd><span>— (Basic Energy never rotates)</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p><em>No rules text. Provides [D] Energy.</em></p>
+				<p><em>No rules text. Provides <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> Energy.</em></p>
 			</aside>
 					<h4>General use</h4>
 					<p>The fuel. Every attack in this deck costs Darkness Energy, and every one of these pays for it. One attachment per turn, no exceptions.</p>
@@ -1938,7 +1952,7 @@ Turn B:  Weezing → Crazy Blast         50 + 120 = 170 damage</code></pre>
 					<p><strong>The rules to obey:</strong></p>
 					<ol>
 						<li><strong>The same Weezing must do both attacks.</strong> Crazy Blast checks &quot;if <em>this Pokémon</em> used Pervasive Gas during your last turn.&quot; A second Weezing does not inherit the fuse.</li>
-						<li><strong>Have both Energy attached before you start.</strong> Crazy Blast costs [D][C] — two Energy. If you light the fuse with only one Energy down and then whiff your draw, you sit there for a turn and the bonus expires.</li>
+						<li><strong>Have both Energy attached before you start.</strong> Crazy Blast costs <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> — two Energy. If you light the fuse with only one Energy down and then whiff your draw, you sit there for a turn and the bonus expires.</li>
 						<li><strong>Do not retreat, Switch, or Scramble Switch in between</strong> unless you are certain you will bring the same Weezing back. Every turn it is not Active is a turn <em>Pervasive Gas</em> was not used &quot;last turn.&quot;</li>
 					</ol>
 					<p><strong>Why the middle turn is safe.</strong> Between your two attacks, your opponent gets a turn — but their Active is <strong>Confused</strong>. On tails their attack does nothing, they take 30, and their turn ends. That is a coin flip on whether their turn happens at all, and it lands right where you are most exposed.</p>

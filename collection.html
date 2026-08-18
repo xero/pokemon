@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -937,6 +947,10 @@
 			img {
 				float: right;
 				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
 			}
 		}
 
@@ -1556,7 +1570,7 @@
 						<dt>HP</dt><dd><span>90</span></dd>
 						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
 						<dt>Ability</dt><dd>&ndash;</dd>
-						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Claw Slash [CCC]</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Claw Slash <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span><span>Heat Blast (70)</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
@@ -2902,7 +2916,7 @@
 						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
 						<dt>Ability</dt><dd>&ndash;</dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Sharp Fang (30)</span></dd>
-						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire Blast (150) - Discard a [R] Energy attached to this Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire Blast (150) - Discard a <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> Energy attached to this Pokémon.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>

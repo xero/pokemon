@@ -10,7 +10,7 @@
 > Two parts still matter more than the list itself.
 >
 > - **[The prize ladder](#the-real-card-is-the-ability-not-the-attack)**, which is the reason the deck exists.
-> - **[How To Play ex Style](#how-to-play-ex-style)**, the primer. It transfers to any ex deck, not just this one.
+> - **[How To Play ex Style](./rules.md#how-to-play-ex-style)**, the primer. It transfers to any ex deck, not just this one, which is why it lives in the rulebook.
 >
 > Game words are defined in [the table rules](./rules.md).
 
@@ -181,7 +181,7 @@ Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémo
 
 ### Boss's Orders — Mega Evolution 114 · Reg I
 
-Switch in 1 of your opponent's Benched Pokémon to the Active Spot. [How To Play ex Style](#how-to-play-ex-style) calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.
+Switch in 1 of your opponent's Benched Pokémon to the Active Spot. [How To Play ex Style](./rules.md#5-gust-effects-are-the-most-valuable-cards-in-the-format) calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.
 
 ### Grimsley's Move — Phantasmal Flames 090 · Reg I
 
@@ -357,66 +357,14 @@ A card that looks purpose-built for this deck and does nothing in it. Kept from 
 | Problem | Detail |
 | :--- | :--- |
 | **Wrong card name** | It names *M Gengar-EX*, the XY-era card. Mega Gengar ex is a different name; the Tool never triggers. |
-| **Solves a dead rule** | XY-era Mega Evolution ended your turn; Spirit Links existed to fix that. Modern Megas evolve normally. ([Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG))) |
+| **Solves a dead rule** | XY-era Mega Evolution ended your turn; Spirit Links existed to fix that. Modern Megas evolve normally. See: [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Mega_Evolution_Pok%C3%A9mon_ex_(TCG)) |
 | **Not Standard legal** | Phantom Forces is 2014. Rotated many times over. |
 
 ---
 
 ## How To Play ex Style
 
-**This is the part that transfers.** Everything below applies to any ex deck, including Fox's.
-
-### 1. You are not fighting. You are racing to six.
-
-The single biggest mental shift from the casual deck. In Gengar Gang every Pokémon is worth 1 Prize, so "knock out more stuff than they do" and "win" are the same sentence. In an ex format they come apart:
-
-| Pokémon type | Prizes |
-| :--- | :--- |
-| Non-ex | **1** |
-| Pokémon ex | **2** |
-| **Mega Evolution Pokémon ex** | **3** |
-
-**Two Mega Knock Outs is a whole game.** You are not playing a war of attrition; you are playing a sprint where each turn is worth a third of the game.
-
-### 2. Build a Prize map before you start
-
-Before the first attack, decide which six Prizes you are taking. Three Knock Outs on their 2-prize attackers is the standard plan. Two on their Megas is faster if the chip math is there. Six on single-prize Pokémon is a race you will lose; do not plan it.
-
-Then ask the mirror question, which *Shadowy Concealment* rewrites in your favor: which of yours can they afford to Knock Out? In this deck the answer is "almost everything," and that asymmetry is the strategy.
-
-### 3. The trade is the whole game
-
-| You lose | They lose | Verdict |
-| :--- | :--- | :--- |
-| 1-prizer (0 under Concealment) | their 2-prize ex | **The dream.** This deck's whole design. |
-| 2-prize ex | their 2-prize ex | Even. Fine. |
-| **3-prize Mega** | their 2-prize ex | **Bad.** You won the fight and lost the exchange. |
-| 1-prizer | nothing | Bad, unless it bought setup. |
-
-### 4. The two-shot problem beats HP every time
-
-If your attacker needs two turns to Knock Out and theirs needs one, you lose, regardless of HP. Chip damage is not a nice extra in ex decks; it is the difference between one-shotting and losing. This deck's answer is [game plan 3](#3-chip-math).
-
-### 5. Gust effects are the most valuable cards in the format
-
-**Boss's Orders wins more ex games than any attacker**, because in an ex format the whole game is deciding what you are allowed to Knock Out. This list runs three, and drawing one starts a plan; it does not fill a turn.
-
-### 6. Rules that bite harder in ex decks
-
-- Going first, you cannot attack. Going second, Toxel's *Call for Family* makes the free attack a real turn.
-- **ACE SPEC: exactly one per deck, total.** Not one per name.
-- *Shadowy Concealment* does not stack. Three Megas in play still reduce by exactly 1.
-- Rule Box Pokémon cannot be discarded to Gwynn. This deck does not run her, and her presence in Gengar Gang is one more reason the two decks stay separate.
-
-### 7. Errors to expect on the way over
-
-| Habit from Gengar Gang | Why it fails in ex |
-| :--- | :--- |
-| Leading with the best attacker | It is worth 3 Prizes. Lead with something cheap. |
-| Trading freely because everything is 1 Prize | Trades have prices now. Score them first. |
-| Building the widest possible Bench | Wide boards feed Dragapult's spread and every Bench-damage attack in the format. |
-| Treating chip damage as optional | It is how 230 beats 350. |
-| Saving Boss's Orders for the end | The end arrives on turn four. |
+See the **[rules](./rules.md#how-to-play-ex-style)** for ex-format habits such as racing to six, prize maps, and scoring a trade before you take it.
 
 ---
 

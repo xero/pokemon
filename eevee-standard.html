@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -937,6 +947,10 @@
 			img {
 				float: right;
 				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
 			}
 		}
 
@@ -1173,13 +1187,13 @@
 					<table>
 						<thead><tr><th>Gem attack</th><th>Printed cost</th><th>Payable from his colours</th></tr></thead>
 						<tbody>
-							<tr><td>Flareon ex <em>Carnelian</em> 280</td><td>[R][W][L]</td><td><strong>R + W</strong></td></tr>
-							<tr><td>Umbreon ex <em>Onyx</em>, takes a Prize</td><td>[L][P][D]</td><td><strong>P + D</strong></td></tr>
-							<tr><td>Espeon ex <em>Amazez</em>, devolves their board</td><td>[G][P][D]</td><td><strong>P + D</strong></td></tr>
-							<tr><td>Glaceon ex <em>Euclase</em></td><td>[G][W][D]</td><td>W + D</td></tr>
+							<tr><td>Flareon ex <em>Carnelian</em> 280</td><td><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span></td><td><strong>R + W</strong></td></tr>
+							<tr><td>Umbreon ex <em>Onyx</em>, takes a Prize</td><td><span data-icons="inline"><img src="./assets/types/lightning.png" alt="Lightning" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td><strong>P + D</strong></td></tr>
+							<tr><td>Espeon ex <em>Amazez</em>, devolves their board</td><td><span data-icons="inline"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td><strong>P + D</strong></td></tr>
+							<tr><td>Glaceon ex <em>Euclase</em></td><td><span data-icons="inline"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td>W + D</td></tr>
 						</tbody>
 					</table>
-					<p>One Crystal, one Pokémon, so he picks one gem per game. And the best line in the deck is not a gem at all. <strong>Flareon ex holding the Crystal casts <em>Burning Charge</em> for a single [R]:</strong> 130 damage, and search the deck for two Basic Energy of any types. That is the engine and the attacker in one card, and it happens to be his favourite Pokémon.</p>
+					<p>One Crystal, one Pokémon, so he picks one gem per game. And the best line in the deck is not a gem at all. <strong>Flareon ex holding the Crystal casts <em>Burning Charge</em> for a single <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span>:</strong> 130 damage, and search the deck for two Basic Energy of any types. That is the engine and the attacker in one card, and it happens to be his favourite Pokémon.</p>
 				</section>
 			</article>
 			</section>
@@ -1282,7 +1296,7 @@
 				<h3 id="sun-and-moon">Sun and Moon<span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /></span></h3>
 					<p><strong>Espeon is the Sun evolution and Umbreon is the Moon evolution.</strong> That is where the name comes from, and the pairing is aimed squarely at Dad&#x27;s side of the table.</p>
 					<p><strong>Umbreon ex is the reason this build exists.</strong> Every card in the lantern decks is Darkness Weakness ×2, top to bottom: Mega Chandelure ex, Gourgeist ex, Dusknoir, Litwick, Lampent, Pumpkaboo, Duskull. <em>Moon Mirage</em> does 160, which becomes <strong>320</strong>. That one-shots Gourgeist ex at 270, Dusknoir at 160, and every small body on the board. Mega Chandelure ex survives at 350, but only by 30.</p>
-					<p><strong>Espeon ex is a single copy doing a single job.</strong> <em>Amazez</em> devolves <strong>every</strong> evolved Pokémon the opponent controls, shuffling the top Stage card back into their deck. Against a board of Mega Chandelure ex, Dusknoir, Gengar, and Crobat ex that erases an entire game&#x27;s setup in one attack. It costs [G][P][D], which the Crystal turns into P and D, both of which this build already runs.</p>
+					<p><strong>Espeon ex is a single copy doing a single job.</strong> <em>Amazez</em> devolves <strong>every</strong> evolved Pokémon the opponent controls, shuffling the top Stage card back into their deck. Against a board of Mega Chandelure ex, Dusknoir, Gengar, and Crobat ex that erases an entire game&#x27;s setup in one attack. It costs <span data-icons="inline"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span>, which the Crystal turns into P and D, both of which this build already runs.</p>
 					<p>Espeon is Darkness Weakness ×2 and Dad&#x27;s decks are full of Darkness attackers, so it dies the turn after it fires. That is a fair price for undoing his board, and it is why there is only one.</p>
 					<p><strong>Battle Cage is the sleeper.</strong> Dad wins with damage counters placed by Abilities, and Tera bench-immunity does not stop those. Dusknoir&#x27;s <em>Cursed Blast</em> puts 13 counters anywhere it likes; Froslass pings every Ability Pokémon each Checkup. Battle Cage prevents damage counters being placed on <strong>Benched</strong> Pokémon by the opponent&#x27;s attacks and Abilities. Fox places no counters at all, so a card that reads as symmetric is entirely one-sided in his favour.</p>
 			</section>
@@ -1291,7 +1305,7 @@
 					<p>Flareon and Glaceon, built for a field of strangers rather than for Dad.</p>
 					<p><strong>Flareon ex is the haymaker.</strong> <em>Carnelian</em> does 280, and <strong>Mega Excadrill ex is Metal</strong>, which means 280 doubles to <strong>560</strong> into its 340 HP. Mega Excadrill is the most-played deck in the format. Fox&#x27;s favourite Pokémon one-shots it, which is a nice thing to be able to tell him.</p>
 					<p>Fire also doubles into Mega Venusaur ex at 380, Dhelmise, and the Grass core of Festival Lead. Between them that is close to a fifth of the field.</p>
-					<p><strong>Glaceon here is the non-ex print, and that is deliberate.</strong> Glaceon <strong>ex</strong> is Metal Weakness ×2, so it dies to the very Excadrill that Flareon beats. The plain Glaceon gives up <strong>one</strong> Prize instead of two, and <em>Permeating Chill</em> does 30 now plus <strong>9 damage counters</strong> at the end of the opponent&#x27;s next turn. That is 120 for a single [W], and counters ignore Weakness and Resistance entirely.</p>
+					<p><strong>Glaceon here is the non-ex print, and that is deliberate.</strong> Glaceon <strong>ex</strong> is Metal Weakness ×2, so it dies to the very Excadrill that Flareon beats. The plain Glaceon gives up <strong>one</strong> Prize instead of two, and <em>Permeating Chill</em> does 30 now plus <strong>9 damage counters</strong> at the end of the opponent&#x27;s next turn. That is 120 for a single <span data-icons="inline"><img src="./assets/types/water.png" alt="Water" /></span>, and counters ignore Weakness and Resistance entirely.</p>
 					<p>Giving up two Prizes for every knockout is this archetype&#x27;s real weakness, and a 1-Prize attacker is the honest fix. It also keeps Fox&#x27;s third-favourite Eeveelution in the deck without the liability.</p>
 			<aside data-callout="important">
 				<p><strong>Eevee ex cannot become the non-ex Glaceon.</strong> <em>Rainbow DNA</em> only permits Pokémon <strong>ex</strong>. Glaceon has to be played onto a plain Eevee.</p>
@@ -1373,7 +1387,7 @@
 				</section>
 				<section>
 					<p><strong>Basic, Tera, 200 HP, 2 Prizes.</strong> <em>Rainbow DNA</em> lets it evolve into any Pokémon <strong>ex</strong> that evolves from Eevee. It cannot do this on your first turn or the turn you play it, so it needs a turn on the board first.</p>
-					<p>Its attack, <em>Coruscating Quartz</em>, costs [R][W][L] and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.</p>
+					<p>Its attack, <em>Coruscating Quartz</em>, costs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span> and will almost never be paid. Read it as a Basic that holds a decision, not as an attacker.</p>
 				</section>
 			</article>
 			<article>
@@ -1398,7 +1412,7 @@
 				</section>
 				<section>
 					<p><strong>Stage 1 from Eevee, Tera, 270 HP.</strong> <em>Burning Charge</em> does 130 and searches the deck for up to 2 Basic Energy, attaching them to any one of your Pokémon. It does not say Fire. It says <strong>Basic Energy</strong>, which is how a deck with three colours only runs thirteen Energy cards.</p>
-					<p>With Sparkling Crystal attached it costs one [R]. One Fire Energy for 130 damage and two Energy off the deck is the strongest repeatable play in the list.</p>
+					<p>With Sparkling Crystal attached it costs one <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span>. One Fire Energy for 130 damage and two Energy off the deck is the strongest repeatable play in the list.</p>
 					<p><em>Carnelian</em> does 280 and locks it out of attacking next turn. See <a href="#fire-and-ice">Fire and Ice</a>.</p>
 				</section>
 			</article>
@@ -1756,7 +1770,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>Three, Sun and Moon only: the [P] in <em>Onyx</em> and <em>Amazez</em> once the Crystal has dropped the off-colour cost. They trade seats with the Water on game night.</p>
+					<p>Three, Sun and Moon only: the <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> in <em>Onyx</em> and <em>Amazez</em> once the Crystal has dropped the off-colour cost. They trade seats with the Water on game night.</p>
 				</section>
 			</article>
 			<article>
@@ -1773,7 +1787,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>Three, Fire and Ice only: the [W] half of <em>Carnelian</em> and <em>Euclase</em>. At home they live in the swap pile, not the deck box.</p>
+					<p>Three, Fire and Ice only: the <span data-icons="inline"><img src="./assets/types/water.png" alt="Water" /></span> half of <em>Carnelian</em> and <em>Euclase</em>. At home they live in the swap pile, not the deck box.</p>
 				</section>
 			</article>
 			<h2 id="game-plans">Game Plans</h2>

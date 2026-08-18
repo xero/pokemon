@@ -214,6 +214,7 @@
 				flex: 1 1 100%;
 				font-size: var(--text-lg);
 				font-weight: 700;
+				text-decoration: none;
 				text-shadow:
 				-2px -2px 0 #000,
 				 2px -2px 0 #000,
@@ -722,6 +723,15 @@
 			gap: 0.1em;
 		}
 
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
 		/* every <dl> that is not a card's stat block is a table from the
 		   prose, and reads better with ruled rows. the stat block beside a
 		   card image does not. */
@@ -938,6 +948,10 @@
 				float: right;
 				margin: auto;
 			}
+
+			a {
+				text-decoration: none;
+			}
 		}
 
 		/* ------------------------------------------------------------------
@@ -1136,7 +1150,7 @@
 		<p><b>Trainers (Items) —</b><span><a href="#rare-candy">Rare Candy</a> · <a href="#ultra-ball">Ultra Ball</a> · <a href="#nest-ball">Nest Ball</a> · <a href="#evolution-incense">Evolution Incense</a> · <a href="#switch">Switch</a> · <a href="#ordinary-rod">Ordinary Rod</a></span></p>
 		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#magma-basin">Magma Basin</a></span></p>
 		<p><b>Energy —</b><span><a href="#basic-fire-energy">Basic Fire Energy</a></span></p>
-		<p><b>Game Plans —</b><span><a href="#1-the-leon-engine">1. The Leon Engine</a> · <a href="#2-two-speeds">2. Two Speeds</a> · <a href="#3-the-rock-that-hits-back">3. The Rock That Hits Back</a> · <a href="#4-winning-the-stadium-war">4. Winning the Stadium War</a> · <a href="#5-reading-your-first-hand">5. Reading Your First Hand</a> · <a href="#6-what-your-dads-deck-is-trying-to-do">6. What Your Dad&#x27;s Deck Is Trying To Do</a> · <a href="#7-mistakes-that-will-cost-you-the-game">7. Mistakes That Will Cost You The Game</a> · <a href="#8-the-turn-checklist">8. The Turn Checklist</a></span></p>
+		<p><b>Game Plans —</b><span><a href="#1-the-leon-engine">1. The Leon Engine</a> · <a href="#2-two-speeds">2. Two Speeds</a> · <a href="#3-the-rock-that-hits-back">3. The Rock That Hits Back</a> · <a href="#4-winning-the-stadium-war">4. Winning the Stadium War</a> · <a href="#5-reading-your-first-hand">5. Reading Your First Hand</a> · <a href="#6-beating-dads-gengar-gang">6. Beating Dad&#x27;s Gengar Gang</a> · <a href="#7-mistakes-that-will-cost-you-the-game">7. Mistakes That Will Cost You The Game</a> · <a href="#8-the-turn-checklist">8. The Turn Checklist</a></span></p>
 		<p><b>Your Other Eevees and Charizards —</b><span><a href="#reason-1-the-4-copy-limit-counts-names-not-pictures">Reason 1: The 4-copy limit counts NAMES, not pictures</a> · <a href="#reason-2-your-eevee-has-an-ability-the-others-are-blank">Reason 2: Your Eevee has an Ability. The others are blank.</a> · <a href="#reason-3-charmeleon-is-the-card-youre-trying-to-skip">Reason 3: Charmeleon is the card you&#x27;re trying to skip</a> · <a href="#reason-4-the-ex-v-and-vmax-cards-would-break-the-game">Reason 4: The ex, V, and VMAX cards would break the game</a></span></p>
 	</details>
 </nav>
@@ -1160,7 +1174,7 @@
 				<p>Every Pokémon in your deck is worth <strong>1 Prize card</strong>. So is every Pokémon in your dad&#x27;s deck. That means nobody has a giant unfair monster. Whoever plays better wins. That&#x27;s on purpose.</p>
 			</aside>
 			<aside data-callout="note">
-				<p><strong>This deck is home-only.</strong> Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. <a href="./rules.md#standard-legal-and-why-some-decks-arent">The table rules</a> explain the letters, and your <a href="./fire-tournament.html">Flareon Engine</a> is the deck that is allowed there.</p>
+				<p><strong>This deck is home-only.</strong> Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. <a href="./rules.html#standard-legal-and-why-some-decks-arent">The table rules</a> explain the letters, and your <a href="./fire-tournament.html">Flareon Engine</a> is the deck that is allowed there.</p>
 			</aside>
 			<article data-decklist>
 				<h3 id="deck-list">Deck List</h3>
@@ -1198,8 +1212,8 @@
 						<dt><strong>Stage</strong></dt><dd><span>Basic</span></dd>
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Collect</em> <strong>[R]</strong> — Draw a card.</span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Flare</em> <strong>[R][R] 30</strong></span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Collect</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span></strong> — Draw a card.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Flare</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span> 30</strong></span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>charmander</strong> → charmeleon → charizard</p>
@@ -1234,8 +1248,8 @@
 						<dt><strong>Stage</strong></dt><dd><span>Stage 1 (from Charmander)</span></dd>
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Slash</em> <strong>[R] 20</strong></span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Raging Flames</em> <strong>[R][R] 60</strong> — Discard the top 3 cards of your deck.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Slash</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> 20</strong></span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Raging Flames</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span> 60</strong> — Discard the top 3 cards of your deck.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p>charmander → <strong>charmeleon</strong> → charizard</p>
@@ -1267,7 +1281,7 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
 						<dt><strong>Ability</strong></dt><dd><span><em>Battle Sense</em> — Once during your turn, look at the top 3 cards of your deck and put 1 into your hand. Discard the other 2.</span></dd>
-						<dt><strong>Attack</strong></dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /></span><span><em>Royal Blaze</em> <strong>[R] 100+</strong>— Does <strong>50 more</strong>damage for each <strong>Leon</strong>card in your discard pile.</span></dd>
+						<dt><strong>Attack</strong></dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /></span><span><em>Royal Blaze</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> 100+</strong>— Does <strong>50 more</strong>damage for each <strong>Leon</strong>card in your discard pile.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p>charmander → charmeleon → <strong>charizard</strong></p>
@@ -1294,7 +1308,7 @@
 					</ul>
 					<h4>Strategy</h4>
 					<p><strong>Use <em>Battle Sense</em> before you do anything else, every turn.</strong> It&#x27;s the most-forgotten card text in the deck. Look at 3, keep 1. Even when you already know what you want to do, look first — you might find something better. Just remember the other 2 cards get discarded, so don&#x27;t do it when you can&#x27;t afford to lose them.</p>
-					<p><strong>Get the Energy on before Charizard arrives.</strong> Charizard needs [R][R]. If it walks into the Active Spot with nothing attached, it just stands there for two turns getting hit. Load a benched Charmander or Charmeleon with Energy <em>first</em>, or use <a href="#welder">Welder</a> the same turn Charizard shows up.</p>
+					<p><strong>Get the Energy on before Charizard arrives.</strong> Charizard needs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span>. If it walks into the Active Spot with nothing attached, it just stands there for two turns getting hit. Load a benched Charmander or Charmeleon with Energy <em>first</em>, or use <a href="#welder">Welder</a> the same turn Charizard shows up.</p>
 					<p><strong>That retreat cost of 3 is a real weakness, and your dad&#x27;s deck knows it.</strong> His Weezing makes your Active Pokémon <strong>Confused</strong>, and Confused only wears off when the Pokémon <em>leaves</em> the Active Spot. A Confused Charizard is stuck flipping coins unless you spend a <a href="#switch">Switch</a> on it. Keep a Switch in hand when you can.</p>
 				</section>
 			</article>
@@ -1311,7 +1325,7 @@
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt><strong>Ability</strong></dt><dd><span><em>Boosted Evolution</em> — As long as this Pokémon is in the <strong>Active Spot</strong>, it can evolve during your first turn or the turn you play it.</span></dd>
-						<dt><strong>Attack</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span><em>Reckless Charge</em> <strong>[C] 30</strong>— This Pokémon also does 10 damage to itself.</span></dd>
+						<dt><strong>Attack</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span><em>Reckless Charge</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> 30</strong>— This Pokémon also does 10 damage to itself.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>eevee</strong> → flareon</p>
@@ -1347,8 +1361,8 @@
 						<dt><strong>Stage</strong></dt><dd><span>Stage 1 (from Eevee)</span></dd>
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Destructive Flame</em> <strong>[R] 30</strong> — Flip a coin. If heads, discard an Energy from your opponent&#x27;s Active Pokémon.</span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Fighting Blaze</em> <strong>[R][C][C] 90+</strong> — Does 90 more if your opponent&#x27;s Active Pokémon is a Pokémon <strong>ex</strong> or <strong>V</strong>.</span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Destructive Flame</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> 30</strong> — Flip a coin. If heads, discard an Energy from your opponent&#x27;s Active Pokémon.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Fighting Blaze</em> <strong><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> 90+</strong> — Does 90 more if your opponent&#x27;s Active Pokémon is a Pokémon <strong>ex</strong> or <strong>V</strong>.</span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p>eevee → <strong>flareon</strong></p>
@@ -1384,8 +1398,8 @@
 						<dt><strong>Stage</strong></dt><dd><span>Basic</span></dd>
 						<dt><strong>Weakness</strong></dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
 						<dt><strong>Retreat</strong></dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt><strong>Attack 1</strong></dt><dd><span><em>Double Draw</em> <strong>[C]</strong> — Draw 2 cards.</span></dd>
-						<dt><strong>Attack 2</strong></dt><dd><span><em>Flail</em> <strong>[C]</strong> — Does <strong>10 damage for each damage counter on this Pokémon.</strong></span></dd>
+						<dt><strong>Attack 1</strong></dt><dd><span><em>Double Draw</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span></strong> — Draw 2 cards.</span></dd>
+						<dt><strong>Attack 2</strong></dt><dd><span><em>Flail</em> <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span></strong> — Does <strong>10 damage for each damage counter on this Pokémon.</strong></span></dd>
 					</dl>
 					<h4>Evolution</h4>
 					<p><strong>sudowoodo</strong> <em>(doesn&#x27;t evolve)</em></p>
@@ -1423,7 +1437,7 @@
 					<p><strong>Free bonus: his own Stadium helps you.</strong> His <strong>Risky Ruins</strong> puts 2 damage counters on your Basic Pokémon when you bench them. On Sudowoodo, that&#x27;s <strong>20 free Flail damage — 40 after doubling.</strong> His own card arms your best weapon. Don&#x27;t tell him.</p>
 					<p><strong>The danger:</strong> Sudowoodo only has 100 HP. At 70 damage it&#x27;s terrifying, but it&#x27;s also 30 away from dying. You get about one shot. Make it count — use <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders</a> to drag out the Pokémon you most want gone, <em>then</em> Flail it.</p>
 			<aside data-callout="tip">
-				<p><em>Flail</em> costs <strong>[C]</strong> — one Colorless. That means <strong>any</strong> Energy pays for it, including a Fire Energy. You never need special Energy for Sudowoodo.</p>
+				<p><em>Flail</em> costs <strong><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span></strong> — one Colorless. That means <strong>any</strong> Energy pays for it, including a Fire Energy. You never need special Energy for Sudowoodo.</p>
 			</aside>
 				</section>
 			</article>
@@ -1492,7 +1506,7 @@
 					<p>Two Fire Energy is exactly what <a href="#charizard">Charizard&#x27;s</a> <em>Royal Blaze</em> costs. So Welder can turn a bare Charizard into a fully-loaded Charizard in one turn.</p>
 					<h4>Pairing</h4>
 					<ul>
-						<li><strong><a href="#charizard">Charizard</a></strong> — [R][R] in one turn. This is the dream.</li>
+						<li><strong><a href="#charizard">Charizard</a></strong> — <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span> in one turn. This is the dream.</li>
 						<li><strong><a href="#flareon">Flareon</a></strong> — also loves a sudden pile of Energy.</li>
 						<li><strong><a href="#kindler">Kindler</a></strong> — Kindler wants Fire Energy in your hand; Welder wants Fire Energy in your hand. Don&#x27;t run out.</li>
 					</ul>
@@ -1580,7 +1594,7 @@
 						<dt><strong>Type</strong></dt><dd><span>Trainer — Supporter</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p>You can use this card only if you discard a [R] Energy card from your hand. Look at the top 7 cards of your deck and put up to 2 of them into your hand. Shuffle the other cards back into your deck.</p>
+				<p>You can use this card only if you discard a <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> Energy card from your hand. Look at the top 7 cards of your deck and put up to 2 of them into your hand. Shuffle the other cards back into your deck.</p>
 			</aside>
 					<h4>General use</h4>
 					<p>Dig deep. Throw away one Fire Energy, then look at the top <strong>7</strong> cards of your deck and keep any <strong>2</strong> you like.</p>
@@ -1858,7 +1872,7 @@
 						<dt><strong>Type</strong></dt><dd><span>Energy — Basic</span></dd>
 					</dl>
 			<aside data-callout="note">
-				<p><em>Provides [R] Fire Energy.</em></p>
+				<p><em>Provides <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span> Fire Energy.</em></p>
 			</aside>
 					<h4>General use</h4>
 					<p>Fuel. Every attack in your deck is paid for with these.</p>
@@ -1871,18 +1885,18 @@
 						<li><strong><a href="#kindler">Kindler</a></strong> — you must have one in hand to play Kindler at all.</li>
 					</ul>
 					<h4>Strategy</h4>
-					<p><strong>Attach ahead of time.</strong> Put Energy on Pokémon <strong>while they&#x27;re still on the Bench</strong>, before you need them out front. A Charizard that arrives with [R][R] already attached can attack immediately. One that arrives empty stands there doing nothing for two turns while it gets hit.</p>
+					<p><strong>Attach ahead of time.</strong> Put Energy on Pokémon <strong>while they&#x27;re still on the Bench</strong>, before you need them out front. A Charizard that arrives with <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span> already attached can attack immediately. One that arrives empty stands there doing nothing for two turns while it gets hit.</p>
 					<p>This is the number one mistake new players make. Plan one turn ahead.</p>
-					<p><strong>Fire Energy also pays for [C].</strong> A Colorless symbol means &quot;any Energy.&quot; So a Fire Energy works fine for <a href="#sudowoodo">Sudowoodo&#x27;s</a> <em>Flail</em> [C] and <a href="#eevee">Eevee&#x27;s</a> <em>Reckless Charge</em> [C][C]. You never need a second Energy type.</p>
+					<p><strong>Fire Energy also pays for <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>.</strong> A Colorless symbol means &quot;any Energy.&quot; So a Fire Energy works fine for <a href="#sudowoodo">Sudowoodo&#x27;s</a> <em>Flail</em> <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> and <a href="#eevee">Eevee&#x27;s</a> <em>Reckless Charge</em> <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>. You never need a second Energy type.</p>
 					<p><strong>Here&#x27;s what each attacker costs:</strong></p>
 					<table>
 						<thead><tr><th>Pokémon</th><th>Attack</th><th>Cost</th><th>Energy needed</th></tr></thead>
 						<tbody>
-							<tr><td>Sudowoodo</td><td><em>Flail</em></td><td>[C]</td><td><strong>1</strong></td></tr>
-							<tr><td>Flareon</td><td><em>Destructive Flame</em></td><td>[R]</td><td><strong>1</strong></td></tr>
-							<tr><td>Charizard</td><td><em>Royal Blaze</em></td><td>[R][R]</td><td><strong>2</strong></td></tr>
-							<tr><td>Eevee</td><td><em>Reckless Charge</em></td><td>[C][C]</td><td><strong>2</strong></td></tr>
-							<tr><td>Flareon</td><td><em>Fighting Blaze</em></td><td>[R][C][C]</td><td><strong>3</strong></td></tr>
+							<tr><td>Sudowoodo</td><td><em>Flail</em></td><td><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>1</strong></td></tr>
+							<tr><td>Flareon</td><td><em>Destructive Flame</em></td><td><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span></td><td><strong>1</strong></td></tr>
+							<tr><td>Charizard</td><td><em>Royal Blaze</em></td><td><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span></td><td><strong>2</strong></td></tr>
+							<tr><td>Eevee</td><td><em>Reckless Charge</em></td><td><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>2</strong></td></tr>
+							<tr><td>Flareon</td><td><em>Fighting Blaze</em></td><td><span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>3</strong></td></tr>
 						</tbody>
 					</table>
 					<p>Notice that your two best attacks — Royal Blaze and Flail — only need 1 or 2 Energy. Your deck is cheaper to run than it looks.</p>
@@ -2042,9 +2056,8 @@
 			</article>
 			</section>
 			<section>
-				<h3 id="6-what-your-dads-deck-is-trying-to-do">6. What Your Dad&#x27;s Deck Is Trying To Do</h3>
-					<p><strong>Know the other side and you&#x27;ll see plays coming.</strong></p>
-					<p>His deck is all <strong>Darkness</strong> Pokémon. Two main threats:</p>
+				<h3 id="6-beating-dads-gengar-gang">6. Beating Dad&#x27;s Gengar Gang</h3>
+					<p><a href="./dark.html">His deck</a> is all <strong>Darkness</strong> Pokémon. Two main threats:</p>
 			<article>
 				<h3 id="weezing-his-early-attacker-130-hp">Weezing — his early attacker (130 HP)<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
 				<section>
@@ -2205,25 +2218,6 @@
 					</table>
 					<p>Your dad&#x27;s entire deck is <strong>1-Prize</strong> Pokémon. Every single one.</p>
 					<p>Games go to <strong>6 Prize cards</strong>. So if you play a Flareon VMAX and he knocks it out, he&#x27;s taken <strong>half the game from one attack.</strong> He&#x27;d only need three good turns instead of six. You&#x27;d be handing him a shortcut every time something died.</p>
-				</section>
-			</article>
-			<article>
-				<h3 id="theyre-too-strong-for-his-deck-to-answer">They&#x27;re too strong for his deck to answer</h3>
-				<section>
-					<p>His hardest hit is Weezing&#x27;s <em>Crazy Blast</em> at <strong>170 damage</strong>, and that takes him two full turns to set up.</p>
-					<p>A <strong>Flareon ex</strong> with 270 HP would need him to land that combo <strong>twice</strong> — around four turns — while your Flareon ex knocks out a 130 HP Gengar every single turn. That&#x27;s not a close game. That&#x27;s not really a game.</p>
-			<aside data-callout="important">
-				<p>The plan is that both decks <strong>level up together.</strong> When your dad adds his <strong>Mega Gengar ex</strong> (350 HP, gives up <strong>3</strong> Prizes), that&#x27;s the day your Flareon ex and Eevee ex come out of the box. Then it&#x27;s fair again, and it&#x27;ll be awesome.</p>
-				<p>Until then, your job is beating a 130 HP Gengar with a 170 HP Charizard, which is a <em>much</em> better game than either of us steamrolling the other.</p>
-			</aside>
-			<aside data-callout="tip">
-				<p><strong>Flareon VMAX has a hidden catch.</strong> A VMAX evolves from a <strong>V</strong>. So you can&#x27;t play Flareon VMAX without also playing Flareon V first — that&#x27;s two cards, two turns, and if it gets knocked out it&#x27;s <strong>3 Prizes</strong>. It&#x27;s the coolest card you own and one of the riskiest to actually use.</p>
-			</aside>
-			<aside data-callout="note">
-				<p><strong>Here&#x27;s the fun part.</strong> Look back at your own <a href="#flareon">Flareon&#x27;s</a> <em>Fighting Blaze</em>: <strong>90 damage, +90 more if your opponent&#x27;s Active Pokémon is a Pokémon ex or V.</strong></p>
-				<p>Right now that bonus never happens, because your dad plays none. But the day he brings out Mega Gengar ex, your regular little Flareon suddenly hits for <strong>180</strong>.</p>
-				<p>Your deck already has the answer to his upgrade built into it. It&#x27;s just waiting.</p>
-			</aside>
 				</section>
 			</article>
 			</section>

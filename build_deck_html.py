@@ -60,6 +60,8 @@ FLAVOR = {
         "Rules that trip people up": ["wobbuffet"],
         "The big-card words": ["gengar-mega"],
         "Standard Legal, and Why Some Decks Aren't": ["charizard"],
+        "How To Play ex Style": ["gengar-mega-shiny"],
+        "7. Errors to expect on the way over": ["eevee-back"],
     },
     "fire.md": {
         # the Pokemon card pages
@@ -99,7 +101,6 @@ FLAVOR = {
         "The Real Card Is the Ability, Not the Attack": ["gengar-booty"],
         "Versus the Kitchen Table": ["weezing"],
         "How To Play ex Style": ["charizard"],
-        "7. Errors to expect on the way over": ["eevee-back"],
         "What To Buy": ["koffing"],
     },
     "fire-standard.md": {
@@ -233,9 +234,9 @@ def local_href(url):
     built page that lands on the raw source instead, so a link is rewritten
     only when the .html actually exists.
     """
-    m = re.fullmatch(r"(\./)([\w-]+)\.md", url)
+    m = re.fullmatch(r"(\./)([\w-]+)\.md(#[^\s]*)?", url)
     if m and (ROOT / f"{m.group(2)}.html").exists():
-        return f"./{m.group(2)}.html"
+        return f"./{m.group(2)}.html{m.group(3) or ''}"
     return url
 
 
@@ -252,8 +253,20 @@ def inline(s):
     s = re.sub(r"</?(?:img|br|small)\b[^>]*/?>", stash, s)
     s = esc(s)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
-    s = re.sub(r"\[([^\]]+)\]\(([^)]+)\)",
+    # the url half allows one level of balanced parens, because wiki urls carry
+    # them (..._ex_(TCG)) and stopping at the first ) truncates the link and
+    # spills the rest into the sentence as text.
+    s = re.sub(r"\[([^\]]+)\]\(((?:[^()]|\([^()]*\))*)\)",
                lambda m: f'<a href="{local_href(m.group(2))}">{m.group(1)}</a>', s)
+
+    # inline energy notation: a run like [R][W][L] (or a bundled [PPC])
+    # becomes one span of type glyphs sitting in the sentence like words.
+    # after the link pass, so [text](url) never looks like a cost.
+    def glyphs(m):
+        icons = cost_icons(re.sub(r"[\[\]]", "", m.group(0)))
+        return f'<span data-icons="inline">{icons}</span>' if icons else m.group(0)
+
+    s = re.sub(r"(?:\[[RWLGPDFMC]+\])+", glyphs, s)
     # ***both*** first: letting the bold rule see it produced <strong><em>x
     # </strong></em>, which is mis-nested and only survived because browsers
     # repair it.
