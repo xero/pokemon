@@ -30,7 +30,60 @@
 > **Tool / Stadium** — [Punk Helmet](#punk-helmet) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Shadowy Darkness Energy](#shadowy-darkness-energy) · [Basic Darkness Energy](#basic-darkness-energy)
 >
-> [**Game Plans**](#game-plans)
+> [**Game Plans**](#game-plans) · [**Deck List**](#deck-list)
+
+---
+
+## Deck List
+
+**Pokémon (21)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Gastly | Perfect Order | 048 | J |
+| 2 | Haunter | Phantasmal Flames | 055 | I |
+| 3 | Gengar | Perfect Order | 050 | J |
+| 3 | Koffing | Journey Together | 091 | I |
+| 3 | Weezing | Journey Together | 092 | I |
+| 2 | Sableye | Phantasmal Flames | 059 | I |
+| 2 | Toxel | Phantasmal Flames | 067 | I |
+| 2 | Toxtricity | Phantasmal Flames | 068 | I |
+
+**Trainers — Supporters (10)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 3 | Dawn | Phantasmal Flames | 087 | I |
+| 2 | Lillie's Determination | Mega Evolution | 119 | I |
+| 2 | Gwynn | Pitch Black | 078 | J |
+| 3 | Boss's Orders [Ghetsis] | Mega Evolution | 114 | I |
+
+**Trainers — Items (15)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Buddy-Buddy Poffin | Temporal Forces | 144 | H |
+| 3 | Rare Candy | Mega Evolution | 125 | I |
+| 4 | Night Stretcher | Shrouded Fable | 061 | H |
+| 1 | Switch | Mega Evolution | 130 | I |
+| 1 | Scramble Switch | Surging Sparks | 186 | H |
+| 2 | Dark Bell | Pitch Black | 075 | J |
+
+**Trainers — Tool & Stadium (4)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 2 | Punk Helmet | Phantasmal Flames | 092 | I |
+| 2 | Risky Ruins | Mega Evolution | 127 | I |
+
+**Energy (10)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 2 | Shadowy Darkness Energy | Pitch Black | 083 | J |
+| 8 | Basic Darkness Energy | Mega Evolution Energies | 007 | — |
+
+**21 + 10 + 15 + 4 + 10 = 60.** ✓
 
 ---
 ---

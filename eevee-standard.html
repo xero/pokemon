@@ -369,27 +369,63 @@
 			padding-block: var(--pad);
 		}
 
-		/* group headings on a deck page: Pokémon, Trainers, Energy */
-		/* label in one column, links in the other, so a long run of links wraps
-		   against itself instead of running back under the label. each row
-		   sizes to its own label rather than sharing one width. */
-		nav p {
-			display: flex;
-			flex-flow: row nowrap;
-			align-items: baseline;
-			gap: 0.4em;
-			padding-top: 0.35em;
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
 
-			b {
-				flex: none;
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
 			}
 
-			span {
-				min-width: 0;
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
 			}
 
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
 			@media (width < 34em) {
-				flex-wrap: wrap;
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
 			}
 		}
 
@@ -1146,19 +1182,29 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><b><a href="#the-thesis">The Thesis</a></b></p>
-		<p><b><a href="#deck-list">Deck List</a></b></p>
-		<p><b><a href="#the-swap">The Swap</a></b></p>
-		<p><b><a href="#sun-and-moon">Sun and Moon</a></b></p>
-		<p><b><a href="#fire-and-ice">Fire and Ice</a></b></p>
-		<p><b><a href="#pick-your-ten">Pick Your Ten</a></b></p>
-		<p><b>Pokémon —</b><span><a href="#eevee-prismatic-evolutions-074-reg-h">Eevee</a> · <a href="#eevee-twilight-masquerade-135-reg-h">Eevee</a> · <a href="#eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex</a> · <a href="#flareon-ex-prismatic-evolutions-014-reg-h">Flareon ex</a> · <a href="#umbreon-ex-prismatic-evolutions-060-reg-h">Umbreon ex</a> · <a href="#espeon-ex-prismatic-evolutions-034-reg-h">Espeon ex</a> · <a href="#glaceon-prismatic-evolutions-025-reg-h">Glaceon</a> · <a href="#hoothoot-stellar-crown-114-reg-h">Hoothoot</a> · <a href="#noctowl-stellar-crown-115-reg-h">Noctowl</a></span></p>
-		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination</a> · <a href="#bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders</a> · <a href="#crispin-stellar-crown-133-reg-h">Crispin</a> · <a href="#hilda-white-flare-084-reg-i">Hilda</a></span></p>
-		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin</a> · <a href="#ultra-ball-mega-evolution-131-reg-i">Ultra Ball</a> · <a href="#switch-mega-evolution-130-reg-i">Switch</a> · <a href="#night-stretcher-shrouded-fable-061-reg-h">Night Stretcher</a></span></p>
-		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#sparkling-crystal-stellar-crown-142-reg-h">Sparkling Crystal</a> · <a href="#battle-cage-phantasmal-flames-085-reg-i">Battle Cage</a></span></p>
-		<p><b>Energy —</b><span><a href="#basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy</a> · <a href="#basic-fire-energy-mega-evolution-energies-002">Basic Fire Energy</a> · <a href="#basic-psychic-energy-mega-evolution-energies-005">Basic Psychic Energy</a> · <a href="#basic-water-energy-mega-evolution-energies-003">Basic Water Energy</a></span></p>
-		<p><b>Game Plans —</b><span><a href="#1-the-bench-is-safe-so-wait">1. The Bench Is Safe, So Wait</a> · <a href="#2-flareon-ex-pays-for-everything">2. Flareon ex Pays for Everything</a> · <a href="#3-three-knockouts-and-it-is-over">3. Three Knockouts and It Is Over</a> · <a href="#4-choosing-the-crystals-home">4. Choosing the Crystal&#x27;s Home</a></span></p>
-		<p><b><a href="#what-to-buy">What To Buy</a></b></p>
+		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-swap">The Swap</a></li>
+			<li><a href="#sun-and-moon">Sun and Moon</a></li>
+			<li><a href="#fire-and-ice">Fire and Ice</a></li>
+			<li><a href="#pick-your-ten">Pick Your Ten</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#eevee-prismatic-evolutions-h">Eevee (Prismatic Evolutions · H)</a> <a href="#eevee-twilight-masquerade-h">Eevee (Twilight Masquerade · H)</a> <a href="#eevee-ex">Eevee ex</a> <a href="#flareon-ex">Flareon ex</a> <a href="#umbreon-ex">Umbreon ex</a> <a href="#espeon-ex">Espeon ex</a> <a href="#glaceon">Glaceon</a> <a href="#hoothoot">Hoothoot</a> <a href="#noctowl">Noctowl</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#crispin">Crispin</a> <a href="#hilda">Hilda</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#ultra-ball">Ultra Ball</a> <a href="#switch">Switch</a> <a href="#night-stretcher">Night Stretcher</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#sparkling-crystal">Sparkling Crystal</a> <a href="#battle-cage">Battle Cage</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-darkness-energy">Basic Darkness Energy</a> <a href="#basic-fire-energy">Basic Fire Energy</a> <a href="#basic-psychic-energy">Basic Psychic Energy</a> <a href="#basic-water-energy">Basic Water Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-the-bench-is-safe-so-wait">1. The Bench Is Safe, So Wait</a> <a href="#2-flareon-ex-pays-for-everything">2. Flareon ex Pays for Everything</a> <a href="#3-three-knockouts-and-it-is-over">3. Three Knockouts and It Is Over</a> <a href="#4-choosing-the-crystals-home">4. Choosing the Crystal&#x27;s Home</a></dd>
+		</dl>
 	</details>
 </nav>
 		<main>
@@ -1201,7 +1247,7 @@
 				<h3 id="deck-list">Deck List</h3>
 					<p>This is <strong>Sun and Moon</strong>, the home build. For Fire and Ice, apply <a href="#the-swap">The Swap</a>.</p>
 			<article data-decklist>
-				<figure><img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/610429_eevee.jpg" alt="Eevee" /><span data-count>x3</span></figure>
 				<figure><img src="./assets/550179_eevee-135-167.jpg" alt="Eevee" /></figure>
 				<figure><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /><span data-count>x3</span></figure>
@@ -1321,9 +1367,9 @@
 			</section>
 			<h2 id="pokémon">Pokémon</h2>
 			<article>
-				<h3 id="eevee-prismatic-evolutions-074-reg-h">Eevee — Prismatic Evolutions 074 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+				<h3 id="eevee-prismatic-evolutions-h">Eevee (Prismatic Evolutions · H)<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside>
-					<a data-art href="./assets/610590_eevee-poke-ball-pattern.jpg" target="_blank" rel="noopener"><img src="./assets/610590_eevee-poke-ball-pattern.jpg" alt="Eevee (Poké Ball Pattern)" /></a>
+					<a data-art href="./assets/610429_eevee.jpg" target="_blank" rel="noopener"><img src="./assets/610429_eevee.jpg" alt="Eevee" /></a>
 				</aside>
 				<section>
 					<dl class="card">
@@ -1335,7 +1381,7 @@
 						<dt>Ability</dt><dd><span>Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Reckless Charge (30) - This Pokémon also does 10 damage to itself.</span></dd>
 					</dl>
 				</section>
@@ -1344,7 +1390,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="eevee-twilight-masquerade-135-reg-h">Eevee — Twilight Masquerade 135 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+				<h3 id="eevee-twilight-masquerade-h">Eevee (Twilight Masquerade · H)<span data-count>x1</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/550179_eevee-135-167.jpg" target="_blank" rel="noopener"><img src="./assets/550179_eevee-135-167.jpg" alt="Eevee" /></a>
 				</aside>
@@ -1357,7 +1403,7 @@
 						<dt>Stage</dt><dd><span>Basic</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Ascension - Search your deck for a card that evolves from this Pokémon and put it onto this Pokémon to evolve it. Then, shuffle your deck.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Quick Attack (20+) - Flip a coin. If heads, this attack does 20 more damage.</span></dd>
 					</dl>
@@ -1367,7 +1413,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="eevee-ex-prismatic-evolutions-075-reg-h">Eevee ex — Prismatic Evolutions 075 · Reg H<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
+				<h3 id="eevee-ex">Eevee ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/eevee-ex.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/610430_eevee-ex-075-131.jpg" target="_blank" rel="noopener"><img src="./assets/610430_eevee-ex-075-131.jpg" alt="Eevee ex" /></a>
 				</aside>
@@ -1381,7 +1427,7 @@
 						<dt>Ability</dt><dd><span>Rainbow DNA - This Pokémon can evolve into any Pokémon ex that evolves from Eevee if you play it from your hand onto this Pokémon. (This Pokémon can&#x27;t evolve during your first turn or the turn you play it.) Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Coruscating Quartz (200)</span></dd>
 					</dl>
 				</section>
@@ -1391,7 +1437,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="flareon-ex-prismatic-evolutions-014-reg-h">Flareon ex — Prismatic Evolutions 014 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
+				<h3 id="flareon-ex">Flareon ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/610369_flareon-ex-014-131.jpg" target="_blank" rel="noopener"><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /></a>
 				</aside>
@@ -1405,7 +1451,7 @@
 						<dt>Ability</dt><dd><span>Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Burning Charge (130) - Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Carnelian (280) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
 					</dl>
@@ -1417,7 +1463,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="umbreon-ex-prismatic-evolutions-060-reg-h">Umbreon ex — Prismatic Evolutions 060 · Reg H<span data-count>x3</span><span data-flavor><img src="./assets/sprites/umbreon.gif" alt="" /></span></h3>
+				<h3 id="umbreon-ex">Umbreon ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/umbreon.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/610415_umbreon-ex-060-131.jpg" target="_blank" rel="noopener"><img src="./assets/610415_umbreon-ex-060-131.jpg" alt="Umbreon ex" /></a>
 				</aside>
@@ -1430,7 +1476,7 @@
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Moon Mirage (160) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/lightning.png" alt="Lightning" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Onyx - Discard all Energy from this Pokémon, and take a Prize card.</span></dd>
 					</dl>
@@ -1442,7 +1488,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="espeon-ex-prismatic-evolutions-034-reg-h">Espeon ex — Prismatic Evolutions 034 · Reg H<span data-count>x1</span><span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /></span></h3>
+				<h3 id="espeon-ex">Espeon ex<span data-count>x1</span><span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/610389_espeon-ex-034-131.jpg" target="_blank" rel="noopener"><img src="./assets/610389_espeon-ex-034-131.jpg" alt="Espeon ex" /></a>
 				</aside>
@@ -1456,7 +1502,7 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
 						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Psych Out (160) - Discard a random card from your opponent&#x27;s hand.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Amazez - Devolve each of your opponent&#x27;s evolved Pokémon by shuffling the highest Stage Evolution card on it into your opponent&#x27;s deck.</span></dd>
 					</dl>
@@ -1467,7 +1513,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="glaceon-prismatic-evolutions-025-reg-h">Glaceon — Prismatic Evolutions 025 · Reg H<span data-flavor><img src="./assets/sprites/glaceon.gif" alt="" /></span></h3>
+				<h3 id="glaceon">Glaceon<span data-flavor><img src="./assets/sprites/glaceon.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/610380_glaceon.jpg" target="_blank" rel="noopener"><img src="./assets/610380_glaceon.jpg" alt="Glaceon" /></a>
 				</aside>
@@ -1480,7 +1526,7 @@
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /></span><span>Permeating Chill (30) - At the end of your opponent&#x27;s next turn, put 9 damage counters on the Defending Pokémon.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Icicle Missile (70)</span></dd>
 					</dl>
@@ -1491,7 +1537,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="hoothoot-stellar-crown-114-reg-h">Hoothoot — Stellar Crown 114 · Reg H<span data-count>x4</span></h3>
+				<h3 id="hoothoot">Hoothoot<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/567340_hoothoot.jpg" target="_blank" rel="noopener"><img src="./assets/567340_hoothoot.jpg" alt="Hoothoot" /></a>
 				</aside>
@@ -1505,7 +1551,7 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
 						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Triple Stab (10x) - Flip 3 coins. This attack does 10 damage for each heads.</span></dd>
 					</dl>
 				</section>
@@ -1514,7 +1560,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="noctowl-stellar-crown-115-reg-h">Noctowl — Stellar Crown 115 · Reg H<span data-count>x2</span></h3>
+				<h3 id="noctowl">Noctowl<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/567341_noctowl.jpg" target="_blank" rel="noopener"><img src="./assets/567341_noctowl.jpg" alt="Noctowl" /></a>
 				</aside>
@@ -1529,7 +1575,7 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
 						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Speed Wing (60)</span></dd>
 					</dl>
 				</section>
@@ -1539,7 +1585,7 @@
 			</article>
 			<h2 id="trainers-supporters">Trainers — Supporters</h2>
 			<article>
-				<h3 id="lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination — Mega Evolution 119 · Reg I<span data-count>x4</span></h3>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
 				</aside>
@@ -1549,7 +1595,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1557,7 +1603,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders — Mega Evolution 114 · Reg I<span data-count>x3</span></h3>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
 				</aside>
@@ -1567,7 +1613,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1575,7 +1621,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="crispin-stellar-crown-133-reg-h">Crispin — Stellar Crown 133 · Reg H<span data-count>x3</span></h3>
+				<h3 id="crispin">Crispin<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/567390_crispin-133-142.jpg" target="_blank" rel="noopener"><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /></a>
 				</aside>
@@ -1585,7 +1631,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Energy cards of different types, reveal them, and put 1 of them into your hand. Attach the other to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1593,7 +1639,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="hilda-white-flare-084-reg-i">Hilda — White Flare 084 · Reg I<span data-count>x2</span></h3>
+				<h3 id="hilda">Hilda<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
 				</aside>
@@ -1603,7 +1649,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1612,7 +1658,7 @@
 			</article>
 			<h2 id="trainers-items">Trainers — Items</h2>
 			<article>
-				<h3 id="buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin — Temporal Forces 144 · Reg H</h3>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
 				</aside>
@@ -1622,7 +1668,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1630,7 +1676,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="ultra-ball-mega-evolution-131-reg-i">Ultra Ball — Mega Evolution 131 · Reg I<span data-count>x4</span></h3>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
 				</aside>
@@ -1640,7 +1686,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1648,7 +1694,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="switch-mega-evolution-130-reg-i">Switch — Mega Evolution 130 · Reg I<span data-count>x3</span></h3>
+				<h3 id="switch">Switch<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
 				</aside>
@@ -1658,7 +1704,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1666,7 +1712,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="night-stretcher-shrouded-fable-061-reg-h">Night Stretcher — Shrouded Fable 061 · Reg H<span data-count>x2</span></h3>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
 				</aside>
@@ -1676,7 +1722,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1685,7 +1731,7 @@
 			</article>
 			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
 			<article>
-				<h3 id="sparkling-crystal-stellar-crown-142-reg-h">Sparkling Crystal — Stellar Crown 142 · Reg H<span data-count>x1</span></h3>
+				<h3 id="sparkling-crystal">Sparkling Crystal<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/567416_sparkling-crystal.jpg" target="_blank" rel="noopener"><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></a>
 				</aside>
@@ -1695,7 +1741,7 @@
 						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
 						<dt>Ability</dt><dd><span>When the Tera Pokémon this card is attached to uses an attack, that attack costs 1 Energy less. (The Energy can be of any type.)</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1703,7 +1749,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="battle-cage-phantasmal-flames-085-reg-i">Battle Cage — Phantasmal Flames 085 · Reg I<span data-count>x2</span></h3>
+				<h3 id="battle-cage">Battle Cage<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/662130_battle-cage-085-094.jpg" target="_blank" rel="noopener"><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /></a>
 				</aside>
@@ -1713,7 +1759,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
 						<dt>Ability</dt><dd><span>Prevent all damage counters from being placed on Benched Pokémon (both yours and your opponent&#x27;s) by effects of attacks and Abilities from the opponent&#x27;s Pokémon. (Damage from attacks is still taken.)</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1723,7 +1769,7 @@
 			</article>
 			<h2 id="energy">Energy</h2>
 			<article>
-				<h3 id="basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy — Mega Evolution Energies 007<span data-count>x6</span></h3>
+				<h3 id="basic-darkness-energy">Basic Darkness Energy<span data-count>x6</span></h3>
 				<aside>
 					<a data-art href="./assets/656269_basic-darkness-energy-007.jpg" target="_blank" rel="noopener"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></a>
 				</aside>
@@ -1740,7 +1786,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="basic-fire-energy-mega-evolution-energies-002">Basic Fire Energy — Mega Evolution Energies 002<span data-count>x4</span></h3>
+				<h3 id="basic-fire-energy">Basic Fire Energy<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/656264_basic-fire-energy-002.jpg" target="_blank" rel="noopener"><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></a>
 				</aside>
@@ -1757,7 +1803,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="basic-psychic-energy-mega-evolution-energies-005">Basic Psychic Energy — Mega Evolution Energies 005<span data-count>x3</span></h3>
+				<h3 id="basic-psychic-energy">Basic Psychic Energy<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
 				</aside>
@@ -1774,7 +1820,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="basic-water-energy-mega-evolution-energies-003">Basic Water Energy — Mega Evolution Energies 003</h3>
+				<h3 id="basic-water-energy">Basic Water Energy</h3>
 				<aside>
 					<a data-art href="./assets/656265_basic-water-energy-003.jpg" target="_blank" rel="noopener"><img src="./assets/656265_basic-water-energy-003.jpg" alt="Basic Water Energy" /></a>
 				</aside>
@@ -1824,7 +1870,7 @@
 					<table>
 						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
 						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee (Poké Ball Pattern) <small>SV: Prismatic Evolutions 074/131</small></span></td><td>1</td><td>3</td><td><strong>2</strong></td><td>Boosted Evolution, the turn-one play</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee <small>SV: Prismatic Evolutions 074/131</small></span></td><td>3</td><td>3</td><td>✓</td><td>Boosted Evolution, the turn-one play</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Eevee <small>SV06: Twilight Masquerade 135/167</small></span></td><td>2</td><td>1</td><td>✓</td><td>Ascension, the toolbox tutor</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee ex <small>SV: Prismatic Evolutions 075/131</small></span></td><td>2</td><td>2</td><td>✓</td><td>Rainbow DNA</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Flareon ex <small>SV: Prismatic Evolutions 014/131</small></span></td><td>3</td><td>4</td><td><strong>1</strong></td><td>3 for Sun and Moon, 4 for Fire and Ice</td></tr>
@@ -1847,7 +1893,7 @@
 							<tr><td><span>Basic Fire Energy <small>MEE: Mega Evolution Energies 2</small></span></td><td>18</td><td>7</td><td>✓</td><td>any English printing</td></tr>
 							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>15</td><td>3</td><td>✓</td><td>any English printing</td></tr>
 							<tr><td><span>Basic Water Energy <small>MEE: Mega Evolution Energies 3</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>any English printing</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>13</strong></td><td></td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>11</strong></td><td></td></tr>
 						</tbody>
 					</table>
 			<aside data-callout="warning">

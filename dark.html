@@ -369,27 +369,63 @@
 			padding-block: var(--pad);
 		}
 
-		/* group headings on a deck page: Pokémon, Trainers, Energy */
-		/* label in one column, links in the other, so a long run of links wraps
-		   against itself instead of running back under the label. each row
-		   sizes to its own label rather than sharing one width. */
-		nav p {
-			display: flex;
-			flex-flow: row nowrap;
-			align-items: baseline;
-			gap: 0.4em;
-			padding-top: 0.35em;
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
 
-			b {
-				flex: none;
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
 			}
 
-			span {
-				min-width: 0;
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
 			}
 
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
 			@media (width < 34em) {
-				flex-wrap: wrap;
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
 			}
 		}
 
@@ -1145,13 +1181,24 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><b>Pokémon —</b><span><a href="#gastly">Gastly</a> · <a href="#haunter">Haunter</a> · <a href="#gengar">Gengar</a> · <a href="#koffing">Koffing</a> · <a href="#weezing">Weezing</a> · <a href="#sableye">Sableye</a> · <a href="#toxel">Toxel</a> · <a href="#toxtricity">Toxtricity</a></span></p>
-		<p><b>Trainers (Support) —</b><span><a href="#dawn">Dawn</a> · <a href="#lillies-determination">Lillie&#x27;s Determination</a> · <a href="#gwynn">Gwynn</a> · <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a></span></p>
-		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> · <a href="#rare-candy">Rare Candy</a> · <a href="#night-stretcher">Night Stretcher</a> · <a href="#switch">Switch</a> · <a href="#scramble-switch">Scramble Switch</a> · <a href="#dark-bell">Dark Bell</a></span></p>
-		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#punk-helmet">Punk Helmet</a> · <a href="#risky-ruins">Risky Ruins</a></span></p>
-		<p><b>Energy —</b><span><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a> · <a href="#basic-darkness-energy">Basic Darkness Energy</a></span></p>
-		<p><b>Game Plans —</b><span><a href="#1-the-two-turn-fuse">1. The Two-Turn Fuse</a> · <a href="#2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark</a> · <a href="#3-the-bench-tax">3. The Bench Tax</a> · <a href="#4-wearing-the-helmet">4. Wearing the Helmet</a> · <a href="#5-trading-ghosts">5. Trading Ghosts</a> · <a href="#6-reading-the-opening-hand">6. Reading the Opening Hand</a> · <a href="#7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</a> · <a href="#8-teaching-notes">8. Teaching Notes</a></span></p>
-		<p><b><a href="#versus-foxs-decks">Versus Fox&#x27;s Decks</a></b></p>
+		<ul data-sections>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#versus-foxs-decks">Versus Fox&#x27;s Decks</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#gastly">Gastly</a> <a href="#haunter">Haunter</a> <a href="#gengar">Gengar</a> <a href="#koffing">Koffing</a> <a href="#weezing">Weezing</a> <a href="#sableye">Sableye</a> <a href="#toxel">Toxel</a> <a href="#toxtricity">Toxtricity</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#dawn">Dawn</a> <a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#gwynn">Gwynn</a> <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#rare-candy">Rare Candy</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#switch">Switch</a> <a href="#scramble-switch">Scramble Switch</a> <a href="#dark-bell">Dark Bell</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#punk-helmet">Punk Helmet</a> <a href="#risky-ruins">Risky Ruins</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#shadowy-darkness-energy">Shadowy Darkness Energy</a> <a href="#basic-darkness-energy">Basic Darkness Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-the-two-turn-fuse">1. The Two-Turn Fuse</a> <a href="#2-growing-a-ghost-in-the-dark">2. Growing a Ghost in the Dark</a> <a href="#3-the-bench-tax">3. The Bench Tax</a> <a href="#4-wearing-the-helmet">4. Wearing the Helmet</a> <a href="#5-trading-ghosts">5. Trading Ghosts</a> <a href="#6-reading-the-opening-hand">6. Reading the Opening Hand</a> <a href="#7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</a> <a href="#8-teaching-notes">8. Teaching Notes</a></dd>
+		</dl>
 	</details>
 </nav>
 		<main>
@@ -1170,8 +1217,9 @@
 				<p><strong>Deck total: 60 cards.</strong> 21 Pokémon, 29 Trainers, 10 Energy. Every attacker is worth <strong>1 Prize card</strong>, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.</p>
 				<p><strong>This is the third build.</strong> The second one traded situational Trainers for Pokémon and an Energy engine. This one fixes where the Energy actually goes: Scramble Switch takes the ACE SPEC slot that was sitting empty, Night Stretcher doubles, half the Shadowy Darkness becomes Basic Darkness that <em>Sinister Surge</em> can still find on turn seven, and Ultra Ball leaves because three Dawn already fetch the whole Gengar line.</p>
 			</aside>
-			<article data-decklist>
+			<section>
 				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
 				<figure><img src="./assets/684429_gastly.jpg" alt="Gastly" /><span data-count>x4</span></figure>
 				<figure><img src="./assets/660408_haunter-055-094.jpg" alt="Haunter" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/684431_gengar.jpg" alt="Gengar" /><span data-count>x3</span></figure>
@@ -1195,6 +1243,60 @@
 				<figure><img src="./assets/704840_shadowy-darkness-energy.jpg" alt="Shadowy Darkness Energy" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x8</span></figure>
 			</article>
+					<p><strong>Pokémon (21)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Gastly</td><td>Perfect Order</td><td>048</td><td>J</td></tr>
+							<tr><td>2</td><td>Haunter</td><td>Phantasmal Flames</td><td>055</td><td>I</td></tr>
+							<tr><td>3</td><td>Gengar</td><td>Perfect Order</td><td>050</td><td>J</td></tr>
+							<tr><td>3</td><td>Koffing</td><td>Journey Together</td><td>091</td><td>I</td></tr>
+							<tr><td>3</td><td>Weezing</td><td>Journey Together</td><td>092</td><td>I</td></tr>
+							<tr><td>2</td><td>Sableye</td><td>Phantasmal Flames</td><td>059</td><td>I</td></tr>
+							<tr><td>2</td><td>Toxel</td><td>Phantasmal Flames</td><td>067</td><td>I</td></tr>
+							<tr><td>2</td><td>Toxtricity</td><td>Phantasmal Flames</td><td>068</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Supporters (10)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Dawn</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>2</td><td>Lillie&#x27;s Determination</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>2</td><td>Gwynn</td><td>Pitch Black</td><td>078</td><td>J</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders [Ghetsis]</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Items (15)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>3</td><td>Rare Candy</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>4</td><td>Night Stretcher</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Switch</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Scramble Switch</td><td>Surging Sparks</td><td>186</td><td>H</td></tr>
+							<tr><td>2</td><td>Dark Bell</td><td>Pitch Black</td><td>075</td><td>J</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Tool &amp; Stadium (4)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>Punk Helmet</td><td>Phantasmal Flames</td><td>092</td><td>I</td></tr>
+							<tr><td>2</td><td>Risky Ruins</td><td>Mega Evolution</td><td>127</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (10)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>Shadowy Darkness Energy</td><td>Pitch Black</td><td>083</td><td>J</td></tr>
+							<tr><td>8</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>007</td><td>—</td></tr>
+						</tbody>
+					</table>
+					<p><strong>21 + 10 + 15 + 4 + 10 = 60.</strong> ✓</p>
+			</section>
 			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="gastly">Gastly<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>

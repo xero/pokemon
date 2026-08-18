@@ -48,7 +48,8 @@ MASCOT = {"rules.md": ["sudowoodo", "wobbuffet"],
           "fire-standard.md": ["eevee", "flareon"],
           "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
-          "eevee-standard.md": ["eevee-ex", "umbreon"]}
+          "eevee-standard.md": ["eevee-ex", "umbreon"],
+          "rocket-mewtwo.md": ["mewtwo", "crobat"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -91,12 +92,12 @@ FLAVOR = {
     # Pecharunt, so the cards that have one get it and the rest go without.
     # seviper and sableye were promoted from assets/ani for this page.
     "dark-ex.md": {
-        "Mega Gengar ex — Phantasmal Flames 056 · Reg I": ["gengar-mega"],
-        "Gastly — Phantasmal Flames 054 · Reg I": ["gastly"],
-        "Haunter — Perfect Order 049 · Reg J": ["haunter"],
-        "Gengar — Perfect Order 050 · Reg J": ["gengar"],
-        "Seviper — Phantasmal Flames 062 · Reg I": ["seviper"],
-        "Sableye — Phantasmal Flames 059 · Reg I": ["sableye"],
+        "Mega Gengar ex": ["gengar-mega"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Gengar": ["gengar"],
+        "Seviper": ["seviper"],
+        "Sableye": ["sableye"],
         "✗ Gengar Spirit Link — Skip It": ["wobbuffet-back", "gengar-mega-shiny"],
         "The Real Card Is the Ability, Not the Attack": ["gengar-booty"],
         "Versus the Kitchen Table": ["weezing"],
@@ -105,11 +106,11 @@ FLAVOR = {
     },
     "fire-standard.md": {
         # the card pages get the card's own Pokemon
-        "Flareon ex — Prismatic Evolutions 014 · Reg H": ["flareon-ex"],
-        "Eevee ex — Prismatic Evolutions 075 · Reg H": ["eevee-ex"],
-        "Eevee — Prismatic Evolutions 074 · Reg H": ["eevee"],
-        "Hoothoot — Stellar Crown 114 · Reg H": ["hoothoot"],
-        "Noctowl — Stellar Crown 115 · Reg H": ["noctowl"],
+        "Flareon ex": ["flareon-ex"],
+        "Eevee ex": ["eevee-ex"],
+        "Eevee": ["eevee"],
+        "Hoothoot": ["hoothoot"],
+        "Noctowl": ["noctowl"],
         # the argument and the game plans
         "The Thesis": ["flareon"],
         "1. Turn One, Flareon": ["eevee"],
@@ -124,15 +125,15 @@ FLAVOR = {
         # the ghost and ice lines came from assets/ani; no Mega Chandelure
         # sprite exists, so the base form stands in for it.
         "The Thesis": ["litwick"],
-        "Mega Chandelure ex — Pitch Black 038 · Reg J": ["chandelure"],
-        "Litwick — Pitch Black 036 · Reg J": ["litwick"],
-        "Lampent — Pitch Black 037 · Reg J": ["lampent"],
-        "Pumpkaboo — Chaos Rising 040 · Reg J": ["pumpkaboo"],
-        "Gourgeist ex — Chaos Rising 041 · Reg J": ["gourgeist"],
-        "Snorunt — Twilight Masquerade 051 · Reg H": ["snorunt"],
-        "Froslass — Twilight Masquerade 053 · Reg H": ["froslass"],
-        "Duskull — Shrouded Fable 018 · Reg H": ["duskull"],
-        "Dusknoir — Shrouded Fable 020 · Reg H": ["dusknoir"],
+        "Mega Chandelure ex": ["chandelure"],
+        "Litwick": ["litwick"],
+        "Lampent": ["lampent"],
+        "Pumpkaboo": ["pumpkaboo"],
+        "Gourgeist ex": ["gourgeist"],
+        "Snorunt": ["snorunt"],
+        "Froslass": ["froslass"],
+        "Duskull": ["duskull"],
+        "Dusknoir": ["dusknoir"],
         "The Energy Engine": ["snorunt"],
         "1. The Trap": ["chandelure"],
         "2. Feeding the Rondo": ["gourgeist"],
@@ -147,21 +148,21 @@ FLAVOR = {
         # the swap module forks the same line, so it gets the two stages the
         # forks grow from; no back sprites exist for the lantern line.
         "Night Parade": ["litwick", "lampent"],
-        "Chandelure — Lost Thunder 103": ["chandelure"],
-        "Chandelure — Guardians Rising 013": ["chandelure"],
+        "Chandelure (Lost Thunder)": ["chandelure"],
+        "Chandelure (Guardians Rising)": ["chandelure"],
         "What To Buy": ["pumpkaboo"],
     },
     # umbreon, espeon, and glaceon were promoted from assets/ani for this page.
     # the two module sections get their pair of Eeveelutions, which is the
     # fastest way to see at a glance which ten cards each one means.
     "eevee-standard.md": {
-        "Eevee — Prismatic Evolutions 074 · Reg H": ["eevee"],
-        "Eevee — Twilight Masquerade 135 · Reg H": ["eevee"],
-        "Eevee ex — Prismatic Evolutions 075 · Reg H": ["eevee-ex"],
-        "Flareon ex — Prismatic Evolutions 014 · Reg H": ["flareon-ex"],
-        "Umbreon ex — Prismatic Evolutions 060 · Reg H": ["umbreon"],
-        "Espeon ex — Prismatic Evolutions 034 · Reg H": ["espeon"],
-        "Glaceon — Prismatic Evolutions 025 · Reg H": ["glaceon"],
+        "Eevee (Prismatic Evolutions · H)": ["eevee"],
+        "Eevee (Twilight Masquerade · H)": ["eevee"],
+        "Eevee ex": ["eevee-ex"],
+        "Flareon ex": ["flareon-ex"],
+        "Umbreon ex": ["umbreon"],
+        "Espeon ex": ["espeon"],
+        "Glaceon": ["glaceon"],
         "The Thesis": ["eevee"],
         "Sun and Moon": ["espeon", "umbreon"],
         "Fire and Ice": ["flareon", "glaceon"],
@@ -194,6 +195,32 @@ FLAVOR = {
         "His annoying cards": ["haunter"],
         "8. Mistakes That Will Cost You The Game": ["flareon-back"],
         "9. The Turn Checklist": ["charizard"],
+    },
+    # mewtwo, zubat, golbat, crobat and articuno were promoted from assets/ani
+    # for this page. Spidops and Tarountula are gen 9, so the engine's own two
+    # cards are the ones that go bare.
+    "rocket-mewtwo.md": {
+        "Team Rocket's Mewtwo ex": ["mewtwo"],
+        "Team Rocket's Crobat ex": ["crobat"],
+        "Team Rocket's Golbat": ["golbat"],
+        "Team Rocket's Zubat": ["zubat"],
+        "Team Rocket's Articuno": ["articuno"],
+        "The Thesis": ["mewtwo"],
+        "The Engine": ["zubat", "golbat"],
+        "Damage Math": ["mewtwo"],
+        "The Prize Map": ["crobat"],
+        "2. Two attachments, then Mewtwo swings": ["mewtwo"],
+        "4. Evolve Crobat by hand when you can afford the turn": ["golbat"],
+        "5. Crobat is the answer to a bad Active": ["crobat"],
+        "6. Articuno goes down early against effects": ["articuno"],
+        # the matchups get the deck they are about, not this deck's cards.
+        # zygarde was promoted from assets/ani for the Fighting row.
+        "The Fighting deck, Mega Zygarde ex": ["zygarde"],
+        "The Charizard deck": ["charizard"],
+        "The Eeveelution deck, Flareon ex": ["flareon-ex"],
+        "The Gengar decks": ["gengar", "gengar-mega"],
+        "The lantern deck, Mega Chandelure ex": ["chandelure"],
+        "What To Buy": ["zubat"],
     },
     "dark.md": {
         "Gastly": ["gastly"],
@@ -356,9 +383,31 @@ def attack_row(val):
     return row(icons, inline(val).strip(), "cost")
 
 
-# "Flareon ex — Prismatic Evolutions 014 · Reg H", and some headings name two
-# cards. The number is what pins the printing.
-HEADING_CARD = re.compile(r"([A-Z][\w'’.\- ]*?)\s+[—-]\s+([A-Za-z&'’.: \-]+?)\s+(\d{2,3})\b")
+# A card heading is the card's name and nothing else. The set used to ride
+# along in the heading text, which repeated on screen what the stat table
+# already prints. It comes back only when a deck runs two printings of one
+# card and the name alone stops saying which: "Eevee (Prismatic Evolutions ·
+# H)". Set words and the regulation mark are both optional inside the parens,
+# so "(H)" and "(Lost Thunder)" parse too, and "(130 HP)" parses to a set hint
+# that matches nothing, which is what a prose heading deserves.
+HEADING_CARD = re.compile(r"([A-Z][\w'’.\- ]*?)(?:\s*\(([^()]*)\))?\s*$")
+REG_ONLY = re.compile(r"(?:Reg\s+)?[A-J]", re.I)
+
+
+def heading_card(heading):
+    """(name, set words) for a card heading, or None if it names no card.
+
+    The parens hold the set, the regulation mark, or both, separated by a
+    middot. The mark on its own is not a set hint, so it is dropped rather
+    than handed to find_card as a word to match sets against.
+    """
+    m = HEADING_CARD.fullmatch(heading.strip())
+    if not m:
+        return None
+    name, paren = m.group(1).strip(), (m.group(2) or "").strip()
+    parts = [x.strip() for x in re.split(r"\s*·\s*", paren) if x.strip()]
+    words = [x for x in parts if not REG_ONLY.fullmatch(x)]
+    return name, " ".join(words)
 
 # How a deck plan words legality. Terser than the collection page, which is
 # talking to a reader browsing a binder rather than one checking a deck list.
@@ -408,6 +457,76 @@ def deck_counts(lines):
         out[(name.lower(), num)] = qty
         out.setdefault((name.lower(), ""), qty)
     return out
+
+
+def deck_printings(lines):
+    """{name: [(set words, number), ...]} for every card the deck list names.
+
+    Now that a heading carries the card's name alone, this is what says which
+    printing it meant. The deck list already spells out the set and the number
+    for all sixty, so the pin lives in one place instead of being repeated in
+    every heading. A name with two entries here is exactly the case where the
+    heading carries set words to choose between them.
+    """
+    out = {}
+    i, n = 0, len(lines)
+    while i < n:
+        if not lines[i].strip().startswith("|"):
+            i += 1
+            continue
+        table = []
+        while i < n and lines[i].strip().startswith("|"):
+            table.append(lines[i])
+            i += 1
+        grid = parse_table(table)
+        if not grid or grid[0][0].lower() != "qty":
+            continue
+        head = [c.lower() for c in grid[0]]
+
+        def col(row, want):
+            j = head.index(want) if want in head else -1
+            return row[j] if 0 <= j < len(row) else ""
+
+        for r in grid[1:]:
+            if len(r) < 2 or not r[0].strip("*").isdigit():
+                continue
+            name = re.sub(r"\*+|\[.*?\]", "", col(r, "card")).strip()
+            # fire-standard has no Number column and prints the number inside
+            # the Set cell instead, the same shape deck_list() reads.
+            hint, num = col(r, "set"), col(r, "number").strip("*")
+            m = re.search(r"(\d{2,3})\s*$", hint)
+            if not num and m:
+                num, hint = m.group(1), hint[:m.start()]
+            hint = hint.strip()
+            if not name or set(hint) <= set("—- "):
+                continue        # a flex slot, not a card
+            seen = out.setdefault(name.lower(), [])
+            if (hint, num) not in seen:
+                seen.append((hint, num))
+    return out
+
+
+def resolve_card(heading, prints):
+    """The cards.csv row a card heading names, or None.
+
+    Two lookups, in order. The deck list is asked first, because it pins the
+    exact printing and the heading no longer does. Only cards the deck list
+    never mentions fall through to the set words in the heading's parens, which
+    is how the alternatives and swap sections get their art.
+    """
+    parsed = heading_card(heading)
+    if not parsed:
+        return None
+    name, hint = parsed
+    rows = list((prints or {}).get(name.lower(), []))
+    if len(rows) > 1 and hint:
+        want = set(hint.lower().split())
+        rows.sort(key=lambda sn: -len(want & set(sn[0].lower().split())))
+    for st, num in rows[:1]:
+        r = find_card(name, st or hint, num)
+        if r:
+            return r
+    return find_card(name, hint, "")
 
 
 def deck_list(lines, where=""):
@@ -518,7 +637,7 @@ def gallery(entries, heading, ind="\t\t\t"):
 
 def in_deck(counts, name, number):
     """How many of this card the deck list runs."""
-    n = re.sub(r"\s*[—-]\s*.*$", "", name).strip().lower()
+    n = re.sub(r"\s*\([^()]*\)\s*$", "", name).strip().lower()
     num = str(number).split("/")[0].lstrip("0")
     return counts.get((n, num)) or counts.get((n, "")) or 0
 
@@ -528,18 +647,16 @@ def owned(n):
     return "none yet" if n == 0 else ("1 copy" if n == 1 else f"{n} copies")
 
 
-def card_block(heading, ind, counts=None):
-    """Art and stats for every card a Key Card Text heading names.
+def card_block(heading, ind, prints=None):
+    """Art and stats for the card a Key Card Text heading names.
 
     The deck guides hand-write this table; the planning docs never did, because
     until cards.csv carried the cards we do not own there was nothing to look
     up. A heading that names no card in the data produces nothing.
     """
     blocks, found = [], []
-    for name, set_hint, number in HEADING_CARD.findall(heading):
-        r = find_card(name.strip(), set_hint.strip(), number)
-        if not r:
-            continue
+    r = resolve_card(heading, prints)
+    if r:
         out = []
         if r["image_file"]:
             out += ["\t\t\t\t<aside>",
@@ -553,8 +670,12 @@ def card_block(heading, ind, counts=None):
             if not v:
                 continue
             if key == "standard_legal":
-                # same badge the collection page uses, worded for a deck plan
-                body = legal_cell(v, esc(LEGAL.get(v, v)))
+                # same badge the collection page uses, worded for a deck plan.
+                # the regulation mark rides along here because the heading used
+                # to carry it and nothing else on the page does.
+                mark = r.get("regulation_mark", "")
+                text = LEGAL.get(v, v) + (f" (Reg {mark})" if mark else "")
+                body = legal_cell(v, esc(text))
             else:
                 body = stat_cell(key, r)
             out.append(f"{ind}\t<dt>{esc(label)}</dt><dd>{body}</dd>")
@@ -622,6 +743,7 @@ def convert(src):
     seen = Counter()
     flav, seen_flav = FLAVOR.get(src.name, {}), set()
     counts = deck_counts(lines)
+    prints = deck_printings(lines)
     thumbs, shown = deck_list(lines, src.name), False
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
@@ -758,21 +880,18 @@ def convert(src):
                 # a table means this is a card or a glossary entry, both worth
                 # indexing. a ### with no table is a prose subsection inside a
                 # game plan, and listing those buries the plans themselves.
-                # the contents list shows the card's name, not the whole
-                # "Name — Set NNN · Reg X" heading, which reads like a deck
-                # list pasted into the nav.
-                toc.append((3, re.split(r"\s+[—-]\s+", name)[0], a))
+                toc.append((3, name, a))
             elif not has_image:
                 # no hand-written table. if the heading names a card, build one
                 # from cards.csv; the planning docs get their art this way.
-                blocks, found = card_block(name, "\t\t\t\t\t", counts)
+                blocks, found = card_block(name, "\t\t\t\t\t", prints)
                 if blocks:
                     badge = count_badge(sum(
                         in_deck(counts, name, r["card_number"]) for r in found))
                     # each card is its own aside+section pair; the trailing
                     # open <section> then takes the hand-written prose
                     art = art[:-1] + blocks + [art[-1]]
-                    toc.append((3, re.split(r"\s+[—-]\s+", name)[0], a))
+                    toc.append((3, name, a))
             art[0] = art[0].replace("\x00", badge)
             i += 1
             continue
@@ -878,6 +997,12 @@ def build_nav(toc):
     child of the last group: The Thesis, the Versus pages, What To Buy. It
     gets its own linked row, and if it carries indexed subsections of its own,
     like Fox's word list, they follow it after the dash.
+
+    The rows then split by whether they have children, because the two kinds
+    were reading identically. A childless row is a destination and leads as a
+    chip; a row with children is a heading over a list, and those go in a
+    definition list underneath, where one shared label column lets the eye run
+    down the group names instead of chasing a ragged edge.
     """
     out = ["<nav>", "\t<details open>", "\t\t<summary>Contents</summary>"]
     # (origin level, label text, anchor or None, kids)
@@ -908,20 +1033,36 @@ def build_nav(toc):
                 start(0, "", None)
             kids.append((level, text, a))
 
+    chips, index = [], []
     for origin, text, a, ks in rows:
         if any(lvl == 2 for lvl, _, _ in ks):
             ks = [k for k in ks if k[0] == 2]
-        links = " · ".join(f'<a href="#{ka}">{esc(x)}</a>' for _, x, ka in ks)
         name = NAV_LABEL.get(text, text)
-        if origin == 1:
-            label = f"<b>{esc(name)} —</b>" if ks else f"<b>{esc(name)}</b>"
-        elif origin == 2:
-            label = (f'<b><a href="#{a}">{esc(name)}</a>'
-                     + (" —</b>" if ks else "</b>"))
+        if origin == 0:
+            # an ungrouped page is nothing but destinations
+            chips += [(x, ka) for _, x, ka in ks]
+        elif not ks:
+            # a group heading with no cards under it is not a destination and
+            # not a list; there is nothing for it to link to either way.
+            if a:
+                chips.append((name, a))
         else:
-            label = ""
-        row_ = f"\t\t<p>{label}" + (f"<span>{links}</span>" if links else "") + "</p>"
-        out.append(row_)
+            label = f'<a href="#{a}">{esc(name)}</a>' if a else esc(name)
+            # no separator between them: the row is a flex line, so the gap
+            # does the separating and a long plan title wraps as a whole
+            # instead of breaking across the dot.
+            links = " ".join(f'<a href="#{ka}">{esc(x)}</a>' for _, x, ka in ks)
+            index.append((label, links))
+
+    if chips:
+        out.append("\t\t<ul data-sections>")
+        out += [f'\t\t\t<li><a href="#{ka}">{esc(x)}</a></li>' for x, ka in chips]
+        out.append("\t\t</ul>")
+    if index:
+        out.append("\t\t<dl data-index>")
+        for label, links in index:
+            out += [f"\t\t\t<dt>{label}</dt>", f"\t\t\t<dd>{links}</dd>"]
+        out.append("\t\t</dl>")
     out += ["\t</details>", "</nav>"]
     return "\n".join(out)
 
@@ -943,6 +1084,7 @@ def bullets_or_para(text, ind):
 
 
 DECKS = ["rules.md", "dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
+         "rocket-mewtwo.md",
          "fire-standard.md", "psychic-lanterns.md", "eevee-standard.md"]
 
 for name in sys.argv[1:] or DECKS:

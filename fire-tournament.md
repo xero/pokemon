@@ -44,7 +44,56 @@
 > **Tool** — [Sparkling Crystal](#sparkling-crystal)
 > **Energy** — [Basic Fire Energy](#basic-fire-energy) · [Basic Water Energy](#basic-water-energy)
 >
-> [**Game Plans**](#game-plans) · [**Beating Dad's Gengar Gang**](#7-beating-dads-gengar-gang)
+> [**Game Plans**](#game-plans) · [**Beating Dad's Gengar Gang**](#7-beating-dads-gengar-gang) · [**Deck List**](#deck-list)
+
+---
+
+## Deck List
+
+**Pokémon (16)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Eevee | Prismatic Evolutions | 074 | H |
+| 2 | Eevee ex | Prismatic Evolutions | 075 | H |
+| 3 | Flareon ex | Prismatic Evolutions | 014 | H |
+| 4 | Hoothoot | Stellar Crown | 114 | H |
+| 3 | Noctowl | Stellar Crown | 115 | H |
+
+**Trainers — Supporters (15)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Lillie's Determination | Mega Evolution | 119 | I |
+| 4 | Crispin | Stellar Crown | 133 | H |
+| 3 | Boss's Orders [Ghetsis] | Mega Evolution | 114 | I |
+| 2 | Gwynn | Pitch Black | 078 | J |
+| 2 | Dawn | Phantasmal Flames | 087 | I |
+
+**Trainers — Items (15)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Buddy-Buddy Poffin | Temporal Forces | 144 | H |
+| 4 | Ultra Ball | Mega Evolution | 131 | I |
+| 3 | Switch | Mega Evolution | 130 | I |
+| 3 | Night Stretcher | Shrouded Fable | 061 | H |
+| 1 | Pokegear 3.0 | Black Bolt | 084 | I |
+
+**Trainers — Tool & Stadium (1)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 1 | Sparkling Crystal | Stellar Crown | 142 | H |
+
+**Energy (13)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 10 | Basic Fire Energy | Mega Evolution Energies | 002 | — |
+| 3 | Basic Water Energy | any | — | — |
+
+**16 + 15 + 15 + 1 + 13 = 60.** ✓
 
 ---
 ---

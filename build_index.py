@@ -15,6 +15,9 @@ PAGES = [
     ("collection.html", ["charizard-mega-x", "gengar-mega"],
      "A searchable collection of our combined binders. Every card, stat, and"
      " ability, and whether it's legal for tournament play."),
+    ("wishlist.html", ["sableye", "drowzee"],
+     "The pull list: every card a deck asks for that the binders cannot"
+     " cover, costed against what we already own."),
     ("rules.html", ["sudowoodo", "wobbuffet"],
      "The table rulebook: every game word the deck pages lean on, the rules"
      " that trip people up, and what the letters on the cards mean."),
@@ -37,6 +40,9 @@ PAGES = [
     ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
      "Xero's tournament deck. Mega Gengar ex over a bench of zero-prize"
      " attackers, and the prize ladder that bends every trade."),
+    ("rocket-mewtwo.html", ["mewtwo", "crobat"],
+     "Fox's game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
+     " payroll, and a Crobat line that fixes a bad Active for free."),
     ("eevee-standard.html", ["eevee-ex", "umbreon"],
      "Fox's Eevee deck, and the only one here that is two decks. Fifty"
      " cards never move; ten swap between Sun and Moon for home and Fire"

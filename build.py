@@ -23,6 +23,11 @@ ROOT = Path(__file__).parent
 STEPS = [
     ("collection.html", "build_html.py"),
     ("the deck pages", "build_deck_html.py"),
+    # after the deck pages, and it has to be: the pull list links a card to
+    # the decks asking for it, and only links the ones whose page exists. Run
+    # it first and a newly added deck renders as plain text on the first build
+    # and as a link on the second, so the build is not reproducible.
+    ("wishlist.html", "build_wishlist.py"),
     ("credits.html", "build_credits.py"),
     ("collection.md", "build_markdown.py"),
     # last, and it has to be: this one reads the pages above back off disk

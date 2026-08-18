@@ -369,27 +369,63 @@
 			padding-block: var(--pad);
 		}
 
-		/* group headings on a deck page: Pokémon, Trainers, Energy */
-		/* label in one column, links in the other, so a long run of links wraps
-		   against itself instead of running back under the label. each row
-		   sizes to its own label rather than sharing one width. */
-		nav p {
-			display: flex;
-			flex-flow: row nowrap;
-			align-items: baseline;
-			gap: 0.4em;
-			padding-top: 0.35em;
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
 
-			b {
-				flex: none;
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
 			}
 
-			span {
-				min-width: 0;
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
 			}
 
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
 			@media (width < 34em) {
-				flex-wrap: wrap;
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
 			}
 		}
 
@@ -1145,13 +1181,25 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><b>Pokémon —</b><span><a href="#charmander">Charmander</a> · <a href="#charmeleon">Charmeleon</a> · <a href="#charizard">Charizard</a> · <a href="#eevee">Eevee</a> · <a href="#flareon">Flareon</a> · <a href="#sudowoodo">Sudowoodo</a></span></p>
-		<p><b>Trainers (Support) —</b><span><a href="#leon">Leon</a> · <a href="#welder">Welder</a> · <a href="#professors-research-professor-oak">Professor&#x27;s Research [Professor Oak]</a> · <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a> · <a href="#kindler">Kindler</a> · <a href="#zinnias-resolve">Zinnia&#x27;s Resolve</a></span></p>
-		<p><b>Trainers (Items) —</b><span><a href="#rare-candy">Rare Candy</a> · <a href="#ultra-ball">Ultra Ball</a> · <a href="#nest-ball">Nest Ball</a> · <a href="#evolution-incense">Evolution Incense</a> · <a href="#switch">Switch</a> · <a href="#ordinary-rod">Ordinary Rod</a></span></p>
-		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#magma-basin">Magma Basin</a></span></p>
-		<p><b>Energy —</b><span><a href="#basic-fire-energy">Basic Fire Energy</a></span></p>
-		<p><b>Game Plans —</b><span><a href="#1-the-leon-engine">1. The Leon Engine</a> · <a href="#2-two-speeds">2. Two Speeds</a> · <a href="#3-the-rock-that-hits-back">3. The Rock That Hits Back</a> · <a href="#4-winning-the-stadium-war">4. Winning the Stadium War</a> · <a href="#5-reading-your-first-hand">5. Reading Your First Hand</a> · <a href="#6-beating-dads-gengar-gang">6. Beating Dad&#x27;s Gengar Gang</a> · <a href="#7-mistakes-that-will-cost-you-the-game">7. Mistakes That Will Cost You The Game</a> · <a href="#8-the-turn-checklist">8. The Turn Checklist</a></span></p>
-		<p><b>Your Other Eevees and Charizards —</b><span><a href="#reason-1-the-4-copy-limit-counts-names-not-pictures">Reason 1: The 4-copy limit counts NAMES, not pictures</a> · <a href="#reason-2-your-eevee-has-an-ability-the-others-are-blank">Reason 2: Your Eevee has an Ability. The others are blank.</a> · <a href="#reason-3-charmeleon-is-the-card-youre-trying-to-skip">Reason 3: Charmeleon is the card you&#x27;re trying to skip</a> · <a href="#reason-4-the-ex-v-and-vmax-cards-would-break-the-game">Reason 4: The ex, V, and VMAX cards would break the game</a></span></p>
+		<ul data-sections>
+			<li><a href="#deck-list">Deck List</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#charmander">Charmander</a> <a href="#charmeleon">Charmeleon</a> <a href="#charizard">Charizard</a> <a href="#eevee">Eevee</a> <a href="#flareon">Flareon</a> <a href="#sudowoodo">Sudowoodo</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#leon">Leon</a> <a href="#welder">Welder</a> <a href="#professors-research-professor-oak">Professor&#x27;s Research [Professor Oak]</a> <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a> <a href="#kindler">Kindler</a> <a href="#zinnias-resolve">Zinnia&#x27;s Resolve</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#rare-candy">Rare Candy</a> <a href="#ultra-ball">Ultra Ball</a> <a href="#nest-ball">Nest Ball</a> <a href="#evolution-incense">Evolution Incense</a> <a href="#switch">Switch</a> <a href="#ordinary-rod">Ordinary Rod</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#magma-basin">Magma Basin</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-fire-energy">Basic Fire Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-the-leon-engine">1. The Leon Engine</a> <a href="#2-two-speeds">2. Two Speeds</a> <a href="#3-the-rock-that-hits-back">3. The Rock That Hits Back</a> <a href="#4-winning-the-stadium-war">4. Winning the Stadium War</a> <a href="#5-reading-your-first-hand">5. Reading Your First Hand</a> <a href="#6-beating-dads-gengar-gang">6. Beating Dad&#x27;s Gengar Gang</a> <a href="#7-mistakes-that-will-cost-you-the-game">7. Mistakes That Will Cost You The Game</a> <a href="#8-the-turn-checklist">8. The Turn Checklist</a></dd>
+			<dt>Your Other Eevees and Charizards</dt>
+			<dd><a href="#reason-1-the-4-copy-limit-counts-names-not-pictures">Reason 1: The 4-copy limit counts NAMES, not pictures</a> <a href="#reason-2-your-eevee-has-an-ability-the-others-are-blank">Reason 2: Your Eevee has an Ability. The others are blank.</a> <a href="#reason-3-charmeleon-is-the-card-youre-trying-to-skip">Reason 3: Charmeleon is the card you&#x27;re trying to skip</a> <a href="#reason-4-the-ex-v-and-vmax-cards-would-break-the-game">Reason 4: The ex, V, and VMAX cards would break the game</a></dd>
+		</dl>
 	</details>
 </nav>
 		<main>
@@ -1176,8 +1224,9 @@
 			<aside data-callout="note">
 				<p><strong>This deck is home-only.</strong> Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. <a href="./rules.html#standard-legal-and-why-some-decks-arent">The table rules</a> explain the letters, and your <a href="./fire-tournament.html">Flareon Engine</a> is the deck that is allowed there.</p>
 			</aside>
-			<article data-decklist>
+			<section>
 				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
 				<figure><img src="./assets/226392_charmander.jpg" alt="Charmander" /><span data-count>x4</span></figure>
 				<figure><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/226395_charizard.jpg" alt="Charizard" /><span data-count>x3</span></figure>
@@ -1185,7 +1234,7 @@
 				<figure><img src="./assets/610368_flareon.jpg" alt="Flareon" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/226508_leon.jpg" alt="Leon" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder (#25 Charizard Stamped)" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /><span data-count>x3</span></figure>
 				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
 				<figure><img src="./assets/257309_kindler.jpg" alt="Kindler" /><span data-count>x2</span></figure>
@@ -1199,6 +1248,58 @@
 				<figure><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /><span data-count>x2</span></figure>
 				<figure><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x13</span></figure>
 			</article>
+					<p><strong>Pokémon (16)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Charmander</td><td>Vivid Voltage</td><td>023</td><td>D</td></tr>
+							<tr><td>2</td><td>Charmeleon</td><td>Vivid Voltage</td><td>024</td><td>D</td></tr>
+							<tr><td>3</td><td>Charizard</td><td>Vivid Voltage</td><td>025</td><td>D</td></tr>
+							<tr><td>3</td><td>Eevee</td><td>Prismatic Evolutions</td><td>074</td><td>H</td></tr>
+							<tr><td>2</td><td>Flareon</td><td>Prismatic Evolutions</td><td>013</td><td>G</td></tr>
+							<tr><td>2</td><td>Sudowoodo</td><td>Sword &amp; Shield Base Set</td><td>100</td><td>D</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Supporters (15)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Leon</td><td>Vivid Voltage</td><td>154</td><td>D</td></tr>
+							<tr><td>2</td><td>Welder</td><td>Battle Academy</td><td>189</td><td>—</td></tr>
+							<tr><td>3</td><td>Professor&#x27;s Research [Professor Oak]</td><td>Prismatic Evolutions</td><td>122</td><td>G</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders [Ghetsis]</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>2</td><td>Kindler</td><td>Brilliant Stars</td><td>143</td><td>F</td></tr>
+							<tr><td>1</td><td>Zinnia&#x27;s Resolve</td><td>Evolving Skies</td><td>164</td><td>E</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Items (14)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Rare Candy</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>3</td><td>Ultra Ball</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>3</td><td>Nest Ball</td><td>Paldean Fates</td><td>084</td><td>G</td></tr>
+							<tr><td>1</td><td>Evolution Incense</td><td>Sword &amp; Shield Base Set</td><td>163</td><td>D</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Ordinary Rod</td><td>Sword &amp; Shield Base Set</td><td>171</td><td>D</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Tool &amp; Stadium (2)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>Magma Basin</td><td>Brilliant Stars</td><td>144</td><td>F</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (13)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>13</td><td>Basic Fire Energy</td><td>Mega Evolution Energies</td><td>002</td><td>—</td></tr>
+						</tbody>
+					</table>
+					<p><strong>16 + 15 + 14 + 2 + 13 = 60.</strong> ✓</p>
+			</section>
 			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="charmander">Charmander<span data-count>x4</span><span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h3>

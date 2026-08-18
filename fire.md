@@ -38,7 +38,58 @@
 > **Trainers (Tool / Stadium)** — [Magma Basin](#magma-basin)
 > **Energy** — [Basic Fire Energy](#basic-fire-energy)
 >
-> [**Game Plans**](#game-plans) · [**Your Other Eevees and Charizards**](#your-other-eevees-and-charizards)
+> [**Game Plans**](#game-plans) · [**Your Other Eevees and Charizards**](#your-other-eevees-and-charizards) · [**Deck List**](#deck-list)
+
+---
+
+## Deck List
+
+**Pokémon (16)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Charmander | Vivid Voltage | 023 | D |
+| 2 | Charmeleon | Vivid Voltage | 024 | D |
+| 3 | Charizard | Vivid Voltage | 025 | D |
+| 3 | Eevee | Prismatic Evolutions | 074 | H |
+| 2 | Flareon | Prismatic Evolutions | 013 | G |
+| 2 | Sudowoodo | Sword & Shield Base Set | 100 | D |
+
+**Trainers — Supporters (15)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Leon | Vivid Voltage | 154 | D |
+| 2 | Welder | Battle Academy | 189 | — |
+| 3 | Professor's Research [Professor Oak] | Prismatic Evolutions | 122 | G |
+| 3 | Boss's Orders [Ghetsis] | Mega Evolution | 114 | I |
+| 2 | Kindler | Brilliant Stars | 143 | F |
+| 1 | Zinnia's Resolve | Evolving Skies | 164 | E |
+
+**Trainers — Items (14)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 4 | Rare Candy | Mega Evolution | 125 | I |
+| 3 | Ultra Ball | Mega Evolution | 131 | I |
+| 3 | Nest Ball | Paldean Fates | 084 | G |
+| 1 | Evolution Incense | Sword & Shield Base Set | 163 | D |
+| 2 | Switch | Mega Evolution | 130 | I |
+| 1 | Ordinary Rod | Sword & Shield Base Set | 171 | D |
+
+**Trainers — Tool & Stadium (2)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 2 | Magma Basin | Brilliant Stars | 144 | F |
+
+**Energy (13)**
+
+| Qty | Card | Set | Number | Reg |
+| --- | --- | --- | --- | --- |
+| 13 | Basic Fire Energy | Mega Evolution Energies | 002 | — |
+
+**16 + 15 + 14 + 2 + 13 = 60.** ✓
 
 ---
 ---

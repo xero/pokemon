@@ -20,11 +20,11 @@
 >
 > [What The Research Says](#what-the-research-says) · [Deck List](#deck-list)
 >
-> **Pokémon** — [Gastly](#gastly--phantasmal-flames-054--reg-i) · [Haunter](#haunter--perfect-order-049--reg-j) · [Mega Gengar ex](#mega-gengar-ex--phantasmal-flames-056--reg-i) · [Gengar](#gengar--perfect-order-050--reg-j) · [Toxel](#toxel--phantasmal-flames-067--reg-i) · [Toxtricity](#toxtricity--phantasmal-flames-068--reg-i) · [Seviper](#seviper--phantasmal-flames-062--reg-i) · [Sableye](#sableye--phantasmal-flames-059--reg-i) · [Munkidori](#munkidori--twilight-masquerade-095--reg-h) · [Pecharunt ex](#pecharunt-ex--shrouded-fable-039--reg-h) · [Fezandipiti ex](#fezandipiti-ex--shrouded-fable-038--reg-h)
-> **Supporters** — [Lillie's Determination](#lillies-determination--mega-evolution-119--reg-i) · [Dawn](#dawn--phantasmal-flames-087--reg-i) · [Boss's Orders](#bosss-orders--mega-evolution-114--reg-i) · [Grimsley's Move](#grimsleys-move--phantasmal-flames-090--reg-i)
-> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin--temporal-forces-144--reg-h) · [Rare Candy](#rare-candy--mega-evolution-125--reg-i) · [Ultra Ball](#ultra-ball--mega-evolution-131--reg-i) · [Night Stretcher](#night-stretcher--shrouded-fable-061--reg-h) · [Energy Switch](#energy-switch--mega-evolution-115--reg-i)
-> **Tool / Stadium** — [Air Balloon](#air-balloon--ascended-heroes-181--reg-i)
-> **Energy** — [Legacy Energy](#legacy-energy--twilight-masquerade-167--reg-h) · [Basic Darkness Energy](#basic-darkness-energy--mega-evolution-energies-007)
+> **Pokémon** — [Gastly](#gastly) · [Haunter](#haunter) · [Mega Gengar ex](#mega-gengar-ex) · [Gengar](#gengar) · [Toxel](#toxel) · [Toxtricity](#toxtricity) · [Seviper](#seviper) · [Sableye](#sableye) · [Munkidori](#munkidori) · [Pecharunt ex](#pecharunt-ex) · [Fezandipiti ex](#fezandipiti-ex)
+> **Supporters** — [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Boss's Orders](#bosss-orders) · [Grimsley's Move](#grimsleys-move)
+> **Items** — [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Rare Candy](#rare-candy) · [Ultra Ball](#ultra-ball) · [Night Stretcher](#night-stretcher) · [Energy Switch](#energy-switch)
+> **Tool / Stadium** — [Air Balloon](#air-balloon)
+> **Energy** — [Legacy Energy](#legacy-energy) · [Basic Darkness Energy](#basic-darkness-energy)
 >
 > [**The Real Card Is the Ability, Not the Attack**](#the-real-card-is-the-ability-not-the-attack)
 > [**Game Plans**](#game-plans) · [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in)
@@ -101,15 +101,15 @@ Be honest about the ceiling. The standalone box is a league-night deck, not a Re
 
 # Pokémon
 
-### Gastly — Phantasmal Flames 054 · Reg I
+### Gastly
 
 The Basic everything is built on, and deliberately the **Phantasmal Flames print**, because Gengar Gang runs the Perfect Order print. Keeping the two decks on different printings means both can stay sleeved at once. Same 70 HP, so it stays a legal Buddy-Buddy Poffin target.
 
-### Haunter — Perfect Order 049 · Reg J
+### Haunter
 
 ***Haunt* places 3 damage counters for one Energy**, and placed counters ignore Weakness and Resistance. This print replaces the *Spooky Shot* Haunter from the first draft; a flat 40 is fine, but 30 that finishes what *Void Gale* started is better. The chip math section below is built on this card.
 
-### Mega Gengar ex — Phantasmal Flames 056 · Reg I
+### Mega Gengar ex
 
 **Stage 2 from Haunter. Gives up 3 Prize cards.** Unlike the XY-era "M" cards, playing it does not end your turn; it evolves like any other Stage 2. ([Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Mega_Gengar_ex_(Phantasmal_Flames_56)))
 
@@ -120,18 +120,18 @@ Three printings exist and they are the same card: Phantasmal Flames 056 (cheapes
 > [!TIP]
 > **"Mega Gengar ex" and "Gengar" are different names**, so this list legally runs three of one and one of the other, and both evolve from the same Haunter line. One Gastly feeds either payoff.
 
-### Gengar — Perfect Order 050 · Reg J
+### Gengar
 
 The 1-prize attacker with *Infinite Shadow*, shared with Gengar Gang. You own three; this deck borrows one.
 
 > [!WARNING]
 > *Infinite Shadow* returns the card to your hand when it is Knocked Out. **It does not deny the Prize.** The zero-prize trick on this card comes from *Shadowy Concealment*, and only when the thing that Knocked it Out was an opposing Pokémon ex.
 
-### Toxel — Phantasmal Flames 067 · Reg I
+### Toxel
 
 The bottom of the Energy engine, and *Call for Family* is a real turn-one attack. Going second with nothing better to do, fetching two Basics onto the Bench beats 10 damage every time.
 
-### Toxtricity — Phantasmal Flames 068 · Reg I
+### Toxtricity
 
 The engine. ***Sinister Surge*** attaches a Basic Darkness Energy from the deck to one of your Benched **Darkness** Pokémon, then puts 2 damage counters on that Pokémon. Once per turn, no attack spent, no Supporter spent.
 
@@ -139,7 +139,7 @@ The drawback is smaller than it reads. The counters land on a 350 HP Mega that s
 
 Note the word *Darkness*. Sinister Surge cannot feed Munkidori, who is Psychic; his Energy arrives by hand attachment or Energy Switch.
 
-### Seviper — Phantasmal Flames 062 · Reg I
+### Seviper
 
 **The best reason to build the standalone box.** *Excited Power* adds 120 to Seviper's attacks while you have any Darkness Mega Evolution Pokémon ex in play, so *Pitch-Black Fangs* hits for **240** off a 120 HP Basic that gives up **one** Prize, and **zero** to an ex under *Shadowy Concealment*.
 
@@ -147,23 +147,23 @@ Note the word *Darkness*. Sinister Surge cannot feed Munkidori, who is Psychic; 
 
 Three Energy is real money. Toxtricity feeds it on the Bench, Void Gale banks Energy onto it, and Energy Switch tops it off.
 
-### Sableye — Phantasmal Flames 059 · Reg I
+### Sableye
 
 *Cocky Claw* does 90 for a single Energy while a Stage 2 Darkness Pokémon sits **on your Bench**. The condition describes this deck's default board: Mega Gengar resting in the back while a one-prizer fights. A 90-damage, one-Energy, one-prize attacker is a fine early lead and a fine late-game finisher.
 
-### Munkidori — Twilight Masquerade 095 · Reg H
+### Munkidori
 
 ***Adrena-Brain*** moves up to 3 damage counters from one of your Pokémon to one of your opponent's, every turn, while Munkidori has Darkness Energy attached. Toxtricity's self-damage becomes free spread; Void Gale's 230 becomes 260.
 
 One honest caveat the first draft missed. **Munkidori is Psychic, not Darkness**, so *Shadowy Concealment* does not protect him and *Sinister Surge* cannot fuel him. He is worth the slot anyway; every serious Gengar list runs one to three.
 
-### Pecharunt ex — Shrouded Fable 039 · Reg H
+### Pecharunt ex
 
 ***Subjugating Chains* is a free pivot, once per turn**: switch a Benched Darkness Pokémon (not a Pecharunt ex) into the Active Spot, and it becomes Poisoned. The poison is ten a turn on a 350 HP Mega, a price worth paying to bring the right attacker up without spending retreat or a Switch.
 
 *Irritated Outburst* does 60 for each Prize your opponent has taken. In a deck built to slow their Prize count it is a late-game button, not a plan.
 
-### Fezandipiti ex — Shrouded Fable 038 · Reg H
+### Fezandipiti ex
 
 *Flip the Script* draws 3 whenever one of your Pokémon was Knocked Out on their last turn, and this deck plans to lose a cheap body most turns. A 2-prize liability that Concealment discounts to 1.
 
@@ -171,19 +171,19 @@ One honest caveat the first draft missed. **Munkidori is Psychic, not Darkness**
 
 # Trainers — Supporters
 
-### Lillie's Determination — Mega Evolution 119 · Reg I
+### Lillie's Determination
 
 Shuffle your hand into your deck, then draw 6; with exactly 6 Prize cards remaining, draw 8 instead. The full four, because this deck digs on a schedule: Rare Candy, the right attacker, and the Energy that pays for it all need to arrive in order. The 8-card mode only fires while you have taken no Prizes, which is a setting-up bonus, and this deck spends its first two turns setting up.
 
-### Dawn — Phantasmal Flames 087 · Reg I
+### Dawn
 
 Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, all three to hand. One Supporter fetches Gastly, Haunter, and Mega Gengar together, or a Toxel line to rebuild the Energy engine. Dawn is the play when the board is behind and the hand is fine; Lillie's is the play when the hand is the problem.
 
-### Boss's Orders — Mega Evolution 114 · Reg I
+### Boss's Orders
 
 Switch in 1 of your opponent's Benched Pokémon to the Active Spot. [How To Play ex Style](./rules.md#5-gust-effects-are-the-most-valuable-cards-in-the-format) calls gust effects the most valuable cards in the format, and this is the gust. The whole game is deciding what you are allowed to Knock Out; three copies, the Ghetsis print, shared across the house.
 
-### Grimsley's Move — Phantasmal Flames 090 · Reg I
+### Grimsley's Move
 
 Look at the top 7, bench a Darkness Pokémon you find. Not usable turn one. It is the Supporter version of what the deck already wants: more bodies, fewer dead turns. You own one from the Mega Battle Deck.
 
@@ -191,23 +191,23 @@ Look at the top 7, bench a Darkness Pokémon you find. Not usable turn one. It i
 
 # Trainers — Items
 
-### Buddy-Buddy Poffin — Temporal Forces 144 · Reg H
+### Buddy-Buddy Poffin
 
 Bench up to 2 Basic Pokémon with 70 HP or less from the deck. Here that means Gastly and Toxel, the bottoms of both engines; Sableye at 80 HP just misses, and Seviper is far outside. Four copies because turn one wants two seeds down, and the deck's other search picks up what Poffin cannot lift.
 
-### Rare Candy — Mega Evolution 125 · Reg I
+### Rare Candy
 
 Choose 1 of your Basic Pokémon in play; if a Stage 2 card in your hand evolves from it, play it onto the Basic, skipping the Stage 1. Gastly straight to Mega Gengar. Two riders: not on your first turn, and not on a Basic that came into play this turn. Three copies rather than four, because Haunter is not a stage this deck skips lightly; *Haunt*'s three counters a turn open the chip math.
 
-### Ultra Ball — Mega Evolution 131 · Reg I
+### Ultra Ball
 
 Discard 2 other cards from your hand, then search your deck for any Pokémon. The unconditional search that lifts what Poffin cannot: Seviper, Sableye, the ex support pieces, and the Mega itself. The discard is a real price in a deck with only Night Stretcher for recursion, so pitch spare Energy and late-game Poffins, not attackers.
 
-### Night Stretcher — Shrouded Fable 061 · Reg H
+### Night Stretcher
 
 Put a Pokémon or a basic Energy card from your discard pile into your hand. Three copies, the most of any deck in the house, because this deck plans to lose a body nearly every turn and Ultra Ball feeds the same pile. It cannot recover Legacy Energy; the ACE SPEC's once per game is final.
 
-### Energy Switch — Mega Evolution 115 · Reg I
+### Energy Switch
 
 Moves a **basic** Energy between your Pokémon. It cannot move Legacy Energy. This is how a stranded Energy reaches Seviper, and how Munkidori gets his Darkness without costing your attachment for the turn.
 
@@ -215,7 +215,7 @@ Moves a **basic** Energy between your Pokémon. It cannot move Legacy Energy. Th
 
 # Trainers — Tool & Stadium
 
-### Air Balloon — Ascended Heroes 181 · Reg I
+### Air Balloon
 
 Retreat cost minus two. It lives on Mega Gengar, whose retreat of 2 becomes free. Your two Japanese starter-set copies are the same card but are not legal at US events; this buys one English print.
 
@@ -223,13 +223,13 @@ Retreat cost minus two. It lives on Mega Gengar, whose retreat of 2 becomes free
 
 # Energy
 
-### Legacy Energy — Twilight Masquerade 167 · Reg H
+### Legacy Energy
 
 The ACE SPEC. It provides one Energy of any type, and **if the Pokémon holding it is Knocked Out by an attack, the opponent takes one fewer Prize card, once per game.**
 
 That clause stacks with *Shadowy Concealment*. A Seviper holding Legacy Energy, Knocked Out by an opposing ex, awards **zero** prizes twice over; a Fezandipiti ex holding it awards zero; Mega Gengar itself holding it awards one instead of three. Night Stretcher cannot recover it, so the once per game is truly once.
 
-### Basic Darkness Energy — Mega Evolution Energies 007
+### Basic Darkness Energy
 
 Twelve copies, the deepest Energy line in the house, because Sinister Surge feeds it out of the deck and Void Gale only moves what already arrived. Every recovery effect in the list reads basic Energy, so these twelve recycle forever; Legacy Energy does not. Basic Energy never rotates, and any English print is legal.
 

@@ -369,27 +369,63 @@
 			padding-block: var(--pad);
 		}
 
-		/* group headings on a deck page: Pokémon, Trainers, Energy */
-		/* label in one column, links in the other, so a long run of links wraps
-		   against itself instead of running back under the label. each row
-		   sizes to its own label rather than sharing one width. */
-		nav p {
-			display: flex;
-			flex-flow: row nowrap;
-			align-items: baseline;
-			gap: 0.4em;
-			padding-top: 0.35em;
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
 
-			b {
-				flex: none;
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
 			}
 
-			span {
-				min-width: 0;
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
 			}
 
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
 			@media (width < 34em) {
-				flex-wrap: wrap;
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
 			}
 		}
 
@@ -1146,20 +1182,30 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><b><a href="#what-the-research-says">What The Research Says</a></b></p>
-		<p><b><a href="#deck-list">Deck List</a></b></p>
-		<p><b>Pokémon —</b><span><a href="#gastly-phantasmal-flames-054-reg-i">Gastly</a> · <a href="#haunter-perfect-order-049-reg-j">Haunter</a> · <a href="#mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex</a> · <a href="#gengar-perfect-order-050-reg-j">Gengar</a> · <a href="#toxel-phantasmal-flames-067-reg-i">Toxel</a> · <a href="#toxtricity-phantasmal-flames-068-reg-i">Toxtricity</a> · <a href="#seviper-phantasmal-flames-062-reg-i">Seviper</a> · <a href="#sableye-phantasmal-flames-059-reg-i">Sableye</a> · <a href="#munkidori-twilight-masquerade-095-reg-h">Munkidori</a> · <a href="#pecharunt-ex-shrouded-fable-039-reg-h">Pecharunt ex</a> · <a href="#fezandipiti-ex-shrouded-fable-038-reg-h">Fezandipiti ex</a></span></p>
-		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination</a> · <a href="#dawn-phantasmal-flames-087-reg-i">Dawn</a> · <a href="#bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders</a> · <a href="#grimsleys-move-phantasmal-flames-090-reg-i">Grimsley&#x27;s Move</a></span></p>
-		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin</a> · <a href="#rare-candy-mega-evolution-125-reg-i">Rare Candy</a> · <a href="#ultra-ball-mega-evolution-131-reg-i">Ultra Ball</a> · <a href="#night-stretcher-shrouded-fable-061-reg-h">Night Stretcher</a> · <a href="#energy-switch-mega-evolution-115-reg-i">Energy Switch</a></span></p>
-		<p><b>Trainers (Tool / Stadium) —</b><span><a href="#air-balloon-ascended-heroes-181-reg-i">Air Balloon</a></span></p>
-		<p><b>Energy —</b><span><a href="#legacy-energy-twilight-masquerade-167-reg-h">Legacy Energy</a> · <a href="#basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy</a></span></p>
-		<p><b><a href="#the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack</a></b></p>
-		<p><b>Game Plans —</b><span><a href="#1-the-energy-river">1. The Energy River</a> · <a href="#2-seviper-does-the-fighting">2. Seviper Does the Fighting</a> · <a href="#3-chip-math">3. Chip Math</a> · <a href="#4-the-pecharunt-pivot">4. The Pecharunt Pivot</a> · <a href="#5-when-concealment-is-blank">5. When Concealment Is Blank</a></span></p>
-		<p><b><a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a></b></p>
-		<p><b><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></b></p>
-		<p><b><a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a></b></p>
-		<p><b><a href="#how-to-play-ex-style">How To Play ex Style</a></b></p>
-		<p><b><a href="#what-to-buy">What To Buy</a></b></p>
+		<ul data-sections>
+			<li><a href="#what-the-research-says">What The Research Says</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-real-card-is-the-ability-not-the-attack">The Real Card Is the Ability, Not the Attack</a></li>
+			<li><a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a></li>
+			<li><a href="#how-to-play-ex-style">How To Play ex Style</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#gastly">Gastly</a> <a href="#haunter">Haunter</a> <a href="#mega-gengar-ex">Mega Gengar ex</a> <a href="#gengar">Gengar</a> <a href="#toxel">Toxel</a> <a href="#toxtricity">Toxtricity</a> <a href="#seviper">Seviper</a> <a href="#sableye">Sableye</a> <a href="#munkidori">Munkidori</a> <a href="#pecharunt-ex">Pecharunt ex</a> <a href="#fezandipiti-ex">Fezandipiti ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#dawn">Dawn</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#grimsleys-move">Grimsley&#x27;s Move</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#rare-candy">Rare Candy</a> <a href="#ultra-ball">Ultra Ball</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#energy-switch">Energy Switch</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#air-balloon">Air Balloon</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#legacy-energy">Legacy Energy</a> <a href="#basic-darkness-energy">Basic Darkness Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-the-energy-river">1. The Energy River</a> <a href="#2-seviper-does-the-fighting">2. Seviper Does the Fighting</a> <a href="#3-chip-math">3. Chip Math</a> <a href="#4-the-pecharunt-pivot">4. The Pecharunt Pivot</a> <a href="#5-when-concealment-is-blank">5. When Concealment Is Blank</a></dd>
+		</dl>
 	</details>
 </nav>
 		<main>
@@ -1260,7 +1306,7 @@
 			</section>
 			<h2 id="pokémon">Pokémon</h2>
 			<article>
-				<h3 id="gastly-phantasmal-flames-054-reg-i">Gastly — Phantasmal Flames 054 · Reg I<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
+				<h3 id="gastly">Gastly<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/660495_gastly.jpg" target="_blank" rel="noopener"><img src="./assets/660495_gastly.jpg" alt="Gastly" /></a>
 				</aside>
@@ -1273,7 +1319,7 @@
 						<dt>Stage</dt><dd><span>Basic</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Petty Grudge (10)</span></dd>
 					</dl>
 				</section>
@@ -1282,7 +1328,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="haunter-perfect-order-049-reg-j">Haunter — Perfect Order 049 · Reg J<span data-count>x2</span><span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
+				<h3 id="haunter">Haunter<span data-count>x2</span><span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/684430_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/684430_haunter.jpg" alt="Haunter" /></a>
 				</aside>
@@ -1295,7 +1341,7 @@
 						<dt>Stage</dt><dd><span>Stage 1</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Haunt - Place 3 damage counters on your opponent&#x27;s Active Pokémon.</span></dd>
 					</dl>
 				</section>
@@ -1304,7 +1350,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="mega-gengar-ex-phantasmal-flames-056-reg-i">Mega Gengar ex — Phantasmal Flames 056 · Reg I<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+				<h3 id="mega-gengar-ex">Mega Gengar ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
 				</aside>
@@ -1318,7 +1364,7 @@
 						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
 					</dl>
 				</section>
@@ -1332,7 +1378,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="gengar-perfect-order-050-reg-j">Gengar — Perfect Order 050 · Reg J<span data-count>x1</span><span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+				<h3 id="gengar">Gengar<span data-count>x1</span><span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/684431_gengar.jpg" target="_blank" rel="noopener"><img src="./assets/684431_gengar.jpg" alt="Gengar" /></a>
 				</aside>
@@ -1346,7 +1392,7 @@
 						<dt>Ability</dt><dd><span>Infinite Shadow - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Mind Jack (10+) - This attack does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</span></dd>
 					</dl>
 				</section>
@@ -1358,7 +1404,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="toxel-phantasmal-flames-067-reg-i">Toxel — Phantasmal Flames 067 · Reg I<span data-count>x2</span></h3>
+				<h3 id="toxel">Toxel<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/660411_toxel.jpg" target="_blank" rel="noopener"><img src="./assets/660411_toxel.jpg" alt="Toxel" /></a>
 				</aside>
@@ -1371,7 +1417,7 @@
 						<dt>Stage</dt><dd><span>Basic</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Call for Family - Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Playful Kick (20)</span></dd>
 					</dl>
@@ -1381,7 +1427,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="toxtricity-phantasmal-flames-068-reg-i">Toxtricity — Phantasmal Flames 068 · Reg I<span data-count>x2</span></h3>
+				<h3 id="toxtricity">Toxtricity<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/660409_toxtricity.jpg" target="_blank" rel="noopener"><img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" /></a>
 				</aside>
@@ -1395,7 +1441,7 @@
 						<dt>Ability</dt><dd><span>Sinister Surge - Once during your turn, you may use this Ability. Search your deck for a Basic Darkness Energy card and attach it to 1 of your Benched Darkness Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, place 2 damage counters on that Pokémon.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Gentle Slap (100)</span></dd>
 					</dl>
 				</section>
@@ -1406,7 +1452,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="seviper-phantasmal-flames-062-reg-i">Seviper — Phantasmal Flames 062 · Reg I<span data-count>x2</span><span data-flavor><img src="./assets/sprites/seviper.gif" alt="" /></span></h3>
+				<h3 id="seviper">Seviper<span data-count>x2</span><span data-flavor><img src="./assets/sprites/seviper.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/660413_seviper.jpg" target="_blank" rel="noopener"><img src="./assets/660413_seviper.jpg" alt="Seviper" /></a>
 				</aside>
@@ -1420,7 +1466,7 @@
 						<dt>Ability</dt><dd><span>Excited Power - If you have any Darkness Mega Evolution Pokémon ex in play, attacks used by this Pokémon do 120 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Pitch-Black Fangs (120)</span></dd>
 					</dl>
 				</section>
@@ -1431,7 +1477,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="sableye-phantasmal-flames-059-reg-i">Sableye — Phantasmal Flames 059 · Reg I<span data-count>x2</span><span data-flavor><img src="./assets/sprites/sableye.gif" alt="" /></span></h3>
+				<h3 id="sableye">Sableye<span data-count>x2</span><span data-flavor><img src="./assets/sprites/sableye.gif" alt="" /></span></h3>
 				<aside>
 					<a data-art href="./assets/660412_sableye.jpg" target="_blank" rel="noopener"><img src="./assets/660412_sableye.jpg" alt="Sableye" /></a>
 				</aside>
@@ -1444,7 +1490,7 @@
 						<dt>Stage</dt><dd><span>Basic</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Cocky Claw (20+) - If you have any Stage 2 Darkness Pokémon on your Bench, this attack does 70 more damage.</span></dd>
 					</dl>
 				</section>
@@ -1453,7 +1499,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="munkidori-twilight-masquerade-095-reg-h">Munkidori — Twilight Masquerade 095 · Reg H<span data-count>x1</span></h3>
+				<h3 id="munkidori">Munkidori<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/550139_munkidori.jpg" target="_blank" rel="noopener"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a>
 				</aside>
@@ -1468,7 +1514,7 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
 						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Mind Bend (60) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
 					</dl>
 				</section>
@@ -1478,7 +1524,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="pecharunt-ex-shrouded-fable-039-reg-h">Pecharunt ex — Shrouded Fable 039 · Reg H<span data-count>x1</span></h3>
+				<h3 id="pecharunt-ex">Pecharunt ex<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/560349_pecharunt-ex-039-064.jpg" target="_blank" rel="noopener"><img src="./assets/560349_pecharunt-ex-039-064.jpg" alt="Pecharunt ex" /></a>
 				</aside>
@@ -1492,7 +1538,7 @@
 						<dt>Ability</dt><dd><span>Subjugating Chains - Once during your turn, you may switch 1 of your Benched Darkness Pokémon, except any Pecharunt ex, with your Active Pokémon. If you do, the new Active Pokémon is now Poisoned. You can&#x27;t use more than 1 Subjugating Chains Ability each turn.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Irritated Outburst (60x) - This attack does 60 damage for each Prize card your opponent has taken.</span></dd>
 					</dl>
 				</section>
@@ -1502,7 +1548,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="fezandipiti-ex-shrouded-fable-038-reg-h">Fezandipiti ex — Shrouded Fable 038 · Reg H<span data-count>x1</span></h3>
+				<h3 id="fezandipiti-ex">Fezandipiti ex<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
 				</aside>
@@ -1516,7 +1562,7 @@
 						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
 					</dl>
 				</section>
@@ -1526,7 +1572,7 @@
 			</article>
 			<h2 id="trainers-supporters">Trainers — Supporters</h2>
 			<article>
-				<h3 id="lillies-determination-mega-evolution-119-reg-i">Lillie&#x27;s Determination — Mega Evolution 119 · Reg I<span data-count>x4</span></h3>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
 				</aside>
@@ -1536,7 +1582,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1544,7 +1590,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="dawn-phantasmal-flames-087-reg-i">Dawn — Phantasmal Flames 087 · Reg I<span data-count>x2</span></h3>
+				<h3 id="dawn">Dawn<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/660414_dawn.jpg" target="_blank" rel="noopener"><img src="./assets/660414_dawn.jpg" alt="Dawn" /></a>
 				</aside>
@@ -1554,7 +1600,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1562,7 +1608,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="bosss-orders-mega-evolution-114-reg-i">Boss&#x27;s Orders — Mega Evolution 114 · Reg I<span data-count>x3</span></h3>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
 				</aside>
@@ -1572,7 +1618,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1580,7 +1626,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="grimsleys-move-phantasmal-flames-090-reg-i">Grimsley&#x27;s Move — Phantasmal Flames 090 · Reg I<span data-count>x1</span></h3>
+				<h3 id="grimsleys-move">Grimsley&#x27;s Move<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/660418_grimsleys-move.jpg" target="_blank" rel="noopener"><img src="./assets/660418_grimsleys-move.jpg" alt="Grimsley&#x27;s Move" /></a>
 				</aside>
@@ -1590,7 +1636,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Look at the top 7 cards of your deck and put a Darkness Pokémon you find there onto your Bench. Shuffle the other cards and put them on the bottom of your deck. You can&#x27;t use this card during your first turn.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1599,7 +1645,7 @@
 			</article>
 			<h2 id="trainers-items">Trainers — Items</h2>
 			<article>
-				<h3 id="buddy-buddy-poffin-temporal-forces-144-reg-h">Buddy-Buddy Poffin — Temporal Forces 144 · Reg H</h3>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x4</span></h3>
 				<aside>
 					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
 				</aside>
@@ -1609,7 +1655,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1617,7 +1663,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="rare-candy-mega-evolution-125-reg-i">Rare Candy — Mega Evolution 125 · Reg I<span data-count>x3</span></h3>
+				<h3 id="rare-candy">Rare Candy<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/654464_rare-candy-125-132.jpg" target="_blank" rel="noopener"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></a>
 				</aside>
@@ -1627,7 +1673,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can&#x27;t use this card during your first turn or on a Basic Pokémon that was put into play this turn.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1635,7 +1681,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="ultra-ball-mega-evolution-131-reg-i">Ultra Ball — Mega Evolution 131 · Reg I<span data-count>x3</span></h3>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
 				</aside>
@@ -1645,7 +1691,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1653,7 +1699,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="night-stretcher-shrouded-fable-061-reg-h">Night Stretcher — Shrouded Fable 061 · Reg H<span data-count>x3</span></h3>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x3</span></h3>
 				<aside>
 					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
 				</aside>
@@ -1663,7 +1709,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1671,7 +1717,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="energy-switch-mega-evolution-115-reg-i">Energy Switch — Mega Evolution 115 · Reg I<span data-count>x2</span></h3>
+				<h3 id="energy-switch">Energy Switch<span data-count>x2</span></h3>
 				<aside>
 					<a data-art href="./assets/654454_energy-switch.jpg" target="_blank" rel="noopener"><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /></a>
 				</aside>
@@ -1681,7 +1727,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
 						<dt>Ability</dt><dd><span>Move a Basic Energy from 1 of your Pokémon to another of your Pokémon.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1690,7 +1736,7 @@
 			</article>
 			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
 			<article>
-				<h3 id="air-balloon-ascended-heroes-181-reg-i">Air Balloon — Ascended Heroes 181 · Reg I<span data-count>x1</span></h3>
+				<h3 id="air-balloon">Air Balloon<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
 				</aside>
@@ -1700,7 +1746,7 @@
 						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
 						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1709,7 +1755,7 @@
 			</article>
 			<h2 id="energy">Energy</h2>
 			<article>
-				<h3 id="legacy-energy-twilight-masquerade-167-reg-h">Legacy Energy — Twilight Masquerade 167 · Reg H<span data-count>x1</span></h3>
+				<h3 id="legacy-energy">Legacy Energy<span data-count>x1</span></h3>
 				<aside>
 					<a data-art href="./assets/550211_legacy-energy.jpg" target="_blank" rel="noopener"><img src="./assets/550211_legacy-energy.jpg" alt="Legacy Energy" /></a>
 				</aside>
@@ -1719,7 +1765,7 @@
 						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
 						<dt>Type</dt><dd><span>Energy - Special Rainbow</span></dd>
 						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides every type of Energy but provides only 1 Energy at a time. If the Pokémon this card is attached to is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, that player takes 1 fewer Prize card. This effect of your Legacy Energy can&#x27;t be applied more than once per game.</span></dd>
-						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
 					</dl>
 				</section>
 				<section>
@@ -1728,7 +1774,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="basic-darkness-energy-mega-evolution-energies-007">Basic Darkness Energy — Mega Evolution Energies 007<span data-count>x12</span></h3>
+				<h3 id="basic-darkness-energy">Basic Darkness Energy<span data-count>x12</span></h3>
 				<aside>
 					<a data-art href="./assets/656269_basic-darkness-energy-007.jpg" target="_blank" rel="noopener"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></a>
 				</aside>

@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Pull List</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 15rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back] {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Pull List <img data-mascot src="./assets/sprites/sableye.gif" alt="" /> <img data-mascot src="./assets/sprites/drowzee.gif" alt="" /></h1>
+				<p>25 cards to pull, 49 copies in all.</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+				<details>
+					<summary>Search</summary>
+					<input type="search" data-search placeholder="Find a card" aria-label="Find a card" autocomplete="off" />
+					<ul>
+						<li data-letter><b>A</b></li>
+						<li data-for="air-balloon"><a href="#air-balloon">Air Balloon</a> <em>ME: Ascended Heroes</em> <em>buy 1</em></li>
+						<li data-letter><b>B</b></li>
+						<li data-for="basic-water-energy"><a href="#basic-water-energy">Basic Water Energy</a> <em>MEE: Mega Evolution Energies</em> <em>buy 3</em></li>
+						<li data-for="buddy-buddy-poffin"><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <em>SV05: Temporal Forces</em> <em>buy 3</em></li>
+						<li data-letter><b>C</b></li>
+						<li data-for="chandelure"><a href="#chandelure">Chandelure</a> <em>SM - Guardians Rising</em> <em>buy 1</em></li>
+						<li data-for="chandelure-1"><a href="#chandelure-1">Chandelure</a> <em>SM - Lost Thunder</em> <em>buy 2</em></li>
+						<li data-letter><b>E</b></li>
+						<li data-for="energy-switch"><a href="#energy-switch">Energy Switch</a> <em>ME01: Mega Evolution</em> <em>buy 2</em></li>
+						<li data-for="espeon-ex"><a href="#espeon-ex">Espeon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
+						<li data-letter><b>F</b></li>
+						<li data-for="fezandipiti-ex"><a href="#fezandipiti-ex">Fezandipiti ex</a> <em>SV: Shrouded Fable</em> <em>buy 1</em></li>
+						<li data-for="flareon-ex"><a href="#flareon-ex">Flareon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
+						<li data-letter><b>G</b></li>
+						<li data-for="galarian-weezing"><a href="#galarian-weezing">Galarian Weezing</a> <em>SWSH06: Chilling Reign</em> <em>buy 1</em></li>
+						<li data-for="glaceon"><a href="#glaceon">Glaceon</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
+						<li data-letter><b>H</b></li>
+						<li data-for="haunter"><a href="#haunter">Haunter</a> <em>ME03: Perfect Order</em> <em>buy 1</em></li>
+						<li data-for="hilda"><a href="#hilda">Hilda</a> <em>SV: White Flare</em> <em>buy 5</em></li>
+						<li data-letter><b>K</b></li>
+						<li data-for="koffing"><a href="#koffing">Koffing</a> <em>SV09: Journey Together</em> <em>buy 1</em></li>
+						<li data-letter><b>L</b></li>
+						<li data-for="legacy-energy"><a href="#legacy-energy">Legacy Energy</a> <em>SV06: Twilight Masquerade</em> <em>buy 3</em></li>
+						<li data-for="lillies-determination"><a href="#lillies-determination">Lillie&#x27;s Determination</a> <em>ME01: Mega Evolution</em> <em>buy 1</em></li>
+						<li data-letter><b>M</b></li>
+						<li data-for="mega-gengar-ex"><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>ME02: Phantasmal Flames</em> <em>buy 4</em></li>
+						<li data-for="munkidori"><a href="#munkidori">Munkidori</a> <em>SV06: Twilight Masquerade</em> <em>buy 1</em></li>
+						<li data-letter><b>P</b></li>
+						<li data-for="pecharunt-ex"><a href="#pecharunt-ex">Pecharunt ex</a> <em>SV: Shrouded Fable</em> <em>buy 1</em></li>
+						<li data-letter><b>T</b></li>
+						<li data-for="team-rockets-crobat-ex"><a href="#team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
+						<li data-for="team-rockets-golbat"><a href="#team-rockets-golbat">Team Rocket&#x27;s Golbat</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
+						<li data-for="team-rockets-koffing"><a href="#team-rockets-koffing">Team Rocket&#x27;s Koffing</a> <em>SV10: Destined Rivals</em> <em>buy 3</em></li>
+						<li data-for="team-rockets-weezing"><a href="#team-rockets-weezing">Team Rocket&#x27;s Weezing</a> <em>SV10: Destined Rivals</em> <em>buy 3</em></li>
+						<li data-for="team-rockets-zubat"><a href="#team-rockets-zubat">Team Rocket&#x27;s Zubat</a> <em>SV10: Destined Rivals</em> <em>buy 4</em></li>
+						<li data-letter><b>U</b></li>
+						<li data-for="umbreon-ex"><a href="#umbreon-ex">Umbreon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 3</em></li>
+					</ul>
+				</details>
+				<div data-active hidden></div>
+			</nav>
+		<main>
+			<article data-name="Air Balloon" data-set="ME: Ascended Heroes" data-rarity="Uncommon" data-type="Trainer - Pokémon Tool" data-tournament="legal">
+				<h2 id="air-balloon">Air Balloon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>the English print; the Japanese ones are not US-legal</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>181/217</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Basic Water Energy" data-set="MEE: Mega Evolution Energies" data-rarity="Common" data-type="Energy - Basic" data-tournament="legal">
+				<h2 id="basic-water-energy">Basic Water Energy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/656265_basic-water-energy-003.jpg" target="_blank" rel="noopener"><img src="./assets/656265_basic-water-energy-003.jpg" alt="Basic Water Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>any English printing</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span>MEE: Mega Evolution Energies <small>3</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Energy - Basic</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Buddy-Buddy Poffin" data-set="SV05: Temporal Forces" data-rarity="Uncommon" data-type="Trainer - Item" data-tournament="legal">
+				<h2 id="buddy-buddy-poffin">Buddy-Buddy Poffin <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>9</dd>
+						<dt>Need</dt><dd>12</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>shared with the other decks</dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Chandelure" data-set="SM - Guardians Rising" data-rarity="Holo Rare" data-type="Fire" data-stage="Stage 2" data-tournament="too old">
+				<h2 id="chandelure">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/130759_chandelure.jpg" target="_blank" rel="noopener"><img src="./assets/130759_chandelure.jpg" alt="Chandelure" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>Shady Move; under a dollar</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/guardians-rising.png" /><img src="./assets/sets/guardians-rising.png" alt="SM - Guardians Rising" /></picture></span><span>SM - Guardians Rising <small>13/145</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
+						<dt>HP</dt><dd><span>140</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Shady Move Once during your turn (before your attack), you may move 1 damage counter from 1 Pokémon to another Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /></span><span>Super Singe (50) - Your opponent&#x27;s Active Pokémon is now Burned.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>card is too old</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Chandelure" data-set="SM - Lost Thunder" data-rarity="Holo Rare" data-type="Psychic" data-stage="Stage 2" data-tournament="too old">
+				<h2 id="chandelure-1">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/178916_chandelure.jpg" target="_blank" rel="noopener"><img src="./assets/178916_chandelure.jpg" alt="Chandelure" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>Vortex of Pain; foil only, about $3 a copy shipped</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/lost-thunder.png" /><img src="./assets/sets/lost-thunder.png" alt="SM - Lost Thunder" /></picture></span><span>SM - Lost Thunder <small>103/214</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>140</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Cursed Drop - Put 4 damage counters on your opponent’s Pokémon in any way you like.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Vortex of Pain (20x) - This attack does 20 damage for each damage counter on all of your opponent’s Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -20</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>card is too old</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Energy Switch" data-set="ME01: Mega Evolution" data-rarity="Common" data-type="Trainer - Item" data-tournament="legal">
+				<h2 id="energy-switch">Energy Switch <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/654454_energy-switch.jpg" target="_blank" rel="noopener"><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>the SV01 copies are rotated, and Fox&#x27;s</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>115/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Move a Basic Energy from 1 of your Pokémon to another of your Pokémon.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Espeon ex" data-set="SV: Prismatic Evolutions" data-rarity="Double Rare" data-type="Psychic" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="espeon-ex">Espeon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/610389_espeon-ex-034-131.jpg" target="_blank" rel="noopener"><img src="./assets/610389_espeon-ex-034-131.jpg" alt="Espeon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>Sun and Moon only</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>034/131</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>270</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Psych Out (160) - Discard a random card from your opponent&#x27;s hand.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Amazez - Devolve each of your opponent&#x27;s evolved Pokémon by shuffling the highest Stage Evolution card on it into your opponent&#x27;s deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Fezandipiti ex" data-set="SV: Shrouded Fable" data-rarity="Double Rare" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="fezandipiti-ex">Fezandipiti ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a></dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Flareon ex" data-set="SV: Prismatic Evolutions" data-rarity="Double Rare" data-type="Fire" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="flareon-ex">Flareon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/610369_flareon-ex-014-131.jpg" target="_blank" rel="noopener"><img src="./assets/610369_flareon-ex-014-131.jpg" alt="Flareon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>3</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd><a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>3 for Sun and Moon, 4 for Fire and Ice</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>014/131</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
+						<dt>HP</dt><dd><span>270</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Burning Charge (130) - Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Carnelian (280) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Galarian Weezing" data-set="SWSH06: Chilling Reign" data-rarity="Rare" data-type="Darkness" data-stage="Stage 1" data-tournament="too old">
+				<h2 id="galarian-weezing">Galarian Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/241765_galarian-weezing.jpg" target="_blank" rel="noopener"><img src="./assets/241765_galarian-weezing.jpg" alt="Galarian Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd>Xero&#x27;s Smog Signals <small>&times;2</small></dd>
+						<dt>Note</dt><dd>the Energy Factory copy, second one is insurance</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>096/198</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Energy Factory - Each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide Darkness Darkness Energy. You can&#x27;t apply more than 1 Energy Factory Ability at a time.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Suffocating Gas (50)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>card is too old</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Glaceon" data-set="SV: Prismatic Evolutions" data-rarity="Rare" data-type="Water" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="glaceon">Glaceon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/610380_glaceon.jpg" target="_blank" rel="noopener"><img src="./assets/610380_glaceon.jpg" alt="Glaceon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>the non-ex 025, not Glaceon ex 026</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>025/131</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /></span><span>Permeating Chill (30) - At the end of your opponent&#x27;s next turn, put 9 damage counters on the Defending Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Icicle Missile (70)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Haunter" data-set="ME03: Perfect Order" data-rarity="Common" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="haunter">Haunter <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/684430_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/684430_haunter.jpg" alt="Haunter" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>the Haunt print, not Spooky Shot</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>049/088</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Haunt - Place 3 damage counters on your opponent&#x27;s Active Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Hilda" data-set="SV: White Flare" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
+				<h2 id="hilda">Hilda <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x5</span></h2>
+				<aside>
+					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>5</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>5</dd>
+						<dt>Wanted by</dt><dd><a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;2</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>an Evolution and an Energy, one card</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>084/086</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Koffing" data-set="SV09: Journey Together" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="koffing">Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/623518_koffing.jpg" target="_blank" rel="noopener"><img src="./assets/623518_koffing.jpg" alt="Koffing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>3</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd>Xero&#x27;s Smog Signals <small>&times;4</small></dd>
+						<dt>Note</dt><dd>common, fourth copy</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>091/159</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Tackle (10)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Suffocating Gas (20)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Legacy Energy" data-set="SV06: Twilight Masquerade" data-rarity="ACE SPEC Rare" data-type="Energy - Special Rainbow" data-tournament="legal">
+				<h2 id="legacy-energy">Legacy Energy <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/550211_legacy-energy.jpg" target="_blank" rel="noopener"><img src="./assets/550211_legacy-energy.jpg" alt="Legacy Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a>, Xero&#x27;s Shadow Syndicate <small>&times;1</small>, <a href="./rocket-mewtwo.html">Fox&#x27;s Hostile Takeover <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>the ACE SPEC</dd>
+						<dt>Note</dt><dd>the ace spec, or swap in the japanese Prime Catcher you already own</dd>
+						<dt>Note</dt><dd>optional ace spec swap, see below</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>167/167</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Energy - Special Rainbow</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides every type of Energy but provides only 1 Energy at a time. If the Pokémon this card is attached to is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, that player takes 1 fewer Prize card. This effect of your Legacy Energy can&#x27;t be applied more than once per game.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Lillie&#x27;s Determination" data-set="ME01: Mega Evolution" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
+				<h2 id="lillies-determination">Lillie&#x27;s Determination <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>11</dd>
+						<dt>Need</dt><dd>12</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Mega Gengar ex" data-set="ME02: Phantasmal Flames" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="mega-gengar-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x4</span></h2>
+				<aside>
+					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>4</strong></dd>
+						<dt>Own</dt><dd>2</dd>
+						<dt>Need</dt><dd>6</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;3</small></a>, Xero&#x27;s Shadow Syndicate <small>&times;3</small></dd>
+						<dt>Note</dt><dd>own 2 from the Mega Battle Deck, buy the third</dd>
+						<dt>Note</dt><dd>third copy, or play one of the two japanese MBG prints instead</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Munkidori" data-set="SV06: Twilight Masquerade" data-rarity="Rare" data-type="Psychic" data-stage="Basic" data-tournament="legal">
+				<h2 id="munkidori">Munkidori <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/550139_munkidori.jpg" target="_blank" rel="noopener"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a></dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>095/167</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Adrena-Brain - Once during your turn, if this Pokémon has any D Energy attached, you may move up to 3 damage counters from 1 of your Pokémon to 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Mind Bend (60) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Pecharunt ex" data-set="SV: Shrouded Fable" data-rarity="Double Rare" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="pecharunt-ex">Pecharunt ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/560349_pecharunt-ex-039-064.jpg" target="_blank" rel="noopener"><img src="./assets/560349_pecharunt-ex-039-064.jpg" alt="Pecharunt ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a></dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>039/064</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>190</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Subjugating Chains - Once during your turn, you may switch 1 of your Benched Darkness Pokémon, except any Pecharunt ex, with your Active Pokémon. If you do, the new Active Pokémon is now Poisoned. You can&#x27;t use more than 1 Subjugating Chains Ability each turn.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Irritated Outburst (60x) - This attack does 60 damage for each Prize card your opponent has taken.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Crobat ex" data-set="SV10: Destined Rivals" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/632930_team-rockets-crobat-ex-122-182.jpg" target="_blank" rel="noopener"><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" alt="Team Rocket&#x27;s Crobat ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>2</dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./rocket-mewtwo.html">Fox&#x27;s Hostile Takeover <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>third copy</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>122/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>310</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Biting Spree - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may choose 2 of your opponent&#x27;s Pokémon and put 2 damage counters on each of them.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Assassin&#x27;s Return (120) - You may put this Pokémon into your hand. (Discard all cards attached to this Pokémon.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Golbat" data-set="SV10: Destined Rivals" data-rarity="Uncommon" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="team-rockets-golbat">Team Rocket&#x27;s Golbat <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/632929_team-rockets-golbat.jpg" target="_blank" rel="noopener"><img src="./assets/632929_team-rockets-golbat.jpg" alt="Team Rocket&#x27;s Golbat" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>2</dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./rocket-mewtwo.html">Fox&#x27;s Hostile Takeover <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>third copy, and the better evolution route runs through it</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>121/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Sneaky Bite - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put 2 damage counters on 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Confuse Ray (30) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Koffing" data-set="SV10: Destined Rivals" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-koffing">Team Rocket&#x27;s Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/632933_team-rockets-koffing.jpg" target="_blank" rel="noopener"><img src="./assets/632933_team-rockets-koffing.jpg" alt="Team Rocket&#x27;s Koffing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd>Xero&#x27;s Smog Signals <small>&times;4</small></dd>
+						<dt>Note</dt><dd>common, the whole main line runs off it</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>125/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Smog Signals - If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), search your deck for up to 2 Pokémon that have &quot;Koffing&quot; in their name and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Leaking Gas (30)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Weezing" data-set="SV10: Destined Rivals" data-rarity="Uncommon" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="team-rockets-weezing">Team Rocket&#x27;s Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/632934_team-rockets-weezing-126-182.jpg" target="_blank" rel="noopener"><img src="./assets/632934_team-rockets-weezing-126-182.jpg" alt="Team Rocket&#x27;s Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd>Xero&#x27;s Smog Signals <small>&times;4</small></dd>
+						<dt>Note</dt><dd>uncommon, this is the deck</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>126/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Explode Together Now (40x) - This attack does 40 damage for each Pokémon in play that has &quot;Koffing&quot; or &quot;Weezing&quot; in its name (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Team Rocket&#x27;s Zubat" data-set="SV10: Destined Rivals" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="team-rockets-zubat">Team Rocket&#x27;s Zubat <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x4</span></h2>
+				<aside>
+					<a data-art href="./assets/632928_team-rockets-zubat.jpg" target="_blank" rel="noopener"><img src="./assets/632928_team-rockets-zubat.jpg" alt="Team Rocket&#x27;s Zubat" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>4</strong></dd>
+						<dt>Own</dt><dd>2</dd>
+						<dt>Need</dt><dd>6</dd>
+						<dt>Wanted by</dt><dd>Xero&#x27;s Shadow Syndicate <small>&times;3</small>, <a href="./rocket-mewtwo.html">Fox&#x27;s Hostile Takeover <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>common, third copy</dd>
+						<dt>Note</dt><dd>third copy, the Crobat line is the thinnest thing here</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>120/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Poison Spray - Your opponent&#x27;s Active Pokémon is now Poisoned.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Umbreon ex" data-set="SV: Prismatic Evolutions" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="umbreon-ex">Umbreon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/610415_umbreon-ex-060-131.jpg" target="_blank" rel="noopener"><img src="./assets/610415_umbreon-ex-060-131.jpg" alt="Umbreon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>the plain Double Rare, never the 161 Special Illustration</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>060/131</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>280</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Moon Mirage (160) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/lightning.png" alt="Lightning" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Onyx - Discard all Energy from this Pokémon, and take a Prize card.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<p data-empty hidden>No cards match.</p>
+		</main>
+		<footer>
+			<div>
+			<aside data-callout="note">
+				<h2>How a card gets on this list</h2>
+				<p>One way: a deck's buy block asks for more copies than the collection holds. <b>Buy</b> is the shortfall, so a card the binders already cover is not here at all.</p>
+				<p>Cards nobody owns but no deck has asked for are <b>not</b> on this page. Most of them are a shortlist rather than a shopping list &mdash; the energy-acceleration survey alone seeded 35 candidates into the pipeline to be read and compared. The reason each one was added lives in the note column of <code>wanted-cards.tsv</code>.</p>
+				<p><b>Need adds up across decks.</b> Four of a card in one deck and four in another is eight, because both decks stay sleeved and get played against each other. It is not a mistake that a shared staple wants more copies than any one list does.</p>
+			</aside>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+		<script defer src="./assets/collection.js"></script>
+	</body>
+</html>

@@ -369,27 +369,63 @@
 			padding-block: var(--pad);
 		}
 
-		/* group headings on a deck page: Pokémon, Trainers, Energy */
-		/* label in one column, links in the other, so a long run of links wraps
-		   against itself instead of running back under the label. each row
-		   sizes to its own label rather than sharing one width. */
-		nav p {
-			display: flex;
-			flex-flow: row nowrap;
-			align-items: baseline;
-			gap: 0.4em;
-			padding-top: 0.35em;
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
 
-			b {
-				flex: none;
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
 			}
 
-			span {
-				min-width: 0;
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
 			}
 
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
 			@media (width < 34em) {
-				flex-wrap: wrap;
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
 			}
 		}
 
@@ -1152,6 +1188,14 @@
 				</section>
 			</article>
 			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/sableye.gif" alt="" /><img src="./assets/sprites/drowzee.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./wishlist.html">Pull List</a></h2>
+					<p>The pull list: every card a deck asks for that the binders cannot cover, costed against what we already own.</p>
+					<p><small><em>25 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/sudowoodo.gif" alt="" /><img src="./assets/sprites/wobbuffet.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./rules.html">Table Rules</a></h2>
@@ -1204,6 +1248,14 @@
 					<h2><a href="./dark-ex.html">Xero's Dark Box — Tournament EX</a></h2>
 					<p>Xero&#x27;s tournament deck. Mega Gengar ex over a bench of zero-prize attackers, and the prize ladder that bends every trade.</p>
 					<p><small><em>23 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/mewtwo.gif" alt="" /><img src="./assets/sprites/crobat.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./rocket-mewtwo.html">Fox's Hostile Takeover</a></h2>
+					<p>Fox&#x27;s game-night deck. Team Rocket&#x27;s Mewtwo ex swinging off a Spidops payroll, and a Crobat line that fixes a bad Active for free.</p>
+					<p><small><em>24 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">

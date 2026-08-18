@@ -253,7 +253,14 @@ def find_card(name, set_hint="", number=""):
     if len(hits) == 1:
         return hits[0]
     words = set(_norm(set_hint).split())
-    best = max(hits, key=lambda r: len(words & set(_norm(r["set_name"]).split())))
+    # an exact name outranks a bared one before set words get a say: "Eevee"
+    # also bares to "Eevee (Poke Ball Pattern)", and those two share a set and
+    # a number, so set words separate nothing and the first row in the file
+    # wins by accident. this cannot come before the number pin above, because
+    # "Boss's Orders [Ghetsis]" arrives with its bracket already stripped and
+    # the exact row is a different printing entirely.
+    best = max(hits, key=lambda r: (_norm(r["name"]) == want,
+                                    len(words & set(_norm(r["set_name"]).split()))))
     return best
 
 

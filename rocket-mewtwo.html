@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Fox's Hostile Takeover</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				text-decoration: none;
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: center;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			width: clamp(9.5rem, 22vw, 15rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 15rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back] {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Fox's Hostile Takeover <img data-mascot src="./assets/sprites/mewtwo.gif" alt="" /> <img data-mascot src="./assets/sprites/crobat.gif" alt="" /></h1>
+				<p>Game night · Team Rocket's Mewtwo ex, powered by a Spidops payroll</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-engine">The Engine</a></li>
+			<li><a href="#damage-math">Damage Math</a></li>
+			<li><a href="#the-prize-map">The Prize Map</a></li>
+			<li><a href="#versus-the-table">Versus the Table</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#team-rockets-mewtwo-ex">Team Rocket&#x27;s Mewtwo ex</a> <a href="#team-rockets-tarountula">Team Rocket&#x27;s Tarountula</a> <a href="#team-rockets-spidops">Team Rocket&#x27;s Spidops</a> <a href="#team-rockets-zubat">Team Rocket&#x27;s Zubat</a> <a href="#team-rockets-golbat">Team Rocket&#x27;s Golbat</a> <a href="#team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex</a> <a href="#team-rockets-articuno">Team Rocket&#x27;s Articuno</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#team-rockets-ariana">Team Rocket&#x27;s Ariana</a> <a href="#team-rockets-proton">Team Rocket&#x27;s Proton</a> <a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#team-rockets-giovanni">Team Rocket&#x27;s Giovanni</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#team-rockets-petrel">Team Rocket&#x27;s Petrel</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#team-rockets-transceiver">Team Rocket&#x27;s Transceiver</a> <a href="#ultra-ball">Ultra Ball</a> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#rare-candy">Rare Candy</a> <a href="#switch">Switch</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#scramble-switch">Scramble Switch</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#team-rockets-factory">Team Rocket&#x27;s Factory</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#team-rockets-energy">Team Rocket&#x27;s Energy</a> <a href="#basic-psychic-energy">Basic Psychic Energy</a> <a href="#basic-grass-energy">Basic Grass Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-turn-one-count-to-four">1. Turn one, count to four</a> <a href="#2-two-attachments-then-mewtwo-swings">2. Two attachments, then Mewtwo swings</a> <a href="#3-feed-the-spidops-before-you-need-it">3. Feed the Spidops before you need it</a> <a href="#4-evolve-crobat-by-hand-when-you-can-afford-the-turn">4. Evolve Crobat by hand when you can afford the turn</a> <a href="#5-crobat-is-the-answer-to-a-bad-active">5. Crobat is the answer to a bad Active</a> <a href="#6-articuno-goes-down-early-against-effects">6. Articuno goes down early against effects</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>A house deck for game night, built out of the Team Rocket&#x27;s Mewtwo ex League Battle Deck plus the loose Trainers already in the box. No Mega Gengar ex, and nothing borrowed from the fire, fighting, or eevee decks, so all four stay sleeved and the choice happens at the table.</p>
+				<p>Every Pokémon in it is a Team Rocket&#x27;s card. That is not a theme choice. Two cards in the list read the words &quot;Team Rocket&#x27;s Pokémon&quot; and pay you for going all the way.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+					<p><strong>Erasure Ball eats Energy off your own Bench, and Spidops hands it straight back.</strong></p>
+					<p><em>Erasure Ball</em> is 160 damage, plus 60 more for each Energy you discard from your Benched Pokémon, up to two. So the ceiling is 280 and the price is two Energy cards a turn, which is a price no normal deck can pay twice.</p>
+					<p>Team Rocket&#x27;s Spidops has <em>Charging Up</em>, an Ability that attaches a Basic Energy from your discard pile to itself, once per turn. Two Spidops on the Bench recycle exactly the two Energy that Mewtwo just burned. The loop closes. You hit for 280 every single turn off the same two Energy cards going around in a circle, and neither one ever comes out of your deck again.</p>
+					<p>That is the whole deck. Everything else is here to get four Team Rocket&#x27;s Pokémon on the board fast enough to turn <em>Power Saver</em> off.</p>
+					<p>Three things fall out of building it this way.</p>
+					<p><strong>The draw engine is free.</strong> Team Rocket&#x27;s Ariana draws you to 8 cards instead of 5 when every Pokémon you have in play is a Team Rocket&#x27;s Pokémon. Since every Pokémon in this deck is one, the condition is never checked and never missed. Four copies of a draw-to-8 Supporter is a better engine than most decks get out of a Pokémon line, and it costs zero Bench space.</p>
+					<p><strong>Nothing here is Fighting weak.</strong> Mewtwo, Crobat, Golbat, Zubat, and Articuno all resist Fighting for 30. Mega Zygarde ex swings <em>Gaia Wave</em> for 200 and gets 170 out of it, which does not kill anything in this deck that matters.</p>
+					<p><strong>Eleven of the sixteen Pokémon give up one Prize.</strong> Only the Mewtwo and Crobat lines are worth two. Spidops trades a single Prize for whatever it kills.</p>
+			<aside data-callout="important">
+				<p><strong>Mega Gengar ex is deliberately absent, and that costs you Seviper.</strong></p>
+				<p><em>Excited Power</em> only turns on when a Darkness Mega Evolution Pokémon ex is in play, so with no Mega in the deck, Seviper is a 120 damage Basic and nothing more. Sableye&#x27;s <em>Cocky Claw</em> still works off Crobat ex, since it only asks for a Stage 2 Darkness Pokémon on your Bench, but neither card is a Team Rocket&#x27;s Pokémon and both would switch Ariana off. They stay out.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><img src="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" alt="Team Rocket&#x27;s Mewtwo ex" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/632845_team-rockets-tarountula.jpg" alt="Team Rocket&#x27;s Tarountula" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/632846_team-rockets-spidops-020-182.jpg" alt="Team Rocket&#x27;s Spidops" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/632928_team-rockets-zubat.jpg" alt="Team Rocket&#x27;s Zubat" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632929_team-rockets-golbat.jpg" alt="Team Rocket&#x27;s Golbat" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" alt="Team Rocket&#x27;s Crobat ex" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632864_team-rockets-articuno.jpg" alt="Team Rocket&#x27;s Articuno" /></figure>
+				<figure><img src="./assets/632972_team-rockets-ariana-171-182.jpg" alt="Team Rocket&#x27;s Ariana" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/632977_team-rockets-proton-177-182.jpg" alt="Team Rocket&#x27;s Proton" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/630830_team-rockets-giovanni.jpg" alt="Team Rocket&#x27;s Giovanni" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></figure>
+				<figure><img src="./assets/632978_team-rockets-transceiver.jpg" alt="Team Rocket&#x27;s Transceiver" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/590042_scramble-switch.jpg" alt="Scramble Switch" /></figure>
+				<figure><img src="./assets/632974_team-rockets-factory.jpg" alt="Team Rocket&#x27;s Factory" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632982_team-rockets-energy.jpg" alt="Team Rocket&#x27;s Energy" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/656263_basic-grass-energy-001.jpg" alt="Basic Grass Energy" /><span data-count>x3</span></figure>
+			</article>
+					<p><strong>Pokémon (16)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Team Rocket&#x27;s Mewtwo ex</td><td>Destined Rivals</td><td>081</td><td>I</td></tr>
+							<tr><td>3</td><td>Team Rocket&#x27;s Tarountula</td><td>Destined Rivals</td><td>019</td><td>I</td></tr>
+							<tr><td>3</td><td>Team Rocket&#x27;s Spidops</td><td>Destined Rivals</td><td>020</td><td>I</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Zubat</td><td>Destined Rivals</td><td>120</td><td>I</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Golbat</td><td>Destined Rivals</td><td>121</td><td>I</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Crobat ex</td><td>Destined Rivals</td><td>122</td><td>I</td></tr>
+							<tr><td>1</td><td>Team Rocket&#x27;s Articuno</td><td>Destined Rivals</td><td>051</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (34)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Team Rocket&#x27;s Ariana</td><td>Supporter</td><td>Destined Rivals</td><td>171</td><td>I</td></tr>
+							<tr><td>3</td><td>Team Rocket&#x27;s Proton</td><td>Supporter</td><td>Destined Rivals</td><td>177</td><td>I</td></tr>
+							<tr><td>2</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Giovanni</td><td>Supporter</td><td>Destined Rivals</td><td>174</td><td>I</td></tr>
+							<tr><td>2</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>1</td><td>Team Rocket&#x27;s Petrel</td><td>Supporter</td><td>Destined Rivals</td><td>176</td><td>I</td></tr>
+							<tr><td>4</td><td>Team Rocket&#x27;s Transceiver</td><td>Item</td><td>Destined Rivals</td><td>178</td><td>I</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>3</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>2</td><td>Rare Candy</td><td>Item</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Scramble Switch</td><td>Item</td><td>Surging Sparks</td><td>186</td><td>H</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Factory</td><td>Stadium</td><td>Destined Rivals</td><td>173</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (10)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Team Rocket&#x27;s Energy</td><td>Destined Rivals</td><td>182</td><td>I</td></tr>
+							<tr><td>3</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td><td>-</td></tr>
+							<tr><td>3</td><td>Basic Grass Energy</td><td>Mega Evolution Energies</td><td>001</td><td>-</td></tr>
+						</tbody>
+					</table>
+					<p><strong>16 + 34 + 10 = 60.</strong> ✓</p>
+					<p><strong>Basics: 9</strong> (3 Mewtwo ex, 3 Tarountula, 2 Zubat, 1 Articuno). That sits inside the 75-85% band for opening with something playable, and every one of the nine counts toward <em>Power Saver</em>.</p>
+			<aside data-callout="warning">
+				<p><strong>Scramble Switch is the one ACE SPEC.</strong> Mewtwo ex retreats for three, which is the single worst number in this deck, and Scramble Switch moves the Energy along with the body. There is also a Japanese Prime Catcher in the box, which is fine at the kitchen table. Never both.</p>
+			</aside>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="team-rockets-mewtwo-ex">Team Rocket&#x27;s Mewtwo ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" target="_blank" rel="noopener"><img src="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" alt="Team Rocket&#x27;s Mewtwo ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>081/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>280</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Power Saver - This Pokémon can&#x27;t attack unless you have 4 or more Team Rocket&#x27;s Pokémon in play.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Erasure Ball (160+) - You may discard up to 2 Energy from your Benched Pokémon. This attack does 60 more damage for each card you discarded in this way.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Three copies, and it is a Basic</strong>, so there is no line to build and nothing to whiff. Three means all of them prized is a non-event and losing one mid-game does not end the deck. 280 HP is the best HP per setup cost in the box, and Retreat 3 with a Darkness Weakness is what you pay for it.</p>
+					<p><strong><em>Power Saver</em> is the real cost.</strong> Mewtwo cannot attack unless you have 4 or more Team Rocket&#x27;s Pokémon in play, and the Active counts toward that, so the number to reach is Mewtwo plus three on the Bench. One Proton gets you there out of a single card.</p>
+					<p><strong><em>Erasure Ball</em> discards from your Benched Pokémon, never from Mewtwo itself.</strong> 160 base, 60 more for each Energy discarded, up to two, so 280 is the ceiling. One Team Rocket&#x27;s Energy plus any one Basic Energy pays the whole cost. Two attachments and Mewtwo is online.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-tarountula">Team Rocket&#x27;s Tarountula<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/632845_team-rockets-tarountula.jpg" target="_blank" rel="noopener"><img src="./assets/632845_team-rockets-tarountula.jpg" alt="Team Rocket&#x27;s Tarountula" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>019/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /></span><span>Take Down (30) - This Pokémon also does 10 damage to itself.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three copies, because the Bench wants two Spidops standing at all times and the line cannot afford to draw the wrong half. 50 HP puts it inside Buddy-Buddy Poffin, and it is what you want Poffin to find on turn one. <em>Take Down</em> is 30 damage and 10 to itself, occasionally the right turn-one play and usually not.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-spidops">Team Rocket&#x27;s Spidops<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/632846_team-rockets-spidops-020-182.jpg" target="_blank" rel="noopener"><img src="./assets/632846_team-rockets-spidops-020-182.jpg" alt="Team Rocket&#x27;s Spidops" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>020/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Charging Up - Once during your turn, you may attach a Basic Energy card from your discard pile to this Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Rocket Rush (30x) - This attack does 30 damage for each of your Team Rocket&#x27;s Pokémon in play.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The card that makes the deck a deck.</strong> Three copies is thicker than a normal Stage 1 line, and deliberately so: Spidops is not an attacker you are building toward, it is a resource you want two of on the Bench for the whole game.</p>
+					<p><strong><em>Charging Up</em> attaches a Basic Energy from your discard pile to this Pokémon, once during your turn.</strong> Two Spidops is two attachments a turn that cost nothing from hand and nothing from deck. That is the entire engine, and <a href="#the-engine">The Engine</a> is worth reading twice.</p>
+					<p><em>Rocket Rush</em> is <span data-icons="inline"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 30 per Team Rocket&#x27;s Pokémon in play, so a full board is 180 off a single-Prize Stage 1. 130 HP and a Fire Weakness mean it does not want to be Active against a Charizard, but as a Benched battery it is untouchable without a gust.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-zubat">Team Rocket&#x27;s Zubat<span data-count>x2</span><span data-flavor><img src="./assets/sprites/zubat.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632928_team-rockets-zubat.jpg" target="_blank" rel="noopener"><img src="./assets/632928_team-rockets-zubat.jpg" alt="Team Rocket&#x27;s Zubat" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>120/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Poison Spray - Your opponent&#x27;s Active Pokémon is now Poisoned.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Two copies, the bottom of the thinnest line in the deck. 50 HP, so Poffin gets it. <em>Poison Spray</em> needs no coin flip and costs one Darkness, which is 10 damage a turn you did nothing to earn.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-golbat">Team Rocket&#x27;s Golbat<span data-count>x2</span><span data-flavor><img src="./assets/sprites/golbat.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632929_team-rockets-golbat.jpg" target="_blank" rel="noopener"><img src="./assets/632929_team-rockets-golbat.jpg" alt="Team Rocket&#x27;s Golbat" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>121/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Sneaky Bite - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may put 2 damage counters on 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Confuse Ray (30) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Sneaky Bite</em> puts 2 damage counters on one of their Pokémon when you play it from your hand to evolve.</strong> Free, and it is the whole reason the middle of the line is worth running rather than skipping. Evolving Zubat by hand through Golbat gets you both <em>Sneaky Bite</em> and <em>Biting Spree</em>, 60 total chip, where Rare Candy skips Golbat and gets you only 40. Candy is the speed option, not the better one.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/crobat.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632930_team-rockets-crobat-ex-122-182.jpg" target="_blank" rel="noopener"><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" alt="Team Rocket&#x27;s Crobat ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>122/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>310</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Biting Spree - When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may choose 2 of your opponent&#x27;s Pokémon and put 2 damage counters on each of them.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Assassin&#x27;s Return (120) - You may put this Pokémon into your hand. (Discard all cards attached to this Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The plan B and the chip damage in one card.</strong> 310 HP on a Stage 2 that is weak to Lightning instead of Darkness, which patches the exact hole Mewtwo has, and it resists Fighting like the rest of the board.</p>
+					<p><strong><em>Biting Spree</em> triggers when you play it from your hand to evolve</strong>, Rare Candy included: 2 damage counters on each of two of their Pokémon, Bench included. That chip is what carries Mewtwo&#x27;s 280 over the 310 and 350 HP tier.</p>
+					<p><em>Assassin&#x27;s Return</em> is <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> for 120, then optionally back to your hand with everything attached discarded. The bounce is a heal and an escape at once, and it resets <em>Biting Spree</em> for the next time you play it down. It is also expensive in a way the card does not say: Team Rocket&#x27;s Energy is the only Darkness in this deck, so every bounce discards one of the four for good.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-articuno">Team Rocket&#x27;s Articuno<span data-count>x1</span><span data-flavor><img src="./assets/sprites/articuno.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632864_team-rockets-articuno.jpg" target="_blank" rel="noopener"><img src="./assets/632864_team-rockets-articuno.jpg" alt="Team Rocket&#x27;s Articuno" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>051/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Repelling Veil - Prevent all effects of attacks used by your opponent&#x27;s Pokémon done to your Basic Team Rocket&#x27;s Pokémon in play. (Existing effects are not removed. Damage is not an effect.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Dark Frost (60+) - If this Pokémon has any Team Rocket&#x27;s Energy attached, this attack does 60 more damage.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>One copy, and it never attacks.</strong> <em>Repelling Veil</em> prevents all effects of attacks used by your opponent&#x27;s Pokémon done to your Basic Team Rocket&#x27;s Pokémon. Mewtwo, Tarountula, and Zubat are Basic, so all three are covered: no Confusion on Mewtwo, no Poison, no forced switching, no discarding your attached Energy.</p>
+					<p>Read the two words it does not cover. Damage is not an effect, so damage still lands. Abilities are not attacks, so anything that places damage counters from an Ability sails straight past it. <em>Dark Frost</em> costs <span data-icons="inline"><img src="./assets/types/water.png" alt="Water" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> and this deck runs no Water, so Articuno spends the whole game on the Bench turning off the annoying half of the other deck, which at this table is most of what loses you games.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="team-rockets-ariana">Team Rocket&#x27;s Ariana<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/632972_team-rockets-ariana-171-182.jpg" target="_blank" rel="noopener"><img src="./assets/632972_team-rockets-ariana-171-182.jpg" alt="Team Rocket&#x27;s Ariana" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>171/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Draw cards until you have 5 cards in your hand. If all of your Pokémon in play are Team Rocket&#x27;s Pokémon, draw cards until you have 8 cards in your hand instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Draw until you have 5 cards in hand, or 8 if every Pokémon you have in play is a Team Rocket&#x27;s Pokémon. In this deck that clause is always true, so this is a draw-to-8 Supporter at four copies and it costs zero Bench space. It is the single best reason not to splash anything outside the brand.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-proton">Team Rocket&#x27;s Proton<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/632977_team-rockets-proton-177-182.jpg" target="_blank" rel="noopener"><img src="./assets/632977_team-rockets-proton-177-182.jpg" alt="Team Rocket&#x27;s Proton" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>177/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>If you go first, you may use this card during your first turn. Search your deck for up to 3 Basic Team Rocket&#x27;s Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The only Supporter here you may play on your first turn going first.</strong> Search for up to 3 Basic Team Rocket&#x27;s Pokémon and put them in your hand: Mewtwo, Tarountula, Zubat, and Articuno all qualify, so one card can set up your entire <em>Power Saver</em> count. Three copies, and Transceiver makes the real number closer to seven.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Shuffle your hand into your deck, then draw 6, or 8 while you still have all six Prize cards. Two copies, and it is the reset for the turn Ariana is dead because your hand is already full of cards you cannot use. Ariana adds to a stuck hand; this one throws the hand away first. Transceiver cannot find it, so both copies have to be drawn.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-giovanni">Team Rocket&#x27;s Giovanni<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/630830_team-rockets-giovanni.jpg" target="_blank" rel="noopener"><img src="./assets/630830_team-rockets-giovanni.jpg" alt="Team Rocket&#x27;s Giovanni" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>174/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Team Rocket&#x27;s Pokémon with 1 of your Benched Team Rocket&#x27;s Pokémon. If you do, switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch your Active Team Rocket&#x27;s Pokémon with a Benched one, then drag one of theirs up. Both halves are gated on your side being Team Rocket&#x27;s Pokémon, which is free here. Two copies, and this is how a tapped-out Mewtwo leaves the Active spot without paying three Energy of retreat, because it does the escape and the gust in one card.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. Two copies alongside the Giovanni, because every point of chip damage this deck spreads is worthless until you can choose what dies. Giovanni does more, but it needs a Benched Team Rocket&#x27;s Pokémon to switch to and this does not, which is the difference on a board you have just had knocked apart. Neither one turns on Team Rocket&#x27;s Factory.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-petrel">Team Rocket&#x27;s Petrel<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/632976_team-rockets-petrel-176-182.jpg" target="_blank" rel="noopener"><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>176/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Trainer card, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for any Trainer card. One copy, because what you want it for is the Scramble Switch or the second Team Rocket&#x27;s Factory, and both of those are one-offs by nature. It is a Team Rocket Supporter, so Transceiver finds it and the Factory pays you for playing it.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="team-rockets-transceiver">Team Rocket&#x27;s Transceiver<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/632978_team-rockets-transceiver.jpg" target="_blank" rel="noopener"><img src="./assets/632978_team-rockets-transceiver.jpg" alt="Team Rocket&#x27;s Transceiver" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>178/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Supporter card that has &quot;Team Rocket&quot; in its name, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>An Item that searches out any Supporter with &quot;Team Rocket&quot; in its name. Four copies, which puts your real Ariana count closer to eight and your real Proton count closer to seven. Turn one going first it fetches Proton and you play it the same turn. It cannot find Lillie&#x27;s Determination or Boss&#x27;s Orders.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard 2 other cards from your hand, then search your deck for any Pokémon. Four copies. It is the only card here that finds Crobat ex, and the discard is less a cost than a second use: pitching a Basic Energy to it is Spidops&#x27;s first meal and saves you a whole turn of attaching by hand. See <a href="#3-feed-the-spidops-before-you-need-it">game plan 3</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search out up to 2 Basic Pokémon with 70 HP or less and put them straight onto your Bench. Tarountula and Zubat are 50 each, so one card drops two bodies toward the <em>Power Saver</em> count and starts both evolution lines at once. Three copies. Mewtwo at 280 and Articuno at 120 are out of range, which is the only reason this is not a four.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="rare-candy">Rare Candy<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654464_rare-candy-125-132.jpg" target="_blank" rel="noopener"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>125/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can&#x27;t use this card during your first turn or on a Basic Pokémon that was put into play this turn.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Evolve a Basic straight to Stage 2, skipping the Stage 1. Two copies, and here that means Zubat into Crobat ex on the turn you need a 310 HP body immediately. It costs you the <em>Sneaky Bite</em> you would have got on the way past, so it buys a turn and gives up 20 chip. Not playable on your first turn, or on a Basic you benched this turn.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch your Active Pokémon with 1 of your Benched Pokémon. Two copies, and the cheapest of the three answers to a Mewtwo stranded Active on Retreat 3. It is free and it leaves the Energy behind, which is exactly the case where you want Giovanni or the Scramble Switch instead. See <a href="#5-crobat-is-the-answer-to-a-bad-active">game plan 5</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Put a Pokémon or a Basic Energy card from your discard pile into your hand. Two copies, and the word Basic is the one that matters: Team Rocket&#x27;s Energy is special Energy and this cannot touch it. What it actually recovers is a dead Spidops, or the Psychic and Grass that ride the loop.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="scramble-switch">Scramble Switch<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/590042_scramble-switch.jpg" target="_blank" rel="noopener"><img src="./assets/590042_scramble-switch.jpg" alt="Scramble Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>SV08: Surging Sparks <small>186/191</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon. If you do, you may move any amount of Energy from the Pokémon you moved to the Bench to the new Active Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The one ACE SPEC, and one per deck across the whole list.</strong> Switch your Active with a Benched Pokémon, then move any amount of Energy from the one you just benched to the new Active. On a Mewtwo about to be knocked out that is a full Energy transplant onto a fresh one, and it dodges the knockout in the same card. Save it for the turn it wins the game.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="team-rockets-factory">Team Rocket&#x27;s Factory<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/632974_team-rockets-factory.jpg" target="_blank" rel="noopener"><img src="./assets/632974_team-rockets-factory.jpg" alt="Team Rocket&#x27;s Factory" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>173/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Once during each player&#x27;s turn, if they played a Supporter card that has &quot;Team Rocket&quot; in its name from their hand this turn, they may draw 2 cards.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stadium.</strong> Once during each player&#x27;s turn, if they played a Supporter with &quot;Team Rocket&quot; in its name that turn, they may draw 2. Ariana, Proton, Giovanni, and Petrel all qualify, which is nearly every turn of the game; Lillie&#x27;s Determination and Boss&#x27;s Orders do not. The clause is symmetrical and almost never helps the other side, because almost nobody else is playing Team Rocket Supporters. Two copies, since a Stadium only stays down until someone replaces it.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="team-rockets-energy">Team Rocket&#x27;s Energy<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/632982_team-rockets-energy.jpg" target="_blank" rel="noopener"><img src="./assets/632982_team-rockets-energy.jpg" alt="Team Rocket&#x27;s Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>182/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Energy - Special</span></dd>
+						<dt>Ability</dt><dd><span>This card can only be attached to a Team Rocket&#x27;s Pokémon. If this card is attached to anything other than a Team Rocket&#x27;s Pokémon, discard this card. As long as this card is attached to a Pokémon, it provides 2 in any combination of <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Energy and <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> Energy.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Provides 2 Energy in any mix of Psychic and Darkness, and attaches only to a Team Rocket&#x27;s Pokémon, which here means anything. Four copies, and they live on Mewtwo, because one card covers two thirds of <em>Erasure Ball</em> by itself.</p>
+					<p><strong>It is also the deck&#x27;s only Darkness.</strong> Every <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> cost on the board is paid out of these four cards: <em>Poison Spray</em>, <em>Confuse Ray</em>, and both halves of <em>Assassin&#x27;s Return</em>. Bouncing Crobat ex spends one permanently.</p>
+					<p>Two rules to hold on to. Spidops cannot recycle it, because <em>Charging Up</em> only takes Basic Energy, and Night Stretcher cannot get it back either. Keep it on Mewtwo and keep the Basic Energy on the Bench.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-psychic-energy">Basic Psychic Energy<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>5</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three, and their job is to ride the Spidops loop rather than to pay for anything from hand. <em>Erasure Ball</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, so a Psychic sitting on a Benched Spidops is both the fuel that gets discarded and the 60 extra damage it turns into. Basic Energy never rotates, and any English print is legal.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-grass-energy">Basic Grass Energy<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/656263_basic-grass-energy-001.jpg" target="_blank" rel="noopener"><img src="./assets/656263_basic-grass-energy-001.jpg" alt="Basic Grass Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>1</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three, and Grass rather than three more Psychic for one reason: <em>Rocket Rush</em> costs <span data-icons="inline"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, so a Spidops holding recycled Grass can attack for 180 on a full board on the turns Mewtwo cannot. Everything else about them is identical, since <em>Charging Up</em> does not care which Basic Energy it picks up and the <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> in <em>Erasure Ball</em> takes either.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-engine">The Engine<span data-flavor><img src="./assets/sprites/zubat.gif" alt="" /><img src="./assets/sprites/golbat.gif" alt="" /></span></h3>
+					<p>Read this part twice. It is the reason the deck exists and it is not obvious from the cards.</p>
+					<p><em>Erasure Ball</em> discards Energy <strong>from your Benched Pokémon</strong>, never from Mewtwo itself. So the Energy you spend to pump the attack and the Energy you spend to pay for the attack are two different piles, and only one of them gets burned.</p>
+					<p><em>Charging Up</em> attaches a Basic Energy <strong>from your discard pile</strong> to Spidops. It is an Ability, not an attack, and it is once per turn per Spidops. So two Spidops give you two attachments a turn that cost you nothing from hand and nothing from deck.</p>
+					<p>Put those together and the sequence is:</p>
+					<ol>
+						<li>Mewtwo attacks, discarding one Basic Energy off each Spidops. That is 280 damage.</li>
+						<li>The two Energy land in your discard pile.</li>
+						<li>Next turn, each Spidops uses <em>Charging Up</em> and pulls its own Energy back out of the discard.</li>
+						<li>Your hand attachment for the turn is still free, so it goes on the next Mewtwo.</li>
+						<li>Repeat forever.</li>
+					</ol>
+					<p>The deck only ever needs two Basic Energy cards in play to hold 280 damage a turn, and they are the same two cards every turn.</p>
+			<aside data-callout="tip">
+				<p><strong>Getting the first Energy into the discard is the only friction.</strong> Ultra Ball makes you discard two cards from your hand. Pitch a Basic Energy to it whenever you can spare one; that is Spidops&#x27;s first meal and it saves you a whole turn of manual attaching.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="damage-math">Damage Math<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th>Source</th><th>Cost</th><th>Damage</th></tr></thead>
+						<tbody>
+							<tr><td><em>Erasure Ball</em>, nothing discarded</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>160</td></tr>
+							<tr><td><em>Erasure Ball</em>, one Bench Energy discarded</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>220</td></tr>
+							<tr><td><em>Erasure Ball</em>, two Bench Energy discarded</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>280</td></tr>
+							<tr><td><em>Rocket Rush</em>, six Team Rocket&#x27;s Pokémon in play</td><td><span data-icons="inline"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>180</td></tr>
+							<tr><td><em>Assassin&#x27;s Return</em></td><td><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td>120, then bounce to hand</td></tr>
+							<tr><td><em>Confuse Ray</em></td><td><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td>30 and Confusion</td></tr>
+							<tr><td><em>Biting Spree</em>, on evolving</td><td>free</td><td>20 + 20, any two targets</td></tr>
+							<tr><td><em>Sneaky Bite</em>, on evolving</td><td>free</td><td>20, any target</td></tr>
+							<tr><td><em>Poison Spray</em></td><td><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td>Poison, 10 a turn</td></tr>
+						</tbody>
+					</table>
+					<p>The chip is what carries 280 over the top HP tier.</p>
+					<table>
+						<thead><tr><th>Target</th><th>HP</th><th>The line</th></tr></thead>
+						<tbody>
+							<tr><td>Flareon ex</td><td>270</td><td><em>Erasure Ball</em> 280 outright</td></tr>
+							<tr><td>Team Rocket&#x27;s Mewtwo ex</td><td>280</td><td><em>Erasure Ball</em> 280 outright</td></tr>
+							<tr><td>Team Rocket&#x27;s Crobat ex</td><td>310</td><td><em>Erasure Ball</em> 280 plus <em>Biting Spree</em> 40</td></tr>
+							<tr><td>Mega Zygarde ex, after <em>Gaia Wave</em></td><td>310</td><td><em>Erasure Ball</em> 280 cut to 250, plus <em>Biting Spree</em> 40 and <em>Sneaky Bite</em> 20</td></tr>
+							<tr><td>Mega Gengar ex</td><td>350</td><td><em>Erasure Ball</em> 280, <em>Biting Spree</em> 40, <em>Sneaky Bite</em> 20, one turn of Poison 10</td></tr>
+							<tr><td>Mega Chandelure ex</td><td>350</td><td><em>Assassin&#x27;s Return</em> 240 into Darkness Weakness, then 110 more from chip or a second swing</td></tr>
+							<tr><td>Charizard, Vivid Voltage</td><td>170</td><td><em>Erasure Ball</em> at 220, or <em>Rocket Rush</em> on a full board</td></tr>
+							<tr><td>Gengar, Perfect Order</td><td>130</td><td><em>Rocket Rush</em> 180 for one Prize</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="the-prize-map">The Prize Map<span data-flavor><img src="./assets/sprites/crobat.gif" alt="" /></span></h3>
+					<p>There is no Prize denial in this deck. Mega Gengar ex is out and there is no Legacy Energy in it, so the trade is honest and the maths are the plain kind.</p>
+					<table>
+						<thead><tr><th>Your Pokémon</th><th>Prizes given up</th><th>HP</th></tr></thead>
+						<tbody>
+							<tr><td>Team Rocket&#x27;s Tarountula</td><td>1</td><td>50</td></tr>
+							<tr><td>Team Rocket&#x27;s Zubat</td><td>1</td><td>50</td></tr>
+							<tr><td>Team Rocket&#x27;s Golbat</td><td>1</td><td>80</td></tr>
+							<tr><td>Team Rocket&#x27;s Articuno</td><td>1</td><td>120</td></tr>
+							<tr><td>Team Rocket&#x27;s Spidops</td><td>1</td><td>130</td></tr>
+							<tr><td>Team Rocket&#x27;s Mewtwo ex</td><td>2</td><td>280</td></tr>
+							<tr><td>Team Rocket&#x27;s Crobat ex</td><td>2</td><td>310</td></tr>
+						</tbody>
+					</table>
+					<p>Eleven of the sixteen Pokémon are worth one Prize. The shape you want is Mewtwo killing something worth two every turn while the only things they can reach are Spidops worth one.</p>
+					<p>Weakness matters more here than Prize denial does, so keep this table in your head:</p>
+					<table>
+						<thead><tr><th>Your Pokémon</th><th>Weakness</th><th>Resistance</th></tr></thead>
+						<tbody>
+							<tr><td>Team Rocket&#x27;s Mewtwo ex</td><td>Darkness ×2</td><td>Fighting -30</td></tr>
+							<tr><td>Team Rocket&#x27;s Crobat ex, Golbat, Zubat</td><td>Lightning ×2</td><td>Fighting -30</td></tr>
+							<tr><td>Team Rocket&#x27;s Articuno</td><td>Lightning ×2</td><td>Fighting -30</td></tr>
+							<tr><td>Team Rocket&#x27;s Tarountula, Spidops</td><td>Fire ×2</td><td>none</td></tr>
+						</tbody>
+					</table>
+					<p>Nothing in the deck is Fighting weak and 10 of the 16 Pokémon resist it. That is the best structural matchup you have.</p>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-turn-one-count-to-four">1. Turn one, count to four</h3>
+					<p>Going first, Transceiver into Proton, then Proton for Mewtwo plus two more Basics. That is your <em>Power Saver</em> count in one turn out of two cards. Bench Tarountula whatever else happens, because Spidops is a turn behind everything else.</p>
+					<p>Going second you can attack, so lead Poffin for Tarountula and Zubat, attach Team Rocket&#x27;s Energy to Mewtwo, and take the free damage where you can get it.</p>
+			</section>
+			<section>
+				<h3 id="2-two-attachments-then-mewtwo-swings">2. Two attachments, then Mewtwo swings<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+					<p>Team Rocket&#x27;s Energy plus any Basic Energy is the whole cost of <em>Erasure Ball</em>. That is turn two if you have both, turn three if you do not. Do not wait for the Bench fuel before you start attacking; 160 into something small is still a Prize.</p>
+			</section>
+			<section>
+				<h3 id="3-feed-the-spidops-before-you-need-it">3. Feed the Spidops before you need it</h3>
+					<p>The loop cannot start until there is a Basic Energy in your discard pile. Ultra Ball is the fastest way to put one there, so when you have a spare Energy in hand and an Ultra Ball to play, that is the discard you want. Once one Spidops is holding a recycled Energy, <em>Erasure Ball</em> is 220 forever without you spending anything.</p>
+					<p>Two Spidops holding one each is 280 forever. That is the whole game.</p>
+			</section>
+			<section>
+				<h3 id="4-evolve-crobat-by-hand-when-you-can-afford-the-turn">4. Evolve Crobat by hand when you can afford the turn<span data-flavor><img src="./assets/sprites/golbat.gif" alt="" /></span></h3>
+					<p>Zubat to Golbat to Crobat ex spread over two turns gets you <em>Sneaky Bite</em> and <em>Biting Spree</em>, 60 damage for free. Rare Candy gets you there a turn earlier and only 40. Use Candy when you need the 310 HP body right now, and use the slow route when you are setting up anyway.</p>
+			</section>
+			<section>
+				<h3 id="5-crobat-is-the-answer-to-a-bad-active">5. Crobat is the answer to a bad Active<span data-flavor><img src="./assets/sprites/crobat.gif" alt="" /></span></h3>
+					<p>When Mewtwo is stuck Active with three Energy on it and something is about to kill it, you have three outs and they are not the same. Switch is free but leaves the Energy behind. Giovanni switches and drags a target up, which is usually the best of them. Scramble Switch takes the Energy with you and is the one to save for the turn it wins the game.</p>
+			</section>
+			<section>
+				<h3 id="6-articuno-goes-down-early-against-effects">6. Articuno goes down early against effects<span data-flavor><img src="./assets/sprites/articuno.gif" alt="" /></span></h3>
+					<p>If they are running Confusion, Poison, or anything that discards your Energy, get Articuno on the Bench in the first two turns. It costs you a Bench slot and buys total immunity to the annoying half of their deck.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-table">Versus the Table</h3>
+			<article>
+				<h3 id="the-fighting-deck-mega-zygarde-ex">The Fighting deck, Mega Zygarde ex<span data-flavor><img src="./assets/sprites/zygarde.gif" alt="" /></span></h3>
+				<section>
+					<p>Your best matchup, and it is structural. <em>Gaia Wave</em> is 200 and doubles into Fighting Weakness, of which you have none. Mewtwo resists Fighting and takes 170, so it survives and swings back for 280. Crobat takes 170 on 310 HP and then bounces the damage away entirely.</p>
+					<p>Mega Zygarde ex is 310 HP and worth three Prizes, so killing it twice wins the game. Killing it once takes a little care, because <em>Gaia Wave</em> leaves it taking 30 less damage on your next turn. A full 280 <em>Erasure Ball</em> lands as 250. The chip covers the rest, and <em>Biting Spree</em> and <em>Sneaky Bite</em> place damage counters rather than dealing attack damage, so the reduction does not touch them. 250 plus 40 plus 20 is exactly 310.</p>
+					<p>The other attack is worse for you. <em>Nullifying Zero</em> flips a coin per Pokémon you have and does 150 to each heads, which reaches your Benched Spidops. Keep the Bench at what you need and no wider.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-charizard-deck">The Charizard deck<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
+				<section>
+					<p>Watch the Spidops. 130 HP with a Fire Weakness means <em>Royal Blaze</em> kills your battery through a gust, and losing both Spidops shuts the engine down. Keep a third Tarountula in reserve, and use Night Stretcher on a Spidops rather than on Mewtwo when the choice comes up.</p>
+					<p>Charizard is 170 HP, so a 220 <em>Erasure Ball</em> is enough and you should not spend the second Energy for it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-eeveelution-deck-flareon-ex">The Eeveelution deck, Flareon ex<span data-flavor><img src="./assets/sprites/flareon-ex.gif" alt="" /></span></h3>
+				<section>
+					<p>Flareon ex is 270 and <em>Erasure Ball</em> at full is 280, so it is a clean one-shot the moment it is Active. It cannot be touched on the Bench, because its <em>Tera</em> ability prevents all damage from attacks while it sits there. That makes Boss&#x27;s Orders and Team Rocket&#x27;s Giovanni your only way to start the fight, and it makes the chip damage worthless against it.</p>
+					<p>Respect <em>Carnelian</em>. 280 damage kills a Mewtwo ex on the nose. Flareon cannot attack the turn after, so the trade is one Mewtwo for one Flareon plus a free turn, which is fine as long as you have the second Mewtwo ready.</p>
+					<p>The Fire Weakness on your Spidops line is the same problem it is against Charizard, so the same answer applies.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-gengar-decks">The Gengar decks<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+				<section>
+					<p>Your worst matchup, and it is worth knowing why. Mewtwo is weak to Darkness, so <em>Void Gale</em> at 230 doubles to 460 and one-shots a 280 HP Basic without any setup at all. Do not lead with Mewtwo into a Darkness board.</p>
+					<p>Crobat ex is the card that plays this matchup. 310 HP, no Darkness Weakness, and <em>Assassin&#x27;s Return</em> deletes the damage. Chip with <em>Biting Spree</em> and <em>Sneaky Bite</em>, attack with Crobat, and only bring Mewtwo out for the turn it takes a Prize and gets switched straight back with Giovanni.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-lantern-deck-mega-chandelure-ex">The lantern deck, Mega Chandelure ex<span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+				<section>
+					<p>The second deck at this table that one-shots Mewtwo, and this one does it without a Weakness. See <a href="./psychic-lanterns.html">the lantern deck&#x27;s own page</a> for the other side of it.</p>
+					<p><strong>Never leave Mewtwo Active.</strong> <em>Binding Flame</em> adds 1 to your Active&#x27;s Retreat Cost from anywhere on their board, and <em>Phantom Maze</em> does 130 plus 50 for each <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> in that cost. Mewtwo at Retreat 3 becomes Retreat 4, which is 330 into 280 HP, for two Psychic Energy and no setup. Crobat ex retreats for 1, takes 230 on 310 HP, and bounces the damage away.</p>
+					<p><strong>Every Pokémon in that deck is Darkness Weakness ×2.</strong> Chandelure, Gourgeist ex, Dusknoir, Lampent, and Litwick all double it, and <em>Assassin&#x27;s Return</em> is 120, which lands as 240. That kills Dusknoir at 160 and every small body in the lantern line outright, and takes 240 of the 270 off a Gourgeist ex. Crobat ex is your attacker here. Save <em>Erasure Ball</em> for the turn Gourgeist ex is Active, where 280 clears its 270.</p>
+					<p><strong>Froslass taxes your whole board.</strong> <em>Freezing Shroud</em> puts a damage counter on every Pokémon that has an Ability at each Checkup, both sides. Mewtwo, Spidops, Golbat, Crobat ex, and Articuno all have one, so five of your bodies bleed 10 a turn and the Spidops battery is on a clock from the moment Froslass lands. Only Tarountula and Zubat are immune. Articuno does not cover this and it does not cover Dusknoir&#x27;s <em>Cursed Blast</em> either, because <em>Repelling Veil</em> stops effects of attacks and both of those are Abilities.</p>
+					<p><strong>Your own chip feeds them.</strong> <em>Horrifying Rondo</em> does 30 plus 50 for each of their Benched Pokémon carrying damage counters, and <em>Biting Spree</em> is how those counters get there. Against this deck, spend the chip on something you are about to knock out, or do not spend it at all.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>Three things to watch, and the exact ratio each one points at.</p>
+					<p><strong>Mewtwo cannot attack on turn two.</strong> If <em>Power Saver</em> is what is stopping you rather than Energy, you are short on early Bench bodies. Go to 4 Team Rocket&#x27;s Proton over the Petrel, and cut a Rare Candy for a fourth Buddy-Buddy Poffin. This is the most likely problem in the first few games.</p>
+					<p><strong>The Spidops loop never starts.</strong> If <em>Erasure Ball</em> keeps coming in at 160, the Energy is not reaching the discard pile. Watch whether you are pitching Energy to Ultra Ball; if you are and it still stalls, add a Basic Energy over the Petrel and go to 11.</p>
+					<p><strong>Mewtwo is stranded Active with three Energy on it.</strong> If retreat is what loses you games rather than damage, go to 3 Switch by cutting a Night Stretcher, and consider a second Team Rocket&#x27;s Giovanni over a Boss&#x27;s Orders since Giovanni does both jobs at once.</p>
+					<p>Two smaller notes. If Articuno is a dead card two games running, the table is not playing effects and that slot wants to be a fourth Tarountula. And if you are drawing <em>Biting Spree</em> damage but never converting it into a knockout, you are short on gust and the answer is a third Boss&#x27;s Orders, not more chip.</p>
+			</section>
+			<section>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/zubat.gif" alt="" /></span></h3></summary>
+					<p>Nothing. The list above is built entirely out of cards already in the box. The block below is the upgrade path if you want to thicken it later.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Zubat <small>SV10: Destined Rivals 120/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy, the Crobat line is the thinnest thing here</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Golbat <small>SV10: Destined Rivals 121/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy, and the better evolution route runs through it</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Crobat ex <small>SV10: Destined Rivals 122/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy</td></tr>
+							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>15</td><td>4</td><td>✓</td><td>a fourth Psychic, free out of any bulk lot</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Legacy Energy <small>SV06: Twilight Masquerade 167/167</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>optional ace spec swap, see below</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>4</strong></td><td></td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="tip">
+				<p><strong>Legacy Energy is the one upgrade that changes the deck rather than thickening it.</strong> One Energy of any type plus one fewer Prize when its holder dies, once a game. On a Mewtwo ex that turns a two-Prize knockout into a one-Prize knockout in the game&#x27;s most important trade. It costs you the Scramble Switch, so only make the swap if retreat is not the thing losing you games.</p>
+			</aside>
+				</details>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

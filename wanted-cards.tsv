@@ -1,194 +1,110 @@
-# Cards to add to product-ids.tsv. See add_cards.py.
+# Cards we want but do not have. See add_cards.py.
 #
-#   query<TAB>number<TAB>quantity<TAB>note
+#   query<TAB>number<TAB>quantity<TAB>note<TAB>kind
 #
 # quantity 0 means a card we want but do not own. It still gets a full card page
 # in the deck plans. Pin the number whenever a name has more than one printing;
 # Umbreon ex is a $2 card and a $200 card depending which one you land on.
 #
-# --- Vivid Voltage Charizard Theme Deck, cards not already in the seed --------
-Yanmega Vivid Voltage	007/185	2	charizard theme deck
-Yanma Vivid Voltage	006/185	3	charizard theme deck
-Magcargo Vivid Voltage	028/185	2	charizard theme deck
-Slugma Vivid Voltage	027/185	3	charizard theme deck
-Lugia Darkness Ablaze	140/189	1	charizard theme deck
-Bede Sword Shield	157/202	2	charizard theme deck
-Dan Rebel Clash	158/192	2	charizard theme deck
-Great Ball Sword Shield	164/202	2	charizard theme deck
-Hop Sword Shield	165/202	4	charizard theme deck
-Professor's Research Sword Shield	178/202	2	charizard theme deck
-Sonia Rebel Clash	167/192	2	charizard theme deck
-Switch Sword Shield	183/202	2	charizard theme deck
+# kind says why the row exists, and it is the column to trust. The section
+# headers below are for reading, not for meaning: a row appended to the end of
+# the file used to inherit whatever heading happened to be last, which is how a
+# binder pull and a mail reorder both ended up filed under an energy-acceleration
+# tier list. kind travels with the row instead.
 #
-# --- MEGA Starter Set Mega Gengar ex, Japanese, the Trainers and Energy -------
-Buddy-Buddy Poffin MEGA Starter Set Mega Gengar ex	010/021	2	japan, mbg starter
-Ultra Ball MEGA Starter Set Mega Gengar ex	011/021	4	japan, mbg starter
-Rare Candy MEGA Starter Set Mega Gengar ex	012/021	2	japan, mbg starter
-Prime Catcher MEGA Starter Set Mega Gengar ex	013/021	1	japan, mbg starter
-Switch MEGA Starter Set Mega Gengar ex	014/021	2	japan, mbg starter
-Mega Signal MEGA Starter Set Mega Gengar ex	015/021	1	japan, mbg starter
-Night Stretcher MEGA Starter Set Mega Gengar ex	016/021	1	japan, mbg starter
-Punk Helmet MEGA Starter Set Mega Gengar ex	017/021	2	japan, mbg starter
-Air Balloon MEGA Starter Set Mega Gengar ex	018/021	2	japan, mbg starter
-Iris's Fighting Spirit MEGA Starter Set Mega Gengar ex	019/021	4	japan, mbg starter
-Boss's Orders MEGA Starter Set Mega Gengar ex	020/021	2	japan, mbg starter
-Lillie's Determination MEGA Starter Set Mega Gengar ex	021/021	4	japan, mbg starter
+#   deck       a deck plan asks for it; wishlist.html costs these against cards.csv
+#   ordered    bought, in a cart or in the mail, not arrived yet
+#   binder     a collector pull. never going in a deck, so no plan asks for it
+#   reorder    paid for once and it never turned up
+#   reference  wanted only so a page can show the card art while explaining it
 #
-# --- Japanese Gengar singles already owned, never added to the seed ----------
-Gengar Jet-Black Spirit	027/070	1	japan
-Gengar Pokemon Card 151	094/165	1	japan
-Gengar Raging Surf		1	japan
+# A row is spent once add_cards.py has looked it up: the product id lands in
+# product-ids.tsv and the card lands in cards.csv, and those two are the record
+# of what we own. So a card that arrives comes out of this file rather than
+# being re-filed as owned. Research shortlists do not belong here either - an
+# energy-acceleration survey once seeded 40 candidates into this file, and every
+# page that read the data took them for 40 things to go buy.
+
 #
-# --- Team Rocket's Mewtwo ex League Battle Deck, cards not already in the seed
-Team Rocket's Mewtwo ex Destined Rivals	081/182	3	mewtwo league battle deck
-Team Rocket's Spidops Destined Rivals	020/182	3	mewtwo league battle deck
-Team Rocket's Tarountula Destined Rivals	019/182	3	mewtwo league battle deck
-Team Rocket's Crobat ex Destined Rivals	122/182	2	mewtwo league battle deck
-Team Rocket's Golbat Destined Rivals	121/182	2	mewtwo league battle deck
-Team Rocket's Zubat Destined Rivals	120/182	2	mewtwo league battle deck
-Team Rocket's Articuno Destined Rivals	051/182	1	mewtwo league battle deck
-Team Rocket's Mimikyu Destined Rivals	087/182	1	mewtwo league battle deck
-Team Rocket's Ariana Destined Rivals	171/182	4	mewtwo league battle deck
-Team Rocket's Proton Destined Rivals	177/182	4	mewtwo league battle deck
-Team Rocket's Archer Destined Rivals	170/182	2	mewtwo league battle deck
-Team Rocket's Giovanni Destined Rivals	174/182	2	mewtwo league battle deck
-Team Rocket's Petrel Destined Rivals	176/182	1	mewtwo league battle deck
-Team Rocket's Transceiver Destined Rivals	178/182	4	mewtwo league battle deck
-Team Rocket's Factory Destined Rivals	173/182	3	mewtwo league battle deck
-Team Rocket's Energy Destined Rivals	182/182	4	mewtwo league battle deck
-Ultra Ball Scarlet Violet	196/198	4	mewtwo league battle deck
-Energy Switch Scarlet Violet	173/198	2	mewtwo league battle deck
-Switch Scarlet Violet	194/198	2	mewtwo league battle deck
-Scramble Switch Surging Sparks	186/191	1	mewtwo league battle deck
+# --- eevee-standard.md, the Rainbow DNA toolbox ----------------------------------
+Umbreon ex Prismatic Evolutions	060/131	0	NOT the 161/131 chase print	deck
+Leafeon ex Prismatic Evolutions	006/131	0		deck
+Glaceon ex Prismatic Evolutions	026/131	0		deck
+Espeon ex Prismatic Evolutions	034/131	0	eevee-standard	deck
+Glaceon Prismatic Evolutions	025/131	0	eevee-standard; the non-ex	deck
+Battle Cage Phantasmal Flames	085/094	0	eevee-standard	deck
 #
-# --- Mega Gengar ex Mega Battle Deck, English, cards not already in the seed -
-Sableye Phantasmal Flames	059/094	2	gengar mega battle deck
-Seviper Phantasmal Flames	062/094	2	gengar mega battle deck
-Eternatus Phantasmal Flames	069/094	1	gengar mega battle deck
-Haunter Mega Evolution Promo	027	1	gengar mega battle deck, the illustration rare
-Arven Obsidian Flames	186/197	2	gengar mega battle deck
-Grimsley's Move Phantasmal Flames	090/094	1	gengar mega battle deck
-Iono Paldean Fates	080/091	1	gengar mega battle deck
-Pokegear 3.0 Black Bolt	084/086	1	gengar mega battle deck
-Mega Signal Mega Evolution	121/132	1	gengar mega battle deck
+# --- dark-ex.md, the Standard Mega Gengar box ------------------------------------
+Mega Gengar ex Phantasmal Flames	056/094	0	since filled by the gengar mega battle deck	deck
+Toxel Phantasmal Flames	067/094	0	since filled by the gengar mega battle deck	deck
+Toxtricity Phantasmal Flames	068/094	0	since filled by the gengar mega battle deck	deck
+Munkidori Twilight Masquerade	095/167	0		deck
+Fezandipiti ex Shrouded Fable	038/064	0		deck
+Pecharunt ex Shrouded Fable	039/064	0	dark-ex tournament build	deck
+Legacy Energy Twilight Masquerade	167/167	0	dark-ex tournament build, ACE SPEC	deck
+Energy Switch Mega Evolution	115/132	0	dark-ex tournament build	deck
+Air Balloon Ascended Heroes	181/217	0	dark-ex tournament build	deck
 #
-# ============================================================================
-# WISHLIST. Everything below is quantity 0: wanted by a deck plan, not owned.
-# ============================================================================
+# --- psychic-lanterns.md, the deck core ------------------------------------------
+Litwick Pitch Black	036/084	0	psychic lanterns	deck
+Lampent Pitch Black	037/084	0	psychic lanterns	deck
+Mega Chandelure ex Pitch Black	038/084	0	psychic lanterns	deck
+Pumpkaboo Chaos Rising	040/086	0	psychic lanterns	deck
+Gourgeist ex Chaos Rising	041/086	0	psychic lanterns	deck
+Duskull Shrouded Fable	018/064	0	psychic lanterns	deck
+Dusclops Shrouded Fable	019/064	0	psychic lanterns	deck
+Dusknoir Shrouded Fable	020/064	0	psychic lanterns	deck
+Snorunt Twilight Masquerade	051/167	0	psychic lanterns	deck
+Froslass Twilight Masquerade	053/167	0	psychic lanterns	deck
+Prime Catcher Temporal Forces	157/162	0	psychic lanterns, ACE SPEC, owned JP copy is not US-legal	deck
+Smoochum Surging Sparks	075/191	0	psychic lanterns	deck
+Telepathic Psychic Energy Perfect Order	088/088	0	psychic lanterns	deck
+Wondrous Patch Phantasmal Flames	094/094	0	psychic lanterns	deck
+Wally's Compassion Mega Evolution	132/132	0	psychic lanterns final build	deck
 #
-# --- eevee-standard.md, the Rainbow DNA toolbox ------------------------------
-Umbreon ex Prismatic Evolutions	060/131	0	wishlist, NOT the 161/131 chase print
-Leafeon ex Prismatic Evolutions	006/131	0	wishlist
-Glaceon ex Prismatic Evolutions	026/131	0	wishlist
+# --- psychic-lanterns.md, Night Parade swap module -------------------------------
+https://www.tcgplayer.com/product/178916	103/214	0	night parade module, home only; Vortex of Pain	deck
+https://www.tcgplayer.com/product/130759	13/145	0	night parade module, home only; Shady Move	deck
 #
-# --- dark-ex.md, the Standard Mega Gengar box --------------------------------
-Mega Gengar ex Phantasmal Flames	056/094	0	since filled by the gengar mega battle deck
-Toxel Phantasmal Flames	067/094	0	since filled by the gengar mega battle deck
-Toxtricity Phantasmal Flames	068/094	0	since filled by the gengar mega battle deck
-Munkidori Twilight Masquerade	095/167	0	wishlist
-Fezandipiti ex Shrouded Fable	038/064	0	wishlist
-Pecharunt ex Shrouded Fable	039/064	0	wishlist, dark-ex tournament build
-Legacy Energy Twilight Masquerade	167/167	0	wishlist, dark-ex tournament build, ACE SPEC
-Energy Switch Mega Evolution	115/132	0	wishlist, dark-ex tournament build
-Air Balloon Ascended Heroes	181/217	0	wishlist, dark-ex tournament build
+# --- frostfire, the Glalie / Chandelure module -----------------------------------
+Glalie Twilight Masquerade	052/167	0	frostfire	deck
+Chandelure Twilight Masquerade	038/167	0	frostfire	deck
+Poké Pad Perfect Order	081/088	0	frostfire	deck
 #
-# --- psychic-lanterns.md, the deck core ---------------------------------------
-Litwick Pitch Black	036/084	0	wishlist, psychic lanterns
-Lampent Pitch Black	037/084	0	wishlist, psychic lanterns
-Mega Chandelure ex Pitch Black	038/084	0	wishlist, psychic lanterns
-Pumpkaboo Chaos Rising	040/086	0	wishlist, psychic lanterns
-Gourgeist ex Chaos Rising	041/086	0	wishlist, psychic lanterns
-Duskull Shrouded Fable	018/064	0	wishlist, psychic lanterns
-Dusclops Shrouded Fable	019/064	0	wishlist, psychic lanterns
-Dusknoir Shrouded Fable	020/064	0	wishlist, psychic lanterns
-Snorunt Twilight Masquerade	051/167	0	wishlist, psychic lanterns
-Froslass Twilight Masquerade	053/167	0	wishlist, psychic lanterns
-Prime Catcher Temporal Forces	157/162	0	wishlist, psychic lanterns, ACE SPEC, owned JP copy is not US-legal
+# --- fighting-standard.md, Ground Zero -------------------------------------------
+Mega Zygarde ex Perfect Order	047/088	0		deck
 #
-# --- fighting-standard.md, Ground Zero ---------------------------------------
-Mega Zygarde ex Perfect Order	047/088	0	wishlist
+# --- basic energy the decks call for and we have none of -------------------------
+Basic Water Energy Mega Evolution Energies	003	0		deck
+Basic Lightning Energy Mega Evolution Energies	004	0		deck
+Basic Psychic Energy Mega Evolution Energies	005	0		deck
+Basic Grass Energy Mega Evolution Energies	001	0		deck
 #
-# --- basic energy the decks call for and we have none of ---------------------
-Basic Water Energy Mega Evolution Energies	003	0	wishlist
-Basic Lightning Energy Mega Evolution Energies	004	0	wishlist
-Basic Psychic Energy Mega Evolution Energies	005	0	wishlist
-Basic Grass Energy Mega Evolution Energies	001	0	wishlist
+# --- staples more than one deck runs ---------------------------------------------
+Team Rocket's Spidops Destined Rivals	020/182	0	came in with the energy accel survey; more than one deck runs it	deck
+Crispin Stellar Crown	133/142	0	came in with the energy accel survey; more than one deck runs it	deck
+Flareon ex Prismatic Evolutions	014/131	0	came in with the energy accel survey; more than one deck runs it	deck
+Night Stretcher Shrouded Fable	061/064	0	came in with the energy accel survey; more than one deck runs it	deck
+Hilda White Flare	084/086	0	came in with the energy accel survey; more than one deck runs it	deck
+Eevee Shrouded Fable	050/064	0	came in with the energy accel survey; more than one deck runs it	deck
 #
-# --- dark-ex.md explains why this one does NOT work; it needs the card art ----
-Gengar Spirit Link Phantom Forces	095/119	0	wishlist, only to show the card while explaining why to skip it
+# --- ordered or in a cart, waiting on the mail -----------------------------------
+https://www.tcgplayer.com/product/676890	046/217	0	lanterns; ASC Love Ball Snorunt, swapped for TWM print in cart	ordered
+Prime Catcher Prismatic Evolutions	119/131	0	lanterns ACE; PRE reprint of TEF 157, the print actually in cart	ordered
+Gengar ex Temporal Forces	104/162	0	wishlist pull, in cart at Murphy's Collection 2026-08-16	ordered
+Marshadow Pitch Black	040/084	0	alternatives bench, Shadowy Knot; ordered 2026-08-16	ordered
+Chandelure White Flare	018/086	0	fire print, last minute add 2026-08-16	ordered
+Litwick White Flare	016/086	0	fire print, last minute add 2026-08-16	ordered
+Litwick Twilight Masquerade	036/167	0	fire print, last minute add 2026-08-16	ordered
 #
-# --- energy acceleration, generic only ---------------------------------------
-# Pulled from legal-cards-1786763436.json, then cut to cards with no type,
-# color, Tera/Future, or trainer-owner gate. Restricted accel is deliberately
-# absent: Reboot Pod, Janine's Secret Art, Glass Trumpet, N's PP Up and the
-# rest only work in one deck each.
+# --- binder pulls, not for play --------------------------------------------------
+Night Stretcher Surging Sparks	251/191	0	hyper rare for the binder	binder
+Litwick Lost Origin	024/196	0	rotated, binder	binder
+Haunter Fossil	21/62	0	vintage, binder	binder
+https://www.tcgplayer.com/product/106521	5/62	0	vintage holo grail, LGS find, damaged but decent, $9	binder
 #
-# Tier 1, attaches straight off the deck or out of the discard pile.
-Blaziken ex Journey Together	024/159	0	wishlist, energy accel tier 1
-Grumpig Mega Evolution	063/132	0	wishlist, energy accel tier 1
-Team Rocket's Spidops Destined Rivals	020/182	0	wishlist, energy accel tier 1
-Powerglass Shrouded Fable	063/064	0	wishlist, energy accel tier 1
-Crispin Stellar Crown	133/142	0	wishlist, energy accel tier 1
-Waitress Ascended Heroes	215/217	0	wishlist, energy accel tier 1
-Energy Coin Black Bolt	081/086	0	wishlist, energy accel tier 1
-Lapras ex Scarlet & Violet Black Star Promo	164	0	wishlist, energy accel tier 1
-Mega Audino ex Ascended Heroes	172/217	0	wishlist, energy accel tier 1
-Cinderace Mega Evolution	028/132	0	wishlist, energy accel tier 1
-Whimsicott ex White Flare	005/086	0	wishlist, energy accel tier 1
-Altaria Surging Sparks	134/191	0	wishlist, energy accel tier 1
-Houndoom Prismatic Evolutions	063/131	0	wishlist, energy accel tier 1
-Flareon ex Prismatic Evolutions	014/131	0	wishlist, energy accel tier 1
-Morpeko Twilight Masquerade	072/167	0	wishlist, energy accel tier 1
-Oricorio Surging Sparks	026/191	0	wishlist, energy accel tier 1
-Furfrou Shrouded Fable	051/064	0	wishlist, energy accel tier 1
-Jirachi Stellar Crown	098/142	0	wishlist, energy accel tier 1
-Landorus Surging Sparks	110/191	0	wishlist, energy accel tier 1
-Bewear Shrouded Fable	053/064	0	wishlist, energy accel tier 1
+# --- paid for, never arrived -----------------------------------------------------
+Flareon Prismatic Evolutions	013/131	0	reorder: x2 never arrived in the mail; Fox subs other cards in fire force	reorder
 #
-# Tier 2, fetches to hand, or shuffles the discard back into the deck.
-Night Stretcher Shrouded Fable	061/064	0	wishlist, energy accel tier 2
-Energy Retrieval White Flare	082/086	0	wishlist, energy accel tier 2
-Max Rod Prismatic Evolutions	116/131	0	wishlist, energy accel tier 2
-Lana's Aid Twilight Masquerade	155/167	0	wishlist, energy accel tier 2
-Energy Search Pro Surging Sparks	176/191	0	wishlist, energy accel tier 2
-Energy Search Perfect Order	072/088	0	wishlist, energy accel tier 2
-Colress's Tenacity Shrouded Fable	057/064	0	wishlist, energy accel tier 2
-Larry's Skill Prismatic Evolutions	115/131	0	wishlist, energy accel tier 2
-Hilda White Flare	084/086	0	wishlist, energy accel tier 2
-Energy Recycler Destined Rivals	164/182	0	wishlist, energy accel tier 2
-Heliolisk Surging Sparks	155/191	0	wishlist, energy accel tier 2
-Eevee Shrouded Fable	050/064	0	wishlist, energy accel tier 2
-Floette Twilight Masquerade	087/167	0	wishlist, energy accel tier 2
-Gimmighoul Surging Sparks	097/191	0	wishlist, energy accel tier 2
-Axew Black Bolt	068/086	0	wishlist, energy accel tier 2
-Charcadet Phantasmal Flames	019/094	0	wishlist, energy accel tier 2
-Emolga Chaos Rising	030/086	0	wishlist, energy accel tier 2
-Larry's Starly Ascended Heroes	168/217	0	wishlist, energy accel tier 2
-Teal Mask Ogerpon Scarlet & Violet Black Star Promo	123	0	wishlist, energy accel tier 2
-Ponyta Temporal Forces	026/162	0	wishlist, energy accel tier 2
-Smoochum Surging Sparks	075/191	0	wishlist, psychic lanterns
-Telepathic Psychic Energy Perfect Order	088/088	0	wishlist, psychic lanterns
-Wondrous Patch Phantasmal Flames	094/094	0	wishlist, psychic lanterns
-Glalie Twilight Masquerade	052/167	0	wishlist, frostfire
-Chandelure Twilight Masquerade	038/167	0	wishlist, frostfire
-Poké Pad Perfect Order	081/088	0	wishlist, frostfire
-Espeon ex Prismatic Evolutions	034/131	0	wishlist, eevee-standard
-Glaceon Prismatic Evolutions	025/131	0	wishlist, eevee-standard; the non-ex
-Battle Cage Phantasmal Flames	085/094	0	wishlist, eevee-standard
-Night Stretcher Surging Sparks	251/191	0	wishlist, hyper rare for the binder
-Wally's Compassion Mega Evolution	132/132	0	wishlist, psychic lanterns final build
-https://www.tcgplayer.com/product/676890	046/217	0	lanterns; ASC Love Ball Snorunt, swapped for TWM print in cart
-Prime Catcher Prismatic Evolutions	119/131	0	lanterns ACE; PRE reprint of TEF 157, the print actually in cart
-Gengar ex Temporal Forces	104/162	0	wishlist pull, in cart at Murphy's Collection 2026-08-16
-Marshadow Pitch Black	040/084	0	alternatives bench, Shadowy Knot; ordered 2026-08-16
-Chandelure White Flare	018/086	0	fire print, last minute add 2026-08-16
-Litwick White Flare	016/086	0	fire print, last minute add 2026-08-16
-Litwick Lost Origin	024/196	0	rotated, binder
-Litwick Twilight Masquerade	036/167	0	fire print, last minute add 2026-08-16
-Haunter Fossil	21/62	0	vintage, binder
-https://www.tcgplayer.com/product/106521	5/62	0	vintage holo grail, LGS find, damaged but decent, $9
-Flareon Prismatic Evolutions	013/131	0	reorder: x2 never arrived in the mail; Fox subs other cards in fire force
-#
-# --- psychic-lanterns.md, Night Parade swap module ----------------------------
-https://www.tcgplayer.com/product/178916	103/214	0	night parade module, home only; Vortex of Pain
-https://www.tcgplayer.com/product/130759	13/145	0	night parade module, home only; Shady Move
+# --- wanted only for the card art, to show while explaining it -------------------
+Gengar Spirit Link Phantom Forces	095/119	0	only to show the card while explaining why to skip it	reference
