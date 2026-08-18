@@ -12,24 +12,22 @@ from pokelib import CREDITS_NOTE, esc, page
 ROOT = Path(__file__).parent
 
 PAGES = [
-    ("collection.html", ["charizard-mega-x", "gengar-mega"],
+    ("collection.html", ["pokedex", "pokeball"],
      "A searchable collection of our combined binders. Every card, stat, and"
      " ability, and whether it's legal for tournament play."),
-    ("wishlist.html", ["sableye", "drowzee"],
+    ("wishlist.html", ["deck"],
      "The pull list: every card a deck asks for that the binders cannot"
      " cover, costed against what we already own."),
-    ("rules.html", ["sudowoodo", "wobbuffet"],
-     "The table rulebook: every game word the deck pages lean on, the rules"
-     " that trip people up, and what the letters on the cards mean."),
-    ("fire.html", ["charizard", "flareon"],
+    ("rules.html", ["gengar-hop", "cursed"],
+     "The table rulebook: every game word the deck pages lean on, how a game"
+     " actually runs, what the letters on the cards mean, and what a real"
+     " tournament expects."),
+    ("fire.html", ["charmander", "charizard"],
      "Fox's deck, card by card: what each one is for, what it wants to sit next"
      " to, and how to beat dad."),
     ("fire-tournament.html", ["flareon", "noctowl"],
      "Fox's tournament deck. Flareon ex, Noctowl, and why a Bench dad cannot"
      " touch changes how the whole game is played."),
-    ("fire-standard.html", ["flareon-ex", "hoothoot"],
-     "The planning notes behind the Flareon Engine: why the deck is built this"
-     " way, the exact card text, and what it still gives up."),
     ("dark.html", ["gengar", "weezing"],
      "Xero's deck. The dark duo of Gengar and Weezing, and the two-turn combo"
      " dad's whole deck is built around."),
@@ -37,13 +35,14 @@ PAGES = [
      "Xero's lantern deck. Mega Chandelure ex turns the opponent's own"
      " Retreat Cost into damage at the shop, and three card swaps turn the"
      " whole thing into the Night Parade at home."),
-    ("dark-ex.html", ["gengar-mega", "gengar-mega-shiny"],
-     "Xero's tournament deck. Mega Gengar ex over a bench of zero-prize"
-     " attackers, and the prize ladder that bends every trade."),
-    ("rocket-mewtwo.html", ["mewtwo", "crobat"],
+    ("dark-ex.html", ["gengar-smile", "gengar-mega"],
+     "Xero's tournament deck. Two ex Gengars on one Haunter line: the Mega"
+     " bends every prize trade, and Gnawing Curse taxes every Energy the"
+     " opponent plays."),
+    ("rocket-mewtwo.html", ["crobat", "mewtwo"],
      "Fox's game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
      " payroll, and a Crobat line that fixes a bad Active for free."),
-    ("eevee-standard.html", ["eevee-ex", "umbreon"],
+    ("eevee-standard.html", ["eevee", "glaceon", "umbreon", "espeon"],
      "Fox's Eevee deck, and the only one here that is two decks. Fifty"
      " cards never move; ten swap between Sun and Moon for home and Fire"
      " and Ice for game night."),

@@ -45,7 +45,6 @@ MASCOT = {"rules.md": ["sudowoodo", "wobbuffet"],
           "dark.md": ["gengar", "weezing"],
           "fire.md": ["charizard", "flareon"],
           "fire-tournament.md": ["flareon", "noctowl"],
-          "fire-standard.md": ["eevee", "flareon"],
           "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
           "eevee-standard.md": ["eevee-ex", "umbreon"],
@@ -60,7 +59,10 @@ FLAVOR = {
         "The board": ["sudowoodo"],
         "Rules that trip people up": ["wobbuffet"],
         "The big-card words": ["gengar-mega"],
+        "How a Game Runs": ["hoothoot"],
+        "Special Conditions": ["drowzee"],
         "Standard Legal, and Why Some Decks Aren't": ["charizard"],
+        "Tournament Night": ["noctowl"],
         "How To Play ex Style": ["gengar-mega-shiny"],
         "7. Errors to expect on the way over": ["eevee-back"],
     },
@@ -84,42 +86,23 @@ FLAVOR = {
         "7. Mistakes That Will Cost You The Game": ["eevee-back"],
         "8. The Turn Checklist": ["charmeleon"],
     },
-    # the planning docs put their sprites on the Key Card Text entries, which
-    # are the closest thing they have to a card page.
-    # no sprite exists for Toxtricity, Munkidori, or Dragapult, so this one
-    # runs on the Gengar line it is named after.
-    # no sprite exists for Toxel, Toxtricity, Munkidori, Fezandipiti, or
-    # Pecharunt, so the cards that have one get it and the rest go without.
-    # seviper and sableye were promoted from assets/ani for this page.
+    # no sprite exists for Toxel, Toxtricity, Munkidori, or Fezandipiti, so
+    # the cards that have one get it and the rest go without. sableye was
+    # promoted from assets/ani for this page; the plain gengar sprite now
+    # marks Gengar ex, since no dedicated ex sprite exists.
     "dark-ex.md": {
-        "Mega Gengar ex": ["gengar-mega"],
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
-        "Gengar": ["gengar"],
-        "Seviper": ["seviper"],
+        "Gengar ex": ["gengar"],
+        "Mega Gengar ex": ["gengar-mega"],
         "Sableye": ["sableye"],
+        "The Prize Ladder": ["gengar-booty"],
+        "1. Two Ghosts, One Line": ["gengar", "gengar-mega"],
+        "6. Things That Will Cost You a Game": ["eevee-back"],
         "✗ Gengar Spirit Link — Skip It": ["wobbuffet-back", "gengar-mega-shiny"],
-        "The Real Card Is the Ability, Not the Attack": ["gengar-booty"],
-        "Versus the Kitchen Table": ["weezing"],
+        "Versus the Kitchen Table": ["mewtwo"],
         "How To Play ex Style": ["charizard"],
         "What To Buy": ["koffing"],
-    },
-    "fire-standard.md": {
-        # the card pages get the card's own Pokemon
-        "Flareon ex": ["flareon-ex"],
-        "Eevee ex": ["eevee-ex"],
-        "Eevee": ["eevee"],
-        "Hoothoot": ["hoothoot"],
-        "Noctowl": ["noctowl"],
-        # the argument and the game plans
-        "The Thesis": ["flareon"],
-        "1. Turn One, Flareon": ["eevee"],
-        "2. Jewel Seeker Is Your Real Draw Engine": ["noctowl"],
-        "3. The Bench Is a Fortress": ["hoothoot"],
-        # a back sprite means walking away: the trap play and the honest
-        # downsides, not the cards the deck is built on
-        "4. Carnelian Is a Trap Most of the Time": ["flareon-back"],
-        "Honest Weaknesses": ["eevee-back"],
     },
     "psychic-lanterns.md": {
         # the ghost and ice lines came from assets/ani; no Mega Chandelure
@@ -195,6 +178,11 @@ FLAVOR = {
         "His annoying cards": ["haunter"],
         "8. Mistakes That Will Cost You The Game": ["flareon-back"],
         "9. The Turn Checklist": ["charizard"],
+        # the argument up front and the honest downsides at the back, absorbed
+        # from the retired fire-standard planning notes; a back sprite means
+        # walking away, as in the other files.
+        "The Thesis": ["flareon"],
+        "Honest Weaknesses": ["eevee-back"],
     },
     # mewtwo, zubat, golbat, crobat and articuno were promoted from assets/ani
     # for this page. Spidops and Tarountula are gen 9, so the engine's own two
@@ -491,7 +479,7 @@ def deck_printings(lines):
             if len(r) < 2 or not r[0].strip("*").isdigit():
                 continue
             name = re.sub(r"\*+|\[.*?\]", "", col(r, "card")).strip()
-            # fire-standard has no Number column and prints the number inside
+            # some deck lists have no Number column and print the number inside
             # the Set cell instead, the same shape deck_list() reads.
             hint, num = col(r, "set"), col(r, "number").strip("*")
             m = re.search(r"(\d{2,3})\s*$", hint)
@@ -578,7 +566,7 @@ def deck_list(lines, where=""):
                     if len(r) < 2 or not r[0].strip("*").isdigit():
                         continue
                     name = re.sub(r"\*+|\[.*?\]", "", col(r, "card")).strip()
-                    # fire-standard has no Number column and prints the number
+                    # some deck lists have no Number column and print the number
                     # inside the Set cell instead. without it "Switch" picks a
                     # printing by set words alone, which is a coin toss.
                     hint = col(r, "set")
@@ -892,6 +880,11 @@ def convert(src):
                     # open <section> then takes the hand-written prose
                     art = art[:-1] + blocks + [art[-1]]
                     toc.append((3, name, a))
+                elif re.match(r"(?:[A-Za-z]+ )?\d+[.:]", name):
+                    # a numbered prose subsection is a named step, and the
+                    # steps are the section: index it under its ## the same
+                    # way a numbered ## nests under its group.
+                    toc.append((3, name, a))
             art[0] = art[0].replace("\x00", badge)
             i += 1
             continue
@@ -1085,7 +1078,7 @@ def bullets_or_para(text, ind):
 
 DECKS = ["rules.md", "dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
-         "fire-standard.md", "psychic-lanterns.md", "eevee-standard.md"]
+         "psychic-lanterns.md", "eevee-standard.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

@@ -229,6 +229,12 @@
 		nav {
 			padding-top: var(--pad);
 
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
 			summary {
 				cursor: pointer;
 				font-size: var(--text-lg);
@@ -383,7 +389,6 @@
 				background: var(--surface);
 				border: 1px solid var(--line);
 				border-radius: var(--round);
-				text-decoration: none;
 
 				&:hover {
 					border-color: var(--accent);
@@ -405,6 +410,16 @@
 				text-align: right;
 				font-weight: 700;
 				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
 			}
 
 			/* each link is its own flex item rather than a run of text, so a
@@ -717,7 +732,9 @@
 			align-self: stretch;
 			flex: 0 0 auto;
 			gap: 0.4rem;
-			width: clamp(9.5rem, 22vw, 15rem);
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
 
 			/* the column is a fixed size; the sprite just sits in the middle of
 			   it. capped rather than sized, so nothing is stretched and no card
@@ -1108,7 +1125,7 @@
 
 		/* decoration costs ink and vertical space and carries no
 		   information. the card scans stay; the animated sprites go, and
-		   [data-sprite] in particular is a 15rem column of nothing. */
+		   [data-sprite] in particular is a 17rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
@@ -1175,7 +1192,7 @@
 		<header>
 			<div>
 				<h1><img src="./assets/pokeball.png" alt="" />Pull List <img data-mascot src="./assets/sprites/sableye.gif" alt="" /> <img data-mascot src="./assets/sprites/drowzee.gif" alt="" /></h1>
-				<p>25 cards to pull, 49 copies in all.</p>
+				<p>25 cards to pull, 51 copies in all.</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1184,8 +1201,6 @@
 					<summary>Search</summary>
 					<input type="search" data-search placeholder="Find a card" aria-label="Find a card" autocomplete="off" />
 					<ul>
-						<li data-letter><b>A</b></li>
-						<li data-for="air-balloon"><a href="#air-balloon">Air Balloon</a> <em>ME: Ascended Heroes</em> <em>buy 1</em></li>
 						<li data-letter><b>B</b></li>
 						<li data-for="basic-water-energy"><a href="#basic-water-energy">Basic Water Energy</a> <em>MEE: Mega Evolution Energies</em> <em>buy 3</em></li>
 						<li data-for="buddy-buddy-poffin"><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <em>SV05: Temporal Forces</em> <em>buy 3</em></li>
@@ -1196,10 +1211,11 @@
 						<li data-for="energy-switch"><a href="#energy-switch">Energy Switch</a> <em>ME01: Mega Evolution</em> <em>buy 2</em></li>
 						<li data-for="espeon-ex"><a href="#espeon-ex">Espeon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
 						<li data-letter><b>F</b></li>
-						<li data-for="fezandipiti-ex"><a href="#fezandipiti-ex">Fezandipiti ex</a> <em>SV: Shrouded Fable</em> <em>buy 1</em></li>
+						<li data-for="fezandipiti-ex"><a href="#fezandipiti-ex">Fezandipiti ex</a> <em>SV: Shrouded Fable</em> <em>buy 2</em></li>
 						<li data-for="flareon-ex"><a href="#flareon-ex">Flareon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
 						<li data-letter><b>G</b></li>
 						<li data-for="galarian-weezing"><a href="#galarian-weezing">Galarian Weezing</a> <em>SWSH06: Chilling Reign</em> <em>buy 1</em></li>
+						<li data-for="gengar-ex"><a href="#gengar-ex">Gengar ex</a> <em>SV05: Temporal Forces</em> <em>buy 2</em></li>
 						<li data-for="glaceon"><a href="#glaceon">Glaceon</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
 						<li data-letter><b>H</b></li>
 						<li data-for="haunter"><a href="#haunter">Haunter</a> <em>ME03: Perfect Order</em> <em>buy 1</em></li>
@@ -1207,13 +1223,13 @@
 						<li data-letter><b>K</b></li>
 						<li data-for="koffing"><a href="#koffing">Koffing</a> <em>SV09: Journey Together</em> <em>buy 1</em></li>
 						<li data-letter><b>L</b></li>
-						<li data-for="legacy-energy"><a href="#legacy-energy">Legacy Energy</a> <em>SV06: Twilight Masquerade</em> <em>buy 3</em></li>
+						<li data-for="legacy-energy"><a href="#legacy-energy">Legacy Energy</a> <em>SV06: Twilight Masquerade</em> <em>buy 2</em></li>
 						<li data-for="lillies-determination"><a href="#lillies-determination">Lillie&#x27;s Determination</a> <em>ME01: Mega Evolution</em> <em>buy 1</em></li>
 						<li data-letter><b>M</b></li>
-						<li data-for="mega-gengar-ex"><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>ME02: Phantasmal Flames</em> <em>buy 4</em></li>
-						<li data-for="munkidori"><a href="#munkidori">Munkidori</a> <em>SV06: Twilight Masquerade</em> <em>buy 1</em></li>
+						<li data-for="mega-gengar-ex"><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>ME02: Phantasmal Flames</em> <em>buy 3</em></li>
+						<li data-for="munkidori"><a href="#munkidori">Munkidori</a> <em>SV06: Twilight Masquerade</em> <em>buy 3</em></li>
 						<li data-letter><b>P</b></li>
-						<li data-for="pecharunt-ex"><a href="#pecharunt-ex">Pecharunt ex</a> <em>SV: Shrouded Fable</em> <em>buy 1</em></li>
+						<li data-for="prime-catcher"><a href="#prime-catcher">Prime Catcher</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
 						<li data-letter><b>T</b></li>
 						<li data-for="team-rockets-crobat-ex"><a href="#team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
 						<li data-for="team-rockets-golbat"><a href="#team-rockets-golbat">Team Rocket&#x27;s Golbat</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
@@ -1227,26 +1243,6 @@
 				<div data-active hidden></div>
 			</nav>
 		<main>
-			<article data-name="Air Balloon" data-set="ME: Ascended Heroes" data-rarity="Uncommon" data-type="Trainer - Pokémon Tool" data-tournament="legal">
-				<h2 id="air-balloon">Air Balloon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
-				<aside>
-					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
-				</aside>
-				<section>
-					<dl class="card">
-						<dt>Buy</dt><dd><strong>1</strong></dd>
-						<dt>Own</dt><dd>1</dd>
-						<dt>Need</dt><dd>2</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;1</small></a></dd>
-						<dt>Note</dt><dd>the English print; the Japanese ones are not US-legal</dd>
-						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>181/217</small></span></dd>
-						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
-						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Pokémon Tool</span></dd>
-						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
-						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
-					</dl>
-				</section>
-			</article>
 			<article data-name="Basic Water Energy" data-set="MEE: Mega Evolution Energies" data-rarity="Common" data-type="Energy - Basic" data-tournament="legal">
 				<h2 id="basic-water-energy">Basic Water Energy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x3</span></h2>
 				<aside>
@@ -1276,7 +1272,7 @@
 						<dt>Buy</dt><dd><strong>3</strong></dd>
 						<dt>Own</dt><dd>9</dd>
 						<dt>Need</dt><dd>12</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
 						<dt>Note</dt><dd>shared with the other decks</dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt>Note</dt><dd>shared</dd>
@@ -1349,7 +1345,7 @@
 						<dt>Buy</dt><dd><strong>2</strong></dd>
 						<dt>Own</dt><dd>0</dd>
 						<dt>Need</dt><dd>2</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;2</small></a></dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a></dd>
 						<dt>Note</dt><dd>the SV01 copies are rotated, and Fox&#x27;s</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>115/132</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
@@ -1386,16 +1382,17 @@
 				</section>
 			</article>
 			<article data-name="Fezandipiti ex" data-set="SV: Shrouded Fable" data-rarity="Double Rare" data-type="Darkness" data-stage="Basic" data-tournament="legal">
-				<h2 id="fezandipiti-ex">Fezandipiti ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+				<h2 id="fezandipiti-ex">Fezandipiti ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
 				<aside>
 					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Buy</dt><dd><strong>2</strong></dd>
 						<dt>Own</dt><dd>0</dd>
-						<dt>Need</dt><dd>1</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a></dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>Ascended Heroes 142 is the same card if cheaper</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1460,6 +1457,31 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Gengar ex" data-set="SV05: Temporal Forces" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="gengar-ex">Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/542848_gengar-ex-104-162.jpg" target="_blank" rel="noopener"><img src="./assets/542848_gengar-ex-104-162.jpg" alt="Gengar ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>the Gnawing Curse print, sees no competitive play and prices like it</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>104/162</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>310</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Gnawing Curse - Whenever your opponent attaches an Energy card from their hand to 1 of their Pokémon, put 2 damage counters on that Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Tricky Steps (160) - You may move an Energy from your opponent&#x27;s Active Pokémon to 1 of their Benched Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Glaceon" data-set="SV: Prismatic Evolutions" data-rarity="Rare" data-type="Water" data-stage="Stage 1" data-tournament="legal">
 				<h2 id="glaceon">Glaceon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
 				<aside>
@@ -1495,7 +1517,7 @@
 						<dt>Buy</dt><dd><strong>1</strong></dd>
 						<dt>Own</dt><dd>1</dd>
 						<dt>Need</dt><dd>2</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;2</small></a></dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a></dd>
 						<dt>Note</dt><dd>the Haunt print, not Spooky Shot</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>049/088</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
@@ -1555,17 +1577,16 @@
 				</section>
 			</article>
 			<article data-name="Legacy Energy" data-set="SV06: Twilight Masquerade" data-rarity="ACE SPEC Rare" data-type="Energy - Special Rainbow" data-tournament="legal">
-				<h2 id="legacy-energy">Legacy Energy <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x3</span></h2>
+				<h2 id="legacy-energy">Legacy Energy <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x2</span></h2>
 				<aside>
 					<a data-art href="./assets/550211_legacy-energy.jpg" target="_blank" rel="noopener"><img src="./assets/550211_legacy-energy.jpg" alt="Legacy Energy" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Buy</dt><dd><strong>2</strong></dd>
 						<dt>Own</dt><dd>0</dd>
-						<dt>Need</dt><dd>3</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a>, Xero&#x27;s Shadow Syndicate <small>&times;1</small>, <a href="./rocket-mewtwo.html">Fox&#x27;s Hostile Takeover <small>&times;1</small></a></dd>
-						<dt>Note</dt><dd>the ACE SPEC</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd>Xero&#x27;s Shadow Syndicate <small>&times;1</small>, <a href="./rocket-mewtwo.html">Fox&#x27;s Hostile Takeover <small>&times;1</small></a></dd>
 						<dt>Note</dt><dd>the ace spec, or swap in the japanese Prime Catcher you already own</dd>
 						<dt>Note</dt><dd>optional ace spec swap, see below</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>167/167</small></span></dd>
@@ -1586,7 +1607,7 @@
 						<dt>Buy</dt><dd><strong>1</strong></dd>
 						<dt>Own</dt><dd>11</dd>
 						<dt>Need</dt><dd>12</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
@@ -1598,17 +1619,16 @@
 				</section>
 			</article>
 			<article data-name="Mega Gengar ex" data-set="ME02: Phantasmal Flames" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
-				<h2 id="mega-gengar-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x4</span></h2>
+				<h2 id="mega-gengar-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
 				<aside>
 					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>4</strong></dd>
+						<dt>Buy</dt><dd><strong>3</strong></dd>
 						<dt>Own</dt><dd>2</dd>
-						<dt>Need</dt><dd>6</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;3</small></a>, Xero&#x27;s Shadow Syndicate <small>&times;3</small></dd>
-						<dt>Note</dt><dd>own 2 from the Mega Battle Deck, buy the third</dd>
+						<dt>Need</dt><dd>5</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a>, Xero&#x27;s Shadow Syndicate <small>&times;3</small></dd>
 						<dt>Note</dt><dd>third copy, or play one of the two japanese MBG prints instead</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
@@ -1624,16 +1644,17 @@
 				</section>
 			</article>
 			<article data-name="Munkidori" data-set="SV06: Twilight Masquerade" data-rarity="Rare" data-type="Psychic" data-stage="Basic" data-tournament="legal">
-				<h2 id="munkidori">Munkidori <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
+				<h2 id="munkidori">Munkidori <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x3</span></h2>
 				<aside>
 					<a data-art href="./assets/550139_munkidori.jpg" target="_blank" rel="noopener"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Buy</dt><dd><strong>3</strong></dd>
 						<dt>Own</dt><dd>0</dd>
-						<dt>Need</dt><dd>1</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a></dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>the engine; Ascended Heroes 099 is the same card if cheaper</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>095/167</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
@@ -1648,26 +1669,23 @@
 					</dl>
 				</section>
 			</article>
-			<article data-name="Pecharunt ex" data-set="SV: Shrouded Fable" data-rarity="Double Rare" data-type="Darkness" data-stage="Basic" data-tournament="legal">
-				<h2 id="pecharunt-ex">Pecharunt ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x1</span></h2>
+			<article data-name="Prime Catcher" data-set="SV: Prismatic Evolutions" data-rarity="ACE SPEC Rare" data-type="Trainer - Item" data-tournament="legal">
+				<h2 id="prime-catcher">Prime Catcher <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x1</span></h2>
 				<aside>
-					<a data-art href="./assets/560349_pecharunt-ex-039-064.jpg" target="_blank" rel="noopener"><img src="./assets/560349_pecharunt-ex-039-064.jpg" alt="Pecharunt ex" /></a>
+					<a data-art href="./assets/610474_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></a>
 				</aside>
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>1</strong></dd>
-						<dt>Own</dt><dd>0</dd>
-						<dt>Need</dt><dd>1</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Dark Box — Tournament EX <small>&times;1</small></a></dd>
-						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>039/064</small></span></dd>
-						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
-						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
-						<dt>HP</dt><dd><span>190</span></dd>
-						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
-						<dt>Ability</dt><dd><span>Subjugating Chains - Once during your turn, you may switch 1 of your Benched Darkness Pokémon, except any Pecharunt ex, with your Active Pokémon. If you do, the new Active Pokémon is now Poisoned. You can&#x27;t use more than 1 Subjugating Chains Ability each turn.</span></dd>
-						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Irritated Outburst (60x) - This attack does 60 damage for each Prize card your opponent has taken.</span></dd>
-						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
-						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>the ACE SPEC; the English print is owned</dd>
+						<dt>Note</dt><dd>ACE SPEC; the PRE reprint of TEF 157, same card, English</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>119/131</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>

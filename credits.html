@@ -229,6 +229,12 @@
 		nav {
 			padding-top: var(--pad);
 
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
 			summary {
 				cursor: pointer;
 				font-size: var(--text-lg);
@@ -383,7 +389,6 @@
 				background: var(--surface);
 				border: 1px solid var(--line);
 				border-radius: var(--round);
-				text-decoration: none;
 
 				&:hover {
 					border-color: var(--accent);
@@ -405,6 +410,16 @@
 				text-align: right;
 				font-weight: 700;
 				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
 			}
 
 			/* each link is its own flex item rather than a run of text, so a
@@ -717,7 +732,9 @@
 			align-self: stretch;
 			flex: 0 0 auto;
 			gap: 0.4rem;
-			width: clamp(9.5rem, 22vw, 15rem);
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
 
 			/* the column is a fixed size; the sprite just sits in the middle of
 			   it. capped rather than sized, so nothing is stretched and no card
@@ -1108,7 +1125,7 @@
 
 		/* decoration costs ink and vertical space and carries no
 		   information. the card scans stay; the animated sprites go, and
-		   [data-sprite] in particular is a 15rem column of nothing. */
+		   [data-sprite] in particular is a 17rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],

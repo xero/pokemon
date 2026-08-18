@@ -19,7 +19,7 @@ tcg deck planning for me and my son
 - [xero's smog signals](./dark-smog.md)
 - [xero's night shift](./dark-tonight.md)
 - [tonight's matchup](./matchup-tonight.md)
-- [fire standard](./fire-standard.md)
+- [fox's flareon engine](./fire-tournament.md)
 - [eevee standard](./eevee-standard.md)
 - [fighting standard](./fighting-standard.md)
 

@@ -229,6 +229,12 @@
 		nav {
 			padding-top: var(--pad);
 
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
 			summary {
 				cursor: pointer;
 				font-size: var(--text-lg);
@@ -383,7 +389,6 @@
 				background: var(--surface);
 				border: 1px solid var(--line);
 				border-radius: var(--round);
-				text-decoration: none;
 
 				&:hover {
 					border-color: var(--accent);
@@ -405,6 +410,16 @@
 				text-align: right;
 				font-weight: 700;
 				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
 			}
 
 			/* each link is its own flex item rather than a run of text, so a
@@ -717,7 +732,9 @@
 			align-self: stretch;
 			flex: 0 0 auto;
 			gap: 0.4rem;
-			width: clamp(9.5rem, 22vw, 15rem);
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
 
 			/* the column is a fixed size; the sprite just sits in the middle of
 			   it. capped rather than sized, so nothing is stretched and no card
@@ -1108,7 +1125,7 @@
 
 		/* decoration costs ink and vertical space and carries no
 		   information. the card scans stay; the animated sprites go, and
-		   [data-sprite] in particular is a 15rem column of nothing. */
+		   [data-sprite] in particular is a 17rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
@@ -1182,7 +1199,9 @@
 	<details open>
 		<summary>Contents</summary>
 		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
 			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#honest-weaknesses">Honest Weaknesses</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -1225,6 +1244,25 @@
 				<p><strong><a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> are worth 2 Prize cards each.</strong> Every Pokémon in your dad&#x27;s deck is still worth 1.</p>
 				<p>So he needs <strong>3 knockouts</strong> to win. You need <strong>6</strong>. Read <strong><a href="#5-the-prize-race-changed">The Prize Race Changed</a></strong> before you play a single game with this deck.</p>
 			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3>
+					<p><strong>Flareon ex is not an attacker that happens to find Energy. It is an Energy engine that happens to hit for 130.</strong></p>
+			<aside data-callout="note">
+				<p><strong><em>Burning Charge</em></strong> <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, <strong>130 damage.</strong> Search your deck for up to <strong>2 Basic Energy cards</strong> and attach them to 1 of your Pokémon.</p>
+			</aside>
+					<p>Read what that doesn&#x27;t say. It doesn&#x27;t say <em>Fire</em> Energy. It says <strong>Basic Energy</strong> — any type, any two, attached to anyone you like. Every attack is also a double Energy attachment.</p>
+					<p>Three things follow, and they shape the whole deck:</p>
+					<ol>
+						<li><strong>You are never Energy-screwed.</strong> The attack finds Energy from the deck, which is why 13 Energy is enough.</li>
+						<li><strong>The engine can pay for off-type attacks.</strong> That is what the three Water are really for, and it is what makes <a href="./eevee-standard.html">Rainbow DNA</a> possible at all.</li>
+						<li><strong>130 for two Energy is fine damage on its own.</strong> You are not paying extra for the engine.</li>
+					</ol>
+					<p>The second pillar is <strong>Tera</strong>, on every eeveelution ex:</p>
+			<aside data-callout="note">
+				<p><strong><em>Tera</em></strong> — As long as this Pokémon is on your <strong>Bench</strong>, prevent all damage done to it by attacks (both yours and your opponent&#x27;s).</p>
+			</aside>
+					<p>A benched Flareon ex is untouchable, which is <a href="#4-the-bench-is-a-fortress">game plan 4</a>. And Tera switches on the third piece: <a href="#noctowl">Noctowl&#x27;s</a> <em>Jewel Seeker</em>, two searched Trainers every time one evolves, which is <a href="#3-jewel-seeker-is-your-real-draw-engine">game plan 3</a>.</p>
+			</section>
 			<section>
 				<h3 id="deck-list">Deck List</h3>
 			<article data-decklist>
@@ -2119,7 +2157,7 @@ You need 6 knockouts to win.   (6 x 1 Prize  = 6)</code></pre>
 					<p>The specific traps in <em>this</em> deck. Read this one twice.</p>
 					<p><strong>Playing Eevee to the Bench and expecting to evolve it.</strong> <em>Boosted Evolution</em> only works in the <strong>Active Spot</strong>. This is the number one mistake with this deck.</p>
 					<p><strong>Using Buddy-Buddy Poffin to find the Eevee you want to evolve now.</strong> Poffin puts them on the <strong>Bench</strong>. Same mistake, one step earlier.</p>
-					<p><strong>Trying to use <em>Carnelian</em> or <em>Coruscating Quartz</em>.</strong> Both cost <strong><span data-icons="inline"><img src="./assets/types/lightning.png" alt="Lightning" /></span> Lightning</strong> and your deck has none. They are not options.</p>
+					<p><strong>Trying to use <em>Carnelian</em> or <em>Coruscating Quartz</em> without <a href="#sparkling-crystal">Sparkling Crystal</a>.</strong> Both cost <strong><span data-icons="inline"><img src="./assets/types/lightning.png" alt="Lightning" /></span> Lightning</strong> and your deck has none. With the Crystal attached, drop the Lightning and both cost <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/water.png" alt="Water" /></span>; without it, they are not options.</p>
 					<p><strong>Leaving a hurt Flareon ex in the Active Spot.</strong> Below 170 HP a Weezing finishes it. That&#x27;s 2 Prize cards you handed over for free. <a href="#switch">Switch</a> it out.</p>
 					<p><strong>Leaving a Hoothoot or Noctowl Active when his Gengar is ready.</strong> <em>Mind Jack</em> eats them. Keep a Flareon ex out front.</p>
 					<p><strong>Evolving all three Noctowl at once.</strong> You only get 3 <em>Jewel Seeker</em> uses in the whole game. Save one for when you actually need a specific card.</p>
@@ -2145,6 +2183,14 @@ You need 6 knockouts to win.   (6 x 1 Prize  = 6)</code></pre>
 					<p><strong>Why this order?</strong> Because every step tells you something about the next one. Evolving a Noctowl at step 4 might hand you the Boss&#x27;s Orders you play at step 6. If you play the Supporter first, you&#x27;ll pick the wrong one.</p>
 					<p><strong>Step 4 is where this deck is different from your old one.</strong> In Fire Force, <em>Battle Sense</em> was the free thing you always forgot. Here it&#x27;s <em>Jewel Seeker</em>. Same habit, different card: <strong>do the free thing before the thing you only get once.</strong></p>
 					<p>The single most common mistake in this whole game is <strong>attacking too early in your turn.</strong> Attack last. Always.</p>
+			</section>
+			<section>
+				<h3 id="honest-weaknesses">Honest Weaknesses<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+					<p>Every deck gives something up. Know yours before your opponent finds them.</p>
+					<p><strong>Three knockouts and it&#x27;s over.</strong> <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> give up 2 Prize cards each, and they are the only Pokémon that win you games. <a href="#5-the-prize-race-changed">The Prize Race Changed</a> is the manual; the summary is that you cannot afford a single free knockout.</p>
+					<p><strong>Water Weakness ×2.</strong> Nothing in dad&#x27;s Gengar Gang is Water, so you will never feel this at home. A tournament room is different. One Water deck across the table and your 270 HP attacker takes double, which means medium attacks knock it out in one hit. When you see Water Energy on their side, keep the <a href="#4-the-bench-is-a-fortress">rotation</a> tight and never leave a hurt Flareon ex in front.</p>
+					<p><strong>Eevee ex is Weak to Fighting ×2.</strong> A Fighting deck removes it almost on contact, which is exactly why the <a href="./fighting-standard.md">Fighting build on dad&#x27;s shortlist</a> hard-counters this one. Against Fighting, plain <a href="#eevee">Eevee</a> is the safer start even though it is slower.</p>
+					<p><strong>Damage counters go through Tera.</strong> <em>Tera</em> stops damage from <strong>attacks</strong>. Effects that <em>place counters</em> skip it entirely: dad&#x27;s Risky Ruins taxes your Basics as they arrive, and his <a href="./psychic-lanterns.html">lantern deck&#x27;s</a> Dusknoir and Froslass put counters straight onto your &quot;untouchable&quot; Bench. Against those decks the fortress has no walls, so win fast instead of slow.</p>
 			</section>
 		</main>
 		<footer>

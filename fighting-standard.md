@@ -7,7 +7,7 @@
 >
 > Third of three Standard-legal directions for Fox. This is the one you asked for that isn't fire — and it isn't Eevee either.
 >
-> - **[Flareon ex / Noctowl](./fire-standard.md)** — Fire, tournament-proven, built on what he owns.
+> - **[Flareon ex / Noctowl](./fire-tournament.md)** — Fire, tournament-proven, built on what he owns.
 > - **[Rainbow DNA](./eevee-standard.md)** — the Eevee toolbox. Six types, hardest to pilot.
 > - **This file** — **Mega Zygarde ex**. One Basic Pokémon, three Energy, 200 damage. The simplest deck on this list by a mile.
 >
@@ -165,7 +165,7 @@ Against a wide board it ends games outright. Against a narrow one it's a coin fl
 
 ## Which Of The Three?
 
-| | **[Flareon ex](./fire-standard.md)** | **[Rainbow DNA](./eevee-standard.md)** | **Ground Zero** |
+| | **[Flareon ex](./fire-tournament.md)** | **[Rainbow DNA](./eevee-standard.md)** | **Ground Zero** |
 | :--- | :--- | :--- | :--- |
 | **Type** | Fire | Six types | Fighting |
 | **Uses cards he owns** | ✅ **All of it** | ✅ All but 3 | Trainers only |
@@ -176,7 +176,7 @@ Against a wide board it ends games outright. Against a narrow one it's a coin fl
 | **Beats dad's Dark deck** | No edge | Situational | ✅ **×2 on everything** |
 | **How ready is this doc** | Full 60, 3 flex | Full 60, 3 flex | **Shell only** |
 
-**My recommendation: [Flareon ex / Noctowl](./fire-standard.md).** It's the only one where his birthday presents *are* the deck, it's proven at Regional level, and the Tera mechanic directly fixes the weakness he's currently living with (Basics dying on the Bench). It's also a natural bridge — same Eevee, same Flareon, new rules.
+**My recommendation: [Flareon ex / Noctowl](./fire-tournament.md).** It's the only one where his birthday presents *are* the deck, it's proven at Regional level, and the Tera mechanic directly fixes the weakness he's currently living with (Basics dying on the Bench). It's also a natural bridge — same Eevee, same Flareon, new rules.
 
 **[Rainbow DNA](./eevee-standard.md) is where I'd go next**, once he's comfortable. It's the deck he'd actually be excited about, and *Onyx* stealing a Prize card is the kind of effect a kid remembers for years.
 

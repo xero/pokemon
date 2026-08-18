@@ -44,7 +44,29 @@
 > **Tool** — [Sparkling Crystal](#sparkling-crystal)
 > **Energy** — [Basic Fire Energy](#basic-fire-energy) · [Basic Water Energy](#basic-water-energy)
 >
-> [**Game Plans**](#game-plans) · [**Beating Dad's Gengar Gang**](#7-beating-dads-gengar-gang) · [**Deck List**](#deck-list)
+> [**The Thesis**](#the-thesis) · [**Game Plans**](#game-plans) · [**Beating Dad's Gengar Gang**](#7-beating-dads-gengar-gang) · [**Honest Weaknesses**](#honest-weaknesses) · [**Deck List**](#deck-list)
+
+---
+
+## The Thesis
+
+**Flareon ex is not an attacker that happens to find Energy. It is an Energy engine that happens to hit for 130.**
+
+> ***Burning Charge*** [R][C], **130 damage.** Search your deck for up to **2 Basic Energy cards** and attach them to 1 of your Pokémon.
+
+Read what that doesn't say. It doesn't say *Fire* Energy. It says **Basic Energy** — any type, any two, attached to anyone you like. Every attack is also a double Energy attachment.
+
+Three things follow, and they shape the whole deck:
+
+1. **You are never Energy-screwed.** The attack finds Energy from the deck, which is why 13 Energy is enough.
+2. **The engine can pay for off-type attacks.** That is what the three Water are really for, and it is what makes [Rainbow DNA](./eevee-standard.md) possible at all.
+3. **130 for two Energy is fine damage on its own.** You are not paying extra for the engine.
+
+The second pillar is **Tera**, on every eeveelution ex:
+
+> ***Tera*** — As long as this Pokémon is on your **Bench**, prevent all damage done to it by attacks (both yours and your opponent's).
+
+A benched Flareon ex is untouchable, which is [game plan 4](#4-the-bench-is-a-fortress). And Tera switches on the third piece: [Noctowl's](#noctowl) *Jewel Seeker*, two searched Trainers every time one evolves, which is [game plan 3](#3-jewel-seeker-is-your-real-draw-engine).
 
 ---
 
@@ -1183,7 +1205,7 @@ The specific traps in *this* deck. Read this one twice.
 
 **Using Buddy-Buddy Poffin to find the Eevee you want to evolve now.** Poffin puts them on the **Bench**. Same mistake, one step earlier.
 
-**Trying to use *Carnelian* or *Coruscating Quartz*.** Both cost **[L] Lightning** and your deck has none. They are not options.
+**Trying to use *Carnelian* or *Coruscating Quartz* without [Sparkling Crystal](#sparkling-crystal).** Both cost **[L] Lightning** and your deck has none. With the Crystal attached, drop the Lightning and both cost [R][W]; without it, they are not options.
 
 **Leaving a hurt Flareon ex in the Active Spot.** Below 170 HP a Weezing finishes it. That's 2 Prize cards you handed over for free. [Switch](#switch) it out.
 
@@ -1227,3 +1249,17 @@ Stick to this order and you'll stop forgetting things.
 **Step 4 is where this deck is different from your old one.** In Fire Force, *Battle Sense* was the free thing you always forgot. Here it's *Jewel Seeker*. Same habit, different card: **do the free thing before the thing you only get once.**
 
 The single most common mistake in this whole game is **attacking too early in your turn.** Attack last. Always.
+
+---
+
+## Honest Weaknesses
+
+Every deck gives something up. Know yours before your opponent finds them.
+
+**Three knockouts and it's over.** [Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex) give up 2 Prize cards each, and they are the only Pokémon that win you games. [The Prize Race Changed](#5-the-prize-race-changed) is the manual; the summary is that you cannot afford a single free knockout.
+
+**Water Weakness ×2.** Nothing in dad's Gengar Gang is Water, so you will never feel this at home. A tournament room is different. One Water deck across the table and your 270 HP attacker takes double, which means medium attacks knock it out in one hit. When you see Water Energy on their side, keep the [rotation](#4-the-bench-is-a-fortress) tight and never leave a hurt Flareon ex in front.
+
+**Eevee ex is Weak to Fighting ×2.** A Fighting deck removes it almost on contact, which is exactly why the [Fighting build on dad's shortlist](./fighting-standard.md) hard-counters this one. Against Fighting, plain [Eevee](#eevee) is the safer start even though it is slower.
+
+**Damage counters go through Tera.** *Tera* stops damage from **attacks**. Effects that *place counters* skip it entirely: dad's Risky Ruins taxes your Basics as they arrive, and his [lantern deck's](./psychic-lanterns.md) Dusknoir and Froslass put counters straight onto your "untouchable" Bench. Against those decks the fortress has no walls, so win fast instead of slow.

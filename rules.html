@@ -229,6 +229,12 @@
 		nav {
 			padding-top: var(--pad);
 
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
 			summary {
 				cursor: pointer;
 				font-size: var(--text-lg);
@@ -383,7 +389,6 @@
 				background: var(--surface);
 				border: 1px solid var(--line);
 				border-radius: var(--round);
-				text-decoration: none;
 
 				&:hover {
 					border-color: var(--accent);
@@ -405,6 +410,16 @@
 				text-align: right;
 				font-weight: 700;
 				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
 			}
 
 			/* each link is its own flex item rather than a run of text, so a
@@ -717,7 +732,9 @@
 			align-self: stretch;
 			flex: 0 0 auto;
 			gap: 0.4rem;
-			width: clamp(9.5rem, 22vw, 15rem);
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
 
 			/* the column is a fixed size; the sprite just sits in the middle of
 			   it. capped rather than sized, so nothing is stretched and no card
@@ -1108,7 +1125,7 @@
 
 		/* decoration costs ink and vertical space and carries no
 		   information. the card scans stay; the animated sprites go, and
-		   [data-sprite] in particular is a 15rem column of nothing. */
+		   [data-sprite] in particular is a 17rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
@@ -1183,13 +1200,17 @@
 	<details open>
 		<summary>Contents</summary>
 		<ul data-sections>
+			<li><a href="#special-conditions">Special Conditions</a></li>
 			<li><a href="#standard-legal-and-why-some-decks-arent">Standard Legal, and Why Some Decks Aren&#x27;t</a></li>
+			<li><a href="#tournament-night">Tournament Night</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Word List</dt>
 			<dd><a href="#the-board">The board</a> <a href="#pokémon">Pokémon</a> <a href="#energy-and-attacks">Energy and attacks</a> <a href="#trainer-cards">Trainer cards</a> <a href="#rules-that-trip-people-up">Rules that trip people up</a> <a href="#the-big-card-words">The big-card words</a></dd>
+			<dt><a href="#how-a-game-runs">How a Game Runs</a></dt>
+			<dd><a href="#1-set-up">1. Set up</a> <a href="#2-take-a-turn">2. Take a turn</a> <a href="#3-attack-in-order">3. Attack, in order</a> <a href="#4-pokémon-checkup">4. Pokémon Checkup</a> <a href="#5-three-ways-to-win">5. Three ways to win</a></dd>
 			<dt><a href="#how-to-play-ex-style">How To Play ex Style</a></dt>
-			<dd><a href="#3-the-trade-is-the-whole-game">3. The trade is the whole game</a> <a href="#7-errors-to-expect-on-the-way-over">7. Errors to expect on the way over</a></dd>
+			<dd><a href="#1-you-are-not-fighting-you-are-racing-to-six">1. You are not fighting. You are racing to six.</a> <a href="#2-build-a-prize-map-before-you-start">2. Build a Prize map before you start</a> <a href="#3-the-trade-is-the-whole-game">3. The trade is the whole game</a> <a href="#4-the-two-shot-problem-beats-hp-every-time">4. The two-shot problem beats HP every time</a> <a href="#5-gust-effects-are-the-most-valuable-cards-in-the-format">5. Gust effects are the most valuable cards in the format</a> <a href="#6-rules-that-bite-harder-in-ex-decks">6. Rules that bite harder in ex decks</a> <a href="#7-errors-to-expect-on-the-way-over">7. Errors to expect on the way over</a></dd>
 		</dl>
 	</details>
 </nav>
@@ -1198,6 +1219,7 @@
 				<p><strong>What this file is for.</strong></p>
 				<p>This is the rulebook for the kitchen table. Every deck page in this repo uses these words without stopping to explain them, and every deck page links here instead. You do not have to read it top to bottom — just look things up when a page says something weird.</p>
 				<p>It grows as the table needs it. If a game teaches us a rule the hard way, it gets a row here.</p>
+				<p>The game sections distill the official <a href="https://tcg.pokemon.com/assets/img/learn-to-play/getting-started/quick-start-rules/en-us/quick_start_rulebook.pdf">Quick Start rulebook</a>, the full <a href="https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/rulebook/pbl_rulebook_en.pdf">Pokémon TCG rulebook</a> (July 2026), and the <a href="https://www.pokemon.com/static-assets/content-assets/cms2/pdf/play-pokemon/rules/play-pokemon-tcg-tournament-handbook-en.pdf">Play! Pokémon Tournament Handbook</a> (May 2026). When this page and a judge disagree, the judge wins.</p>
 			</aside>
 			<h2 id="word-list">Word List</h2>
 					<p>Every game word you need, in order of how much you&#x27;ll use it.</p>
@@ -1211,6 +1233,7 @@
 						<dt><strong>Hand</strong></dt><dd><span>The cards you&#x27;re holding.</span></dd>
 						<dt><strong>Deck</strong></dt><dd><span>Your face-down pile you draw from.</span></dd>
 						<dt><strong>Discard pile</strong></dt><dd><span>Where used and knocked-out cards go. Not gone forever — some cards fish things back out.</span></dd>
+						<dt><strong>Lost Zone</strong></dt><dd><span>A shelf above your Prize cards for cards the game removes outright. Unlike the discard pile, <strong>nothing ever comes back</strong> from it.</span></dd>
 						<dt><strong>Prize cards</strong></dt><dd><span>6 cards you set aside at the start. Every time you knock out a Pokémon, you take one — or two or three, if it was one of <a href="#the-big-card-words">the big cards</a>. <strong>Take all 6 and you win.</strong></span></dd>
 					</dl>
 				</section>
@@ -1223,13 +1246,13 @@
 						<dt><strong>Basic</strong></dt><dd><span>A Pokémon you can play straight from your hand onto the Bench.</span></dd>
 						<dt><strong>Stage 1</strong></dt><dd><span>Evolves from a Basic. You put it <em>on top</em> of the Basic.</span></dd>
 						<dt><strong>Stage 2</strong></dt><dd><span>Evolves from a Stage 1. The biggest ones.</span></dd>
-						<dt><strong>Evolve</strong></dt><dd><span>Put an evolution card on top of the Pokémon it grows from. It keeps its Energy and its damage. <strong>You can&#x27;t evolve a Pokémon the same turn you played it</strong> — unless a card says you can. Evolution goes by <strong>name</strong>, so any card that says &quot;Evolves from Lampent&quot; fits on any Pokémon named Lampent.</span></dd>
+						<dt><strong>Evolve</strong></dt><dd><span>Put an evolution card on top of the Pokémon it grows from. It keeps its Energy and its damage. <strong>You can&#x27;t evolve a Pokémon the same turn you played it</strong> — unless a card says you can. Evolution goes by <strong>name</strong>, so any card that says &quot;Evolves from Lampent&quot; fits on any Pokémon named Lampent. The whole name has to match: <em>Iono&#x27;s Bellibolt ex</em> evolves only from <em>Iono&#x27;s Tadbulb</em>, and <em>Alolan Persian</em> only from <em>Alolan Meowth</em>.</span></dd>
 						<dt><strong>HP</strong></dt><dd><span>How much damage a Pokémon can take before it&#x27;s knocked out.</span></dd>
 						<dt><strong>Damage counter</strong></dt><dd><span>A little marker worth <strong>10 damage</strong>. So 3 damage counters = 30 damage. <strong>Placing</strong> counters is not the same as attack damage: placed counters ignore Weakness, Resistance, and anything that says &quot;prevent damage.&quot;</span></dd>
 						<dt><strong>Knocked Out (KO)</strong></dt><dd><span>When damage reaches a Pokémon&#x27;s HP, it goes to the discard pile and your opponent takes their Prize card or cards.</span></dd>
 						<dt><strong>Weakness</strong></dt><dd><span>If a Pokémon is Weak to a type, <strong>attacks</strong> of that type do <strong>double</strong> damage to it.</span></dd>
 						<dt><strong>Resistance</strong></dt><dd><span>The opposite — attacks of that type do <strong>less</strong> damage.</span></dd>
-						<dt><strong>Retreat cost</strong></dt><dd><span>How much Energy you discard to move your Active Pokémon back to the Bench. Once per turn.</span></dd>
+						<dt><strong>Retreat cost</strong></dt><dd><span>How much Energy you discard to move your Active Pokémon back to the Bench. Once per turn. No symbols printed means it retreats free. Asleep and Paralyzed Pokémon can&#x27;t retreat, and retreating doesn&#x27;t spend your attack; the Pokémon that comes up can still use it.</span></dd>
 						<dt><strong>Ability</strong></dt><dd><span>Free text on a Pokémon that just <em>works</em>. It is <strong>not</strong> an attack. Using an Ability does not end your turn.</span></dd>
 					</dl>
 				</section>
@@ -1256,7 +1279,7 @@
 						<dt><strong>Trainer</strong></dt><dd><span>Any card that isn&#x27;t a Pokémon or an Energy. There are four kinds:</span></dd>
 						<dt><strong>Supporter</strong></dt><dd><span><strong>Only 1 per turn.</strong> These are the powerful ones. Choosing which one is your biggest decision each turn.</span></dd>
 						<dt><strong>Item</strong></dt><dd><span>Play as many as you want in a turn.</span></dd>
-						<dt><strong>Stadium</strong></dt><dd><span>Stays on the table and changes the rules for <strong>both</strong> players. Only one Stadium can be out at a time — playing a new one throws the old one away.</span></dd>
+						<dt><strong>Stadium</strong></dt><dd><span>Stays on the table and changes the rules for <strong>both</strong> players. Only one Stadium can be out at a time — playing a new one throws the old one away. One per turn, and never one with the same name as the Stadium already out.</span></dd>
 						<dt><strong>Pokémon Tool</strong></dt><dd><span>Attaches to a Pokémon and stays there.</span></dd>
 					</dl>
 				</section>
@@ -1267,9 +1290,10 @@
 					<dl>
 						<dt data-head>Word</dt><dd data-head>What it means</dd>
 						<dt><strong>Mulligan</strong></dt><dd><span>If your first 7 cards have <strong>no Basic Pokémon</strong>, show your hand, shuffle it back, and draw 7 again. Your opponent draws 1 extra card. It&#x27;s not a loss — just a do-over.</span></dd>
-						<dt><strong>Going first</strong></dt><dd><span>Whoever goes first <strong>cannot attack on their first turn.</strong> Use that turn to set up instead.</span></dd>
+						<dt><strong>Going first</strong></dt><dd><span>Whoever goes first <strong>cannot attack or play a Supporter on their first turn.</strong> Use that turn to set up instead. And nobody evolves on their own first turn.</span></dd>
 						<dt><strong>Confused</strong></dt><dd><span>A Special Condition. When a Confused Pokémon tries to attack, flip a coin. <strong>Tails = the attack does nothing, that Pokémon takes 30 damage, and the turn ends.</strong> It only wears off when the Pokémon leaves the Active Spot.</span></dd>
-						<dt><strong>Special Condition</strong></dt><dd><span>Confused, Asleep, Paralyzed, Poisoned, or Burned. They all go away when the Pokémon leaves the Active Spot.</span></dd>
+						<dt><strong>Special Condition</strong></dt><dd><span>Confused, Asleep, Paralyzed, Poisoned, or Burned. They all go away when the Pokémon leaves the Active Spot. The full table lives in <a href="#special-conditions">Special Conditions</a>.</span></dd>
+						<dt><strong>Pokémon Checkup</strong></dt><dd><span>The between-turns step where Special Conditions do their work, always in the same order: Poisoned, Burned, Asleep, Paralyzed.</span></dd>
 						<dt><strong>4-copy limit</strong></dt><dd><span>You may have at most <strong>4 cards with the same name</strong> in a deck. Basic Energy is the one exception — you can have as many as you want. The limit counts <strong>names</strong>, not pictures: every print of Litwick is still Litwick.</span></dd>
 						<dt><strong>&quot;Up to&quot;</strong></dt><dd><span>When a card says &quot;up to 3,&quot; zero, one, or two is also legal. Fetch what you can use, not what you can fetch.</span></dd>
 					</dl>
@@ -1290,14 +1314,186 @@
 				</section>
 			</article>
 			<section>
+				<h3 id="how-a-game-runs">How a Game Runs<span data-flavor><img src="./assets/sprites/hoothoot.gif" alt="" /></span></h3>
+					<p>The whole game, in the order it happens. This is the official rulebook folded down to one screen; the <a href="#word-list">Word List</a> covers any word in it that looks strange.</p>
+			<article>
+				<h3 id="1-set-up">1. Set up</h3>
+				<section>
+					<ol>
+						<li>Flip a coin. The winner picks who goes first.</li>
+						<li>Shuffle your deck and draw <strong>7 cards</strong>.</li>
+						<li>Put one Basic Pokémon face down in the Active Spot, and up to 5 more face down on your Bench.</li>
+						<li>Set the top <strong>6 cards</strong> of your deck aside, face down. Those are your Prize cards.</li>
+						<li>Both players flip their Pokémon face up, and the game starts.</li>
+					</ol>
+					<p>No Basic Pokémon in your 7 is a <a href="#rules-that-trip-people-up">mulligan</a>: show your hand, shuffle it back, and draw 7 again until a Basic shows up. Your opponent may draw 1 extra card for each mulligan you took beyond their own, and any Basics they draw that way can go straight to their Bench.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-take-a-turn">2. Take a turn</h3>
+				<section>
+					<p>A turn is three parts, and only the middle one is a menu.</p>
+					<p><strong>Draw a card.</strong> Not optional. If your deck is empty when your turn starts, you lose on the spot.</p>
+					<p><strong>Do any of these, in any order:</strong></p>
+					<dl>
+						<dt data-head>Action</dt><dd data-head>How often</dd>
+						<dt>Put Basic Pokémon on your Bench</dt><dd><span>As many as you want</span></dd>
+						<dt>Evolve your Pokémon</dt><dd><span>As many as you want, but nothing that came into play this turn</span></dd>
+						<dt>Attach an Energy from your hand</dt><dd><span><strong>Once per turn</strong></span></dd>
+						<dt>Play Item and Tool cards</dt><dd><span>As many as you want</span></dd>
+						<dt>Play a Supporter</dt><dd><span><strong>Once per turn</strong></span></dd>
+						<dt>Play a Stadium</dt><dd><span><strong>Once per turn</strong></span></dd>
+						<dt>Retreat your Active Pokémon</dt><dd><span><strong>Once per turn</strong></span></dd>
+						<dt>Use Abilities</dt><dd><span>As many as you want</span></dd>
+					</dl>
+					<p><strong>Attack.</strong> Attacking ends your turn, so it always comes last. You can also pass without attacking; just say so.</p>
+					<p>On the game&#x27;s opening turn, the player going first skips the attack and can&#x27;t play a Supporter, and neither player evolves anything. That turn is for setting up.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-attack-in-order">3. Attack, in order</h3>
+				<section>
+					<p>Most attacks are simple. Check the Energy, announce the attack, do the damage. When one gets complicated, this is the official order of operations:</p>
+					<ol>
+						<li>Announce the attack, with the Energy attached to cover its cost.</li>
+						<li>Apply anything that could stop it, including the Confusion flip.</li>
+						<li>Make the choices the attack asks for, and pay what it asks you to pay.</li>
+						<li>Work out the damage, and place the counters.</li>
+						<li>Do everything else the attack text says.</li>
+					</ol>
+					<p>The damage math in step 4 runs in one fixed order:</p>
+					<ol>
+						<li>Start from the number printed beside the attack.</li>
+						<li>Add effects on <strong>your</strong> side, like attack boosts and Tools.</li>
+						<li>Double it for Weakness.</li>
+						<li>Subtract for Resistance (30, on modern cards).</li>
+						<li>Apply effects on <strong>their</strong> side, like &quot;takes 20 less damage.&quot;</li>
+						<li>Place 1 damage counter per 10. Zero or less places nothing.</li>
+					</ol>
+					<p>Two lines worth memorizing:</p>
+					<ul>
+						<li><strong>Placed counters skip all of it.</strong> An attack that <em>puts</em> damage counters ignores Weakness, Resistance, and every damage shield.</li>
+						<li><strong>The Bench has no Weakness.</strong> Damage that reaches Benched Pokémon is never doubled by Weakness and never shrunk by Resistance.</li>
+					</ul>
+					<p>After the attack, check every Pokémon that took damage, yours included. Anything with damage at or past its HP is Knocked Out: it goes to the discard pile with everything attached, the other player takes the Prize card or cards, and its owner promotes a new Active from the Bench. No Bench to promote from ends the game right there.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-pokémon-checkup">4. Pokémon Checkup</h3>
+				<section>
+					<p>Between every pair of turns the game runs a maintenance step. Special Conditions fire in a fixed order: <strong>Poisoned, then Burned, then Asleep, then Paralyzed.</strong> Anything else that says &quot;between turns&quot; happens here too, and the player whose turn comes next picks the order of those extras. Then any Pokémon out of HP is Knocked Out, Prizes are taken, and the next turn begins.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="5-three-ways-to-win">5. Three ways to win</h3>
+				<section>
+					<ol>
+						<li>Take your last Prize card.</li>
+						<li>Knock Out your opponent&#x27;s last Pokémon in play.</li>
+						<li>Your opponent has no card to draw at the start of their turn.</li>
+					</ol>
+					<p>Both players can win at the same moment; a double Knock Out on the last Prizes will do it. The answer is a <strong>tiebreaker game</strong>: set up fresh, 6 Prizes each, and the first Prize card taken wins. If you each win once but one of you wins in <em>two</em> ways at once, the double win takes it.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="special-conditions">Special Conditions<span data-flavor><img src="./assets/sprites/drowzee.gif" alt="" /></span></h3>
+					<p>Five things that can go wrong for an Active Pokémon. Asleep, Confused, and Paralyzed tilt the card so nobody forgets; Burned and Poisoned use markers.</p>
+					<table>
+						<thead><tr><th>Condition</th><th>Show it</th><th>What it does</th></tr></thead>
+						<tbody>
+							<tr><td><strong>Asleep</strong></td><td>Tilt the card counterclockwise</td><td>Can&#x27;t attack or retreat. Flip at every Checkup; heads wakes it.</td></tr>
+							<tr><td><strong>Burned</strong></td><td>Burn marker</td><td>2 damage counters at every Checkup, then flip; heads clears it.</td></tr>
+							<tr><td><strong>Confused</strong></td><td>Turn the card upside down</td><td>Flip before attacking. On tails the attack fails and it takes 3 damage counters.</td></tr>
+							<tr><td><strong>Paralyzed</strong></td><td>Tilt the card clockwise</td><td>Can&#x27;t attack or retreat. Clears at the Checkup after its owner&#x27;s next turn.</td></tr>
+							<tr><td><strong>Poisoned</strong></td><td>Poison marker</td><td>1 damage counter at every Checkup.</td></tr>
+						</tbody>
+					</table>
+					<p>The rules around the table:</p>
+					<ul>
+						<li><strong>Only the Active Pokémon</strong> catches a Special Condition, and every condition vanishes when the Pokémon goes to the Bench or evolves. Retreating is a cure.</li>
+						<li><strong>The tilts overwrite each other.</strong> A card can only be tilted one way, so the newest of Asleep, Confused, or Paralyzed replaces whichever tilt was there.</li>
+						<li><strong>The markers stack with everything.</strong> One unlucky Pokémon can be Burned, Poisoned, and Paralyzed at the same time. A second Burn or a second Poison replaces the first rather than adding to it.</li>
+						<li><strong>Only Asleep and Paralyzed stop a retreat.</strong> A Confused Pokémon can retreat just fine, and that is usually the way out.</li>
+					</ul>
+			</section>
+			<section>
 				<h3 id="standard-legal-and-why-some-decks-arent">Standard Legal, and Why Some Decks Aren&#x27;t<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
 					<p>Real tournaments only allow newer cards. Every card printed since 2023 carries a <strong>regulation mark</strong> — a little letter near the bottom — and each spring the oldest letter stops being legal. Right now the legal letters are <strong>H, I, and J</strong>.</p>
+					<p>The letters, with dates, straight from the tournament handbook:</p>
+					<dl>
+						<dt data-head>Regulation mark</dt><dd data-head>Standard-legal since</dd>
+						<dt><strong>H</strong></dt><dd><span>April 5, 2024</span></dd>
+						<dt><strong>I</strong></dt><dd><span>April 11, 2025</span></dd>
+						<dt><strong>J</strong></dt><dd><span>March 6, 2026</span></dd>
+					</dl>
+					<p>G rotated out in 2026. It is still fine in the Expanded format, which keeps every mark back to D, and it is still fine here.</p>
+					<p>A new set is not legal the day it hits the shelf, either. Cards become tournament-legal on the <strong>second Friday after the set&#x27;s US release</strong>; the exception is a reprint of a card that is already legal, which you can play immediately.</p>
 					<p>At home, none of that matters. We play whatever the box holds, and some of the house decks use old cards <em>on purpose</em>, because the old ones are cheap and really fun. Each deck page says which kind it is: the tournament decks carry only legal letters, and the home decks tell you exactly which cards would have to stay in the binder at a real event.</p>
 					<p>Two more shop rules worth knowing before a tournament night:</p>
 					<ul>
-						<li><strong>Japanese prints are not legal at US events</strong>, even when the card is the same. The house owns a few; the deck pages flag every one.</li>
+						<li><strong>Japanese prints are not legal at US events</strong>, even when the card is the same. The official reason is blunt. Japanese card backs look different from every other language&#x27;s, so the handbook counts them as <strong>marked cards</strong>, the same bucket as a bent or scribbled-on card. The house owns a few; the deck pages flag every one.</li>
 						<li>A deck is exactly <strong>60 cards</strong> with at least one Basic Pokémon — no more, no fewer, everywhere.</li>
 					</ul>
+			</section>
+			<section>
+				<h3 id="tournament-night">Tournament Night<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
+					<p>What the Play! Pokémon tournament handbook expects of you at a real event, folded down to what a first tournament actually feels like. None of this applies at home. All of it applies at the shop.</p>
+			<article>
+				<h3 id="before-you-sit-down">Before you sit down</h3>
+				<section>
+					<ul>
+						<li><strong>Bring a deck list.</strong> Championship events want an exact, card-by-card list of your 60, and judges spot-check decks against it at any point from sign-in to the last round. The list is a promise that your deck hasn&#x27;t changed mid-event.</li>
+						<li><strong>Sleeves are a uniform.</strong> All 60 must match: same design, same condition, solid single-color edges, nothing reflective. Official Pokémon art sleeves are fine when the border is one solid color. A scuffed or distinctive sleeve counts as a marked card, so bring a fresh set.</li>
+						<li><strong>Real cards only.</strong> No proxies and no altered cards. The one exception is a proxy a judge makes for you when a card gets damaged mid-event.</li>
+						<li><strong>Keep the table clear.</strong> Good-luck charms are welcome; food and drinks are not.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="table-manners">Table manners</h3>
+				<section>
+					<ul>
+						<li><strong>Shuffle in the open, then offer the cut.</strong> After every shuffle, your opponent cuts your deck once or gives it a brief shuffle of their own. Either of you can ask a judge to do the shuffling instead, and nobody is allowed to be offended by that.</li>
+						<li><strong>Keep the board readable.</strong> Energy visible under each Pokémon, Prize cards spread out and countable at a glance, one discard pile, the Stadium between the two Actives. A judge should be able to read the whole game from a photo.</li>
+						<li><strong>Some questions must be answered.</strong> How many cards in your hand or deck, how many Prizes left, what happened this turn, and the text on anything in play are all public information. Your hand and what&#x27;s still in your deck stay private.</li>
+						<li><strong>Notes are legal.</strong> You can write and read notes during a match on a sheet that starts blank. No codes and no ciphers; a judge can ask to read them, and a phone is not a notepad.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="dice-coins-and-pace">Dice, coins, and pace</h3>
+				<section>
+					<ul>
+						<li>A coin flip counts when it starts at shoulder height, turns over at least three times, and lands flat inside the play area. If you disagree about a flip, a judge decides, and a flip a judge has ruled on never gets redone.</li>
+						<li>Dice have to be transparent or translucent cubes with rounded corners. <strong>Even is heads, odd is tails.</strong> You can always borrow your opponent&#x27;s dice or coin.</li>
+						<li>Keep a lively pace. The handbook&#x27;s guidelines give a mid-game deck search about <strong>15 seconds</strong> and the pause before playing a card about <strong>10</strong>. Deliberately milking the clock is stalling, and stalling is a penalty.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-clock">The clock</h3>
+				<section>
+					<ul>
+						<li>Most events play matches as <strong>best of three</strong>. After game one there is no coin flip; <strong>the loser of the game decides who goes first</strong> in the next one.</li>
+						<li>Time being called doesn&#x27;t stop the game dead. The players finish <strong>3 more turns</strong> between them inside a 15-minute overtime.</li>
+						<li>In a Swiss round an unfinished match usually lands as a tie; the exception is time called between games one and two or during game two, which hands the match to whoever won game one. In a knockout round somebody has to win: fewest Prize cards remaining takes it, and a dead-even game goes to a sudden-death <strong>tiebreaker game</strong> where the first Prize card wins.</li>
+						<li>Show up on time. A player who was late, or who wandered off without a judge&#x27;s permission, loses any match still unfinished when time runs out. The handbook calls it the Tardiness Clause, and it outranks every other tiebreaker.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="when-something-goes-wrong">When something goes wrong</h3>
+				<section>
+					<p>Call a judge. If you are unsure of a ruling, disagree with your opponent, or saw something odd, call a judge. Penalties climb a ladder from a verbal <strong>caution</strong>, to a recorded <strong>warning</strong>, to <strong>Prize penalties</strong> that hand the other player a head start of 2 or 4 Prizes, then <strong>game loss</strong>, <strong>match loss</strong>, and <strong>disqualification</strong>. Honest mistakes live at the bottom of the ladder, and any penalty can be appealed to the Head Judge.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="prerelease-nights">Prerelease nights</h3>
+				<section>
+					<p>Sealed events like the shop&#x27;s Build &amp; Battle nights run smaller. You build a <strong>40-card deck</strong> out of just the packs you opened plus the shop&#x27;s Basic Energy, matches play to <strong>4 Prizes</strong>, and the 4-copy limit is waived because you play what you pulled. You get 30 minutes to build, and there is no wrong deck.</p>
+				</section>
+			</article>
 			</section>
 			<section>
 				<h3 id="how-to-play-ex-style">How To Play ex Style<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h3>

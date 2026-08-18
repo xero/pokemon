@@ -229,6 +229,12 @@
 		nav {
 			padding-top: var(--pad);
 
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
 			summary {
 				cursor: pointer;
 				font-size: var(--text-lg);
@@ -383,7 +389,6 @@
 				background: var(--surface);
 				border: 1px solid var(--line);
 				border-radius: var(--round);
-				text-decoration: none;
 
 				&:hover {
 					border-color: var(--accent);
@@ -405,6 +410,16 @@
 				text-align: right;
 				font-weight: 700;
 				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
 			}
 
 			/* each link is its own flex item rather than a run of text, so a
@@ -717,7 +732,9 @@
 			align-self: stretch;
 			flex: 0 0 auto;
 			gap: 0.4rem;
-			width: clamp(9.5rem, 22vw, 15rem);
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
 
 			/* the column is a fixed size; the sprite just sits in the middle of
 			   it. capped rather than sized, so nothing is stretched and no card
@@ -1108,7 +1125,7 @@
 
 		/* decoration costs ink and vertical space and carries no
 		   information. the card scans stay; the animated sprites go, and
-		   [data-sprite] in particular is a 15rem column of nothing. */
+		   [data-sprite] in particular is a 17rem column of nothing. */
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
@@ -1859,7 +1876,7 @@
 			</section>
 			<section>
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
-					<p><strong><a href="./fire-standard.html">Fox&#x27;s Flareon ex</a>.</strong> Your counters ignore Tera. Dusknoir&#x27;s thirteen erase any benched Eevee or Hoothoot, and Freezing Shroud pings Eevee, Eevee ex, and Noctowl every Checkup; only Flareon ex itself goes untouched, because Tera is a rule, not an Ability. Check his Retreat Costs at the table: at Retreat 2, one Flame makes Phantom Maze exactly 280, which is exactly one Flareon ex. Respect <em>Carnelian</em>: 280 one-shots Gourgeist, so never leave her Active into a loaded Flareon. He cannot one-shot a healthy Mega, which makes his math two-turn math, which is what Wally&#x27;s Compassion deletes.</p>
+					<p><strong><a href="./fire-tournament.html">Fox&#x27;s Flareon ex</a>.</strong> Your counters ignore Tera. Dusknoir&#x27;s thirteen erase any benched Eevee or Hoothoot, and Freezing Shroud pings Eevee, Eevee ex, and Noctowl every Checkup; only Flareon ex itself goes untouched, because Tera is a rule, not an Ability. Check his Retreat Costs at the table: at Retreat 2, one Flame makes Phantom Maze exactly 280, which is exactly one Flareon ex. Respect <em>Carnelian</em>: 280 one-shots Gourgeist, so never leave her Active into a loaded Flareon. He cannot one-shot a healthy Mega, which makes his math two-turn math, which is what Wally&#x27;s Compassion deletes.</p>
 					<p><strong><a href="./eevee-standard.html">Fox&#x27;s Sun and Moon</a>, the hardest game in the house.</strong> <em>Moon Mirage</em> is 320 into your all-Dark-weak board. The Mega survives on 30 HP, so every Froslass ping on your own Mega is a lit fuse: three Checkups and Umbreon one-shots it. Hold Froslass back until the Rondo turn, lead on Wally&#x27;s, and never bench the second Mega until the first is spent. Watch the sneaky lethal: <em>Amazez</em> devolving a Mega leaves a 90 HP Lampent holding all of its damage, and 90 or more means it is Knocked Out on the spot. His Battle Cage stops Dusknoir reaching his Bench but not Froslass arming yours; the Rondo engine runs straight through it. Win by trapping Eevee ex early and trading Gourgeist into his 2-prize bodies. Expect to lose this one more than you win it. That is the design, and <a href="#night-parade">Night Parade</a> is the deck that renegotiates it.</p>
 					<p><strong><a href="./rocket-mewtwo.html">Fox&#x27;s Team Rocket&#x27;s Mewtwo</a>, the dream matchup.</strong> Mewtwo retreats for 3: one Flame, 330 into 280 HP, one shot, two Prizes. His board is wall-to-wall Abilities (Mewtwo, Spidops, Golbat, Crobat, Articuno), so the Shroud poisons everything, and his own <em>Biting Spree</em> counters on your Bench feed your Rondo. Two cautions. <em>Assassin&#x27;s Return</em> is 240 into your Weakness, so trade Gourgeist into Crobat and save Phantom Maze for Mewtwo. And Articuno&#x27;s <em>Repelling Veil</em> blocks <em>Shadow Bind</em>&#x27;s retreat lock on his Basics, but Abilities are not attack effects, so Cursed Blast and the Shroud sail through.</p>
 					<p><strong><a href="./fighting-standard.md">Fox&#x27;s Ground Zero</a>, if it gets built.</strong> Your Fighting Resistance makes this the house answer to Mega Zygarde: <em>Gaia Wave</em> lands on the Mega for 170, a three-hit kill against a deck that only needs to land two. Zygarde has Retreat 2 and no Ability, so the line is Phantom Maze for 280, then Cursed Blast for the rest; the counters ignore his 30-damage shield. Two Zygarde knockouts is the whole game.</p>
