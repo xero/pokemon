@@ -12,7 +12,7 @@
 >
 > The [Deck List](#deck-list) below is Sun and Moon, because home is where he plays most. [The Swap](#the-swap) shows the ten cards that turn it into Fire and Ice. If he wants to make the call himself, hand him [Pick Your Ten](#pick-your-ten).
 >
-> Everything here is Regulation **H**, which rotates around April 2027. See [What To Buy](#what-to-buy) before spending.
+> Everything here is Regulation **H**, which rotates around April 2027. See [What To Buy](#what-to-buy) before spending, and [the table rules](./rules.md) for any game word — ex, Tera, ACE SPEC, all of it.
 
 ---
 

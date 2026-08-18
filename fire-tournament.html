@@ -53,6 +53,7 @@
 			   width. the light and dark footers are drawn a few rows apart. */
 			--art-header:       url("./assets/header-light.png");
 			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
 			--art-header-ratio: 1376 / 638;
 			--art-footer-ratio: 1376 / 491;
 
@@ -81,6 +82,7 @@
 
 			--art-header:       url("./assets/header.png");
 			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
 			--art-footer-ratio: 1376 / 470;
 		}
 		}
@@ -407,7 +409,6 @@
 		article,
 		main > section {
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-radius: var(--round);
 			padding: var(--pad);
 		}
@@ -581,6 +582,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -845,7 +853,6 @@
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-inline-start: 8px solid var(--quiet);
 			border-radius: var(--round);
 			padding: var(--pad);
@@ -1124,7 +1131,6 @@
 		<nav>
 	<details open>
 		<summary>Contents</summary>
-		<p><b><a href="#word-list">Word List</a> —</b><span><a href="#the-board">The board</a> · <a href="#pokémon">Pokémon</a> · <a href="#energy-and-attacks">Energy and attacks</a> · <a href="#trainer-cards">Trainer cards</a> · <a href="#rules-that-trip-people-up">Rules that trip people up</a></span></p>
 		<p><b>Pokémon —</b><span><a href="#eevee">Eevee</a> · <a href="#eevee-ex">Eevee ex</a> · <a href="#flareon-ex">Flareon ex</a> · <a href="#hoothoot">Hoothoot</a> · <a href="#noctowl">Noctowl</a></span></p>
 		<p><b>Trainers (Support) —</b><span><a href="#lillies-determination">Lillie&#x27;s Determination</a> · <a href="#crispin">Crispin</a> · <a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a> · <a href="#gwynn">Gwynn</a> · <a href="#dawn">Dawn</a></span></p>
 		<p><b>Trainers (Items) —</b><span><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> · <a href="#ultra-ball">Ultra Ball</a> · <a href="#switch">Switch</a> · <a href="#night-stretcher">Night Stretcher</a> · <a href="#pokegear-30">Pokegear 3.0</a></span></p>
@@ -1137,7 +1143,7 @@
 			<aside data-callout="note">
 				<p><strong>How to read this file.</strong></p>
 				<p>This is your tournament deck. All 60 cards are in here, one at a time.</p>
-				<p>Start with the <strong><a href="#word-list">Word List</a></strong> below. It explains every game word you will see in this file. Most of it is the same list from <code>fire.md</code>, so if you already know it you can skip ahead. A few words at the end are new, and those ones matter.</p>
+				<p>The game words live in <strong><a href="./rules.html">the table rules</a></strong>. Most of them you already know from Fire Force; the ones in <a href="./rules.md#the-big-card-words">the big-card words</a> — ex, Rule Box, Tera, ACE SPEC — are the ones that make this deck different, and those matter.</p>
 				<p>Then each card has its own page. Every card page has the same parts:</p>
 				<ul>
 					<li><strong>General use</strong> — what the card is <em>for</em>. Plain and short. If you only read one part, read this one.</li>
@@ -1163,98 +1169,6 @@
 				<p><strong><a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> are worth 2 Prize cards each.</strong> Every Pokémon in your dad&#x27;s deck is still worth 1.</p>
 				<p>So he needs <strong>3 knockouts</strong> to win. You need <strong>6</strong>. Read <strong><a href="#5-the-prize-race-changed">The Prize Race Changed</a></strong> before you play a single game with this deck.</p>
 			</aside>
-			<section>
-				<h3 id="word-list">Word List</h3>
-					<p>Every game word you need, in order of how much you&#x27;ll use it.</p>
-			<article>
-				<h3 id="the-board">The board</h3>
-				<section>
-					<dl>
-						<dt data-head>Word</dt><dd data-head>What it means</dd>
-						<dt><strong>Active Spot</strong></dt><dd><span>The one Pokémon out front. It&#x27;s the only one that can attack, and it&#x27;s the only one that can be attacked.</span></dd>
-						<dt><strong>Bench</strong></dt><dd><span>Your other Pokémon, waiting behind. You can have up to <strong>5</strong>. They&#x27;re safe from most attacks, but they can&#x27;t attack either.</span></dd>
-						<dt><strong>Hand</strong></dt><dd><span>The cards you&#x27;re holding.</span></dd>
-						<dt><strong>Deck</strong></dt><dd><span>Your face-down pile you draw from.</span></dd>
-						<dt><strong>Discard pile</strong></dt><dd><span>Where used and knocked-out cards go. Not gone forever — some cards fish things back out.</span></dd>
-						<dt><strong>Prize cards</strong></dt><dd><span>6 cards you set aside at the start. Every time you knock out a Pokémon, you take one — or <strong>two</strong>, if it was an <strong>ex</strong>. <strong>Take all 6 and you win.</strong></span></dd>
-					</dl>
-				</section>
-			</article>
-			<article>
-				<h3 id="pokémon">Pokémon</h3>
-				<section>
-					<dl>
-						<dt data-head>Word</dt><dd data-head>What it means</dd>
-						<dt><strong>Basic</strong></dt><dd><span>A Pokémon you can play straight from your hand onto the Bench. Eevee, Eevee ex, and Hoothoot are your Basics.</span></dd>
-						<dt><strong>Stage 1</strong></dt><dd><span>Evolves from a Basic. You put it <em>on top</em> of the Basic. Flareon ex and Noctowl are Stage 1.</span></dd>
-						<dt><strong>Stage 2</strong></dt><dd><span>Evolves from a Stage 1. <strong>This deck has none.</strong> That&#x27;s on purpose.</span></dd>
-						<dt><strong>Evolve</strong></dt><dd><span>Put an evolution card on top of the Pokémon it grows from. It keeps its Energy and its damage. <strong>You can&#x27;t evolve a Pokémon the same turn you played it</strong> — unless a card says you can.</span></dd>
-						<dt><strong>HP</strong></dt><dd><span>How much damage a Pokémon can take before it&#x27;s knocked out.</span></dd>
-						<dt><strong>Damage counter</strong></dt><dd><span>A little marker worth <strong>10 damage</strong>. So 3 damage counters = 30 damage.</span></dd>
-						<dt><strong>Knocked Out (KO)</strong></dt><dd><span>When damage reaches a Pokémon&#x27;s HP, it goes to the discard pile and your opponent takes a Prize card.</span></dd>
-						<dt><strong>Weakness</strong></dt><dd><span>If a Pokémon is Weak to a type, attacks of that type do <strong>double</strong> damage to it. Your Flareon ex is Weak to Water ×2. Your dad has no Water cards, so it never comes up against him.</span></dd>
-						<dt><strong>Resistance</strong></dt><dd><span>The opposite — that type does <strong>less</strong> damage. Your Hoothoot and Noctowl both Resist Fighting <strong>−30</strong>.</span></dd>
-						<dt><strong>Retreat cost</strong></dt><dd><span>How much Energy you discard to move your Active Pokémon back to the Bench. Flareon ex&#x27;s is <strong>2</strong>.</span></dd>
-						<dt><strong>Ability</strong></dt><dd><span>Free text on a Pokémon that just <em>works</em>. It is <strong>not</strong> an attack. Using an Ability does not end your turn.</span></dd>
-					</dl>
-				</section>
-			</article>
-			<article>
-				<h3 id="energy-and-attacks">Energy and attacks</h3>
-				<section>
-					<dl>
-						<dt data-head>Word</dt><dd data-head>What it means</dd>
-						<dt><strong>Energy</strong></dt><dd><span>Cards you attach to Pokémon so they can attack. <strong>You may attach only 1 Energy per turn</strong> from your hand. Cards can attach more — this deck has a lot of those.</span></dd>
-						<dt><strong>[R]</strong></dt><dd><span>A Fire Energy symbol. Only a Fire Energy pays for it.</span></dd>
-						<dt><strong>[W]</strong></dt><dd><span>A Water Energy symbol. Only a Water Energy pays for it.</span></dd>
-						<dt><strong>[L]</strong></dt><dd><span>A Lightning Energy symbol. <strong>You have none of these.</strong> See <a href="#basic-water-energy">Basic Water Energy</a> for why that matters.</span></dd>
-						<dt><strong>[C]</strong></dt><dd><span>A Colorless symbol. <strong>Any</strong> Energy pays for it.</span></dd>
-						<dt><strong>Attack cost</strong></dt><dd><span>The symbols next to an attack. You need that much Energy attached to use it.</span></dd>
-						<dt><strong>Attacking ends your turn.</strong></dt><dd><span>Do everything else <em>first</em>. Once you attack, your turn is over.</span></dd>
-					</dl>
-				</section>
-			</article>
-			<article>
-				<h3 id="trainer-cards">Trainer cards</h3>
-				<section>
-					<dl>
-						<dt data-head>Word</dt><dd data-head>What it means</dd>
-						<dt><strong>Trainer</strong></dt><dd><span>Any card that isn&#x27;t a Pokémon or an Energy. There are four kinds:</span></dd>
-						<dt><strong>Supporter</strong></dt><dd><span><strong>Only 1 per turn.</strong> These are the powerful ones. Choosing which one is your biggest decision each turn.</span></dd>
-						<dt><strong>Item</strong></dt><dd><span>Play as many as you want in a turn.</span></dd>
-						<dt><strong>Stadium</strong></dt><dd><span>Stays on the table and changes the rules for <strong>both</strong> players. Only one Stadium can be out at a time. <strong>You have none.</strong> Your dad has Risky Ruins, so his always stays.</span></dd>
-						<dt><strong>Pokémon Tool</strong></dt><dd><span>Attaches to a Pokémon and stays there. You have exactly one: <a href="#sparkling-crystal">Sparkling Crystal</a>.</span></dd>
-					</dl>
-				</section>
-			</article>
-			<article>
-				<h3 id="rules-that-trip-people-up">Rules that trip people up</h3>
-				<section>
-					<dl>
-						<dt data-head>Word</dt><dd data-head>What it means</dd>
-						<dt><strong>Mulligan</strong></dt><dd><span>If your first 7 cards have <strong>no Basic Pokémon</strong>, show your hand, shuffle it back, and draw 7 again. Your opponent draws 1 extra card. It&#x27;s not a loss — just a do-over.</span></dd>
-						<dt><strong>Going first</strong></dt><dd><span>Whoever goes first <strong>cannot attack on their first turn.</strong> Use that turn to set up instead.</span></dd>
-						<dt><strong>Confused</strong></dt><dd><span>A Special Condition. When a Confused Pokémon tries to attack, flip a coin. <strong>Tails = the attack does nothing, that Pokémon takes 30 damage, and the turn ends.</strong> It only wears off when the Pokémon leaves the Active Spot. Your dad&#x27;s deck does this constantly.</span></dd>
-						<dt><strong>Special Condition</strong></dt><dd><span>Confused, Asleep, Paralyzed, Poisoned, or Burned. They all go away when the Pokémon leaves the Active Spot.</span></dd>
-						<dt><strong>4-copy limit</strong></dt><dd><span>You may have at most <strong>4 cards with the same name</strong> in a deck. Basic Energy is the one exception — you can have as many as you want.</span></dd>
-					</dl>
-				</section>
-			</article>
-			<article>
-				<h3 id="new-words-for-this-deck">New words for this deck</h3>
-				<section>
-					<p>These five are the ones that make this deck different. Learn these.</p>
-					<dl>
-						<dt data-head>Word</dt><dd data-head>What it means</dd>
-						<dt><strong>ex</strong></dt><dd><span>A really strong Pokémon. The catch: it&#x27;s worth <strong>2 Prize cards</strong> when it gets knocked out, not 1. &quot;ex&quot; is part of the card&#x27;s name, so <em>Eevee</em> and <em>Eevee ex</em> count as different cards for the 4-copy limit.</span></dd>
-						<dt><strong>Rule Box</strong></dt><dd><span>The grey box of extra rules at the bottom of an <strong>ex</strong> card. <strong><a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> have one. Everything else in your deck doesn&#x27;t.</strong> <a href="#gwynn">Gwynn</a> cares about this.</span></dd>
-						<dt><strong>Tera</strong></dt><dd><span>An Ability on <strong>both</strong> <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a>. <strong>While that Pokémon is on your Bench, attacks do zero damage to it.</strong> Not less damage. Zero. This Ability is the reason the deck works.</span></dd>
-						<dt><strong>ACE SPEC</strong></dt><dd><span>A card so strong you may only have <strong>one in your whole deck</strong> — one <em>total</em>, not one of each. Yours is <a href="#sparkling-crystal">Sparkling Crystal</a>.</span></dd>
-						<dt><strong>Search your deck</strong></dt><dd><span>Look through your whole deck and take out the exact card you want. Then shuffle. Half this deck does this. It&#x27;s why you almost never get stuck.</span></dd>
-					</dl>
-				</section>
-			</article>
-			</section>
 			<article data-decklist>
 				<h3 id="deck-list">Deck List</h3>
 				<figure><img src="./assets/610429_eevee.jpg" alt="Eevee" /><span data-count>x4</span></figure>
@@ -1276,7 +1190,7 @@
 				<figure><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x10</span></figure>
 				<figure><img src="./assets/656265_basic-water-energy-003.jpg" alt="Basic Water Energy" /><span data-count>x3</span></figure>
 			</article>
-			<h2 id="pokémon-1">Pokémon</h2>
+			<h2 id="pokémon">Pokémon</h2>
 			<article>
 				<h3 id="eevee">Eevee<span data-count>x4</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
 				<aside><a data-art href="./assets/610429_eevee.jpg" target="_blank" rel="noopener"><img src="./assets/610429_eevee.jpg" alt="Eevee" /></a></aside>

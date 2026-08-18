@@ -53,6 +53,7 @@
 			   width. the light and dark footers are drawn a few rows apart. */
 			--art-header:       url("./assets/header-light.png");
 			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
 			--art-header-ratio: 1376 / 638;
 			--art-footer-ratio: 1376 / 491;
 
@@ -81,6 +82,7 @@
 
 			--art-header:       url("./assets/header.png");
 			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
 			--art-footer-ratio: 1376 / 470;
 		}
 		}
@@ -407,7 +409,6 @@
 		article,
 		main > section {
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-radius: var(--round);
 			padding: var(--pad);
 		}
@@ -581,6 +582,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -845,7 +853,6 @@
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-inline-start: 8px solid var(--quiet);
 			border-radius: var(--round);
 			padding: var(--pad);
@@ -1125,6 +1132,12 @@
 		<main>
 			<article>
 				<section>
+					<h2>Header and footer artwork<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h2>
+					<p>The spooky forest Gengar, Haunter, and Gastly artwork in the banner and footer of every page is by <a href="https://www.artofpkm.com/illustrators/204/cards">Arai Kiriko</a>.</p>
+				</section>
+			</article>
+			<article>
+				<section>
 					<h2>Card text and rulings<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h2>
 					<p>The wording on every card, and the rulings for how it actually behaves, come from <a href="https://pkmncards.com/">PkmnCards</a>, <a href="https://www.tcgcollector.com/">TCG Collector</a>, and <a href="https://bulbapedia.bulbagarden.net/">Bulbapedia</a>.</p>
 					<p>Two Bulbapedia pages did most of the work: <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG)">Confused (TCG)</a>, because both decks lean on it, and <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50)">Gengar (Perfect Order 50)</a>, for the exact text of Infinite Shadow.</p>
@@ -1154,14 +1167,8 @@
 			</article>
 			<article>
 				<section>
-					<h2>Energy type glyphs<span data-flavor><img src="./assets/sprites/charmander.gif" alt="" /></span></h2>
-					<p>Zero-licence SVGs of the actual TCG energy symbols.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Mega Evolution sigil<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h2>
-					<p>The Mega sigil beside a Mega card comes from <a href="https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg">Poképédia</a>, also zero-licence.</p>
+					<h2>Energy glyphs and the Mega sigil<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h2>
+					<p>The energy type symbols beside every cost, and the <a href="https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg">Mega sigil</a> beside a Mega card, are both zero-licence SVGs from <a href="https://www.pokepedia.fr/">Poképédia</a>.</p>
 				</section>
 			</article>
 			<article>

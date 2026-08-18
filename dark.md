@@ -3,7 +3,7 @@
 > [!NOTE]
 > **How to read this file.**
 >
-> Every card in the deck gets its own entry below, in the order you actually think about them during a game: the Pokémon first (evolution lines together), then Supporters, Items, Tools, the Stadium, and finally Energy.
+> Every card in the deck gets its own entry below, in the order you actually think about them during a game: the Pokémon first (evolution lines together), then Supporters, Items, Tools, the Stadium, and finally Energy. Game words are defined once, in [the table rules](./rules.md), rather than re-explained here.
 >
 > Each entry has the same four parts:
 >

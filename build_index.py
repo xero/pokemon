@@ -15,6 +15,9 @@ PAGES = [
     ("collection.html", ["charizard-mega-x", "gengar-mega"],
      "A searchable collection of our combined binders. Every card, stat, and"
      " ability, and whether it's legal for tournament play."),
+    ("rules.html", ["sudowoodo", "wobbuffet"],
+     "The table rulebook: every game word the deck pages lean on, the rules"
+     " that trip people up, and what the letters on the cards mean."),
     ("fire.html", ["charizard", "flareon"],
      "Fox's deck, card by card: what each one is for, what it wants to sit next"
      " to, and how to beat dad."),
@@ -67,7 +70,7 @@ for name, sprites, blurb in PAGES:
         continue
     title, count = read(name)
     total += count
-    art = ["\t\t\t<article>"]
+    art = ['\t\t\t<article class="index">']
     # decorative, and the heading right beside them already names the page
     gifs = [s for s in sprites
             if (ROOT / "assets" / "sprites" / f"{s}.gif").exists()]

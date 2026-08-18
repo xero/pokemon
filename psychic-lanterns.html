@@ -53,6 +53,7 @@
 			   width. the light and dark footers are drawn a few rows apart. */
 			--art-header:       url("./assets/header-light.png");
 			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
 			--art-header-ratio: 1376 / 638;
 			--art-footer-ratio: 1376 / 491;
 
@@ -81,6 +82,7 @@
 
 			--art-header:       url("./assets/header.png");
 			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
 			--art-footer-ratio: 1376 / 470;
 		}
 		}
@@ -407,7 +409,6 @@
 		article,
 		main > section {
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-radius: var(--round);
 			padding: var(--pad);
 		}
@@ -581,6 +582,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -845,7 +853,6 @@
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-inline-start: 8px solid var(--quiet);
 			border-radius: var(--round);
 			padding: var(--pad);
@@ -1146,7 +1153,7 @@
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
 				<p>This is one box holding two decks. Sleeved as written it is a tournament-legal 60 built around Mega Chandelure ex; every card carries regulation mark H, I, or J, so the sleeves that face Fox at the kitchen table are welcome at the card shop exactly as they sit. Swap three cards and it becomes <a href="#night-parade">Night Parade</a>, a home-only deck that stops springing traps and starts cashing in damage counters.</p>
-				<p>The design decisions and the roads not taken are recorded in <a href="#alternatives">Alternatives</a>.</p>
+				<p>The design decisions and the roads not taken are recorded in <a href="#alternatives">Alternatives</a>, and game words are defined in <a href="./rules.html">the table rules</a>.</p>
 			</aside>
 			<section>
 				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>

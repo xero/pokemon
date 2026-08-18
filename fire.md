@@ -5,7 +5,7 @@
 >
 > This is your deck. All 60 cards are in here, one at a time.
 >
-> Start with the **[Word List](#word-list)** below. It explains every game word you will see in this file. If you hit a word you don't know, it's in there. You do not have to read the whole list first — just look things up when you need them.
+> If you hit a game word you don't know, it lives in **[the table rules](./rules.md)**. You do not have to read that page first — just look things up when you need them.
 >
 > Then each card has its own page. Every card page has the same parts:
 >
@@ -25,76 +25,8 @@
 >
 > Every Pokémon in your deck is worth **1 Prize card**. So is every Pokémon in your dad's deck. That means nobody has a giant unfair monster. Whoever plays better wins. That's on purpose.
 
----
-
-## Word List
-
-Every game word you need, in order of how much you'll use it.
-
-### The board
-
-| Word | What it means |
-| :--- | :--- |
-| **Active Spot** | The one Pokémon out front. It's the only one that can attack, and it's the only one that can be attacked. |
-| **Bench** | Your other Pokémon, waiting behind. You can have up to **5**. They're safe from most attacks, but they can't attack either. |
-| **Hand** | The cards you're holding. |
-| **Deck** | Your face-down pile you draw from. |
-| **Discard pile** | Where used and knocked-out cards go. Not gone forever — some cards fish things back out. |
-| **Prize cards** | 6 cards you set aside at the start. Every time you knock out a Pokémon, you take one. **Take all 6 and you win.** |
-
-### Pokémon
-
-| Word | What it means |
-| :--- | :--- |
-| **Basic** | A Pokémon you can play straight from your hand onto the Bench. Charmander, Eevee, and Sudowoodo are your Basics. |
-| **Stage 1** | Evolves from a Basic. You put it *on top* of the Basic. |
-| **Stage 2** | Evolves from a Stage 1. The biggest ones. |
-| **Evolve** | Put an evolution card on top of the Pokémon it grows from. It keeps its Energy and its damage. **You can't evolve a Pokémon the same turn you played it** — unless a card says you can. |
-| **HP** | How much damage a Pokémon can take before it's knocked out. |
-| **Damage counter** | A little marker worth **10 damage**. So 3 damage counters = 30 damage. |
-| **Knocked Out (KO)** | When damage reaches a Pokémon's HP, it goes to the discard pile and your opponent takes a Prize card. |
-| **Weakness** | If a Pokémon is Weak to a type, attacks of that type do **double** damage to it. Your Charizard is Weak to Water ×2. |
-| **Resistance** | The opposite — that type does less damage. None of your cards have it. |
-| **Retreat cost** | How much Energy you discard to move your Active Pokémon back to the Bench. Charizard's is **3**, which is a lot. |
-| **Ability** | Free text on a Pokémon that just *works*. It is **not** an attack. Using an Ability does not end your turn. |
-
-### Energy and attacks
-
-| Word | What it means |
-| :--- | :--- |
-| **Energy** | Cards you attach to Pokémon so they can attack. **You may attach only 1 Energy per turn** from your hand. |
-| **[R]** | A Fire Energy symbol. Only a Fire Energy pays for it. |
-| **[C]** | A Colorless symbol. **Any** Energy pays for it — including a Fire Energy. |
-| **Attack cost** | The symbols next to an attack. You need that much Energy attached to use it. |
-| **Attacking ends your turn.** | Do everything else *first*. Once you attack, your turn is over. |
-
-### Trainer cards
-
-| Word | What it means |
-| :--- | :--- |
-| **Trainer** | Any card that isn't a Pokémon or an Energy. There are four kinds: |
-| **Supporter** | **Only 1 per turn.** These are the powerful ones. Choosing which one is your biggest decision each turn. |
-| **Item** | Play as many as you want in a turn. |
-| **Stadium** | Stays on the table and changes the rules for **both** players. Only one Stadium can be out at a time — playing a new one throws the old one away. |
-| **Pokémon Tool** | Attaches to a Pokémon and stays there. Your deck doesn't have any, but your dad's does. |
-
-### Rules that trip people up
-
-| Word | What it means |
-| :--- | :--- |
-| **Mulligan** | If your first 7 cards have **no Basic Pokémon**, show your hand, shuffle it back, and draw 7 again. Your opponent draws 1 extra card. It's not a loss — just a do-over. |
-| **Going first** | Whoever goes first **cannot attack on their first turn.** Use that turn to set up instead. |
-| **Confused** | A Special Condition. When a Confused Pokémon tries to attack, flip a coin. **Tails = the attack does nothing, that Pokémon takes 30 damage, and the turn ends.** It only wears off when the Pokémon leaves the Active Spot. Your dad's Weezing does this a lot. |
-| **Special Condition** | Confused, Asleep, Paralyzed, Poisoned, or Burned. They all go away when the Pokémon leaves the Active Spot. |
-| **Rule Box** | A grey box of extra rules at the bottom of really strong cards (the ones marked **ex** or **V**). Those are worth **2 or 3** Prize cards instead of 1. **Nobody is playing any in these two decks.** |
-| **4-copy limit** | You may have at most **4 cards with the same name** in a deck. Basic Energy is the one exception — you can have as many as you want. |
-
 > [!NOTE]
-> **Why this deck isn't "Standard legal."**
->
-> Real tournaments only allow newer cards. Some of yours — Charizard, Leon, Welder, Sudowoodo — are a few years old, so they're not allowed there.
->
-> That's fine. We play at home, and we picked those cards *because* they're old: the old ones are cheap and really fun. Just know that if you ever go to a real tournament, this exact deck won't be legal there.
+> **This deck is home-only.** Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. [The table rules](./rules.md#standard-legal-and-why-some-decks-arent) explain the letters, and your [Flareon Engine](./fire-tournament.md) is the deck that is allowed there.
 
 ---
 

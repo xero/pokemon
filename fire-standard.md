@@ -2,6 +2,13 @@
 
 ### Tournament-proven Fire Deck
 
+> [!NOTE]
+> **What this file is for.**
+>
+> The planning notes behind Fox's tournament Flareon build: why the deck is shaped this way, the exact card text, and what it gives up. Game words are defined in [the table rules](./rules.md).
+
+---
+
 > ### Table of Contents
 >
 > [The Thesis](#the-thesis) · [Deck List](#deck-list)

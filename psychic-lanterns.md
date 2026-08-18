@@ -7,7 +7,7 @@
 >
 > This is one box holding two decks. Sleeved as written it is a tournament-legal 60 built around Mega Chandelure ex; every card carries regulation mark H, I, or J, so the sleeves that face Fox at the kitchen table are welcome at the card shop exactly as they sit. Swap three cards and it becomes [Night Parade](#night-parade), a home-only deck that stops springing traps and starts cashing in damage counters.
 >
-> The design decisions and the roads not taken are recorded in [Alternatives](#alternatives).
+> The design decisions and the roads not taken are recorded in [Alternatives](#alternatives), and game words are defined in [the table rules](./rules.md).
 
 ---
 

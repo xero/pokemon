@@ -3,6 +3,7 @@
 tcg deck planning for me and my son
 
 - [caught pokemon](./collection.md)
+- [table rules](./rules.md)
 
 ## our starter decks
 
@@ -151,6 +152,10 @@ the site. it takes the same four fields.
 every csv and image in here is fetched by a script, so it all rebuilds from
 scratch. the poké ball at the top is the one exception.
 
+**header and footer artwork.** the spooky forest gengar, haunter, and gastly
+artwork in every page's banner and footer is by
+[arai kiriko](https://www.artofpkm.com/illustrators/204/cards).
+
 **card data.** names, sets, numbers, rarity, types, hp, stage, attacks,
 weakness, resistance, retreat cost, and card text all come from the
 [tcgplayer](https://www.tcgplayer.com) marketplace search api, and the card
@@ -192,17 +197,16 @@ copies that let the black line art survive github's dark theme.
 so the pikachu jack-o'-lantern stamp comes from
 [dextcg](https://dextcg.com). same script fetches it.
 
-**energy type glyphs.** zero-licence svgs kept in `assets/glyphs`. these are the
-actual tcg energy symbols rather than video game type icons, so they need no
-mapping: the file is named for the card type. `build_glyphs.py` sets the fill on
-each and renders it to png in `assets/types`.
-
-**mega evolution sigil.**
-[poképédia](https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg),
-also zero-licence, kept at `assets/glyphs/mega-evolution.svg`. this one is
-referenced as an svg rather than rendered to png, because it is a four-stop
-gradient and imagemagick quietly drops the gradient and returns a black
-silhouette.
+**energy glyphs and the mega sigil.** both from
+[poképédia](https://www.pokepedia.fr/), zero-licence svgs kept in
+`assets/glyphs`. the energy set are the actual tcg energy symbols rather than
+video game type icons, so they need no mapping: the file is named for the card
+type, and `build_glyphs.py` sets the fill on each and renders it to png in
+`assets/types`. the
+[mega sigil](https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg)
+stays referenced as an svg rather than rendered to png, because it is a
+four-stop gradient and imagemagick quietly drops the gradient and returns a
+black silhouette.
 
 **poké ball.** the title image is the app icon from
 [HybridShivam/Pokemon](https://github.com/HybridShivam/Pokemon),

@@ -16,6 +16,12 @@ ROOT = Path(__file__).parent
 # sprite is used once, and the pick is a joke about the section where there was
 # one to make: koffing is round and sudowoodo stands there like a judge.
 SOURCES = [
+    ("Header and footer artwork", "gengar", [
+        'The spooky forest Gengar, Haunter, and Gastly artwork in the banner'
+        ' and footer of every page is by'
+        ' <a href="https://www.artofpkm.com/illustrators/204/cards">Arai'
+        ' Kiriko</a>.',
+    ]),
     ("Card text and rulings", "haunter", [
         'The wording on every card, and the rulings for how it actually'
         ' behaves, come from <a href="https://pkmncards.com/">PkmnCards</a>,'
@@ -71,13 +77,11 @@ SOURCES = [
         ' jack-o&#x27;-lantern stamp on the Trick or Trade cards comes from'
         ' <a href="https://dextcg.com">DexTCG</a> instead.',
     ]),
-    ("Energy type glyphs", "charmander", [
-        'Zero-licence SVGs of the actual TCG energy symbols.',
-    ]),
-    ("Mega Evolution sigil", "gengar-mega-shiny", [
-        'The Mega sigil beside a Mega card comes from'
+    ("Energy glyphs and the Mega sigil", "gengar-mega-shiny", [
+        'The energy type symbols beside every cost, and the'
         ' <a href="https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg">'
-        'Poképédia</a>, also zero-licence.',
+        'Mega sigil</a> beside a Mega card, are both zero-licence SVGs from'
+        ' <a href="https://www.pokepedia.fr/">Poképédia</a>.',
     ]),
     ("Poké Ball", "koffing", [
         'The ball at the top of every page is the app icon from'

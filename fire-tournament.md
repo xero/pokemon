@@ -5,7 +5,7 @@
 >
 > This is your tournament deck. All 60 cards are in here, one at a time.
 >
-> Start with the **[Word List](#word-list)** below. It explains every game word you will see in this file. Most of it is the same list from `fire.md`, so if you already know it you can skip ahead. A few words at the end are new, and those ones matter.
+> The game words live in **[the table rules](./rules.md)**. Most of them you already know from Fire Force; the ones in [the big-card words](./rules.md#the-big-card-words) — ex, Rule Box, Tera, ACE SPEC — are the ones that make this deck different, and those matter.
 >
 > Then each card has its own page. Every card page has the same parts:
 >
@@ -40,83 +40,6 @@
 > **[Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex) are worth 2 Prize cards each.** Every Pokémon in your dad's deck is still worth 1.
 >
 > So he needs **3 knockouts** to win. You need **6**. Read **[The Prize Race Changed](#5-the-prize-race-changed)** before you play a single game with this deck.
-
----
-
-## Word List
-
-Every game word you need, in order of how much you'll use it.
-
-### The board
-
-| Word | What it means |
-| :--- | :--- |
-| **Active Spot** | The one Pokémon out front. It's the only one that can attack, and it's the only one that can be attacked. |
-| **Bench** | Your other Pokémon, waiting behind. You can have up to **5**. They're safe from most attacks, but they can't attack either. |
-| **Hand** | The cards you're holding. |
-| **Deck** | Your face-down pile you draw from. |
-| **Discard pile** | Where used and knocked-out cards go. Not gone forever — some cards fish things back out. |
-| **Prize cards** | 6 cards you set aside at the start. Every time you knock out a Pokémon, you take one — or **two**, if it was an **ex**. **Take all 6 and you win.** |
-
-### Pokémon
-
-| Word | What it means |
-| :--- | :--- |
-| **Basic** | A Pokémon you can play straight from your hand onto the Bench. Eevee, Eevee ex, and Hoothoot are your Basics. |
-| **Stage 1** | Evolves from a Basic. You put it *on top* of the Basic. Flareon ex and Noctowl are Stage 1. |
-| **Stage 2** | Evolves from a Stage 1. **This deck has none.** That's on purpose. |
-| **Evolve** | Put an evolution card on top of the Pokémon it grows from. It keeps its Energy and its damage. **You can't evolve a Pokémon the same turn you played it** — unless a card says you can. |
-| **HP** | How much damage a Pokémon can take before it's knocked out. |
-| **Damage counter** | A little marker worth **10 damage**. So 3 damage counters = 30 damage. |
-| **Knocked Out (KO)** | When damage reaches a Pokémon's HP, it goes to the discard pile and your opponent takes a Prize card. |
-| **Weakness** | If a Pokémon is Weak to a type, attacks of that type do **double** damage to it. Your Flareon ex is Weak to Water ×2. Your dad has no Water cards, so it never comes up against him. |
-| **Resistance** | The opposite — that type does **less** damage. Your Hoothoot and Noctowl both Resist Fighting **−30**. |
-| **Retreat cost** | How much Energy you discard to move your Active Pokémon back to the Bench. Flareon ex's is **2**. |
-| **Ability** | Free text on a Pokémon that just *works*. It is **not** an attack. Using an Ability does not end your turn. |
-
-### Energy and attacks
-
-| Word | What it means |
-| :--- | :--- |
-| **Energy** | Cards you attach to Pokémon so they can attack. **You may attach only 1 Energy per turn** from your hand. Cards can attach more — this deck has a lot of those. |
-| **[R]** | A Fire Energy symbol. Only a Fire Energy pays for it. |
-| **[W]** | A Water Energy symbol. Only a Water Energy pays for it. |
-| **[L]** | A Lightning Energy symbol. **You have none of these.** See [Basic Water Energy](#basic-water-energy) for why that matters. |
-| **[C]** | A Colorless symbol. **Any** Energy pays for it. |
-| **Attack cost** | The symbols next to an attack. You need that much Energy attached to use it. |
-| **Attacking ends your turn.** | Do everything else *first*. Once you attack, your turn is over. |
-
-### Trainer cards
-
-| Word | What it means |
-| :--- | :--- |
-| **Trainer** | Any card that isn't a Pokémon or an Energy. There are four kinds: |
-| **Supporter** | **Only 1 per turn.** These are the powerful ones. Choosing which one is your biggest decision each turn. |
-| **Item** | Play as many as you want in a turn. |
-| **Stadium** | Stays on the table and changes the rules for **both** players. Only one Stadium can be out at a time. **You have none.** Your dad has Risky Ruins, so his always stays. |
-| **Pokémon Tool** | Attaches to a Pokémon and stays there. You have exactly one: [Sparkling Crystal](#sparkling-crystal). |
-
-### Rules that trip people up
-
-| Word | What it means |
-| :--- | :--- |
-| **Mulligan** | If your first 7 cards have **no Basic Pokémon**, show your hand, shuffle it back, and draw 7 again. Your opponent draws 1 extra card. It's not a loss — just a do-over. |
-| **Going first** | Whoever goes first **cannot attack on their first turn.** Use that turn to set up instead. |
-| **Confused** | A Special Condition. When a Confused Pokémon tries to attack, flip a coin. **Tails = the attack does nothing, that Pokémon takes 30 damage, and the turn ends.** It only wears off when the Pokémon leaves the Active Spot. Your dad's deck does this constantly. |
-| **Special Condition** | Confused, Asleep, Paralyzed, Poisoned, or Burned. They all go away when the Pokémon leaves the Active Spot. |
-| **4-copy limit** | You may have at most **4 cards with the same name** in a deck. Basic Energy is the one exception — you can have as many as you want. |
-
-### New words for this deck
-
-These five are the ones that make this deck different. Learn these.
-
-| Word | What it means |
-| :--- | :--- |
-| **ex** | A really strong Pokémon. The catch: it's worth **2 Prize cards** when it gets knocked out, not 1. "ex" is part of the card's name, so *Eevee* and *Eevee ex* count as different cards for the 4-copy limit. |
-| **Rule Box** | The grey box of extra rules at the bottom of an **ex** card. **[Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex) have one. Everything else in your deck doesn't.** [Gwynn](#gwynn) cares about this. |
-| **Tera** | An Ability on **both** [Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex). **While that Pokémon is on your Bench, attacks do zero damage to it.** Not less damage. Zero. This Ability is the reason the deck works. |
-| **ACE SPEC** | A card so strong you may only have **one in your whole deck** — one *total*, not one of each. Yours is [Sparkling Crystal](#sparkling-crystal). |
-| **Search your deck** | Look through your whole deck and take out the exact card you want. Then shuffle. Half this deck does this. It's why you almost never get stuck. |
 
 ---
 

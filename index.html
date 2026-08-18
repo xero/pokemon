@@ -53,6 +53,7 @@
 			   width. the light and dark footers are drawn a few rows apart. */
 			--art-header:       url("./assets/header-light.png");
 			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
 			--art-header-ratio: 1376 / 638;
 			--art-footer-ratio: 1376 / 491;
 
@@ -81,6 +82,7 @@
 
 			--art-header:       url("./assets/header.png");
 			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
 			--art-footer-ratio: 1376 / 470;
 		}
 		}
@@ -407,7 +409,6 @@
 		article,
 		main > section {
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-radius: var(--round);
 			padding: var(--pad);
 		}
@@ -581,6 +582,13 @@
 			section + section {
 				flex: 1 0 100%;
 			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -845,7 +853,6 @@
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
-			border: 1px solid var(--line);
 			border-inline-start: 8px solid var(--quiet);
 			border-radius: var(--round);
 			padding: var(--pad);
@@ -1122,7 +1129,7 @@
 			</div>
 		</header>
 		<main>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/charizard-mega-x.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./collection.html">Pokédex</a></h2>
@@ -1130,7 +1137,14 @@
 					<p><small><em>128 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/sudowoodo.gif" alt="" /><img src="./assets/sprites/wobbuffet.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./rules.html">Table Rules</a></h2>
+					<p>The table rulebook: every game word the deck pages lean on, the rules that trip people up, and what the letters on the cards mean.</p>
+				</section>
+			</article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/charizard.gif" alt="" /><img src="./assets/sprites/flareon.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./fire.html">Fox's Fire Force</a></h2>
@@ -1138,7 +1152,7 @@
 					<p><small><em>20 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/noctowl.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./fire-tournament.html">Fox's Flareon Engine</a></h2>
@@ -1146,7 +1160,7 @@
 					<p><small><em>18 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/flareon-ex.gif" alt="" /><img src="./assets/sprites/hoothoot.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./fire-standard.html">Fox's Flareon ex — Standard Legal</a></h2>
@@ -1154,7 +1168,7 @@
 					<p><small><em>18 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/weezing.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./dark.html">Xero's Gengar Gang</a></h2>
@@ -1162,7 +1176,7 @@
 					<p><small><em>22 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gourgeist.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./psychic-lanterns.html">Xero's Psychic Lanterns</a></h2>
@@ -1170,7 +1184,7 @@
 					<p><small><em>25 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./dark-ex.html">Xero's Dark Box — Tournament EX</a></h2>
@@ -1178,7 +1192,7 @@
 					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>
-			<article>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/eevee-ex.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./eevee-standard.html">Fox's Rainbow DNA</a></h2>

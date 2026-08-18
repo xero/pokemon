@@ -41,7 +41,8 @@ NAV_LABEL = {
 }
 
 # The mascot shown beside each deck's title.
-MASCOT = {"dark.md": ["gengar", "weezing"],
+MASCOT = {"rules.md": ["sudowoodo", "wobbuffet"],
+          "dark.md": ["gengar", "weezing"],
           "fire.md": ["charizard", "flareon"],
           "fire-tournament.md": ["flareon", "noctowl"],
           "fire-standard.md": ["eevee", "flareon"],
@@ -53,6 +54,13 @@ MASCOT = {"dark.md": ["gengar", "weezing"],
 # exact heading text, so a reworded heading loses its sprite loudly rather than
 # silently attaching it to the wrong section.
 FLAVOR = {
+    # the rules lawyers: the fake tree and the wall that just sits there.
+    "rules.md": {
+        "The board": ["sudowoodo"],
+        "Rules that trip people up": ["wobbuffet"],
+        "The big-card words": ["gengar-mega"],
+        "Standard Legal, and Why Some Decks Aren't": ["charizard"],
+    },
     "fire.md": {
         # the Pokemon card pages
         "Charmander": ["charmander"],
@@ -921,7 +929,7 @@ def bullets_or_para(text, ind):
     return [f"{ind}<p>{inline(' '.join(lines))}</p>"]
 
 
-DECKS = ["dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
+DECKS = ["rules.md", "dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
          "fire-standard.md", "psychic-lanterns.md", "eevee-standard.md"]
 
 for name in sys.argv[1:] or DECKS:

@@ -11,6 +11,8 @@
 >
 > - **[The prize ladder](#the-real-card-is-the-ability-not-the-attack)**, which is the reason the deck exists.
 > - **[How To Play ex Style](#how-to-play-ex-style)**, the primer. It transfers to any ex deck, not just this one.
+>
+> Game words are defined in [the table rules](./rules.md).
 
 ---
 
