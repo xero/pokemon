@@ -41,14 +41,15 @@ NAV_LABEL = {
 }
 
 # The mascot shown beside each deck's title.
-MASCOT = {"rules.md": ["sudowoodo", "wobbuffet"],
+MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "dark.md": ["gengar", "weezing"],
-          "fire.md": ["charizard", "flareon"],
+          "fire.md": ["charmander", "charizard"],
           "fire-tournament.md": ["flareon", "noctowl"],
-          "dark-ex.md": ["gengar-mega", "gengar-mega-shiny"],
+          "dark-ex.md": ["gengar-smile", "gengar-mega"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
-          "eevee-standard.md": ["eevee-ex", "umbreon"],
-          "rocket-mewtwo.md": ["mewtwo", "crobat"]}
+          "eevee-standard.md": ["eevee", "umbreon", "espeon", "glaceon"],
+          "rocket-mewtwo.md": ["crobat", "mewtwo"],
+          "metal-excadrill.md": ["drilbur", "excadrill"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -209,6 +210,32 @@ FLAVOR = {
         "The Gengar decks": ["gengar", "gengar-mega"],
         "The lantern deck, Mega Chandelure ex": ["chandelure"],
         "What To Buy": ["zubat"],
+    },
+    # drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
+    # aggron were promoted from assets/ani for this page. No Mega Excadrill
+    # sprite exists, so the base form stands in for it, and Fezandipiti is
+    # gen 9 so it goes bare like the other gen 9 cards in the box.
+    "metal-excadrill.md": {
+        "Mega Excadrill ex": ["excadrill"],
+        "Drilbur": ["drilbur"],
+        "Metang": ["metang"],
+        "Beldum": ["beldum"],
+        "Genesect ex": ["genesect"],
+        "The Thesis": ["excadrill"],
+        "The Energy Engine": ["metang"],
+        "Damage Math": ["excadrill"],
+        "The Prize Map": ["genesect"],
+        "1. Turn one is Drilbur, and it is not optional": ["drilbur"],
+        "2. Two Metang before anything else": ["beldum", "metang"],
+        "3. Count to five before you swing": ["excadrill"],
+        # the matchup plans get the deck they are about, as on the other pages
+        "4. Magnetic Metal is the anti-lantern card": ["chandelure"],
+        "5. Losing Excadrill is not losing the game": ["genesect"],
+        "6. Reading the opening hand": ["beldum"],
+        "Versus the Kitchen Table": ["gengar", "chandelure"],
+        "Versus the Card Shop": ["metagross"],
+        "Alternatives": ["scizor", "aggron"],
+        "What To Buy": ["drilbur"],
     },
     "dark.md": {
         "Gastly": ["gastly"],
@@ -619,7 +646,11 @@ def gallery(entries, heading, ind="\t\t\t"):
         # "**1** (ACE SPEC)", so take the number rather than the whole cell.
         m = re.search(r"\d+", str(qty))
         badge = count_badge(qty) if m and int(m.group()) > 1 else ""
-        out.append(f"{ind}\t<figure>{img(src, name)}{badge}</figure>")
+        # the name rides between sentinels so convert() can wrap the figure
+        # in a link to the card's own section once the anchors exist; a name
+        # no heading matches falls back to a plain image.
+        out.append(f"{ind}\t<figure>\x00{name}\x01{img(src, name)}{badge}\x02"
+                   "</figure>")
     return out + [f"{ind}</article>"]
 
 
@@ -729,6 +760,10 @@ def convert(src):
     # game plans in it at all.
     toc = []
     seen = Counter()
+    # heading text -> anchor, for linking the deck-list thumbnails to their
+    # card sections. also keyed with the parens dropped, which is the name a
+    # Qty table row carries for a card whose heading pins a printing.
+    card_anchor = {}
     flav, seen_flav = FLAVOR.get(src.name, {}), set()
     counts = deck_counts(lines)
     prints = deck_printings(lines)
@@ -821,6 +856,9 @@ def convert(src):
             close_art()
             name = stripped[4:].strip()
             a = anchor(name, seen)
+            card_anchor.setdefault(name, a)
+            card_anchor.setdefault(
+                re.sub(r"\s*\([^()]*\)\s*$", "", name).strip(), a)
             art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}'
                    f'\x00{flavor(name, flav, seen_flav)}</h3>']
             badge = ""
@@ -952,8 +990,23 @@ def convert(src):
                     and grid[0][0].strip().strip("*").strip().lower() == "qty"):
                 rendered[0] = rendered[0].replace(
                     "<table>", "<table data-deck-rows>", 1)
-            for h in rendered:
-                emit(h)
+            # an <img> on its own line directly after a table rides beside it:
+            # the pair share a flex row, image on the right, and the image
+            # drops below the table on a narrow screen. a card scan never
+            # lands here, because those sit above their table, not below.
+            j = i
+            while j < n and not lines[j].strip():
+                j += 1
+            if j < n and lines[j].strip().startswith("<img"):
+                emit("\t\t\t\t\t<div data-beside>")
+                for h in rendered:
+                    emit("\t" + h)
+                emit(f"\t\t\t\t\t\t{lines[j].strip()}")
+                emit("\t\t\t\t\t</div>")
+                i = j + 1
+            else:
+                for h in rendered:
+                    emit(h)
             continue
 
         if stripped in ("---", "") or stripped.startswith("<br"):
@@ -973,6 +1026,19 @@ def convert(src):
             emit(h)
 
     close()
+    # resolve the thumbnail links now that every heading has its anchor: the
+    # strip renders before the card sections are parsed, so gallery() leaves
+    # the card name between sentinels and the href lands here.
+    def link_thumb(m):
+        name = m.group(1)
+        # a cards.csv name can carry a qualifier the heading drops, in parens
+        # (Welder (#25 Charizard Stamped)) or brackets (Boss's Orders
+        # [Ghetsis]); retry bare before giving up on the link.
+        a = (card_anchor.get(name)
+             or card_anchor.get(
+                 re.sub(r"\s*[\[(][^)\]]*[)\]]\s*$", "", name).strip()))
+        return f'<a href="#{a}">{m.group(2)}</a>' if a else m.group(2)
+    body = [re.sub("\x00(.*?)\x01(.*?)\x02", link_thumb, b) for b in body]
     for miss in sorted(set(flav) - seen_flav):
         print(f"  {src.name}: no heading matches flavour key {miss!r}")
     return title, subtitle, build_nav(toc), "\n".join(body), "\n".join(notes)
@@ -1078,7 +1144,7 @@ def bullets_or_para(text, ind):
 
 DECKS = ["rules.md", "dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
-         "psychic-lanterns.md", "eevee-standard.md"]
+         "psychic-lanterns.md", "eevee-standard.md", "metal-excadrill.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

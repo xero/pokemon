@@ -42,7 +42,10 @@ PAGES = [
     ("rocket-mewtwo.html", ["crobat", "mewtwo"],
      "Fox's game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
      " payroll, and a Crobat line that fixes a bad Active for free."),
-    ("eevee-standard.html", ["eevee", "glaceon", "umbreon", "espeon"],
+    ("metal-excadrill.html", ["drilbur", "excadrill"],
+     "Fox's Metal deck, bought from zero. Mega Excadrill ex does 200 on four"
+     " Energy and 330 on five, and four Metang exist to find the fifth."),
+    ("eevee-standard.html", ["eevee", "umbreon", "espeon", "glaceon"],
      "Fox's Eevee deck, and the only one here that is two decks. Fifty"
      " cards never move; ten swap between Sun and Moon for home and Fire"
      " and Ice for game night."),

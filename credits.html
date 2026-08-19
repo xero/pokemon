@@ -642,9 +642,10 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first two rows are the library, not decks: the collection
-			   and the pull list get a tint of their own, watermark kept. */
-			&:nth-of-type(-n+2) {
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
 				background-color: var(--line);
 			}
 		}
@@ -816,6 +817,42 @@
 			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
 		}
 
 		th,
@@ -1135,7 +1172,8 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
-		[data-back] {
+		[data-back],
+		[data-beside] img {
 			display: none;
 		}
 

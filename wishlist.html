@@ -642,9 +642,10 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first two rows are the library, not decks: the collection
-			   and the pull list get a tint of their own, watermark kept. */
-			&:nth-of-type(-n+2) {
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
 				background-color: var(--line);
 			}
 		}
@@ -816,6 +817,42 @@
 			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
 		}
 
 		th,
@@ -1135,7 +1172,8 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
-		[data-back] {
+		[data-back],
+		[data-beside] img {
 			display: none;
 		}
 
@@ -1197,8 +1235,8 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Pull List <img data-mascot src="./assets/sprites/sableye.gif" alt="" /> <img data-mascot src="./assets/sprites/drowzee.gif" alt="" /></h1>
-				<p>25 cards to pull, 51 copies in all.</p>
+				<h1><img src="./assets/pokeball.png" alt="" />Pull List <img data-mascot src="./assets/sprites/deck.gif" alt="" /></h1>
+				<p>40 cards to pull, 102 copies in all.</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1208,19 +1246,29 @@
 					<input type="search" data-search placeholder="Find a card" aria-label="Find a card" autocomplete="off" />
 					<ul>
 						<li data-letter><b>B</b></li>
+						<li data-for="basic-metal-energy"><a href="#basic-metal-energy">Basic Metal Energy</a> <em>MEE: Mega Evolution Energies</em> <em>buy 11</em></li>
 						<li data-for="basic-water-energy"><a href="#basic-water-energy">Basic Water Energy</a> <em>MEE: Mega Evolution Energies</em> <em>buy 3</em></li>
-						<li data-for="buddy-buddy-poffin"><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <em>SV05: Temporal Forces</em> <em>buy 3</em></li>
+						<li data-for="beldum"><a href="#beldum">Beldum</a> <em>ME04: Chaos Rising</em> <em>buy 4</em></li>
+						<li data-for="bosss-orders-ghetsis"><a href="#bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</a> <em>ME01: Mega Evolution</em> <em>buy 2</em></li>
+						<li data-for="brocks-scouting"><a href="#brocks-scouting">Brock&#x27;s Scouting</a> <em>SV09: Journey Together</em> <em>buy 2</em></li>
+						<li data-for="buddy-buddy-poffin"><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <em>SV05: Temporal Forces</em> <em>buy 6</em></li>
 						<li data-letter><b>C</b></li>
 						<li data-for="chandelure"><a href="#chandelure">Chandelure</a> <em>SM - Guardians Rising</em> <em>buy 1</em></li>
 						<li data-for="chandelure-1"><a href="#chandelure-1">Chandelure</a> <em>SM - Lost Thunder</em> <em>buy 2</em></li>
+						<li data-letter><b>D</b></li>
+						<li data-for="drayton"><a href="#drayton">Drayton</a> <em>SV08: Surging Sparks</em> <em>buy 1</em></li>
+						<li data-for="drilbur"><a href="#drilbur">Drilbur</a> <em>ME05: Pitch Black</em> <em>buy 4</em></li>
 						<li data-letter><b>E</b></li>
+						<li data-for="energy-recycler"><a href="#energy-recycler">Energy Recycler</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
 						<li data-for="energy-switch"><a href="#energy-switch">Energy Switch</a> <em>ME01: Mega Evolution</em> <em>buy 2</em></li>
 						<li data-for="espeon-ex"><a href="#espeon-ex">Espeon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
 						<li data-letter><b>F</b></li>
-						<li data-for="fezandipiti-ex"><a href="#fezandipiti-ex">Fezandipiti ex</a> <em>SV: Shrouded Fable</em> <em>buy 2</em></li>
+						<li data-for="fezandipiti-ex"><a href="#fezandipiti-ex">Fezandipiti ex</a> <em>SV: Shrouded Fable</em> <em>buy 3</em></li>
 						<li data-for="flareon-ex"><a href="#flareon-ex">Flareon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
+						<li data-for="full-metal-lab"><a href="#full-metal-lab">Full Metal Lab</a> <em>SV05: Temporal Forces</em> <em>buy 2</em></li>
 						<li data-letter><b>G</b></li>
 						<li data-for="galarian-weezing"><a href="#galarian-weezing">Galarian Weezing</a> <em>SWSH06: Chilling Reign</em> <em>buy 1</em></li>
+						<li data-for="genesect-ex"><a href="#genesect-ex">Genesect ex</a> <em>SV: Black Bolt</em> <em>buy 2</em></li>
 						<li data-for="gengar-ex"><a href="#gengar-ex">Gengar ex</a> <em>SV05: Temporal Forces</em> <em>buy 2</em></li>
 						<li data-for="glaceon"><a href="#glaceon">Glaceon</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
 						<li data-letter><b>H</b></li>
@@ -1230,12 +1278,17 @@
 						<li data-for="koffing"><a href="#koffing">Koffing</a> <em>SV09: Journey Together</em> <em>buy 1</em></li>
 						<li data-letter><b>L</b></li>
 						<li data-for="legacy-energy"><a href="#legacy-energy">Legacy Energy</a> <em>SV06: Twilight Masquerade</em> <em>buy 2</em></li>
-						<li data-for="lillies-determination"><a href="#lillies-determination">Lillie&#x27;s Determination</a> <em>ME01: Mega Evolution</em> <em>buy 1</em></li>
+						<li data-for="lillies-determination"><a href="#lillies-determination">Lillie&#x27;s Determination</a> <em>ME01: Mega Evolution</em> <em>buy 5</em></li>
 						<li data-letter><b>M</b></li>
+						<li data-for="magnetic-metal-energy"><a href="#magnetic-metal-energy">Magnetic Metal Energy</a> <em>ME04: Chaos Rising</em> <em>buy 2</em></li>
+						<li data-for="mega-excadrill-ex"><a href="#mega-excadrill-ex">Mega Excadrill ex</a> <em>ME05: Pitch Black</em> <em>buy 3</em></li>
 						<li data-for="mega-gengar-ex"><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>ME02: Phantasmal Flames</em> <em>buy 3</em></li>
+						<li data-for="mega-signal"><a href="#mega-signal">Mega Signal</a> <em>ME01: Mega Evolution</em> <em>buy 1</em></li>
+						<li data-for="metang"><a href="#metang">Metang</a> <em>SV05: Temporal Forces</em> <em>buy 4</em></li>
 						<li data-for="munkidori"><a href="#munkidori">Munkidori</a> <em>SV06: Twilight Masquerade</em> <em>buy 3</em></li>
 						<li data-letter><b>P</b></li>
-						<li data-for="prime-catcher"><a href="#prime-catcher">Prime Catcher</a> <em>SV: Prismatic Evolutions</em> <em>buy 1</em></li>
+						<li data-for="philippe"><a href="#philippe">Philippe</a> <em>ME04: Chaos Rising</em> <em>buy 2</em></li>
+						<li data-for="prime-catcher"><a href="#prime-catcher">Prime Catcher</a> <em>SV: Prismatic Evolutions</em> <em>buy 2</em></li>
 						<li data-letter><b>T</b></li>
 						<li data-for="team-rockets-crobat-ex"><a href="#team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
 						<li data-for="team-rockets-golbat"><a href="#team-rockets-golbat">Team Rocket&#x27;s Golbat</a> <em>SV10: Destined Rivals</em> <em>buy 1</em></li>
@@ -1243,12 +1296,32 @@
 						<li data-for="team-rockets-weezing"><a href="#team-rockets-weezing">Team Rocket&#x27;s Weezing</a> <em>SV10: Destined Rivals</em> <em>buy 3</em></li>
 						<li data-for="team-rockets-zubat"><a href="#team-rockets-zubat">Team Rocket&#x27;s Zubat</a> <em>SV10: Destined Rivals</em> <em>buy 4</em></li>
 						<li data-letter><b>U</b></li>
+						<li data-for="ultra-ball"><a href="#ultra-ball">Ultra Ball</a> <em>ME01: Mega Evolution</em> <em>buy 1</em></li>
 						<li data-for="umbreon-ex"><a href="#umbreon-ex">Umbreon ex</a> <em>SV: Prismatic Evolutions</em> <em>buy 3</em></li>
 					</ul>
 				</details>
 				<div data-active hidden></div>
 			</nav>
 		<main>
+			<article data-name="Basic Metal Energy" data-set="MEE: Mega Evolution Energies" data-rarity="Common" data-type="Energy - Basic" data-tournament="legal">
+				<h2 id="basic-metal-energy">Basic Metal Energy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x11</span></h2>
+				<aside>
+					<a data-art href="./assets/656270_basic-metal-energy-008.jpg" target="_blank" rel="noopener"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>11</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>11</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;11</small></a></dd>
+						<dt>Note</dt><dd>never rotates; the count is load-bearing</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span>MEE: Mega Evolution Energies <small>8</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Energy - Basic</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Basic Water Energy" data-set="MEE: Mega Evolution Energies" data-rarity="Common" data-type="Energy - Basic" data-tournament="legal">
 				<h2 id="basic-water-energy">Basic Water Energy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x3</span></h2>
 				<aside>
@@ -1268,18 +1341,85 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Beldum" data-set="ME04: Chaos Rising" data-rarity="Common" data-type="Metal" data-stage="Basic" data-tournament="legal">
+				<h2 id="beldum">Beldum <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x4</span></h2>
+				<aside>
+					<a data-art href="./assets/693455_beldum.jpg" target="_blank" rel="noopener"><img src="./assets/693455_beldum.jpg" alt="Beldum" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>4</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;4</small></a></dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>059/086</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /></span><span>Headbutt (10)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Beam (20)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Boss&#x27;s Orders [Ghetsis]" data-set="ME01: Mega Evolution" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
+				<h2 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis] <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>10</dd>
+						<dt>Need</dt><dd>12</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;3</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;3</small></a>, <a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;3</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt>Note</dt><dd>shared; the Ghetsis print</dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Brock&#x27;s Scouting" data-set="SV09: Journey Together" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
+				<h2 id="brocks-scouting">Brock&#x27;s Scouting <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/623573_brocks-scouting-146-159.jpg" target="_blank" rel="noopener"><img src="./assets/623573_brocks-scouting-146-159.jpg" alt="Brock&#x27;s Scouting" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;2</small></a></dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>146/159</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon or 1 Evolution Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Buddy-Buddy Poffin" data-set="SV05: Temporal Forces" data-rarity="Uncommon" data-type="Trainer - Item" data-tournament="legal">
-				<h2 id="buddy-buddy-poffin">Buddy-Buddy Poffin <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x3</span></h2>
+				<h2 id="buddy-buddy-poffin">Buddy-Buddy Poffin <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x6</span></h2>
 				<aside>
 					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Buy</dt><dd><strong>6</strong></dd>
 						<dt>Own</dt><dd>9</dd>
-						<dt>Need</dt><dd>12</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Need</dt><dd>15</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;3</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
 						<dt>Note</dt><dd>shared with the other decks</dd>
+						<dt>Note</dt><dd>shared</dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
@@ -1341,6 +1481,71 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Drayton" data-set="SV08: Surging Sparks" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
+				<h2 id="drayton">Drayton <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/589923_drayton-174-191.jpg" target="_blank" rel="noopener"><img src="./assets/589923_drayton-174-191.jpg" alt="Drayton" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>the flex slot; first thing Test and Tune trades away</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>SV08: Surging Sparks <small>174/191</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Look at the top 7 cards of your deck. You may reveal a Pokémon and a Trainer card you find there and put them into your hand. Shuffle the other cards back into your deck.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Drilbur" data-set="ME05: Pitch Black" data-rarity="Common" data-type="Fighting" data-stage="Basic" data-tournament="legal">
+				<h2 id="drilbur">Drilbur <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x4</span></h2>
+				<aside>
+					<a data-art href="./assets/704803_drilbur.jpg" target="_blank" rel="noopener"><img src="./assets/704803_drilbur.jpg" alt="Drilbur" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>4</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>the Call for Family print; the other four legal Drilbur do not serve this line</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>046/084</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Call for Family - Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Dig Claws (50)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Energy Recycler" data-set="SV10: Destined Rivals" data-rarity="Uncommon" data-type="Trainer - Item" data-tournament="legal">
+				<h2 id="energy-recycler">Energy Recycler <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/632966_energy-recycler.jpg" target="_blank" rel="noopener"><img src="./assets/632966_energy-recycler.jpg" alt="Energy Recycler" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>1</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;1</small></a></dd>
+						<dt>Note</dt><dd>164, not the Perfect Order 108 collector print</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>164/182</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle up to 5 Basic Energy cards from your discard pile into your deck.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Energy Switch" data-set="ME01: Mega Evolution" data-rarity="Common" data-type="Trainer - Item" data-tournament="legal">
 				<h2 id="energy-switch">Energy Switch <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
 				<aside>
@@ -1388,17 +1593,18 @@
 				</section>
 			</article>
 			<article data-name="Fezandipiti ex" data-set="SV: Shrouded Fable" data-rarity="Double Rare" data-type="Darkness" data-stage="Basic" data-tournament="legal">
-				<h2 id="fezandipiti-ex">Fezandipiti ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<h2 id="fezandipiti-ex">Fezandipiti ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
 				<aside>
 					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Buy</dt><dd><strong>3</strong></dd>
 						<dt>Own</dt><dd>0</dd>
-						<dt>Need</dt><dd>2</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a></dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;2</small></a>, <a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;1</small></a></dd>
 						<dt>Note</dt><dd>Ascended Heroes 142 is the same card if cheaper</dd>
+						<dt>Note</dt><dd>shared with the Mega Gengar deck, which runs 2</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
@@ -1438,6 +1644,26 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Full Metal Lab" data-set="SV05: Temporal Forces" data-rarity="Uncommon" data-type="Trainer - Stadium" data-tournament="legal">
+				<h2 id="full-metal-lab">Full Metal Lab <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/542663_full-metal-lab.jpg" target="_blank" rel="noopener"><img src="./assets/542663_full-metal-lab.jpg" alt="Full Metal Lab" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>the fire patch; two, because they will play over it</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>148/162</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>All <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon (both yours and your opponent’s) take 30 less damage from attacks from the opponent&#x27;s Pokémon (after applying Weakness and Resistance).</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Galarian Weezing" data-set="SWSH06: Chilling Reign" data-rarity="Rare" data-type="Darkness" data-stage="Stage 1" data-tournament="too old">
 				<h2 id="galarian-weezing">Galarian Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x1</span></h2>
 				<aside>
@@ -1460,6 +1686,32 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>card is too old</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Genesect ex" data-set="SV: Black Bolt" data-rarity="Double Rare" data-type="Metal" data-stage="Basic" data-tournament="legal">
+				<h2 id="genesect-ex">Genesect ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/642518_genesect-ex.jpg" target="_blank" rel="noopener"><img src="./assets/642518_genesect-ex.jpg" alt="Genesect ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>Double Rare; 067, not the 161 or 169 prints</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/black-bolt.png" /><img src="./assets/sets/black-bolt.png" alt="SV: Black Bolt" /></picture></span><span>SV: Black Bolt <small>067/086</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>220</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Metallic Signal - Once during your turn, you may search your deck for up to 2 Evolution Metal Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Protect Charge (150) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>
 			</article>
@@ -1604,22 +1856,69 @@
 				</section>
 			</article>
 			<article data-name="Lillie&#x27;s Determination" data-set="ME01: Mega Evolution" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
-				<h2 id="lillies-determination">Lillie&#x27;s Determination <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<h2 id="lillies-determination">Lillie&#x27;s Determination <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x5</span></h2>
 				<aside>
 					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Buy</dt><dd><strong>5</strong></dd>
 						<dt>Own</dt><dd>11</dd>
-						<dt>Need</dt><dd>12</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Need</dt><dd>16</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;4</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;4</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>shared</dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt>Note</dt><dd>shared</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
 						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Magnetic Metal Energy" data-set="ME04: Chaos Rising" data-rarity="Rare" data-type="Energy - Special Metal" data-tournament="legal">
+				<h2 id="magnetic-metal-energy">Magnetic Metal Energy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/693506_magnetic-metal-energy.jpg" target="_blank" rel="noopener"><img src="./assets/693506_magnetic-metal-energy.jpg" alt="Magnetic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>Special Energy; nothing recovers it once discarded</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>085/086</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Energy - Special Metal</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy. The <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon this card is attached to has no Retreat Cost.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Mega Excadrill ex" data-set="ME05: Pitch Black" data-rarity="Double Rare" data-type="Metal" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="mega-excadrill-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Excadrill ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/704822_mega-excadrill-ex-065-084.jpg" target="_blank" rel="noopener"><img src="./assets/704822_mega-excadrill-ex-065-084.jpg" alt="Mega Excadrill ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>3</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;3</small></a></dd>
+						<dt>Note</dt><dd>Double Rare; 065, never the 103 collector print</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>065/084</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>340</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span><span>Undermine (90) - Discard the top 2 cards of your opponent&#x27;s deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span><span>Maximum Drilling (200+) - If this Pokémon has at least 2 extra Energy attached (in addition to this attack&#x27;s cost), this attack does 130 more damage.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>4</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>
@@ -1644,6 +1943,52 @@
 						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Mega Signal" data-set="ME01: Mega Evolution" data-rarity="Uncommon" data-type="Trainer - Item" data-tournament="legal">
+				<h2 id="mega-signal"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Signal <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/654460_mega-signal-121-132.jpg" target="_blank" rel="noopener"><img src="./assets/654460_mega-signal-121-132.jpg" alt="Mega Signal" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>1</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>121/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Mega Evolution Pokémon ex, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Metang" data-set="SV05: Temporal Forces" data-rarity="Common" data-type="Metal" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="metang">Metang <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x4</span></h2>
+				<aside>
+					<a data-art href="./assets/542858_metang.jpg" target="_blank" rel="noopener"><img src="./assets/542858_metang.jpg" alt="Metang" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>4</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>4</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>the Metal Maker print; the Chaos Rising and Journey Together copies have no Ability</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>114/162</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Metal Maker - Once during your turn, you may look at the top 4 cards of your deck and attach any number of Basic <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy cards you find there to your Pokémon in any way you like. Shuffle the other cards and put them on the bottom of your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Beam (60)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
@@ -1675,18 +2020,39 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Philippe" data-set="ME04: Chaos Rising" data-rarity="Uncommon" data-type="Trainer - Supporter" data-tournament="legal">
+				<h2 id="philippe">Philippe <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/693532_philippe-079-086.jpg" target="_blank" rel="noopener"><img src="./assets/693532_philippe-079-086.jpg" alt="Philippe" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Own</dt><dd>0</dd>
+						<dt>Need</dt><dd>2</dd>
+						<dt>Wanted by</dt><dd><a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;2</small></a></dd>
+						<dt>Note</dt><dd>the rebuild card; 079, not 110</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>079/086</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Attach up to 2 Basic Metal Energy cards from your discard pile to 1 of your Metal Pokémon.</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Prime Catcher" data-set="SV: Prismatic Evolutions" data-rarity="ACE SPEC Rare" data-type="Trainer - Item" data-tournament="legal">
-				<h2 id="prime-catcher">Prime Catcher <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x1</span></h2>
+				<h2 id="prime-catcher">Prime Catcher <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x2</span></h2>
 				<aside>
 					<a data-art href="./assets/610474_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Buy</dt><dd><strong>2</strong></dd>
 						<dt>Own</dt><dd>1</dd>
-						<dt>Need</dt><dd>2</dd>
-						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;1</small></a></dd>
+						<dt>Need</dt><dd>3</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;1</small></a>, <a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns <small>&times;1</small></a></dd>
 						<dt>Note</dt><dd>the ACE SPEC; the English print is owned</dd>
+						<dt>Note</dt><dd>ACE SPEC; contested with two other sleeved decks</dd>
 						<dt>Note</dt><dd>ACE SPEC; the PRE reprint of TEF 157, same card, English</dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>119/131</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
@@ -1819,6 +2185,27 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/lightning.png" alt="Lightning" /></span><span>Lightning ×2</span></dd>
 						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Ultra Ball" data-set="ME01: Mega Evolution" data-rarity="Common" data-type="Trainer - Item" data-tournament="legal">
+				<h2 id="ultra-ball">Ultra Ball <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>1</strong></dd>
+						<dt>Own</dt><dd>10</dd>
+						<dt>Need</dt><dd>11</dd>
+						<dt>Wanted by</dt><dd><a href="./dark-ex.html">Xero&#x27;s Curse Toll <small>&times;3</small></a>, <a href="./eevee-standard.html">Fox&#x27;s Rainbow DNA <small>&times;4</small></a>, <a href="./metal-excadrill.html">Fox&#x27;s Iron Excavation <small>&times;4</small></a></dd>
+						<dt>Note</dt><dd>carries the whole toolbox</dd>
+						<dt>Note</dt><dd>shared</dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>

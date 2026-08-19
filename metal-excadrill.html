@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Fox's Iron Excavation</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
+				background-color: var(--line);
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Fox's Iron Excavation <img data-mascot src="./assets/sprites/drilbur.gif" alt="" /> <img data-mascot src="./assets/sprites/excadrill.gif" alt="" /></h1>
+				<p>Tournament · Mega Excadrill ex, and the fifth Energy that turns 200 into 330</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-energy-engine">The Energy Engine</a></li>
+			<li><a href="#damage-math">Damage Math</a></li>
+			<li><a href="#the-prize-map">The Prize Map</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#alternatives">Alternatives</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#mega-excadrill-ex">Mega Excadrill ex</a> <a href="#drilbur">Drilbur</a> <a href="#metang">Metang</a> <a href="#beldum">Beldum</a> <a href="#genesect-ex">Genesect ex</a> <a href="#fezandipiti-ex">Fezandipiti ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#philippe">Philippe</a> <a href="#brocks-scouting">Brock&#x27;s Scouting</a> <a href="#drayton">Drayton</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#ultra-ball">Ultra Ball</a> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#mega-signal">Mega Signal</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#switch">Switch</a> <a href="#energy-recycler">Energy Recycler</a> <a href="#prime-catcher">Prime Catcher</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#full-metal-lab">Full Metal Lab</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#magnetic-metal-energy">Magnetic Metal Energy</a> <a href="#basic-metal-energy">Basic Metal Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-turn-one-is-drilbur-and-it-is-not-optional">1. Turn one is Drilbur, and it is not optional</a> <a href="#2-two-metang-before-anything-else">2. Two Metang before anything else</a> <a href="#3-count-to-five-before-you-swing">3. Count to five before you swing</a> <a href="#4-magnetic-metal-is-the-anti-lantern-card">4. Magnetic Metal is the anti-lantern card</a> <a href="#5-losing-excadrill-is-not-losing-the-game">5. Losing Excadrill is not losing the game</a> <a href="#6-reading-the-opening-hand">6. Reading the opening hand</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>Fox&#x27;s Metal deck, built for the card shop. Every card carries regulation mark H, I, or J, so it is legal exactly as it sits. The whole list exists to solve one problem: put five Energy on one Pokémon before the opponent takes three Prizes.</p>
+				<p>Nothing metal was in the binders when this was planned, so this is the only deck in the house that was bought from zero. The Trainer shell came from the shared box; the Pokémon did not. Game words are defined in <a href="./rules.html">the table rules</a>.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+					<p><em>Maximum Drilling</em> costs three Metal Energy and does 200 damage. Attach two more and it does 330.</p>
+					<dl>
+						<dt data-head>Energy on Excadrill</dt><dd data-head>Maximum Drilling</dd>
+						<dt>3</dt><dd><span>200</span></dd>
+						<dt>4</dt><dd><span>200</span></dd>
+						<dt>5 or more</dt><dd><span><strong>330</strong></span></dd>
+					</dl>
+					<p>Read that table twice, because it is the entire deck. The fourth Energy buys nothing at all. The fifth Energy is worth 130 damage on its own, which is more than most cards in the format do in a turn. There is no ramp here, only a cliff, and every card in the list is here to get you over it.</p>
+					<p>330 is a good number to land on. It one-shots Dragapult ex at 320 and it one-shots essentially every two-Prize ex in the format. The things it does not one-shot are the 340-plus Mega Evolution ex, and that is the same wall everybody is hitting.</p>
+					<p>The other half of the thesis is that <strong>340 HP is above the format&#x27;s ceiling.</strong> The hardest common single hit in Standard right now is Maximum Drilling itself at 330. Excadrill hits above the wall and sits above the ceiling. It survives what it dishes out, which means the deck wins races it should not win by simply refusing to die on schedule.</p>
+					<p>Two things make that a deck rather than a wish. <strong>Metang</strong> turns the top of your library into Energy attachments, four cards at a time, once per copy per turn. <strong>Genesect ex</strong> searches out two Evolution Metal Pokémon at once, which in this list means Metang and Mega Excadrill ex off a single Ability.</p>
+			<aside data-callout="important">
+				<p><strong>Excadrill is a Stage 1, so this deck runs no Rare Candy.</strong> Mega Chandelure and the Gengars need Candy because they are Stage 2. Drilbur evolves straight into the Mega. That is four slots the other Mega decks in this house do not get back, and it is why this list can afford four Metang.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#mega-excadrill-ex"><img src="./assets/704822_mega-excadrill-ex-065-084.jpg" alt="Mega Excadrill ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#drilbur"><img src="./assets/704803_drilbur.jpg" alt="Drilbur" /><span data-count>x4</span></a></figure>
+				<figure><a href="#metang"><img src="./assets/542858_metang.jpg" alt="Metang" /><span data-count>x4</span></a></figure>
+				<figure><a href="#beldum"><img src="./assets/693455_beldum.jpg" alt="Beldum" /><span data-count>x4</span></a></figure>
+				<figure><a href="#genesect-ex"><img src="./assets/642518_genesect-ex.jpg" alt="Genesect ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#fezandipiti-ex"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#philippe"><img src="./assets/693532_philippe-079-086.jpg" alt="Philippe" /><span data-count>x2</span></a></figure>
+				<figure><a href="#brocks-scouting"><img src="./assets/623573_brocks-scouting-146-159.jpg" alt="Brock&#x27;s Scouting" /><span data-count>x2</span></a></figure>
+				<figure><a href="#drayton"><img src="./assets/589923_drayton-174-191.jpg" alt="Drayton" /></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></a></figure>
+				<figure><a href="#mega-signal"><img src="./assets/654460_mega-signal-121-132.jpg" alt="Mega Signal" /><span data-count>x2</span></a></figure>
+				<figure><a href="#night-stretcher"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#energy-recycler"><img src="./assets/632966_energy-recycler.jpg" alt="Energy Recycler" /></a></figure>
+				<figure><a href="#prime-catcher"><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></a></figure>
+				<figure><a href="#full-metal-lab"><img src="./assets/542663_full-metal-lab.jpg" alt="Full Metal Lab" /><span data-count>x2</span></a></figure>
+				<figure><a href="#magnetic-metal-energy"><img src="./assets/693506_magnetic-metal-energy.jpg" alt="Magnetic Metal Energy" /><span data-count>x2</span></a></figure>
+				<figure><a href="#basic-metal-energy"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /><span data-count>x11</span></a></figure>
+			</article>
+					<p><strong>Pokémon (18)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Mega Excadrill ex</td><td>Pitch Black</td><td>065</td><td>J</td></tr>
+							<tr><td>4</td><td>Drilbur</td><td>Pitch Black</td><td>046</td><td>J</td></tr>
+							<tr><td>4</td><td>Metang</td><td>Temporal Forces</td><td>114</td><td>H</td></tr>
+							<tr><td>4</td><td>Beldum</td><td>Chaos Rising</td><td>059</td><td>J</td></tr>
+							<tr><td>2</td><td>Genesect ex</td><td>Black Bolt</td><td>067</td><td>I</td></tr>
+							<tr><td>1</td><td>Fezandipiti ex</td><td>Shrouded Fable</td><td>038</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (29)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>2</td><td>Philippe</td><td>Supporter</td><td>Chaos Rising</td><td>079</td><td>J</td></tr>
+							<tr><td>2</td><td>Brock&#x27;s Scouting</td><td>Supporter</td><td>Journey Together</td><td>146</td><td>I</td></tr>
+							<tr><td>1</td><td>Drayton</td><td>Supporter</td><td>Surging Sparks</td><td>174</td><td>H</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>3</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>2</td><td>Mega Signal</td><td>Item</td><td>Mega Evolution</td><td>121</td><td>I</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Energy Recycler</td><td>Item</td><td>Destined Rivals</td><td>164</td><td>I</td></tr>
+							<tr><td>1</td><td>Prime Catcher</td><td>Item</td><td>Prismatic Evolutions</td><td>119</td><td>H</td></tr>
+							<tr><td>2</td><td>Full Metal Lab</td><td>Stadium</td><td>Temporal Forces</td><td>148</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (13)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>Magnetic Metal Energy</td><td>Chaos Rising</td><td>085</td><td>J</td></tr>
+							<tr><td>11</td><td>Basic Metal Energy</td><td>Mega Evolution Energies</td><td>008</td><td>-</td></tr>
+						</tbody>
+					</table>
+					<p><strong>18 + 29 + 13 = 60.</strong> ✓</p>
+					<p><strong>Basics: 11</strong> (4 Drilbur, 4 Beldum, 2 Genesect ex, 1 Fezandipiti ex), which lands inside the 75-85% band for opening with something playable. Drilbur and Beldum both sit at exactly 70 HP, so every Buddy-Buddy Poffin in the deck finds two of the cards you actually want on turn one. That is not luck. It is why those two prints were chosen over the four other legal Drilbur.</p>
+			<aside data-callout="warning">
+				<p><strong>One ACE SPEC per deck.</strong> Prime Catcher is this deck&#x27;s one. The house owns a single English copy and <a href="./psychic-lanterns.html">the lantern deck</a> and <a href="./dark-ex.html">the Mega Gengar deck</a> both claim it, so a second copy has to be bought before all three sleeve up at once. The Japanese starter-set copy plays at the kitchen table and nowhere else.</p>
+			</aside>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="mega-excadrill-ex">Mega Excadrill ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704822_mega-excadrill-ex-065-084.jpg" target="_blank" rel="noopener"><img src="./assets/704822_mega-excadrill-ex-065-084.jpg" alt="Mega Excadrill ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>065/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>340</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>4</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span><span>Undermine (90) - Discard the top 2 cards of your opponent&#x27;s deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span><span>Maximum Drilling (200+) - If this Pokémon has at least 2 extra Energy attached (in addition to this attack&#x27;s cost), this attack does 130 more damage.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 1 from Drilbur. Gives up 3 Prize cards.</strong> 340 HP, Retreat 4, Fire Weakness, and a Grass Resistance of 30 that quietly matters more than it looks.</p>
+					<p><em>Maximum Drilling</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span> for 200, plus 130 more when at least two extra Energy are attached. Five Energy total, 330 damage, every turn, with no cooldown and no self-discard. Nothing about the attack punishes you for using it twice in a row, which separates this card from most big attackers in the format.</p>
+					<p><em>Undermine</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span> for 90 and discards the top two cards of the opponent&#x27;s deck. It is the turn-two attack while you are still counting to five, and the mill is not a win condition; treat those two cards as a rounding error you get for free.</p>
+					<p>Three copies. Between the three, two Mega Signal, and two Genesect ex, the deck has fourteen ways to find one, so all copies prized is not a thing that happens. Three is also the ceiling on purpose: each one on the board is three Prizes standing in the open, and you only ever want one of them out at a time.</p>
+					<p><strong>Retreat 4 is the worst number on the card</strong>, and it is the reason both Magnetic Metal Energy and two Switch are in the list. Read <a href="#4-magnetic-metal-is-the-anti-lantern-card">game plan 4</a> before you sleeve it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="drilbur">Drilbur<span data-count>x4</span><span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704803_drilbur.jpg" target="_blank" rel="noopener"><img src="./assets/704803_drilbur.jpg" alt="Drilbur" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>046/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Call for Family - Search your deck for up to 2 Basic Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Dig Claws (50)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Basic the deck stands on, and the Pitch Black print specifically. Four other Drilbur are Standard legal and the other four are worse here.</p>
+					<p><strong><em>Call for Family</em> searches your deck for up to 2 Basic Pokémon and benches them, for one Colorless.</strong> A Metal Energy pays that cost, so turn one reads: bench Drilbur, attach, search out two Beldum. One card turns into a full board, and it is the difference between a turn-three Maximum Drilling and a turn-five one.</p>
+					<p>70 HP keeps it inside Poffin range. It is Fighting type, not Metal, which costs you nothing except that Philippe cannot target it and Grass hits it for double. Nobody is aiming Grass at a benched Drilbur.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="metang">Metang<span data-count>x4</span><span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/542858_metang.jpg" target="_blank" rel="noopener"><img src="./assets/542858_metang.jpg" alt="Metang" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>114/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Metal Maker - Once during your turn, you may look at the top 4 cards of your deck and attach any number of Basic <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy cards you find there to your Pokémon in any way you like. Shuffle the other cards and put them on the bottom of your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Beam (60)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The engine, and the only card in this deck that is not replaceable.</strong> Four copies, and it is the Temporal Forces print. The Chaos Rising and Journey Together Metang have no Ability at all and do not serve this line.</p>
+					<p><strong><em>Metal Maker</em>: once during your turn, look at the top 4 cards of your deck and attach any number of Basic Metal Energy you find there to your Pokémon, in any way you like.</strong> Once per copy, so three Metang on the Bench is three looks at four cards each, every single turn, with your hand untouched. With eleven basic Metal in the deck that averages out to roughly one Energy per look. Three Metang plus your ordinary attachment for the turn is the fifth Energy arriving on schedule.</p>
+					<p>The card asks for <strong>Basic</strong> Metal Energy, so Magnetic Metal Energy is invisible to it. That is the whole reason the special Energy count stops at two.</p>
+					<p>100 HP and Retreat 2 make it the card the opponent gusts. That is what the Switch are for.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="beldum">Beldum<span data-count>x4</span><span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693455_beldum.jpg" target="_blank" rel="noopener"><img src="./assets/693455_beldum.jpg" alt="Beldum" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>059/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /></span><span>Headbutt (10)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Beam (20)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>70 HP, Poffin-legal, Retreat 1, and its entire job is becoming Metang. Four copies, because the Bench wants three Metang standing for the whole game and the line cannot afford to draw the wrong half. <em>Headbutt</em> does 10 damage and you will never use it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="genesect-ex">Genesect ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/genesect.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/642518_genesect-ex.jpg" target="_blank" rel="noopener"><img src="./assets/642518_genesect-ex.jpg" alt="Genesect ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/black-bolt.png" /><img src="./assets/sets/black-bolt.png" alt="SV: Black Bolt" /></picture></span><span>SV: Black Bolt <small>067/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>220</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Metallic Signal - Once during your turn, you may search your deck for up to 2 Evolution Metal Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Protect Charge (150) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The search engine and the plan B in one Basic.</strong> 220 HP, Retreat 2.</p>
+					<p><strong><em>Metallic Signal</em>: once during your turn, search your deck for up to 2 Evolution Metal Pokémon and put them into your hand.</strong> In this list that reads &quot;a Metang and a Mega Excadrill ex&quot; off one Ability, which is the exact pair every early turn is hunting. It is the reason the deck can run three Excadrill instead of four and still never whiff.</p>
+					<p><em>Protect Charge</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 150, and this Pokémon takes 30 less damage during the opponent&#x27;s next turn. Two copies, and the second one is not a spare. When Excadrill is not ready, Genesect attacks for real numbers off a body that gives up two Prizes instead of three, and the damage reduction stacks with Full Metal Lab for a 60-point shield.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="fezandipiti-ex">Fezandipiti ex<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>One copy, and it is the comeback button.</strong> <em>Flip the Script</em> draws 3 cards once during your turn if any of your Pokémon were Knocked Out during the opponent&#x27;s last turn.</p>
+					<p>A deck that hands over three Prizes at a time is a deck that gets Knocked Out, which means this Ability is live far more often here than in most lists. It is 210 HP of Darkness-type furniture that never attacks, so it only goes on the Bench when there is a seat free. Shared with <a href="./dark-ex.html">the Mega Gengar deck</a>, which runs two.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The draw engine, at the full four. Shuffle your hand into your deck and draw 6, or 8 while you still have all six Prize cards. The shuffle half is the good half here: spare Beldum and dead Drilbur go back into the library where Metal Maker can bury them again, and a hand full of Energy you cannot attach becomes six fresh cards.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. Three copies. 330 damage is only worth what it is aimed at, and the games this deck loses are the ones where the opponent parks a cheap wall out front and rebuilds behind it. The Ghetsis print, shared across every deck in the house.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="philippe">Philippe<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/693532_philippe-079-086.jpg" target="_blank" rel="noopener"><img src="./assets/693532_philippe-079-086.jpg" alt="Philippe" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>079/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Attach up to 2 Basic Metal Energy cards from your discard pile to 1 of your Metal Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+			<aside data-callout="note">
+				<p>Attach up to 2 Basic Metal Energy cards from your discard pile to 1 of your Metal Pokémon.</p>
+			</aside>
+					<p><strong>The rebuild card.</strong> When a loaded Excadrill dies, five Energy hit the discard pile at once, and the deck&#x27;s whole problem starts over from zero. Philippe puts two of them straight back onto the next one, which turns a two-turn rebuild into a one-turn rebuild. Two copies, and it is the most underrated card in the list.</p>
+					<p>It reads &quot;your Metal Pokémon,&quot; so it can never target Drilbur. Evolve first, then Philippe.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="brocks-scouting">Brock&#x27;s Scouting<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/623573_brocks-scouting-146-159.jpg" target="_blank" rel="noopener"><img src="./assets/623573_brocks-scouting-146-159.jpg" alt="Brock&#x27;s Scouting" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>146/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon or 1 Evolution Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for up to 2 Basic Pokémon or 1 Evolution Pokémon. Two copies. Early it fetches Drilbur and Beldum together; late it fetches the Excadrill that Genesect already used its Ability for this turn. One card that answers both halves of the curve is worth more than a second copy of either specialist.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="drayton">Drayton<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/589923_drayton-174-191.jpg" target="_blank" rel="noopener"><img src="./assets/589923_drayton-174-191.jpg" alt="Drayton" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>SV08: Surging Sparks <small>174/191</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Look at the top 7 cards of your deck. You may reveal a Pokémon and a Trainer card you find there and put them into your hand. Shuffle the other cards back into your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Look at the top 7 cards of your deck and take a Pokémon and a Trainer from them. One copy, and it is the flex Supporter. It digs seven deep in a deck where the top four are already spoken for by Metal Maker, and it is the first slot <a href="#test-and-tune">Test and Tune</a> trades away.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard 2 cards from your hand, then search your deck for any Pokémon. Four copies. The discard is close to free in this deck and occasionally a bonus, because Energy in the discard pile is exactly what Philippe and Night Stretcher want to find there.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for up to 2 Basic Pokémon with 70 HP or less and bench them. Drilbur is 70 and Beldum is 70, so both halves of the deck&#x27;s opening are always live targets and Poffin is never a dead card on turn one. Three copies, shared with three other decks in the box.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mega-signal">Mega Signal<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654460_mega-signal-121-132.jpg" target="_blank" rel="noopener"><img src="./assets/654460_mega-signal-121-132.jpg" alt="Mega Signal" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>121/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Mega Evolution Pokémon ex, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for a Mega Evolution Pokémon ex. Two copies, and it is the reason three Excadrill is enough. Straight, unconditional, no discard, no cost. The house owns one already.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Put a Pokémon <strong>or a basic Energy card</strong> from your discard pile into your hand. Both halves matter here. The dead Excadrill comes back, and so does the basic Metal that went down with it. It can never touch Magnetic Metal Energy, because special Energy stays where it falls.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch your Active Pokémon with 1 of your Benched Pokémon. Two copies, which is one more than most decks in this house run, and Retreat 4 is the reason. The more common emergency is not Excadrill being stuck, it is a gusted Metang sitting Active for a turn while your engine idles.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="energy-recycler">Energy Recycler<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/632966_energy-recycler.jpg" target="_blank" rel="noopener"><img src="./assets/632966_energy-recycler.jpg" alt="Energy Recycler" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>164/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle up to 5 Basic Energy cards from your discard pile into your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Shuffle up to 5 Basic Energy cards from your discard pile into your deck. One copy. Metal Maker reads the top four cards of your library, so its hit rate is a function of how much Metal is still in there. Late game this card is not recovery, it is a reload for the engine.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="prime-catcher">Prime Catcher<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/610474_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>119/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The ACE SPEC. Switch in one of the opponent&#x27;s Benched Pokémon, and if you do, switch your own Active with a Benched Pokémon. It is a Boss&#x27;s Orders and a Switch stapled together as an Item, which means it plays on the same turn as a Supporter, and both halves are cards this deck already wanted. The deck-list warning covers the print rule and the contention with the other two decks.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="full-metal-lab">Full Metal Lab<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/542663_full-metal-lab.jpg" target="_blank" rel="noopener"><img src="./assets/542663_full-metal-lab.jpg" alt="Full Metal Lab" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>148/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>All <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon (both yours and your opponent’s) take 30 less damage from attacks from the opponent&#x27;s Pokémon (after applying Weakness and Resistance).</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+			<aside data-callout="note">
+				<p>All <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon (both yours and your opponent&#x27;s) take 30 less damage from attacks from the opponent&#x27;s Pokémon (after applying Weakness and Resistance).</p>
+			</aside>
+					<p><strong>The Fire patch, and it is the only one this deck gets.</strong> The reduction is applied after Weakness, which is exactly the order that saves you: a 170-damage Fire attack doubles to 340 and kills a healthy Excadrill on the nose, and Full Metal Lab drops it to 310. Two copies, because the opponent will play their own Stadium over it and you need the second one to put it back.</p>
+					<p>It is symmetrical, and against the Mega Excadrill mirror it helps them the same amount it helps you. That costs nothing, because 330 into 340 already was not a knockout.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="magnetic-metal-energy">Magnetic Metal Energy<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/693506_magnetic-metal-energy.jpg" target="_blank" rel="noopener"><img src="./assets/693506_magnetic-metal-energy.jpg" alt="Magnetic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>085/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span>Energy - Special Metal</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy. The <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon this card is attached to has no Retreat Cost.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+			<aside data-callout="note">
+				<p>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy. The <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon this card is attached to has no Retreat Cost.</p>
+			</aside>
+					<p><strong>Two copies, and this is the most important tech card in the house.</strong> It fixes Retreat 4 for free while still counting as one of the five Energy that Maximum Drilling needs, so it costs the deck literally nothing to run.</p>
+					<p>What it does to <a href="./psychic-lanterns.html">the lantern deck</a> is covered in <a href="#4-magnetic-metal-is-the-anti-lantern-card">game plan 4</a> and it is worth reading before the next kitchen-table night.</p>
+					<p>Two and no more, for one reason: it is a Special Energy, so Metal Maker cannot attach it, Night Stretcher cannot recover it, and Energy Recycler cannot reload it. The eleven basic Metal underneath it are the renewable half.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-metal-energy">Basic Metal Energy<span data-count>x11</span></h3>
+				<aside>
+					<a data-art href="./assets/656270_basic-metal-energy-008.jpg" target="_blank" rel="noopener"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>8</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Eleven copies, and the count is load-bearing rather than arbitrary.</strong> Metal Maker looks at four cards and attaches whatever Metal it finds, so the density of basic Metal in the library is directly the engine&#x27;s throughput. Eleven in sixty works out to roughly one hit per look, which is what makes three Metang worth three Energy a turn.</p>
+					<p>This is the number <a href="#test-and-tune">Test and Tune</a> watches hardest, in both directions. Basic Energy never rotates and any English print is legal.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+					<p>The deck makes one ordinary attachment per turn like everybody else. Everything past the first one comes from here.</p>
+					<table>
+						<thead><tr><th>Job</th><th>Card</th><th>What it does</th></tr></thead>
+						<tbody>
+							<tr><td>Accelerate</td><td>4 Metang</td><td>top 4 of your deck, attach every basic Metal in them, once per copy</td></tr>
+							<tr><td>Rebuild</td><td>2 Philippe</td><td>two basic Metal from the discard onto one Metal Pokémon</td></tr>
+							<tr><td>Recover</td><td>2 Night Stretcher</td><td>a Pokémon or a basic Energy back to hand</td></tr>
+							<tr><td>Reload</td><td>1 Energy Recycler</td><td>five basic Energy from the discard back into the library</td></tr>
+							<tr><td>Fix retreat</td><td>2 Magnetic Metal Energy</td><td>counts as the fifth Energy and zeroes Retreat 4</td></tr>
+						</tbody>
+					</table>
+					<p>The shape of a normal game is three Metang on the Bench by turn three, each one seeing four cards, plus your attachment for the turn. That is four Energy a turn arriving without spending a card from hand.</p>
+			<aside data-callout="warning">
+				<p><strong>Metal Maker and Philippe both read &quot;Basic Metal Energy.&quot;</strong> Neither one can touch Magnetic Metal Energy, and Night Stretcher and Energy Recycler cannot either. Every extra special Energy you add is a card the engine cannot see. Two is the cap for a reason.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="damage-math">Damage Math<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th>Attack</th><th>Cost</th><th>Damage</th><th>Kills</th></tr></thead>
+						<tbody>
+							<tr><td>Undermine</td><td><span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span></td><td>90</td><td>nothing; it is the turn-two placeholder</td></tr>
+							<tr><td>Maximum Drilling, 3 or 4 Energy</td><td><span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span></td><td>200</td><td>the small support Pokémon</td></tr>
+							<tr><td>Maximum Drilling, 5 Energy</td><td><span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span></td><td><strong>330</strong></td><td>Dragapult ex and nearly every two-Prize ex</td></tr>
+							<tr><td>Protect Charge (Genesect ex)</td><td><span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>150</td><td>the one-Prize bodies, off a two-Prize attacker</td></tr>
+						</tbody>
+					</table>
+					<p>What 330 does not kill is the 340-to-380 tier: Mega Excadrill in the mirror, Mega Gengar ex at 350, Mega Chandelure ex at 350. Against all three, plan on two hits and count on your own 340 surviving theirs.</p>
+					<p>Incoming damage runs the other way. A healthy Excadrill survives any single non-Fire attack in the format. With Full Metal Lab down it survives a good deal more than that.</p>
+					<table>
+						<thead><tr><th>Against</th><th>Their hit</th><th>After Full Metal Lab</th><th>Survives?</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Gengar ex, <em>Void Gale</em></td><td>230</td><td>200</td><td>yes, twice</td></tr>
+							<tr><td>Mega Excadrill mirror</td><td>330</td><td>300</td><td>yes</td></tr>
+							<tr><td>A 170 Fire attack, doubled</td><td>340</td><td>310</td><td>only with the Stadium down</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="the-prize-map">The Prize Map<span data-flavor><img src="./assets/sprites/genesect.gif" alt="" /></span></h3>
+					<p>This is the part to teach before the first game, because it is where the deck is genuinely dangerous to its pilot.</p>
+					<p><strong>Excadrill gives up three Prizes.</strong> Two knockouts on it and the game is over, which means the opponent needs to land two hits and you need to land three. That trade is bad on paper and the deck wins anyway, for one reason: at 340 HP almost nothing in the format takes those two hits in two turns. You are not trading evenly, you are betting that they cannot cash their side of the trade fast enough.</p>
+					<p>The bet goes wrong in exactly two ways, and both are avoidable.</p>
+					<ul>
+						<li><strong>Fire decks</strong> cash it in one hit, not two. That is the Stadium&#x27;s whole job.</li>
+						<li><strong>Two Excadrill on the board at once</strong> hands them six Prizes in four hits. Never bench the second one until the first is spent.</li>
+					</ul>
+					<p>The counterweight is that everything else in the deck is cheap. Metang, Beldum, and Drilbur are one Prize each, and Genesect ex is two. When the Prize race is going badly, attacking with Genesect for 150 off a two-Prize body is frequently the correct play, and it is the play most kids will not make because the big one is right there.</p>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-turn-one-is-drilbur-and-it-is-not-optional">1. Turn one is Drilbur, and it is not optional<span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /></span></h3>
+					<p>Bench Drilbur, attach a Metal Energy to it, use <em>Call for Family</em>, and take two Beldum. If Poffin is in hand, play it first and take two more bodies. The board you want at the end of turn one is Drilbur Active with two or three Beldum behind it.</p>
+					<p>Going second you get an attack, so this is free. Going first you cannot attack, and the same board has to come out of Poffin, Brock&#x27;s Scouting, or Ultra Ball instead. Losing turn one costs you roughly one full turn of Metal Maker, which is one Energy, which is the difference between 200 and 330 on turn three.</p>
+			</section>
+			<section>
+				<h3 id="2-two-metang-before-anything-else">2. Two Metang before anything else<span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+					<p>The instinct is to evolve Drilbur into the Mega as fast as possible. Resist it for one turn. Metang on the Bench is worth more on turn two than Excadrill is, because Excadrill with two Energy does nothing that Drilbur was not already doing.</p>
+					<p>The correct turn two is: evolve two Beldum into Metang, evolve Drilbur into Mega Excadrill ex, attach, use both Metal Makers, and attack with <em>Undermine</em> for 90. That puts you at three or four Energy going into turn three, and turn three is the one that matters.</p>
+			</section>
+			<section>
+				<h3 id="3-count-to-five-before-you-swing">3. Count to five before you swing<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+					<p>Before you declare <em>Maximum Drilling</em>, count the Energy on Excadrill out loud. Four is 200. Five is 330. Attacking at four when one more Metal Maker would have found the fifth is the single most common way to lose a game with this deck, and it is invisible unless you count.</p>
+					<p>If you are sitting at four Energy with a Metal Maker unused, use the Ability first. Always. The Ability is free and the attack ends your turn.</p>
+			</section>
+			<section>
+				<h3 id="4-magnetic-metal-is-the-anti-lantern-card">4. Magnetic Metal is the anti-lantern card<span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+					<p><a href="./psychic-lanterns.html">Mega Chandelure ex</a> does 130 damage plus 50 more for each Colorless in your Active Pokémon&#x27;s Retreat Cost, and its <em>Binding Flame</em> Ability adds one to that cost from anywhere on the board.</p>
+					<p>Excadrill retreats for 4. Do the arithmetic before dad does.</p>
+					<table>
+						<thead><tr><th>Excadrill&#x27;s Retreat</th><th>Flames in play</th><th>Phantom Maze</th></tr></thead>
+						<tbody>
+							<tr><td>4, printed</td><td>0</td><td>330</td></tr>
+							<tr><td>4, printed</td><td>1</td><td><strong>380</strong></td></tr>
+							<tr><td>4, printed</td><td>2</td><td><strong>430</strong></td></tr>
+							<tr><td>0, Magnetic Metal attached</td><td>any</td><td><strong>130</strong></td></tr>
+						</tbody>
+					</table>
+					<p>One Binding Flame and a healthy 340 Excadrill dies to a single attack. That is the worst matchup in the house by a wide margin, and one Energy card erases it completely, because &quot;has no Retreat Cost&quot; overrides the increase rather than being added to it. The lantern page works the same ruling from the other side with Latias ex.</p>
+					<p>Against the lanterns, Magnetic Metal Energy is not a nice-to-have. It is the first Energy you attach and you mulligan your plans around finding it.</p>
+			</section>
+			<section>
+				<h3 id="5-losing-excadrill-is-not-losing-the-game">5. Losing Excadrill is not losing the game<span data-flavor><img src="./assets/sprites/genesect.gif" alt="" /></span></h3>
+					<p>When it dies, five Energy go to the discard and the opponent takes three Prizes. The rebuild is a known sequence, so run it rather than panicking.</p>
+					<p>Play the next Drilbur or evolve one already benched, then Philippe for two Energy from the discard, then your attachment for the turn. That is three Energy on a fresh Excadrill in one turn, and Metal Maker covers the rest. Fezandipiti ex draws you three cards for having lost the Pokémon in the first place.</p>
+					<p>If the board cannot support that, attack with Genesect ex for 150 and spend a turn rebuilding behind it. A two-Prize attacker doing real damage is how this deck survives a bad trade.</p>
+			</section>
+			<section>
+				<h3 id="6-reading-the-opening-hand">6. Reading the opening hand<span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /></span></h3>
+					<p>Keep any hand with a Drilbur or Beldum plus a way to find more. Keep any hand with Poffin. Keep any hand with Lillie&#x27;s Determination and one Basic.</p>
+					<p>The hand to be unhappy about is Energy plus Excadrill and no Basic to grow it on, because Mega Excadrill ex in your opening hand is a card you cannot play for two turns. Three Energy and no Pokémon is a mulligan you did not get to take.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+					<p><strong><a href="./psychic-lanterns.html">Xero&#x27;s Psychic Lanterns</a>, the one that needs homework.</strong> Covered in full in <a href="#4-magnetic-metal-is-the-anti-lantern-card">game plan 4</a>. Without Magnetic Metal Energy attached you lose a 340 HP Pokémon to one attack; with it, Phantom Maze floors at 130 and needs three turns to do what it was going to do in one. Nothing else in that deck threatens Excadrill&#x27;s HP. Gourgeist ex is the real problem instead, because <em>Horrifying Rondo</em> scales off his own damaged Bench and ignores retreat entirely, and Froslass will be putting a counter on every Ability Pokémon you own every Checkup. Your Metang all have Abilities. Expect to be chipped and play Full Metal Lab early.</p>
+					<p><strong><a href="./dark-ex.html">Xero&#x27;s Mega Gengar deck</a>, the even fight.</strong> <em>Void Gale</em> is 230 into your 340, so he needs two hits, and your 330 into his 350 means you need two as well. Neither of you exploits the other&#x27;s Weakness; Metal does not fear Darkness and his Gengars fear Fighting. The Stadium turns his 230 into 200, which does not change the hit count but does mean a chipped Excadrill survives a turn longer than he expects. Watch <em>Tricky Steps</em> on Gengar ex moving Energy off your Active, because in this deck moving one Energy is the difference between 330 and 200. Win it by gusting Munkidori and Fezandipiti with Boss&#x27;s Orders and refusing to trade Excadrill for anything smaller than a Mega.</p>
+					<p><strong><a href="./dark.html">Xero&#x27;s Gengar Gang</a>, the good matchup.</strong> Everything in that list is a one-Prize Stage 1 or Stage 2 in the 130 HP range. Maximum Drilling is comical overkill and <em>Protect Charge</em> off Genesect ex kills anything he has for 150. The danger is the Prize map running backwards: he takes six one-Prize knockouts slowly while two Excadrill deaths hand him the game in four. Lead with Genesect, keep exactly one Excadrill on the board, and let the 340 body grind. Punk Helmet and Risky Ruins both punish a deck that attacks every turn, so count his damage before swinging.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-card-shop">Versus the Card Shop<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+					<p><strong>The mirror is the most likely matchup in the room.</strong> Mega Excadrill is the most-played deck in Standard right now at roughly 8% of the field. Neither side one-shots the other, so it is a grind decided by whoever assembles five Energy first and whoever runs out of Excadrill last. Full Metal Lab helps you both equally, which means it is not a factor. The tiebreakers are Boss&#x27;s Orders on their Metang and your third Excadrill against their second.</p>
+					<p><strong>Fire is the matchup to fear and to prepare for.</strong> A doubled Fire attack kills a healthy Excadrill outright. Full Metal Lab is the whole answer and two copies is the minimum, because they will play their own Stadium over yours. If Fire is common at your shop, the Iron Defender swap in <a href="#alternatives">Alternatives</a> is the correct call and it is not close.</p>
+					<p><strong>Grass decks are a free win and nobody expects it.</strong> Mega Excadrill ex, Metang, Beldum, and Genesect ex all resist Grass for 30. Grass is strong in the current meta specifically because it beats the Darkness Megas, and it does not beat this.</p>
+					<p><strong>Single-prize grinder decks are the hardest games.</strong> They give up one Prize at a time while you give up three, and 330 damage into a 70 HP body is the worst rate in the format. Genesect ex attacking for 150 is the plan, and the games are long.</p>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>The list is a hypothesis; games are the data. Symptoms and their fixes:</p>
+					<dl>
+						<dt data-head>Symptom</dt><dd data-head>Fix</dd>
+						<dt>Never reaching five Energy by turn three</dt><dd><span>12th basic Metal over Drayton; bench Metang before Genesect</span></dd>
+						<dt>Flooding on Energy in hand</dt><dd><span>cut to 10 basic Metal for a 3rd Brock&#x27;s Scouting; Metal Maker pulls from the deck, not the hand</span></dd>
+						<dt>Excadrill dies before it attacks twice</dt><dd><span>lead with Genesect ex; keep the second Excadrill off the board</span></dd>
+						<dt>Losing to Fire</dt><dd><span>2 Iron Defender over Drayton and a Switch</span></dd>
+						<dt>Metang keeps getting gusted and stranded</dt><dd><span>3rd Switch over the Energy Recycler</span></dd>
+						<dt>The rebuild after a knockout keeps whiffing</dt><dd><span>3rd Philippe over Drayton</span></dd>
+						<dt>Whiffing the Mega itself</dt><dd><span>3rd Mega Signal over Drayton</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="alternatives">Alternatives<span data-flavor><img src="./assets/sprites/scizor.gif" alt="" /><img src="./assets/sprites/aggron.gif" alt="" /></span></h3>
+					<p>The cards that were considered and did not get a seat, kept warm.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Swaps for</th><th>Play it when</th></tr></thead>
+						<tbody>
+							<tr><td>Maximum Belt (ACE)</td><td>Prime Catcher</td><td>the mirror decides your shop; +50 against an ex takes Maximum Drilling to 380, which one-shots the entire 340-to-380 Mega tier. Costs you the gust and the retreat fix, and it is blank against single-prize decks</td></tr>
+							<tr><td>Iron Defender ×2</td><td>Drayton, 1 Switch</td><td>Fire is common; 30 less damage to all your Metal at Item speed, and it stacks with Full Metal Lab for a 60 shield</td></tr>
+							<tr><td>Cobalion ex (Chaos Rising 064)</td><td>Fezandipiti ex</td><td>you want a second real attacker; <em>Metal Road</em> moves any amount of Metal Energy onto it from your other Pokémon the moment it goes Active, which salvages a dying Excadrill&#x27;s load</td></tr>
+							<tr><td>Registeel ex (Ascended Heroes 145)</td><td>Fezandipiti ex</td><td>you want a tank; <em>Regi Charge</em> attaches two basic Metal from the discard to itself for one Colorless, and <em>Protecting Steel</em> takes 50 less</td></tr>
+							<tr><td>Archaludon (Stellar Crown 107)</td><td>4th Beldum, 1 Metang</td><td>Retreat 4 is losing games structurally; <em>Metal Bridge</em> gives every Metal Pokémon with Energy attached no Retreat Cost at all, which is Magnetic Metal for the whole board. Costs a Stage 1 line and Bench space this deck does not really have</td></tr>
+							<tr><td>4th Mega Excadrill ex</td><td>Drayton</td><td>you keep prizing them, which at three copies you will not</td></tr>
+							<tr><td>Steven&#x27;s Metagross ex</td><td>the whole deck</td><td>a different deck entirely; 340 HP Stage 2 whose Ability fetches Energy from the deck every turn. Needs Rare Candy and a Psychic Energy line, and it finished well outside the money at every 2026 regional</td></tr>
+							<tr><td>Hop&#x27;s Zacian ex</td><td>the whole deck</td><td>also a different deck; the Reddit list&#x27;s number one, but the card is a damage-spread attacker whose real lists splash Darkness partners, so it stops being a Metal deck</td></tr>
+						</tbody>
+					</table>
+					<p>Two cards were rejected outright. Klinklang&#x27;s <em>Gear Coating</em> gives all your Metal Pokémon 20 damage reduction, which is real, but it is a Stage 2 line in a deck with no Rare Candy and no Bench room. And Wally&#x27;s Compassion heals a Mega fully but puts all its Energy back into your hand, which on a Pokémon whose entire identity is five attached Energy is a downgrade dressed as a heal.</p>
+			</section>
+			<section>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /></span></h3></summary>
+					<p>Own counts are live from the collection database. The Trainer shell is mostly already in the box and shared with the other sleeved decks, so check <a href="./collection.html">the box</a> before ordering; the Pokémon are all new, because the binders had no Metal cards in them at all.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Excadrill ex <small>ME05: Pitch Black 065/084</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>Double Rare; 065, never the 103 collector print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Drilbur <small>ME05: Pitch Black 046/084</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>the Call for Family print; the other four legal Drilbur do not serve this line</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Metang <small>SV05: Temporal Forces 114/162</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>the Metal Maker print; the Chaos Rising and Journey Together copies have no Ability</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Beldum <small>ME04: Chaos Rising 059/086</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/black-bolt.png" /><img src="./assets/sets/black-bolt.png" alt="SV: Black Bolt" /></picture></span><span>Genesect ex <small>SV: Black Bolt 067/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Double Rare; 067, not the 161 or 169 prints</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>shared with the Mega Gengar deck, which runs 2</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared; the Ghetsis print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Philippe <small>ME04: Chaos Rising 079/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the rebuild card; 079, not 110</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>Brock&#x27;s Scouting <small>SV09: Journey Together 146/159</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>Drayton <small>SV08: Surging Sparks 174/191</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>the flex slot; first thing Test and Tune trades away</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Mega Signal <small>ME01: Mega Evolution 121/132</small></span></td><td>1</td><td>2</td><td><strong>1</strong></td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>164, not the Perfect Order 108 collector print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Prime Catcher <small>SV: Prismatic Evolutions 119/131</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC; contested with two other sleeved decks</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Full Metal Lab <small>SV05: Temporal Forces 148/162</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the fire patch; two, because they will play over it</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Magnetic Metal Energy <small>ME04: Chaos Rising 085/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Special Energy; nothing recovers it once discarded</td></tr>
+							<tr><td><span>Basic Metal Energy <small>MEE: Mega Evolution Energies 8</small></span></td><td>0</td><td>11</td><td><strong>11</strong></td><td>never rotates; the count is load-bearing</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>40</strong></td><td></td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="important">
+				<p><strong>Regulation clock.</strong> Everything here is Standard legal as of August 2026. The core is young: Pitch Black and Chaos Rising are Reg J with years left. The H cards are the ones on the clock and they rotate around April 2027, which in this list means Metang, Full Metal Lab, Buddy-Buddy Poffin, Night Stretcher, Drayton, Fezandipiti ex, and Prime Catcher. <strong>Metang is the one that hurts</strong>, because Metal Maker is the deck and no legal reprint exists yet. Watch for one.</p>
+			</aside>
+				</details>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

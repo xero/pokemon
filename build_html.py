@@ -32,7 +32,7 @@ DEST = ROOT / "collection.html"
 TITLE = "Pokédex"
 
 # Sprites shown beside the title.
-MASCOT = ["gengar-mega", "charizard"]
+MASCOT = ["pokedex", "pokeball"]
 
 # CSV column -> term shown in the <dl>. None means the value is self-describing
 # and stands without one. The attacks slot expands to one row per attack.

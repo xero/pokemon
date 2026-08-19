@@ -642,9 +642,10 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first two rows are the library, not decks: the collection
-			   and the pull list get a tint of their own, watermark kept. */
-			&:nth-of-type(-n+2) {
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
 				background-color: var(--line);
 			}
 		}
@@ -816,6 +817,42 @@
 			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
 		}
 
 		th,
@@ -1135,7 +1172,8 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
-		[data-back] {
+		[data-back],
+		[data-beside] img {
 			display: none;
 		}
 
@@ -1197,7 +1235,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Fox's Hostile Takeover <img data-mascot src="./assets/sprites/mewtwo.gif" alt="" /> <img data-mascot src="./assets/sprites/crobat.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Fox's Hostile Takeover <img data-mascot src="./assets/sprites/crobat.gif" alt="" /> <img data-mascot src="./assets/sprites/mewtwo.gif" alt="" /></h1>
 				<p>Game night · Team Rocket's Mewtwo ex, powered by a Spidops payroll</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1255,30 +1293,30 @@
 			<section>
 				<h3 id="deck-list">Deck List</h3>
 			<article data-decklist>
-				<figure><img src="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" alt="Team Rocket&#x27;s Mewtwo ex" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/632845_team-rockets-tarountula.jpg" alt="Team Rocket&#x27;s Tarountula" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/632846_team-rockets-spidops-020-182.jpg" alt="Team Rocket&#x27;s Spidops" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/632928_team-rockets-zubat.jpg" alt="Team Rocket&#x27;s Zubat" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/632929_team-rockets-golbat.jpg" alt="Team Rocket&#x27;s Golbat" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" alt="Team Rocket&#x27;s Crobat ex" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/632864_team-rockets-articuno.jpg" alt="Team Rocket&#x27;s Articuno" /></figure>
-				<figure><img src="./assets/632972_team-rockets-ariana-171-182.jpg" alt="Team Rocket&#x27;s Ariana" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/632977_team-rockets-proton-177-182.jpg" alt="Team Rocket&#x27;s Proton" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/630830_team-rockets-giovanni.jpg" alt="Team Rocket&#x27;s Giovanni" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></figure>
-				<figure><img src="./assets/632978_team-rockets-transceiver.jpg" alt="Team Rocket&#x27;s Transceiver" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/590042_scramble-switch.jpg" alt="Scramble Switch" /></figure>
-				<figure><img src="./assets/632974_team-rockets-factory.jpg" alt="Team Rocket&#x27;s Factory" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/632982_team-rockets-energy.jpg" alt="Team Rocket&#x27;s Energy" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/656263_basic-grass-energy-001.jpg" alt="Basic Grass Energy" /><span data-count>x3</span></figure>
+				<figure><a href="#team-rockets-mewtwo-ex"><img src="./assets/632891_team-rockets-mewtwo-ex-081-182.jpg" alt="Team Rocket&#x27;s Mewtwo ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#team-rockets-tarountula"><img src="./assets/632845_team-rockets-tarountula.jpg" alt="Team Rocket&#x27;s Tarountula" /><span data-count>x3</span></a></figure>
+				<figure><a href="#team-rockets-spidops"><img src="./assets/632846_team-rockets-spidops-020-182.jpg" alt="Team Rocket&#x27;s Spidops" /><span data-count>x3</span></a></figure>
+				<figure><a href="#team-rockets-zubat"><img src="./assets/632928_team-rockets-zubat.jpg" alt="Team Rocket&#x27;s Zubat" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-golbat"><img src="./assets/632929_team-rockets-golbat.jpg" alt="Team Rocket&#x27;s Golbat" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-crobat-ex"><img src="./assets/632930_team-rockets-crobat-ex-122-182.jpg" alt="Team Rocket&#x27;s Crobat ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-articuno"><img src="./assets/632864_team-rockets-articuno.jpg" alt="Team Rocket&#x27;s Articuno" /></a></figure>
+				<figure><a href="#team-rockets-ariana"><img src="./assets/632972_team-rockets-ariana-171-182.jpg" alt="Team Rocket&#x27;s Ariana" /><span data-count>x4</span></a></figure>
+				<figure><a href="#team-rockets-proton"><img src="./assets/632977_team-rockets-proton-177-182.jpg" alt="Team Rocket&#x27;s Proton" /><span data-count>x3</span></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-giovanni"><img src="./assets/630830_team-rockets-giovanni.jpg" alt="Team Rocket&#x27;s Giovanni" /><span data-count>x2</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-petrel"><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></a></figure>
+				<figure><a href="#team-rockets-transceiver"><img src="./assets/632978_team-rockets-transceiver.jpg" alt="Team Rocket&#x27;s Transceiver" /><span data-count>x4</span></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></a></figure>
+				<figure><a href="#rare-candy"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x2</span></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#night-stretcher"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></a></figure>
+				<figure><a href="#scramble-switch"><img src="./assets/590042_scramble-switch.jpg" alt="Scramble Switch" /></a></figure>
+				<figure><a href="#team-rockets-factory"><img src="./assets/632974_team-rockets-factory.jpg" alt="Team Rocket&#x27;s Factory" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-energy"><img src="./assets/632982_team-rockets-energy.jpg" alt="Team Rocket&#x27;s Energy" /><span data-count>x4</span></a></figure>
+				<figure><a href="#basic-psychic-energy"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x3</span></a></figure>
+				<figure><a href="#basic-grass-energy"><img src="./assets/656263_basic-grass-energy-001.jpg" alt="Basic Grass Energy" /><span data-count>x3</span></a></figure>
 			</article>
 					<p><strong>Pokémon (16)</strong></p>
 					<table data-deck-rows>

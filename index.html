@@ -642,9 +642,10 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first two rows are the library, not decks: the collection
-			   and the pull list get a tint of their own, watermark kept. */
-			&:nth-of-type(-n+2) {
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
 				background-color: var(--line);
 			}
 		}
@@ -816,6 +817,42 @@
 			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
 		}
 
 		th,
@@ -1135,7 +1172,8 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
-		[data-back] {
+		[data-back],
+		[data-beside] img {
 			display: none;
 		}
 
@@ -1215,7 +1253,7 @@
 				<section>
 					<h2><a href="./wishlist.html">Pull List</a></h2>
 					<p>The pull list: every card a deck asks for that the binders cannot cover, costed against what we already own.</p>
-					<p><small><em>25 unique cards</em></small></p>
+					<p><small><em>40 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
@@ -1275,7 +1313,15 @@
 				</section>
 			</article>
 			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/eevee.gif" alt="" /><img src="./assets/sprites/glaceon.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /><img src="./assets/sprites/espeon.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/drilbur.gif" alt="" /><img src="./assets/sprites/excadrill.gif" alt="" /></aside>
+				<section>
+					<h2><a href="./metal-excadrill.html">Fox's Iron Excavation</a></h2>
+					<p>Fox&#x27;s Metal deck, bought from zero. Mega Excadrill ex does 200 on four Energy and 330 on five, and four Metang exist to find the fifth.</p>
+					<p><small><em>21 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/eevee.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /><img src="./assets/sprites/espeon.gif" alt="" /><img src="./assets/sprites/glaceon.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./eevee-standard.html">Fox's Rainbow DNA</a></h2>
 					<p>Fox&#x27;s Eevee deck, and the only one here that is two decks. Fifty cards never move; ten swap between Sun and Moon for home and Fire and Ice for game night.</p>

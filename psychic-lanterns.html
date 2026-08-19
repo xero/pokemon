@@ -642,9 +642,10 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first two rows are the library, not decks: the collection
-			   and the pull list get a tint of their own, watermark kept. */
-			&:nth-of-type(-n+2) {
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
 				background-color: var(--line);
 			}
 		}
@@ -816,6 +817,42 @@
 			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
 		}
 
 		th,
@@ -1135,7 +1172,8 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
-		[data-back] {
+		[data-back],
+		[data-beside] img {
 			display: none;
 		}
 
@@ -1259,30 +1297,30 @@
 			<section>
 				<h3 id="deck-list">Deck List</h3>
 			<article data-decklist>
-				<figure><img src="./assets/704793_litwick.jpg" alt="Litwick" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/704794_lampent.jpg" alt="Lampent" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/693536_pumpkaboo.jpg" alt="Pumpkaboo" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/693497_gourgeist-ex-041-086.jpg" alt="Gourgeist ex" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/550095_snorunt.jpg" alt="Snorunt" /></figure>
-				<figure><img src="./assets/676890_snorunt-046-217-love-ball.jpg" alt="Snorunt (Love Ball)" /></figure>
-				<figure><img src="./assets/550097_froslass-053-167.jpg" alt="Froslass" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/560328_duskull-018-064.jpg" alt="Duskull" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/560330_dusknoir-020-064.jpg" alt="Dusknoir" /></figure>
-				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/642200_hilda.jpg" alt="Hilda" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/654471_wallys-compassion-132-132.jpg" alt="Wally&#x27;s Compassion" /></figure>
-				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /></figure>
-				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /></figure>
-				<figure><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></figure>
-				<figure><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></figure>
-				<figure><img src="./assets/684396_telepathic-psychic-energy.jpg" alt="Telepathic Psychic Energy" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x6</span></figure>
+				<figure><a href="#litwick"><img src="./assets/704793_litwick.jpg" alt="Litwick" /><span data-count>x4</span></a></figure>
+				<figure><a href="#lampent"><img src="./assets/704794_lampent.jpg" alt="Lampent" /><span data-count>x4</span></a></figure>
+				<figure><a href="#mega-chandelure-ex"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#pumpkaboo"><img src="./assets/693536_pumpkaboo.jpg" alt="Pumpkaboo" /><span data-count>x2</span></a></figure>
+				<figure><a href="#gourgeist-ex"><img src="./assets/693497_gourgeist-ex-041-086.jpg" alt="Gourgeist ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#snorunt"><img src="./assets/550095_snorunt.jpg" alt="Snorunt" /></a></figure>
+				<figure><a href="#snorunt"><img src="./assets/676890_snorunt-046-217-love-ball.jpg" alt="Snorunt (Love Ball)" /></a></figure>
+				<figure><a href="#froslass"><img src="./assets/550097_froslass-053-167.jpg" alt="Froslass" /><span data-count>x2</span></a></figure>
+				<figure><a href="#duskull"><img src="./assets/560328_duskull-018-064.jpg" alt="Duskull" /><span data-count>x2</span></a></figure>
+				<figure><a href="#dusknoir"><img src="./assets/560330_dusknoir-020-064.jpg" alt="Dusknoir" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#hilda"><img src="./assets/642200_hilda.jpg" alt="Hilda" /><span data-count>x3</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#wallys-compassion"><img src="./assets/654471_wallys-compassion-132-132.jpg" alt="Wally&#x27;s Compassion" /></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></a></figure>
+				<figure><a href="#rare-candy"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></a></figure>
+				<figure><a href="#poke-pad"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /><span data-count>x3</span></a></figure>
+				<figure><a href="#night-stretcher"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></a></figure>
+				<figure><a href="#wondrous-patch"><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /></a></figure>
+				<figure><a href="#air-balloon"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a></figure>
+				<figure><a href="#prime-catcher"><img src="./assets/610474_prime-catcher.jpg" alt="Prime Catcher" /></a></figure>
+				<figure><a href="#telepathic-psychic-energy"><img src="./assets/684396_telepathic-psychic-energy.jpg" alt="Telepathic Psychic Energy" /><span data-count>x4</span></a></figure>
+				<figure><a href="#basic-psychic-energy"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x6</span></a></figure>
 			</article>
 					<p><strong>Pokémon (22)</strong></p>
 					<table data-deck-rows>

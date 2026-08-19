@@ -1148,6 +1148,8 @@ The universal weakness of a Stage 2 deck is the two or three turns where your be
 | 2+ | Evolve Koffing → **Weezing**, bring it Active, start the Two-Turn Fuse. |
 | 4-5 | Weezing has done its work. Bring Gengar Active with the Energy already on it and start taking Prizes. |
 
+<img src="./assets/sprites/gengar-evo.gif" alt="" />
+
 **Why it works.** Shadowy Darkness Energy prevents *all* damage from attacks while the holder is Benched — so the Gastly cannot be sniped, and neither can the Gengar it becomes. And because Shadowy is still an Energy, the Gengar walks into the Active Spot already powered up. You spent zero tempo on defence.
 
 **The two timing rules you will forget:**

@@ -642,9 +642,10 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first two rows are the library, not decks: the collection
-			   and the pull list get a tint of their own, watermark kept. */
-			&:nth-of-type(-n+2) {
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
 				background-color: var(--line);
 			}
 		}
@@ -816,6 +817,42 @@
 			margin: 30px auto 25px auto;
 			width: 100%;
 			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
 		}
 
 		th,
@@ -1135,7 +1172,8 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
-		[data-back] {
+		[data-back],
+		[data-beside] img {
 			display: none;
 		}
 
@@ -1197,7 +1235,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Fox's Fire Force <img data-mascot src="./assets/sprites/charizard.gif" alt="" /> <img data-mascot src="./assets/sprites/flareon.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Fox's Fire Force <img data-mascot src="./assets/sprites/charmander.gif" alt="" /> <img data-mascot src="./assets/sprites/charizard.gif" alt="" /></h1>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1250,26 +1288,26 @@
 			<section>
 				<h3 id="deck-list">Deck List</h3>
 			<article data-decklist>
-				<figure><img src="./assets/226392_charmander.jpg" alt="Charmander" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/226395_charizard.jpg" alt="Charizard" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/610429_eevee.jpg" alt="Eevee" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/610368_flareon.jpg" alt="Flareon" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/226508_leon.jpg" alt="Leon" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder (#25 Charizard Stamped)" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/257309_kindler.jpg" alt="Kindler" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/246789_zinnias-resolve.jpg" alt="Zinnia&#x27;s Resolve" /></figure>
-				<figure><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></figure>
-				<figure><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /><span data-count>x3</span></figure>
-				<figure><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /></figure>
-				<figure><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/208500_ordinary-rod.jpg" alt="Ordinary Rod" /></figure>
-				<figure><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /><span data-count>x2</span></figure>
-				<figure><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x13</span></figure>
+				<figure><a href="#charmander"><img src="./assets/226392_charmander.jpg" alt="Charmander" /><span data-count>x4</span></a></figure>
+				<figure><a href="#charmeleon"><img src="./assets/226394_charmeleon.jpg" alt="Charmeleon" /><span data-count>x2</span></a></figure>
+				<figure><a href="#charizard"><img src="./assets/226395_charizard.jpg" alt="Charizard" /><span data-count>x3</span></a></figure>
+				<figure><a href="#eevee"><img src="./assets/610429_eevee.jpg" alt="Eevee" /><span data-count>x3</span></a></figure>
+				<figure><a href="#flareon"><img src="./assets/610368_flareon.jpg" alt="Flareon" /><span data-count>x2</span></a></figure>
+				<figure><a href="#sudowoodo"><img src="./assets/208409_sudowoodo.jpg" alt="Sudowoodo" /><span data-count>x2</span></a></figure>
+				<figure><a href="#leon"><img src="./assets/226508_leon.jpg" alt="Leon" /><span data-count>x4</span></a></figure>
+				<figure><a href="#welder"><img src="./assets/219100_welder-189-214-25-charizard-stamped.jpg" alt="Welder (#25 Charizard Stamped)" /><span data-count>x2</span></a></figure>
+				<figure><a href="#professors-research-professor-oak"><img src="./assets/610477_professors-research-professor-oak.jpg" alt="Professor&#x27;s Research [Professor Oak]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#bosss-orders-ghetsis"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#kindler"><img src="./assets/257309_kindler.jpg" alt="Kindler" /><span data-count>x2</span></a></figure>
+				<figure><a href="#zinnias-resolve"><img src="./assets/246789_zinnias-resolve.jpg" alt="Zinnia&#x27;s Resolve" /></a></figure>
+				<figure><a href="#rare-candy"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x3</span></a></figure>
+				<figure><a href="#nest-ball"><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /><span data-count>x3</span></a></figure>
+				<figure><a href="#evolution-incense"><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#ordinary-rod"><img src="./assets/208500_ordinary-rod.jpg" alt="Ordinary Rod" /></a></figure>
+				<figure><a href="#magma-basin"><img src="./assets/257310_magma-basin.jpg" alt="Magma Basin" /><span data-count>x2</span></a></figure>
+				<figure><a href="#basic-fire-energy"><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x13</span></a></figure>
 			</article>
 					<p><strong>Pokémon (16)</strong></p>
 					<table data-deck-rows>
