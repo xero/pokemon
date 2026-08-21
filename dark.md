@@ -19,6 +19,8 @@
 > **Deck total: 60 cards.** 21 Pokémon, 29 Trainers, 10 Energy. Every attacker is worth **1 Prize card**, which is what keeps games against a theme deck close and fair, and what makes an ex deck pay double for every trade it wins.
 >
 > **This is the third build.** The second one traded situational Trainers for Pokémon and an Energy engine. This one fixes where the Energy actually goes: Scramble Switch takes the ACE SPEC slot that was sitting empty, Night Stretcher doubles, half the Shadowy Darkness becomes Basic Darkness that *Sinister Surge* can still find on turn seven, and Ultra Ball leaves because three Dawn already fetch the whole Gengar line.
+>
+> **This deck has an ex mode.** Against a room that attacks with Pokémon ex, eleven cards swap this same sleeved 60 into [Snake Charmer](./dark-mega.md): Mega Gengar ex walls, Seviper hits 240, and every single-prize body stops paying Prizes. The swap sheet is on that page.
 
 ---
 

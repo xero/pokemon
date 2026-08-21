@@ -8,12 +8,13 @@ tcg deck planning for me and my son
 ## our starter decks
 
 - [xero's gengar gang](./dark.md)
+- [xero's snake charmer](./dark-mega.md)
 - [fox's fire force](./fire.md)
 
 ## future plans
 
 - [xero's psychic lanterns](./psychic-lanterns.md)
-- [dark ex](./dark-ex.md)
+- [xero's curse toll](./dark-curse.md)
 - [xero's shadow syndicate](./dark-rocket.md)
 - [xero's hostile takeover](./rocket-mewtwo.md)
 - [xero's smog signals](./dark-smog.md)

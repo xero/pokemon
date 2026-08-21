@@ -35,10 +35,22 @@ PAGES = [
      "Xero's lantern deck. Mega Chandelure ex turns the opponent's own"
      " Retreat Cost into damage at the shop, and three card swaps turn the"
      " whole thing into the Night Parade at home."),
-    ("dark-ex.html", ["gengar-smile", "gengar-mega"],
-     "Xero's tournament deck. Two ex Gengars on one Haunter line: the Mega"
-     " bends every prize trade, and Gnawing Curse taxes every Energy the"
-     " opponent plays."),
+    ("dark-mega.html", ["seviper", "gengar-mega"],
+     "Xero's ex-battle mode. Eleven cards swap Gengar Gang into a prize cage:"
+     " Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall"
+     " takes the hits."),
+    ("dark-curse.html", ["gengar-smile", "gengar-mega"],
+     "Xero's bigger plan, on hold until the Gnawing Curse pair is sourced. Two"
+     " ex Gengars on one Haunter line: the Mega bends every prize trade, and"
+     " the Curse taxes every Energy the opponent plays."),
+    ("phantom-toll.html", ["chandelure", "gengar-mega"],
+     "Xero's two-color hybrid. Mega Chandelure makes leaving expensive and"
+     " Mega Gengar makes losing cheap, while every gust drags something heavy"
+     " into a toll booth it cannot afford to sit in."),
+    ("flaming-lanterns.html", ["litwick", "chandelure"],
+     "Xero's meta deck. Four Fire Chandelure read the opponent's hand while"
+     " Mega Chandelure prices their exits; the archetype's tournament-winning"
+     " shape, rebuilt from the binder for about two dollars."),
     ("rocket-mewtwo.html", ["crobat", "mewtwo"],
      "Fox's game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
      " payroll, and a Crobat line that fixes a bad Active for free."),

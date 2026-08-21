@@ -45,8 +45,11 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "dark.md": ["gengar", "weezing"],
           "fire.md": ["charmander", "charizard"],
           "fire-tournament.md": ["flareon", "noctowl"],
-          "dark-ex.md": ["gengar-smile", "gengar-mega"],
+          "dark-curse.md": ["gengar-smile", "gengar-mega"],
+          "dark-mega.md": ["seviper", "gengar-mega"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
+          "phantom-toll.md": ["chandelure", "gengar-mega"],
+          "flaming-lanterns.md": ["litwick", "chandelure"],
           "eevee-standard.md": ["eevee", "umbreon", "espeon", "glaceon"],
           "rocket-mewtwo.md": ["crobat", "mewtwo"],
           "metal-excadrill.md": ["drilbur", "excadrill"]}
@@ -91,7 +94,24 @@ FLAVOR = {
     # the cards that have one get it and the rest go without. sableye was
     # promoted from assets/ani for this page; the plain gengar sprite now
     # marks Gengar ex, since no dedicated ex sprite exists.
-    "dark-ex.md": {
+    # the snake and the mega share the mode page; weezing waves the swap out.
+    "dark-mega.md": {
+        "The Thesis": ["seviper"],
+        "The Mode Swap": ["weezing", "gengar-mega"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Mega Gengar ex": ["gengar-mega"],
+        "Seviper": ["seviper"],
+        "Sableye": ["sableye"],
+        "1. The Cage": ["gengar-booty"],
+        "2. The Charmer's Loop": ["seviper"],
+        "3. Reading the Room": ["gengar", "gengar-mega"],
+        "5. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Kitchen Table": ["mewtwo"],
+        "Versus the Card Shop": ["noctowl"],
+        "What To Buy": ["pokeball"],
+    },
+    "dark-curse.md": {
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
         "Gengar ex": ["gengar"],
@@ -104,6 +124,50 @@ FLAVOR = {
         "Versus the Kitchen Table": ["mewtwo"],
         "How To Play ex Style": ["charizard"],
         "What To Buy": ["koffing"],
+    },
+    # the whole tech bench got sprites in one sitting: Shaymin, Maractus, and
+    # Clefairy came up from assets/ani, Comfey and Marshadow arrived new.
+    "flaming-lanterns.md": {
+        "Litwick": ["litwick"],
+        "Lampent": ["lampent"],
+        "Chandelure": ["chandelure"],
+        "Mega Chandelure ex": ["chandelure"],
+        "Shaymin": ["shaymin"],
+        "Maractus": ["maractus"],
+        "Marshadow": ["marshadow"],
+        "Clefairy": ["clefairy"],
+        "Comfey": ["comfey"],
+        "The Hand Ledger": ["hypno"],
+        "1. The Two Registers": ["chandelure"],
+        "3. The Spreading Light Flood": ["lampent"],
+        "4. The Fire Drop": ["litwick"],
+        "6. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Kitchen Table": ["mewtwo"],
+        "Versus the Card Shop": ["noctowl"],
+        "✗ Four Cards That Look Right — Skip Them": ["wobbuffet-back"],
+        "What To Buy": ["pokeball"],
+    },
+    # the base forms stand in for both Megas as usual.
+    "phantom-toll.md": {
+        "Litwick": ["litwick"],
+        "Lampent": ["lampent"],
+        "Mega Chandelure ex": ["chandelure"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Mega Gengar ex": ["gengar-mega"],
+        "Duskull": ["duskull"],
+        "Dusknoir": ["dusknoir"],
+        "Marshadow": ["marshadow"],
+        "The Toll Math": ["gengar-booty"],
+        "1. Pick the Wall": ["chandelure", "gengar-mega"],
+        "3. The Dark Button": ["gastly"],
+        "4. The Closer": ["dusknoir"],
+        "6. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Kitchen Table": ["mewtwo"],
+        "Versus the Card Shop": ["noctowl"],
+        "Where Gourgeist Went": ["gourgeist", "pumpkaboo"],
+        "✗ Four Cards That Look Right — Skip Them": ["wobbuffet-back"],
+        "What To Buy": ["pokeball"],
     },
     "psychic-lanterns.md": {
         # the ghost and ice lines came from assets/ani; no Mega Chandelure
@@ -1142,9 +1206,9 @@ def bullets_or_para(text, ind):
     return [f"{ind}<p>{inline(' '.join(lines))}</p>"]
 
 
-DECKS = ["rules.md", "dark.md", "dark-ex.md", "fire.md", "fire-tournament.md",
+DECKS = ["rules.md", "dark.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
-         "psychic-lanterns.md", "eevee-standard.md", "metal-excadrill.md"]
+         "psychic-lanterns.md", "phantom-toll.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

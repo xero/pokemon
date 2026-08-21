@@ -298,7 +298,7 @@ Then ask the mirror question, which *Shadowy Concealment* rewrites in your favor
 
 ### 4. The two-shot problem beats HP every time
 
-If your attacker needs two turns to Knock Out and theirs needs one, you lose, regardless of HP. Chip damage is not a nice extra in ex decks; it is the difference between one-shotting and losing. The Dark Box's answer is [game plan 3](./dark-ex.md#3-chip-math).
+If your attacker needs two turns to Knock Out and theirs needs one, you lose, regardless of HP. Chip damage is not a nice extra in ex decks; it is the difference between one-shotting and losing. The Dark Box's answer is [game plan 3](./dark-curse.md#3-the-counter-economy).
 
 ### 5. Gust effects are the most valuable cards in the format
 

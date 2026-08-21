@@ -34,16 +34,16 @@ Espeon ex Prismatic Evolutions	034/131	0	eevee-standard	deck
 Glaceon Prismatic Evolutions	025/131	0	eevee-standard; the non-ex	deck
 Battle Cage Phantasmal Flames	085/094	0	eevee-standard	deck
 #
-# --- dark-ex.md, the Standard Mega Gengar box ------------------------------------
+# --- dark-curse.md (was dark-ex.md), the Curse Toll build ------------------------------------
 Mega Gengar ex Phantasmal Flames	056/094	0	since filled by the gengar mega battle deck	deck
 Toxel Phantasmal Flames	067/094	0	since filled by the gengar mega battle deck	deck
 Toxtricity Phantasmal Flames	068/094	0	since filled by the gengar mega battle deck	deck
 Munkidori Twilight Masquerade	095/167	0		deck
 Fezandipiti ex Shrouded Fable	038/064	0		deck
-Pecharunt ex Shrouded Fable	039/064	0	dark-ex tournament build	deck
-Legacy Energy Twilight Masquerade	167/167	0	dark-ex tournament build, ACE SPEC	deck
-Energy Switch Mega Evolution	115/132	0	dark-ex tournament build	deck
-Air Balloon Ascended Heroes	181/217	0	dark-ex tournament build	deck
+Pecharunt ex Shrouded Fable	039/064	0	dark-curse tournament build	deck
+Legacy Energy Twilight Masquerade	167/167	0	dark-curse tournament build, ACE SPEC	deck
+Energy Switch Mega Evolution	115/132	0	dark-curse tournament build	deck
+Air Balloon Ascended Heroes	181/217	0	dark-curse tournament build	deck
 #
 # --- psychic-lanterns.md, the deck core ------------------------------------------
 Litwick Pitch Black	036/084	0	psychic lanterns	deck
@@ -68,8 +68,18 @@ https://www.tcgplayer.com/product/130759	13/145	0	night parade module, home only
 #
 # --- frostfire, the Glalie / Chandelure module -----------------------------------
 Glalie Twilight Masquerade	052/167	0	frostfire	deck
-Chandelure Twilight Masquerade	038/167	0	frostfire	deck
+Chandelure Twilight Masquerade	038/167	0	frostfire; flaming-lanterns runs 4 of the Alluring Light print	deck
 Poké Pad Perfect Order	081/088	0	frostfire	deck
+#
+# --- phantom-toll.md, the two-color toll booth ------------------------------------
+Gravity Gemstone Stellar Crown	137/142	0	phantom-toll; the only Trainer in Standard that raises opponent Retreat Cost	deck
+#
+# --- flaming-lanterns.md, the meta shell tech basics -------------------------------
+Shaymin Destined Rivals	010/182	0	flaming-lanterns; Flower Curtain bench protection	deck
+Maractus Journey Together	008/159	0	flaming-lanterns; Exploding Needles	deck
+Clefairy Perfect Order	030/088	0	flaming-lanterns; Follow Me gust on a one-prize Basic	deck
+Comfey Stellar Crown	063/142	0	flaming-lanterns; Flower Shower feeds Mind Ruler	deck
+Xerosic's Machinations Shrouded Fable	064/064	0	flaming-lanterns; hand disruption and the 90-damage Mind Ruler floor	deck
 #
 # --- fighting-standard.md, Ground Zero -------------------------------------------
 Mega Zygarde ex Perfect Order	047/088	0		deck
@@ -91,7 +101,7 @@ Eevee Shrouded Fable	050/064	0	came in with the energy accel survey; more than o
 # --- ordered or in a cart, waiting on the mail -----------------------------------
 https://www.tcgplayer.com/product/676890	046/217	0	lanterns; ASC Love Ball Snorunt, swapped for TWM print in cart	ordered
 Prime Catcher Prismatic Evolutions	119/131	0	lanterns ACE; PRE reprint of TEF 157, the print actually in cart	ordered
-Gengar ex Temporal Forces	104/162	0	wishlist pull, in cart at Murphy's Collection 2026-08-16	ordered
+Gengar ex Temporal Forces	104/162	0	dark-curse needs 2; Murphy's Collection cart abandoned 2026-08 after the price 3x'ed, hunt continues	deck
 Marshadow Pitch Black	040/084	0	alternatives bench, Shadowy Knot; ordered 2026-08-16	ordered
 Chandelure White Flare	018/086	0	fire print, last minute add 2026-08-16	ordered
 Litwick White Flare	016/086	0	fire print, last minute add 2026-08-16	ordered
@@ -125,3 +135,7 @@ Energy Recycler Destined Rivals	164/182	0	NOT the Perfect Order 108 secret print
 Full Metal Lab Temporal Forces	148/162	0	metal-excadrill; the fire-weakness patch	deck
 Magnetic Metal Energy Chaos Rising	085/086	0	special energy, fixes Retreat 4	deck
 Basic Metal Energy Mega Evolution Energies	8	0	metal-excadrill runs 11	deck
+Chi-Yu Pitch Black	059/084	0	dark-mega; Whirling Envy pairs with Sinister Surge	deck
+Janine's Secret Art Shrouded Fable	059/064	0	dark-mega; the only Darkness accel Supporter in Standard	deck
+Surprise Box SM Unbroken Bonds	187/214	0	binder chase, Gengar art; ordered 2026-08-20	ordered
+https://www.tcgplayer.com/product/704464	068/094	0	Cosmos Holo spare for the Surge engine; ordered 2026-08-20	ordered

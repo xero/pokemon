@@ -94,7 +94,7 @@ Two things make that a deck rather than a wish. **Metang** turns the top of your
 **Basics: 11** (4 Drilbur, 4 Beldum, 2 Genesect ex, 1 Fezandipiti ex), which lands inside the 75-85% band for opening with something playable. Drilbur and Beldum both sit at exactly 70 HP, so every Buddy-Buddy Poffin in the deck finds two of the cards you actually want on turn one. That is not luck. It is why those two prints were chosen over the four other legal Drilbur.
 
 > [!WARNING]
-> **One ACE SPEC per deck.** Prime Catcher is this deck's one. The house owns a single English copy and [the lantern deck](./psychic-lanterns.md) and [the Mega Gengar deck](./dark-ex.md) both claim it, so a second copy has to be bought before all three sleeve up at once. The Japanese starter-set copy plays at the kitchen table and nowhere else.
+> **One ACE SPEC per deck.** Prime Catcher is this deck's one. The house owns a single English copy and [the lantern deck](./psychic-lanterns.md) and [the Curse Toll deck](./dark-curse.md) both claim it, so a second copy has to be bought before all three sleeve up at once. The Japanese starter-set copy plays at the kitchen table and nowhere else.
 
 ---
 
@@ -146,7 +146,7 @@ The card asks for **Basic** Metal Energy, so Magnetic Metal Energy is invisible 
 
 **One copy, and it is the comeback button.** *Flip the Script* draws 3 cards once during your turn if any of your Pokémon were Knocked Out during the opponent's last turn.
 
-A deck that hands over three Prizes at a time is a deck that gets Knocked Out, which means this Ability is live far more often here than in most lists. It is 210 HP of Darkness-type furniture that never attacks, so it only goes on the Bench when there is a seat free. Shared with [the Mega Gengar deck](./dark-ex.md), which runs two.
+A deck that hands over three Prizes at a time is a deck that gets Knocked Out, which means this Ability is live far more often here than in most lists. It is 210 HP of Darkness-type furniture that never attacks, so it only goes on the Bench when there is a seat free. Shared with [the Curse Toll deck](./dark-curse.md), which runs two.
 
 ---
 
@@ -356,7 +356,7 @@ The hand to be unhappy about is Energy plus Excadrill and no Basic to grow it on
 
 **[Xero's Psychic Lanterns](./psychic-lanterns.md), the one that needs homework.** Covered in full in [game plan 4](#4-magnetic-metal-is-the-anti-lantern-card). Without Magnetic Metal Energy attached you lose a 340 HP Pokémon to one attack; with it, Phantom Maze floors at 130 and needs three turns to do what it was going to do in one. Nothing else in that deck threatens Excadrill's HP. Gourgeist ex is the real problem instead, because *Horrifying Rondo* scales off his own damaged Bench and ignores retreat entirely, and Froslass will be putting a counter on every Ability Pokémon you own every Checkup. Your Metang all have Abilities. Expect to be chipped and play Full Metal Lab early.
 
-**[Xero's Mega Gengar deck](./dark-ex.md), the even fight.** *Void Gale* is 230 into your 340, so he needs two hits, and your 330 into his 350 means you need two as well. Neither of you exploits the other's Weakness; Metal does not fear Darkness and his Gengars fear Fighting. The Stadium turns his 230 into 200, which does not change the hit count but does mean a chipped Excadrill survives a turn longer than he expects. Watch *Tricky Steps* on Gengar ex moving Energy off your Active, because in this deck moving one Energy is the difference between 330 and 200. Win it by gusting Munkidori and Fezandipiti with Boss's Orders and refusing to trade Excadrill for anything smaller than a Mega.
+**[Xero's Curse Toll deck](./dark-curse.md), the even fight.** *Void Gale* is 230 into your 340, so he needs two hits, and your 330 into his 350 means you need two as well. Neither of you exploits the other's Weakness; Metal does not fear Darkness and his Gengars fear Fighting. The Stadium turns his 230 into 200, which does not change the hit count but does mean a chipped Excadrill survives a turn longer than he expects. Watch *Tricky Steps* on Gengar ex moving Energy off your Active, because in this deck moving one Energy is the difference between 330 and 200. Win it by gusting Munkidori and Fezandipiti with Boss's Orders and refusing to trade Excadrill for anything smaller than a Mega.
 
 **[Xero's Gengar Gang](./dark.md), the good matchup.** Everything in that list is a one-Prize Stage 1 or Stage 2 in the 130 HP range. Maximum Drilling is comical overkill and *Protect Charge* off Genesect ex kills anything he has for 150. The danger is the Prize map running backwards: he takes six one-Prize knockouts slowly while two Excadrill deaths hand him the game in four. Lead with Genesect, keep exactly one Excadrill on the board, and let the 340 body grind. Punk Helmet and Risky Ruins both punish a deck that attacks every turn, so count his damage before swinging.
 
