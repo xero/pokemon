@@ -325,6 +325,16 @@ There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists a
 
 ## Versus the Card Shop
 
+Current Standard, per [Limitless play data](https://play.limitlesstcg.com/decks?game=PTCG&format=standard), checked August 21, 2026. A Worlds Celebration tournament draws from this field, softened by however many kitchen-table decks show up.
+
+| Room | Share | This deck's view |
+| :--- | :--- | :--- |
+| Dragapult ex variants | ~18% | The biggest seat. Phantom Dive sprays damage counters across your Bench, and every damaged bencher adds 50 to Horrifying Rondo, so their spread loads your cheapest attack. The trap two-shots the 320 HP body either way. |
+| Festival Lead, Slowking, Alakazam, Dhelmise, Toucannon | ~24% | Single-prize rooms. Gourgeist leads and the Prize race runs honest; the paragraph below has the discipline. |
+| Mega Excadrill ex | ~8% | The field's top single deck, and the seat the dark box cannot sit in. The whole lantern core resists Fighting, so the 330 lands as 300 on a 350 HP wall, and Wally's Compassion undoes the hit. Their two-shot math never completes. |
+| N's Zoroark, Grimmsnarl Froslass | ~10% | Darkness rooms. The bad night; know it walking in. |
+| Mega Lucario ex, other Fighting rooms | ~4% | More Fighting the Resistance blunts. |
+
 **Latias ex is the trap's off switch.** *Skyliner* gives all their Basic Pokémon free retreat, and a ruling confirms "no Retreat Cost" overrides every increase, so Phantom Maze floors at a flat 130 against their Basics. Do not fight the ruling. Boss's Orders the Latias itself: 210 HP, Retreat 2, one Flame, 280, dead, two Prizes, and the switch turns back off. Until then, Gourgeist and Dusknoir never cared about retreat.
 
 **Single-prize grinder decks** make Phantom Maze overkill and the 3-prize Mega a liability. Gourgeist becomes the main attacker and the Prize race runs honest. These are the shop's hardest games.
@@ -365,6 +375,7 @@ The planning sessions produced more good cards than seats. These are the roads n
 | Team Rocket's Watchtower | Switch | shop tech; Colorless Pokémon lose their Abilities, which also switches off Jewel Seeker and Boosted Evolution at home. Decide if that is fun before sleeving it |
 | Gwynn package (2 Gwynn for 1 Lillie's + 1 Poke Pad) | see left | you want the dark deck's discard-draw rhythm; Duskull loves the discard pile |
 | Mega Signal | Switch | Hilda alone is not finding the Megas |
+| Dawn (Phantasmal Flames 087) | all 3 Hilda | the mail loses the Hilda race; one Dawn fetches Litwick, Lampent, and a Mega in a single Supporter, giving up only Hilda's Energy rider. The Gang lends its three for the night |
 | Dusclops (Shrouded Fable 019) | 2nd Duskull's evolution | already owned; a 5-counter Cursed Blast with no Candy required |
 | Jynx (Pitch Black 032) | flex | shop walls only; *Intense Kiss* discards the Defending Pokémon outright, takes no Prizes, and feels bad at home |
 | Night Parade module | 3rd Mega, Switch, 4th Rare Candy | home nights; three rotated prints of plain "Chandelure," written up in [Night Parade](#night-parade) |

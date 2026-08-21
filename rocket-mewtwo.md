@@ -1,11 +1,11 @@
 # Fox's Hostile Takeover
 
-### Game night · Team Rocket's Mewtwo ex, powered by a Spidops payroll
+### Fox's tournament 60 · Team Rocket's Mewtwo ex, powered by a Spidops payroll
 
 > [!NOTE]
 > **What this file is for.**
 >
-> A house deck for game night, built out of the Team Rocket's Mewtwo ex League Battle Deck plus the loose Trainers already in the box. No Mega Gengar ex, and nothing borrowed from the fire, fighting, or eevee decks, so all four stay sleeved and the choice happens at the table.
+> Fox's registered deck for the [Worlds Celebration at CARDCRATE](./worlds-celebration.md), Junior division, and still the house deck for game night. Built out of the Team Rocket's Mewtwo ex League Battle Deck plus loose singles already in the collection — nothing of it is in the mail, and nothing is borrowed from the fire, fighting, or eevee decks, so all four stay sleeved. The only card that moves with Dad's deck choice is the ACE SPEC; the warning under the deck list carries that table.
 >
 > Every Pokémon in it is a Team Rocket's card. That is not a theme choice. Two cards in the list read the words "Team Rocket's Pokémon" and pay you for going all the way.
 
@@ -15,8 +15,8 @@
 >
 > [The Thesis](#the-thesis) · [Deck List](#deck-list)
 >
-> **Pokémon** — [Mewtwo ex](#team-rockets-mewtwo-ex) · [Tarountula](#team-rockets-tarountula) · [Spidops](#team-rockets-spidops) · [Zubat](#team-rockets-zubat) · [Golbat](#team-rockets-golbat) · [Crobat ex](#team-rockets-crobat-ex) · [Articuno](#team-rockets-articuno)
-> **Supporters** — [Ariana](#team-rockets-ariana) · [Proton](#team-rockets-proton) · [Lillie's Determination](#lillies-determination) · [Giovanni](#team-rockets-giovanni) · [Boss's Orders](#bosss-orders) · [Petrel](#team-rockets-petrel)
+> **Pokémon** — [Mewtwo ex](#team-rockets-mewtwo-ex) · [Tarountula](#team-rockets-tarountula) · [Spidops](#team-rockets-spidops) · [Zubat](#team-rockets-zubat) · [Golbat](#team-rockets-golbat) · [Crobat ex](#team-rockets-crobat-ex) · [Koffing](#team-rockets-koffing) · [Wobbuffet](#team-rockets-wobbuffet) · [Articuno](#team-rockets-articuno)
+> **Supporters** — [Ariana](#team-rockets-ariana) · [Proton](#team-rockets-proton) · [Lillie's Determination](#lillies-determination) · [Giovanni](#team-rockets-giovanni) · [Boss's Orders](#bosss-orders)
 > **Items** — [Transceiver](#team-rockets-transceiver) · [Ultra Ball](#ultra-ball) · [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Rare Candy](#rare-candy) · [Switch](#switch) · [Night Stretcher](#night-stretcher) · [Scramble Switch](#scramble-switch)
 > **Tool / Stadium** — [Team Rocket's Factory](#team-rockets-factory)
 > **Energy** — [Team Rocket's Energy](#team-rockets-energy) · [Psychic](#basic-psychic-energy) · [Grass](#basic-grass-energy)
@@ -41,9 +41,9 @@ Three things fall out of building it this way.
 
 **The draw engine is free.** Team Rocket's Ariana draws you to 8 cards instead of 5 when every Pokémon you have in play is a Team Rocket's Pokémon. Since every Pokémon in this deck is one, the condition is never checked and never missed. Four copies of a draw-to-8 Supporter is a better engine than most decks get out of a Pokémon line, and it costs zero Bench space.
 
-**Nothing here is Fighting weak.** Mewtwo, Crobat, Golbat, Zubat, and Articuno all resist Fighting for 30. Mega Zygarde ex swings *Gaia Wave* for 200 and gets 170 out of it, which does not kill anything in this deck that matters.
+**Almost nothing here is Fighting weak.** Mewtwo, Crobat, Golbat, Zubat, Wobbuffet, and Articuno all resist Fighting for 30. Mega Zygarde ex swings *Gaia Wave* for 200 and gets 170 out of it, which does not kill anything in this deck that matters. The Koffing pair is the one exception, and its job is dying anyway.
 
-**Eleven of the sixteen Pokémon give up one Prize.** Only the Mewtwo and Crobat lines are worth two. Spidops trades a single Prize for whatever it kills.
+**Fourteen of the nineteen Pokémon give up one Prize.** Only the Mewtwo and Crobat lines are worth two. Spidops trades a single Prize for whatever it kills, and Koffing trades one Prize for a replacement body it fetches itself.
 
 > [!IMPORTANT]
 > **Mega Gengar ex is deliberately absent, and that costs you Seviper.**
@@ -54,7 +54,7 @@ Three things fall out of building it this way.
 
 ## Deck List
 
-**Pokémon (16)**
+**Pokémon (19)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
@@ -64,9 +64,11 @@ Three things fall out of building it this way.
 | 2 | Team Rocket's Zubat | Destined Rivals | 120 | I |
 | 2 | Team Rocket's Golbat | Destined Rivals | 121 | I |
 | 2 | Team Rocket's Crobat ex | Destined Rivals | 122 | I |
+| 2 | Team Rocket's Koffing | Destined Rivals | 125 | I |
+| 1 | Team Rocket's Wobbuffet | Destined Rivals | 082 | I |
 | 1 | Team Rocket's Articuno | Destined Rivals | 051 | I |
 
-**Trainers (34)**
+**Trainers (31)**
 
 | Qty | Card | Type | Set | Number | Reg |
 | --- | --- | --- | --- | --- | --- |
@@ -75,11 +77,10 @@ Three things fall out of building it this way.
 | 2 | Lillie's Determination | Supporter | Mega Evolution | 119 | I |
 | 2 | Team Rocket's Giovanni | Supporter | Destined Rivals | 174 | I |
 | 2 | Boss's Orders | Supporter | Mega Evolution | 114 | I |
-| 1 | Team Rocket's Petrel | Supporter | Destined Rivals | 176 | I |
-| 4 | Team Rocket's Transceiver | Item | Destined Rivals | 178 | I |
+| 3 | Team Rocket's Transceiver | Item | Destined Rivals | 178 | I |
 | 4 | Ultra Ball | Item | Mega Evolution | 131 | I |
 | 3 | Buddy-Buddy Poffin | Item | Temporal Forces | 144 | H |
-| 2 | Rare Candy | Item | Mega Evolution | 125 | I |
+| 1 | Rare Candy | Item | Mega Evolution | 125 | I |
 | 2 | Switch | Item | Mega Evolution | 130 | I |
 | 2 | Night Stretcher | Item | Shrouded Fable | 061 | H |
 | 1 | Scramble Switch | Item | Surging Sparks | 186 | H |
@@ -93,12 +94,20 @@ Three things fall out of building it this way.
 | 3 | Basic Psychic Energy | Mega Evolution Energies | 005 | - |
 | 3 | Basic Grass Energy | Mega Evolution Energies | 001 | - |
 
-**16 + 34 + 10 = 60.** ✓
+**19 + 31 + 10 = 60.** ✓
 
-**Basics: 9** (3 Mewtwo ex, 3 Tarountula, 2 Zubat, 1 Articuno). That sits inside the 75-85% band for opening with something playable, and every one of the nine counts toward *Power Saver*.
+**Basics: 12** (3 Mewtwo ex, 3 Tarountula, 2 Zubat, 2 Koffing, 1 Wobbuffet, 1 Articuno). That is roughly a 19% mulligan rate, and every one of the twelve counts toward *Power Saver*. The nine-Basic list this replaced claimed the 75-85% no-mulligan band and actually sat at 70%; the Koffing pair and the Wobbuffet are what closed that gap, taking the slots the Petrel, the second Rare Candy, and a fourth Transceiver the hand count never found used to hold.
 
 > [!WARNING]
-> **Scramble Switch is the one ACE SPEC.** Mewtwo ex retreats for three, which is the single worst number in this deck, and Scramble Switch moves the Energy along with the body. There is also a Japanese Prime Catcher in the box, which is fine at the kitchen table. Never both.
+> **The ACE SPEC slot follows Dad's deck choice.** Scramble Switch is the default: Mewtwo ex retreats for three, the single worst number in this deck, and Scramble Switch moves the Energy along with the body. But the house owns one copy and [the Gang](./dark.md) sleeves it too, so the slot resolves per branch:
+>
+> | The night | This slot holds |
+> | :--- | :--- |
+> | Dad plays [the lanterns](./psychic-lanterns.md), their Prime Catcher arrived | Scramble Switch, as listed |
+> | Dad plays the lanterns, Prime Catcher still in the mail | a third Switch — a deck needs no ACE SPEC |
+> | Dad plays the Gang | Prime Catcher, freed up by the unsleeved lanterns |
+>
+> The Prime Catcher night is no downgrade: the gust and the free escape in one Item is this deck's two thinnest resources at once. The Japanese Prime Catcher in the box is fine at the kitchen table and nowhere else. Never two ACE SPECs.
 
 ---
 
@@ -140,6 +149,28 @@ Two copies, the bottom of the thinnest line in the deck. 50 HP, so Poffin gets i
 
 *Assassin's Return* is [D][D] for 120, then optionally back to your hand with everything attached discarded. The bounce is a heal and an escape at once, and it resets *Biting Spree* for the next time you play it down. It is also expensive in a way the card does not say: Team Rocket's Energy is the only Darkness in this deck, so every bounce discards one of the four for good.
 
+### Team Rocket's Koffing
+
+**Two copies, and their job is to die in the Active Spot.** 70 HP puts it inside Buddy-Buddy Poffin range, it counts toward *Power Saver* like every other body, and it gives up one Prize.
+
+***Smog Signals* is why it leads.** If this Pokémon is in the Active Spot and is damaged by an attack — the attack that Knocks it Out included — it searches the deck for up to 2 Pokémon with "Koffing" in the name and benches them. With the second copy still in the deck, a KO'd lead replaces itself: the *Power Saver* count survives its own funeral, and their whole attack bought one Prize. [Game plan 7](#7-the-sacrifice-lead) is the manual.
+
+Two rules. Lead the first Koffing while the second is still in the deck, because once both are in play or in hand the Ability finds nothing. And it is the Active Spot and attack damage only — a benched Koffing is just a body, and damage counters placed by an Ability do not trigger it.
+
+*Leaking Gas* is 30 for [D][C], which this deck can only pay by wasting a Team Rocket's Energy, so it does not attack. It is also the one Fighting-weak body on the board, which matters not at all on a Pokémon whose job description is fainting.
+
+### Team Rocket's Wobbuffet
+
+**One copy, Fox's pick, and it earns the slot.** A 110 HP Basic that counts toward *Power Saver*, gives up one Prize, resists Fighting like the rest of the board — and carries the deck's only answer to chip damage.
+
+***Rocket Mirror* is [P][C], and this deck can actually pay it**: the loop's Basic Psychic covers the [P], or a Team Rocket's Energy does in a pinch. It moves **all** damage counters from 1 of your Benched Team Rocket's Pokémon onto their Active. Read what that is: a full heal on your bench and an attack, in one action. A Spidops that has been bleeding for three turns becomes 30 damage thrown back across the table, and the battery walks away clean.
+
+**It is the anti-spread card.** Anything that drips counters onto your Bench — Froslass's *Freezing Shroud* taxing your five Ability Pokémon, *Sneaky Bite* chip, Stadium damage — is quietly loading Rocket Mirror. Against a deck with no spread it is just a body, and one body is still a *Power Saver* count and a Proton target.
+
+The counters move as counters, not as an attack's damage, so no Weakness math applies in either direction. Three cares: 110 HP is over Buddy-Buddy Poffin's limit, so Proton and Ultra Ball are what find it; Retreat 2 means it does not want the Active Spot; and it is Darkness-weak, so against the Gengar decks it stays on the Bench doing its job from there.
+
+*Headbutt Bounce* is [P][C][C] for 70 — legal, expensive, and almost never the best use of three Energy. Rocket Mirror is the reason it is here.
+
 ### Team Rocket's Articuno
 
 **One copy, and it never attacks.** *Repelling Veil* prevents all effects of attacks used by your opponent's Pokémon done to your Basic Team Rocket's Pokémon. Mewtwo, Tarountula, and Zubat are Basic, so all three are covered: no Confusion on Mewtwo, no Poison, no forced switching, no discarding your attached Energy.
@@ -156,7 +187,7 @@ Draw until you have 5 cards in hand, or 8 if every Pokémon you have in play is 
 
 ### Team Rocket's Proton
 
-**The only Supporter here you may play on your first turn going first.** Search for up to 3 Basic Team Rocket's Pokémon and put them in your hand: Mewtwo, Tarountula, Zubat, and Articuno all qualify, so one card can set up your entire *Power Saver* count. Three copies, and Transceiver makes the real number closer to seven.
+**The only Supporter here you may play on your first turn going first.** Search for up to 3 Basic Team Rocket's Pokémon and put them in your hand: Mewtwo, Tarountula, Zubat, Koffing, Wobbuffet, and Articuno all qualify, so one card can set up your entire *Power Saver* count. Three copies, and Transceiver makes the real number closer to six.
 
 ### Lillie's Determination
 
@@ -170,17 +201,13 @@ Switch your Active Team Rocket's Pokémon with a Benched one, then drag one of t
 
 Switch in 1 of your opponent's Benched Pokémon to the Active Spot. Two copies alongside the Giovanni, because every point of chip damage this deck spreads is worthless until you can choose what dies. Giovanni does more, but it needs a Benched Team Rocket's Pokémon to switch to and this does not, which is the difference on a board you have just had knocked apart. Neither one turns on Team Rocket's Factory.
 
-### Team Rocket's Petrel
-
-Search your deck for any Trainer card. One copy, because what you want it for is the Scramble Switch or the second Team Rocket's Factory, and both of those are one-offs by nature. It is a Team Rocket Supporter, so Transceiver finds it and the Factory pays you for playing it.
-
 ---
 
 # Trainers — Items
 
 ### Team Rocket's Transceiver
 
-An Item that searches out any Supporter with "Team Rocket" in its name. Four copies, which puts your real Ariana count closer to eight and your real Proton count closer to seven. Turn one going first it fetches Proton and you play it the same turn. It cannot find Lillie's Determination or Boss's Orders.
+An Item that searches out any Supporter with "Team Rocket" in its name. Three copies — the records claimed a fourth, and the 2026-08-21 hand count never found it — which still puts your real Ariana count closer to seven and your real Proton count closer to six. Turn one going first it fetches Proton and you play it the same turn. It cannot find Lillie's Determination or Boss's Orders.
 
 ### Ultra Ball
 
@@ -188,11 +215,11 @@ Discard 2 other cards from your hand, then search your deck for any Pokémon. Fo
 
 ### Buddy-Buddy Poffin
 
-Search out up to 2 Basic Pokémon with 70 HP or less and put them straight onto your Bench. Tarountula and Zubat are 50 each, so one card drops two bodies toward the *Power Saver* count and starts both evolution lines at once. Three copies. Mewtwo at 280 and Articuno at 120 are out of range, which is the only reason this is not a four.
+Search out up to 2 Basic Pokémon with 70 HP or less and put them straight onto your Bench. Tarountula and Zubat are 50 each and Koffing is exactly 70, so one card drops two bodies toward the *Power Saver* count and starts an evolution line at the same time. Three copies. Mewtwo at 280 and Articuno at 120 are out of range, which is the only reason this is not a four.
 
 ### Rare Candy
 
-Evolve a Basic straight to Stage 2, skipping the Stage 1. Two copies, and here that means Zubat into Crobat ex on the turn you need a 310 HP body immediately. It costs you the *Sneaky Bite* you would have got on the way past, so it buys a turn and gives up 20 chip. Not playable on your first turn, or on a Basic you benched this turn.
+Evolve a Basic straight to Stage 2, skipping the Stage 1. One copy — the second went back in the box when the Koffing pair came in, and hand-evolving through Golbat was already the better route. What the copy is for is Zubat into Crobat ex on the turn you need a 310 HP body immediately. It costs you the *Sneaky Bite* you would have got on the way past, so it buys a turn and gives up 20 chip. Not playable on your first turn, or on a Basic you benched this turn.
 
 ### Switch
 
@@ -206,13 +233,15 @@ Put a Pokémon or a Basic Energy card from your discard pile into your hand. Two
 
 **The one ACE SPEC, and one per deck across the whole list.** Switch your Active with a Benched Pokémon, then move any amount of Energy from the one you just benched to the new Active. On a Mewtwo about to be knocked out that is a full Energy transplant onto a fresh one, and it dodges the knockout in the same card. Save it for the turn it wins the game.
 
+This is also the slot that moves with Dad's deck choice — the warning under [the deck list](#deck-list) carries the branch table. On a Prime Catcher night the same rule applies: one use, saved for the turn it takes a Prize.
+
 ---
 
 # Trainers — Tool & Stadium
 
 ### Team Rocket's Factory
 
-**Stadium.** Once during each player's turn, if they played a Supporter with "Team Rocket" in its name that turn, they may draw 2. Ariana, Proton, Giovanni, and Petrel all qualify, which is nearly every turn of the game; Lillie's Determination and Boss's Orders do not. The clause is symmetrical and almost never helps the other side, because almost nobody else is playing Team Rocket Supporters. Two copies, since a Stadium only stays down until someone replaces it.
+**Stadium.** Once during each player's turn, if they played a Supporter with "Team Rocket" in its name that turn, they may draw 2. Ariana, Proton, and Giovanni all qualify, which is nearly every turn of the game; Lillie's Determination and Boss's Orders do not. The clause is symmetrical and almost never helps the other side, because almost nobody else is playing Team Rocket Supporters. Two copies, since a Stadium only stays down until someone replaces it.
 
 ---
 
@@ -296,24 +325,27 @@ There is no Prize denial in this deck. Mega Gengar ex is out and there is no Leg
 | --- | --- | --- |
 | Team Rocket's Tarountula | 1 | 50 |
 | Team Rocket's Zubat | 1 | 50 |
+| Team Rocket's Koffing | 1 | 70 |
 | Team Rocket's Golbat | 1 | 80 |
+| Team Rocket's Wobbuffet | 1 | 110 |
 | Team Rocket's Articuno | 1 | 120 |
 | Team Rocket's Spidops | 1 | 130 |
 | Team Rocket's Mewtwo ex | 2 | 280 |
 | Team Rocket's Crobat ex | 2 | 310 |
 
-Eleven of the sixteen Pokémon are worth one Prize. The shape you want is Mewtwo killing something worth two every turn while the only things they can reach are Spidops worth one.
+Fourteen of the nineteen Pokémon are worth one Prize. The shape you want is Mewtwo killing something worth two every turn while the only things they can reach are Spidops and Koffing worth one.
 
 Weakness matters more here than Prize denial does, so keep this table in your head:
 
 | Your Pokémon | Weakness | Resistance |
 | --- | --- | --- |
-| Team Rocket's Mewtwo ex | Darkness ×2 | Fighting -30 |
+| Team Rocket's Mewtwo ex, Wobbuffet | Darkness ×2 | Fighting -30 |
 | Team Rocket's Crobat ex, Golbat, Zubat | Lightning ×2 | Fighting -30 |
 | Team Rocket's Articuno | Lightning ×2 | Fighting -30 |
 | Team Rocket's Tarountula, Spidops | Fire ×2 | none |
+| Team Rocket's Koffing | Fighting ×2 | none |
 
-Nothing in the deck is Fighting weak and 10 of the 16 Pokémon resist it. That is the best structural matchup you have.
+Only the Koffing pair is Fighting weak, 11 of the 19 Pokémon resist it, and Koffing's job is dying anyway. Fighting is still the best structural matchup you have.
 
 ---
 
@@ -321,9 +353,9 @@ Nothing in the deck is Fighting weak and 10 of the 16 Pokémon resist it. That i
 
 ## 1. Turn one, count to four
 
-Going first, Transceiver into Proton, then Proton for Mewtwo plus two more Basics. That is your *Power Saver* count in one turn out of two cards. Bench Tarountula whatever else happens, because Spidops is a turn behind everything else.
+Going first, Transceiver into Proton, then Proton for Mewtwo plus two more Basics. That is your *Power Saver* count in one turn out of two cards. Bench Tarountula whatever else happens, because Spidops is a turn behind everything else, and put a Koffing in front if you have one — [game plan 7](#7-the-sacrifice-lead) is why.
 
-Going second you can attack, so lead Poffin for Tarountula and Zubat, attach Team Rocket's Energy to Mewtwo, and take the free damage where you can get it.
+Going second you can attack, so Poffin for Tarountula and Koffing, attach Team Rocket's Energy to Mewtwo, and take the free damage where you can get it.
 
 ## 2. Two attachments, then Mewtwo swings
 
@@ -346,6 +378,16 @@ When Mewtwo is stuck Active with three Energy on it and something is about to ki
 ## 6. Articuno goes down early against effects
 
 If they are running Confusion, Poison, or anything that discards your Energy, get Articuno on the Bench in the first two turns. It costs you a Bench slot and buys total immunity to the annoying half of their deck.
+
+## 7. The sacrifice lead
+
+Koffing stands in front and dies on purpose. *Smog Signals* fires when it takes attack damage in the Active Spot, the Knock Out included: the other Koffing comes out of the deck onto the Bench, the *Power Saver* count holds without spending a card from your hand, and their whole attack bought one Prize.
+
+If Koffing is about to die, you are doing it right.
+
+The order matters. Lead the first Koffing while the second is still in the deck, because once both are in play or in hand the Ability finds nothing. And it is the Active Spot and attack damage only — a benched Koffing is just a body, and damage counters placed by an Ability slide past it.
+
+With no Koffing in the opening hand, the lead is Tarountula or Zubat and the plan is the same: feed the one-Prize bodies, keep Mewtwo loading behind them.
 
 ---
 
@@ -387,23 +429,33 @@ The second deck at this table that one-shots Mewtwo, and this one does it withou
 
 **Every Pokémon in that deck is Darkness Weakness ×2.** Chandelure, Gourgeist ex, Dusknoir, Lampent, and Litwick all double it, and *Assassin's Return* is 120, which lands as 240. That kills Dusknoir at 160 and every small body in the lantern line outright, and takes 240 of the 270 off a Gourgeist ex. Crobat ex is your attacker here. Save *Erasure Ball* for the turn Gourgeist ex is Active, where 280 clears its 270.
 
-**Froslass taxes your whole board.** *Freezing Shroud* puts a damage counter on every Pokémon that has an Ability at each Checkup, both sides. Mewtwo, Spidops, Golbat, Crobat ex, and Articuno all have one, so five of your bodies bleed 10 a turn and the Spidops battery is on a clock from the moment Froslass lands. Only Tarountula and Zubat are immune. Articuno does not cover this and it does not cover Dusknoir's *Cursed Blast* either, because *Repelling Veil* stops effects of attacks and both of those are Abilities.
+**Froslass taxes your whole board — and Wobbuffet sends the bill back.** *Freezing Shroud* puts a damage counter on every Pokémon that has an Ability at each Checkup, both sides. Mewtwo, Spidops, Golbat, Crobat ex, Koffing, and Articuno all have one, so six of your bodies bleed 10 a turn and the Spidops battery is on a clock from the moment Froslass lands. Only Tarountula, Zubat, and Wobbuffet are immune. Articuno does not cover this and it does not cover Dusknoir's *Cursed Blast* either, because *Repelling Veil* stops effects of attacks and both of those are Abilities. What does answer it is *Rocket Mirror*: every counter the shroud drips onto a benched Rocket Pokémon is ammunition Wobbuffet throws back at their Active, heal and attack in one motion. This is the matchup Fox picked it for.
 
 **Your own chip feeds them.** *Horrifying Rondo* does 30 plus 50 for each of their Benched Pokémon carrying damage counters, and *Biting Spree* is how those counters get there. Against this deck, spend the chip on something you are about to knock out, or do not spend it at all.
+
+### The mirror, at the card shop
+
+The deck across a Junior table is likelier to be this exact League Battle Deck than anything else, so know the mirror cold.
+
+**The Spidops die first.** Whoever loses the battery caps at 160, and 160 does not one-shot a 280 HP Mewtwo, while a running loop's 280 does. Spend Boss's Orders and Giovanni on their Spidops before their Mewtwo, and keep your own third Tarountula in reserve.
+
+**The Mewtwo war is a race with one rule.** 280 one-shots 280, so the Mewtwo that attacks first trades up, and the player who loaded a second Mewtwo on the Bench first wins the rematch. Never send Mewtwo forward until it can swing that same turn.
+
+**The Koffing lead wins the early trade.** Their two-Prize attacker spending a turn to kill a one-Prize Koffing that replaces itself is the exchange this deck was tuned for. Take it every time.
 
 ---
 
 ## Test and Tune
 
-Three things to watch, and the exact ratio each one points at.
+Three things to watch, and the exact ratio each one points at. The Koffing pair already spent the two obvious flex slots, so the Petrel and the second Rare Candy sit in the box as the first swaps back whenever a change below needs room.
 
-**Mewtwo cannot attack on turn two.** If *Power Saver* is what is stopping you rather than Energy, you are short on early Bench bodies. Go to 4 Team Rocket's Proton over the Petrel, and cut a Rare Candy for a fourth Buddy-Buddy Poffin. This is the most likely problem in the first few games.
+**Mewtwo cannot attack on turn two.** If *Power Saver* is what is stopping you rather than Energy, go to 4 Team Rocket's Proton over a Night Stretcher. With eleven Basics and the sacrifice lead this should now be rare; if it is not, count how often the Poffins are sitting in your hand instead of on the table.
 
-**The Spidops loop never starts.** If *Erasure Ball* keeps coming in at 160, the Energy is not reaching the discard pile. Watch whether you are pitching Energy to Ultra Ball; if you are and it still stalls, add a Basic Energy over the Petrel and go to 11.
+**The Spidops loop never starts.** If *Erasure Ball* keeps coming in at 160, the Energy is not reaching the discard pile. Watch whether you are pitching Energy to Ultra Ball; if you are and it still stalls, add a fourth Basic Psychic over the last Rare Candy and go to 11.
 
-**Mewtwo is stranded Active with three Energy on it.** If retreat is what loses you games rather than damage, go to 3 Switch by cutting a Night Stretcher, and consider a second Team Rocket's Giovanni over a Boss's Orders since Giovanni does both jobs at once.
+**Mewtwo is stranded Active with three Energy on it.** If retreat is what loses you games rather than damage, go to 3 Switch by cutting a Night Stretcher — and remember that on a Gang night the Prime Catcher in the ACE SPEC slot is already the extra out.
 
-Two smaller notes. If Articuno is a dead card two games running, the table is not playing effects and that slot wants to be a fourth Tarountula. And if you are drawing *Biting Spree* damage but never converting it into a knockout, you are short on gust and the answer is a third Boss's Orders, not more chip.
+Two smaller notes. If Articuno is a dead card two games running, the table is not playing effects and that slot wants the Petrel back. And if you are drawing *Biting Spree* damage but never converting it into a knockout, you are short on gust and the answer is a third Boss's Orders, not more chip.
 
 ---
 

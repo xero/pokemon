@@ -257,6 +257,8 @@ FLAVOR = {
         "Team Rocket's Crobat ex": ["crobat"],
         "Team Rocket's Golbat": ["golbat"],
         "Team Rocket's Zubat": ["zubat"],
+        "Team Rocket's Koffing": ["koffing"],
+        "Team Rocket's Wobbuffet": ["wobbuffet"],
         "Team Rocket's Articuno": ["articuno"],
         "The Thesis": ["mewtwo"],
         "The Engine": ["zubat", "golbat"],
@@ -266,6 +268,7 @@ FLAVOR = {
         "4. Evolve Crobat by hand when you can afford the turn": ["golbat"],
         "5. Crobat is the answer to a bad Active": ["crobat"],
         "6. Articuno goes down early against effects": ["articuno"],
+        "7. The sacrifice lead": ["koffing"],
         # the matchups get the deck they are about, not this deck's cards.
         # zygarde was promoted from assets/ani for the Fighting row.
         "The Fighting deck, Mega Zygarde ex": ["zygarde"],
@@ -273,6 +276,7 @@ FLAVOR = {
         "The Eeveelution deck, Flareon ex": ["flareon-ex"],
         "The Gengar decks": ["gengar", "gengar-mega"],
         "The lantern deck, Mega Chandelure ex": ["chandelure"],
+        "The mirror, at the card shop": ["mewtwo"],
         "What To Buy": ["zubat"],
     },
     # drilbur, excadrill, beldum, metang, genesect, metagross, scizor and

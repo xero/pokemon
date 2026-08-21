@@ -27,6 +27,11 @@
 # never-arrived  orders that were placed but never delivered. qty is NEGATIVE,
 #               subtracting from the order-history count, so the correction
 #               survives a full regeneration of order-quantities.tsv
+# missing       cards the records say we own but a hand count cannot find.
+#               qty is NEGATIVE, same trick as never-arrived.
+# energy-pack-2026-08-21  assorted basic-energy pack Fox got 2026-08-21,
+#               counted by hand. The Voltaic row's url stays blank until the
+#               card goes through add_cards.py.
 #
 # All decklists verified against Bulbapedia wikitext and each totals exactly 60.
 #
@@ -142,3 +147,15 @@ lgs-2026-08-20	no	2	/pokemon/sv-prismatic-evolutions/dusknoir	Dusknoir, Prismati
 lgs-2026-08-20	no	1	/pokemon/sv04-paradox-rift/pumpkaboo	Pumpkaboo, Paradox Rift 077
 lgs-2026-08-20	no	12	/pokemon/mee-mega-evolution-energies/basic-psychic-energy-005	Psychic Energy (basic energy is fungible)
 never-arrived	no	-2	/pokemon/sv-prismatic-evolutions/flareon	Flareon, Prismatic Evolutions 013, x2 lost in the mail
+lgs-2026-08-21	no	1	/pokemon/me02-phantasmal-flames/mega-charizard-x-ex-013-094	Mega Charizard X ex, Phantasmal Flames 013, Fox's
+lgs-2026-08-21	no	2	/pokemon/me01-mega-evolution/wallys-compassion-132-132	Wally's Compassion, Mega Evolution 132
+lgs-2026-08-21	no	1	/pokemon/me-ascended-heroes/air-balloon	Air Balloon, Ascended Heroes 181
+lgs-2026-08-21	no	1	/pokemon/me-ascended-heroes/snorunt-046-217	Snorunt, Ascended Heroes 046, plain common
+other	no	1	/pokemon/sv10-destined-rivals/team-rockets-koffing	Team Rocket's Koffing, Destined Rivals 125, second copy counted by hand
+other	no	1	/pokemon/sv10-destined-rivals/team-rockets-weezing-126-182	Team Rocket's Weezing, Destined Rivals 126, second copy counted by hand
+other	no	1	/pokemon/sv10-destined-rivals/team-rockets-wobbuffet	Team Rocket's Wobbuffet, Destined Rivals 082, Fox's copy counted by hand
+missing	no	-1	/pokemon/sv10-destined-rivals/team-rockets-transceiver	Team Rocket's Transceiver, Destined Rivals 178, hand count 2026-08-21 found 3 of the LBD's 4
+energy-pack-2026-08-21	no	4	/pokemon/mee-mega-evolution-energies/basic-grass-energy-001	Grass Energy (basic energy is fungible)
+energy-pack-2026-08-21	no	18	/pokemon/mee-mega-evolution-energies/basic-metal-energy-008	Metal Energy (basic energy is fungible)
+energy-pack-2026-08-21	no	10	/pokemon/mee-mega-evolution-energies/basic-lightning-energy-004	Lightning Energy (basic energy is fungible)
+energy-pack-2026-08-21	no	1		Voltaic Lightning Energy, Pitch Black 084

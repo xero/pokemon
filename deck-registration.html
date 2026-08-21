@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#5b4a8a" />
+		<title>Deck Registration — Worlds Celebration 2026</title>
+		<style>
+		:root {
+			/* palette */
+			--ink:    #1c1c1c;
+			--paper:  #fbfaf7;
+			--stone:  #b9b4a8;
+			--haze:   #6b675e;
+			--ghost:  #5b4a8a;
+
+			/* spacing */
+			--space: 0;
+			--gap:   1rem;
+			--pad:   clamp(1rem, 3vw, 2rem);
+
+			/* theme */
+			--bg:     var(--paper);
+			--text:   var(--ink);
+			--border: var(--stone);
+			--accent: var(--ghost);
+			--muted:  var(--haze);
+		}
+
+		html,
+		body {
+			height: 100%;
+			background: var(--bg);
+			color: var(--text);
+			font-size: 13px;
+			line-height: 1.5;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+		}
+
+		body > header {
+			display: flex;
+			flex-flow: column;
+			gap: 0.25rem;
+			width: min(100%, 52rem);
+			margin-inline: auto;
+			padding: var(--pad) var(--pad) 0;
+
+			p {
+				color: var(--muted);
+			}
+		}
+
+		main {
+			display: flex;
+			flex-flow: column;
+			gap: calc(var(--gap) * 2);
+			width: min(100%, 52rem);
+			margin-inline: auto;
+			padding: var(--pad);
+		}
+
+		article {
+			display: flex;
+			flex-flow: column;
+			gap: var(--gap);
+			border: 2px solid var(--text);
+			padding: var(--pad);
+
+			> header {
+				display: flex;
+				flex-flow: column;
+				gap: 0.5rem;
+
+				h2 {
+					color: var(--accent);
+				}
+
+				> p {
+					color: var(--muted);
+					font-style: italic;
+				}
+			}
+
+			> footer {
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+				justify-content: space-between;
+				border-top: 1px solid var(--border);
+				padding-top: 0.5rem;
+			}
+		}
+
+		.fields {
+			display: flex;
+			flex-flow: row wrap;
+			gap: 0.4rem 1.5rem;
+			border: 1px solid var(--border);
+			padding: 0.6rem;
+
+			> div {
+				display: flex;
+				gap: 0.4rem;
+			}
+
+			dt {
+				font-weight: bold;
+
+				&::after {
+					content: ":";
+				}
+			}
+		}
+
+		.blank {
+			display: inline-block;
+			min-width: 12ch;
+			border-bottom: 1px solid var(--text);
+		}
+
+		section {
+			display: flex;
+			flex-flow: row wrap;
+			gap: var(--gap);
+			align-items: flex-start;
+		}
+
+		table {
+			flex: 1 1 22rem;
+			border-collapse: collapse;
+
+			caption {
+				text-align: left;
+				font-weight: bold;
+				border-bottom: 2px solid var(--text);
+				padding-bottom: 0.2rem;
+			}
+
+			th,
+			td {
+				text-align: left;
+				border-bottom: 1px solid var(--border);
+				padding: 0.15rem 0.5rem 0.15rem 0;
+			}
+
+			th:first-child,
+			td:first-child {
+				text-align: right;
+				padding-right: 0.75rem;
+			}
+
+			td:last-child,
+			th:last-child {
+				text-align: center;
+				padding-right: 0;
+			}
+		}
+
+		@media print {
+			:root {
+				--pad: 0;
+				--gap: 0.75rem;
+			}
+
+			html,
+			body {
+				font-size: 10px;
+			}
+
+			body > header {
+				display: none;
+			}
+
+			article {
+				border: none;
+				break-after: page;
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Deck Registration — 2026 Worlds Celebration at CARDCRATE</h1>
+			<p>Three sheets, one per branch. Print all three, sleeve one deck the night before, and hand in the sheet that matches the sleeved 60. Fill in the date and date of birth by hand. Format is Standard, regulation marks H, I, and J; every card below is an owned English print.</p>
+		</header>
+		<main>
+			<article>
+				<header>
+					<h2>Sheet A — Xero's Psychic Lanterns</h2>
+					<p>The plan of record. Sleeve this when the mail landed.</p>
+					<dl class="fields">
+						<div><dt>Name</dt><dd>xero harrison</dd></div>
+						<div><dt>Player ID</dt><dd>6158695</dd></div>
+						<div><dt>Division</dt><dd>Junior ☐ &nbsp;Senior ☐ &nbsp;Masters ☑</dd></div>
+						<div><dt>Date of birth</dt><dd><span class="blank"></span></dd></div>
+						<div><dt>Date</dt><dd><span class="blank"></span></dd></div>
+						<div><dt>Format</dt><dd>Standard</dd></div>
+					</dl>
+				</header>
+				<section>
+					<table>
+						<caption>Pokémon (22)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Litwick</td><td>Pitch Black</td><td>036</td><td>J</td></tr>
+							<tr><td>4</td><td>Lampent</td><td>Pitch Black</td><td>037</td><td>J</td></tr>
+							<tr><td>3</td><td>Mega Chandelure ex</td><td>Pitch Black</td><td>038</td><td>J</td></tr>
+							<tr><td>2</td><td>Pumpkaboo</td><td>Chaos Rising</td><td>040</td><td>J</td></tr>
+							<tr><td>2</td><td>Gourgeist ex</td><td>Chaos Rising</td><td>041</td><td>J</td></tr>
+							<tr><td>1</td><td>Snorunt</td><td>Twilight Masquerade</td><td>051</td><td>H</td></tr>
+							<tr><td>1</td><td>Snorunt</td><td>Ascended Heroes</td><td>046</td><td>I</td></tr>
+							<tr><td>2</td><td>Froslass</td><td>Twilight Masquerade</td><td>053</td><td>H</td></tr>
+							<tr><td>2</td><td>Duskull</td><td>Shrouded Fable</td><td>018</td><td>H</td></tr>
+							<tr><td>1</td><td>Dusknoir</td><td>Shrouded Fable</td><td>020</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<caption>Trainers (28)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie's Determination</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Hilda</td><td>White Flare</td><td>084</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss's Orders</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>1</td><td>Wally's Compassion</td><td>Mega Evolution</td><td>132</td><td>I</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>4</td><td>Rare Candy</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>3</td><td>Poke Pad</td><td>Perfect Order</td><td>081</td><td>J</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Wondrous Patch</td><td>Phantasmal Flames</td><td>094</td><td>I</td></tr>
+							<tr><td>1</td><td>Switch</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Air Balloon</td><td>Ascended Heroes</td><td>181</td><td>I</td></tr>
+							<tr><td>1</td><td>Prime Catcher · ACE SPEC</td><td>Prismatic Evolutions</td><td>119</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<caption>Energy (10)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Telepathic Psychic Energy</td><td>Perfect Order</td><td>088</td><td>J</td></tr>
+							<tr><td>6</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td><td>-</td></tr>
+						</tbody>
+					</table>
+				</section>
+				<footer>
+					<p><strong>22 + 28 + 10 = 60.</strong> One ACE SPEC: Prime Catcher.</p>
+					<p>Signature: <span class="blank"></span></p>
+				</footer>
+			</article>
+			<article>
+				<header>
+					<h2>Sheet B — Psychic Lanterns, Dawn Patch</h2>
+					<p>Sleeve this when only Hilda missed the mail. Three Dawn replace the three Hilda; everything else is Sheet A.</p>
+					<dl class="fields">
+						<div><dt>Name</dt><dd>xero harrison</dd></div>
+						<div><dt>Player ID</dt><dd>6158695</dd></div>
+						<div><dt>Division</dt><dd>Junior ☐ &nbsp;Senior ☐ &nbsp;Masters ☑</dd></div>
+						<div><dt>Date of birth</dt><dd><span class="blank"></span></dd></div>
+						<div><dt>Date</dt><dd><span class="blank"></span></dd></div>
+						<div><dt>Format</dt><dd>Standard</dd></div>
+					</dl>
+				</header>
+				<section>
+					<table>
+						<caption>Pokémon (22)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Litwick</td><td>Pitch Black</td><td>036</td><td>J</td></tr>
+							<tr><td>4</td><td>Lampent</td><td>Pitch Black</td><td>037</td><td>J</td></tr>
+							<tr><td>3</td><td>Mega Chandelure ex</td><td>Pitch Black</td><td>038</td><td>J</td></tr>
+							<tr><td>2</td><td>Pumpkaboo</td><td>Chaos Rising</td><td>040</td><td>J</td></tr>
+							<tr><td>2</td><td>Gourgeist ex</td><td>Chaos Rising</td><td>041</td><td>J</td></tr>
+							<tr><td>1</td><td>Snorunt</td><td>Twilight Masquerade</td><td>051</td><td>H</td></tr>
+							<tr><td>1</td><td>Snorunt</td><td>Ascended Heroes</td><td>046</td><td>I</td></tr>
+							<tr><td>2</td><td>Froslass</td><td>Twilight Masquerade</td><td>053</td><td>H</td></tr>
+							<tr><td>2</td><td>Duskull</td><td>Shrouded Fable</td><td>018</td><td>H</td></tr>
+							<tr><td>1</td><td>Dusknoir</td><td>Shrouded Fable</td><td>020</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<caption>Trainers (28)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie's Determination</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Dawn</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss's Orders</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>1</td><td>Wally's Compassion</td><td>Mega Evolution</td><td>132</td><td>I</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>4</td><td>Rare Candy</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>3</td><td>Poke Pad</td><td>Perfect Order</td><td>081</td><td>J</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Wondrous Patch</td><td>Phantasmal Flames</td><td>094</td><td>I</td></tr>
+							<tr><td>1</td><td>Switch</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Air Balloon</td><td>Ascended Heroes</td><td>181</td><td>I</td></tr>
+							<tr><td>1</td><td>Prime Catcher · ACE SPEC</td><td>Prismatic Evolutions</td><td>119</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<caption>Energy (10)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Telepathic Psychic Energy</td><td>Perfect Order</td><td>088</td><td>J</td></tr>
+							<tr><td>6</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td><td>-</td></tr>
+						</tbody>
+					</table>
+				</section>
+				<footer>
+					<p><strong>22 + 28 + 10 = 60.</strong> One ACE SPEC: Prime Catcher.</p>
+					<p>Signature: <span class="blank"></span></p>
+				</footer>
+			</article>
+			<article>
+				<header>
+					<h2>Sheet C — Xero's Gengar Gang</h2>
+					<p>The fallback. Sleeve this when Froslass or Telepathic missed both the mail and the dime bin. It is already sleeved; touch nothing.</p>
+					<dl class="fields">
+						<div><dt>Name</dt><dd>xero harrison</dd></div>
+						<div><dt>Player ID</dt><dd>6158695</dd></div>
+						<div><dt>Division</dt><dd>Junior ☐ &nbsp;Senior ☐ &nbsp;Masters ☑</dd></div>
+						<div><dt>Date of birth</dt><dd><span class="blank"></span></dd></div>
+						<div><dt>Date</dt><dd><span class="blank"></span></dd></div>
+						<div><dt>Format</dt><dd>Standard</dd></div>
+					</dl>
+				</header>
+				<section>
+					<table>
+						<caption>Pokémon (21)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>4</td><td>Gastly</td><td>Perfect Order</td><td>048</td><td>J</td></tr>
+							<tr><td>2</td><td>Haunter</td><td>Phantasmal Flames</td><td>055</td><td>I</td></tr>
+							<tr><td>3</td><td>Gengar</td><td>Perfect Order</td><td>050</td><td>J</td></tr>
+							<tr><td>3</td><td>Koffing</td><td>Journey Together</td><td>091</td><td>I</td></tr>
+							<tr><td>3</td><td>Weezing</td><td>Journey Together</td><td>092</td><td>I</td></tr>
+							<tr><td>2</td><td>Sableye</td><td>Phantasmal Flames</td><td>059</td><td>I</td></tr>
+							<tr><td>2</td><td>Toxel</td><td>Phantasmal Flames</td><td>067</td><td>I</td></tr>
+							<tr><td>2</td><td>Toxtricity</td><td>Phantasmal Flames</td><td>068</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<caption>Trainers (29)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>3</td><td>Dawn</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>2</td><td>Lillie's Determination</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>2</td><td>Gwynn</td><td>Pitch Black</td><td>078</td><td>J</td></tr>
+							<tr><td>3</td><td>Boss's Orders</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>3</td><td>Rare Candy</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>4</td><td>Night Stretcher</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Switch</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Scramble Switch · ACE SPEC</td><td>Surging Sparks</td><td>186</td><td>H</td></tr>
+							<tr><td>2</td><td>Dark Bell</td><td>Pitch Black</td><td>075</td><td>J</td></tr>
+							<tr><td>2</td><td>Punk Helmet</td><td>Phantasmal Flames</td><td>092</td><td>I</td></tr>
+							<tr><td>2</td><td>Risky Ruins</td><td>Mega Evolution</td><td>127</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<caption>Energy (10)</caption>
+						<thead>
+							<tr><th>Qty</th><th>Card</th><th>Set</th><th>No.</th><th>Reg</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>2</td><td>Shadowy Darkness Energy</td><td>Pitch Black</td><td>083</td><td>J</td></tr>
+							<tr><td>8</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>007</td><td>-</td></tr>
+						</tbody>
+					</table>
+				</section>
+				<footer>
+					<p><strong>21 + 29 + 10 = 60.</strong> One ACE SPEC: Scramble Switch.</p>
+					<p>Signature: <span class="blank"></span></p>
+				</footer>
+			</article>
+		</main>
+	</body>
+</html>
