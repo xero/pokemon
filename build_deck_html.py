@@ -281,27 +281,28 @@ FLAVOR = {
     },
     # drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
     # aggron were promoted from assets/ani for this page. No Mega Excadrill
-    # sprite exists, so the base form stands in for it, and Fezandipiti is
-    # gen 9 so it goes bare like the other gen 9 cards in the box.
+    # sprite exists, so the base form stands in for it.
     "metal-excadrill.md": {
         "Mega Excadrill ex": ["excadrill"],
         "Drilbur": ["drilbur"],
         "Metang": ["metang"],
+        "Metagross": ["metagross"],
         "Beldum": ["beldum"],
         "Genesect ex": ["genesect"],
-        "The Thesis": ["excadrill"],
+        # the thesis is Metagross now, not the Mega
+        "The Thesis": ["metagross"],
         "The Energy Engine": ["metang"],
         "Damage Math": ["excadrill"],
-        "The Prize Map": ["genesect"],
+        "The Prize Map": ["metagross"],
         "1. Turn one is Drilbur, and it is not optional": ["drilbur"],
         "2. Two Metang before anything else": ["beldum", "metang"],
-        "3. Count to five before you swing": ["excadrill"],
-        # the matchup plans get the deck they are about, as on the other pages
-        "4. Magnetic Metal is the anti-lantern card": ["chandelure"],
-        "5. Losing Excadrill is not losing the game": ["genesect"],
+        "3. Metagross swings first, always": ["metagross"],
+        "4. Count to five before the Mega comes out": ["excadrill"],
+        "5. Rebuilding after Metallic Hammer": ["metang"],
         "6. Reading the opening hand": ["beldum"],
+        # the matchup plans get the deck they are about, as on the other pages
         "Versus the Kitchen Table": ["gengar", "chandelure"],
-        "Versus the Card Shop": ["metagross"],
+        "Versus the Card Shop": ["excadrill"],
         "Alternatives": ["scizor", "aggron"],
         "What To Buy": ["drilbur"],
     },

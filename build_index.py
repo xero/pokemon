@@ -54,9 +54,10 @@ PAGES = [
     ("rocket-mewtwo.html", ["crobat", "mewtwo"],
      "Fox's game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
      " payroll, and a Crobat line that fixes a bad Active for free."),
-    ("metal-excadrill.html", ["drilbur", "excadrill"],
-     "Fox's Metal deck, bought from zero. Mega Excadrill ex does 200 on four"
-     " Energy and 330 on five, and four Metang exist to find the fifth."),
+    ("metal-excadrill.html", ["drilbur", "metagross"],
+     "Fox's Metal deck, bought from zero. One Beldum line feeds both the"
+     " Energy engine and a Metagross that hits for 330 and gives up a single"
+     " Prize; the Mega only comes out to close."),
     ("eevee-standard.html", ["eevee", "umbreon", "espeon", "glaceon"],
      "Fox's Eevee deck, and the only one here that is two decks. Fifty"
      " cards never move; ten swap between Sun and Moon for home and Fire"
