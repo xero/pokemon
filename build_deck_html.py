@@ -90,23 +90,25 @@ FLAVOR = {
         "7. Mistakes That Will Cost You The Game": ["eevee-back"],
         "8. The Turn Checklist": ["charmeleon"],
     },
-    # no sprite exists for Toxel, Toxtricity, Munkidori, or Fezandipiti, so
-    # the cards that have one get it and the rest go without. sableye was
-    # promoted from assets/ani for this page; the plain gengar sprite now
-    # marks Gengar ex, since no dedicated ex sprite exists.
-    # the snake and the mega share the mode page; weezing waves the swap out.
+    # no sprite exists for Toxel, Toxtricity, Munkidori, Fezandipiti, Hilda,
+    # or Petrel, so the cards that have one get it and the rest go without.
+    # the three ghosts each get a gengar variant: plain, smile for the ex,
+    # mega for the Mega. the snake and the mega share the mode page; weezing
+    # waves the swap out.
     "dark-mega.md": {
         "The Thesis": ["seviper"],
         "The Mode Swap": ["weezing", "gengar-mega"],
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
+        "Gengar": ["gengar"],
+        "Gengar ex": ["gengar-smile"],
         "Mega Gengar ex": ["gengar-mega"],
         "Seviper": ["seviper"],
-        "Sableye": ["sableye"],
         "1. The Cage": ["gengar-booty"],
         "2. The Charmer's Loop": ["seviper"],
-        "3. Reading the Room": ["gengar", "gengar-mega"],
-        "5. Things That Will Cost You a Game": ["eevee-back"],
+        "3. Three Ghosts, One Line": ["gengar", "gengar-smile", "gengar-mega"],
+        "4. Reading the Room": ["gengar", "gengar-mega"],
+        "6. Things That Will Cost You a Game": ["eevee-back"],
         "Versus the Kitchen Table": ["mewtwo"],
         "Versus the Card Shop": ["noctowl"],
         "What To Buy": ["pokeball"],

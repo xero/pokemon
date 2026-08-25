@@ -3,7 +3,7 @@
 ### Two ex Gengars on one Haunter line, rebuilt from the August 2026 meta
 
 > [!IMPORTANT]
-> **On hold until the Gnawing Curse pair is sourced.** This build needs 2 Gengar ex (Temporal Forces 104), and the hunt has come up empty so far. The dark ex deck that is buildable today from the binder is [Snake Charmer](./dark-mega.md), an eleven-card mode swap on [Gengar Gang](./dark.md). This plan stays alive for the day the Gengars turn up.
+> **On hold until the Gnawing Curse pair arrives.** This build needs 2 Gengar ex (Temporal Forces 104); the pair was ordered 2026-08-20 and is in the mail. The dark ex deck that is buildable today is [Snake Charmer](./dark-mega.md), an eighteen-card mode swap on [Gengar Gang](./dark.md), and its second build already claims one of the two Gengar ex for its ghost toolbox. This plan comes off hold when the envelope lands and the sleeves get sorted.
 
 > [!NOTE]
 > **What this file is for.**

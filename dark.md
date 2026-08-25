@@ -20,7 +20,7 @@
 >
 > **This is the third build.** The second one traded situational Trainers for Pokémon and an Energy engine. This one fixes where the Energy actually goes: Scramble Switch takes the ACE SPEC slot that was sitting empty, Night Stretcher doubles, half the Shadowy Darkness becomes Basic Darkness that *Sinister Surge* can still find on turn seven, and Ultra Ball leaves because three Dawn already fetch the whole Gengar line.
 >
-> **This deck has an ex mode.** Against a room that attacks with Pokémon ex, eleven cards swap this same sleeved 60 into [Snake Charmer](./dark-mega.md): Mega Gengar ex walls, Seviper hits 240, and every single-prize body stops paying Prizes. The swap sheet is on that page.
+> **This deck has an ex mode.** Against a room that attacks with Pokémon ex, eighteen cards swap this same sleeved 60 into [Snake Charmer](./dark-mega.md): three ghosts share the Gastly line, Mega Gengar ex walls, Seviper hits 240, and every single-prize body stops paying Prizes. The swap sheet is on that page.
 
 ---
 
