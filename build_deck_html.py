@@ -90,27 +90,27 @@ FLAVOR = {
         "7. Mistakes That Will Cost You The Game": ["eevee-back"],
         "8. The Turn Checklist": ["charmeleon"],
     },
-    # no sprite exists for Toxel, Toxtricity, Munkidori, Fezandipiti, Hilda,
-    # or Petrel, so the cards that have one get it and the rest go without.
-    # the three ghosts each get a gengar variant: plain, smile for the ex,
-    # mega for the Mega. the snake and the mega share the mode page; weezing
-    # waves the swap out.
+    # no sprite exists for Toxel, Toxtricity, Chi-Yu, or Hilda (Gen 9 is
+    # absent from the library), so the cards that have one get it and the
+    # rest go without. the two ghosts get a gengar variant each: smile for
+    # the ex, mega for the Mega. the snake and the mega share the mode page;
+    # weezing waves the swap out, and the field section gets the two decks
+    # the stats tables lean on hardest.
     "dark-mega.md": {
         "The Thesis": ["seviper"],
+        "The Numbers": ["pokedex"],
         "The Mode Swap": ["weezing", "gengar-mega"],
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
-        "Gengar": ["gengar"],
-        "Gengar ex": ["gengar-smile"],
         "Mega Gengar ex": ["gengar-mega"],
+        "Gengar ex": ["gengar-smile"],
         "Seviper": ["seviper"],
         "1. The Cage": ["gengar-booty"],
         "2. The Charmer's Loop": ["seviper"],
-        "3. Three Ghosts, One Line": ["gengar", "gengar-smile", "gengar-mega"],
-        "4. Reading the Room": ["gengar", "gengar-mega"],
+        "4. Reading the Room": ["gengar-smile", "gengar-mega"],
         "6. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Field": ["excadrill", "dusknoir"],
         "Versus the Kitchen Table": ["mewtwo"],
-        "Versus the Card Shop": ["noctowl"],
         "What To Buy": ["pokeball"],
     },
     "dark-curse.md": {

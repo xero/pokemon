@@ -78,13 +78,13 @@ Three things fall out of building it this way.
 | 2 | Team Rocket's Giovanni | Supporter | Destined Rivals | 174 | I |
 | 2 | Boss's Orders | Supporter | Mega Evolution | 114 | I |
 | 3 | Team Rocket's Transceiver | Item | Destined Rivals | 178 | I |
-| 4 | Ultra Ball | Item | Mega Evolution | 131 | I |
+| 3 | Ultra Ball | Item | Mega Evolution | 131 | I |
 | 3 | Buddy-Buddy Poffin | Item | Temporal Forces | 144 | H |
 | 1 | Rare Candy | Item | Mega Evolution | 125 | I |
 | 2 | Switch | Item | Mega Evolution | 130 | I |
 | 2 | Night Stretcher | Item | Shrouded Fable | 061 | H |
 | 1 | Scramble Switch | Item | Surging Sparks | 186 | H |
-| 2 | Team Rocket's Factory | Stadium | Destined Rivals | 173 | I |
+| 3 | Team Rocket's Factory | Stadium | Destined Rivals | 173 | I |
 
 **Energy (10)**
 
@@ -211,7 +211,7 @@ An Item that searches out any Supporter with "Team Rocket" in its name. Three co
 
 ### Ultra Ball
 
-Discard 2 other cards from your hand, then search your deck for any Pokémon. Four copies. It is the only card here that finds Crobat ex, and the discard is less a cost than a second use: pitching a Basic Energy to it is Spidops's first meal and saves you a whole turn of attaching by hand. See [game plan 3](#3-feed-the-spidops-before-you-need-it).
+Discard 2 other cards from your hand, then search your deck for any Pokémon. Three copies, down from four on 2026-08-26 to make room for the third Factory. It is the only card here that finds Crobat ex, and the discard is less a cost than a second use: pitching a Basic Energy to it is Spidops's first meal and saves you a whole turn of attaching by hand. Transceiver into Proton and the three Poffins find the Basics, so three copies still put the first Energy in the discard by the turn the loop wants it. See [game plan 3](#3-feed-the-spidops-before-you-need-it).
 
 ### Buddy-Buddy Poffin
 
@@ -241,7 +241,9 @@ This is also the slot that moves with Dad's deck choice — the warning under [t
 
 ### Team Rocket's Factory
 
-**Stadium.** Once during each player's turn, if they played a Supporter with "Team Rocket" in its name that turn, they may draw 2. Ariana, Proton, and Giovanni all qualify, which is nearly every turn of the game; Lillie's Determination and Boss's Orders do not. The clause is symmetrical and almost never helps the other side, because almost nobody else is playing Team Rocket Supporters. Two copies, since a Stadium only stays down until someone replaces it.
+**Stadium.** Once during each player's turn, if they played a Supporter with "Team Rocket" in its name that turn, they may draw 2. Ariana, Proton, and Giovanni all qualify, which is nearly every turn of the game; Lillie's Determination and Boss's Orders do not. The clause is symmetrical and almost never helps the other side, because almost nobody else is playing Team Rocket Supporters.
+
+Three copies, up from two on 2026-08-26 for the fourth Ultra Ball. Nine Team Rocket Supporters make this two extra cards on almost every turn it is in play, so getting it down early is worth the slot: with two copies one is in hand by turn two 31% of the time, with three it is 43%, and by turn four it is 50% against 36%. The third copy is also the re-drop after Festival Grounds or Jamming Tower bumps it, and in the mirror, where the clause cuts both ways, it means Fox owns the Stadium slot more often than the other Rocket player does.
 
 ---
 
@@ -455,7 +457,7 @@ Three things to watch, and the exact ratio each one points at. The Koffing pair 
 
 **Mewtwo is stranded Active with three Energy on it.** If retreat is what loses you games rather than damage, go to 3 Switch by cutting a Night Stretcher — and remember that on a Gang night the Prime Catcher in the ACE SPEC slot is already the extra out.
 
-Two smaller notes. If Articuno is a dead card two games running, the table is not playing effects and that slot wants the Petrel back. And if you are drawing *Biting Spree* damage but never converting it into a knockout, you are short on gust and the answer is a third Boss's Orders, not more chip.
+Three smaller notes. Articuno looks like a dead card until you read the field: *Phantom Dive*'s six Bench counters and Alakazam's *Powerful Hand* are effects of attacks, so *Repelling Veil* blanks both on every Basic Team Rocket's Pokémon, and Dragapult plus Alakazam is a quarter of the current Standard field. Bench it on turn one against a Dreepy or an Abra, and only pull it for the Petrel if the local room turns out to be neither. Team Rocket's Mimikyu (Destined Rivals 087) is the parked tech: 60 HP, free retreat, a Team Rocket's Pokémon for the *Power Saver* count, and *Gemstone Mimicry* copies an opposing Active Tera Pokémon's attack for [P][C], which is *Phantom Dive* against the field's biggest deck and nothing at all against the Megas; if Fox wants it, it takes the second Night Stretcher. And if you are drawing *Biting Spree* damage but never converting it into a knockout, you are short on gust and the answer is a third Boss's Orders, not more chip.
 
 ---
 
