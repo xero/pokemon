@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Xero's Phantom Tax</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
+				background-color: var(--line);
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Xero's Phantom Tax <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar.gif" alt="" /></h1>
+				<p>Two Megas split one toll booth · the Phantom Toll rebuild, tuned on the TCG Live ladder · v3.1</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#what-changed-in-v3">What Changed in v3</a></li>
+			<li><a href="#what-the-research-says">What The Research Says</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-toll-math">The Toll Math</a></li>
+			<li><a href="#the-meta-this-deck-lives-in">The Meta This Deck Lives In</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
+			<li><a href="#where-gourgeist-went">Where Gourgeist Went</a></li>
+			<li><a href="#cards-that-look-right-skip-them">✗ Cards That Look Right, Skip Them</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#litwick">Litwick</a> <a href="#lampent">Lampent</a> <a href="#mega-chandelure-ex">Mega Chandelure ex</a> <a href="#gastly">Gastly</a> <a href="#haunter">Haunter</a> <a href="#mega-gengar-ex">Mega Gengar ex</a> <a href="#gengar">Gengar</a> <a href="#munkidori">Munkidori</a> <a href="#fezandipiti-ex">Fezandipiti ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#dawn">Dawn</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#janines-secret-art">Janine&#x27;s Secret Art</a> <a href="#lanas-aid">Lana&#x27;s Aid</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#ultra-ball">Ultra Ball</a> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#rare-candy">Rare Candy</a> <a href="#wondrous-patch">Wondrous Patch</a> <a href="#switch">Switch</a> <a href="#prime-catcher">Prime Catcher</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#gravity-gemstone">Gravity Gemstone</a> <a href="#battle-cage">Battle Cage</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-psychic-energy">Basic Psychic Energy</a> <a href="#basic-darkness-energy">Basic Darkness Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-pick-the-wall">1. Pick the Wall</a> <a href="#2-one-attachment-two-colors">2. One Attachment, Two Colors</a> <a href="#3-the-dark-button">3. The Dark Button</a> <a href="#4-the-closer">4. The Closer</a> <a href="#5-the-rebuild">5. The Rebuild</a> <a href="#6-reading-the-opening-hand">6. Reading the Opening Hand</a> <a href="#7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>A Standard-legal 60 that puts Gengar and Chandelure, favorites one and two, on the same mat with jobs that reference each other. This is the third version of <a href="./phantom-toll.html">Phantom Toll</a>, rebuilt from the <a href="https://tcg.pokemon.com/en-us/tcgl/">TCG Live</a> games of late August 2026 after a Live variant of that list showed exactly where the deck stalls. The Toll page stays as the record of the v2 build; this page is the one to sleeve. It is built for the TCG Live ladder, so every Standard-legal card was on the table and ownership never decided a slot; the buy table at the bottom is only what the paper copy would cost. The Chandelure half still descends from <a href="./psychic-lanterns.html">Psychic Lanterns</a>, the Gengar half comes out of the binder, and the borrowed Rocket trainers are gone.</p>
+				<p>Gourgeist, favorite three, is not in the 60, and <a href="#where-gourgeist-went">Where Gourgeist Went</a> owes him the explanation. Game words are defined in <a href="./rules.html">the table rules</a>, and the ex-format habits live in <a href="./rules.html#how-to-play-ex-style">How To Play ex Style</a>.</p>
+			</aside>
+			<section>
+				<h3 id="what-changed-in-v3">What Changed in v3</h3>
+					<p><a href="./phantom-toll.html">Phantom Toll</a> is v2. The Live list that played the most games ran 21 Pokémon on 7 Basics, 14 Energy with no way to recover any of it, 16 Supporters against 9 Items, and no Switch. Every complaint from those games traces to one of those four numbers.</p>
+					<table>
+						<thead><tr><th>What the games showed</th><th>The list that showed it</th><th>v3</th></tr></thead>
+						<tbody>
+							<tr><td>Gastly-only openers, mulligans, a turn lost swapping Litwick in</td><td>7 Basics, one of them a Fire Litwick</td><td>10 Basics. Four Psychic Litwick, four 70 HP Gastly, Munkidori, Fezandipiti ex.</td></tr>
+							<tr><td>Energy arrives one card a turn and dies with the Mega</td><td>14 Energy, 2 Telepathic, nothing that recovers a discard</td><td>11 basic Energy plus 3 Wondrous Patch, Janine&#x27;s Secret Art, Crispin, and Night Stretcher.</td></tr>
+							<tr><td>A Mega Chandelure goes down and the second one is not ready</td><td>no rebuild plan</td><td>Patch puts the dead Mega&#x27;s Energy straight onto the next one; <a href="#5-the-rebuild">game plan 5</a> is the timetable.</td></tr>
+							<tr><td>Stranded Actives</td><td>Prime Catcher was the only switch</td><td>2 Switch and Prime Catcher.</td></tr>
+							<tr><td>Dead Supporters in hand, thin draw</td><td>16 Supporters, 3 draw cards</td><td>11 Supporters, 15 Items, 4 Lillie&#x27;s, and a Fezandipiti ex that draws 3 every time a body falls.</td></tr>
+							<tr><td>Gengar ex as the second attacker</td><td>1 Gengar ex, <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> for 160 and 2 Prizes</td><td>1 single-prize Gengar. <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> for up to 160, gives up 0 Prizes to an ex, and comes back to hand.</td></tr>
+							<tr><td>Phantom Maze lands 50 short</td><td>no Gravity Gemstone</td><td>1 Gravity Gemstone.</td></tr>
+							<tr><td>Froslass rooms pick off benched Basics</td><td>no answer</td><td>Battle Cage stops every counter from landing on the Bench; Munkidori moves back the ones that land on the Active; every Basic that Poffin fetches is 70 HP.</td></tr>
+							<tr><td>N&#x27;s Castle turned the toll off and the deck had no answer</td><td>no Stadium</td><td>2 Battle Cage. Any Stadium of yours discards theirs, and this one also shuts Phantom Dive and Freezing Shroud out of your Bench.</td></tr>
+							<tr><td>Energy in the discard fed N&#x27;s Darmanitan&#x27;s Back Draft</td><td>1 Night Stretcher</td><td>Lana&#x27;s Aid. Three cards out of the discard per play instead of one.</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="what-the-research-says">What The Research Says</h3>
+					<p>Four findings shaped this 60, and each one is checkable.</p>
+					<p><strong>The number one deck on the ladder retreats for four.</strong> Per <a href="https://play.limitlesstcg.com/decks?game=PTCG&amp;format=standard">Limitless online play</a> in August 2026, Mega Excadrill ex is the most-played deck at 7.7% of 34,788 players. It retreats for 4 and has 340 HP. One Binding Flame makes that 5, and Phantom Maze does 380. The full retreat sheet for the field is in <a href="#the-toll-math">The Toll Math</a>; it comes from the <a href="https://pokemontcg.io">pokemontcg.io</a> card data, because the local pool snapshot strips Retreat Cost.</p>
+					<p><strong>Standard has exactly four ways to raise the opponent&#x27;s Retreat Cost.</strong> A sweep of the legal pool finds Binding Flame, Ariados&#x27;s Big Net, Gravity Gemstone, and Rillaboom&#x27;s Drum Beating. Gemstone is the only Trainer, it stacks with every Flame, and it costs about twenty cents. It is in the 60 now.</p>
+					<p><strong>Nothing legal attaches two Darkness to one Pokémon, and only one Item attaches Psychic in bulk.</strong> The same sweep, for every card that puts this deck&#x27;s colors on the board faster than one a turn:</p>
+					<table>
+						<thead><tr><th>Card</th><th>Color</th><th>What it does</th><th>In the 60</th></tr></thead>
+						<tbody>
+							<tr><td>Wondrous Patch</td><td>P</td><td>Item. A Basic Psychic Energy from the discard onto a Benched Psychic Pokémon. Any number per turn.</td><td>3</td></tr>
+							<tr><td>Janine&#x27;s Secret Art</td><td>D</td><td>Supporter. A Basic Darkness from the deck onto each of up to 2 Darkness Pokémon, one each.</td><td>1</td></tr>
+							<tr><td>Lana&#x27;s Aid</td><td>both</td><td>Supporter. Up to 3 non-Rule-Box Pokémon and basic Energy from the discard to hand.</td><td>1</td></tr>
+							<tr><td>Crispin</td><td>both</td><td>Supporter. Two basic Energy of different types from the deck; attach one, keep one.</td><td>tune option</td></tr>
+							<tr><td>Night Stretcher</td><td>both</td><td>Item. A Pokémon or a basic Energy from the discard to hand, Megas included.</td><td>tune option</td></tr>
+							<tr><td>Void Gale</td><td>both</td><td>Mega Gengar&#x27;s own attack ferries any Energy it carries to the Bench.</td><td>built in</td></tr>
+							<tr><td>Rosa&#x27;s Encouragement</td><td>both</td><td>Supporter. Two basic Energy from the discard onto a Stage 2, only while you have more Prizes left.</td><td>tune option</td></tr>
+							<tr><td>Neo Upper Energy</td><td>both</td><td>ACE SPEC. Two Energy of every type on a Stage 2. Costs the Prime Catcher seat.</td><td>skip</td></tr>
+							<tr><td>Mesprit, Cresselia, Deoxys, Okidogi ex</td><td>P or D</td><td>Attacks that charge themselves or one target from hand or deck. Each one costs the attack for the turn.</td><td>no</td></tr>
+							<tr><td>Marnie&#x27;s Grimmsnarl ex, Team Rocket&#x27;s Energy</td><td>D, P/D</td><td>Attach in bulk, and only to their own brand.</td><td>no</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Every deck needs a Stadium, and this one has a good reason for the one it picked.</strong> Standard holds 26 Stadiums. Most are brand-locked or symmetric in the wrong direction here: Gravity Mountain takes 30 HP off every Stage 2, which is both Megas; Jamming Tower turns off the Gemstone; Mystery Garden draws for Psychic boards, which is also Slowking&#x27;s and Alakazam&#x27;s boards. Battle Cage costs this deck nothing it uses and stops the two things that were killing benched Litwicks on Live: Freezing Shroud&#x27;s Checkup counters and the six Phantom Dive puts on your Bench. Two copies rather than one plus a second Stadium, because the deck that beat v3 runs more than one Castle, and a same-name Stadium is the only kind you can always play over theirs. The one Pokémon that discards a Stadium in this deck&#x27;s colors is Eternatus, whose Shatter costs <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> and the attack for the turn; a second Battle Cage is cheaper.</p>
+					<p><strong>Community Chandelure lists agree on the plumbing.</strong> The Mega Chandelure lists posted in July 2026 (<a href="https://codes4tcg.live/decks4tcg/TrustYourPilot%20VODs/yt-2026-07-15-TrustYourPilot%20VODs-lB2g1p71ABk/1">TrustYourPilot&#x27;s profile</a>, the <a href="https://www.pokebeach.com/forums/threads/mega-chandelure-deck.156910/">PokéBeach thread</a>, <a href="https://deltiasgaming.com/pokemon-tcg-mega-chandelure-ex-deck-guide-pitch-black/">Deltia&#x27;s guide</a>) run Wondrous Patch, Gravity Gemstone, Switch, and a Journey Together Grimmsnarl line whose Shadowy Knot reads the toll at 50 per <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> for one Prize. This deck takes the first three and spends the Grimmsnarl seats on the Gengar line; the Grimmsnarl is a third Stage 2 in a deck that already runs two.</p>
+			<aside data-callout="important">
+				<p><strong>Format check, August 2026.</strong> Standard is regulation marks <strong>H, I, and J</strong>. Every card in this list carries one of the three. The seven reg-H names (Munkidori, Fezandipiti ex, Janine&#x27;s Secret Art, Lana&#x27;s Aid, Buddy-Buddy Poffin, Prime Catcher, Gravity Gemstone) rotate around April 2027; the Pitch Black, Phantasmal Flames, and Perfect Order core is years from the door.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#litwick"><img src="./assets/704793_litwick.jpg" alt="Litwick" /><span data-count>x4</span></a></figure>
+				<figure><a href="#lampent"><img src="./assets/704794_lampent.jpg" alt="Lampent" /><span data-count>x3</span></a></figure>
+				<figure><a href="#mega-chandelure-ex"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#gastly"><img src="./assets/660495_gastly.jpg" alt="Gastly" /><span data-count>x4</span></a></figure>
+				<figure><a href="#haunter"><img src="./assets/684430_haunter.jpg" alt="Haunter" /></a></figure>
+				<figure><a href="#mega-gengar-ex"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#gengar"><img src="./assets/684431_gengar.jpg" alt="Gengar" /></a></figure>
+				<figure><a href="#munkidori"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a></figure>
+				<figure><a href="#fezandipiti-ex"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#dawn"><img src="./assets/660414_dawn.jpg" alt="Dawn" /><span data-count>x2</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#janines-secret-art"><img src="./assets/560370_janines-secret-art-059-064.jpg" alt="Janine&#x27;s Secret Art" /></a></figure>
+				<figure><a href="#lanas-aid"><img src="./assets/550199_lanas-aid-155-167.jpg" alt="Lana&#x27;s Aid" /></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x2</span></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></a></figure>
+				<figure><a href="#rare-candy"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x4</span></a></figure>
+				<figure><a href="#wondrous-patch"><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /><span data-count>x3</span></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#prime-catcher"><img src="./assets/542674_prime-catcher.jpg" alt="Prime Catcher" /></a></figure>
+				<figure><a href="#gravity-gemstone"><img src="./assets/567400_gravity-gemstone.jpg" alt="Gravity Gemstone" /></a></figure>
+				<figure><a href="#battle-cage"><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /><span data-count>x2</span></a></figure>
+				<figure><a href="#basic-psychic-energy"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x6</span></a></figure>
+				<figure><a href="#basic-darkness-energy"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x5</span></a></figure>
+			</article>
+					<p><strong>Pokémon (20)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Litwick</td><td>Pitch Black</td><td>036</td><td>J</td></tr>
+							<tr><td>3</td><td>Lampent</td><td>Pitch Black</td><td>037</td><td>J</td></tr>
+							<tr><td>3</td><td>Mega Chandelure ex</td><td>Pitch Black</td><td>038</td><td>J</td></tr>
+							<tr><td>4</td><td>Gastly</td><td>Phantasmal Flames</td><td>054</td><td>I</td></tr>
+							<tr><td>1</td><td>Haunter</td><td>Perfect Order</td><td>049</td><td>J</td></tr>
+							<tr><td>2</td><td>Mega Gengar ex</td><td>Phantasmal Flames</td><td>056</td><td>I</td></tr>
+							<tr><td>1</td><td>Gengar</td><td>Perfect Order</td><td>050</td><td>J</td></tr>
+							<tr><td>1</td><td>Munkidori</td><td>Twilight Masquerade</td><td>095</td><td>H</td></tr>
+							<tr><td>1</td><td>Fezandipiti ex</td><td>Shrouded Fable</td><td>038</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Supporters (11)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>2</td><td>Dawn</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders [Ghetsis]</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>1</td><td>Janine&#x27;s Secret Art</td><td>Shrouded Fable</td><td>059</td><td>H</td></tr>
+							<tr><td>1</td><td>Lana&#x27;s Aid</td><td>Twilight Masquerade</td><td>155</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Items (15)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>Ultra Ball</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>3</td><td>Buddy-Buddy Poffin</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>4</td><td>Rare Candy</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>3</td><td>Wondrous Patch</td><td>Phantasmal Flames</td><td>094</td><td>I</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Prime Catcher</td><td>Temporal Forces</td><td>157</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Tool &amp; Stadium (3)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>1</td><td>Gravity Gemstone</td><td>Stellar Crown</td><td>137</td><td>H</td></tr>
+							<tr><td>2</td><td>Battle Cage</td><td>Phantasmal Flames</td><td>085</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (11)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>6</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td><td>-</td></tr>
+							<tr><td>5</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>007</td><td>-</td></tr>
+						</tbody>
+					</table>
+					<p><strong>20 + 11 + 15 + 3 + 11 = 60.</strong> ✓</p>
+					<p><strong>Basics: 10</strong> (4 Litwick, 4 Gastly, Munkidori, Fezandipiti ex), which is a 26% mulligan rate. The Live list ran 7 and mulliganed two games in five. <a href="#test-and-tune">Test and Tune</a> has the eleventh Basic ready if it still stings. Litwick and Gastly both sit at 70 HP, so Poffin fetches either pair; Munkidori and Fezandipiti are Ultra Ball and Dawn targets.</p>
+					<p>The same 60 in the TCG Live import format:</p>
+<pre><code>Pokémon: 20
+4 Litwick PBL 36
+3 Lampent PBL 37
+3 Mega Chandelure ex PBL 38
+4 Gastly PFL 54
+1 Haunter POR 49
+2 Mega Gengar ex PFL 56
+1 Gengar POR 50
+1 Munkidori TWM 95
+1 Fezandipiti ex SFA 38
+
+Trainer: 29
+4 Lillie&#x27;s Determination MEG 119
+2 Dawn PFL 87
+3 Boss&#x27;s Orders MEG 114
+1 Janine&#x27;s Secret Art SFA 59
+1 Lana&#x27;s Aid TWM 155
+2 Ultra Ball MEG 131
+3 Buddy-Buddy Poffin TEF 144
+4 Rare Candy MEG 125
+3 Wondrous Patch PFL 94
+2 Switch MEG 130
+1 Prime Catcher TEF 157
+1 Gravity Gemstone SCR 137
+2 Battle Cage PFL 85
+
+Energy: 11
+6 Basic {P} Energy MEE 5
+5 Basic {D} Energy MEE 7</code></pre>
+			<aside data-callout="warning">
+				<p><strong>One ACE SPEC per deck.</strong> Prime Catcher is this deck&#x27;s one, and it is the <strong>Temporal Forces print</strong>, because the Prismatic Evolutions copy is the lanterns&#x27; and the Japanese starter copy plays at the kitchen table and nowhere else.</p>
+			</aside>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="litwick">Litwick<span data-count>x4</span><span data-flavor><img src="./assets/sprites/litwick.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704793_litwick.jpg" target="_blank" rel="noopener"><img src="./assets/704793_litwick.jpg" alt="Litwick" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>036/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Will-O-Wisp (20)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Basic the deck stands on, and the only Psychic Litwick ever printed. Four copies now, all Pitch Black; the Live list carried a White Flare Litwick as its third, and a Fire body cannot pay Will-O-Wisp&#x27;s <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> or Spreading Light&#x27;s <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> after it evolves. 70 HP keeps it inside Poffin range. Going second, Will-O-Wisp for 20 is a real turn-one attack, and it is the turn that sets up the turn-two Candy.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lampent">Lampent<span data-count>x3</span><span data-flavor><img src="./assets/sprites/lampent.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704794_lampent.jpg" target="_blank" rel="noopener"><img src="./assets/704794_lampent.jpg" alt="Lampent" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>037/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>90</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Spreading Light - Search your deck for up to 3 Lampent and put them onto your Bench. Then, shuffle your deck.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Spreading Light schedules the Megas.</strong> Search your deck for up to 3 Lampent and bench them, and each one is a Mega Chandelure next turn with no Rare Candy spent. Three copies rather than four, so the fetch caps at 2 in practice. That is the right number now: with Munkidori and a Fezandipiti on the Bench, two Lampent fill the last seats and a third would have nowhere to sit.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mega-chandelure-ex">Mega Chandelure ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/704795_mega-chandelure-ex-038-084.jpg" target="_blank" rel="noopener"><img src="./assets/704795_mega-chandelure-ex-038-084.jpg" alt="Mega Chandelure ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>038/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Binding Flame - Your opponent&#x27;s Active Pokémon&#x27;s Retreat Cost is {{e}} more.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Phantom Maze (130+) - This attack does 50 more damage for each Retreat Cost.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2 from Lampent. Gives up 3 Prize cards.</strong> 350 HP, Retreat 2, Resistance to Fighting, and a Darkness Weakness the other half of this deck exists to cover.</p>
+					<p><em>Binding Flame</em> needs no Energy and works from the Bench; every retreat the opponent pays costs one more, and every Phantom Maze hits 50 harder. <strong>It stacks.</strong> Two in play is plus 2 and plus 100, settled by the official Pitch Black strategy article. <em>Phantom Maze</em> itself does 130 plus 50 for each <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> in the opponent&#x27;s Active Pokémon&#x27;s Retreat Cost, and <a href="#the-toll-math">The Toll Math</a> is the full menu, including what the current field pays. Two on the board is the number; the third copy is the rebuild, not a resident.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="gastly">Gastly<span data-count>x4</span><span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/660495_gastly.jpg" target="_blank" rel="noopener"><img src="./assets/660495_gastly.jpg" alt="Gastly" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>054/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Petty Grudge (10)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The bottom of the Gengar line, and the <strong>Phantasmal Flames print</strong> on purpose. The Live list ran the Temporal Forces Gastly at 60 HP; this one has 70, which is one more counter for a Munkidori to find and the difference between dying to two Adrena-Brain moves and surviving them. <em>Petty Grudge</em> is a guaranteed 10 for <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span>. It is Darkness, so Janine&#x27;s Secret Art can feed it and Concealment prices it at zero.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="haunter">Haunter<span data-count>x1</span><span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684430_haunter.jpg" target="_blank" rel="noopener"><img src="./assets/684430_haunter.jpg" alt="Haunter" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>049/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Haunt - Place 3 damage counters on your opponent&#x27;s Active Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Haunt</em> places 3 damage counters for one Energy</strong>, and placed counters ignore Weakness and Resistance. One copy, because four Rare Candy carry the Gengar line and this is the insurance for the game where the Candy is prized or already spent. Janine&#x27;s Secret Art charges it from the deck; a Haunter with a Darkness on it is 30 a turn while the Candy waits, and the Energy rides the evolution up.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mega-gengar-ex">Mega Gengar ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/660380_mega-gengar-ex.jpg" target="_blank" rel="noopener"><img src="./assets/660380_mega-gengar-ex.jpg" alt="Mega Gengar ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>056/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>350</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Shadowy Concealment - If 1 of your Darkness Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon ex, that player takes 1 fewer Prize card. The effect of Shadowy Concealment doesn&#x27;t stack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Void Gale (230) - Move an Energy from this Pokémon to 1 of your Benched Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2 from Haunter. Gives up 3 Prizes, and discounts everyone else&#x27;s.</strong> <em>Shadowy Concealment</em> takes 1 Prize off every Knock Out an opposing Pokémon ex scores on your Darkness Pokémon: Gastly, Haunter, and Gengar pay 0, Fezandipiti pays 1, and the Mega itself pays 2. The Psychic half gets no discount, which is exactly why the Dark wall is the cheaper wall to lose.</p>
+					<p><em>Void Gale</em> is 230 for <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span>, then <strong>move an Energy from this Pokémon to 1 of your Benched Pokémon</strong>. The move is mandatory, so read it as a ferry schedule, not a bonus. It is also the deck&#x27;s only type-blind accelerator: the Energy it moves can be the Psychic you attached as its third, landing on a Lampent that evolves next turn, or a Darkness landing on the Munkidori that turns Adrena-Brain on. Two copies, because it is the second wall and the ferry, never the plan. <a href="#3-the-dark-button">Game plan 3</a> is the timetable.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="gengar">Gengar<span data-count>x1</span><span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684431_gengar.jpg" target="_blank" rel="noopener"><img src="./assets/684431_gengar.jpg" alt="Gengar" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>050/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Infinite Shadow - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put it into your hand instead of the discard pile. (Discard all attached cards.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Mind Jack (10+) - This attack does 30 more damage for each of your opponent&#x27;s Benched Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The second attacker the Live games asked for, and it was already in the binder.</strong> 130 HP, Retreat 1, Darkness, one Prize. <em>Mind Jack</em> does 10 plus 30 for each of your opponent&#x27;s Benched Pokémon for a single <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span>: 130 into a bench of four, 160 into a full one, which is more than Gengar ex&#x27;s Tricky Steps did for two Energy and two Prizes. <em>Infinite Shadow</em> returns it to your hand when an attack Knocks it Out.</p>
+					<p>Put the two abilities together. With a Mega Gengar in play, an opposing ex that Knocks this Gengar Out takes <strong>0 Prizes</strong> and hands you the card back; a Gastly and a Rare Candy later it is attacking again for one Energy. Against single-prize decks it is a fair 1-for-1 that keeps coming back. Either way the opponent has to answer a 130 HP wall that pays them nothing, and every turn they spend on it is a turn the Megas charge. This is the reason the Gastly line runs four.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="munkidori">Munkidori<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/550139_munkidori.jpg" target="_blank" rel="noopener"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>095/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Adrena-Brain - Once during your turn, if this Pokémon has any D Energy attached, you may move up to 3 damage counters from 1 of your Pokémon to 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Mind Bend (60) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>A Psychic Pokémon that runs on Darkness Energy, which is the two-color lesson on one card.</strong> 110 HP Basic, Retreat 1. <em>Adrena-Brain</em>, once a turn while it has any Darkness attached: move up to 3 damage counters from 1 of your Pokémon to 1 of your opponent&#x27;s. No attack, no Energy spent, and the counters land anywhere, including on a Benched Tera Pokémon, because placed counters are not damage from an attack.</p>
+					<p>Three jobs. It heals 30 off a wounded Mega every turn, which turns the two-shot the field lands on 350 HP into a three-shot. It finishes: a Phantom Maze that lands 30 short becomes a Knock Out the next turn, or the same turn if the counters go first. And it is the answer to the Froslass and Munkidori rooms that were sniping Litwick on Live: their counters arrive on your Basics, and yours send them back. It cannot be Poffined at 110 HP; Ultra Ball and Dawn find it. It runs on Darkness Energy but it is a Psychic Pokémon, so Janine&#x27;s Secret Art cannot target it; its Darkness arrives by Void Gale&#x27;s ferry or by the manual attachment.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="fezandipiti-ex">Fezandipiti ex<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The draw engine, and a Darkness body that pays one Prize instead of two.</strong> 210 HP Basic. <em>Flip the Script</em>, once a turn: if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, draw 3 cards. This deck trades bodies by design, so the ability fires most turns after the first exchange, and it fires on the exact turn the rebuild needs cards. <em>Cruel Arrow</em> is 100 to any one of their Pokémon for three of anything, a late-game finisher for whatever Munkidori and the Maze left standing. Concealment covers it: an opposing ex that cracks it takes 1 Prize, not 2.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Shuffle your hand into your deck and draw 6; at exactly 6 Prizes remaining, draw 8. Four copies, the house number, up from the three the Live list ran. This is the card that fixes the hand; Fezandipiti is the card that refills it. The shuffle half also returns the spare Stage 2s and Patches to where Dawn and Ultra Ball can find them again.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dawn">Dawn<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/660414_dawn.jpg" target="_blank" rel="noopener"><img src="./assets/660414_dawn.jpg" alt="Dawn" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>087/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon. A whole line in one Supporter: Litwick, Lampent, and Mega Chandelure, or Gastly, Haunter, and the Gengar the matchup wants. Both Megas are Stage 2 Pokémon, so Dawn and Rare Candy both see them. Two copies; it replaces the three Hilda from the Live list, because Hilda&#x27;s one Evolution and one Energy is what Ultra Ball and Lana&#x27;s Aid already cover between them.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. The toll only collects from what is standing in front of it, and <a href="#the-toll-math">The Toll Math</a> is a list of who to drag there. Three copies plus Prime Catcher, the Ghetsis print, shared across the house.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="janines-secret-art">Janine&#x27;s Secret Art<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/560370_janines-secret-art-059-064.jpg" target="_blank" rel="noopener"><img src="./assets/560370_janines-secret-art-059-064.jpg" alt="Janine&#x27;s Secret Art" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>059/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Choose up to 2 of your Darkness Pokémon. For each of those Pokémon, search your deck for a Basic Darkness Energy card and attach it to that Pokémon. Then, shuffle your deck. If you attached Energy to your Active Pokémon in this way, it is now Poisoned.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Dark button.</strong> Choose up to 2 of your Darkness Pokémon; for each, search your deck for a Basic Darkness Energy and attach it. Read the text precisely: <strong>one Energy each, to two different Pokémon</strong>, never two onto one. The canonical cast is one onto the benched Gastly that Candy will lift and one onto the Haunter, Gengar, or Fezandipiti beside it. Munkidori is not a legal target: it wants a Darkness Energy, but Janine&#x27;s reads the Pokémon&#x27;s type and Munkidori is Psychic. The rider poisons your Active if you feed it, so keep both targets on the Bench, which is where this deck wants its Darkness anyway.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lanas-aid">Lana&#x27;s Aid<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/550199_lanas-aid-155-167.jpg" target="_blank" rel="noopener"><img src="./assets/550199_lanas-aid-155-167.jpg" alt="Lana&#x27;s Aid" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>155/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Put up to 3 in any combination of Pokémon that don&#x27;t have a Rule Box and Basic Energy cards from your discard pile into your hand. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Put up to 3 in any combination of Pokémon that don&#x27;t have a Rule Box and Basic Energy cards from your discard pile into your hand. It took Night Stretcher&#x27;s seat, and the argument is arithmetic: three cards out of the discard for one Supporter against one card for one Item. The usual fetch after the first exchange is two Energy and the Litwick or Gastly that died with them, which is the whole next line in one play. It also shrinks the discard on purpose, because N&#x27;s Darmanitan&#x27;s <em>Back Draft</em> does 30 for each Basic Energy sitting in it, and N&#x27;s Zoroark ex copies that attack into the Dark-weak lanterns.</p>
+					<p>What it cannot do is touch a Rule Box: no Mega and no Fezandipiti ever comes back with it. With three Mega Chandelure and two Mega Gengar in the list, that is a price the deck can pay; the tune table has Night Stretcher ready if it turns out it cannot.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard 2 other cards from your hand, then search your deck for any Pokémon. The only Item that finds a Mega, a Munkidori, or a Fezandipiti. The discard is not a cost here; a Psychic Energy pitched to Ultra Ball is a Wondrous Patch target the same turn, which makes Ultra Ball the second half of an attachment. Two copies, down from three to seat the second Battle Cage; Dawn and Poffin carry the rest of the searching.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Bench up to 2 Basic Pokémon with 70 HP or less. Litwick and Gastly both qualify, so one Poffin seeds both engines on turn one. Munkidori at 110 and Fezandipiti at 210 do not; do not go looking for them with it. Three copies.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="rare-candy">Rare Candy<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654464_rare-candy-125-132.jpg" target="_blank" rel="noopener"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>125/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can&#x27;t use this card during your first turn or on a Basic Pokémon that was put into play this turn.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Litwick straight to Mega Chandelure, Gastly straight to Mega Gengar or to Gengar. Four copies serving six Stage 2s, with Spreading Light covering the Chandelure side and one Haunter covering the Gengar side when the Candy is elsewhere. The two riders bite as always: never on your first turn, and never on a Basic that was benched this turn. The fastest Phantom Maze in the deck is a Litwick benched turn one, a Psychic attached turn one, and Candy plus a second Psychic on turn two.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="wondrous-patch">Wondrous Patch<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/662241_wondrous-patch.jpg" target="_blank" rel="noopener"><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>094/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Attach a Basic Psychic Energy card from your discard pile to 1 of your Benched Psychic Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The card the Live games were missing.</strong> Attach a Basic Psychic Energy from your discard pile to 1 of your Benched Psychic Pokémon. It is an Item, so you may play as many as you hold. A Mega Chandelure that dies loaded leaves two Psychic in the discard; two Patches put both onto the Lampent beside it, the Candy or the evolution finishes the Mega, and it attacks the same turn. Three copies, because that rebuild has to happen on the one turn it is needed.</p>
+					<p>The discard has to have Psychic in it first, so the card is dead on turn one and live from the first Knock Out or the first Ultra Ball onward. It reads &quot;Benched,&quot; so it never charges the Active directly; charge the Bench, then Switch.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch your Active Pokémon with 1 of your Benched Pokémon. Two copies, zero in the Live list, and the whole reason a Gastly opener cost a turn. Bench the Litwick, attach to it, Switch it in. Switch also ignores Retreat Cost, which matters because Gravity Gemstone raises your own.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="prime-catcher">Prime Catcher<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/542674_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/542674_prime-catcher.jpg" alt="Prime Catcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>157/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent’s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The ACE SPEC. Their Bench to the Active Spot, and your Active to your Bench, one Item, no Supporter spent. Spend it on the turn that does both jobs: drag the Retreat 4 body into the toll booth and rotate a wounded Mega out to where Munkidori can drain it. It is also the only card left in the deck that recovers nothing, so hold it for the gust; the discard pile has Lana&#x27;s Aid and the Patches now.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="gravity-gemstone">Gravity Gemstone<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/567400_gravity-gemstone.jpg" target="_blank" rel="noopener"><img src="./assets/567400_gravity-gemstone.jpg" alt="Gravity Gemstone" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>137/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>As long as the Pokémon this card is attached to is in the Active Spot, the Retreat Cost of both Active Pokémon is <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> more.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>While the Pokémon this is attached to is in the Active Spot, <strong>the Retreat Cost of both Active Pokémon is 1 more</strong>. On the Mega Chandelure that plans to attack, that is plus 50 on every Phantom Maze on top of every Flame, and it is the 50 that turns 280 into 330 against Blaziken ex and Marnie&#x27;s Grimmsnarl ex, and 330 into 380 against Mega Lucario ex and Mega Dragonite ex. The honest half of &quot;both&quot;: your Active pays the extra <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> too, which is why the deck runs two Switch and keeps Prime Catcher for the exit. Jamming Tower turns it off; nothing else in the field does.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="battle-cage">Battle Cage<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/662130_battle-cage-085-094.jpg" target="_blank" rel="noopener"><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>085/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Prevent all damage counters from being placed on Benched Pokémon (both yours and your opponent&#x27;s) by effects of attacks and Abilities from the opponent&#x27;s Pokémon. (Damage from attacks is still taken.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Stadium, and the reason the deck finally has one.</strong> Prevent all damage counters from being placed on Benched Pokémon, both sides, by effects of attacks and Abilities from the opponent&#x27;s Pokémon. Damage from attacks is still taken. Two copies.</p>
+					<p>The first job is the one the Live loss asked for: any Stadium you play discards theirs, so N&#x27;s Castle, Festival Grounds, and Jamming Tower each last until your next turn. Two copies because a Stadium with the same name cannot be played over itself, so the second only matters once theirs has replaced the first, which is exactly when you need it.</p>
+					<p>The second job is the one v2 needed and did not know it. Phantom Dive&#x27;s six counters on your Bench, Froslass&#x27;s Checkup counter on every Ability Pokémon you bench, their Munkidori&#x27;s three counters onto a Litwick, Dusknoir&#x27;s thirteen onto anything: all of it stops at the Bench line while the Cage stands. The cost to you is one narrow thing. Your own Munkidori cannot put counters on their Bench either, so under the Cage Adrena-Brain aims at their Active, which is where the toll is collecting anyway.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-psychic-energy">Basic Psychic Energy<span data-count>x6</span></h3>
+				<aside>
+					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>5</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Six copies feeding Phantom Maze&#x27;s <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span>, down from eight Psychic sources in the Live list. The count dropped because the delivery improved: Wondrous Patch recycles every copy that hits the discard, Lana&#x27;s Aid brings back three more, and Ultra Ball turns a copy you cannot attach this turn into one you can attach later. The Telepathic Energy is gone by request; its bench fetch was Poffin&#x27;s job, and as Special Energy nothing in the deck could ever bring it back.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-darkness-energy">Basic Darkness Energy<span data-count>x5</span></h3>
+				<aside>
+					<a data-art href="./assets/656269_basic-darkness-energy-007.jpg" target="_blank" rel="noopener"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>7</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Five copies, and they arrive by Supporter and ferry more often than by hand. Janine&#x27;s pulls two from the deck onto two bodies, Lana&#x27;s Aid brings the spent ones back to hand, and Void Gale moves them around the board once they land. Mega Gengar wants two, Munkidori wants one, Gengar wants one, and the fifth is the spare for the game that goes long. The manual attachment defaults to the Psychic side; these exist so the Dark side never depends on it.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-toll-math">The Toll Math<span data-flavor><img src="./assets/sprites/gengar-booty.gif" alt="" /></span></h3>
+					<p><em>Phantom Maze</em> does 130 plus 50 for each <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> in the opponent&#x27;s Active Pokémon&#x27;s Retreat Cost. The deck&#x27;s job is inflating that number and choosing who pays it.</p>
+					<table>
+						<thead><tr><th>Their printed Retreat</th><th>One Flame</th><th>Two Flames</th><th>One Flame + Gemstone</th><th>Two Flames + Gemstone</th></tr></thead>
+						<tbody>
+							<tr><td>0</td><td>180</td><td>230</td><td>230</td><td>280</td></tr>
+							<tr><td>1</td><td>230</td><td>280</td><td>280</td><td><strong>330</strong></td></tr>
+							<tr><td>2</td><td>280</td><td><strong>330</strong></td><td><strong>330</strong></td><td><strong>380</strong></td></tr>
+							<tr><td>3</td><td><strong>330</strong></td><td><strong>380</strong></td><td><strong>380</strong></td><td>430</td></tr>
+							<tr><td>4</td><td><strong>380</strong></td><td>430</td><td>430</td><td>480</td></tr>
+						</tbody>
+					</table>
+					<p>At 330 you one-shot nearly every ex in the format; at 380 you one-shot every card ever printed. Every gust converts a row you cannot reach into one you can.</p>
+					<p><strong>Who pays what, on the current ladder.</strong> Retreat and HP from pokemontcg.io, August 2026.</p>
+					<table>
+						<thead><tr><th>Their attacker</th><th>HP</th><th>Retreat</th><th>One Flame</th><th>What it takes to one-shot</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Excadrill ex</td><td>340</td><td>4</td><td>380</td><td>one Flame</td></tr>
+							<tr><td>Mega Venusaur ex</td><td>380</td><td>4</td><td>380</td><td>one Flame</td></tr>
+							<tr><td>Raging Bolt ex</td><td>240</td><td>3</td><td>330</td><td>one Flame</td></tr>
+							<tr><td>Larry&#x27;s Dudunsparce ex, Dudunsparce ex</td><td>270</td><td>3</td><td>330</td><td>one Flame</td></tr>
+							<tr><td>Dusknoir, in the Dragapult lists</td><td>160</td><td>3</td><td>330</td><td>any Flame; Boss it up</td></tr>
+							<tr><td>N&#x27;s Zoroark ex</td><td>280</td><td>2</td><td>280</td><td>one Flame, exactly</td></tr>
+							<tr><td>Terapagos ex, Ceruledge ex</td><td>230, 270</td><td>2</td><td>280</td><td>one Flame</td></tr>
+							<tr><td>Blaziken ex, Marnie&#x27;s Grimmsnarl ex</td><td>320</td><td>2</td><td>280</td><td>two Flames, or Flame + Gemstone</td></tr>
+							<tr><td>Mega Lucario ex</td><td>340</td><td>2</td><td>280</td><td>two Flames + Gemstone</td></tr>
+							<tr><td>Mega Dragonite ex</td><td>370</td><td>2</td><td>280</td><td>two Flames + Gemstone</td></tr>
+							<tr><td>Dragapult ex</td><td>320</td><td>1</td><td>230</td><td>two Flames + Gemstone, or a Munkidori turn first</td></tr>
+							<tr><td>Latias ex</td><td>210</td><td>2</td><td>280</td><td>one Flame, and do it first; see <a href="#versus-the-card-shop">the card shop</a></td></tr>
+						</tbody>
+					</table>
+					<p>The other ledger is the Prize sheet. <em>Shadowy Concealment</em> covers the Darkness half whenever an opposing Pokémon ex scores the Knock Out:</p>
+					<table>
+						<thead><tr><th>Your Pokémon</th><th>Prizes normally</th><th>KO&#x27;d by an opposing ex</th></tr></thead>
+						<tbody>
+							<tr><td>Gastly, Haunter</td><td>1</td><td><strong>0</strong></td></tr>
+							<tr><td>Gengar</td><td>1</td><td><strong>0</strong>, and it returns to your hand</td></tr>
+							<tr><td>Fezandipiti ex</td><td>2</td><td><strong>1</strong></td></tr>
+							<tr><td>Mega Gengar ex</td><td>3</td><td><strong>2</strong></td></tr>
+							<tr><td>Litwick, Lampent, Munkidori</td><td>1</td><td>1</td></tr>
+							<tr><td><strong>Mega Chandelure ex</strong></td><td>3</td><td>3</td></tr>
+						</tbody>
+					</table>
+					<p>The discount only exists while a Mega Gengar is in play, only against attack damage, and only from a Pokémon ex. Against single-prize rooms both tables go quiet, and <a href="#the-meta-this-deck-lives-in">the meta section</a> is honest about what that costs.</p>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-pick-the-wall">1. Pick the Wall<span data-flavor><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+					<p><strong>The reason this deck exists. Read the room, then lead the half the room cannot punish.</strong></p>
+					<table>
+						<thead><tr><th>They attack with</th><th>Lead</th><th>Why</th></tr></thead>
+						<tbody>
+							<tr><td>Metal (Mega Excadrill)</td><td><strong>Mega Chandelure</strong></td><td>Retreat 4 is 380 for one Flame. Metal hits both halves neutral; the lantern one-shots back.</td></tr>
+							<tr><td>Fighting (Mega Lucario, Lucario Hariyama)</td><td><strong>Mega Chandelure</strong></td><td>The lantern resists Fighting and Mega Gengar is Weak to it. Keep the Gengar half benched.</td></tr>
+							<tr><td>Darkness (N&#x27;s Zoroark, Grimmsnarl Froslass)</td><td><strong>Mega Gengar</strong></td><td>Darkness doubles into every lantern. The Dark wall takes it neutral, and Munkidori sends Froslass&#x27;s counters home.</td></tr>
+							<tr><td>Dragon (Dragapult, its Blaziken and Dusknoir builds)</td><td><strong>Either, Gemstone down early</strong></td><td>Dragapult retreats for 1, so the Maze needs two Flames and the Gemstone, or a Munkidori turn first. Boss the Dusknoir when they bench one.</td></tr>
+							<tr><td>Pokémon ex generally</td><td><strong>Either, Gastly benched early</strong></td><td>Concealment turns on and every Dark body they crack pays less.</td></tr>
+							<tr><td>Single-prize grinders (Festival Lead, Slowking, Toucannon, Dhelmise)</td><td><strong>Neither, reluctantly</strong></td><td>Both Megas are 3-Prize liabilities and the discount is blank. Gengar&#x27;s Mind Jack and the toll floor carry it.</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Do not build both Megas by reflex.</strong> Every game wants the toll engine online; only some games want the second Mega at all. The Gastly you bench turn one is a 0-Prize speed bump and a future Gengar even if the matchup never calls the Mega up.</p>
+			</section>
+			<section>
+				<h3 id="2-one-attachment-two-colors">2. One Attachment, Two Colors</h3>
+					<p><strong>The two-color lesson, and it is scheduling, not juggling.</strong> Neither Mega ever wants a mixed cost: Chandelure needs <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> and Gengar needs <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span>. The one body that mixes is Munkidori, a Psychic that wants a Darkness. So the manual attachment defaults Psychic, onto the lantern line, and the Darkness arrives by Supporter, ferry, and recovery.</p>
+					<table>
+						<thead><tr><th>Job</th><th>Card</th><th>What it does</th></tr></thead>
+						<tbody>
+							<tr><td>Deliver Psychic in bulk</td><td>3 Wondrous Patch</td><td>a discarded Psychic onto a Benched Psychic body, any number per turn</td></tr>
+							<tr><td>Deliver Dark in bulk</td><td>1 Janine&#x27;s Secret Art</td><td>two Darkness from the deck onto two benched Dark bodies</td></tr>
+							<tr><td>Redistribute</td><td>Void Gale</td><td>every Gengar swing ferries an Energy to the Bench, either color</td></tr>
+							<tr><td>Recover</td><td>1 Lana&#x27;s Aid</td><td>up to three Energy and single-prize bodies back from the discard</td></tr>
+							<tr><td>Feed the Patch</td><td>2 Ultra Ball</td><td>a Psychic you cannot attach this turn goes to the discard, where Patch can reach it</td></tr>
+						</tbody>
+					</table>
+					<p>The count is 11 Energy, three fewer than the Live list, and the deck is faster for it. The Live list was not short of Energy; it was short of ways to attach more than one a turn, and every Mega that died took two with it for good. Patch alone returns that pair.</p>
+			</section>
+			<section>
+				<h3 id="3-the-dark-button">3. The Dark Button<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h3>
+					<p><strong>How the second Mega comes online without stealing the first one&#x27;s fuel.</strong></p>
+					<ol>
+						<li>Turn one, bench a Gastly with the Poffin that was fetching Litwick anyway.</li>
+						<li>Janine&#x27;s Secret Art puts one Darkness on the Gastly and one on the Fezandipiti or a second Gastly. Munkidori is a Psychic Pokémon, so it is not a legal target; its Darkness comes from the Void Gale ferry in step 4 or from a manual attachment. Nothing was manually attached to the Gengar line, so Chandelure&#x27;s curve did not notice.</li>
+						<li>Rare Candy the Gastly into Mega Gengar. The Energy rides the evolution up.</li>
+						<li>One manual Dark finishes <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span>. <em>Void Gale</em> for 230, and the mandatory move ships an Energy back to the Bench: onto the next Gastly, onto a Lampent, or onto the Munkidori if the Janine&#x27;s went elsewhere.</li>
+					</ol>
+					<p>The honest print on this plan: it is a turn slower than it looks, because Janine&#x27;s feeds two different Pokémon and never two onto one. Against rooms where the Gengar never leads, spend that Supporter turn on Lillie&#x27;s and let the Gastly sit. It is still a Gengar in waiting.</p>
+			</section>
+			<section>
+				<h3 id="4-the-closer">4. The Closer<span data-flavor><img src="./assets/sprites/gengar-smile.gif" alt="" /></span></h3>
+					<p><strong>What happens when the table math lands short.</strong> The format&#x27;s big bodies run 340 to 380, and the toll table reaches them with two Flames or a Gemstone, not always both. The gap-closers, best first:</p>
+					<ul>
+						<li><strong>Adrena-Brain, 30 anywhere, every turn.</strong> Move the counters off your wounded Mega onto their Active before you attack, and a Maze that was 30 short is a Knock Out. Mega Lucario at 340 takes 330 from two Flames plus Gemstone; three counters first, and it is down.</li>
+						<li><strong>Mind Jack, up to 160 for one Energy.</strong> Gengar into a full Bench is a Mega&#x27;s worth of damage from a card that pays them nothing and comes back. Lead with it against the ex decks whenever the Megas need a turn.</li>
+						<li><strong>Boss&#x27;s Orders and Prime Catcher.</strong> Four gusts. The Retreat 3 and 4 bodies on their Bench are the ones the toll wants; the Dusknoir in a Dragapult list, the Dudunsparce, the Raging Bolt.</li>
+						<li><strong>Cruel Arrow, 100 anywhere.</strong> Fezandipiti&#x27;s attack for three of anything, when the Void Gale ferry has left it holding Energy and something on their Bench is sitting at 100.</li>
+						<li><strong>Haunt, 3 counters a turn.</strong> A pre-Candy Haunter with a Janine&#x27;s Darkness is 30 placed damage per turn that no Resistance shaves.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="5-the-rebuild">5. The Rebuild<span data-flavor><img src="./assets/sprites/lampent.gif" alt="" /></span></h3>
+					<p><strong>The first Mega Chandelure will die. This is the turn after.</strong></p>
+					<ol>
+						<li>Their attack Knocks it Out and takes 3 Prizes. Two Psychic Energy go to your discard.</li>
+						<li>Your turn. <em>Flip the Script</em> draws 3.</li>
+						<li>Wondrous Patch, twice, onto the Lampent you seeded with Spreading Light or the Litwick you benched earlier. If it is a Litwick, Rare Candy it; if it is a Lampent, evolve it.</li>
+						<li>Switch or Prime Catcher it into the Active Spot. Phantom Maze, same turn, into whatever they left in front.</li>
+					</ol>
+					<p>If the Patches are not in hand, Lillie&#x27;s Determination goes looking for them, and the Mega Gengar or the Gengar takes the turn instead. Lana&#x27;s Aid rebuilds the line under the next Mega, two Energy and a Basic in one play, but it cannot return a Mega; the third Mega Chandelure is the spare for exactly that reason. Wally&#x27;s Compassion, which the lanterns run, is the other shape of this plan: heal a wounded Mega to full and take its Energy to hand before it dies at all. It is a Test and Tune swap here, not a resident, because a healed Mega with no Energy still needs two turns to attack.</p>
+			</section>
+			<section>
+				<h3 id="6-reading-the-opening-hand">6. Reading the Opening Hand</h3>
+					<p><strong>Step one, do you have a Basic?</strong> At 10 Basics you mulligan about one game in four; dig accordingly.</p>
+					<dl>
+						<dt data-head>Your hand has</dt><dd data-head>Play</dd>
+						<dt><strong>Buddy-Buddy Poffin</strong></dt><dd><span>Play it first, always. Litwick plus Gastly is the standard fetch; two Litwick if the Gengar half is not wanted.</span></dd>
+						<dt><strong>Litwick Active and a Psychic</strong></dt><dd><span>Attach. Going second, Will-O-Wisp for 20. Turn two is Candy, second Psychic, Phantom Maze.</span></dd>
+						<dt><strong>Gastly Active, nothing else</strong></dt><dd><span>Poffin or Ultra Ball for a Litwick, attach to the Litwick, Switch next turn. Never spend the turn retreating.</span></dd>
+						<dt><strong>Dawn</strong></dt><dd><span>A whole line to hand. Take Litwick, Lampent, Mega Chandelure unless the room says Gengar.</span></dd>
+						<dt><strong>Ultra Ball and two Psychic</strong></dt><dd><span>Pitch the Psychic you cannot attach. It is a Patch away from the Bench.</span></dd>
+						<dt><strong>A bad hand</strong></dt><dd><span>Lillie&#x27;s for the reset; at 6 Prizes it draws 8.</span></dd>
+						<dt><strong>Gastly and a Gengar in hand</strong></dt><dd><span>Bench the Gastly and wait. Candy is illegal turn one and on fresh Basics.</span></dd>
+					</dl>
+					<p><strong>The first attachment defaults Psychic.</strong> The first Candy belongs to Chandelure; the toll pays for everything else.</p>
+			</section>
+			<section>
+				<h3 id="7-things-that-will-cost-you-a-game">7. Things That Will Cost You a Game<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+					<dl>
+						<dt data-head>Mistake</dt><dd data-head>What actually happens</dd>
+						<dt>Janine&#x27;s aimed at one Pokémon</dt><dd><span>Illegal as intended: one Energy each to two different Darkness Pokémon.</span></dd>
+						<dt>Forgetting Void Gale&#x27;s move is mandatory</dt><dd><span>The attacking Gengar strips itself below <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span>. Every swing needs a third Energy aboard or a plan for the ferry.</span></dd>
+						<dt>Wondrous Patch on an empty discard</dt><dd><span>Dead card. Ultra Ball a Psychic first, or wait for the first Knock Out.</span></dd>
+						<dt>Wondrous Patch aimed at the Active</dt><dd><span>Illegal. It reads Benched. Charge the Bench, then Switch.</span></dd>
+						<dt>Munkidori with no Darkness on it</dt><dd><span>Adrena-Brain is off. Janine&#x27;s cannot feed it, because it is a Psychic Pokémon; budget a manual Darkness or the Void Gale ferry for it.</span></dd>
+						<dt>Poffin for Munkidori or Fezandipiti</dt><dd><span>Illegal, 110 and 210 HP against a 70 cap. Ultra Ball and Dawn are the routes.</span></dd>
+						<dt>Rare Candy on a Basic benched this turn</dt><dd><span>Illegal. Bench the seeds one turn earlier than you think you need them.</span></dd>
+						<dt>First Candy spent on the Gengar line</dt><dd><span>The toll engine is late and the whole deck idles. Chandelure first, always.</span></dd>
+						<dt>Both Megas exposed at once</dt><dd><span>Six Prizes standing in the open, and only one of them carries a discount. Two walls is a queue, not a formation.</span></dd>
+						<dt>Gemstone down, no exit budgeted</dt><dd><span>Your own Active pays the extra <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> too. Switch ignores it; retreating does not.</span></dd>
+						<dt>Spreading Light for three</dt><dd><span>With Munkidori and Fezandipiti seated there are two chairs, not three. Fetch what you can seat.</span></dd>
+						<dt>Flip the Script with nothing dead</dt><dd><span>It only draws the turn after one of yours was Knocked Out, once per turn. Plan the Lillie&#x27;s around it.</span></dd>
+						<dt>Adrena-Brain at their Bench under your own Cage</dt><dd><span>Blocked. Battle Cage reads both sides. Aim at their Active, or bump your own Cage first if the Bench shot wins the game.</span></dd>
+						<dt>Second Battle Cage while the first is still down</dt><dd><span>Illegal. A Stadium with the same name cannot be played. It is the answer to their Stadium, not a second copy of yours.</span></dd>
+						<dt>Lana&#x27;s Aid for a Mega</dt><dd><span>Illegal. Rule Box Pokémon never come back with it.</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="the-meta-this-deck-lives-in">The Meta This Deck Lives In</h3>
+					<p>The TCG Live ladder, per <a href="https://play.limitlesstcg.com/decks?game=PTCG&amp;format=standard">Limitless play data</a>, August 2026, 467 tournaments and 34,788 players.</p>
+					<table>
+						<thead><tr><th>Deck</th><th>Share</th><th>Win rate</th><th>This deck&#x27;s view of it</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Excadrill</td><td>7.7%</td><td>48.8%</td><td>Retreat 4, 340 HP. One Flame is 380. The seat this deck was built to sit in.</td></tr>
+							<tr><td>Dragapult, Dragapult Blaziken, Dragapult Dusknoir</td><td>18.6%</td><td>50-54%</td><td>Every attacker is an ex, so Concealment is on. Dragapult itself retreats for 1 and takes two Flames plus Gemstone; Boss the Blaziken or the Dusknoir instead. Battle Cage stops Phantom Dive&#x27;s six Bench counters and Dusknoir&#x27;s thirteen at the line.</td></tr>
+							<tr><td>Festival Lead, Slowking, Toucannon, Dhelmise</td><td>18.6%</td><td>47-53%</td><td>Single-prize rooms. The discount is blank and the Megas are liabilities. Gengar&#x27;s Mind Jack loves their full Benches, and a Battle Cage over Festival Grounds takes Dipplin&#x27;s second attack away for a turn.</td></tr>
+							<tr><td>Alakazam Dudunsparce</td><td>5.5%</td><td>53.5%</td><td>Dudunsparce retreats for 3. Gust it and collect 330.</td></tr>
+							<tr><td>N&#x27;s Zoroark</td><td>5.2%</td><td>48.1%</td><td>The deck that beat v3 on Live. N&#x27;s Castle gives every N&#x27;s Pokémon no Retreat Cost, so the Maze floors at 130 until a Battle Cage discards it; then 280 HP at Retreat 2 is exactly one Flame. Zoroark&#x27;s Night Joker copies N&#x27;s Darmanitan&#x27;s Back Draft, 30 per Basic Energy in your discard, doubled into a lantern. Lead Gengar, keep the discard thin with Lana&#x27;s and Patch, and Mind Jack their full Bench for free.</td></tr>
+							<tr><td>Grimmsnarl Froslass</td><td>4.4%</td><td>51.4%</td><td>Darkness and counters. The room that was sniping Litwick on Live; Gengar leads, Battle Cage keeps the counters off the Bench, and Gastly is 70 HP now.</td></tr>
+							<tr><td>Mega Lucario, Lucario Hariyama</td><td>3.7%</td><td>49-50%</td><td>Fighting. The lanterns resist it and Mega Gengar is Weak to it. Two Flames plus Gemstone for the Mega; Hariyama retreats for 3.</td></tr>
+							<tr><td>Raging Bolt Ogerpon</td><td>2.2%</td><td>53.3%</td><td>Raging Bolt retreats for 3, 240 HP. One Flame.</td></tr>
+						</tbody>
+					</table>
+					<p>The honest summary: this deck trades the lanterns&#x27; best-case consistency for coverage. It plays real games in the rooms the house decks each dodge, and it pays for that with a thinner engine in the rooms they own.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+					<p><strong><a href="./rocket-mewtwo.html">Fox&#x27;s Team Rocket&#x27;s Mewtwo</a>.</strong> Mewtwo ex retreats for 3, so one Flame prices it at 330 into a 280 HP body: one shot, two Prizes. His board is ex-heavy, so Concealment runs all game, and his <em>Assassin&#x27;s Return</em> at 240 into Weakness is the reason the Psychic ghosts stay benched when Crobat is loaded; feed it the Dark wall instead, which takes it neutral. Gengar into his full Rocket bench is 160 for one Energy and pays him nothing.</p>
+					<p><strong><a href="./fire-tournament.html">Fox&#x27;s Flareon ex</a>.</strong> Fire hits both halves neutral, and nothing he has one-shots a healthy 350. Flareon ex retreats for 2, so it pays 280 to one Flame and 330 to two; his Tera bench protection stops attacks, not Adrena-Brain, so the counters reach whatever they like.</p>
+					<p><strong><a href="./eevee-standard.html">Fox&#x27;s Sun and Moon</a>.</strong> The matchup the lanterns lose is the matchup this deck is for. <em>Moon Mirage</em> doubles into every Psychic ghost and lands neutral on Mega Gengar, so the Dark wall leads, the lanterns work from the Bench, and the toll prices his pivots. Still a real fight; no longer a forfeit.</p>
+					<p><strong><a href="./dark.html">Xero&#x27;s dark decks</a>.</strong> Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever&#x27;s wall commits first loses the information war.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-card-shop">Versus the Card Shop<span data-flavor><img src="./assets/sprites/froslass.gif" alt="" /></span></h3>
+					<p><strong>Free retreat is the off switch, and two cards in the format flip it.</strong> &quot;No Retreat Cost&quot; overrides every increase, so Phantom Maze floors at 130 against anything it covers. Latias ex&#x27;s <em>Skyliner</em> does it for their Basics; Boss&#x27;s Orders the Latias itself, 210 HP at Retreat 2, one Flame, 280, gone. <strong>N&#x27;s Castle</strong> does it for every N&#x27;s Pokémon, and it is a Stadium, so the answer is a Stadium: Battle Cage discards it, and N&#x27;s Zoroark ex at Retreat 2 pays 280 to one Flame, which is its whole HP. They will play a second Castle; that is what the second Cage is for. Until the Stadium is gone the closers that never cared about retreat carry the game: Mind Jack into their full Bench, Adrena-Brain, and Void Gale&#x27;s flat 230.</p>
+					<p><strong>Back Draft reads your discard.</strong> N&#x27;s Zoroark&#x27;s <em>Night Joker</em> copies any attack from a Benched N&#x27;s Pokémon, and N&#x27;s Darmanitan&#x27;s <em>Back Draft</em> does 30 for each Basic Energy in your discard pile. Six Energy in the discard is 180, and 360 into a Dark-weak Mega Chandelure. Against the N&#x27;s room the discard pile is a resource to keep empty: Patch and Lana&#x27;s Aid pull Energy out of it every turn, Ultra Ball should pitch Pokémon rather than Energy, and the lanterns work from the Bench while Mega Gengar, which takes Darkness neutral, stands in front.</p>
+					<p><strong>Froslass and Munkidori.</strong> <em>Freezing Shroud</em> puts a counter on every Pokémon with an Ability at each Checkup, both sides, and their Munkidori moves three of those counters a turn onto whatever you benched. Battle Cage stops both at your Bench line: Shroud is an Ability placing counters on Benched Pokémon, and so is Adrena-Brain. Your Active still takes them, so your own Munkidori sends those back, three a turn. Without the Cage down, a 70 HP Gastly survives two deliveries where the 60 HP print died to one; evolve early, and do not bench a Basic you cannot evolve next turn.</p>
+					<p><strong>Ability lock hurts twice.</strong> Anything that shuts Abilities off takes Binding Flame, Concealment, Adrena-Brain, and Flip the Script down together, and the Maze falls back to 130 plus printed Retreat. The toll half survives on Gemstone alone; those games are about Mind Jack and Void Gale.</p>
+					<p><strong>Jamming Tower</strong> turns off every Tool, which here means the Gemstone, and it is a Stadium, so Battle Cage removes it. Nothing else in the deck cares.</p>
+			</section>
+			<section>
+				<h3 id="where-gourgeist-went">Where Gourgeist Went<span data-flavor><img src="./assets/sprites/gourgeist.gif" alt="" /><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3>
+					<p>Favorite number three earned his cut honestly, twice. <em>Horrifying Rondo</em> pays 30 plus 50 for each of <strong>your</strong> Benched Pokémon with damage counters on it, and this deck generates none of that on its own board; the first draft fueled it with a Stadium that wounded every Basic either player benched, and the draft&#x27;s own Litwicks kept dying to it. The Live games confirmed the second half: even fed, the Rondo does not reach the numbers the field&#x27;s 320 to 380 HP walls demand, and <em>Ghostly Touch</em> at 140 for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> is a Mega&#x27;s cost for less than half a Mega&#x27;s damage.</p>
+					<p>Gourgeist is not homeless. The lanterns page documents the clean version of his engine, Froslass pinging your own Ability Pokémon at every Checkup (<a href="./psychic-lanterns.html#2-feeding-the-rondo">Feeding the Rondo</a>), and both Froslass and both Gourgeist ex stay in the box waiting for that build to get its own night.</p>
+			</section>
+			<section>
+				<h3 id="cards-that-look-right-skip-them">✗ Cards That Look Right, Skip Them<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+					<dl>
+						<dt data-head>Card</dt><dd data-head>Why not</dd>
+						<dt><strong>Gengar ex</strong> (Temporal Forces)</dt><dd><span><em>Tricky Steps</em> is 160 for <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> and two Prizes; the Perfect Order Gengar is up to 160 for <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span>, one Prize, zero against an ex under Concealment, and it comes back. <em>Gnawing Curse</em> is real, but it lives in <a href="./dark-curse.html">Curse Toll</a>, where the deck is built around it.</span></dd>
+						<dt><strong>Telepathic Psychic Energy</strong></dt><dd><span>Its bench fetch is Poffin&#x27;s job, and as Special Energy nothing in the deck ever recovers it. The Live games used the fetch in emergencies and lost the Energy every time a Mega died. Four basic Psychic and three Patches do both jobs.</span></dd>
+						<dt><strong>Shadowy Darkness Energy</strong></dt><dd><span>Same verdict, same reason. A Darkness that cannot be Stretchered or ferried back is a Darkness the deck loses.</span></dd>
+						<dt><strong>Hilda</strong></dt><dd><span>An Evolution and an Energy to hand. Ultra Ball finds the Evolution at Item speed, Lana&#x27;s Aid brings back three cards, and Dawn finds three Pokémon. Three Hilda were three Supporter turns the Live list could not afford.</span></dd>
+						<dt><strong>Lana&#x27;s Aid</strong></dt><dd><span>Three non-Rule-Box Pokémon or basic Energy from the discard. Cannot touch a Mega, and Patch attaches what Lana&#x27;s only puts in hand.</span></dd>
+						<dt><strong>Team Rocket&#x27;s Energy</strong></dt><dd><span>Provides exactly this deck&#x27;s colors, and only attaches to Team Rocket&#x27;s Pokémon; on anything here it discards itself.</span></dd>
+						<dt><strong>Neo Upper Energy</strong></dt><dd><span>Two Energy of any color on a Stage 2 pays either Mega&#x27;s whole attack in one card. It is an ACE SPEC, so it costs Prime Catcher, and a toll deck sells its gust last. The one skip that is a Test and Tune row, not a verdict.</span></dd>
+						<dt><strong>Mystery Garden</strong></dt><dd><span>A Psychic draw Stadium that also puts Energy in the discard for Patch. It reads both sides, and Slowking, Alakazam, and the Dusknoir builds have Psychic boards too. Battle Cage is the Stadium that costs this deck nothing.</span></dd>
+						<dt><strong>Eternatus</strong> (Phantasmal Flames)</dt><dd><span><em>Shatter</em> discards a Stadium for <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> and 50, a Darkness body Janine&#x27;s can feed. It spends the attack for the turn on what a second Battle Cage does for free.</span></dd>
+						<dt><strong>Grimmsnarl</strong> (Journey Together)</dt><dd><span><em>Shadowy Knot</em> at 50 per <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> for one Prize is the meta&#x27;s echo of the Maze and the reason those lists run it. Here it is a third Stage 2 line, and the Gengar line already holds that seat.</span></dd>
+						<dt><strong>The Fire Chandelures</strong></dt><dd><span>The Twilight Masquerade print with <em>Alluring Light</em> is Standard-legal and genuinely good, and it belongs to the meta&#x27;s one-line shell, not to this 60; the wanted list carries 4 for the day that deck gets built.</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>The list is a hypothesis; games are the data. Symptoms and their fixes:</p>
+					<dl>
+						<dt data-head>Symptom</dt><dd data-head>Fix</dd>
+						<dt>Mulligans still sting</dt><dd><span>Marshadow, Pitch Black 040, as an eleventh Basic over the Haunter. <em>Shadowy Knot</em> is 30 per <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> for one Energy and one Prize; 150 into Mega Excadrill.</span></dd>
+						<dt>You want a Basic that attacks the turn it lands</dt><dd><span>The same Marshadow, over Munkidori. It reads the toll table for one Psychic from a Basic body.</span></dd>
+						<dt>Energy still runs dry</dt><dd><span>A seventh Psychic over the third Ultra Ball, or Rosa&#x27;s Encouragement, Perfect Order 114, over the second Dawn: two basic Energy from the discard onto a Stage 2, live whenever you are behind on Prizes, which after a Mega dies is always.</span></dd>
+						<dt>Dragapult keeps surviving at 230</dt><dd><span>Black Belt&#x27;s Training over one Boss&#x27;s Orders. One Flame, Gemstone, and the 40 is 320 exactly.</span></dd>
+						<dt>Prime Catcher rarely decides a game</dt><dd><span>Neo Upper Energy in the ACE SPEC seat. One attachment, either Mega attacks.</span></dd>
+						<dt>Wounded Megas keep dying loaded</dt><dd><span>Wally&#x27;s Compassion over the second Switch.</span></dd>
+						<dt>Megas keep ending up in the discard with nothing to bring them back</dt><dd><span>Night Stretcher over Lana&#x27;s Aid; the Item recovers a Mega, the Supporter recovers three of everything else.</span></dd>
+						<dt>Both colors keep arriving one turn late</dt><dd><span>Crispin over Lana&#x27;s Aid: one attached, one to hand, from the deck rather than the discard.</span></dd>
+						<dt>Stadiums keep beating you anyway</dt><dd><span>A third Stadium, or Colress&#x27;s Tenacity, Shrouded Fable 057: a Stadium and an Energy from the deck in one Supporter.</span></dd>
+						<dt>Nobody in your rooms places counters</dt><dd><span>Mystery Garden, Mega Evolution 122, over the second Battle Cage: discard an Energy from hand, draw to your Psychic count, then Patch the Energy back.</span></dd>
+						<dt>Gengar never comes online</dt><dd><span>A second Haunter, Perfect Order 049, over the third Wondrous Patch.</span></dd>
+						<dt>Froslass rooms still snipe</dt><dd><span>A second Munkidori over the Fezandipiti.</span></dd>
+						<dt>Single-prize rooms keep winning</dt><dd><span>Sleeve <a href="./dark.html">the Gang</a> for that room; this deck&#x27;s answer is knowing when not to play it.</span></dd>
+					</dl>
+			</section>
+			<section>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pokeball.gif" alt="" /></span></h3></summary>
+					<p>This list lives on TCG Live, where every card in it is a craft away. On paper the collection owns all but four cards, and the own counts below are live from the collection database; Need sums across deck pages, so the wishlist does the arithmetic. The binder holds one of the three Wondrous Patch, no Gravity Gemstone, and no Lana&#x27;s Aid, about a dollar and a half of singles between them.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Litwick <small>ME05: Pitch Black 036/084</small></span></td><td>10</td><td>4</td><td>✓</td><td>the Psychic print; shared with the lanterns</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Lampent <small>ME05: Pitch Black 037/084</small></span></td><td>9</td><td>3</td><td>✓</td><td>shared with the lanterns</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Chandelure ex <small>ME05: Pitch Black 038/084</small></span></td><td>4</td><td>3</td><td>✓</td><td>sleeved in the lanterns today; this build inherits them</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Gastly <small>ME02: Phantasmal Flames 054/094</small></span></td><td>9</td><td>4</td><td>✓</td><td>the 70 HP print; the Gang runs the Perfect Order print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Haunter <small>ME03: Perfect Order 049/088</small></span></td><td>2</td><td>1</td><td>✓</td><td>the Haunt print, not Spooky Shot</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Mega Gengar ex <small>ME02: Phantasmal Flames 056/094</small></span></td><td>3</td><td>2</td><td>✓</td><td>Snake Charmer sleeves 2 of the owned 3</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Gengar <small>ME03: Perfect Order 050/088</small></span></td><td>3</td><td>1</td><td>✓</td><td>the single-prize Infinite Shadow print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Munkidori <small>SV06: Twilight Masquerade 095/167</small></span></td><td>3</td><td>1</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>2</td><td>1</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>2</td><td>✓</td><td></td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Janine&#x27;s Secret Art <small>SV: Shrouded Fable 059/064</small></span></td><td>2</td><td>1</td><td>✓</td><td>the only Darkness accel Supporter in Standard</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Lana&#x27;s Aid <small>SV06: Twilight Masquerade 155/167</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>three cards out of the discard; not owned</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Wondrous Patch <small>ME02: Phantasmal Flames 094/094</small></span></td><td>1</td><td>3</td><td><strong>2</strong></td><td>the Psychic rebuild; the binder holds one</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Prime Catcher <small>SV05: Temporal Forces 157/162</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC; the TEF print, the lanterns keep the PRE copy</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Gravity Gemstone <small>SV07: Stellar Crown 137/142</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>not owned; about twenty cents</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Battle Cage <small>ME02: Phantasmal Flames 085/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>owned; the Stadium</td></tr>
+							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>6</td><td>✓</td><td>never rotates</td></tr>
+							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>5</td><td>✓</td><td>shared</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>4</strong></td><td></td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="important">
+				<p><strong>The wanted list already knows.</strong> Gravity Gemstone and the 4 Twilight Masquerade Chandelure for the future meta shell are both filed in <a href="./wanted-cards.tsv">wanted-cards.tsv</a>. Two more Wondrous Patch and one Lana&#x27;s Aid, now filed there too, are the only other orders this page needs.</p>
+			</aside>
+				</details>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

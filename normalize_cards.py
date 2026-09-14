@@ -105,6 +105,11 @@ def clean_text(s):
     if not s:
         return ""
     s = re.sub(r"<[^>]+>", " ", s)
+    # some rows carry wiki italics around the reminder text rather than markup
+    # the tag strip above catches: Binding Mochi arrives as "do 40 more damage
+    # ''(before applying Weakness and Resistance)''". two apostrophes in a row
+    # never occur in real card text, so dropping them all is safe.
+    s = re.sub(r"''+", "", s)
     s = html.unescape(s)
     s = s.replace("\r", " ").replace("\n", " ")
     s = accents(s)
@@ -123,7 +128,9 @@ ENERGY_TYPE = {"G": "Grass", "R": "Fire", "W": "Water", "L": "Lightning",
 # Upstream typos worth correcting on the way past. TCGplayer appears to run a
 # letter-to-energy-symbol substitution over its own text, which turned the
 # attack "Spill the Tea" into "Spi[LL] the Tea".
-TEXT_FIXES = [(re.compile(r"(?<=[a-z])\[([A-Z]+)\](?=[a-z ])"), lambda m: m.group(1).lower())]
+TEXT_FIXES = [(re.compile(r"(?<=[a-z])\[([A-Z]+)\](?=[a-z ])"), lambda m: m.group(1).lower()),
+              # Dragapult ex's attack is printed "Phantom Dive"; the listing says "Drive".
+              (re.compile(r"\bPhantom Drive\b"), "Phantom Dive")]
 
 # The Japanese line spells energy out where the English line abbreviates it.
 ENERGY_ABBR = {v: k for k, v in ENERGY_TYPE.items()} | {"Colorless": "C"}

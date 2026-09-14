@@ -49,10 +49,15 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "dark-mega.md": ["seviper", "gengar-mega"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
           "phantom-toll.md": ["chandelure", "gengar-mega"],
+          "phantom-tax.md": ["chandelure", "gengar"],
           "flaming-lanterns.md": ["litwick", "chandelure"],
           "eevee-standard.md": ["eevee", "umbreon", "espeon", "glaceon"],
           "rocket-mewtwo.md": ["crobat", "mewtwo"],
-          "metal-excadrill.md": ["drilbur", "excadrill"]}
+          "metal-excadrill.md": ["drilbur", "excadrill"],
+          # no Gen 8 sprites exist, so the Ghost/Dragon Giratina stands in for Dragapult
+          "dragons.md": ["giratina-origin", "clefairy"],
+          # Okidogi is Gen 9 and has no sprite, so the two ghosts carry the page
+          "dark-gang.md": ["gengar-evo", "gengar-mega"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -113,6 +118,24 @@ FLAVOR = {
         "Versus the Kitchen Table": ["mewtwo"],
         "What To Buy": ["pokeball"],
     },
+    # Okidogi, Toxel, Toxtricity, and Pecharunt are all Gen 8 or 9 and absent
+    # from the sprite library, so the ghosts carry the card sections and the
+    # rest of the keys go to the prose. Excadrill and the Origin Giratina stand
+    # in for the two decks the field table is really about.
+    "dark-gang.md": {
+        "The Thesis": ["gengar-mega"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Mega Gengar ex": ["gengar-mega"],
+        "Gengar ex": ["gengar-smile"],
+        "The Prize Tax": ["gengar-booty"],
+        "The Energy Engine": ["pokedex"],
+        "3. Choosing the stadium": ["gengar-hop"],
+        "4. Bench discipline": ["spin-haunter"],
+        "Versus the Card Shop": ["excadrill", "giratina-origin"],
+        "Alternatives": ["crobat", "zubat"],
+        "What To Buy": ["pokeball"],
+    },
     "dark-curse.md": {
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
@@ -169,6 +192,27 @@ FLAVOR = {
         "Versus the Card Shop": ["noctowl"],
         "Where Gourgeist Went": ["gourgeist", "pumpkaboo"],
         "✗ Four Cards That Look Right — Skip Them": ["wobbuffet-back"],
+        "What To Buy": ["pokeball"],
+    },
+    # the Toll rebuild. no Munkidori or Fezandipiti sprite exists (Gen 9).
+    "phantom-tax.md": {
+        "Litwick": ["litwick"],
+        "Lampent": ["lampent"],
+        "Mega Chandelure ex": ["chandelure"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Mega Gengar ex": ["gengar-mega"],
+        "Gengar": ["gengar"],
+        "The Toll Math": ["gengar-booty"],
+        "1. Pick the Wall": ["chandelure", "gengar-mega"],
+        "3. The Dark Button": ["gastly"],
+        "4. The Closer": ["gengar-smile"],
+        "5. The Rebuild": ["lampent"],
+        "7. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Kitchen Table": ["mewtwo"],
+        "Versus the Card Shop": ["froslass"],
+        "Where Gourgeist Went": ["gourgeist", "pumpkaboo"],
+        "✗ Cards That Look Right, Skip Them": ["wobbuffet-back"],
         "What To Buy": ["pokeball"],
     },
     "psychic-lanterns.md": {
@@ -284,6 +328,27 @@ FLAVOR = {
     # drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
     # aggron were promoted from assets/ani for this page. No Mega Excadrill
     # sprite exists, so the base form stands in for it.
+    # the sprite library stops at Gen 6: nothing for the Dreepy line, Munkidori,
+    # Fezandipiti, or Mimikyu. Giratina (Ghost/Dragon) stands in for Dragapult,
+    # Diancie for the Crystal, Xatu for the room-reading plan.
+    "dragons.md": {
+        "The Thesis": ["giratina"],
+        "The Numbers": ["pokedex"],
+        "Lillie's Clefairy ex": ["clefairy"],
+        "Meowth ex": ["meowth"],
+        "Budew": ["budew"],
+        "Sparkling Crystal": ["diancie"],
+        "1. The Two-Turn Kill": ["giratina-origin"],
+        "2. The Crystal": ["diancie"],
+        "3. The Fairy Zone": ["clefairy", "clefable"],
+        "4. Reading the Room": ["xatu"],
+        "6. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Field": ["excadrill", "alakazam"],
+        "Versus the Kitchen Table": ["mewtwo", "gengar-mega"],
+        # the card that was left out on purpose
+        "Alternatives": ["dusknoir"],
+        "What To Buy": ["meowth"],
+    },
     "metal-excadrill.md": {
         "Mega Excadrill ex": ["excadrill"],
         "Drilbur": ["drilbur"],
@@ -1215,7 +1280,8 @@ def bullets_or_para(text, ind):
 
 DECKS = ["rules.md", "dark.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
-         "psychic-lanterns.md", "phantom-toll.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md"]
+         "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
+         "dragons.md", "dark-gang.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

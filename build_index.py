@@ -39,6 +39,11 @@ PAGES = [
      "Xero's ex-battle mode. Eleven cards swap Gengar Gang into a prize cage:"
      " Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall"
      " takes the hits."),
+    ("dark-gang.html", ["gengar-evo", "gengar-mega"],
+     "Xero's league-night 60, rebuilt around Okidogi ex. Shadowy Concealment"
+     " charges the opponent a Prize for every knockout, Gnawing Curse and"
+     " Risky Ruins stack chip on the way in, and Binding Mochi puts"
+     " Chain-Crazed at 300."),
     ("dark-curse.html", ["gengar-smile", "gengar-mega"],
      "Xero's bigger plan, on hold until the Gnawing Curse pair is sourced. Two"
      " ex Gengars on one Haunter line: the Mega bends every prize trade, and"
@@ -47,6 +52,11 @@ PAGES = [
      "Xero's two-color hybrid. Mega Chandelure makes leaving expensive and"
      " Mega Gengar makes losing cheap, while every gust drags something heavy"
      " into a toll booth it cannot afford to sit in."),
+    ("phantom-tax.html", ["chandelure", "gengar"],
+     "Xero's Phantom Toll, rebuilt off the TCG Live ladder. Wondrous Patch"
+     " recharges the next lantern the turn the first one falls, a single-prize"
+     " Gengar pays the opponent nothing, and Munkidori sends their counters"
+     " home."),
     ("flaming-lanterns.html", ["litwick", "chandelure"],
      "Xero's meta deck. Four Fire Chandelure read the opponent's hand while"
      " Mega Chandelure prices their exits; the archetype's tournament-winning"
@@ -58,6 +68,11 @@ PAGES = [
      "Fox's Metal deck, bought from zero. One Beldum line feeds both the"
      " Energy engine and a Metagross that hits for 330 and gives up a single"
      " Prize; the Mega only comes out to close."),
+    ("dragons.html", ["giratina-origin", "clefairy"],
+     "Xero's Dragapult deck, rebuilt from the card that beat him. Four"
+     " Drakloaks draw every turn, Sparkling Crystal makes Phantom Dive cost"
+     " one Energy, and Lillie's Clefairy ex turns the mirror into a Fairy"
+     " Zone."),
     ("eevee-standard.html", ["eevee", "umbreon", "espeon", "glaceon"],
      "Fox's Eevee deck, and the only one here that is two decks. Fifty"
      " cards never move; ten swap between Sun and Moon for home and Fire"

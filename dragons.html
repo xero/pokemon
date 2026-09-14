@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Xero's Crystal Dragons</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
+				background-color: var(--line);
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Xero's Crystal Dragons <img data-mascot src="./assets/sprites/giratina-origin.gif" alt="" /> <img data-mascot src="./assets/sprites/clefairy.gif" alt="" /></h1>
+				<p>Tournament · Phantom Dive for one Energy, four Drakloaks drawing every turn, and a Fairy Zone for the mirror</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#versus-the-field">Versus the Field</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+		</ul>
+		<dl data-index>
+			<dt><a href="#the-numbers">The Numbers</a></dt>
+			<dd><a href="#damage-you-deal">Damage you deal</a> <a href="#setup-odds">Setup odds</a></dd>
+			<dt>Pokémon</dt>
+			<dd><a href="#dreepy">Dreepy</a> <a href="#drakloak">Drakloak</a> <a href="#dragapult-ex">Dragapult ex</a> <a href="#munkidori">Munkidori</a> <a href="#lillies-clefairy-ex">Lillie&#x27;s Clefairy ex</a> <a href="#fezandipiti-ex">Fezandipiti ex</a> <a href="#meowth-ex">Meowth ex</a> <a href="#budew">Budew</a> <a href="#team-rockets-mimikyu">Team Rocket&#x27;s Mimikyu</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#crispin">Crispin</a> <a href="#dawn">Dawn</a> <a href="#briar">Briar</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#ultra-ball">Ultra Ball</a> <a href="#poke-pad">Poke Pad</a> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#tera-orb">Tera Orb</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#energy-switch">Energy Switch</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#sparkling-crystal">Sparkling Crystal</a> <a href="#air-balloon">Air Balloon</a> <a href="#area-zero-underdepths">Area Zero Underdepths</a> <a href="#risky-ruins">Risky Ruins</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-fire-energy">Basic Fire Energy</a> <a href="#basic-psychic-energy">Basic Psychic Energy</a> <a href="#basic-darkness-energy">Basic Darkness Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-the-two-turn-kill">1. The Two-Turn Kill</a> <a href="#2-the-crystal">2. The Crystal</a> <a href="#3-the-fairy-zone">3. The Fairy Zone</a> <a href="#4-reading-the-room">4. Reading the Room</a> <a href="#5-reading-the-opening-hand">5. Reading the Opening Hand</a> <a href="#6-things-that-will-cost-you-a-game">6. Things That Will Cost You a Game</a></dd>
+			<dt><a href="#alternatives">Alternatives</a></dt>
+			<dd><a href="#dusknoir">Dusknoir</a> <a href="#prime-catcher">Prime Catcher</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>The deck that beat me at the first game night, rebuilt from the card text up. Dragapult ex is the most-played line in Standard, and this is the light-Tera version of it: the stock engine, Sparkling Crystal instead of Unfair Stamp, and a mirror package built on Lillie&#x27;s Clefairy ex. Every card carries regulation mark H, I, or J, so it is legal as it sits.</p>
+				<p>Three builds were on the table before this one. The stock hammer list, the Blaziken ex board, and this. The reasoning for what did not make it is in <a href="#alternatives">Alternatives</a>. None of the dragon line is in the binder yet; the nine cards the box does not hold come to about eighteen dollars, and the Trainer shell, the Crystal, and the Mimikyu are already in it.</p>
+				<p>Written for a player who has seen this deck from the wrong side of the table exactly once. Every matchup leads with numbers, and <a href="#the-numbers">The Numbers</a> collects the ones to memorize. Game words live in <a href="./rules.html">the table rules</a>; the ex-format habits live in <a href="./rules.html#how-to-play-ex-style">How To Play ex Style</a>.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/giratina.gif" alt="" /></span></h3>
+					<p><strong>Drakloak is the deck. Dragapult ex is what it evolves into.</strong> _Recon Directive_ looks at the top two cards of your deck once a turn, keeps one, and puts the other on the bottom. Four Drakloaks on the Bench is four free card selections every turn before you play a Supporter. That is the engine that emptied my hand on turn three, and it is why every Dragapult list runs the line 4-4 with no Rare Candy: the Stage 1 is the reason to be here, so you evolve through it on purpose and leave the Drakloaks standing.</p>
+					<p><strong>Phantom Dive is 200 damage plus six damage counters, placed anywhere on their Bench.</strong> Two hundred is a two-shot into every ex that matters, so the deck does not race. The sixty a turn of counters is the actual weapon. It pre-kills the 70 HP Basics every evolution deck stands on, softens the next Boss&#x27;s Orders target, and turns the second Dive into a Knock Out on anything up to 260. Two Dives is 400, and nothing printed has 400 HP.</p>
+					<p><strong>Sparkling Crystal makes the Dive cost one Energy.</strong> Dragapult ex is a Tera Pokémon, and the Crystal&#x27;s Tera discount takes the cost from Fire plus Psychic down to either one alone. A Dragapult that evolves this turn attacks this turn off a single attachment. A Dragapult that dies took one Energy with it, not two. Crispin&#x27;s attach alone turns the next one live. Every list at the top tables runs Unfair Stamp in this slot; <a href="#2-the-crystal">game plan 2</a> is why this one does not.</p>
+					<p><strong>The mirror is a fifth of the room, and Lillie&#x27;s Clefairy ex owns it.</strong> _Fairy Zone_ makes every Dragon Pokémon your opponent has Weak to Psychic. Their Dragapult ex, their Drakloaks, and their Dreepy all take double from Clefairy&#x27;s _Full Moon Rondo_, from Munkidori&#x27;s _Mind Bend_, and from Team Rocket&#x27;s Mimikyu copying their own Phantom Dive back at them for 400. The stock list runs one Clefairy and hopes; this list runs two and a Mimikyu and plans.</p>
+					<table>
+						<thead><tr><th>Your attacker</th><th>Cost</th><th>Into a Dragon under Fairy Zone</th></tr></thead>
+						<tbody>
+							<tr><td>Lillie&#x27;s Clefairy ex, _Full Moon Rondo_, five Benched a side</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>440</strong></td></tr>
+							<tr><td>Team Rocket&#x27;s Mimikyu copying _Phantom Dive_</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>400</strong>, plus six counters</td></tr>
+							<tr><td>Munkidori, _Mind Bend_</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>120</strong>, which is a Drakloak</td></tr>
+						</tbody>
+					</table>
+					<p>Dragapult ex is 320 HP. Every row kills it, or kills the engine under it, from a body that costs two Energy.</p>
+					<p><strong>Area Zero Underdepths is the last Tera card, and it is deliberately light.</strong> Eight Bench slots while a Tera is in play means the four Drakloaks, two Munkidori, Clefairy, and Fezandipiti all fit at once, and Rondo climbs to 280 without Weakness. Two copies, because the Stadium leaving play costs you three benched Pokémon and you discard first. The sixth, seventh, and eighth seats are a luxury this deck uses when it is ahead, never a plan it depends on.</p>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#dreepy"><img src="./assets/550172_dreepy.jpg" alt="Dreepy" /><span data-count>x4</span></a></figure>
+				<figure><a href="#drakloak"><img src="./assets/550173_drakloak.jpg" alt="Drakloak" /><span data-count>x4</span></a></figure>
+				<figure><a href="#dragapult-ex"><img src="./assets/550174_dragapult-ex-130-167.jpg" alt="Dragapult ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#munkidori"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /><span data-count>x2</span></a></figure>
+				<figure><a href="#lillies-clefairy-ex"><img src="./assets/623483_lillies-clefairy-ex-056-159.jpg" alt="Lillie&#x27;s Clefairy ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#fezandipiti-ex"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a></figure>
+				<figure><a href="#meowth-ex"><img src="./assets/684340_meowth-ex-062-088.jpg" alt="Meowth ex" /></a></figure>
+				<figure><a href="#budew"><img src="./assets/675828_budew-016-217.jpg" alt="Budew" /></a></figure>
+				<figure><a href="#team-rockets-mimikyu"><img src="./assets/630821_team-rockets-mimikyu.jpg" alt="Team Rocket&#x27;s Mimikyu" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#bosss-orders-ghetsis"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#crispin"><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /><span data-count>x2</span></a></figure>
+				<figure><a href="#dawn"><img src="./assets/660414_dawn.jpg" alt="Dawn" /></a></figure>
+				<figure><a href="#briar"><img src="./assets/567385_briar-132-142.jpg" alt="Briar" /></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></a></figure>
+				<figure><a href="#poke-pad"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /><span data-count>x4</span></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></a></figure>
+				<figure><a href="#tera-orb"><img src="./assets/590076_tera-orb.jpg" alt="Tera Orb" /><span data-count>x2</span></a></figure>
+				<figure><a href="#night-stretcher"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></a></figure>
+				<figure><a href="#energy-switch"><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /></a></figure>
+				<figure><a href="#sparkling-crystal"><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></a></figure>
+				<figure><a href="#air-balloon"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a></figure>
+				<figure><a href="#area-zero-underdepths"><img src="./assets/567384_area-zero-underdepths-131-142.jpg" alt="Area Zero Underdepths" /><span data-count>x2</span></a></figure>
+				<figure><a href="#risky-ruins"><img src="./assets/654466_risky-ruins.jpg" alt="Risky Ruins" /></a></figure>
+				<figure><a href="#basic-fire-energy"><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /><span data-count>x3</span></a></figure>
+				<figure><a href="#basic-psychic-energy"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x3</span></a></figure>
+				<figure><a href="#basic-darkness-energy"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x2</span></a></figure>
+			</article>
+					<p><strong>Pokémon (19)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Dreepy</td><td>Twilight Masquerade</td><td>128</td><td>H</td></tr>
+							<tr><td>4</td><td>Drakloak</td><td>Twilight Masquerade</td><td>129</td><td>H</td></tr>
+							<tr><td>3</td><td>Dragapult ex</td><td>Twilight Masquerade</td><td>130</td><td>H</td></tr>
+							<tr><td>2</td><td>Munkidori</td><td>Twilight Masquerade</td><td>095</td><td>H</td></tr>
+							<tr><td>2</td><td>Lillie&#x27;s Clefairy ex</td><td>Journey Together</td><td>056</td><td>I</td></tr>
+							<tr><td>1</td><td>Fezandipiti ex</td><td>Shrouded Fable</td><td>038</td><td>H</td></tr>
+							<tr><td>1</td><td>Meowth ex</td><td>Perfect Order</td><td>062</td><td>J</td></tr>
+							<tr><td>1</td><td>Budew</td><td>Ascended Heroes</td><td>016</td><td>H</td></tr>
+							<tr><td>1</td><td>Team Rocket&#x27;s Mimikyu</td><td>Destined Rivals</td><td>087</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Supporters (11)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders [Ghetsis]</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>2</td><td>Crispin</td><td>Stellar Crown</td><td>133</td><td>H</td></tr>
+							<tr><td>1</td><td>Dawn</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>1</td><td>Briar</td><td>Stellar Crown</td><td>132</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Items (17)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Ultra Ball</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>4</td><td>Poke Pad</td><td>Perfect Order</td><td>081</td><td>J</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>2</td><td>Tera Orb</td><td>Surging Sparks</td><td>189</td><td>H</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Energy Switch</td><td>Mega Evolution</td><td>115</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers — Tool &amp; Stadium (5)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>1</td><td>Sparkling Crystal</td><td>Stellar Crown</td><td>142</td><td>H</td></tr>
+							<tr><td>1</td><td>Air Balloon</td><td>Ascended Heroes</td><td>181</td><td>I</td></tr>
+							<tr><td>2</td><td>Area Zero Underdepths</td><td>Stellar Crown</td><td>131</td><td>H</td></tr>
+							<tr><td>1</td><td>Risky Ruins</td><td>Mega Evolution</td><td>127</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (8)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Basic Fire Energy</td><td>Mega Evolution Energies</td><td>002</td><td>-</td></tr>
+							<tr><td>3</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td><td>-</td></tr>
+							<tr><td>2</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>007</td><td>-</td></tr>
+						</tbody>
+					</table>
+					<p><strong>19 + 11 + 17 + 5 + 8 = 60.</strong> ✓</p>
+					<p><strong>Basics: 12</strong> (4 Dreepy, 2 Munkidori, 2 Lillie&#x27;s Clefairy ex, Fezandipiti ex, Meowth ex, Budew, Team Rocket&#x27;s Mimikyu). The mulligan rate is 19%, inside the band. Sparkling Crystal is the ACE SPEC, and the house Prime Catchers stay with the decks that already claim them.</p>
+			</section>
+			<section>
+				<h3 id="the-numbers">The Numbers<span data-flavor><img src="./assets/sprites/pokedex.gif" alt="" /></span></h3>
+					<p>Memorize this section. Everything below it is explanation.</p>
+			<article>
+				<h3 id="damage-you-deal">Damage you deal</h3>
+				<section>
+					<table>
+						<thead><tr><th>Attack</th><th>Cost</th><th>Damage</th><th>One-shots at full HP</th></tr></thead>
+						<tbody>
+							<tr><td>Dragapult ex, _Phantom Dive_</td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/psychic.png" alt="Psychic" /></span>, or either one with the Crystal</td><td><strong>200</strong>, plus 6 counters on their Bench</td><td>Pecharunt ex 190, Lillie&#x27;s Clefairy ex 190, Metagross 180, Meowth ex 170, Dusknoir 160, Tatsugiri ex 160, Toucannon 150, Hariyama 150, Alakazam 140, Dudunsparce 140, Dhelmise 140, N&#x27;s Reshiram 130, Slowking 120, Munkidori 110, Chi-Yu 110, Froslass 90, Dipplin 90</td></tr>
+							<tr><td>Dragapult ex, _Jet Headbutt_</td><td><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>70</td><td>Dreepy, Gastly, Drilbur, Beldum, Hoothoot, Torchic, Budew, and any 70 HP Basic</td></tr>
+							<tr><td>Lillie&#x27;s Clefairy ex, _Full Moon Rondo_</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td><strong>20, plus 20 per Benched Pokémon on both sides</strong></td><td>220 with five a side: Genesect ex 220, Iron Leaves ex 220, every Ogerpon ex 210, Latias ex 210, Fezandipiti ex 210. 280 with your Bench at eight: N&#x27;s Zoroark ex 280, Team Rocket&#x27;s Mewtwo ex 280, Sylveon ex 270</td></tr>
+							<tr><td>Munkidori, _Mind Bend_</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>60, and their Active is Confused</td><td>Budew, and the counters finish anything else</td></tr>
+							<tr><td>Team Rocket&#x27;s Mimikyu, _Gemstone Mimicry_</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>whatever their Active Tera&#x27;s attack does</td><td>a copied _Phantom Dive_ is 200 plus 6 counters</td></tr>
+							<tr><td>Fezandipiti ex, _Cruel Arrow_</td><td><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>100 to any one Pokémon</td><td>Drakloak 90, Dusclops 90, Froslass 90, every 70 HP Basic</td></tr>
+							<tr><td>Anything Psychic into a Dragon under Fairy Zone</td><td></td><td>doubled</td><td>Rondo <strong>440</strong>, a copied Dive <strong>400</strong>, Mind Bend <strong>120</strong>. Dragapult ex 320, Raging Bolt ex 240, Drakloak 90, Dreepy 70</td></tr>
+						</tbody>
+					</table>
+					<p>Phantom Dive is Dragon-type damage, so Fairy Zone never doubles it. The Zone is for the three Psychic bodies, and the Dive is for everything else.</p>
+					<p><strong>The counters are the real attack.</strong> Six a turn, placed anywhere on their Bench in any split. Sixty on a Duskull or a Budew is a Knock Out and a Prize before your opponent&#x27;s turn starts. Sixty on a 70 HP Dreepy or Gastly leaves it on 10, and the next Dive&#x27;s first counter finishes it. Two Dives of counters is 120, which is a Drakloak, a Metang, a Munkidori, or a Dusclops. Counters ignore Weakness, Resistance, and the Tera Bench rule; the only things that stop them are Battle Cage and the Hide &#x27;n&#x27; Sneak Ability.</p>
+					<p><strong>Two-hit lines.</strong> Dive then Dive is <strong>400</strong>, and the biggest body in Standard is Mega Venusaur ex at 380. Dive then Rondo at five a side is <strong>420</strong>. Dive into a target already carrying two turns of counters is a <strong>320</strong> kill, which is Dragapult ex, Blaziken ex, and Marnie&#x27;s Grimmsnarl ex. A Dive&#x27;s counters plus Mind Bend is <strong>120</strong> on the Bench in one turn, without Weakness.</p>
+					<p><strong>Risky Ruins adds 20</strong> to every non-Darkness Basic that hits either Bench. On theirs it turns a 70 HP Basic into a one-Dive kill on the Bench. On yours it hands Munkidori ammunition; see <a href="#munkidori">Munkidori</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="damage-you-take">Damage you take</h3>
+				<section>
+					<p>Your HP: Dragapult ex <strong>320</strong>, Fezandipiti ex <strong>210</strong>, Lillie&#x27;s Clefairy ex <strong>190</strong>, Meowth ex <strong>170</strong>, Munkidori <strong>110</strong>, Drakloak <strong>90</strong>, Dreepy <strong>70</strong>, Team Rocket&#x27;s Mimikyu <strong>60</strong>, Budew <strong>30</strong>. Dragapult ex is a Dragon and has no Weakness of its own; the one way it gains one is an opposing Clefairy&#x27;s Fairy Zone. While it sits on your Bench it takes no damage from attacks at all, yours or theirs, though damage counters still land.</p>
+					<table>
+						<thead><tr><th>Their attack</th><th>Damage</th><th>What it kills</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Excadrill ex, _Maximum Drilling_ with 5 Energy</td><td>330</td><td><strong>Dragapult ex.</strong> The one common attack that one-shots it. Count the Energy on the Drilbur before you commit a Dive; two-shot the Mega before it reaches five, or Boss the Drilbur.</td></tr>
+							<tr><td>Metagross with Brave Bangle, _Metallic Hammer_</td><td>330 into an ex</td><td>Dragapult ex, from a one-Prize body. Fox&#x27;s Metal deck runs it.</td></tr>
+							<tr><td>Dragapult ex, _Phantom Dive_</td><td>200, plus 6 counters</td><td>Clefairy or Meowth in front. Budew and Mimikyu die to the counters alone; a Dreepy survives one Dive on 10 and dies to the next. Fezandipiti survives a Dive on 10.</td></tr>
+							<tr><td>Lillie&#x27;s Clefairy ex, _Full Moon Rondo_ under their Fairy Zone</td><td>20 plus 20 per Benched, doubled</td><td><strong>440 into Dragapult ex</strong> at five a side. Your Area Zero Bench makes it worse. Kill their Clefairy first, and keep your Bench at five in the mirror.</td></tr>
+							<tr><td>Dhelmise, _Vengeful Anchor_ under their Fairy Zone</td><td>170, doubled to 340</td><td>Dragapult ex. The Hide &#x27;n&#x27; Sneak deck, and its Pokémon are immune to your counters.</td></tr>
+							<tr><td>Mega Gengar ex, _Void Gale_</td><td>230</td><td>Clefairy, Meowth, Fezandipiti, and every small body. Dragapult survives on 90 and dies to the second.</td></tr>
+							<tr><td>Blaziken ex, _Smolder-sault_</td><td>200</td><td>Clefairy and Meowth. It cannot attack the next turn.</td></tr>
+							<tr><td>Marnie&#x27;s Grimmsnarl ex, _Shadow Bullet_</td><td>180, plus 30 to one bencher</td><td>Meowth. The 30 finishes a Mimikyu or Budew.</td></tr>
+							<tr><td>Toucannon, _Feather Rondo_</td><td>60, plus 20 per Benched on both sides</td><td>260 at five a side. <strong>320 if your Bench is at eight.</strong> Area Zero stays in the deck against Toucannon.</td></tr>
+							<tr><td>Dusknoir, _Cursed Blast_ (Ability)</td><td>13 counters</td><td>Munkidori, Drakloak, Dreepy, Mimikyu, Budew. Never Dragapult, Clefairy, Meowth, or Fezandipiti.</td></tr>
+							<tr><td>Alakazam, _Powerful Hand_</td><td>2 counters per card in their hand</td><td>A seven-card hand is 140: any Drakloak or Munkidori.</td></tr>
+							<tr><td>Mega Chandelure ex, _Phantom Maze_</td><td>130, plus 50 per Colorless in your Retreat Cost</td><td>Dragapult retreats for one, two under _Binding Flame_: 230. With Air Balloon attached it is 180.</td></tr>
+							<tr><td>Mega Lucario ex, _Mega Brave_</td><td>270</td><td>Everything but Dragapult, which survives on 50.</td></tr>
+							<tr><td>Hariyama, _Wild Press_</td><td>210</td><td>Clefairy, Meowth, Fezandipiti. Dragapult survives on 110.</td></tr>
+						</tbody>
+					</table>
+				</section>
+			</article>
+			<article>
+				<h3 id="prizes">Prizes</h3>
+				<section>
+					<p>Their six: Dragapult ex, Lillie&#x27;s Clefairy ex, Fezandipiti ex, and Meowth ex pay two apiece; everything else pays one. Three ex Knock Outs is their game, and the Tera Bench rule means the Dragapult they want is only ever the one in front. Your six against an ex deck is three Knock Outs, and against a single-prize room it is six, which is where the counters earn their keep: a Dive that kills the Active and a benched Basic is two Prizes in one attack.</p>
+					<p><strong>Briar is the one-card comeback.</strong> When your opponent is down to exactly two Prizes, a Knock Out by your Tera Pokémon that turn takes one more. At three Prizes left, a Dive that kills any ex wins the game on the spot.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="setup-odds">Setup odds</h3>
+				<section>
+					<table>
+						<thead><tr><th>By</th><th>Cards seen</th><th>Dragapult ex, or a card that finds it</th><th>Drakloak or Poke Pad</th><th>Sparkling Crystal</th><th>Either Clefairy</th></tr></thead>
+						<tbody>
+							<tr><td>Turn 1, going second</td><td>8</td><td>79%</td><td>71%</td><td>13%</td><td>25%</td></tr>
+							<tr><td>Turn 2, going second</td><td>9</td><td>83%</td><td>75%</td><td>15%</td><td>28%</td></tr>
+							<tr><td>Turn 3</td><td>10</td><td>86%</td><td>79%</td><td>17%</td><td>31%</td></tr>
+							<tr><td>Turn 4</td><td>11</td><td>89%</td><td>82%</td><td>18%</td><td>34%</td></tr>
+						</tbody>
+					</table>
+					<p>Ten cards find a Dragapult: the three copies, four Ultra Ball, two Tera Orb, and Dawn. Eight find a Drakloak: four copies and four Poke Pad. The opening seven holds a Dreepy or a Poffin 65% of the time and a Dreepy, Poffin, Poke Pad, or Ultra Ball 90% of the time. At least one Dragapult ex is in the Prizes 28% of games, which is why there are three; all three are prized in one game in sixteen hundred.</p>
+					<p>The Crystal column is the honest weakness. Nothing in the deck searches a Tool, so the Crystal arrives when Recon Directive and Lillie&#x27;s find it, and the deck is built to Dive for two Energy until it does. The Crystal is the upgrade to a plan that already works, not the plan.</p>
+				</section>
+			</article>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="dreepy">Dreepy<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/550172_dreepy.jpg" target="_blank" rel="noopener"><img src="./assets/550172_dreepy.jpg" alt="Dreepy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>128/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/dragon.png" alt="Dragon" /></span><span>Dragon</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Petty Grudge (10)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Bite (40)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Four copies, the Twilight Masquerade print, and its whole job is becoming a Drakloak. 70 HP puts it inside Buddy-Buddy Poffin&#x27;s range, and Dragon typing means Risky Ruins puts two counters on it when it lands. _Petty Grudge_ does 10 for one Psychic and you will attack with it exactly never; _Bite_ is 40 for the Dive&#x27;s cost and exists to remind you that the Energy on a Dreepy is Energy on the future Dragapult.</p>
+					<p><strong>Bench two on turn one, always.</strong> Poffin fetches two, Dawn fetches one, Poke Pad fetches one, and Ultra Ball fetches one. Four Dreepy is not a count you thin, because every Dreepy that dies before evolving is a Drakloak the engine never gets.</p>
+					<p>Against another Dragapult, a benched Dreepy is on 10 after one Dive and dead after the next, so evolve it the turn you legally can. Against Dusknoir, thirteen counters kill it outright.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="drakloak">Drakloak<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/550173_drakloak.jpg" target="_blank" rel="noopener"><img src="./assets/550173_drakloak.jpg" alt="Drakloak" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>129/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/dragon.png" alt="Dragon" /></span><span>Dragon</span></dd>
+						<dt>HP</dt><dd><span>90</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Recon Directive - Once during your turn, you may look at the top 2 cards of your deck and put 1 of them into your hand. Put the other card on the bottom of your deck.</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Dragon Headbutt (70)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The engine, and the card that costs the most to lose.</strong> 90 HP, Stage 1, Dragon, and _Recon Directive_: once during your turn, look at the top two cards of your deck, put one into your hand, and put the other on the bottom. Once per copy. Four Drakloaks standing is four looks at two cards every turn, which is eight cards seen and four kept before your Supporter, and it never touches your hand.</p>
+					<p>Read the second half of the text. The card you do not take goes to the <strong>bottom</strong>, not back into the shuffle. Four Recons a turn churns the deck forward, so the Lillie&#x27;s you shuffle into is a better deck every turn.</p>
+					<p>Four copies, and none of them Rare Candy. This is the line philosophy the card forces: a Stage 1 with the best Ability in the deck has to be evolved into, not skipped. Dawn&#x27;s Stage 1 slot and four Poke Pad find it, and _Dragon Headbutt_ is 70 for the Dive&#x27;s cost if a Drakloak ever has to fight.</p>
+					<p>90 HP is the number the opponent aims at. Cruel Arrow kills one from the Bench for 100, Dusknoir&#x27;s thirteen counters kill one, two Dives of counters kill one. Lose a Drakloak and the deck slows a card a turn; lose two and you are playing a normal deck. <a href="#6-things-that-will-cost-you-a-game">Game plan 6</a> has the Bench discipline.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dragapult-ex">Dragapult ex<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/550174_dragapult-ex-130-167.jpg" target="_blank" rel="noopener"><img src="./assets/550174_dragapult-ex-130-167.jpg" alt="Dragapult ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>130/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/dragon.png" alt="Dragon" /></span><span>Dragon</span></dd>
+						<dt>HP</dt><dd><span>320</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Jet Headbutt (70)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Phantom Dive (200) - Put 6 damage counters on your opponent&#x27;s Benched Pokémon in any way you like.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2 from Drakloak. Gives up 2 Prize cards.</strong> 320 HP, Dragon, Tera, Retreat 1, and no Weakness. Three copies, because one is prized 28% of games and the deck wants a second standing before the first falls.</p>
+					<p><strong>_Phantom Dive_ is <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> for 200, then put six damage counters on your opponent&#x27;s Benched Pokémon in any way you like.</strong> The placement is yours: six on one target, or spread across three, or two each on the three 70 HP Basics they benched on turn one. Placed counters are not attack damage, so they ignore Weakness, Resistance, the opposing Tera Bench rule, and Mega Gengar&#x27;s _Shadowy Concealment_. The deck wins by the counters and closes by the 200.</p>
+					<p><strong>_Jet Headbutt_ is <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 70.</strong> It is the attack when the Crystal is not down and only one Energy is attached. Seventy kills any 70 HP Basic, and a fresh Dragapult that Headbutts a Dreepy on the turn it evolves is still a Prize.</p>
+					<p><strong>The Tera rule.</strong> While this Pokémon is on your Bench, prevent all damage done to it by attacks, both yours and your opponent&#x27;s. Cruel Arrow, Shadow Bullet, and Wellspring&#x27;s Torrential Pump bounce off a benched Dragapult. Damage counters do not, so Dusknoir and an opposing Dive still reach it.</p>
+					<p><strong>Three ways to power it.</strong> The turn-by-turn is <a href="#1-the-two-turn-kill">game plan 1</a>. The short version: one attachment on the Dreepy on turn one, one on the Drakloak on turn two, and it Dives on turn three the moment it evolves. With Sparkling Crystal attached it Dives off either Energy alone. Energy Switch moves a Basic Energy from a wounded Dragapult to the next one before the Knock Out, and Crispin&#x27;s attach lands directly on the Stage 2 that needs it.</p>
+					<p><strong>What kills it.</strong> Maximum Drilling at five Energy, Metagross with a Brave Bangle, and any Psychic attack under an opposing Fairy Zone that reaches 160. Everything else needs two turns, and the second Dragapult arrives in one.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="munkidori">Munkidori<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/550139_munkidori.jpg" target="_blank" rel="noopener"><img src="./assets/550139_munkidori.jpg" alt="Munkidori" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>095/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Adrena-Brain - Once during your turn, if this Pokémon has any D Energy attached, you may move up to 3 damage counters from 1 of your Pokémon to 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Mind Bend (60) - Your opponent&#x27;s Active Pokémon is now Confused.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The counter mover.</strong> 110 HP Basic, Psychic, and _Adrena-Brain_: once during your turn, if this Pokémon has any Darkness Energy attached, move up to three damage counters from one of your Pokémon to one of your opponent&#x27;s Pokémon. Once per copy, so two Munkidori with a Dark Energy apiece is sixty damage a turn moved off your board and onto theirs.</p>
+					<p>Three sources feed it. The opposing Dive&#x27;s counters on your Bench, which Adrena-Brain throws straight back. Your own Risky Ruins, which puts two counters on every non-Darkness Basic you bench, so a Dreepy, a Clefairy, or a Mimikyu hitting the Bench is twenty for Munkidori to move. And Alakazam, Dusknoir, or Froslass doing your opponent&#x27;s work for them.</p>
+					<p><strong>_Mind Bend_ is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 60 and Confuses their Active.</strong> Flat, it is a finisher for a body carrying counters. Under Fairy Zone it is 120, which is a Drakloak, and killing Drakloaks is how the mirror is won.</p>
+					<p>Two copies because it is two Abilities, not one. The two Basic Darkness Energy in the list are for these two cards and nothing else.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lillies-clefairy-ex">Lillie&#x27;s Clefairy ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/clefairy.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/623483_lillies-clefairy-ex-056-159.jpg" target="_blank" rel="noopener"><img src="./assets/623483_lillies-clefairy-ex-056-159.jpg" alt="Lillie&#x27;s Clefairy ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>056/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>190</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Fairy Zone - The Weakness of each of your opponent&#x27;s Dragon Pokémon in play is now Psychic. (Apply Weakness as ×2.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Full Moon Rondo (20+) - This attack does 20 more damage for each Benched Pokémon (both yours and your opponent’s).</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The mirror card, and the reason this list runs two.</strong> 190 HP Basic, Psychic, two Prizes. &quot;Lillie&#x27;s&quot; is part of the name; it is not a Clefairy and nothing that says Clefairy touches it.</p>
+					<p><strong>_Fairy Zone_: the Weakness of each of your opponent&#x27;s Dragon Pokémon in play is now Psychic, applied as ×2.</strong> It works from the Bench, it covers every Dragon they own at once, and it makes three of your bodies into Dragon slayers. Your own Dragapult is unaffected, because Fairy Zone reads your opponent&#x27;s Pokémon.</p>
+					<p><strong>_Full Moon Rondo_ is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 20, plus 20 for each Benched Pokémon on both sides.</strong> Five a side is 220. Eight on yours under Area Zero and five on theirs is 280. Into a Dragon under the Zone, double it: 440 or 560, and Dragapult ex is 320. Rondo is also the deck&#x27;s best flat number against wide boards: 220 kills every Ogerpon, Latias ex, Fezandipiti ex, and Genesect ex without Weakness.</p>
+					<p>Two copies because one is prized in 10% of games, because the second one comes down after the first is Bossed and killed, and because against a Dragon deck this card is the plan. Against everything else, one Clefairy on the Bench is a 220 Rondo that costs two Energy, and the second stays in the deck.</p>
+					<p>Their Clefairy does the same to you. <a href="#3-the-fairy-zone">Game plan 3</a> is the whole mirror.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="fezandipiti-ex">Fezandipiti ex<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The draw after a Knock Out.</strong> 210 HP Basic, Darkness, two Prizes. _Flip the Script_: once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, draw three cards. This deck trades bodies every turn from turn three onward, so it fires most turns of the midgame.</p>
+					<p>_Cruel Arrow_ is <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 100 to any one of their Pokémon, Weakness and Resistance aside on the Bench. It is the attack that kills a Drakloak, a Dusclops, or a Froslass on their Bench when the Dive&#x27;s counters have not reached it yet, and it takes any three Energy.</p>
+					<p>One copy, shared with the lantern deck. It is a two-Prize body and the deck already has four of those; one is the count that draws without becoming the opponent&#x27;s easiest target.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="meowth-ex">Meowth ex<span data-count>x1</span><span data-flavor><img src="./assets/sprites/meowth.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684340_meowth-ex-062-088.jpg" target="_blank" rel="noopener"><img src="./assets/684340_meowth-ex-062-088.jpg" alt="Meowth ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>062/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>170</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Last-Ditch Catch - Once during your turn, when you play this Pokémon from your hand onto your Bench, you may use this Ability. Search your deck for a Supporter card, reveal it, and put it into your hand. Then, shuffle your deck. You can&#x27;t use more than 1 Ability that has &quot;Last-Ditch&quot; in its name each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Tuck Tail (60) - Put this Pokémon and all attached cards into your hand.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Search a Supporter for free.</strong> 170 HP Basic, Colorless, two Prizes. _Last-Ditch Catch_: once during your turn, when you play this Pokémon from your hand onto your Bench, search your deck for a Supporter card and put it into your hand. Bench it turn one for Lillie&#x27;s Determination, or on the turn a Boss&#x27;s Orders wins the game.</p>
+					<p>_Tuck Tail_ is <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 60 and puts this Pokémon and everything attached back into your hand, which resets the Ability for another Catch later. You will rarely have three Energy to spare for it.</p>
+					<p>One copy. It is Colorless, so an opposing Team Rocket&#x27;s Watchtower turns the Ability off while it is on the board. Play Meowth before the Stadium war starts, not after.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="budew">Budew<span data-count>x1</span><span data-flavor><img src="./assets/sprites/budew.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/675828_budew-016-217.jpg" target="_blank" rel="noopener"><img src="./assets/675828_budew-016-217.jpg" alt="Budew" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>016/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>30</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span>[] Itchy Pollen (10) - During your opponent&#x27;s next turn, they can&#x27;t play any Item cards from their hand.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The turn-one Item lock.</strong> 30 HP Basic, Grass, one Prize, and _Itchy Pollen_ costs no Energy at all: 10 damage, and your opponent can&#x27;t play Item cards from hand during their next turn. Going second, Budew in the Active Spot on turn one shuts off their Poffins, Ultra Balls, and Rare Candy for the turn their setup needed them, while your Drakloaks are already drawing. It is the play that beat me, and it is the play this deck makes back.</p>
+					<p>One copy, because it does its job once and then dies for a Prize, and the second copy the stock list runs became a Mimikyu. Poffin fetches it, and it is the body you promote when the alternative is a Drakloak.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-mimikyu">Team Rocket&#x27;s Mimikyu<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/630821_team-rockets-mimikyu.jpg" target="_blank" rel="noopener"><img src="./assets/630821_team-rockets-mimikyu.jpg" alt="Team Rocket&#x27;s Mimikyu" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>087/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>60</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span>0</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Gemstone Mimicry - Choose 1 of your opponent&#x27;s Active Tera Pokémon&#x27;s attacks and use it as this attack.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The mirror tech nobody expects.</strong> 60 HP Basic, Psychic, one Prize, Poffin range. &quot;Team Rocket&#x27;s&quot; is part of the name, and nothing else in this deck is Team Rocket&#x27;s; the card wants no brand engine, only a target.</p>
+					<p><strong>_Gemstone Mimicry_ is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>: choose one of your opponent&#x27;s Active Tera Pokémon&#x27;s attacks and use it as this attack.</strong> You pay Mimikyu&#x27;s cost, not the copied attack&#x27;s. When their Dragapult ex Dives and stays in front, Mimikyu copies Phantom Dive: 200 damage, six counters on their Bench, and Mimikyu is Psychic, so under your Fairy Zone the 200 is <strong>400</strong>. A one-Prize 60 HP Basic Knocks Out their two-Prize 320 HP attacker and spreads sixty on their Bench in the same attack.</p>
+					<p>It also copies any other Tera they lead with: Terapagos ex&#x27;s Unified Beatdown counts your Bench, Cinderace ex&#x27;s Flare Strike is 280, an Ogerpon&#x27;s attack is whatever it prints. It does nothing at all against a deck with no Tera Pokémon, and that is fine; it is one slot, the Destined Rivals copy is already in the binder, and it dies to anything for one Prize.</p>
+					<p>One copy. Prized one game in ten, and the deck has two other Fairy Zone attackers when it is.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<aside data-callout="note">
+				<p>One Supporter a turn. Lillie&#x27;s when the hand is bad, Crispin when the Energy is missing, Dawn when the line is missing, Boss&#x27;s Orders when a Prize is on the table, Briar when they are on two.</p>
+			</aside>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The draw Supporter, at the full four. Shuffle your hand into your deck and draw 6, or 8 while all six of your Prizes are still up. Four Recons a turn make every Lillie&#x27;s better, because the deck you shuffle into has already had its worst cards sent to the bottom. Play the Items first; what they find changes whether you want to shuffle.</p>
+					<p>Full entry in <a href="./dark.html#lillies-determination">Gengar Gang</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
+				<section>
+					<p>The gust, at three. Switch in one of their Benched Pokémon to the Active Spot. Three because the deck has no Prime Catcher, and because the Dive&#x27;s counters make Boss&#x27;s Orders into a Prize every time: the target that took sixty last turn is the target you drag up and finish. Against a Dragapult, Boss their Clefairy before it Rondos you. Against the counter decks, Boss the Duskull before it becomes thirteen counters.</p>
+					<p>Full entry in <a href="./dark.html#bosss-orders-ghetsis">Gengar Gang</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="crispin">Crispin<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/567390_crispin-133-142.jpg" target="_blank" rel="noopener"><img src="./assets/567390_crispin-133-142.jpg" alt="Crispin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>133/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Energy cards of different types, reveal them, and put 1 of them into your hand. Attach the other to 1 of your Pokémon. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Energy Supporter, and the reason the deck runs eight Energy.</strong> Search your deck for up to two Basic Energy of different types, put one into your hand, and attach the other to one of your Pokémon. Fire to the Dragapult, Psychic to the hand, and Phantom Dive is paid over one Supporter instead of two attachments. With the Crystal down, the attached half alone is a live Dive and the hand half is next turn&#x27;s Clefairy.</p>
+					<p>Two copies, shared with the lantern deck. Fetch Darkness as the second type when a Munkidori needs switching on.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dawn">Dawn<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/660414_dawn.jpg" target="_blank" rel="noopener"><img src="./assets/660414_dawn.jpg" alt="Dawn" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>087/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for a Basic, a Stage 1, and a Stage 2, and put them into your hand. Here that is <strong>Dreepy, Drakloak, and Dragapult ex in one card</strong>, the entire line. One copy, because the four Poke Pad already do the Drakloak half and the turn-two Dawn is usually the turn you would rather Lillie&#x27;s. It is the Supporter that turns a hand with no line into a board.</p>
+					<p>Full entry in <a href="./dark.html#dawn">Gengar Gang</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="briar">Briar<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/567385_briar-132-142.jpg" target="_blank" rel="noopener"><img src="./assets/567385_briar-132-142.jpg" alt="Briar" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>132/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if your opponent has exactly 2 Prize cards remaining. During this turn, if your opponent&#x27;s Active Pokémon is Knocked Out by damage from an attack used by your Tera Pokémon, take 1 more Prize card.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>You can use this card only if your opponent has exactly 2 Prize cards remaining. During this turn, if their Active is Knocked Out by damage from an attack used by your Tera Pokémon, take one more Prize card.</p>
+					<p><strong>The comeback.</strong> The games this deck loses are the ones where it fell behind on the Prize trade early, and Briar buys one Prize back at exactly the moment it matters: you are at three, they are at two, a Dive kills any ex, and you take three. One copy, and hold it. Playing Briar on the wrong turn is a dead Supporter; playing it on the right one is the game.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<aside data-callout="note">
+				<p>Items are free and unlimited. Play them before the Supporter. An opposing Budew&#x27;s _Itchy Pollen_ turns all seventeen of them off for a turn; the Supporters and Recon Directive still work.</p>
+			</aside>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard two other cards from your hand, then search your deck for any Pokémon. Four copies, and it is the Item that finds a Dragapult ex, a Clefairy, or the Fezandipiti; Poke Pad cannot see a Rule Box. Pitch spare Energy and dead Dreepy; Night Stretcher brings the Energy back.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="poke-pad">Poke Pad<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/684332_poke-pad-081-088.jpg" target="_blank" rel="noopener"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>081/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Pokémon that doesn&#x27;t have a Rule Box, reveal it, and put it into your hand. Then, shuffle your deck. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for a Pokémon that doesn&#x27;t have a Rule Box and put it into your hand, for free. Twelve of the nineteen Pokémon here qualify: Dreepy, Drakloak, Munkidori, Budew, and Mimikyu. Four copies, because four Poke Pad plus four Drakloak is eight cards that put a Drakloak in hand, and Drakloaks on the Bench are the deck.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for up to two Basic Pokémon with 70 HP or less and put them onto your Bench. Dreepy is 70, Mimikyu is 60, Budew is 30. Four copies. Turn one wants Poffin first, for two Dreepy; the second Poffin gets the third Dreepy and the Budew or Mimikyu the matchup wants. Munkidori at 110 and every ex here are out of range, and that is what Ultra Ball is for.</p>
+					<p>Full entry in <a href="./dark.html#buddy-buddy-poffin">Gengar Gang</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="tera-orb">Tera Orb<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/590076_tera-orb.jpg" target="_blank" rel="noopener"><img src="./assets/590076_tera-orb.jpg" alt="Tera Orb" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>SV08: Surging Sparks <small>189/191</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Tera Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for a Tera Pokémon and put it into your hand. In this deck that is a Dragapult ex, and only a Dragapult ex, for zero cards of hand. Two copies, so the count of cards that find the Stage 2 is ten without discarding anything. The stock list runs Crushing Hammers in these slots; <a href="#alternatives">Alternatives</a> has that argument.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Put a Pokémon or a Basic Energy card from your discard pile into your hand. Two copies. The priority: a Knocked Out Dragapult ex first, a Drakloak second, a Basic Energy third when the Ultra Balls pitched too many. Nothing here is Special Energy, so every Energy in the discard is a legal target.</p>
+					<p>Full entry in <a href="./dark.html#night-stretcher">Gengar Gang</a>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="energy-switch">Energy Switch<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/654454_energy-switch.jpg" target="_blank" rel="noopener"><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>115/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Move a Basic Energy from 1 of your Pokémon to another of your Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Move a Basic Energy from one of your Pokémon to another. One copy, and it does three things. It moves the Fire off a Dragapult that is about to die onto the one behind it. It moves a Psychic onto a Clefairy for a Rondo the opponent did not count on. And on the turn the Crystal is down, it moves an Energy from a Drakloak onto the fresh Dragapult so it Dives the turn it evolves.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="sparkling-crystal">Sparkling Crystal<span data-count>x1</span><span data-flavor><img src="./assets/sprites/diancie.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/567416_sparkling-crystal.jpg" target="_blank" rel="noopener"><img src="./assets/567416_sparkling-crystal.jpg" alt="Sparkling Crystal" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>142/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>When the Tera Pokémon this card is attached to uses an attack, that attack costs 1 Energy less. (The Energy can be of any type.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The ACE SPEC.</strong> A Pokémon Tool: when the Tera Pokémon this card is attached to uses an attack, that attack costs one Energy less, of any type. Attach it to a Dragapult ex and Phantom Dive costs one Fire or one Psychic. Jet Headbutt costs nothing.</p>
+					<p>What that buys, in order. A Dragapult that evolves this turn Dives this turn off the Energy its Dreepy carried. A Knocked Out Dragapult cost one Energy, so the deck&#x27;s eight last twice as long. Crispin&#x27;s attach alone is a live Dive. And Nighttime Mine, the anti-Tera Stadium that adds a Colorless to every Tera attack, is cancelled to zero.</p>
+					<p>The costs, stated plainly. It is one card in sixty with nothing that searches it, so it arrives about a third of games by turn four; the deck Dives for two Energy until then. It is a Tool, so Tool Scrapper removes it and an opposing Jamming Tower switches it off, which is why this list has no Jamming Tower of its own. And it is the ACE SPEC slot, so Unfair Stamp is not here. <a href="#2-the-crystal">Game plan 2</a> and <a href="#alternatives">Alternatives</a> are the full argument.</p>
+					<p>Attach it to the Dragapult you intend to keep, not the first one. A Crystal on a Dragapult that dies next turn is a Crystal in the discard with no way back.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="air-balloon">Air Balloon<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>181/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Retreat Cost of the Pokémon it is attached to is two less. Dragapult retreats for one already, so the Balloon&#x27;s job is the two matchups where that one matters: Mega Chandelure&#x27;s _Binding Flame_ adds one to your Active&#x27;s Retreat Cost and _Phantom Maze_ charges 50 per Colorless in it, and the Balloon takes 230 down to 180. Otherwise it goes on whichever Clefairy or Munkidori has to step back after attacking. One copy, and Jamming Tower turns it off.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="area-zero-underdepths">Area Zero Underdepths<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/567384_area-zero-underdepths-131-142.jpg" target="_blank" rel="noopener"><img src="./assets/567384_area-zero-underdepths-131-142.jpg" alt="Area Zero Underdepths" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>131/142</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Each player who has any Tera Pokémon in play can have up to 8 Pokémon on their Bench. If a player no longer has any Tera Pokémon in play, that player discards Pokémon from their Bench until they have 5. When this card leaves play, both players discard Pokémon from their Bench until they have 5, and the player who played this card discards first.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Stadium that grows the Bench, and the one that shrinks it.</strong> Each player with a Tera Pokémon in play can have up to eight Pokémon on their Bench. If a player no longer has a Tera in play, they discard down to five. When this card leaves play, both players discard down to five, and the player who played it discards first.</p>
+					<p>What eight seats buy: four Drakloaks, two Munkidori, a Clefairy, and a Fezandipiti all standing at once, with the Active Dragapult in front. Rondo climbs to 280 flat. Poffin never has to choose. And it bumps an opposing Team Rocket&#x27;s Watchtower or Jamming Tower off the table, which switches your Meowth and your Crystal back on.</p>
+					<p>What it costs: the moment they drop a Stadium of their own, you discard three benched Pokémon, and you choose which. Only go past five when the sixth seat is winning the game, and never against Toucannon or an opposing Clefairy, because both count your Bench. Two copies so the second wins the Stadium war the first started.</p>
+					<p>Dragapult is your only Tera. When your last Dragapult leaves play with Area Zero down, the Bench comes down to five with it. Keep that in mind before benching the eighth.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="risky-ruins">Risky Ruins<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/654466_risky-ruins.jpg" target="_blank" rel="noopener"><img src="./assets/654466_risky-ruins.jpg" alt="Risky Ruins" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>127/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Whenever any player puts a Basic non-Darkness Pokémon onto their Bench during their turn, place 2 damage counters on that Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Whenever any player puts a Basic non-Darkness Pokémon onto their Bench, place two damage counters on it. One copy, and it cuts both ways on purpose. On their side it turns every 70 HP Basic into a one-Dive Bench kill and every 90 into a Dive-plus-Mind-Bend kill. On yours it puts twenty on each Dreepy, Clefairy, Meowth, Budew, and Mimikyu you bench, which is exactly the ammunition Adrena-Brain moves back across the table. Fezandipiti is Darkness and takes nothing.</p>
+					<p>One rather than the stock list&#x27;s two because the two Area Zero already fight the Stadium war, and three Stadiums plus a Tool is enough cards that do nothing in hand.</p>
+					<p>Full entry in <a href="./dark.html#risky-ruins">Gengar Gang</a>.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-fire-energy">Basic Fire Energy<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/656264_basic-fire-energy-002.jpg" target="_blank" rel="noopener"><img src="./assets/656264_basic-fire-energy-002.jpg" alt="Basic Fire Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>2</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three. Half of Phantom Dive&#x27;s printed cost, and the half nothing else in the deck uses. With the Crystal down a Dragapult Dives on Fire alone, so the three Fire are three Dives that owe nothing to the Psychic count.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-psychic-energy">Basic Psychic Energy<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>5</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Three. The other half of the Dive, and the whole of Rondo, Mind Bend, and Gemstone Mimicry. Psychic is the Energy every attacker in the deck can use, so when Crispin offers a choice of which type goes to hand, Psychic goes to hand.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="basic-darkness-energy">Basic Darkness Energy<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/656269_basic-darkness-energy-007.jpg" target="_blank" rel="noopener"><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>7</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Two, and they are Munkidori&#x27;s switches, not attack costs. One Darkness attached is what turns Adrena-Brain on, and two Munkidori want one each. Cruel Arrow takes them as Colorless in a pinch.</p>
+					<p>Eight Energy total is low on purpose. Crispin adds two a use, the Crystal halves the Dive, Energy Switch recycles what is already on the board, and Night Stretcher pulls one back from the discard. The stock lists run eight or nine with four Crushing Hammers; this list runs eight with none, and Test and Tune watches the count first.</p>
+				</section>
+			</article>
+			<h2 id="game-plans">Game Plans</h2>
+			<aside data-callout="note">
+				<p>Six plans. The first is the deck, the second is what makes it different from the stock list, the third is the mirror, and the fourth is how you play a room you have never seen.</p>
+			</aside>
+			<section>
+				<h3 id="1-the-two-turn-kill">1. The Two-Turn Kill<span data-flavor><img src="./assets/sprites/giratina-origin.gif" alt="" /></span></h3>
+					<p><strong>How 200 becomes six Prizes.</strong></p>
+					<p><strong>Turn one.</strong> Poffin for two Dreepy. Energy on a Dreepy. Meowth if it is in hand, for a Lillie&#x27;s. Going second, Budew Active and _Itchy Pollen_ instead of a Dreepy; the Item lock is worth more than the 10.</p>
+					<p><strong>Turn two.</strong> Evolve both Dreepy into Drakloaks and Recon twice. Energy on the Drakloak that carries the first Energy. Poffin or Poke Pad for the third and fourth Dreepy. Lillie&#x27;s if the hand is thin.</p>
+					<p><strong>Turn three.</strong> Evolve a Drakloak into Dragapult ex. It has two Energy from the Dreepy and Drakloak it grew through, so it Dives now: 200 into the Active, six counters onto their Bench. Aim the counters at the Basics under their evolution line, sixty on one if it kills, twenty each on three if they are all 70 HP and Risky Ruins already put twenty on them.</p>
+					<p><strong>Turn four and on.</strong> Dive again. The Active took 200 last turn; if it is still standing it dies now. Whatever took counters last turn is a Boss&#x27;s Orders away from a second Prize. Behind the front Dragapult, the next Drakloak carries an Energy and waits.</p>
+					<p><strong>The counter placement rule.</strong> Kill something every turn with the counters if anything on their Bench is at 60 or less. If nothing is, put all six on the one body you intend to Boss up next turn, so the Dive that follows is a 260 kill. Spreading twenty across three healthy bodies feels clever and wastes a turn.</p>
+					<p><strong>Two Dragapults, always.</strong> The second one is evolving while the first one fights, and it inherits the Crystal&#x27;s job if the first one dies. A Dragapult with no Drakloak behind it is the last Dive you get.</p>
+			</section>
+			<section>
+				<h3 id="2-the-crystal">2. The Crystal<span data-flavor><img src="./assets/sprites/diancie.gif" alt="" /></span></h3>
+					<p><strong>Why this slot is not Unfair Stamp, and how to play it when it lands.</strong></p>
+					<p>The stock list&#x27;s Unfair Stamp reads: after one of yours was Knocked Out, both players shuffle their hands, you draw five and they draw two. It is the strongest ACE SPEC in the format for a deck that trades bodies, and this list does not run it, for three reasons. It costs fifteen dollars, which is most of the deck. It is at its best in the hands of a player who already knows when a two-card hand ends the game, and this deck has to be learned first. And the Crystal solves the problem this deck actually has, which is Energy delivery, not card disruption.</p>
+					<p><strong>Where the Crystal goes.</strong> On the second Dragapult, not the first. The first one takes the return hit; the second one is the one that stands for three turns, and a Crystal that lives three turns has saved three Energy. If the first Dragapult is the only one you will see this game, put it there and Dive off one Energy from turn three.</p>
+					<p><strong>What one-Energy Dives change.</strong> Crispin&#x27;s attach is a Dive on its own. A Dragapult that evolves the turn a Boss&#x27;s Orders kills the previous one Dives immediately off the Energy Switch. Eight Energy last twice as long, so the late game has Psychic for Rondo and Mind Bend instead of choosing between them and the Dive.</p>
+					<p><strong>What takes it away.</strong> Tool Scrapper discards it. Jamming Tower switches it off while the Stadium stands, and Area Zero bumps the Tower. An opposing Genesect with a Tool attached stops you playing it from hand at all. When any of those show up, the deck Dives for two, exactly as the stock list does every game.</p>
+					<p><strong>The habit.</strong> Recon Directive is looking at two cards a Drakloak a turn. When the Crystal is one of them, take it, every time, over an Energy or a Dreepy. It is the one card in the deck nothing else finds.</p>
+			</section>
+			<section>
+				<h3 id="3-the-fairy-zone">3. The Fairy Zone<span data-flavor><img src="./assets/sprites/clefairy.gif" alt="" /><img src="./assets/sprites/clefable.gif" alt="" /></span></h3>
+					<p><strong>The mirror is a fifth of the room. This is how you win it.</strong></p>
+					<p>Both decks want the same thing: Drakloaks standing, a Dragapult Diving, and sixty counters a turn on the other Bench. The one who kills the other&#x27;s engine first wins, and this list has three cards built for exactly that.</p>
+					<p><strong>Get Clefairy down early, and get it down on the Bench.</strong> Fairy Zone works from the Bench, and the moment it is in play their Dragapult ex, their Drakloaks, and their Dreepy are Weak to Psychic. Do not lead with it; it is 190 HP and dies to their Dive.</p>
+					<p><strong>Kill the Drakloaks.</strong> Mind Bend under the Zone is 120, which is a Drakloak, for a Munkidori that costs two Energy and one Prize. Cruel Arrow is 100 into a Drakloak without needing the Zone. The Dive&#x27;s counters are 60 a turn on their Bench and 120 over two turns. Every Drakloak they lose is a card a turn they stop seeing, and a deck seeing two fewer cards a turn than yours loses.</p>
+					<p><strong>Kill the Dragapult with a small card.</strong> When their Dragapult Dives and stays in front, Mimikyu copies Phantom Dive for 400 under the Zone and spreads six counters on the way, from a body worth one Prize. If Mimikyu is prized or dead, Rondo at five a side is 440. Either one trades one or two Prizes for their two and their attacker.</p>
+					<p><strong>Their Clefairy does the same to you.</strong> Their Fairy Zone puts a Psychic Weakness on your Dragapult, and their Rondo at five a side is 440 into it. Boss their Clefairy the turn it lands and Dive it: 190 HP dies to 200. Until it is dead, keep your Bench at five, because every seat you add is 40 more Rondo damage against you.</p>
+					<p><strong>Watch the Watchtower.</strong> Their Team Rocket&#x27;s Watchtower switches off your Meowth and their own; it does nothing to Drakloak, Munkidori, or Clefairy, which are not Colorless. Your Area Zero bumps it.</p>
+					<p><strong>Budew going second is the tempo swing.</strong> A turn-one Item lock costs them the Poffin turn their line depends on, and the mirror is decided by whose Drakloaks stand first.</p>
+			</section>
+			<section>
+				<h3 id="4-reading-the-room">4. Reading the Room<span data-flavor><img src="./assets/sprites/xatu.gif" alt="" /></span></h3>
+					<p><strong>You do not know the field. Their first two turns tell you which deck this is, and where the counters go.</strong></p>
+					<table>
+						<thead><tr><th>What they bench</th><th>Deck</th><th>Where the counters go</th><th>Your closer</th></tr></thead>
+						<tbody>
+							<tr><td>Dreepy, Drakloak</td><td>Dragapult</td><td>The Drakloaks, 90 each</td><td>Clefairy down, then Mimikyu or Rondo into the Dragapult. <a href="#3-the-fairy-zone">Game plan 3</a>.</td></tr>
+							<tr><td>Dreepy plus Duskull</td><td>Dragapult Dusknoir</td><td>The Duskull, 60, dead to one Dive</td><td>Boss the Dusclops before it evolves. Their thirteen counters kill your Drakloaks; keep two.</td></tr>
+							<tr><td>Dreepy plus Torchic</td><td>Dragapult Blaziken</td><td>Torchic 70, Combusken 100</td><td>Smolder-sault is 200 and skips a turn; Dive the Blaziken twice on its rest turn.</td></tr>
+							<tr><td>Drilbur, Metal Energy</td><td>Mega Excadrill</td><td>Drilbur 70, one Dive under Ruins</td><td>Two Dives before the Mega reaches five Energy. At five, Maximum Drilling is 330 and your Dragapult dies. Boss the loaded Drilbur early.</td></tr>
+							<tr><td>Applin, Dipplin, Festival Grounds</td><td>Festival Lead</td><td>Applin 40, dead to four counters</td><td>Dive kills Dipplin at 90 and Seaking at 110 outright. Bump Festival Grounds with Area Zero.</td></tr>
+							<tr><td>Slowpoke</td><td>Slowking</td><td>Slowpoke, then Slowking 120</td><td>Dive kills Slowking. Single-prize room; six Knock Outs, so the counters do the Prize math.</td></tr>
+							<tr><td>Abra, Dunsparce</td><td>Alakazam Dudunsparce</td><td>Abra and Kadabra</td><td>Powerful Hand is two counters per card in their hand; keep your Drakloaks above 140 by killing Alakazam at 140 with one Dive.</td></tr>
+							<tr><td>N&#x27;s Zorua, N&#x27;s Darmanitan</td><td>N&#x27;s Zoroark</td><td>Zorua 70</td><td>Zoroark ex is 280: Dive then Rondo, or Dive into carried counters.</td></tr>
+							<tr><td>Impidimp, Snorunt</td><td>Grimmsnarl Froslass</td><td>Snorunt 60 or 70, Impidimp 70</td><td>Froslass ticks every Ability Pokémon a counter a turn: Drakloak, Munkidori, Clefairy, Fezandipiti, Meowth. Kill Froslass first; 90 HP.</td></tr>
+							<tr><td>Dhelmise, Shuppet, Poltchageist</td><td>Hide &#x27;n&#x27; Sneak</td><td>Nowhere. The Ability blanks your counters.</td><td>Dive the Dhelmise for 200 into 140 before their Clefairy lands; under their Zone Vengeful Anchor is 340 into you. Boss their Clefairy.</td></tr>
+							<tr><td>Pikipek</td><td>Toucannon</td><td>Pikipek 70</td><td>Feather Rondo counts your Bench. Stay at five, leave Area Zero in the deck, Dive Toucannon at 150.</td></tr>
+							<tr><td>Riolu, Fighting Energy</td><td>Mega Lucario or Lucario Hariyama</td><td>Riolu 70 or 80</td><td>Nothing you own is Fighting-weak but Meowth. Mega Brave 270 leaves Dragapult on 50; Dive it twice on its rest turn.</td></tr>
+							<tr><td>Raging Bolt, Teal Mask Ogerpon</td><td>Raging Bolt Ogerpon</td><td>Ogerpon takes nothing on the Bench; Raging Bolt does</td><td>Raging Bolt ex is a Dragon: Rondo under the Zone is 440 into 240. Bellowing Thunder at five discards is 350; count their Energy.</td></tr>
+							<tr><td>Gastly, Toxel, Seviper</td><td>Snake Charmer</td><td>Gastly 70, Toxel 70, Chi-Yu 90</td><td>Concealment discounts their bodies when your Dive kills them, but not when the counters do. Kill the Bench with counters and the Prizes are honest.</td></tr>
+						</tbody>
+					</table>
+					<p><strong>The tell is the Basics, not the ex.</strong> By the end of their second turn you know the line, and the counters know their targets. When in doubt, sixty onto the single most important Stage 1 they are trying to reach.</p>
+			</section>
+			<section>
+				<h3 id="5-reading-the-opening-hand">5. Reading the Opening Hand</h3>
+					<p><strong>Turn one, in order.</strong></p>
+					<dl>
+						<dt data-head>Your hand has</dt><dd data-head>Play</dd>
+						<dt><strong>Buddy-Buddy Poffin</strong></dt><dd><span>First, always. Two Dreepy to the Bench.</span></dd>
+						<dt><strong>Meowth ex</strong></dt><dd><span>Bench it before the Supporter. Last-Ditch Catch finds the Lillie&#x27;s or the Dawn the hand is missing.</span></dd>
+						<dt><strong>Dawn</strong></dt><dd><span>Dreepy, Drakloak, Dragapult ex. The whole line in one card; play it when the hand has no line at all.</span></dd>
+						<dt><strong>A bad hand</strong></dt><dd><span>Lillie&#x27;s Determination for eight while all six Prizes are still up.</span></dd>
+						<dt><strong>Budew, going second</strong></dt><dd><span>Budew Active, Itchy Pollen. Their Items are off for the turn they needed them.</span></dd>
+						<dt><strong>An Energy and a Dreepy</strong></dt><dd><span>Energy on the Dreepy. It is on the Dragapult two turns from now.</span></dd>
+						<dt><strong>Risky Ruins and a Poffin</strong></dt><dd><span>Poffin first, then Ruins, so your own Dreepy do not take the twenty.</span></dd>
+						<dt><strong>Mimikyu or Munkidori and nothing else</strong></dt><dd><span>Bench them, not the Active Spot. Both are two-Energy attackers that want the Zone or a Dark Energy first.</span></dd>
+					</dl>
+					<p>Going first you cannot attack, and this deck barely minds; the turn is two Dreepy, an Energy, and a Meowth. Going second, Budew&#x27;s lock is worth more than any 10 damage in the format.</p>
+			</section>
+			<section>
+				<h3 id="6-things-that-will-cost-you-a-game">6. Things That Will Cost You a Game<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+					<dl>
+						<dt data-head>Mistake</dt><dd data-head>What actually happens</dd>
+						<dt>Rare Candy in the list</dt><dd><span>There is none, on purpose. The Drakloak you skipped was two cards a turn for the rest of the game.</span></dd>
+						<dt>Benching every Basic under Area Zero against Toucannon or a Clefairy</dt><dd><span>Feather Rondo and Full Moon Rondo both count your Bench. Eight seats is 320 from Toucannon and 560 from a Zoned Clefairy.</span></dd>
+						<dt>Dropping Area Zero when they have a Stadium in hand</dt><dd><span>They bump it, you discard three, and you choose first. Lead it when their Stadium count is spent, or when the sixth seat wins now.</span></dd>
+						<dt>Putting the Crystal on the Dragapult that is about to die</dt><dd><span>The one Tool in the deck goes to the discard with nothing that returns it. Crystal the one behind.</span></dd>
+						<dt>Spreading counters twenty-twenty-twenty on healthy bodies</dt><dd><span>Nothing dies. Sixty on one target is a Knock Out or a Boss&#x27;s Orders Prize next turn.</span></dd>
+						<dt>Diving into a Mega Excadrill with five Energy attached</dt><dd><span>It survives on 140 and Maximum Drilling kills your Dragapult back. Boss the Drilbur first, or Dive it before it is loaded.</span></dd>
+						<dt>Leading Clefairy</dt><dd><span>190 HP in front of a Dive. It works from the Bench; that is where it lives.</span></dd>
+						<dt>Forgetting Fairy Zone is theirs too</dt><dd><span>Their Clefairy makes your Dragapult Psychic-weak. Boss it and Dive it the turn it lands.</span></dd>
+						<dt>Munkidori with no Darkness attached</dt><dd><span>Adrena-Brain reads &quot;if this Pokémon has any Darkness Energy attached.&quot; Crispin&#x27;s second type is Dark for this reason.</span></dd>
+						<dt>Attaching to the Dreepy you were about to Poffin</dt><dd><span>Poffin puts Basics onto the Bench from the deck; a Dreepy in hand is played, not Poffined. Sequence: Poffin, then attach.</span></dd>
+						<dt>Playing Briar at three Prizes</dt><dd><span>It reads exactly two remaining for your opponent. At three it is a dead card; hold it.</span></dd>
+						<dt>Ultra Ball pitching the Crystal or the last Fire</dt><dd><span>Pitch Dreepy and spare Psychic. Night Stretcher returns Energy; nothing returns the Tool.</span></dd>
+						<dt>Meowth after Watchtower</dt><dd><span>Last-Ditch Catch is an Ability on a Colorless Pokémon. Bench Meowth before the Tower lands, or bump the Tower first.</span></dd>
+						<dt>Counting on the Tera rule against counters</dt><dd><span>It prevents attack damage to the benched Dragapult. Dusknoir&#x27;s thirteen and an opposing Dive&#x27;s six land anyway.</span></dd>
+						<dt>Losing the last Drakloak</dt><dd><span>The deck sees one card a turn. Two Drakloaks standing is the floor; protect them before you protect the Dragapult.</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="versus-the-field">Versus the Field<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /><img src="./assets/sprites/alakazam.gif" alt="" /></span></h3>
+					<p>Standard, 2026 rotation, the online field on <a href="https://play.limitlesstcg.com/decks?game=PTCG&amp;format=standard">Limitless</a> since Pitch Black released. Dragapult in all three builds is <strong>18.6% of the field</strong>; the plain build is the best-performing top deck at 54.1%. The win rates below are the stock hammer list&#x27;s, not this one&#x27;s, and the shares are odds, not a schedule.</p>
+					<table>
+						<thead><tr><th>Room</th><th>Share</th><th>Stock Dragapult&#x27;s win rate</th><th>Key number</th></tr></thead>
+						<tbody>
+							<tr><td>Dragapult, all three builds</td><td>18.6%</td><td>48-53%</td><td>320 HP, 90 HP engine. Clefairy, Mimikyu, Mind Bend. <a href="#3-the-fairy-zone">Game plan 3</a>.</td></tr>
+							<tr><td>Mega Excadrill</td><td>7.7%</td><td>48%</td><td>340 HP, hits 330 at five Energy. Two Dives before it loads; Boss the Drilbur.</td></tr>
+							<tr><td>Festival Lead</td><td>6.2%</td><td>58.5%</td><td>Dipplin 90, Seaking 110. Both die to one Dive.</td></tr>
+							<tr><td>Slowking</td><td>5.6%</td><td>45.9%</td><td>120 HP, single-prize. Six Knock Outs; the counters do two a turn.</td></tr>
+							<tr><td>Alakazam Dudunsparce</td><td>5.5%</td><td>63.8%</td><td>140 HP each. One Dive kills either.</td></tr>
+							<tr><td>N&#x27;s Zoroark</td><td>5.2%</td><td>50.4%</td><td>280 HP. Dive then Rondo.</td></tr>
+							<tr><td>Grimmsnarl Froslass</td><td>4.4%</td><td>51.9%</td><td>320 HP. Froslass ticks your Abilities; kill it at 90 first.</td></tr>
+							<tr><td>Dhelmise, Hide &#x27;n&#x27; Sneak</td><td>4.0%</td><td>56.2%</td><td>140 HP, immune to your counters, 340 into you under a Zone. Dive it before their Clefairy lands.</td></tr>
+							<tr><td>Toucannon</td><td>2.8%</td><td>67.7%</td><td>150 HP. Counts your Bench; stay at five.</td></tr>
+							<tr><td>Raging Bolt Ogerpon</td><td>2.2%</td><td>43.1%</td><td>240 HP Dragon. Rondo under the Zone is 440.</td></tr>
+							<tr><td>Mega Lucario, Lucario Hariyama</td><td>3.7% combined</td><td>54-59%</td><td>340 and 150. Mega Brave leaves Dragapult on 50; Dive twice on the rest turn.</td></tr>
+							<tr><td>Mega Greninja</td><td>1.6%</td><td>67.5%</td><td>350 HP, 60 counters a turn onto your Bench. Two Dives kill it.</td></tr>
+						</tbody>
+					</table>
+					<p><strong>The stock list&#x27;s two soft rooms are Mega Excadrill and Slowking, and both are Energy problems.</strong> Excadrill wins when it reaches five Energy before you have two Dives in; Slowking wins when the single-prize trade outlasts your eight Energy. The Crystal is aimed at both: a one-Energy Dive is a Dive a turn earlier against Excadrill and two more Dives over a long game against Slowking. Whether that is worth more than four Crushing Hammers is the question Test and Tune answers.</p>
+					<p><strong>The good rooms are the wide Benches.</strong> Alakazam, Toucannon, Festival Lead, and Mega Greninja all set up several small bodies, and sixty counters a turn onto small bodies is where this deck is at its best. The stock list wins those at 58% to 68%, and nothing in this list makes them worse.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
+					<p><strong>Fox&#x27;s Hostile Takeover is a Bench deck, and this deck eats Benches.</strong> Team Rocket&#x27;s Mewtwo ex is 280 HP and _Power Saver_ says it cannot attack unless he has four or more Team Rocket&#x27;s Pokémon in play. Every Dive puts sixty onto his Bench, and every Team Rocket&#x27;s Basic that dies to the counters is a Mewtwo that cannot attack. Erasure Ball tops out at 280, which kills anything but Dragapult and leaves it on 40. Rondo at five a side is 220; Dive then Rondo kills the Mewtwo. Team Rocket&#x27;s Crobat ex&#x27;s _Biting Spree_ puts two counters on two of yours when it evolves, and Adrena-Brain throws them back.</p>
+					<p><strong>Fox&#x27;s Iron Excavation has the one number this deck fears.</strong> Metagross with a Brave Bangle is 330 into an ex, and Mega Excadrill ex at five Energy is 330. Both kill Dragapult in one hit, and the Metagross costs him one Prize to do it. The plan is the Bench: Beldum and Drilbur are 70, Metang is 100, and _Metal Maker_ only works from standing Metang. Sixty counters a turn onto the Metang is a Metang a turn, and a Metal deck with no Metang is a deck with no Energy. Boss the loaded Drilbur before it evolves. Never Dive into the Mega at five Energy; it survives on 140 and kills you back.</p>
+					<p><strong>Fox&#x27;s Flaming Lanterns is a race, and it is your race.</strong> Chandelure is 150 HP and _Burn It All Up_ is 180, which kills Clefairy and Meowth and leaves Dragapult on 140. Litwick is 70 and Lampent is 90, so a Dive&#x27;s counters kill a Litwick a turn and two Dives kill a Lampent. The lanterns need ten Fire in the discard for Incendiary Pillar&#x27;s 150; kill the line before the discard fills.</p>
+					<p><strong>The Gengar decks are the interesting one.</strong> Mega Gengar ex&#x27;s _Shadowy Concealment_ discounts every Darkness Pokémon of mine that dies to an ex&#x27;s attack, and Phantom Dive is an ex&#x27;s attack, so a Seviper Knocked Out by the 200 pays zero. But the counters are not attack damage. A Gastly, Toxel, or Chi-Yu killed by six counters on the Bench pays a full Prize, cage or no cage, and the Snake Charmer&#x27;s Bench is all 70 and 90 HP bodies. Kill the Bench with counters and the front with the Dive, in that order. Gengar ex&#x27;s _Gnawing Curse_ puts two counters on Dragapult for every Energy attached from hand; the Crystal halves how often that happens, and Munkidori moves the counters back. Void Gale is 230, Fangs is 240, and Dragapult survives either once.</p>
+			</section>
+			<section>
+				<h3 id="alternatives">Alternatives<span data-flavor><img src="./assets/sprites/dusknoir.gif" alt="" /></span></h3>
+					<p>What got looked at and where it landed. Change one at a time, after games, not before.</p>
+			<article>
+				<h3 id="unfair-stamp">Unfair Stamp</h3>
+				<section>
+					<p>The ACE SPEC in 94% of Dragapult lists. After a Knock Out, both hands shuffle, you draw five and they draw two. It is the better card for a pilot who knows the deck, and it costs $14.50, which is more than the rest of the buy list combined. The Crystal is here first; the Stamp is the upgrade the deck earns after the first month, and it slots in for the Crystal with no other change.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="crushing-hammer">Crushing Hammer</h3>
+				<section>
+					<p>Four copies in every stock list: flip a coin, heads discards an Energy from one of their Pokémon. The stock list wins by Diving and denying; this list spent the four slots on two Tera Orb, the second Clefairy, and the Mimikyu, and traded the coin flips for a mirror plan. If the room turns out to be Excadrill and Raging Bolt, the Hammers come back in for the Tera Orbs and the second Area Zero.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-watchtower">Team Rocket&#x27;s Watchtower</h3>
+				<section>
+					<p>Colorless Pokémon have no Abilities, both sides. Every stock list runs one or two, aimed at Dudunsparce, Toucannon, Noctowl, and Bloodmoon Ursaluna. It switches off your own Meowth. It stays in the binder until the room shows those decks; it replaces the Risky Ruins.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dusknoir">Dusknoir</h3>
+				<aside>
+					<a data-art href="./assets/610392_dusknoir.jpg" target="_blank" rel="noopener"><img src="./assets/610392_dusknoir.jpg" alt="Dusknoir" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>037/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>160</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Cursed Blast - Once during your turn, you may put 13 damage counters on 1 of your opponent&#x27;s Pokémon. If you use this Ability, this Pokémon is Knocked Out.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Shadow Bind (150) - During your opponent&#x27;s next turn, the Defending Pokémon can&#x27;t retreat.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Thirteen counters from a one-Prize body, and the Dragapult Dusknoir build is the third of the three at 50%. Left out on purpose: _Cursed Blast_ Knocks Out your own Dusknoir, so every use hands over a Prize, and the whole point of this list is to give up fewer.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="blaziken-ex">Blaziken ex</h3>
+				<section>
+					<p>The second-best Dragapult build, at 52.7%. Seething Spirit attaches from the discard every turn and Smolder-sault is 400 into a Mega Excadrill. It wants a Torchic line, two Rare Candy, and a Dawn, which is ten slots, and it gives up the Crystal, the Mimikyu, and the second Clefairy. It is the right deck for a room that is all Megas, and it is a different deck.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="azumarill">Azumarill</h3>
+				<section>
+					<p>The Surging Sparks print. With a Tera in play, _Double-Edge_ is 230 for one Psychic, and 50 to itself. A single-prize 230 attacker, and its self-damage is five counters for Munkidori. Two Marill and two Azumarill cost under a dollar and would replace the second Clefairy and the Mimikyu in a room with no Dragapult. Marill is 70 HP and in Poffin range.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="terapagos-and-the-owl-engine">Terapagos and the owl engine</h3>
+				<section>
+					<p>The full Tera build runs Hoothoot and Noctowl for two Trainers per evolution, Terapagos ex as a second Tera body that swings turn two, three Area Zero, and Fan Rotom. It answers the turn-one problem this deck has and has no results yet; Terapagos Noctowl is 41% online, and Watchtower is the reason. It is the practice deck on TCG Live, not the paper one.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="neo-upper-energy">Neo Upper Energy</h3>
+				<section>
+					<p>The other Tera-adjacent ACE SPEC: on a Stage 2 it provides two Energy of every type, so a Dragapult Dives off one attachment without any Tool. It is Special Energy, which Enhanced Hammer discards and Night Stretcher cannot return, and it costs $17.76. The Crystal does the same job for 34 cents and survives a Hammer.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="prime-catcher">Prime Catcher</h3>
+				<aside>
+					<a data-art href="./assets/654130_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/654130_prime-catcher.jpg" alt="Prime Catcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-jp-dark/megagengar.png" /><img src="./assets/sets-jp/megagengar.png" alt="MBG: MEGA Starter Set Mega Gengar ex" /></picture></span><span>MBG: MEGA Starter Set Mega Gengar ex <small>013/021</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>Japanese, not legal in the US (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The house owns two, and both lantern decks and the Curse Toll deck claim them. Gust plus switch in one Item is exactly what this deck wants on the turn a Clefairy needs to die, and it would replace the Crystal. It is the swap if the Crystal tests badly and the other decks are not sleeved that night.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>The list is a hypothesis. These are the things to watch, and the ratio each one points at.</p>
+					<table>
+						<thead><tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
+						<tbody>
+							<tr><td>No Dive by turn four</td><td>Energy, not the line; eight is the floor with Crispin at two</td><td>A ninth Energy for the Risky Ruins, or a third Crispin for the Briar</td></tr>
+							<tr><td>Dragapult standing with one Energy and no Crystal</td><td>The Crystal is one card nobody searches</td><td>Accept the two-Energy Dive as the baseline. If it never mattered in ten games, Unfair Stamp or Prime Catcher takes the slot</td></tr>
+							<tr><td>Drakloaks dying before turn three</td><td>Bench snipes, and an opponent who knows the deck</td><td>A second Budew for the Mimikyu, and keep Fezandipiti benched as the snipe target</td></tr>
+							<tr><td>Clefairy dead on the Bench every mirror</td><td>It came down too early, or their Boss found it</td><td>Hold it until you can Boss and kill their Clefairy the same turn</td></tr>
+							<tr><td>Area Zero costing three Pokémon a game</td><td>Their Stadium count is higher than you thought</td><td>Cut the second copy for a Crushing Hammer, and never pass five without a reason</td></tr>
+							<tr><td>Mulliganing more than one game in five</td><td>12 Basics is the number; 19% is the rate</td><td>A second Budew is the only Basic left worth adding</td></tr>
+							<tr><td>Dead hands full of Energy</td><td>Eight is already lean</td><td>Do not cut; play Lillie&#x27;s earlier and let Recon sink the surplus</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/meowth.gif" alt="" /></span></h3></summary>
+					<p>Own counts are live from the collection database. Every Trainer here except Briar, Tera Orb, and Area Zero is shared with the sleeved decks, so check <a href="./collection.html">the box</a> before ordering; the shell, the Sparkling Crystal, and the Mimikyu are already bought, and the nine cards that are not come to about eighteen dollars together, with nothing over three.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Dreepy <small>SV06: Twilight Masquerade 128/167</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>70 HP, Poffin range; the Ascended Heroes 158 reprint is the same card</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Drakloak <small>SV06: Twilight Masquerade 129/167</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>Recon Directive; the engine</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Dragapult ex <small>SV06: Twilight Masquerade 130/167</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>NOT the 200 secret print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Munkidori <small>SV06: Twilight Masquerade 095/167</small></span></td><td>3</td><td>2</td><td>✓</td><td>shared with the lantern deck</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>Lillie&#x27;s Clefairy ex <small>SV09: Journey Together 056/159</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Fairy Zone; NOT the 173 or 184 prints</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>2</td><td>1</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Meowth ex <small>ME03: Perfect Order 062/088</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>NOT the 107 or 121 prints</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Budew <small>ME: Ascended Heroes 016/217</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>the Prismatic Evolutions 004 print is the same card</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Mimikyu <small>SV10: Destined Rivals 087/182</small></span></td><td>1</td><td>1</td><td>✓</td><td>owned; the Ascended Heroes 097 print is the same card</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Crispin <small>SV07: Stellar Crown 133/142</small></span></td><td>4</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>1</td><td>✓</td><td>shared; NOT the 118 or 129 secret prints</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Briar <small>SV07: Stellar Crown 132/142</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>the Tera comeback Supporter</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Poke Pad <small>ME03: Perfect Order 081/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>Tera Orb <small>SV08: Surging Sparks 189/191</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>finds only Dragapult ex here</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Energy Switch <small>ME01: Mega Evolution 115/132</small></span></td><td>2</td><td>1</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Sparkling Crystal <small>SV07: Stellar Crown 142/142</small></span></td><td>1</td><td>1</td><td>✓</td><td>owned; ACE SPEC, a Tool, so no Jamming Tower in this list</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Air Balloon <small>ME: Ascended Heroes 181/217</small></span></td><td>2</td><td>1</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Area Zero Underdepths <small>SV07: Stellar Crown 131/142</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the Prismatic Evolutions 094 print is the same card</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Risky Ruins <small>ME01: Mega Evolution 127/132</small></span></td><td>4</td><td>1</td><td>✓</td><td>shared</td></tr>
+							<tr><td><span>Basic Fire Energy <small>MEE: Mega Evolution Energies 2</small></span></td><td>18</td><td>3</td><td>✓</td><td>never rotates</td></tr>
+							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>3</td><td>✓</td><td>never rotates</td></tr>
+							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>2</td><td>✓</td><td>never rotates</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>20</strong></td><td></td></tr>
+						</tbody>
+					</table>
+			<aside data-callout="important">
+				<p><strong>Regulation clock.</strong> Everything here is Standard legal as of August 2026. The core is mark H: Dreepy, Drakloak, and Dragapult ex in every print, plus Munkidori, Fezandipiti ex, Budew, Crispin, Poffin, Tera Orb, Night Stretcher, Sparkling Crystal, Area Zero Underdepths, and Briar. All of it rotates around April 2027 unless a reprint lands with a newer mark, and the Ascended Heroes reprints of the dragon line did not get one. Seven months of Standard for under twenty dollars is a fair trade; buy it knowing the date.</p>
+			</aside>
+				</details>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>
