@@ -162,3 +162,9 @@ Lively Stadium Surging Sparks	180/191	0	dark-gang; +30 to every Basic, puts Okid
 # Okidogi ex, the third card that file flags, is already filed under dark-gang above.
 Rosa's Encouragement Perfect Order	114/124	0	phantom-ferry; 2 Basic Energy from the discard onto a Stage 2, NOT the 084 or 123 prints	deck
 Energy Search Perfect Order	072/124	0	phantom-ferry; Item-speed Energy to hand on turn one, when the discard is empty	deck
+
+# --- dark-gang.md rebuild, the two rows the new 60 adds ---------------------------
+# Gengar ex is the 30th Celebration Double Rare, pinned by URL because the set is
+# days old and the name collides with the Temporal Forces 104 already in the seed.
+https://www.tcgplayer.com/product/716485/pokemon-me-30th-celebration-gengar-ex	090/128	0	dark-gang; Chaotic Pain, 13 damage counters on any target	deck
+Sacred Ash Destined Rivals	168/182	0	dark-gang; 5 Pokemon from the discard back into the deck, NOT the Perfect Order 115 secret print	deck

@@ -39,11 +39,11 @@ PAGES = [
      "Xero's ex-battle mode. Eleven cards swap Gengar Gang into a prize cage:"
      " Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall"
      " takes the hits."),
-    ("dark-gang.html", ["gengar-evo", "gengar-mega"],
-     "Xero's league-night 60, rebuilt around Okidogi ex. Shadowy Concealment"
-     " charges the opponent a Prize for every knockout, Gnawing Curse and"
-     " Risky Ruins stack chip on the way in, and Binding Mochi puts"
-     " Chain-Crazed at 300."),
+    ("dark-gang.html", ["okidogi", "gengar-mega"],
+     "Xero's league-night 60, rebuilt around the 30th Celebration Gengar ex."
+     " Chaotic Pain places 13 damage counters on any Pokémon, which ignores"
+     " Weakness and every wall in the format, while Shadowy Concealment keeps"
+     " thirteen of the twenty-two bodies worth zero Prizes."),
     ("dark-curse.html", ["gengar-smile", "gengar-mega"],
      "Xero's bigger plan, on hold until the Gnawing Curse pair is sourced. Two"
      " ex Gengars on one Haunter line: the Mega bends every prize trade, and"

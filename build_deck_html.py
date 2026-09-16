@@ -56,8 +56,9 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "metal-excadrill.md": ["drilbur", "excadrill"],
           # no Gen 8 sprites exist, so the Ghost/Dragon Giratina stands in for Dragapult
           "dragons.md": ["giratina-origin", "clefairy"],
-          # Okidogi is Gen 9 and has no sprite, so the two ghosts carry the page
-          "dark-gang.md": ["gengar-evo", "gengar-mega"]}
+          # the dog is a hand-drawn gif rather than a library sprite; it and
+          # the Mega are the two engines
+          "dark-gang.md": ["okidogi", "gengar-mega"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -118,20 +119,25 @@ FLAVOR = {
         "Versus the Kitchen Table": ["mewtwo"],
         "What To Buy": ["pokeball"],
     },
-    # Okidogi, Toxel, Toxtricity, and Pecharunt are all Gen 8 or 9 and absent
-    # from the sprite library, so the ghosts carry the card sections and the
-    # rest of the keys go to the prose. Excadrill and the Origin Giratina stand
-    # in for the two decks the field table is really about.
+    # Okidogi has two hand-drawn gifs: the idle one on its card, the panting
+    # one on the plan for getting it back after a gust. Toxel and Toxtricity
+    # are Gen 8 and absent from the library, so the ghosts carry the rest of
+    # the card sections. Excadrill and the Origin Giratina stand in for the two
+    # decks the field table is really about.
     "dark-gang.md": {
         "The Thesis": ["gengar-mega"],
+        "Okidogi ex": ["okidogi"],
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
         "Mega Gengar ex": ["gengar-mega"],
         "Gengar ex": ["gengar-smile"],
+        "Gengar": ["gengar"],
         "The Prize Tax": ["gengar-booty"],
         "The Energy Engine": ["pokedex"],
-        "3. Choosing the stadium": ["gengar-hop"],
-        "4. Bench discipline": ["spin-haunter"],
+        "3. Which Gengar to build": ["gengar-evo"],
+        "4. When the dog gets gusted": ["okidogi-pant"],
+        "5. Choosing the stadium": ["gengar-hop"],
+        "6. Bench discipline": ["spin-haunter"],
         "Versus the Card Shop": ["excadrill", "giratina-origin"],
         "Alternatives": ["crobat", "zubat"],
         "What To Buy": ["pokeball"],

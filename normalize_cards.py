@@ -366,6 +366,13 @@ MANUAL_MARKS = {
     # above. Keyed to the card, not the series: promo series outlive marks,
     # the way SVP promos span G through I.
     "MEP/27": "I",
+    # 30th Celebration released 2026-09-16 and pokemontcg.io has not indexed it
+    # yet, so every card in it resolves to "unknown". Read off limitlesstcg's
+    # card pages. Keyed to the card and NOT the set: the set is mixed, and the
+    # reprinted Trainers at the back carry I where the rest of the set carries
+    # J (Ultra Ball 128 is an I). Drop this entry once fetch_regulation.py can
+    # see the set, and check the rest of the set before adding a sibling here.
+    "30C/90": "J",
 }
 
 REG_MARKS = {}
