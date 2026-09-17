@@ -16,9 +16,9 @@
 > [The Thesis](#the-thesis) · [Deck List](#deck-list)
 >
 > **Pokémon** — [Okidogi ex](#okidogi-ex) · [Gastly](#gastly) · [Haunter](#haunter) · [Mega Gengar ex](#mega-gengar-ex) · [Gengar ex](#gengar-ex) · [Gengar](#gengar) · [Toxel](#toxel) · [Toxtricity](#toxtricity)
-> **Supporters** — [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Janine's Secret Art](#janines-secret-art) · [Gwynn](#gwynn) · [Boss's Orders](#bosss-orders) · [Team Rocket's Petrel](#team-rockets-petrel)
-> **Items** — [Rare Candy](#rare-candy) · [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Sacred Ash](#sacred-ash) · [Energy Recycler](#energy-recycler) · [Night Stretcher](#night-stretcher) · [Energy Switch](#energy-switch) · [Prime Catcher](#prime-catcher)
-> **Tool / Stadium** — [Risky Ruins](#risky-ruins)
+> **Supporters** — [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Janine's Secret Art](#janines-secret-art) · [Boss's Orders](#bosss-orders) · [Team Rocket's Petrel](#team-rockets-petrel)
+> **Items** — [Rare Candy](#rare-candy) · [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Switch](#switch) · [Sacred Ash](#sacred-ash) · [Energy Recycler](#energy-recycler) · [Night Stretcher](#night-stretcher) · [Energy Switch](#energy-switch) · [Prime Catcher](#prime-catcher)
+> **Tool / Stadium** — [Air Balloon](#air-balloon) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Basic Darkness Energy](#basic-darkness-energy)
 >
 > [**The Prize Tax**](#the-prize-tax) · [**The Energy Engine**](#the-energy-engine) · [**The Recursion Loop**](#the-recursion-loop) · [**Game Plans**](#game-plans)
@@ -73,34 +73,35 @@ Okidogi is still the fastest clock in the deck and still the turn-one play going
 | 3 | Toxel | Phantasmal Flames | 067 | I |
 | 2 | Toxtricity | Phantasmal Flames | 068 | I |
 
-**Trainers — Supporters (12)**
+**Trainers — Supporters (10)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
 | 3 | Lillie's Determination | Mega Evolution | 119 | I |
 | 3 | Dawn | Phantasmal Flames | 087 | I |
 | 2 | Janine's Secret Art | Shrouded Fable | 059 | H |
-| 2 | Gwynn | Pitch Black | 078 | J |
 | 1 | Boss's Orders | Mega Evolution | 114 | I |
 | 1 | Team Rocket's Petrel | Destined Rivals | 176 | I |
 
-**Trainers — Items (13)**
+**Trainers — Items (14)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
 | 4 | Rare Candy | Mega Evolution | 125 | I |
 | 2 | Buddy-Buddy Poffin | Temporal Forces | 144 | H |
-| 2 | Sacred Ash | Destined Rivals | 168 | I |
+| 2 | Switch | Mega Evolution | 130 | I |
+| 1 | Sacred Ash | Destined Rivals | 168 | I |
 | 2 | Energy Recycler | Destined Rivals | 164 | I |
 | 1 | Night Stretcher | Shrouded Fable | 061 | H |
 | 1 | Energy Switch | Mega Evolution | 115 | I |
 | 1 | Prime Catcher | Prismatic Evolutions | 119 | H |
 
-**Trainers — Tool & Stadium (3)**
+**Trainers — Tool & Stadium (4)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
 | 3 | Risky Ruins | Mega Evolution | 127 | I |
+| 1 | Air Balloon | Ascended Heroes | 181 | I |
 
 **Energy (10)**
 
@@ -108,7 +109,7 @@ Okidogi is still the fastest clock in the deck and still the turn-one play going
 | --- | --- | --- | --- | --- |
 | 10 | Basic Darkness Energy | Mega Evolution Energies | 007 | - |
 
-**22 + 12 + 13 + 3 + 10 = 60.** ✓ Eleven Basics, twelve Supporters, one ACE SPEC, nothing over four copies.
+**22 + 10 + 14 + 4 + 10 = 60.** ✓ Eleven Basics, ten Supporters, one ACE SPEC, nothing over four copies.
 
 Eleven Basics is a **22.2%** mulligan, down from 26% on the ten-Basic list this replaces. The opening seven holds an Okidogi plus an Energy 27.9% of the time and an Okidogi or a Toxel 60.1% of the time, which are the two openers the deck actually wants.
 
@@ -138,7 +139,7 @@ Four copies. The plan is for this card to die and be replaced, and it carries th
 
 70 HP keeps it inside Buddy-Buddy Poffin range, and it is Darkness, so Risky Ruins never touches it and Janine can attach to it.
 
-**Four copies, up from three, and it is the single highest-leverage count in the deck.** Seven Stage 2 cards sit on top of this one Basic. Every Gengar you build spends a Gastly, the plain Gengar spends another one every time it comes back, and Gwynn eats the spares for cards. Sacred Ash is what makes that sustainable, but only a Gastly in the deck can be searched, so the deck wants as many as the rules allow.
+**Four copies, up from three, and it is the single highest-leverage count in the deck.** Seven Stage 2 cards sit on top of this one Basic. Every Gengar you build spends a Gastly, and the plain Gengar spends another one every time it comes back. Sacred Ash is what makes that sustainable, but only a Gastly in the deck can be searched, so the deck wants as many as the rules allow.
 
 ### Haunter
 
@@ -229,13 +230,13 @@ Two copies, because each copy's Surge is its own once-per-turn and the card carr
 
 ### Lillie's Determination
 
-Shuffle your hand into your deck and draw six, or eight while you still hold all six Prizes. Three copies. It is the card that rescues a dead hand, and it is the reason the draw count is survivable at all.
+Shuffle your hand into your deck and draw six, or eight while you still hold all six Prizes. Three copies, and it is the entire draw package.
 
-The cost is real in a deck that plans two turns ahead: Lillie's throws away the pieces you were holding for next turn along with the dead ones. [Gwynn](#gwynn) is the half of the draw package that does not.
+The cost is real in a deck that plans two turns ahead, because Lillie's throws away the pieces you were holding for next turn along with the dead ones. There is no way around that; every conditional draw Supporter in this colour is gated on discarding Pokémon **without a Rule Box**, and those are exactly the cards you bench on sight, so the condition is dead when the hand is all ex. [Test and Tune](#test-and-tune) has the fourth copy and the always-live alternative.
 
 ### Dawn
 
-**Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon.** In this deck that is Gastly, Haunter, and whichever Gengar the matchup wants, or Toxel, Toxtricity, and a Gengar. One card sets up an entire line, and it is the only card that finds a Gengar ex at all, because Poké Pad and Gwynn both read "no Rule Box".
+**Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon.** In this deck that is Gastly, Haunter, and whichever Gengar the matchup wants, or Toxel, Toxtricity, and a Gengar. One card sets up an entire line, and it is the only card that finds a Gengar ex at all, because the Item-speed alternative, Poké Pad, reads "no Rule Box".
 
 Three copies, up from two. Seven Stage 2 cards on one Basic line makes this the most important Supporter in the deck, and it is the turn-two play in almost every game.
 
@@ -248,14 +249,6 @@ Choose up to two of your Darkness Pokémon, search a Basic Darkness Energy out o
 **It is the only card in the deck that re-Poisons a dog.** That is its real job, not acceleration. Poison ends the moment Okidogi leaves the Active Spot, so a gust costs you 130 damage until the Poison is back, and *Poisonous Musculature* can only restore it by spending your attack for the turn. Janine restores it and attacks the same turn.
 
 Two copies. Nothing else in Standard Poisons your own Pokémon except Okidogi's own attack and Pecharunt ex, and Pecharunt was tried and cut.
-
-### Gwynn
-
-**Discard up to 2 Pokémon that don't have a Rule Box from your hand, and draw 3 cards for each one discarded.** Six cards for two cards, and you choose which two.
-
-The cards it eats are the ones that are genuinely dead in hand: the fourth Gastly, a spare Toxel, the third Haunter. It cannot touch Okidogi ex or either ex Gengar, so it never takes a card you needed. Unlike Lillie's it leaves the rest of your hand alone, which matters if you are holding a Rare Candy for a Gengar two turns out.
-
-**Sacred Ash is what makes it nearly free.** Gwynn buries line pieces, Ash shuffles five of them back into the deck, and Dawn and Poffin find them again. Two copies, and the pair with Ash is the reason the deck can afford a draw Supporter that costs Pokémon.
 
 ### Boss's Orders
 
@@ -292,13 +285,23 @@ Four copies. Seven Stage 2 cards over four Gastly and three Haunter, and Candy i
 
 Poffin cannot reach Okidogi at 250 HP. Toxel's *Call for Family* can. The two share the setup, which is why the count is two and not the four every other list runs.
 
+### Switch
+
+**Switch your Active Pokémon with one of your Benched Pokémon.** Two copies, and in this deck it is an Energy card as much as a mobility card.
+
+**Retreating is paid for in Basic Darkness Energy, and this deck's retreat costs are the highest on its own board.** Okidogi ex is Retreat **3**; Mega Gengar ex, Gengar ex, and Toxtricity are all Retreat **2**. A deck that rotates attackers this often, out of a pool of only ten Energy, cannot afford to pay those costs out of the pool that *Sinister Surge*, *Janine's Secret Art*, and *Poisonous Musculature* all search. Retreating the dog once costs 30% of your Energy for the game.
+
+Switch costs a card instead. That is the whole argument, and it is why two copies sit here while [Energy Switch](#energy-switch) sits at one: moving the body is a different job from moving its fuel, and only one of them has to be free.
+
+**It clears Poison, so it is a ghost card, not a dog card.** Rotating a Poisoned Okidogi drops Chain-Crazed from 260 back to 130 until Janine restores it. Spend Switch on the Gengars, which have no Special Condition to lose.
+
 ### Sacred Ash
 
-**Shuffle up to 5 Pokémon from your discard pile into your deck.** Two copies.
+**Shuffle up to 5 Pokémon from your discard pile into your deck.** One copy.
 
 **Recovery has to land where the searchers look.** Dawn, Buddy-Buddy Poffin, and Rare Candy all read the **deck**. Night Stretcher returns a card to your **hand**. Sacred Ash is the only card that refills the pool the search engine actually fishes in, and in a deck whose plan is to trade bodies, that pool drains fast.
 
-It does three jobs at once. It returns dead Gastly and Haunter so the line never runs out, it returns a knocked-out Gengar ex so Dawn can find it again, and it pays for [Gwynn](#gwynn).
+It does two jobs. It returns dead Gastly and Haunter so the line never runs out, and it returns a knocked-out Gengar ex so Dawn can find it again. One copy rather than two, because the Energy side of the discard is the half that actually runs dry; see [Energy Recycler](#energy-recycler).
 
 > [!TIP]
 > **Buy the Destined Rivals 168 print.** Sacred Ash is also in Perfect Order at 115, but that set's printed total is 88, so 115 is a secret-rare print at collector prices. Same card, same text, and DRI 168 is inside its set's printed total of 182.
@@ -339,13 +342,26 @@ Moves a Basic Energy from one of your Pokémon to another. One copy.
 
 ### Prime Catcher
 
-**The ACE SPEC.** It gusts a Benched Pokémon up **and** switches your own Active for free, which is two jobs in one card and the reason plain Switch is not in the list.
+**The ACE SPEC.** It gusts a Benched Pokémon up **and** switches your own Active for free, which is two jobs in one card.
 
-The old list ran Switch to bring a gusted dog back. That turned out to be paying a card to avoid something the deck gets paid for: when they gust a Gastly up, the Gastly dies for **zero Prizes** under Concealment and you promote the dog for free on the following turn. Prime Catcher covers the case where you cannot wait a turn, and it drags something of theirs up while it does it.
+The free switch is the half that matters most here, because it is a third rotation on top of [Switch](#switch) and it costs no Energy. The gust half reaches the one thing Chaotic Pain cannot: a Pokémon you want *out* of the Active Spot rather than dead.
 
 ---
 
 # Trainers — Tool & Stadium
+
+### Air Balloon
+
+**The Retreat Cost of the Pokémon this card is attached to is [C][C] less.** One copy, and it is the card that reconciles the deck's two contradictory wants.
+
+| Attached to | Retreat becomes |
+| :--- | :--- |
+| Mega Gengar ex, Gengar ex, Toxtricity | **0** |
+| Okidogi ex | 1 |
+
+**The conflict it solves.** *Void Gale* only happens while Mega Gengar ex is **Active**, and *Shadowy Concealment* wants it **Benched** and safe. Those are mutually exclusive on any given turn, which is why the ferry keeps putting a three-Prize body in the firing line. A Balloon on the Mega breaks the tie: it goes Active, swings 230, ferries an Energy to whatever you are arming, and then **retreats for free** on the following turn to resume being the tax.
+
+Put it on the Mega by default. On Okidogi it only reduces the bill rather than clearing it, and the dog would rather stand still and keep its Poison anyway.
 
 ### Risky Ruins
 
@@ -407,6 +423,8 @@ Four sources put Darkness Energy on the board, and only one of them uses your ha
 
 Chaotic Pain and Void Gale both cost two, which the engine reaches in a single turn. Chain-Crazed costs three, which needs two sources in one turn or a body that came up pre-loaded. Energy Switch is the connective tissue, because Surge only ever delivers to the Bench.
 
+**Three things drain the pool, and only one of them is a knockout.** Energy leaves with any Pokémon that dies, it leaves two at a time when *Poisonous Musculature* pulls from the deck, and it leaves **fastest of all through Retreat Costs**, which are paid by discarding attached Energy. Okidogi ex at Retreat 3 is the most expensive rotation on the board. [Switch](#switch) and [Air Balloon](#air-balloon) exist to keep that bill off the Energy pool; two Energy Recycler exist because the accelerators all read the deck rather than the discard.
+
 **Feed the Haunter.** Surging onto a benched Haunter and then evolving it is the cheapest Gengar in the deck, because the Energy is already aboard when the Stage 2 arrives.
 
 ---
@@ -421,7 +439,7 @@ The deck spends Pokémon on purpose, so it carries two cards that put them back,
 | Night Stretcher | 1 Pokémon or Basic Energy | **hand** | the thing you need this turn |
 | Energy Recycler | up to 5 Basic Energy | **deck** | refilling what Surge, Janine, and Musculature search |
 
-The loop that carries long games is **Gwynn, Sacred Ash, Dawn**. Gwynn turns two dead line pieces into six cards, Ash puts five Pokémon back where the searchers can reach them, and Dawn pulls a whole line back out. Nothing in the deck is ever truly spent except the Energy in the discard, and Recycler answers that.
+The loop that carries long games is **Sacred Ash, Dawn, Rare Candy**. Ash puts five spent Pokémon back where the searchers can reach them, Dawn pulls a whole line back out, and Candy skips the stage you already paid for once. Nothing in the deck is truly spent except the Energy in the discard, and two Recycler answer that.
 
 ---
 
@@ -462,9 +480,9 @@ Mega Gengar on the Bench and a Gengar ex in front of it is the default board. Bu
 
 They gust a Gastly into your Active Spot. The dog is on the Bench with its three Energy and without its Poison, and it costs three to retreat.
 
-**Usually, do nothing.** The Gastly dies for zero Prizes under Concealment, and you promote the dog for free on the next turn having lost nothing but the Poison. This is the trade the deck is built to win, and it is why plain Switch is not in the list.
+**Often, do nothing.** The Gastly dies for zero Prizes under Concealment, and you promote the dog on the next turn having lost nothing but the Poison. That is a trade the deck is happy to take.
 
-**When you cannot wait**, Prime Catcher swaps your Active for free and drags something of theirs up at the same time. Then Janine to restore the Poison, and Chain-Crazed for 260.
+**When you cannot wait**, use [Switch](#switch) or Prime Catcher. Do **not** retreat the dog: Okidogi has Retreat 3, and paying that discards three Basic Darkness Energy out of a pool of ten. Then Janine to restore the Poison, and Chain-Crazed for 260.
 
 If they gust the Mega instead, do not retreat it. Void Gale for 230, and the Energy it moves goes to whatever you are arming next.
 
@@ -514,10 +532,10 @@ The list is a hypothesis; games are the data.
 | Symptom | Fix |
 | --- | --- |
 | 260 keeps falling one hit short of a 300 HP body | 2 Binding Mochi over the 2 Janine's Secret Art. It is the 260 to 300 breakpoint, and it was cut when Gengar took the attacking job |
-| Hands dry up in the mid game | 4th Lillie's Determination or a 3rd Gwynn over the 2nd Poffin. Draw sits at five cards, one under where it wants to be |
+| Hands dry up in the mid game | 4th Lillie's Determination over the 2nd Poffin. Draw sits at three cards, which is the list's thinnest number. **Kofu** is the always-live alternative: any 2 cards to the bottom, draw 4, never dead |
 | Battle Cage keeps sticking | a 4th Risky Ruins is not legal, so it is Eternatus, in [Alternatives](#alternatives) |
 | Stage 2s never arrive | 2 Poké Pad over the 2nd Poffin. It finds Haunter and the plain Gengar, and it costs no Supporter |
-| Gusted every single turn and it actually hurts | 1 Switch over the Energy Switch |
+| Rotating still costs Energy you cannot spare | 2nd Air Balloon over the 3rd Risky Ruins |
 | The Mega dies and Concealment is gone | 3rd Mega Gengar ex over the 3rd Toxel, or lean harder on Night Stretcher |
 | Energy runs out late anyway | 11th Darkness over the 3rd Haunter |
 | Three Gengars keep bricking in hand | the 3rd Gengar ex is the flexible one; it becomes the Temporal Forces 104 Curse Gengar |
@@ -543,6 +561,8 @@ The planning produced more good cards than seats, and the ladder rejected a few 
 | Pecharunt ex | never | tried and cut. The only Ability in Standard that Poisons your own Pokémon, on a 190 HP Basic ex that every gust card finds first |
 | Munkidori | never | tried and cut. A non-Darkness body Janine cannot feed and your own Ruins taxes |
 | Chi-Yu (Pitch Black 059) | a Toxel | rejected unplayed. A 90 HP Basic you never want to open with is a dead turn-one draw |
+| Gwynn (Pitch Black 078) | never | tried and cut. Six cards for two Pokémon **without a Rule Box**, and those are Gastly, Haunter, Toxel, Toxtricity, and the plain Gengar, which is to say the cards you bench on sight. What is left in hand is the ex Pokémon it cannot discard, so the condition fails about half the time it is drawn |
+| Kofu (Stellar Crown 138) | a Poffin | draw has to be always-live. Any 2 cards to the bottom, draw 4. Weaker ceiling than Gwynn, no condition to whiff |
 | Ultra Ball | a Dawn | most lists run it. This one does not, because the discard cost fights every card in the deck that wants to be held two turns |
 | Marnie's Grimmsnarl ex | never | *Punk Up* attaches five Basic Darkness at once, but only to **Marnie's** Pokémon. That is a different deck, not an upgrade to this one |
 
@@ -564,17 +584,18 @@ Toxtricity | Phantasmal Flames 068 | 2 | Sinister Surge, once per copy; 103 is t
 Lillie's Determination | Mega Evolution 119 | 3 | shared; the hand reset
 Dawn | Phantasmal Flames 087 | 3 | a whole line in one search, and the only way to find a Gengar ex
 Janine's Secret Art | Shrouded Fable 059 | 2 | the only repeatable Poison
-Gwynn | Pitch Black 078 | 2 | six cards for two dead line pieces
 Boss's Orders | Mega Evolution 114 | 1 | shared; printed Boss's Orders [Ghetsis]
 Team Rocket's Petrel | Destined Rivals 176 | 1 | makes every one-of a two-of
 Rare Candy | Mega Evolution 125 | 4 | shared
 Buddy-Buddy Poffin | Temporal Forces 144 | 2 | shared; Gastly and Toxel to the Bench
-Sacred Ash | Destined Rivals 168 | 2 | 5 Pokemon back into the deck; NOT the Perfect Order 115 secret print
+Switch | Mega Evolution 130 | 2 | shared; rotation that costs a card instead of three Energy
+Sacred Ash | Destined Rivals 168 | 1 | 5 Pokemon back into the deck; NOT the Perfect Order 115 secret print
 Energy Recycler | Destined Rivals 164 | 2 | the fuel line; 5 Basic Energy back into the deck
 Night Stretcher | Shrouded Fable 061 | 1 | shared; the one that lands in hand
 Energy Switch | Mega Evolution 115 | 1 | brings a Surge up off the Bench
 Prime Catcher | Prismatic Evolutions 119 | 1 | ACE SPEC; the English print
 Risky Ruins | Mega Evolution 127 | 3 | one-sided; every Pokemon here is Darkness
+Air Balloon | Ascended Heroes 181 | 1 | free retreat for the Mega, so the ferry stops exposing it
 Basic Darkness Energy | Mega Evolution Energies 007 | 10 | never rotates
 ```
 
