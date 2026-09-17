@@ -39,11 +39,11 @@ PAGES = [
      "Xero's ex-battle mode. Eleven cards swap Gengar Gang into a prize cage:"
      " Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall"
      " takes the hits."),
-    ("dark-gang.html", ["okidogi", "gengar-mega"],
-     "Xero's league-night 60, rebuilt around the 30th Celebration Gengar ex."
-     " Chaotic Pain places 13 damage counters on any Pokémon, which ignores"
-     " Weakness and every wall in the format, while Shadowy Concealment keeps"
-     " thirteen of the twenty-two bodies worth zero Prizes."),
+    ("dark-gang.html", ["gengar-smile", "okidogi"],
+     "Xero's league-night 60, built on the 30th Celebration Gengar ex. Every"
+     " Mega in the format grows out of a 70 to 110 HP body, and Chaotic Pain"
+     " kills all of them from the Bench for two Energy. The Okidogi are the"
+     " shield that buys the ghost line its turns."),
     ("dark-curse.html", ["gengar-smile", "gengar-mega"],
      "Xero's bigger plan, on hold until the Gnawing Curse pair is sourced. Two"
      " ex Gengars on one Haunter line: the Mega bends every prize trade, and"

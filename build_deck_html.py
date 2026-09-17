@@ -58,7 +58,7 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "dragons.md": ["giratina-origin", "clefairy"],
           # the dog is a hand-drawn gif rather than a library sprite; it and
           # the Mega are the two engines
-          "dark-gang.md": ["okidogi", "gengar-mega"]}
+          "dark-gang.md": ["gengar-smile", "okidogi"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
