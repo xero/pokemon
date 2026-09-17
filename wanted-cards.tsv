@@ -167,4 +167,7 @@ Energy Search Perfect Order	072/124	0	phantom-ferry; Item-speed Energy to hand o
 # Gengar ex is the 30th Celebration Double Rare, pinned by URL because the set is
 # days old and the name collides with the Temporal Forces 104 already in the seed.
 https://www.tcgplayer.com/product/716485/pokemon-me-30th-celebration-gengar-ex	090/128	0	dark-gang; Chaotic Pain, 13 damage counters on any target	deck
-Sacred Ash Destined Rivals	168/182	0	dark-gang; 5 Pokemon from the discard back into the deck, NOT the Perfect Order 115 secret print	deck
+# --- dark-gang.md second rebuild, the two new seats ------------------------------
+# Pokegear 3.0 (Black Bolt 084) is already in the seed from the Excadrill list.
+AZ's Tranquility Chaos Rising	076/086	0	dark-gang; the switch that works under Budew, and heals 80 on the ex it benches	deck
+Hero's Cape Temporal Forces	152/162	0	dark-gang; ACE SPEC, +100 HP puts a Gengar ex over every one-shot from 280 to 379	deck
