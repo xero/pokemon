@@ -373,6 +373,10 @@ MANUAL_MARKS = {
     # J (Ultra Ball 128 is an I). Drop this entry once fetch_regulation.py can
     # see the set, and check the rest of the set before adding a sibling here.
     "30C/90": "J",
+    # Zamazenta 107/128, the shield dog steel-wolves.md is built on. Checked
+    # the same way, against limitlesstcg.com/cards/30C/107, and confirmed
+    # against the Standard pool snapshot, which also carries it as J.
+    "30C/107": "J",
 }
 
 REG_MARKS = {}

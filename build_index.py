@@ -68,6 +68,11 @@ PAGES = [
      "Fox's Metal deck, bought from zero. One Beldum line feeds both the"
      " Energy engine and a Metagross that hits for 330 and gives up a single"
      " Prize; the Mega only comes out to close."),
+    ("steel-wolves.html", ["metagross", "snorlax"],
+     "Fox's online 60 for TCG Live. Three separate cards each add 30 to Hop's"
+     " Zacian ex, so Brave Slash lands at 330 and one-shots Dragapult; a"
+     " Metagross on the Bench pays for it, and Zamazenta covers the turn"
+     " Zacian is locked out."),
     ("dragons.html", ["giratina-origin", "clefairy"],
      "Xero's Dragapult deck, rebuilt from the card that beat him. Four"
      " Drakloaks draw every turn, Sparkling Crystal makes Phantom Dive cost"

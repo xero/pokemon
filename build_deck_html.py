@@ -58,7 +58,10 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "dragons.md": ["giratina-origin", "clefairy"],
           # the dog is a hand-drawn gif rather than a library sprite; it and
           # the Mega are the two engines
-          "dark-gang.md": ["gengar-smile", "okidogi"]}
+          "dark-gang.md": ["gengar-smile", "okidogi"],
+          # no Zacian or Zamazenta sprite exists (the library stops before Gen
+          # 8), so the deck's other two engines carry the page
+          "steel-wolves.md": ["metagross", "snorlax"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -145,6 +148,21 @@ FLAVOR = {
         "Versus the Card Shop": ["excadrill", "metang"],
         "Alternatives": ["crobat", "zubat"],
         "What To Buy": ["pokeball"],
+    },
+    # the two wolves have no sprite in the library, so the Metagross line and
+    # the two support Pokemon carry the page. Excadrill and Genesect stand in
+    # for the field table, which is mostly other Metal decks.
+    "steel-wolves.md": {
+        "The Thesis": ["metagross"],
+        "Steven's Beldum": ["beldum"],
+        "Steven's Metang": ["metang"],
+        "Steven's Metagross ex": ["metagross"],
+        "Hop's Snorlax": ["snorlax"],
+        "Latias ex": ["latias"],
+        "The Energy Engine": ["pokedex"],
+        "2. The Off Turn": ["metang"],
+        "Versus the Ladder": ["excadrill", "genesect"],
+        "Alternatives": ["scizor"],
     },
     "dark-curse.md": {
         "Gastly": ["gastly"],
@@ -1291,7 +1309,7 @@ def bullets_or_para(text, ind):
 DECKS = ["rules.md", "dark.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
          "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
-         "dragons.md", "dark-gang.md"]
+         "dragons.md", "dark-gang.md", "steel-wolves.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

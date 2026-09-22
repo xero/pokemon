@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Fox's Steel Wolves</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the first three rows are the library, not decks: the collection,
+			   the pull list, and the rulebook get a tint of their own,
+			   watermark kept. */
+			&:nth-of-type(-n+3) {
+				background-color: var(--line);
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Fox's Steel Wolves <img data-mascot src="./assets/sprites/metagross.gif" alt="" /> <img data-mascot src="./assets/sprites/snorlax.gif" alt="" /></h1>
+				<p>A tournament-legal 60 for TCG Live, built on Hop's Zacian ex with a shield dog and a steel engine behind it</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-energy-engine">The Energy Engine</a></li>
+			<li><a href="#versus-the-ladder">Versus the Ladder</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#alternatives">Alternatives</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#hops-zacian-ex">Hop&#x27;s Zacian ex</a> <a href="#zamazenta">Zamazenta</a> <a href="#stevens-beldum">Steven&#x27;s Beldum</a> <a href="#stevens-metang">Steven&#x27;s Metang</a> <a href="#stevens-metagross-ex">Steven&#x27;s Metagross ex</a> <a href="#hops-snorlax">Hop&#x27;s Snorlax</a> <a href="#latias-ex">Latias ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#team-rockets-petrel">Team Rocket&#x27;s Petrel</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#philippe">Philippe</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#ultra-ball">Ultra Ball</a> <a href="#rare-candy">Rare Candy</a> <a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#switch">Switch</a> <a href="#hops-bag">Hop&#x27;s Bag</a> <a href="#secret-box">Secret Box</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#hops-choice-band">Hop&#x27;s Choice Band</a> <a href="#air-balloon">Air Balloon</a> <a href="#postwick">Postwick</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-metal-energy">Basic Metal Energy</a> <a href="#magnetic-metal-energy">Magnetic Metal Energy</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-the-330-turn">1. The 330 Turn</a> <a href="#2-the-off-turn">2. The Off Turn</a> <a href="#3-reading-the-prize-trade">3. Reading the Prize Trade</a> <a href="#4-what-this-deck-gives-up">4. What This Deck Gives Up</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>This is Fox&#x27;s online deck. It plays on TCG Live, so every card is English and Standard legal; nothing here is sleeved in paper and no buy block reads this page. The shell comes from the Hop&#x27;s Zacian lists winning events on <a href="https://play.limitlesstcg.com/decks/hop-zacian?format=standard&amp;rotation=2026&amp;set=PBL">the Limitless ladder</a>, with the draw engine traded out for an Energy engine and two Zamazenta added.</p>
+				<p>Game words are defined in <a href="./rules.html">the table rules</a>.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+					<p>Three cards in this deck each add 30 damage, and they all add it to the same attack.</p>
+					<p><em>Brave Slash</em> is printed at 240. <strong>Hop&#x27;s Choice Band</strong> adds 30, <strong>Postwick</strong> adds 30, and <strong>Hop&#x27;s Snorlax</strong> adds 30, so the number Fox actually attacks with is <strong>330</strong>. Every one of those boosts reads &quot;to your opponent&#x27;s Active Pokémon,&quot; so they land on the thing in front of you and nowhere else.</p>
+					<table>
+						<thead><tr><th>What is attached</th><th>Brave Slash</th><th>One-shots</th></tr></thead>
+						<tbody>
+							<tr><td>nothing</td><td>240</td><td>the 2-prize ex under 240</td></tr>
+							<tr><td>Choice Band</td><td>270</td><td>N&#x27;s Zoroark ex</td></tr>
+							<tr><td>Band and Postwick</td><td>300</td><td>Archaludon ex</td></tr>
+							<tr><td>Band, Postwick, and Snorlax</td><td><strong>330</strong></td><td><strong>Dragapult ex, and everything below it</strong></td></tr>
+						</tbody>
+					</table>
+					<p>330 is the number that matters, because Dragapult ex sits at 320 HP and is the most common deck on the ladder. The two 340 HP Megas survive by ten.</p>
+					<p>The Choice Band pays for itself twice. It also makes every Hop&#x27;s attack cost one <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> less, which drops <em>Brave Slash</em> from four Energy to three and drops <em>Insta-Strike</em> to <strong>nothing at all</strong>. A Zacian with a Band and no Energy still attacks for 120 to the Active and 30 to a Bench. That is the floor of this deck, and most decks do not have one.</p>
+					<p>What the ladder lists do next is run four Philippe and hope. This build does something steadier. <strong>Steven&#x27;s Metagross ex</strong> sits on the Bench and attaches a Metal Energy out of the deck every single turn for free, so the manual attachment plus <em>X-Boot</em> is two Energy a turn without spending a Supporter. That turns a turn-three Brave Slash into a turn-two Brave Slash, and it keeps working after the discard pile is empty.</p>
+					<p><strong>Zamazenta is the answer to the one weakness in the Zacian plan.</strong> <em>Brave Slash</em> cannot be used twice in a row, so every big turn is followed by a turn with nothing to do. Zamazenta steps into that gap, hits for 100, and takes 50 less while it stands there.</p>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#hops-zacian-ex"><img src="./assets/623538_hops-zacian-ex-111-159.jpg" alt="Hop&#x27;s Zacian ex" /><span data-count>x4</span></a></figure>
+				<figure><a href="#zamazenta"><img src="./assets/716500_zamazenta.jpg" alt="Zamazenta" /><span data-count>x2</span></a></figure>
+				<figure><a href="#stevens-beldum"><img src="./assets/632950_stevens-beldum.jpg" alt="Steven&#x27;s Beldum" /><span data-count>x3</span></a></figure>
+				<figure><a href="#stevens-metang"><img src="./assets/632951_stevens-metang.jpg" alt="Steven&#x27;s Metang" /></a></figure>
+				<figure><a href="#stevens-metagross-ex"><img src="./assets/630824_stevens-metagross-ex.jpg" alt="Steven&#x27;s Metagross ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#hops-snorlax"><img src="./assets/623544_hops-snorlax.jpg" alt="Hop&#x27;s Snorlax" /><span data-count>x2</span></a></figure>
+				<figure><a href="#latias-ex"><img src="./assets/589983_latias-ex-076-191.jpg" alt="Latias ex" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#team-rockets-petrel"><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /><span data-count>x3</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x2</span></a></figure>
+				<figure><a href="#philippe"><img src="./assets/693532_philippe-079-086.jpg" alt="Philippe" /><span data-count>x2</span></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></a></figure>
+				<figure><a href="#rare-candy"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /><span data-count>x3</span></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#hops-bag"><img src="./assets/623574_hops-bag.jpg" alt="Hop&#x27;s Bag" /></a></figure>
+				<figure><a href="#secret-box"><img src="./assets/550207_secret-box.jpg" alt="Secret Box" /></a></figure>
+				<figure><a href="#hops-choice-band"><img src="./assets/623575_hops-choice-band.jpg" alt="Hop&#x27;s Choice Band" /><span data-count>x4</span></a></figure>
+				<figure><a href="#air-balloon"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a></figure>
+				<figure><a href="#postwick"><img src="./assets/623581_postwick.jpg" alt="Postwick" /><span data-count>x4</span></a></figure>
+				<figure><a href="#basic-metal-energy"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /><span data-count>x10</span></a></figure>
+				<figure><a href="#magnetic-metal-energy"><img src="./assets/693506_magnetic-metal-energy.jpg" alt="Magnetic Metal Energy" /></a></figure>
+			</article>
+					<p><strong>Pokémon (15)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Hop&#x27;s Zacian ex</td><td>Journey Together</td><td>111</td><td>I</td></tr>
+							<tr><td>2</td><td>Zamazenta</td><td>30th Celebration</td><td>107</td><td>J</td></tr>
+							<tr><td>3</td><td>Steven&#x27;s Beldum</td><td>Destined Rivals</td><td>143</td><td>I</td></tr>
+							<tr><td>1</td><td>Steven&#x27;s Metang</td><td>Destined Rivals</td><td>144</td><td>I</td></tr>
+							<tr><td>2</td><td>Steven&#x27;s Metagross ex</td><td>Destined Rivals</td><td>145</td><td>I</td></tr>
+							<tr><td>2</td><td>Hop&#x27;s Snorlax</td><td>Journey Together</td><td>117</td><td>I</td></tr>
+							<tr><td>1</td><td>Latias ex</td><td>Surging Sparks</td><td>076</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (34)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Team Rocket&#x27;s Petrel</td><td>Supporter</td><td>Destined Rivals</td><td>176</td><td>I</td></tr>
+							<tr><td>2</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>2</td><td>Philippe</td><td>Supporter</td><td>Chaos Rising</td><td>079</td><td>J</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>3</td><td>Rare Candy</td><td>Item</td><td>Mega Evolution</td><td>125</td><td>I</td></tr>
+							<tr><td>3</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Hop&#x27;s Bag</td><td>Item</td><td>Journey Together</td><td>147</td><td>I</td></tr>
+							<tr><td>1</td><td>Secret Box</td><td>Item</td><td>Twilight Masquerade</td><td>163</td><td>H</td></tr>
+							<tr><td>4</td><td>Hop&#x27;s Choice Band</td><td>Tool</td><td>Journey Together</td><td>148</td><td>I</td></tr>
+							<tr><td>1</td><td>Air Balloon</td><td>Tool</td><td>Ascended Heroes</td><td>181</td><td>I</td></tr>
+							<tr><td>4</td><td>Postwick</td><td>Stadium</td><td>Journey Together</td><td>154</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (11)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>10</td><td>Basic Metal Energy</td><td>Mega Evolution Energies</td><td>008</td><td>-</td></tr>
+							<tr><td>1</td><td>Magnetic Metal Energy</td><td>Chaos Rising</td><td>085</td><td>J</td></tr>
+						</tbody>
+					</table>
+					<p><strong>15 + 34 + 11 = 60.</strong> ✓</p>
+					<p><strong>Basics: 12</strong> (4 Hop&#x27;s Zacian ex, 2 Zamazenta, 3 Steven&#x27;s Beldum, 2 Hop&#x27;s Snorlax, 1 Latias ex), which is a mulligan rate under 10%. That is the most comfortable opening in the house, and it is why the deck can afford one evolution line.</p>
+			<aside data-callout="warning">
+				<p><strong>One ACE SPEC per deck.</strong> Secret Box is this deck&#x27;s one. Nothing else in the 60 may carry the ACE SPEC label, which rules out Prime Catcher, Maximum Belt, Hero&#x27;s Cape, and Precious Trolley however well they would fit.</p>
+			</aside>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="hops-zacian-ex">Hop&#x27;s Zacian ex<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/623538_hops-zacian-ex-111-159.jpg" target="_blank" rel="noopener"><img src="./assets/623538_hops-zacian-ex-111-159.jpg" alt="Hop&#x27;s Zacian ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>111/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>230</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Insta-Strike (30) - This attack also does 30 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span><span>Brave Slash (240) - During your next turn, this Pokémon can’t use Brave Slash.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The core, at the full four.</strong> 230 HP, Basic, 2 Prizes, Retreat 2, Fire Weakness.</p>
+					<p><em>Brave Slash</em> does 240 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, and with a <a href="#hops-choice-band">Hop&#x27;s Choice Band</a> attached it costs <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span> and does 330. The rider is that it cannot be used again on your next turn, which is not a drawback so much as a rhythm; see <a href="#2-the-off-turn">game plan 2</a>.</p>
+					<p><em>Insta-Strike</em> is the reason this card is different from every other big Basic. It costs <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>, which a Band reduces to nothing, and it does 30 to the Active plus 30 to a Benched Pokémon. With the Band, Postwick, and a Snorlax out, that free attack reads <strong>120 to the Active and 30 to the Bench</strong>. The three boosts all name the Active Pokémon, so the Bench half stays at 30 no matter what you stack.</p>
+					<p>Four copies, because it is the deck and because a prized copy has to be a non-event. Four also means a second Zacian is always ready to attack on the turn the first one is locked out.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="zamazenta">Zamazenta<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/716500_zamazenta.jpg" target="_blank" rel="noopener"><img src="./assets/716500_zamazenta.jpg" alt="Zamazenta" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>ME: 30th Celebration <small>107/128</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /></span><span>Fend Off (20) - Before doing damage, discard all Pokémon Tools from your opponent&#x27;s Active Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Shield Press (100) - During your opponent&#x27;s next turn, this Pokémon takes 50 less damage from attacks (after applying Weakness and Resistance).</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The shield dog, and the card that fills the gap Brave Slash leaves.</strong> 130 HP, Basic, 1 Prize, Retreat 2.</p>
+					<p><em>Shield Press</em> does 100 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, and during your opponent&#x27;s next turn this Pokémon takes 50 less damage. A 130 HP body that effectively has 180 against one attack is not a wall, but it is an annoyance worth more than one Prize, and the opponent who spends a big attack killing it has spent that attack on a single-prize card.</p>
+					<p><em>Fend Off</em> costs one <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span>, does 20, and <strong>discards all Pokémon Tools from the opponent&#x27;s Active Pokémon before doing damage</strong>. That is the turn-one play going second against any deck leaning on a Tool, and on the current ladder that means the mirror&#x27;s own Choice Band, an Air Balloon on a pivot, or a Hero&#x27;s Cape propping up a Mega.</p>
+			<aside data-callout="important">
+				<p><strong>Zamazenta is not a Hop&#x27;s Pokémon.</strong> The Choice Band, Postwick, and Extra Helpings all say &quot;Hop&#x27;s Pokémon,&quot; so none of the three touch it. Shield Press is a flat 100 and Fend Off is a flat 20, always. Zamazenta is here for the turns when damage is not the point.</p>
+			</aside>
+					<p>Two copies. It is a role card, not a line, and two means one is available on the off turn without ever drawing a dead second.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="stevens-beldum">Steven&#x27;s Beldum<span data-count>x3</span><span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632950_stevens-beldum.jpg" target="_blank" rel="noopener"><img src="./assets/632950_stevens-beldum.jpg" alt="Steven&#x27;s Beldum" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>143/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Ram (10)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>70 HP and Poffin-legal, and its whole job is becoming Metagross. <em>Ram</em> does 10, which is a number you will never use.</p>
+					<p>Three copies against two Metagross ex, because Beldum has to be on the Bench a full turn before Rare Candy can touch it. Landing one on turn one is what makes a turn-two <em>X-Boot</em> possible, so this is a card you dig for early and never draw late.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="stevens-metang">Steven&#x27;s Metang<span data-count>x1</span><span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632951_stevens-metang.jpg" target="_blank" rel="noopener"><img src="./assets/632951_stevens-metang.jpg" alt="Steven&#x27;s Metang" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>144/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Metal Slash (70) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The manual road, kept as a single copy.</strong> <em>Rare Candy</em> skips it, which is the plan most games. This one copy covers the game where Candy is prized or spent and a Beldum has been sitting on the Bench doing nothing for two turns. <em>Metal Slash</em> does 70 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> and locks itself out for a turn, which is a real attack in a pinch.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="stevens-metagross-ex">Steven&#x27;s Metagross ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/630824_stevens-metagross-ex.jpg" target="_blank" rel="noopener"><img src="./assets/630824_stevens-metagross-ex.jpg" alt="Steven&#x27;s Metagross ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>145/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>340</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>X-Boot - Once during your turn, you may search your deck for a Basic Psychic Energy card, a Basic Metal Energy card, or 1 of each and attach them to your Psychic Pokémon and Metal Pokémon in any way you like. Then, shuffle your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Metal Stomp (200)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Energy engine, and the reason this build is not the ladder list.</strong> Stage 2 from Steven&#x27;s Metang, 340 HP, 2 Prizes, Retreat 3.</p>
+					<p><em>X-Boot</em> is an Ability, once during your turn: search your deck for a Basic Psychic Energy card, a Basic Metal Energy card, or one of each, and attach them to your Psychic and Metal Pokémon in any way you like. This deck runs no Basic Psychic, so read it as <strong>one Basic Metal from the deck onto any Metal Pokémon, every turn, for free</strong>.</p>
+					<p>Three things make that better than the Philippe it replaced. It costs no Supporter, so the turn still has a Lillie&#x27;s or a Boss&#x27;s in it. It pulls from the <strong>deck</strong> rather than the discard, so it works on turn two when the discard pile is empty. And it targets any Metal Pokémon, so it charges the Zacian that is about to swing and the Zamazenta waiting behind it in the same sequence of turns.</p>
+					<p><em>Metal Stomp</em> does a flat 200 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, which matters in exactly one situation: both Zacians are gone and the 340 HP body is what is left. Do not plan for it, and do not walk this card into the Active Spot to use it.</p>
+					<p>Two copies. At 340 HP on the Bench it rarely dies, and the second copy is prize insurance on the card the whole Energy plan depends on.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="hops-snorlax">Hop&#x27;s Snorlax<span data-count>x2</span><span data-flavor><img src="./assets/sprites/snorlax.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/623544_hops-snorlax.jpg" target="_blank" rel="noopener"><img src="./assets/623544_hops-snorlax.jpg" alt="Hop&#x27;s Snorlax" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>117/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>150</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Extra Helpings - Attacks used by your Hop&#x27;s Pokémon do 30 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance). The effect of Extra Helpings doesn&#x27;t stack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>4</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Dynamic Press (140) - This Pokémon also does 80 damage to itself.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Thirty more damage from the Bench, for free.</strong> <em>Extra Helpings</em> adds 30 to every attack your Hop&#x27;s Pokémon make against the opponent&#x27;s Active Pokémon. It needs no Energy and no attention. Bench it and forget it.</p>
+					<p>The effect <strong>does not stack</strong>, so a second Snorlax on the board adds nothing. Two copies is redundancy against Prizes and Boss&#x27;s Orders, not a bigger number. <em>Dynamic Press</em> exists and costs <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 140 with 80 recoil; the Retreat 4 on this card tells you what the designers thought of that plan.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="latias-ex">Latias ex<span data-count>x1</span><span data-flavor><img src="./assets/sprites/latias.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/589983_latias-ex-076-191.jpg" target="_blank" rel="noopener"><img src="./assets/589983_latias-ex-076-191.jpg" alt="Latias ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>SV08: Surging Sparks <small>076/191</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Skyliner - Your Basic Pokémon in play have no Retreat Cost.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Eon Blade (200) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Skyliner</em>: your Basic Pokémon in play have no Retreat Cost.</strong> Eleven of the fifteen Pokémon in this deck are Basic, so one card on the Bench means the Zacian that just locked itself out of Brave Slash walks away for free, and the Zamazenta that took a hit rotates out the same way.</p>
+					<p>This is the card that makes <a href="#2-the-off-turn">the off turn</a> work without spending a Switch. It does nothing for the Metagross line, which is a Stage 2 with Retreat 3; that is what <a href="#air-balloon">Air Balloon</a> is for.</p>
+					<p>One copy, 210 HP, 2 Prizes, and Darkness Weakness. Never lead with it and never let it be the last thing standing.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The draw engine at the full four. Shuffle your hand into your deck and draw 6, or draw 8 with exactly 6 Prize cards remaining. The bonus half is a setup clause, and this deck&#x27;s setup turn wants to find a Beldum, a Rare Candy, a Band, and a Postwick, which is four specific cards out of one Supporter.</p>
+					<p>The shuffle half matters as much. A Zacian you cannot afford to bench and a second Metagross you do not want go back into the deck rather than clogging the hand.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-petrel">Team Rocket&#x27;s Petrel<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/632976_team-rockets-petrel-176-182.jpg" target="_blank" rel="noopener"><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>176/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Trainer card, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Search your deck for any Trainer card.</strong> Three copies, which is effectively three more copies of whichever card the turn is short of. Early it finds Rare Candy or a Poffin; on the turn the math is 30 short it finds a Postwick; late it finds a Boss&#x27;s Orders.</p>
+					<p>It is also the only card that reliably finds <a href="#secret-box">Secret Box</a>, which is a one-of ACE SPEC that would otherwise sit in the deck all game.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch in one of the opponent&#x27;s Benched Pokémon to the Active Spot. Two copies. 330 damage is only worth what it lands on, and the decks this deck loses to are the ones that hide the thing you need to kill. Against Dragapult, the answer is usually to drag a Dusknoir or a Drakloak forward before it becomes a problem.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="philippe">Philippe<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/693532_philippe-079-086.jpg" target="_blank" rel="noopener"><img src="./assets/693532_philippe-079-086.jpg" alt="Philippe" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>079/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Attach up to 2 Basic Metal Energy cards from your discard pile to 1 of your Metal Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Attach up to 2 Basic Metal Energy cards from your discard pile to one of your Metal Pokémon. Two copies rather than the four the ladder lists run, because <em>X-Boot</em> is the engine now and Philippe is the catch-up.</p>
+					<p>The two are complements rather than substitutes. X-Boot pulls from the deck one at a time and Philippe pulls from the discard two at a time, so Philippe is the card that rebuilds a fresh Zacian into a 330 in a single turn after the loaded one dies. It is dead on turn one, when the discard is empty, and it is excellent on turn five.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard 2 cards from your hand, then search your deck for any Pokémon. Four copies, and in this deck the discard cost is closer to a benefit than a price, since a Basic Metal Energy discarded here is a card <a href="#philippe">Philippe</a> attaches back later.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="rare-candy">Rare Candy<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654464_rare-candy-125-132.jpg" target="_blank" rel="noopener"><img src="./assets/654464_rare-candy-125-132.jpg" alt="Rare Candy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>125/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can&#x27;t use this card during your first turn or on a Basic Pokémon that was put into play this turn.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Choose one of your Basic Pokémon in play, and if a Stage 2 in your hand evolves from it, play it and skip the Stage 1. This is the road from Beldum to Metagross, and it is the difference between <em>X-Boot</em> coming online on turn two and turn three.</p>
+					<p>Two riders bite. Not on your first turn, and not on a Basic that came into play this turn. Both of them say the same thing: bench the Beldum the moment you see it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for up to 2 Basic Pokémon with 70 HP or less and bench them. This deck has exactly one name in range, and it is the one name that needs to be down on turn one. Three copies is the turn-two Metagross plan.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Switch your Active Pokémon with one of your Benched Pokémon. Two copies, and the backup rather than the plan, since <a href="#latias-ex">Latias ex</a> covers the Basics for free. Switch is what moves a Metagross out of the Active Spot, and what saves the off turn when Latias is prized.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="hops-bag">Hop&#x27;s Bag<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/623574_hops-bag.jpg" target="_blank" rel="noopener"><img src="./assets/623574_hops-bag.jpg" alt="Hop&#x27;s Bag" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>147/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Hop&#x27;s Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Search your deck for up to 2 Basic Hop&#x27;s Pokémon and put them onto your Bench. One copy, and it is the fastest opening the deck has: a Zacian and a Snorlax on the board out of one Item, which sets up the 330 before a Supporter is spent.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="secret-box">Secret Box<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/550207_secret-box.jpg" target="_blank" rel="noopener"><img src="./assets/550207_secret-box.jpg" alt="Secret Box" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>163/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 3 other cards from your hand. Search your deck for an Item card, a Pokémon Tool card, a Supporter card, and a Stadium card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The ACE SPEC.</strong> Discard 3 cards from your hand, then search your deck for an Item, a Pokémon Tool, a Supporter, and a Stadium, and put all four into your hand.</p>
+					<p>In most decks that is a fine toolbox. Here it is the exact shape of the deck&#x27;s best turn: a Rare Candy, a Hop&#x27;s Choice Band, a Lillie&#x27;s Determination, and a Postwick, all at once. The three-card discard is real, and the way to pay it is with the spare Energy that <a href="#philippe">Philippe</a> attaches back later.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="hops-choice-band">Hop&#x27;s Choice Band<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/623575_hops-choice-band.jpg" target="_blank" rel="noopener"><img src="./assets/623575_hops-choice-band.jpg" alt="Hop&#x27;s Choice Band" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>148/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>Attacks used by the Hop&#x27;s Pokémon this card is attached to cost Colorless less and do 30 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The best card in the deck, and it is not close.</strong> Attacks used by the Hop&#x27;s Pokémon this card is attached to cost <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> less and do 30 more damage to the opponent&#x27;s Active Pokémon.</p>
+					<p>It is a damage boost and a discount in one card. <em>Brave Slash</em> goes from four Energy to three, which is a whole turn of Energy saved, and <em>Insta-Strike</em> goes to free. Four copies, because it goes on every Zacian and because the opponent&#x27;s <a href="#alternatives">Jamming Tower</a> or a Fend Off of their own can take one off.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="air-balloon">Air Balloon<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/675993_air-balloon.jpg" target="_blank" rel="noopener"><img src="./assets/675993_air-balloon.jpg" alt="Air Balloon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>181/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>The Retreat Cost of the Pokémon this card is attached to is {{e}}{{e}} less.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>The Pokémon this card is attached to retreats for two less. One copy, and it belongs on the Metagross, which is the only meaningful Retreat Cost in the deck that Latias cannot zero out. A Metagross ex dragged Active by Boss&#x27;s Orders with no way home is how this deck loses a game it was winning.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="postwick">Postwick<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/623581_postwick.jpg" target="_blank" rel="noopener"><img src="./assets/623581_postwick.jpg" alt="Postwick" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>154/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Attacks used by Hop&#x27;s Pokémon (both yours and your opponent&#x27;s) do 30 more damage to the opponent&#x27;s Active Pokémon (before applying Weakness and Resistance).</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Attacks used by Hop&#x27;s Pokémon do 30 more damage to the opponent&#x27;s Active Pokémon.</strong> Four copies of a Stadium is a lot, and it is correct here for two reasons.</p>
+					<p>The first is that the 330 breakpoint needs it. The second is that the opponent will play their own Stadium over it, and at four copies you simply play another one; a deck that needs a Stadium on the board to reach its damage number cannot be running two.</p>
+			<aside data-callout="caution">
+				<p><strong>Postwick helps both players.</strong> It reads &quot;Hop&#x27;s Pokémon (both yours and your opponent&#x27;s),&quot; so in the Hop&#x27;s mirror it hands the opponent the same 30. That mirror is rare on the ladder, and when it comes up the card is still correct, because you are the deck with four Zacian and they may not be.</p>
+			</aside>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-metal-energy">Basic Metal Energy<span data-count>x10</span></h3>
+				<aside>
+					<a data-art href="./assets/656270_basic-metal-energy-008.jpg" target="_blank" rel="noopener"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>8</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Ten copies, and the count is high on purpose. <em>X-Boot</em> searches the <strong>deck</strong>, not the hand, so every Metal left in the deck is a card the engine can still find. A deck that draws its Energy out and leaves three in the library has turned its own engine off.</p>
+					<p>Basic Energy never rotates, and any English print is legal.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="magnetic-metal-energy">Magnetic Metal Energy<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/693506_magnetic-metal-energy.jpg" target="_blank" rel="noopener"><img src="./assets/693506_magnetic-metal-energy.jpg" alt="Magnetic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>085/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span>Energy - Special Metal</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy. The <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon this card is attached to has no Retreat Cost.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>One copy, and it is a retreat fix rather than an Energy.</strong> It provides <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span>, and the Metal Pokémon it is attached to has no Retreat Cost. That second clause is the reason it is in the list: it is a free retreat for the Metagross ex, which Latias cannot help, without spending the <a href="#air-balloon">Air Balloon</a> slot.</p>
+					<p>It is a Special Energy, so <a href="#philippe">Philippe</a> cannot attach it back and <em>X-Boot</em> cannot find it. One is the right number for a card that does not come back.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/pokedex.gif" alt="" /></span></h3>
+					<p>The deck asks for three Metal on a Zacian and wants them by turn two. Here is how the three arrive.</p>
+					<table>
+						<thead><tr><th>Turn</th><th>Source</th><th>Running total</th></tr></thead>
+						<tbody>
+							<tr><td>1</td><td>manual attachment</td><td>1</td></tr>
+							<tr><td>2</td><td>manual attachment, plus <em>X-Boot</em> off a Rare Candied Metagross</td><td>3</td></tr>
+							<tr><td>3+</td><td>manual attachment, <em>X-Boot</em>, and <a href="#philippe">Philippe</a> for two more from the discard</td><td>4 or more a turn</td></tr>
+						</tbody>
+					</table>
+					<p>Two rules keep it honest.</p>
+					<p><strong>Bench the Beldum on turn one.</strong> Rare Candy cannot be played on your first turn or on a Basic that arrived this turn, so a Beldum benched on turn one is the only way <em>X-Boot</em> is live on turn two. Poffin and Ultra Ball both find it, and the opening hand you keep is the one with a Beldum or a way to get one.</p>
+					<p><strong>X-Boot searches the deck.</strong> Philippe searches the discard. They never compete for the same card, and that is why both are in the list at all. Early, only X-Boot works. Late, Philippe is the faster of the two.</p>
+			<aside data-callout="note">
+				<p><strong>The Psychic half of X-Boot is dead here, and that is fine.</strong> The Ability can fetch a Basic Psychic Energy as well, but the only Psychic Pokémon in this deck is Latias ex, whose <em>Eon Blade</em> costs <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> and locks itself out for a turn. Adding Basic Psychic to chase that would dilute the ten Metal the engine actually hunts for. See <a href="#alternatives">Alternatives</a>.</p>
+			</aside>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-the-330-turn">1. The 330 Turn</h3>
+					<p><strong>The line the whole deck is built to reach, ideally on turn two.</strong></p>
+					<ol>
+						<li>Turn one, bench a Beldum and a Zacian. Attach a Metal to the Zacian. <em>Insta-Strike</em> if you went second.</li>
+						<li>Turn two, Rare Candy the Beldum into Steven&#x27;s Metagross ex.</li>
+						<li><em>X-Boot</em> for a Metal, then attach a Metal by hand. The Zacian now has three.</li>
+						<li>Attach a Hop&#x27;s Choice Band, play a Postwick, and have a Hop&#x27;s Snorlax on the Bench.</li>
+						<li><em>Brave Slash</em> for <strong>330</strong>.</li>
+					</ol>
+					<p>The pieces are interchangeable in order but not in importance. The Band is the one that cannot be missing, because without it <em>Brave Slash</em> costs a fourth Energy and the turn does not happen at all.</p>
+			</section>
+			<section>
+				<h3 id="2-the-off-turn">2. The Off Turn<span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+					<p><strong>Brave Slash locks itself out, so every other turn needs a plan. This is the part of the deck Fox has to learn.</strong></p>
+					<p>After a 330, the same Zacian cannot attack next turn. There are four legal answers, best first:</p>
+					<ul>
+						<li><strong>Retreat and swing with the second Zacian.</strong> Latias ex makes the retreat free, and the fresh Zacian needs three Metal, which is what Philippe provides in one card.</li>
+						<li><strong>Send in Zamazenta.</strong> <em>Shield Press</em> for 100, and it takes 50 less on the way back. This is the answer when the Energy is not there for a second Zacian.</li>
+						<li><strong>Insta-Strike with the locked Zacian.</strong> The lockout names <em>Brave Slash</em> only. With a Band attached, the same Zacian still attacks for 120 and 30 to the Bench without moving or spending anything.</li>
+						<li><strong>Fend Off.</strong> One Energy, 20 damage, and every Tool on their Active goes to the discard.</li>
+					</ul>
+					<p>The mistake to avoid is retreating the locked Zacian into an empty Active Spot and passing. This deck never has to pass.</p>
+			</section>
+			<section>
+				<h3 id="3-reading-the-prize-trade">3. Reading the Prize Trade</h3>
+					<p><strong>Four of the fifteen Pokémon give up two Prizes. The other eleven give up one, and that is the deck&#x27;s hidden advantage.</strong></p>
+					<p>Zacian ex, both Metagross ex, and Latias ex are the 2-prize cards. Zamazenta, the Beldum line, and Snorlax are all single-prize bodies. A game where the opponent spends two big attacks killing a Zamazenta and a Snorlax is a game they are losing on tempo even while they are ahead on Prizes.</p>
+					<p>Two rules follow. <strong>Never bench a second Metagross ex while the first is healthy</strong>, because that is four Prizes of Bench sitting there for a Boss&#x27;s Orders. And <strong>let Zamazenta take the hit</strong> when the alternative is a fresh Zacian eating one.</p>
+			</section>
+			<section>
+				<h3 id="4-what-this-deck-gives-up">4. What This Deck Gives Up</h3>
+					<ul>
+						<li><strong>Fire Weakness on eleven cards.</strong> Every Metal Pokémon here takes double from Fire, and Dragapult Blaziken is about 5% of the ladder. That matchup is a loss and the deck does not have a tech for it.</li>
+						<li><strong>The 340 wall.</strong> Mega Excadrill ex and the mirror&#x27;s Metagross both sit at 340, ten above the 330 ceiling. Against those, plan for a two-hit kill or use Boss&#x27;s Orders to take Prizes somewhere else.</li>
+						<li><strong>Stadium dependence.</strong> 30 of the 330 comes from Postwick. Four copies is the answer, and against a deck playing its own Stadium every turn the number is 300 more often than it is 330.</li>
+						<li><strong>A Tool the opponent can remove.</strong> Jamming Tower switches off every Choice Band at once, and a Fend Off of their own strips one. When the Band goes, so does the discount, and Brave Slash costs four Energy again.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="versus-the-ladder">Versus the Ladder<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /><img src="./assets/sprites/genesect.gif" alt="" /></span></h3>
+					<p>Shares from <a href="https://play.limitlesstcg.com/decks?game=PTCG&amp;format=standard">the Limitless online ladder</a>, Standard, checked September 2026. Hop&#x27;s Zacian itself sits around rank 60 with a 44% win rate, and the Energy engine in this build is the thing meant to move that number.</p>
+					<table>
+						<thead><tr><th>Deck</th><th>Share</th><th>This deck&#x27;s view</th></tr></thead>
+						<tbody>
+							<tr><td>Dragapult</td><td>8.5%</td><td>The biggest seat and a winnable one. 330 is exactly enough for the 320 HP body, so this is a one-shot matchup where most decks need two. Their Phantom Dive spreads counters on your Bench, which threatens the Beldum before it evolves.</td></tr>
+							<tr><td>Mega Excadrill</td><td>6.6%</td><td>340 HP survives the 330 by ten, and it is a Metal deck, so Postwick does nothing for either side. Grind it with Zamazenta and take Prizes off their support Pokémon.</td></tr>
+							<tr><td>Alakazam, Slowking, Festival Lead, Dhelmise</td><td>20%</td><td>Single-prize rooms where the 2-prize Zacian is a liability. Lead on Zamazenta, use <em>Insta-Strike</em>&#x27;s Bench damage to set up multi-Prize turns, and do not trade a Zacian for a one-Prize card.</td></tr>
+							<tr><td>N&#x27;s Zoroark</td><td>5.5%</td><td>280 HP dies to a 330 and a Band-only 270 leaves it alive at 10, which is the clearest reason the Snorlax is in the deck.</td></tr>
+							<tr><td>Dragapult Blaziken</td><td>5.1%</td><td>The bad matchup. Fire Weakness on the whole board and nothing to do about it.</td></tr>
+							<tr><td>Grimmsnarl Froslass</td><td>3.6%</td><td>Froslass chips the Bench and Grimmsnarl hits hard, but neither is Fire. A normal game.</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Against Xero&#x27;s Darkness decks</strong>, which is the other half of Fox&#x27;s games, Metal has no Darkness Weakness and Zacian is not a Psychic card, so the wolves are the one Fox deck that does not fold to the Gengars. Latias ex is the exception and the card to keep off the Active Spot.</p>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>The list is a hypothesis. Here is what to watch on the ladder and what each symptom points at.</p>
+					<dl>
+						<dt data-head>Symptom</dt><dd data-head>Fix</dd>
+						<dt>Turn-two Metagross keeps missing</dt><dd><span>4th Steven&#x27;s Beldum over the 2nd Switch</span></dd>
+						<dt>Brave Slash keeps costing four Energy</dt><dd><span>you are missing Bands; 4 is already the cap, so dig harder with Petrel</span></dd>
+						<dt>Energy drought after the first Zacian dies</dt><dd><span>3rd Philippe over the 1 Hop&#x27;s Bag</span></dd>
+						<dt>Hand floods with Energy and nothing to do</dt><dd><span>cut a Basic Metal for a 4th Team Rocket&#x27;s Petrel</span></dd>
+						<dt>Postwick keeps getting covered</dt><dd><span>this is the intended cost; if it decides games, see Jamming Tower below</span></dd>
+						<dt>Metagross stranded in the Active Spot</dt><dd><span>2nd Magnetic Metal Energy over a Basic Metal</span></dd>
+						<dt>Zamazenta never gets used</dt><dd><span>cut to 1 and add a 3rd Buddy-Buddy Poffin</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="alternatives">Alternatives<span data-flavor><img src="./assets/sprites/scizor.gif" alt="" /></span></h3>
+					<p>Cards considered for this build and the reason each one is not in the 60.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Swaps for</th><th>Play it when</th></tr></thead>
+						<tbody>
+							<tr><td>Special Red Card</td><td>1 Hop&#x27;s Bag</td><td>the ladder list ran it and this build cut it for space; it only works once the opponent is at 3 or fewer Prizes, which is late</td></tr>
+							<tr><td>Jamming Tower</td><td>2 Postwick</td><td>Tool decks decide your games; it costs you 30 damage to cost them their Band, which is a trade this deck should not usually want</td></tr>
+							<tr><td>2 Basic Psychic Energy</td><td>2 Basic Metal</td><td>you want the second half of <em>X-Boot</em> live; it dilutes the Metal the engine hunts and only feeds a Latias that does not attack</td></tr>
+							<tr><td>Genesect ex</td><td>1 Zamazenta, 1 Beldum</td><td><em>Metallic Signal</em> fetches two Evolution Metal Pokémon, which finds Metang and Metagross; a third 2-prize Basic is the cost</td></tr>
+							<tr><td>Night Stretcher</td><td>1 Switch</td><td>the late game runs out of Zacian; it returns a Pokémon or a Basic Energy from the discard</td></tr>
+							<tr><td>Zamazenta, Destined Rivals 146</td><td>the 30th Celebration copy</td><td>you want the revenge dog instead of the shield; <em>Strong Bash</em> reflects the damage that kills it back onto the attacker, which is the other card Fox was choosing between</td></tr>
+							<tr><td>Hop&#x27;s Cramorant</td><td>1 Hop&#x27;s Snorlax</td><td><em>Fickle Spitting</em> is 120 for one Energy, but only while the opponent has exactly 3 or 4 Prizes remaining</td></tr>
+							<tr><td>Cyrano</td><td>1 Team Rocket&#x27;s Petrel</td><td>you want to find three Pokémon ex at once; Petrel is more flexible in a deck with four key Trainers</td></tr>
+						</tbody>
+					</table>
+					<p>Two cards were rejected outright. <strong>Mega Mawile ex</strong> is a 3-prize liability in a deck already carrying four 2-prize bodies, and <strong>Hop&#x27;s Dubwool</strong> wants a Colorless evolution line this build has no room for.</p>
+			<aside data-callout="important">
+				<p><strong>Regulation clock.</strong> Every card here is Standard legal as of September 2026. The H cards, which are Buddy-Buddy Poffin, Secret Box, and Latias ex, rotate around April 2027. The Journey Together and Destined Rivals core is Reg I, and the two Reg J cards have the longest life in the list. When the H cards go, the Poffin and the Latias are the two slots to plan replacements for.</p>
+			</aside>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

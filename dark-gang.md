@@ -7,7 +7,7 @@
 >
 > A Standard-legal 60 built on the 30th Celebration Gengar ex, tuned on the [TCG Live](https://tcg.pokemon.com/en-us/tcgl/) ladder and legal to sleeve for league night once that set clears its two week window. Every card carries regulation mark H, I, or J. There is no sideboard, so the sixty answer the whole field on their own.
 >
-> This version replaces the Okidogi build that carried the name before it. The dogs are still here and still the thing you lead with, but they are the **shield** now, not the win condition. The win condition is [Gengar ex](#gengar-ex) reaching across the board and killing the small Pokémon the opponent's Mega has not finished growing into, and the third pass on the list is about keeping that Gengar alive through the two rooms that one-shot it. The deck this replaces is [dark-mega.md](./dark-mega.md), the roads not taken are in [Alternatives](#alternatives), and game words are defined in [the table rules](./rules.md).
+> This version replaces the Okidogi build that carried the name before it. The dogs are still here and still the thing you lead with, but they are the **shield** now, not the win condition. The win condition is [Gengar ex](#gengar-ex) reaching across the board and killing the small Pokémon the opponent's Mega has not finished growing into, the third pass on the list is about keeping that Gengar alive through the two rooms that one-shot it, and the fourth is about having an Energy in hand on the turns that decide whether it ever attacks. The deck this replaces is [dark-mega.md](./dark-mega.md), the roads not taken are in [Alternatives](#alternatives), and game words are defined in [the table rules](./rules.md).
 
 ---
 
@@ -16,8 +16,8 @@
 > [The Thesis](#the-thesis) · [Deck List](#deck-list)
 >
 > **Pokémon** — [Okidogi ex](#okidogi-ex) · [Gastly](#gastly) · [Haunter](#haunter) · [Gengar ex](#gengar-ex) · [Mega Gengar ex](#mega-gengar-ex) · [Toxel](#toxel) · [Toxtricity](#toxtricity)
-> **Supporters** — [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Janine's Secret Art](#janines-secret-art) · [Team Rocket's Petrel](#team-rockets-petrel) · [Boss's Orders](#bosss-orders) · [AZ's Tranquility](#azs-tranquility)
-> **Items** — [Rare Candy](#rare-candy) · [Switch](#switch) · [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Energy Recycler](#energy-recycler) · [Night Stretcher](#night-stretcher) · [Energy Switch](#energy-switch) · [Pokégear 3.0](#pokegear-30)
+> **Supporters** — [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Hilda](#hilda) · [Janine's Secret Art](#janines-secret-art) · [Team Rocket's Petrel](#team-rockets-petrel) · [Boss's Orders](#bosss-orders) · [AZ's Tranquility](#azs-tranquility)
+> **Items** — [Rare Candy](#rare-candy) · [Switch](#switch) · [Buddy-Buddy Poffin](#buddy-buddy-poffin) · [Energy Recycler](#energy-recycler) · [Night Stretcher](#night-stretcher) · [Energy Switch](#energy-switch)
 > **Tool / Stadium** — [Hero's Cape](#heros-cape) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Basic Darkness Energy](#basic-darkness-energy)
 >
@@ -73,11 +73,11 @@ The other half of the deck is the price of dying. *Shadowy Concealment* discount
 
 ## Deck List
 
-**Pokémon (21)**
+**Pokémon (20)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
-| 4 | Okidogi ex | Shrouded Fable | 036 | H |
+| 3 | Okidogi ex | Shrouded Fable | 036 | H |
 | 4 | Gastly | Perfect Order | 048 | J |
 | 3 | Haunter | Phantasmal Flames | 055 | I |
 | 3 | Gengar ex | 30th Celebration | 090 | J |
@@ -85,18 +85,19 @@ The other half of the deck is the price of dying. *Shadowy Concealment* discount
 | 3 | Toxel | Phantasmal Flames | 067 | I |
 | 2 | Toxtricity | Phantasmal Flames | 068 | I |
 
-**Trainers — Supporters (12)**
+**Trainers — Supporters (14)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
 | 3 | Lillie's Determination | Mega Evolution | 119 | I |
 | 3 | Dawn | Phantasmal Flames | 087 | I |
+| 2 | Hilda | White Flare | 084 | I |
 | 2 | Janine's Secret Art | Shrouded Fable | 059 | H |
 | 2 | Team Rocket's Petrel | Destined Rivals | 176 | I |
 | 1 | Boss's Orders | Mega Evolution | 114 | I |
 | 1 | AZ's Tranquility | Chaos Rising | 076 | J |
 
-**Trainers — Items (14)**
+**Trainers — Items (13)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
@@ -106,7 +107,6 @@ The other half of the deck is the price of dying. *Shadowy Concealment* discount
 | 2 | Energy Recycler | Destined Rivals | 164 | I |
 | 1 | Night Stretcher | Shrouded Fable | 061 | H |
 | 1 | Energy Switch | Mega Evolution | 115 | I |
-| 1 | Pokegear 3.0 | Black Bolt | 084 | I |
 
 **Trainers — Tool & Stadium (3)**
 
@@ -121,9 +121,11 @@ The other half of the deck is the price of dying. *Shadowy Concealment* discount
 | --- | --- | --- | --- | --- |
 | 10 | Basic Darkness Energy | Mega Evolution Energies | 007 | - |
 
-**21 + 12 + 14 + 3 + 10 = 60.** ✓ Eleven Basics, twelve Supporters, one ACE SPEC, nothing over four copies.
+**20 + 14 + 13 + 3 + 10 = 60.** ✓ Ten Basics, fourteen Supporters, one ACE SPEC, nothing over four copies.
 
-Eleven Basics is a **22.2%** mulligan. The opening seven holds an Okidogi plus an Energy 27.9% of the time and an Okidogi or a Toxel 60.1% of the time, which are the two openers the deck wants.
+Ten Basics is a **25.9%** mulligan, and the number is accepted rather than fixed: the seat that would take it to 22% is worth more as a [Hilda](#hilda). The opening seven holds an Okidogi plus a way to put Energy on it 26% of the time and an Okidogi or a Toxel 54% of the time, which are the two openers the deck wants.
+
+**Ten Energy in sixty is the deck's real opening risk, and the Supporter count is the answer to it.** A quarter of opening hands hold no Energy at all, and nothing on the board makes Energy until a Toxtricity is built. Counting Janine's and Hilda as Energy in hand, the deck has no way to attach on its second turn **7.5%** of the time; with Energy alone it was 17%.
 
 > [!WARNING]
 > **One ACE SPEC per deck.** Hero's Cape is this deck's one. Prime Catcher held the seat before it and is in [Alternatives](#alternatives); the Japanese starter-set Catcher plays at the kitchen table and nowhere else.
@@ -153,7 +155,7 @@ That gives it two jobs, and both are about buying the ghost line time.
 
 **The dog is not supposed to die, and its exit is AZ's Tranquility.** Paying the Retreat Cost is three Energy out of a ten-Energy deck, and the Crushing Hammer decks make sure it does not have three when it needs to leave. AZ's moves it for free, keeps whatever Energy it still holds attached, and gives 80 of its HP back, so it comes out as a shield you can send in again.
 
-Four copies. It carries the Basic count, it opens, and it is the only attacker here that does not queue behind a Stage 2.
+Three copies, and the fourth left on the ladder's evidence. One dog is usually the whole shield and two is the most a game has asked for; the fourth was there for the opening seven, and the seat does more as the second [Hilda](#hilda). It still carries the Basic count, it still opens, and it is still the only attacker here that does not queue behind a Stage 2. [Toxel](#toxel) is how the dog arrives when it is not drawn, because Hilda cannot fetch a Basic.
 
 ### Gastly
 
@@ -215,7 +217,7 @@ Three copies, because this is the card that attacks, and therefore the card that
 
 *Call for Family* searches two Basic Pokémon out of the deck and benches them for one Darkness Energy. That is a Buddy-Buddy Poffin on a stick, and it reaches Okidogi ex, which Poffin cannot at 250 HP. The two share the setup, which is why the deck runs two Poffin rather than four.
 
-Three copies. It is the turn-one attack going second when no dog showed up, it holds the Basic count, and it is a zero-Prize body on the Bench. The third copy is the first seat to give up when a tech card needs one.
+Three copies. It is the turn-one attack going second when no dog showed up, it holds the Basic count, and it is a zero-Prize body on the Bench. With three dogs instead of four, *Call for Family* is the dog's main route onto the board, so all three copies stay.
 
 ### Toxtricity
 
@@ -238,13 +240,32 @@ Shuffle your hand into your deck and draw six, or **eight while you still hold a
 
 Because of the eight-card mode, **play it early rather than saving it**. Before you take your first Prize it is the biggest single card in the deck, and it is what turns a one-Basic, no-Energy opening hand into a real board.
 
-The cost is real in a deck that plans two turns ahead, since Lillie's throws away the pieces you were holding along with the dead ones. Every conditional draw Supporter in this colour is gated on discarding Pokémon **without a Rule Box**, which are exactly the cards you bench on sight, so the condition whiffs when the hand is all ex. Three copies reach one by your third turn 43% of the time; [Pokégear](#pokegear-30) is the fourth copy that does not cost the Supporter, and [Test and Tune](#test-and-tune) has the real fourth and the always-live alternative.
+The cost is real in a deck that plans two turns ahead, since Lillie's throws away the pieces you were holding along with the dead ones. Every conditional draw Supporter in this colour is gated on discarding Pokémon **without a Rule Box**, which are exactly the cards you bench on sight, so the condition whiffs when the hand is all ex. Three copies reach one by your third turn 43% of the time. The deck now finds more than it draws, with five Supporters that search, and that is the trade: [Test and Tune](#test-and-tune) has the fourth copy and the always-live alternative, and the reason not to add either yet.
 
 ### Dawn
 
-**Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon.** In this deck that is Gastly, Haunter, and whichever Gengar the matchup wants, or Toxel, Toxtricity, and a Gengar. One card sets up an entire line, and it is the only card that finds a Gengar ex at all, because the Item-speed alternative, Poké Pad, reads "no Rule Box".
+**Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon.** In this deck that is Gastly, Haunter, and whichever Gengar the matchup wants, or Toxel, Toxtricity, and a Gengar. One card sets up an entire line. It and [Hilda](#hilda) are the only cards that find a Gengar ex, because the Item-speed alternative, Poké Pad, reads "no Rule Box".
 
-Three copies. Five Stage 2 cards on one Basic line makes this the most important Supporter here, and it is the turn-two play in most games. **Its Stage 2 pick is a matchup decision**: the attacker when the room has cradles to kill, the Mega when the room hits for 330 and the tax is the game. [Plan 3](#3-which-gengar-to-build) has the table.
+Three copies, and the count held when Hilda arrived, because Petrel-for-Dawn is the play that rescues a dire hand and a two-of whiffs that fetch to the Prizes and to the first cast too often. Five Stage 2 cards on one Basic line makes this the most important Supporter here, and it is the turn-two play when the Gastly is not down yet. **Its Stage 2 pick is a matchup decision**: the attacker when the room has cradles to kill, the Mega when the room hits for 330 and the tax is the game. [Plan 3](#3-which-gengar-to-build) has the table.
+
+### Hilda
+
+**Search your deck for an Evolution Pokémon and an Energy card, and put them into your hand.** Two copies, White Flare 084, regulation mark I.
+
+**It is the Energy-in-hand card.** The three accelerators all attach from the deck, but every one of them needs something first: the dog needs one Energy from hand to *Musculature*, the Toxel needs one to *Call for Family*, and *Sinister Surge* needs a Toxtricity that is not built yet. On turns one and two the manual attachment is the whole Energy plan, and a quarter of opening hands do not hold one. Hilda is an Energy in hand that the deck can search for, and two of them take a no-attach turn two from 17% of games to 7.5%.
+
+**The other half is why it beat an eleventh Energy.** It reads *Evolution Pokémon*, and in this deck that is ten cards: three Haunter, three Gengar ex, two Mega Gengar ex, two Toxtricity. It takes whichever the board is missing, and it arrives with the Energy to use it.
+
+| Board | Hilda takes | Then |
+| :--- | :--- | :--- |
+| a Gastly benched turn one | **Gengar ex** and an Energy | Candy, attach, and a Gengar holding one; Surge or Janine's is the second |
+| a Toxel benched turn one | **Toxtricity** and an Energy | evolve, attach, and the Surge engine is on a turn early |
+| a Gastly and a Toxtricity | **Haunter** and an Energy | evolve, attach, Surge the Haunter, and it Candies into a loaded Gengar |
+| the tax not built, against Metal | **Mega Gengar ex** and an Energy | the first Stage 2 in that room |
+
+Against Dawn it is a smaller search with a different second half. Dawn is three Pokémon and builds a line from nothing; Hilda is one Pokémon and the Energy, and it is the better card once the Basic is already down, which by turn two it usually is. Together the two make finding a Gengar ex by turn two a 75% proposition rather than 64%.
+
+**Fourteen Supporters is the ceiling, and Hilda is what put the count there.** The cost shows up in Lillie's, which throws away every Supporter it shuffles. If a Lillie's keeps costing a Hilda or a Dawn, see [Test and Tune](#test-and-tune).
 
 ### Janine's Secret Art
 
@@ -269,9 +290,9 @@ Two copies.
 | Boss's Orders, opening seven | 11.7% | **22.1%** |
 | Boss's Orders, by turn eight | 25.0% | **44.1%** |
 
-It finds the Boss's Orders, AZ's Tranquility, a Rare Candy, a Switch, the Energy Switch, and **the Energy Recycler**, which is the fetch when the Energy pool is what you are short of. **It is also the only card in the deck that can go and get the Cape.** Pokégear reads Supporters only, so when their Mega is a turn away and the Cape is still in the deck, Petrel's job is the Cape and nothing else.
+It finds the Boss's Orders, AZ's Tranquility, a Rare Candy, a Switch, the Energy Switch, and **the Energy Recycler**, which is the fetch when the Energy pool is what you are short of. **It is also the only card in the deck that can go and get the Cape**, so when their Mega is a turn away and the Cape is still in the deck, Petrel's job is the Cape and nothing else.
 
-The cost is that Petrel is a Supporter, so fetching another Supporter costs a turn of tempo: Petrel into Dawn is two Supporter turns for one line. Its same-turn targets are the Items and the Tool; check whether one of those wins the turn before defaulting to Dawn.
+The cost is that Petrel is a Supporter, so fetching another Supporter costs a turn of tempo: Petrel into Dawn is two Supporter turns for one line, and it is the right play when the hand is dire and the wrong one when it is merely slow. Its same-turn targets are the Items and the Tool; check whether one of those wins the turn before defaulting to Dawn.
 
 ### Boss's Orders
 
@@ -285,7 +306,7 @@ What is left is the case counters cannot cover: dragging a damaged body up for t
 
 **It is a Supporter, and that is the price.** The turn you play it is a turn you do not Lillie's, Dawn, Janine, or Boss. Three Switch do the same rotation for free, so the choice each time is simple: **Switch when there is a Supporter you want to play this turn, AZ's when there is not**, or when one of the three things only AZ's does is worth the Supporter.
 
-**It works when the Items do not.** Budew's *Itchy Pollen* shuts off your Item cards for a turn, and it is in every winning Dragapult list. Under it, Switch, Rare Candy, Recycler, Pokégear, and Energy Switch are all dead cards, and AZ's is the only rotation in the deck that still happens.
+**It works when the Items do not.** Budew's *Itchy Pollen* shuts off your Item cards for a turn, and it is in every winning Dragapult list. Under it, Switch, Rare Candy, Recycler, and Energy Switch are all dead cards, and AZ's is the only rotation in the deck that still happens.
 
 **It is the dog's exit.** A dog that leaves by Retreat pays three Energy and leaves them in the discard. A dog that leaves by AZ's keeps every Energy it still has, comes to the Bench 80 healthier, and is an [Energy Switch](#energy-switch) bank for the Gengar that replaced it. Four Crushing Hammer in the field's biggest deck mean the dog often cannot pay three anyway.
 
@@ -296,14 +317,6 @@ Three ways to misuse it, and the temptation is real:
 - **Never AZ's the attacker unless the next attacker is loaded.** A Gastly in the Active Spot is a wasted turn, and the heal was not worth it.
 - **Never AZ's a Gengar ex out of a one-shot.** If their next hit kills it anyway, standing and dying is one Prize and a coin at their attacker; pulling it is the same death a turn later without the coin. Pull only what will survive the next hit.
 - **Never AZ's over Lillie's on a bricked hand.** The heal does not draw cards.
-
-### Pokegear 3.0
-
-**Look at the top seven cards of your deck, take a Supporter, shuffle the rest back.** One copy, Black Bolt 084, and it is an Item.
-
-Twelve Supporters in sixty puts one in the top seven **81%** of the time. A specific three-of, Lillie's or Dawn, is there about 40% of the time; a specific one-of, AZ's or Boss's, about 16%. So it is the fifth draw card and the fourth Dawn far more often than it is the second AZ's, and that is the right way to hold it: **it takes whichever Supporter this turn needs**, at no Supporter cost, without touching the hand you are holding.
-
-What it cannot do is read Items or Tools. The Cape, a Candy, and the Recycler are Petrel's to find, not Pokégear's. And it is an Item, so it is dead under Budew.
 
 ---
 
@@ -389,7 +402,7 @@ Moves a Basic Energy from one of your Pokémon to another. One copy.
 
 **It goes on the Gastly.** Items are legal on your first turn even going first, and the Cape rides the Candy into a Gengar ex that is at 380 before their turn-two Mega ever attacks. [Plan 7](#7-when-the-cape-goes-on) is the timing.
 
-**Petrel finds it.** Pokégear cannot. The Cape is not a turn-one search target in the dark; it is the Petrel target the turn their number is about to cross 280.
+**Petrel finds it, and nothing else does.** The Cape is not a turn-one search target in the dark; it is the Petrel target the turn their number is about to cross 280.
 
 > [!WARNING]
 > **Jamming Tower turns it off.** *Pokémon Tools attached to each Pokémon have no effect* while the Tower is in play, and one winning list in eight for both Lucario and Excadrill carries it. The two Risky Ruins are the bump, and bumping it the turn before their hit is the whole reason to hold one.
@@ -471,6 +484,8 @@ Four sources put Darkness Energy on the board, and only one uses your hand.
 | *Janine's Secret Art* | deck | up to 2 Darkness Pokémon, one Energy each, Poisons your Active | your Supporter |
 | *Poisonous Musculature* | deck | Okidogi ex only, Poisons it | your attack |
 
+[Hilda](#hilda) is the fifth source, and it is the odd one out: it puts the Energy in your **hand** rather than on the board, which is what turns one and two are short of, since every board source above needs an Energy or a Toxtricity already in play before it does anything.
+
 Chaotic Pain and Void Gale both cost two, which the engine reaches in a single turn. Chain-Crazed costs three, which needs two sources in one turn or a body that came up pre-loaded.
 
 **Three things drain the pool, and only one is a knockout.** Energy leaves with any Pokémon that dies, it leaves two at a time when *Poisonous Musculature* pulls from the deck, and it leaves fastest of all through **Retreat Costs**, which are paid by discarding attached Energy. [Switch](#switch) and [AZ's](#azs-tranquility) exist to keep that bill off the pool, and [Energy Recycler](#energy-recycler) exists because the accelerators read the deck rather than the discard.
@@ -498,13 +513,13 @@ Both seats are on the Energy side, because that is the side of the discard that 
 
 You can attack on your first turn going second, and the deck has two openers.
 
-**With a dog and an Energy**, which is 27.9% of opening hands: attach to an Active Okidogi ex and use *Poisonous Musculature*. It searches two more Darkness onto the dog and Poisons it, so the turn ends with three Energy aboard and the Poison set. Turn two is Chain-Crazed for 260 with no further help.
+**With a dog and an Energy**, or a dog and a Hilda, which is 26% of opening hands: attach to an Active Okidogi ex and use *Poisonous Musculature*. It searches two more Darkness onto the dog and Poisons it, so the turn ends with three Energy aboard and the Poison set. Turn two is Chain-Crazed for 260 with no further help.
 
 **With a Toxel instead**: *Call for Family* for one Energy benches two Basics out of the deck, which is how an Okidogi that never showed up arrives.
 
 Either way, **bench a Gastly on turn one.** Candy cannot be played on a Basic that arrived the same turn, so turn one's Gastly is turn two's Gengar. And play Lillie's before you take a Prize, while it still draws eight.
 
-**Going first you cannot attack or play a Supporter, and every Item is still legal.** Poffin for two Basics, Pokégear to line up turn two's Supporter, and, if their first Basic tells you the matchup, the Cape on the Gastly you are going to Candy.
+**Going first you cannot attack or play a Supporter, and every Item is still legal.** Poffin for two Basics, and, if their first Basic tells you the matchup, the Cape on the Gastly you are going to Candy. A Hilda in the opening hand going first is turn two's play, and it is the best one: the Evolution for the Gastly you benched and the Energy to attach to it.
 
 ## 2. Rearming after a knockout
 
@@ -612,16 +627,17 @@ The list is a hypothesis; games are the data.
 
 | Symptom | Fix |
 | --- | --- |
-| Hands dry up in the mid game | 4th Lillie's Determination over the Energy Switch. Draw sits at three cards, the thinnest number here. **Kofu** is the always-live alternative: any 2 cards to the bottom, draw 4 |
-| Pokégear keeps missing | it whiffs one time in five by design. 4th Lillie's in its seat |
+| Hands dry up in the mid game | 4th Lillie's Determination over the Energy Switch. Draw sits at three cards, the thinnest number here. **Kofu** is the always-live alternative: any 2 cards to the bottom, draw 4. Neither is in yet because fourteen Supporters already compete for one slot a turn |
+| Lillie's keeps throwing away a Hilda or a Dawn | fourteen Supporters is the ceiling. 11th Darkness over the 2nd Hilda: identical odds of an Energy in hand by turn two, no Supporter, and what you give up is the Gengar search you were shuffling away anyway |
+| Mulligans are handing them cards | 4th Okidogi ex over the 2nd Hilda. 22% instead of 26%, and the dog-plus-Energy opener back to 28%, at the price of the turn-two Energy odds going from 7.5% short to 9% |
 | Gengars die to Brave rather than Jab | Jamming Tower over a Petrel. It turns off Air Balloon, so Brave is every other turn instead of every turn. **It turns off your own Cape too**, so it is a fork, not an add |
 | Jamming Tower keeps turning the Cape off | 3rd Risky Ruins over the Energy Switch |
 | The dogs never get to swing 260 | 3rd Janine's Secret Art over the Energy Switch. Poison, not Energy, is what Chain-Crazed is short of |
 | 260 keeps falling one hit short | 2 Binding Mochi over the 2 Janine's. That is the 260 to 300 breakpoint |
 | The Mega dies and Concealment is gone | 3rd Mega Gengar ex over the 3rd Toxel |
-| Energy runs out late anyway | Energy Retrieval over the Pokégear: two Basic Energy from the discard to hand, no shuffle, no Supporter. Dead on turns one to three, live on the turns that lose |
+| Energy runs out late anyway | Energy Retrieval over the Energy Switch: two Basic Energy from the discard to hand, no shuffle, no Supporter. Dead on turns one to three, live on the turns that lose |
 | Single-prize decks keep winning the race | the plain Gengar back over the 3rd Toxel. See [Alternatives](#alternatives) for what it does and why it left |
-| Stage 2s never arrive | Cyrano over the Pokégear. Three Pokémon ex to hand in one Supporter, and every Stage 2 here is an ex. The cost is a hand their Red Card and Judge are built to punish |
+| Stage 2s never arrive | Cyrano over a Hilda. Three Pokémon ex to hand in one Supporter, and every Stage 2 here is an ex. The cost is a hand their Red Card and Judge are built to punish |
 
 ---
 
@@ -635,9 +651,11 @@ The planning produced more good cards than seats, and the ladder rejected a few 
 | Sacred Ash (Destined Rivals 168) | a Night Stretcher | the Pokémon side of the discard actually runs dry. Five Pokémon back into the deck where Dawn and Poffin read. It left because that side does not run dry; the Energy side does. NOT the Perfect Order 115 secret print |
 | Prime Catcher | Hero's Cape | you would rather have a second gust than a second hit. It is the ACE SPEC seat, so it is one or the other; Boss's plus two Petrel held the gust count when the Cape took it |
 | Gengar ex (Temporal Forces 104) | the 3rd Gengar ex 090 | the room attaches from hand every turn. *Gnawing Curse* puts two counters on any Pokémon they attach to, with no cap. Shares the four-copy name cap with the 090 print |
-| Cyrano (Surging Sparks 170) | the Pokégear | you want the rebuild turn in one card. Up to three Pokémon ex from the deck to hand, and the deck's whole top end is nine ex. Sequence Lillie's before it, never after, and know that Special Red Card is in most Lucario and Excadrill lists |
-| Energy Retrieval (White Flare 082) | the Pokégear | the Recyclers stop keeping up. Two Basic Energy from the discard straight to hand |
-| Energy Search (Perfect Order 072) | never | it is an eleventh Energy that Surge, Janine, Musculature, and Recycler cannot see. An eleventh Basic Darkness does everything it does and is a target for all four |
+| Cyrano (Surging Sparks 170) | a Hilda | you want the rebuild turn in one card. Up to three Pokémon ex from the deck to hand, and the deck's whole top end is nine ex. Sequence Lillie's before it, never after, and know that Special Red Card is in most Lucario and Excadrill lists |
+| Energy Retrieval (White Flare 082) | the Energy Switch | the Recyclers stop keeping up. Two Basic Energy from the discard straight to hand |
+| Energy Search (Perfect Order 072) | never | it is an eleventh Energy that Surge, Janine, Musculature, and Recycler cannot see. An eleventh Basic Darkness does everything it does and is a target for all four, and Hilda does it with a Gengar attached |
+| Pokégear 3.0 (Black Bolt 084) | never | tried and cut. A Supporter is in the top seven 81% of the time, but the one you need is there 40% of the time for a three-of and 16% for a one-of. A card that says *maybe* is the wrong shape for a hand planned two turns ahead |
+| Okidogi ex, the 4th | the 2nd Hilda | mulligans are costing games. The fourth dog was the opening-seven card and nothing else; one is usually the whole shield and two is the most a game has asked for |
 | Jamming Tower (Ascended Heroes 261) | a Petrel | Air Balloon is resetting Mega Brave every turn and you have given up on the Cape. It turns off every Tool on the table, theirs and yours |
 | Binding Mochi | 2 Janine's Secret Art | Okidogi is your main attacker again. +40 on a Poisoned attacker |
 | Air Balloon | never | tried and cut. It died on the Gastly wearing it, then sat in the Prizes, and the ferry pattern it was for is the one the Mega no longer runs |
@@ -660,10 +678,10 @@ The planning produced more good cards than seats, and the ladder rejected a few 
 
 ## What To Buy
 
-Own counts are live from the collection database. This is a Live list first, so the table below is only what a paper copy would cost; the Rare Candy, Lillie's, Switch, Boss's Orders, Pokégear, and Night Stretcher rows are shared with the other sleeved decks, so check [the box](./collection.md) before ordering.
+Own counts are live from the collection database. This is a Live list first, so the table below is only what a paper copy would cost; the Rare Candy, Lillie's, Switch, Boss's Orders, Hilda, and Night Stretcher rows are shared with the other sleeved decks, so check [the box](./collection.md) before ordering.
 
 ```buy
-Okidogi ex | Shrouded Fable 036 | 4 | the shield; NOT the 082 or 090 illustration prints
+Okidogi ex | Shrouded Fable 036 | 3 | the shield; NOT the 082 or 090 illustration prints
 Gastly | Perfect Order 048 | 4 | Darkness, and five Stage 2s sit on it
 Haunter | Phantasmal Flames 055 | 3 | the Energy route; a Surge target that evolves armed
 Gengar ex | 30th Celebration 090 | 3 | Chaotic Pain; 13 counters on any target
@@ -671,7 +689,8 @@ Mega Gengar ex | Phantasmal Flames 056 | 2 | Shadowy Concealment; one on the Ben
 Toxel | Phantasmal Flames 067 | 3 | Call for Family, and the Basic count
 Toxtricity | Phantasmal Flames 068 | 2 | Sinister Surge, once per copy; 103 is the same card
 Lillie's Determination | Mega Evolution 119 | 3 | shared; play it before your first Prize for eight
-Dawn | Phantasmal Flames 087 | 3 | a whole line in one search, and the only way to find a Gengar ex
+Dawn | Phantasmal Flames 087 | 3 | a whole line in one search; with Hilda, one of two ways to find a Gengar ex
+Hilda | White Flare 084 | 2 | shared; an Evolution and the Energy to run it, both to hand
 Janine's Secret Art | Shrouded Fable 059 | 2 | the only repeatable Poison
 Team Rocket's Petrel | Destined Rivals 176 | 2 | makes every one-of a two-of, and the only card that finds the Cape
 Boss's Orders | Mega Evolution 114 | 1 | shared; printed Boss's Orders [Ghetsis]
@@ -682,14 +701,13 @@ Buddy-Buddy Poffin | Temporal Forces 144 | 2 | shared; Gastly and Toxel to the B
 Energy Recycler | Destined Rivals 164 | 2 | the fuel line; 5 Basic Energy back into the deck
 Night Stretcher | Shrouded Fable 061 | 1 | shared; the one that lands in hand
 Energy Switch | Mega Evolution 115 | 1 | brings a Surge up off the Bench
-Pokegear 3.0 | Black Bolt 084 | 1 | shared; top seven, take the Supporter this turn needs
 Hero's Cape | Temporal Forces 152 | 1 | ACE SPEC; +100 HP puts a Gengar ex over every one-shot from 280 to 379
 Risky Ruins | Mega Evolution 127 | 2 | one-sided; every Pokemon here is Darkness
 Basic Darkness Energy | Mega Evolution Energies 007 | 10 | never rotates
 ```
 
 > [!IMPORTANT]
-> **Regulation clock.** Everything here is Standard legal as of September 2026. The H cards, meaning Okidogi ex, Janine's Secret Art, Night Stretcher, Buddy-Buddy Poffin, and Hero's Cape, rotate around April 2027, and that is most of the dog half plus the ACE SPEC. The Mega Evolution, Phantasmal Flames, Destined Rivals, and Black Bolt shell is Reg I with a year longer, and the Perfect Order, Chaos Rising, and 30th Celebration cards are Reg J. The Gengar half outlives the dogs by a full season.
+> **Regulation clock.** Everything here is Standard legal as of September 2026. The H cards, meaning Okidogi ex, Janine's Secret Art, Night Stretcher, Buddy-Buddy Poffin, and Hero's Cape, rotate around April 2027, and that is most of the dog half plus the ACE SPEC. The Mega Evolution, Phantasmal Flames, Destined Rivals, and White Flare shell is Reg I with a year longer, and the Perfect Order, Chaos Rising, and 30th Celebration cards are Reg J. The Gengar half outlives the dogs by a full season.
 
 > [!NOTE]
 > **30th Celebration legality.** The set released 2026-09-16 and becomes tournament legal about two weeks later, on the second Friday after release. It is playable on the Live ladder now. Do not bring Gengar ex 090 to a sanctioned event before then.
