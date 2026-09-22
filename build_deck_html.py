@@ -59,6 +59,9 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           # the dog is a hand-drawn gif rather than a library sprite; it and
           # the Mega are the two engines
           "dark-gang.md": ["gengar-smile", "okidogi"],
+          # the legal-Gengar build for the week dark-gang cannot be sleeved;
+          # the dogs are the name and the win condition, so they lead here
+          "dark-dogs.md": ["gengar-smile", "okidogi"],
           # no Zacian or Zamazenta sprite exists (the library stops before Gen
           # 8), so the deck's other two engines carry the page
           "steel-wolves.md": ["metagross", "snorlax"]}
@@ -146,6 +149,35 @@ FLAVOR = {
         "6. Bench discipline": ["spin-haunter"],
         "7. When the Cape goes on": ["gengar-shiny"],
         "Versus the Card Shop": ["excadrill", "metang"],
+        "Alternatives": ["crobat", "zubat"],
+        "What To Buy": ["pokeball"],
+    },
+    # same sprite problem as dark-gang: Toxel, Toxtricity, Hilda and Dawn are
+    # Gen 9 or absent, so the dogs and the ghosts carry the card sections.
+    # Giratina stands in for Dragapult on the two stadium sections, because
+    # Battle Cage is in the list for exactly one deck.
+    # the dog is a hand-drawn gif; the Perfect Order Gengar is the attacker
+    # now, so the plain gengar sprite carries its card and the game plan.
+    # no sprite exists for Toxel, Toxtricity, Hilda, Dawn or Grimsley (Gen 9
+    # and the Supporters are absent from the library). Giratina stands in for
+    # Dragapult on Battle Cage, which is in the list largely for that room.
+    "dark-dogs.md": {
+        "The Thesis": ["gengar"],
+        "Okidogi ex": ["okidogi"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Gengar": ["gengar-smile"],
+        "AZ's Tranquility": ["budew"],
+        "Scramble Switch": ["gengar-hop"],
+        "Risky Ruins": ["gengar-evo"],
+        "Battle Cage": ["giratina-origin"],
+        "The Search Blind Spot": ["pokedex"],
+        "The Energy Engine": ["gengar-booty"],
+        "2. Leading with the ghost": ["spin-haunter"],
+        "3. When to bring out a dog": ["okidogi-pant"],
+        "4. Choosing the stadium": ["gengar-shiny"],
+        "Versus the Card Shop": ["giratina-origin", "excadrill"],
+        "Test and Tune": ["eevee-back"],
         "Alternatives": ["crobat", "zubat"],
         "What To Buy": ["pokeball"],
     },
@@ -1309,7 +1341,7 @@ def bullets_or_para(text, ind):
 DECKS = ["rules.md", "dark.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
          "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
-         "dragons.md", "dark-gang.md", "steel-wolves.md"]
+         "dragons.md", "dark-gang.md", "dark-dogs.md", "steel-wolves.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

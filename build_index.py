@@ -44,6 +44,11 @@ PAGES = [
      " Mega in the format grows out of a 70 to 110 HP body, and Chaotic Pain"
      " kills all of them from the Bench for two Energy. The Okidogi are the"
      " shield that buys the ghost line its turns."),
+    ("dark-dogs.html", ["okidogi", "gengar-smile"],
+     "Xero's Wednesday-night 60, the same box with the legal Gengar in it."
+     " Okidogi ex hits 300 under a Binding Mochi, Gnawing Curse and Risky"
+     " Ruins supply the chip that turns 300 into lethal, and the Prize tax"
+     " makes their Mega cost three while your dog costs one."),
     ("dark-curse.html", ["gengar-smile", "gengar-mega"],
      "Xero's bigger plan, on hold until the Gnawing Curse pair is sourced. Two"
      " ex Gengars on one Haunter line: the Mega bends every prize trade, and"
