@@ -50,6 +50,7 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "psychic-lanterns.md": ["chandelure", "gourgeist"],
           "phantom-toll.md": ["chandelure", "gengar-mega"],
           "phantom-tax.md": ["chandelure", "gengar"],
+          "phantom-ferry.md": ["gengar-mega", "chandelure"],
           "flaming-lanterns.md": ["litwick", "chandelure"],
           "eevee-standard.md": ["eevee", "umbreon", "espeon", "glaceon"],
           "rocket-mewtwo.md": ["crobat", "mewtwo"],
@@ -272,6 +273,24 @@ FLAVOR = {
         "Versus the Kitchen Table": ["mewtwo"],
         "Versus the Card Shop": ["froslass"],
         "Where Gourgeist Went": ["gourgeist", "pumpkaboo"],
+        "✗ Cards That Look Right, Skip Them": ["wobbuffet-back"],
+        "What To Buy": ["pokeball"],
+    },
+    # v6 of the two-ghost deck: Gengar carries, Chandelure collects.
+    "phantom-ferry.md": {
+        "Litwick": ["litwick"],
+        "Lampent": ["lampent"],
+        "Mega Chandelure ex": ["chandelure"],
+        "Gastly": ["gastly"],
+        "Haunter": ["haunter"],
+        "Mega Gengar ex": ["gengar-mega"],
+        "Okidogi ex": ["okidogi"],
+        "1. Pick the Wall": ["chandelure", "gengar-mega"],
+        "4. How To Play Okidogi": ["okidogi-pant"],
+        "6. The Rebuild": ["lampent"],
+        "8. Things That Will Cost You a Game": ["eevee-back"],
+        "Versus the Kitchen Table": ["mewtwo"],
+        "Versus the Card Shop": ["excadrill"],
         "✗ Cards That Look Right, Skip Them": ["wobbuffet-back"],
         "What To Buy": ["pokeball"],
     },
@@ -1340,7 +1359,7 @@ def bullets_or_para(text, ind):
 
 DECKS = ["rules.md", "dark.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
-         "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
+         "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "phantom-ferry.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
          "dragons.md", "dark-gang.md", "dark-dogs.md", "steel-wolves.md"]
 
 for name in sys.argv[1:] or DECKS:

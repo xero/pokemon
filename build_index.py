@@ -62,6 +62,10 @@ PAGES = [
      " recharges the next lantern the turn the first one falls, a single-prize"
      " Gengar pays the opponent nothing, and Munkidori sends their counters"
      " home."),
+    ("phantom-ferry.html", ["gengar-mega", "chandelure"],
+     "Xero's card-shop 60, built entirely from the box. Mega Gengar ex"
+     " carries the Energy, Mega Chandelure ex collects the Prizes, and"
+     " Okidogi ex holds the line against the Wednesday field."),
     ("flaming-lanterns.html", ["litwick", "chandelure"],
      "Xero's meta deck. Four Fire Chandelure read the opponent's hand while"
      " Mega Chandelure prices their exits; the archetype's tournament-winning"
