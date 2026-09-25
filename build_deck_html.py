@@ -129,27 +129,46 @@ FLAVOR = {
     # Okidogi has two hand-drawn gifs: the idle one on its card, the panting
     # one on the plan for getting it back after a gust. Toxel and Toxtricity
     # are Gen 8 and absent from the library, so the ghosts carry the rest of
-    # the card sections. Excadrill and the Origin Giratina stand in for the two
-    # decks the field table is really about.
+    # the card sections. Each matchup subsection gets its opponent's sprite
+    # where the library has one; the Origin Giratina stands in for Dragapult
+    # on the field table, the way it does on dragons.md.
     "dark-gang.md": {
         "The Thesis": ["gengar-mega"],
+        # the Candy rule is the evolve-into-which-Gengar decision
+        "Which Stage 2 gets the Candy": ["gengar-evo"],
         "Okidogi ex": ["okidogi"],
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
         "Mega Gengar ex": ["gengar-mega"],
         "Gengar ex": ["gengar-smile"],
+        # a shiny Gastly for the card that skips the whole line
+        "Grimsley's Move": ["gastly-shiny"],
         # Budew's Item lock is the case for AZ's; the plain Gengar sprite
         # moved to the Cape, since that is the body it goes on
         "AZ's Tranquility": ["budew"],
         "Hero's Cape": ["gengar"],
         "The Prize Tax": ["gengar-booty"],
         "The Energy Engine": ["pokedex"],
-        "3. Which Gengar to build": ["gengar-evo"],
-        "4. When the dog gets gusted": ["okidogi-pant"],
-        "5. Choosing the stadium": ["gengar-hop"],
-        "6. Bench discipline": ["spin-haunter"],
-        "7. When the Cape goes on": ["gengar-shiny"],
-        "Versus the Card Shop": ["excadrill", "metang"],
+        "5. When the dog gets gusted": ["okidogi-pant"],
+        "6. Choosing the stadium": ["gengar-hop"],
+        "7. Bench discipline": ["spin-haunter"],
+        "8. When the Cape goes on": ["gengar-shiny"],
+        "Versus the Card Shop": ["giratina-origin", "dusknoir"],
+        "Versus Mega Lucario ex": ["lucario-mega"],
+        "Versus Mega Zygarde ex": ["zygarde"],
+        "Versus Cynthia's Garchomp ex": ["gible", "garchomp"],
+        "Versus Mega Excadrill ex": ["excadrill", "metang"],
+        "Versus Alakazam": ["alakazam"],
+        "Versus N's Zoroark ex": ["zoroark"],
+        "Versus Marnie's Grimmsnarl ex": ["froslass"],
+        "Versus Dhelmise": ["spiritomb"],
+        "Versus Beedrill ex": ["beedrill"],
+        "Versus Mega Starmie ex": ["starmie"],
+        "Versus Mega Floette ex": ["floette"],
+        "Versus Crustle": ["dwebble", "crustle"],
+        "Versus Mega Sharpedo ex": ["carvanha", "sharpedo-mega"],
+        "Versus Cinccino ex": ["minccino", "cinccino"],
+        "Versus Charizard and Battle Cage": ["charizard-mega-x"],
         "Alternatives": ["crobat", "zubat"],
         "What To Buy": ["pokeball"],
     },

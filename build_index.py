@@ -40,10 +40,10 @@ PAGES = [
      " Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall"
      " takes the hits."),
     ("dark-gang.html", ["gengar-smile", "okidogi"],
-     "Xero's league-night 60, built on the 30th Celebration Gengar ex. Every"
-     " Mega in the format grows out of a 70 to 110 HP body, and Chaotic Pain"
-     " kills all of them from the Bench for two Energy. The Okidogi are the"
-     " shield that buys the ghost line its turns."),
+     "Xero's league-night 60, built on the 30th Celebration Gengar ex. Chaotic"
+     " Pain kills the body every Mega grows out of, Grimsley's Move drops a"
+     " Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi"
+     " hold the door while the ghosts arrive."),
     ("dark-dogs.html", ["okidogi", "gengar-smile"],
      "Xero's Wednesday-night 60, the same box with the legal Gengar in it."
      " Okidogi ex hits 300 under a Binding Mochi, Gnawing Curse and Risky"
