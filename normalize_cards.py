@@ -23,7 +23,7 @@ RAW = ROOT / "raw-cards.json"
 API = "https://mp-search-api.tcgplayer.com/v1/search/request?q=&isList=false"
 CDN = "https://tcgplayer-cdn.tcgplayer.com/product/{id}_in_1000x1000.jpg"
 
-# Every card in the two starter decks: dark.md and fire.md. Named for the drafts
+# Every card in the two starter decks: dark-classic.md and fire.md. Named for the drafts
 # they grew out of, gengar-weezing-deck.md and charizard-deck.md, both since
 # folded into the guides above and deleted.
 # The last two ship in the Vivid Voltage theme deck and were never ordered.

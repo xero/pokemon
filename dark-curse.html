@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Curse Toll</title>
+		<title>Curse Toll</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Xero's Curse Toll <img data-mascot src="./assets/sprites/gengar-smile.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Curse Toll <img data-mascot src="./assets/sprites/gengar-smile.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /></h1>
 				<p>Two ex Gengars on one Haunter line, rebuilt from the August 2026 meta</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1271,7 +1282,7 @@
 </nav>
 		<main>
 			<aside data-callout="important">
-				<p><strong>On hold until the Gnawing Curse pair arrives.</strong> This build needs 2 Gengar ex (Temporal Forces 104); the pair was ordered 2026-08-20 and is in the mail. The dark ex deck that is buildable today is <a href="./dark-mega.html">Snake Charmer</a>, an eighteen-card mode swap on <a href="./dark.html">Gengar Gang</a>, and its second build already claims one of the two Gengar ex for its ghost toolbox. This plan comes off hold when the envelope lands and the sleeves get sorted.</p>
+				<p><strong>On hold until the Gnawing Curse pair arrives.</strong> This build needs 2 Gengar ex (Temporal Forces 104); the pair was ordered 2026-08-20 and is in the mail. The dark ex deck that is buildable today is <a href="./dark-mega.html">Snake Charmer</a>, an eighteen-card mode swap on <a href="./dark-classic.html">Gengar Gang Classic</a>, and its second build already claims one of the two Gengar ex for its ghost toolbox. This plan comes off hold when the envelope lands and the sleeves get sorted.</p>
 			</aside>
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
@@ -1979,7 +1990,7 @@ they re-attach         --Gnawing Curse--&gt;   2 more counters</code></pre>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Munkidori <small>SV06: Twilight Masquerade 095/167</small></span></td><td>3</td><td>3</td><td>✓</td><td>the engine; Ascended Heroes 099 is the same card if cheaper</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>2</td><td>2</td><td>✓</td><td>Ascended Heroes 142 is the same card if cheaper</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Sableye <small>ME02: Phantasmal Flames 059/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxel <small>ME02: Phantasmal Flames 067/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxel <small>ME02: Phantasmal Flames 067/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxtricity <small>ME02: Phantasmal Flames 068/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td></td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>Gengar Gang runs 3 of the 4 owned</td></tr>

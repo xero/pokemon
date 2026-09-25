@@ -1,4 +1,4 @@
-# Xero's Flaming Lanterns
+# Flaming Lanterns
 
 ### The lantern chassis, third face · the archetype's winning shape with a match lit under it
 
@@ -165,7 +165,7 @@ Search your deck for an Evolution Pokémon and an Energy card. The Mega plus a T
 
 ### Dawn
 
-Search your deck for a Basic, a Stage 1, and a Stage 2, all to hand. One card assembles a whole lantern column, and the Stage 2 slot picks the register: the trap or the reader. Two copies against four owned; the [Gang](./dark.md) sleeves three, so one copy crosses over on swap nights.
+Search your deck for a Basic, a Stage 1, and a Stage 2, all to hand. One card assembles a whole lantern column, and the Stage 2 slot picks the register: the trap or the reader. Two copies against four owned; the [Gang](./dark-classic.md) sleeves three, so one copy crosses over on swap nights.
 
 ### Xerosic's Machinations
 
@@ -331,7 +331,7 @@ Current Standard, per [Limitless play data](https://play.limitlesstcg.com/decks?
 
 **[Fox's Sun and Moon](./eevee-standard.md).** Moon Mirage doubles into every Psychic lantern; the Fire Chandelure takes it neutral and answers for one Prize. Still a hard game, and the sibling deck was purpose-built for it; this one plays it as Ruler-plus-techs and respects the ×2 everywhere else.
 
-**[Xero's dark decks](./dark.md).** The known predator. Sleeve this deck at the table when the Gengars are resting; when they are not, twelve Dark-weak bodies is a donation. That is not a flaw to fix; it is the rock-paper-scissors the house runs on.
+**[Xero's dark decks](./dark-classic.md).** The known predator. Sleeve this deck at the table when the Gengars are resting; when they are not, twelve Dark-weak bodies is a donation. That is not a flaw to fix; it is the rock-paper-scissors the house runs on.
 
 ---
 

@@ -1,4 +1,4 @@
-# Fox's Iron Excavation
+# Iron Excavation
 
 ### Tournament · one evolution line, two attackers, and only one of them costs three Prizes
 
@@ -354,7 +354,7 @@ Against the house decks this list is a wall with a hammer behind it, and the mat
 
 **Versus [the lantern decks](./psychic-lanterns.md).** Mega Chandelure ex prices your retreat and converts it into damage, and **Excadrill's Retreat 4 is the single worst stat line it can point at** — one Binding Flame makes that a 5, and *Phantom Maze* reads 130 plus 50 per Colorless, which is 380 on an Active Excadrill. It one-shots your Mega through 340 HP. Keep Metagross active (Retreat 3, still bad) or Metang (Retreat 2), never Excadrill, and win the game on the Bench. This is the matchup where Metagross being the main attacker is not a preference, it is survival.
 
-**Versus [the Gengar decks](./dark.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.
+**Versus [the Gengar decks](./dark-classic.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.
 
 **Versus [the Fire decks](./fire.md).** This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and **there is no weakness-removal card anywhere in the Standard pool** — not a Tool, not a Stadium, not an Ability. Full Metal Lab's 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck's tax.
 

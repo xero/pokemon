@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Fox's Hostile Takeover</title>
+		<title>Hostile Takeover</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Fox's Hostile Takeover <img data-mascot src="./assets/sprites/crobat.gif" alt="" /> <img data-mascot src="./assets/sprites/mewtwo.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Hostile Takeover <img data-mascot src="./assets/sprites/crobat.gif" alt="" /> <img data-mascot src="./assets/sprites/mewtwo.gif" alt="" /></h1>
 				<p>Fox's tournament 60 · Team Rocket's Mewtwo ex, powered by a Spidops payroll</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1272,7 +1283,7 @@
 		<main>
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
-				<p>Fox&#x27;s registered deck for the <a href="./worlds-celebration.md">Worlds Celebration at CARDCRATE</a>, Junior division, and still the house deck for game night. Built out of the Team Rocket&#x27;s Mewtwo ex League Battle Deck plus loose singles already in the collection — nothing of it is in the mail, and nothing is borrowed from the fire, fighting, or eevee decks, so all four stay sleeved. The only card that moves with Dad&#x27;s deck choice is the ACE SPEC; the warning under the deck list carries that table.</p>
+				<p>Fox&#x27;s registered deck for the Worlds Celebration at CARDCRATE, Junior division, and still the house deck for game night. Built out of the Team Rocket&#x27;s Mewtwo ex League Battle Deck plus loose singles already in the collection — nothing of it is in the mail, and nothing is borrowed from the fire, fighting, or eevee decks, so all four stay sleeved. The only card that moves with Dad&#x27;s deck choice is the ACE SPEC; the warning under the deck list carries that table.</p>
 				<p>Every Pokémon in it is a Team Rocket&#x27;s card. That is not a theme choice. Two cards in the list read the words &quot;Team Rocket&#x27;s Pokémon&quot; and pay you for going all the way.</p>
 			</aside>
 			<section>
@@ -1365,7 +1376,7 @@
 					<p><strong>19 + 31 + 10 = 60.</strong> ✓</p>
 					<p><strong>Basics: 12</strong> (3 Mewtwo ex, 3 Tarountula, 2 Zubat, 2 Koffing, 1 Wobbuffet, 1 Articuno). That is roughly a 19% mulligan rate, and every one of the twelve counts toward <em>Power Saver</em>. The nine-Basic list this replaced claimed the 75-85% no-mulligan band and actually sat at 70%; the Koffing pair and the Wobbuffet are what closed that gap, taking the slots the Petrel, the second Rare Candy, and a fourth Transceiver the hand count never found used to hold.</p>
 			<aside data-callout="warning">
-				<p><strong>The ACE SPEC slot follows Dad&#x27;s deck choice.</strong> Scramble Switch is the default: Mewtwo ex retreats for three, the single worst number in this deck, and Scramble Switch moves the Energy along with the body. But the house owns one copy and <a href="./dark.html">the Gang</a> sleeves it too, so the slot resolves per branch:</p>
+				<p><strong>The ACE SPEC slot follows Dad&#x27;s deck choice.</strong> Scramble Switch is the default: Mewtwo ex retreats for three, the single worst number in this deck, and Scramble Switch moves the Energy along with the body. But the house owns one copy and <a href="./dark-classic.html">the Gang</a> sleeves it too, so the slot resolves per branch:</p>
 				<p>| The night | This slot holds | | :--- | :--- | | Dad plays <a href="./psychic-lanterns.html">the lanterns</a>, their Prime Catcher arrived | Scramble Switch, as listed | | Dad plays the lanterns, Prime Catcher still in the mail | a third Switch — a deck needs no ACE SPEC | | Dad plays the Gang | Prime Catcher, freed up by the unsleeved lanterns |</p>
 				<p>The Prime Catcher night is no downgrade: the gust and the free escape in one Item is this deck&#x27;s two thinnest resources at once. The Japanese Prime Catcher in the box is fine at the kitchen table and nowhere else. Never two ACE SPECs.</p>
 			</aside>

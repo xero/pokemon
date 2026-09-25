@@ -1,4 +1,4 @@
-# Xero's Phantom Toll
+# Phantom Toll
 
 ### Two Megas split one toll booth · the house's first two-color 60
 
@@ -124,7 +124,7 @@ The Basic the deck stands on, and the only Psychic Litwick ever printed. The Whi
 
 ### Gastly
 
-The bottom of the Gengar line, and deliberately the **Phantasmal Flames print**: *Petty Grudge* is a guaranteed 10 where the Perfect Order print flips coins, and [Gengar Gang](./dark.md) runs that print anyway, so both decks stay sleeved. 70 HP, Poffin-legal. It is Darkness, which means two things worth memorizing: Telepathic Energy cannot trigger off it, and Janine's Secret Art can feed it.
+The bottom of the Gengar line, and deliberately the **Phantasmal Flames print**: *Petty Grudge* is a guaranteed 10 where the Perfect Order print flips coins, and [Gengar Gang Classic](./dark-classic.md) runs that print anyway, so both decks stay sleeved. 70 HP, Poffin-legal. It is Darkness, which means two things worth memorizing: Telepathic Energy cannot trigger off it, and Janine's Secret Art can feed it.
 
 ### Haunter
 
@@ -367,7 +367,7 @@ The honest summary: this deck trades the lanterns' best-case consistency for cov
 
 **[Fox's Sun and Moon](./eevee-standard.md).** The matchup the lanterns lose is the matchup this rebuild is for. *Moon Mirage* doubles into every Psychic ghost and lands neutral on Mega Gengar, so the Dark wall leads, the lanterns work from the Bench, and the toll prices his pivots. Still a real fight; no longer a forfeit.
 
-**[Xero's dark decks](./dark.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever's wall commits first loses the information war.
+**[Xero's dark decks](./dark-classic.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever's wall commits first loses the information war.
 
 ---
 
@@ -411,7 +411,7 @@ The list is a hypothesis; games are the data. Symptoms and their fixes:
 | Stranded Actives under your own Gemstone | Air Balloon (owned, freed from the lanterns box) over Night Stretcher |
 | Draw still thin after the Arianas | Naveen, Perfect Order 079, is Ariana without the borrowing; swap the engine at the next order |
 | Mega-finding whiffs | Mega Signal (owned) over Poke Pad |
-| Single-prize rooms keep winning | Sleeve [the Gang](./dark.md) for that room; this deck's answer is knowing when not to play it |
+| Single-prize rooms keep winning | Sleeve [the Gang](./dark-classic.md) for that room; this deck's answer is knowing when not to play it |
 | Wounded Megas keep dying loaded | Wally's Compassion (owned, the lanterns run one) over the 3rd Lillie's |
 
 ---

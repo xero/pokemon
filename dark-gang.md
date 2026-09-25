@@ -1,4 +1,4 @@
-# Gengar Gang: Dead on Arrival
+# Xero's Gengar Gang
 
 ### Every Mega in the format stands on a body that one Chaotic Pain kills
 

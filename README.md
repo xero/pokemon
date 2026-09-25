@@ -5,24 +5,41 @@ tcg deck planning for me and my son
 - [caught pokemon](./collection.md)
 - [table rules](./rules.md)
 
-## our starter decks
+## our decks
 
-- [xero's gengar gang](./dark.md)
-- [xero's snake charmer](./dark-mega.md)
 - [fox's fire force](./fire.md)
+- [xero's gengar gang](./dark-gang.md)
 
-## future plans
+## other decks
 
-- [xero's psychic lanterns](./psychic-lanterns.md)
-- [xero's curse toll](./dark-curse.md)
-- [xero's shadow syndicate](./dark-rocket.md)
-- [xero's hostile takeover](./rocket-mewtwo.md)
-- [xero's smog signals](./dark-smog.md)
-- [xero's night shift](./dark-tonight.md)
-- [tonight's matchup](./matchup-tonight.md)
-- [fox's flareon engine](./fire-tournament.md)
-- [eevee standard](./eevee-standard.md)
-- [fighting standard](./fighting-standard.md)
+### gengar and the dark box
+
+- [gengar gang classic](./dark-classic.md), the non-ex build
+- [snake charmer](./dark-mega.md)
+- [curse toll](./dark-curse.md)
+- [gengar's guard dogs](./dark-dogs.md)
+- [shadow syndicate](./dark-rocket.md)
+- [smog signals](./dark-smog.md)
+
+### lanterns
+
+- [psychic lanterns](./psychic-lanterns.md)
+- [flaming lanterns](./flaming-lanterns.md)
+- [phantom toll](./phantom-toll.md)
+- [phantom tax](./phantom-tax.md)
+- [phantom ferry](./phantom-ferry.md)
+
+### fire and eevee
+
+- [flareon engine](./fire-tournament.md)
+- [rainbow dna](./eevee-standard.md)
+
+### rockets, steel, and dragons
+
+- [hostile takeover](./rocket-mewtwo.md)
+- [iron excavation](./metal-excadrill.md)
+- [steel wolves](./steel-wolves.md)
+- [crystal dragons](./dragons.md)
 
 ## building
 

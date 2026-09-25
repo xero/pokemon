@@ -1201,7 +1201,7 @@ Put it on whatever will be attacking soonest. Usually that's the Active Eevee or
 
 ## 6. Beating Dad's Gengar Gang
 
-[His deck](./dark.md) is all **Darkness** Pokémon. Two main threats:
+[His deck](./dark-classic.md) is all **Darkness** Pokémon. Two main threats:
 
 ### Weezing — his early attacker (130 HP)
 

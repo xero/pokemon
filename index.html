@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1240,23 +1251,23 @@
 			</div>
 		</header>
 		<main>
-			<article class="index">
+			<article class="index" data-featured>
 				<aside data-sprite><img src="./assets/sprites/pokedex.gif" alt="" /><img src="./assets/sprites/pokeball.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./collection.html">Pokédex</a></h2>
 					<p>A searchable collection of our combined binders. Every card, stat, and ability, and whether it&#x27;s legal for tournament play.</p>
-					<p><small><em>139 unique cards</em></small></p>
+					<p><small><em>141 unique cards</em></small></p>
 				</section>
 			</article>
-			<article class="index">
+			<article class="index" data-featured>
 				<aside data-sprite><img src="./assets/sprites/deck.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./wishlist.html">Pull List</a></h2>
 					<p>The pull list: every card a deck asks for that the binders cannot cover, costed against what we already own.</p>
-					<p><small><em>79 unique cards</em></small></p>
+					<p><small><em>45 unique cards</em></small></p>
 				</section>
 			</article>
-			<article class="index">
+			<article class="index" data-featured>
 				<aside data-sprite><img src="./assets/sprites/gengar-hop.gif" alt="" /><img src="./assets/sprites/cursed.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./rules.html">Table Rules</a></h2>
@@ -1264,140 +1275,162 @@
 					<p><small><em>1 unique cards</em></small></p>
 				</section>
 			</article>
-			<article class="index">
+			<h2>League Decks</h2>
+			<article class="index" data-featured>
 				<aside data-sprite><img src="./assets/sprites/charmander.gif" alt="" /><img src="./assets/sprites/charizard.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./fire.html">Fox's Fire Force</a></h2>
+					<h3><a href="./fire.html">Fox's Fire Force</a></h3>
 					<p>Fox&#x27;s deck, card by card: what each one is for, what it wants to sit next to, and how to beat dad.</p>
 					<p><small><em>20 unique cards</em></small></p>
 				</section>
 			</article>
-			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/noctowl.gif" alt="" /></aside>
+			<article class="index" data-featured>
+				<aside data-sprite><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/okidogi.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./fire-tournament.html">Fox's Flareon Engine</a></h2>
-					<p>Fox&#x27;s tournament deck. Flareon ex, Noctowl, and why a Bench dad cannot touch changes how the whole game is played.</p>
-					<p><small><em>18 unique cards</em></small></p>
+					<h3><a href="./dark-gang.html">Xero's Gengar Gang</a></h3>
+					<p>Xero&#x27;s league-night 60, built on the 30th Celebration Gengar ex. Chaotic Pain kills the body every Mega grows out of, Grimsley&#x27;s Move drops a Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the door while the ghosts arrive.</p>
+					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>
+			<h2>Other Decks</h2>
+			<h3>Gengar and the Dark Box</h3>
 			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/weezing.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/gengar-smile.gif" alt="" /><img src="./assets/sprites/weezing.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./dark.html">Xero's Gengar Gang</a></h2>
-					<p>Xero&#x27;s deck. The dark duo of Gengar and Weezing, and the two-turn combo dad&#x27;s whole deck is built around.</p>
+					<h4><a href="./dark-classic.html">Gengar Gang Classic</a></h4>
+					<p>The original Gengar Gang, and the non-ex build. Nothing in it gives up more than one Prize. The dark duo of Gengar and Weezing, and the two-turn combo the whole deck is built around.</p>
 					<p><small><em>22 unique cards</em></small></p>
-				</section>
-			</article>
-			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gourgeist.gif" alt="" /></aside>
-				<section>
-					<h2><a href="./psychic-lanterns.html">Xero's Psychic Lanterns</a></h2>
-					<p>Xero&#x27;s lantern deck. Mega Chandelure ex turns the opponent&#x27;s own Retreat Cost into damage at the shop, and three card swaps turn the whole thing into the Night Parade at home.</p>
-					<p><small><em>25 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/seviper.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./dark-mega.html">Xero's Snake Charmer</a></h2>
-					<p>Xero&#x27;s ex-battle mode. Eleven cards swap Gengar Gang into a prize cage: Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall takes the hits.</p>
+					<h4><a href="./dark-mega.html">Snake Charmer</a></h4>
+					<p>Ex-battle mode. Eleven cards swap Gengar Gang Classic into a prize cage. Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall takes the hits.</p>
 					<p><small><em>22 unique cards</em></small></p>
-				</section>
-			</article>
-			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/gengar-smile.gif" alt="" /><img src="./assets/sprites/okidogi.gif" alt="" /></aside>
-				<section>
-					<h2><a href="./dark-gang.html">Gengar Gang: Dead on Arrival</a></h2>
-					<p>Xero&#x27;s league-night 60, built on the 30th Celebration Gengar ex. Chaotic Pain kills the body every Mega grows out of, Grimsley&#x27;s Move drops a Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the door while the ghosts arrive.</p>
-					<p><small><em>23 unique cards</em></small></p>
-				</section>
-			</article>
-			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/okidogi.gif" alt="" /><img src="./assets/sprites/gengar-smile.gif" alt="" /></aside>
-				<section>
-					<h2><a href="./dark-dogs.html">Gengar's Guard Dogs</a></h2>
-					<p>Xero&#x27;s Wednesday-night 60, the same box with the legal Gengar in it. Okidogi ex hits 300 under a Binding Mochi, Gnawing Curse and Risky Ruins supply the chip that turns 300 into lethal, and the Prize tax makes their Mega cost three while your dog costs one.</p>
-					<p><small><em>24 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/gengar-smile.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./dark-curse.html">Xero's Curse Toll</a></h2>
-					<p>Xero&#x27;s bigger plan, on hold until the Gnawing Curse pair is sourced. Two ex Gengars on one Haunter line: the Mega bends every prize trade, and the Curse taxes every Energy the opponent plays.</p>
+					<h4><a href="./dark-curse.html">Curse Toll</a></h4>
+					<p>The bigger plan, on hold until the Gnawing Curse pair is sourced. Two ex Gengars on one Haunter line; the Mega bends every prize trade, and the Curse taxes every Energy the opponent plays.</p>
 					<p><small><em>21 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/okidogi.gif" alt="" /><img src="./assets/sprites/gengar-smile.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./dark-dogs.html">Gengar's Guard Dogs</a></h4>
+					<p>A Wednesday-night 60, the same box with the legal Gengar in it. Okidogi ex hits 300 under a Binding Mochi, Gnawing Curse and Risky Ruins supply the chip that turns 300 into lethal, and the Prize tax makes their Mega cost three while your dog costs one.</p>
+					<p><small><em>24 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/crobat.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./dark-rocket.html">Shadow Syndicate</a></h4>
+					<p>A game-night hybrid for when the other side brings ex. Mega Gengar ex taxes every Prize taken off a Darkness Pokémon, and Team Rocket&#x27;s Crobat ex chips two Pokémon each time it comes down, then goes back to hand healed.</p>
+					<p><small><em>9 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/koffing.gif" alt="" /><img src="./assets/sprites/weezing.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./dark-smog.html">Smog Signals</a></h4>
+					<p>The other game-night hybrid, for when you don&#x27;t know what&#x27;s coming. Every Pokémon is a Koffing or a Weezing and none is an ex, so Team Rocket&#x27;s Weezing hits 40 for each one in play and the opponent needs six knockouts whatever they bring.</p>
+					<p><small><em>9 unique cards</em></small></p>
+				</section>
+			</article>
+			<h3>Lanterns</h3>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gourgeist.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./psychic-lanterns.html">Psychic Lanterns</a></h4>
+					<p>The first lantern deck. Mega Chandelure ex turns the opponent&#x27;s own Retreat Cost into damage at the shop, and three card swaps turn the whole thing into the Night Parade at home.</p>
+					<p><small><em>25 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/litwick.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./flaming-lanterns.html">Flaming Lanterns</a></h4>
+					<p>The meta lantern. Four Fire Chandelure read the opponent&#x27;s hand while Mega Chandelure prices their exits; the archetype&#x27;s tournament-winning shape, rebuilt from the binder for about two dollars.</p>
+					<p><small><em>24 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./phantom-toll.html">Xero's Phantom Toll</a></h2>
-					<p>Xero&#x27;s two-color hybrid. Mega Chandelure makes leaving expensive and Mega Gengar makes losing cheap, while every gust drags something heavy into a toll booth it cannot afford to sit in.</p>
+					<h4><a href="./phantom-toll.html">Phantom Toll</a></h4>
+					<p>The first two-color hybrid. Mega Chandelure makes leaving expensive and Mega Gengar makes losing cheap, while every gust drags something heavy into a toll booth it cannot afford to sit in.</p>
 					<p><small><em>25 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/chandelure.gif" alt="" /><img src="./assets/sprites/gengar.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./phantom-tax.html">Xero's Phantom Tax</a></h2>
-					<p>Xero&#x27;s Phantom Toll, rebuilt off the TCG Live ladder. Wondrous Patch recharges the next lantern the turn the first one falls, a single-prize Gengar pays the opponent nothing, and Munkidori sends their counters home.</p>
+					<h4><a href="./phantom-tax.html">Phantom Tax</a></h4>
+					<p>Phantom Toll, rebuilt off the TCG Live ladder. Wondrous Patch recharges the next lantern the turn the first one falls, a single-prize Gengar pays the opponent nothing, and Munkidori sends their counters home.</p>
 					<p><small><em>24 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./phantom-ferry.html">Xero's Phantom Ferry</a></h2>
-					<p>Xero&#x27;s card-shop 60, built entirely from the box. Mega Gengar ex carries the Energy, Mega Chandelure ex collects the Prizes, and Okidogi ex holds the line against the Wednesday field.</p>
+					<h4><a href="./phantom-ferry.html">Phantom Ferry</a></h4>
+					<p>A card-shop 60, built entirely from the box. Mega Gengar ex carries the Energy, Mega Chandelure ex collects the Prizes, and Okidogi ex holds the line against the Wednesday field.</p>
 					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>
+			<h3>Fire and Eevee</h3>
 			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/litwick.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/noctowl.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./flaming-lanterns.html">Xero's Flaming Lanterns</a></h2>
-					<p>Xero&#x27;s meta deck. Four Fire Chandelure read the opponent&#x27;s hand while Mega Chandelure prices their exits; the archetype&#x27;s tournament-winning shape, rebuilt from the binder for about two dollars.</p>
-					<p><small><em>24 unique cards</em></small></p>
+					<h4><a href="./fire-tournament.html">Flareon Engine</a></h4>
+					<p>The tournament take on Fire Force. Flareon ex, Noctowl, and why a Bench dad cannot touch changes how the whole game is played.</p>
+					<p><small><em>18 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/eevee.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /><img src="./assets/sprites/espeon.gif" alt="" /><img src="./assets/sprites/glaceon.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./eevee-standard.html">Rainbow DNA</a></h4>
+					<p>The Eevee deck, and the only one here that is two decks. Fifty cards never move; ten swap between Sun and Moon for home and Fire and Ice for game night.</p>
+					<p><small><em>23 unique cards</em></small></p>
+				</section>
+			</article>
+			<h3>Rockets, Steel, and Dragons</h3>
+			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/crobat.gif" alt="" /><img src="./assets/sprites/mewtwo.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./rocket-mewtwo.html">Fox's Hostile Takeover</a></h2>
-					<p>Fox&#x27;s game-night deck. Team Rocket&#x27;s Mewtwo ex swinging off a Spidops payroll, and a Crobat line that fixes a bad Active for free.</p>
+					<h4><a href="./rocket-mewtwo.html">Hostile Takeover</a></h4>
+					<p>A game-night deck. Team Rocket&#x27;s Mewtwo ex swinging off a Spidops payroll, and a Crobat line that fixes a bad Active for free.</p>
 					<p><small><em>25 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/drilbur.gif" alt="" /><img src="./assets/sprites/metagross.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./metal-excadrill.html">Fox's Iron Excavation</a></h2>
-					<p>Fox&#x27;s Metal deck, bought from zero. One Beldum line feeds both the Energy engine and a Metagross that hits for 330 and gives up a single Prize; the Mega only comes out to close.</p>
+					<h4><a href="./metal-excadrill.html">Iron Excavation</a></h4>
+					<p>A Metal deck, bought from zero. One Beldum line feeds both the Energy engine and a Metagross that hits for 330 and gives up a single Prize; the Mega only comes out to close.</p>
 					<p><small><em>24 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/metagross.gif" alt="" /><img src="./assets/sprites/snorlax.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./steel-wolves.html">Fox's Steel Wolves</a></h2>
-					<p>Fox&#x27;s online 60 for TCG Live. Three separate cards each add 30 to Hop&#x27;s Zacian ex, so Brave Slash lands at 330 and one-shots Dragapult; a Metagross on the Bench pays for it, and Zamazenta covers the turn Zacian is locked out.</p>
+					<h4><a href="./steel-wolves.html">Steel Wolves</a></h4>
+					<p>An online 60 for TCG Live. Three separate cards each add 30 to Hop&#x27;s Zacian ex, so Brave Slash lands at 330 and one-shots Dragapult; a Metagross on the Bench pays for it, and Zamazenta covers the turn Zacian is locked out.</p>
 					<p><small><em>22 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/giratina-origin.gif" alt="" /><img src="./assets/sprites/clefairy.gif" alt="" /></aside>
 				<section>
-					<h2><a href="./dragons.html">Xero's Crystal Dragons</a></h2>
-					<p>Xero&#x27;s Dragapult deck, rebuilt from the card that beat him. Four Drakloaks draw every turn, Sparkling Crystal makes Phantom Dive cost one Energy, and Lillie&#x27;s Clefairy ex turns the mirror into a Fairy Zone.</p>
+					<h4><a href="./dragons.html">Crystal Dragons</a></h4>
+					<p>A Dragapult deck, rebuilt from the card that beat dad. Four Drakloaks draw every turn, Sparkling Crystal makes Phantom Dive cost one Energy, and Lillie&#x27;s Clefairy ex turns the mirror into a Fairy Zone.</p>
 					<p><small><em>28 unique cards</em></small></p>
-				</section>
-			</article>
-			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/eevee.gif" alt="" /><img src="./assets/sprites/umbreon.gif" alt="" /><img src="./assets/sprites/espeon.gif" alt="" /><img src="./assets/sprites/glaceon.gif" alt="" /></aside>
-				<section>
-					<h2><a href="./eevee-standard.html">Fox's Rainbow DNA</a></h2>
-					<p>Fox&#x27;s Eevee deck, and the only one here that is two decks. Fifty cards never move; ten swap between Sun and Moon for home and Fire and Ice for game night.</p>
-					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>
 		</main>

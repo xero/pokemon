@@ -1,4 +1,4 @@
-# Xero's Crystal Dragons
+# Crystal Dragons
 
 ### Tournament · Phantom Dive for one Energy, four Drakloaks drawing every turn, and a Fairy Zone for the mirror
 
@@ -295,7 +295,7 @@ One copy. Prized one game in ten, and the deck has two other Fairy Zone attacker
 
 The draw Supporter, at the full four. Shuffle your hand into your deck and draw 6, or 8 while all six of your Prizes are still up. Four Recons a turn make every Lillie's better, because the deck you shuffle into has already had its worst cards sent to the bottom. Play the Items first; what they find changes whether you want to shuffle.
 
-Full entry in [Gengar Gang](./dark.md#lillies-determination).
+Full entry in [Gengar Gang Classic](./dark-classic.md#lillies-determination).
 
 ---
 
@@ -303,7 +303,7 @@ Full entry in [Gengar Gang](./dark.md#lillies-determination).
 
 The gust, at three. Switch in one of their Benched Pokémon to the Active Spot. Three because the deck has no Prime Catcher, and because the Dive's counters make Boss's Orders into a Prize every time: the target that took sixty last turn is the target you drag up and finish. Against a Dragapult, Boss their Clefairy before it Rondos you. Against the counter decks, Boss the Duskull before it becomes thirteen counters.
 
-Full entry in [Gengar Gang](./dark.md#bosss-orders-ghetsis).
+Full entry in [Gengar Gang Classic](./dark-classic.md#bosss-orders-ghetsis).
 
 ---
 
@@ -319,7 +319,7 @@ Two copies, shared with the lantern deck. Fetch Darkness as the second type when
 
 Search your deck for a Basic, a Stage 1, and a Stage 2, and put them into your hand. Here that is **Dreepy, Drakloak, and Dragapult ex in one card**, the entire line. One copy, because the four Poke Pad already do the Drakloak half and the turn-two Dawn is usually the turn you would rather Lillie's. It is the Supporter that turns a hand with no line into a board.
 
-Full entry in [Gengar Gang](./dark.md#dawn).
+Full entry in [Gengar Gang Classic](./dark-classic.md#dawn).
 
 ---
 
@@ -354,7 +354,7 @@ Search your deck for a Pokémon that doesn't have a Rule Box and put it into you
 
 Search your deck for up to two Basic Pokémon with 70 HP or less and put them onto your Bench. Dreepy is 70, Mimikyu is 60, Budew is 30. Four copies. Turn one wants Poffin first, for two Dreepy; the second Poffin gets the third Dreepy and the Budew or Mimikyu the matchup wants. Munkidori at 110 and every ex here are out of range, and that is what Ultra Ball is for.
 
-Full entry in [Gengar Gang](./dark.md#buddy-buddy-poffin).
+Full entry in [Gengar Gang Classic](./dark-classic.md#buddy-buddy-poffin).
 
 ---
 
@@ -368,7 +368,7 @@ Search your deck for a Tera Pokémon and put it into your hand. In this deck tha
 
 Put a Pokémon or a Basic Energy card from your discard pile into your hand. Two copies. The priority: a Knocked Out Dragapult ex first, a Drakloak second, a Basic Energy third when the Ultra Balls pitched too many. Nothing here is Special Energy, so every Energy in the discard is a legal target.
 
-Full entry in [Gengar Gang](./dark.md#night-stretcher).
+Full entry in [Gengar Gang Classic](./dark-classic.md#night-stretcher).
 
 ---
 
@@ -419,7 +419,7 @@ Whenever any player puts a Basic non-Darkness Pokémon onto their Bench, place t
 
 One rather than the stock list's two because the two Area Zero already fight the Stadium war, and three Stadiums plus a Tool is enough cards that do nothing in hand.
 
-Full entry in [Gengar Gang](./dark.md#risky-ruins).
+Full entry in [Gengar Gang Classic](./dark-classic.md#risky-ruins).
 
 ---
 ---

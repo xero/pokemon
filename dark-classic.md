@@ -1,4 +1,6 @@
-# Xero's Gengar Gang
+# Gengar Gang Classic
+
+### The non-ex build · every Pokémon in it gives up one Prize, and Gengar and Weezing share the work
 
 > [!NOTE]
 > **How to read this file.**

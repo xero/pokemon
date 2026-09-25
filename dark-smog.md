@@ -1,4 +1,4 @@
-# Xero's Smog Signals
+# Smog Signals
 
 ### Game night hybrid, build 2 · every Pokémon is a Koffing or a Weezing, and none of them are ex
 
@@ -7,7 +7,7 @@
 >
 > The second game night deck, built for the case where you do not know what Fox is bringing. [Shadow Syndicate](./dark-rocket.md) leans on *Shadowy Concealment*, which is blank unless he attacks with Pokémon ex. This deck does not have that problem, because it does not have that card.
 >
-> No Mega Gengar ex. No Pokémon ex at all. Nothing in here has a Rule Box. It hybridizes the Team Rocket engine with the Koffing and Weezing half of [Gengar Gang](./dark.md) instead of the Gengar half.
+> No Mega Gengar ex. No Pokémon ex at all. Nothing in here has a Rule Box. It hybridizes the Team Rocket engine with the Koffing and Weezing half of [Gengar Gang Classic](./dark-classic.md) instead of the Gengar half.
 
 ---
 

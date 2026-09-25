@@ -11,7 +11,12 @@ from pokelib import CREDITS_NOTE, esc, page
 
 ROOT = Path(__file__).parent
 
+# the heading that opens the plain rows. every card above it, the library
+# and the league decks, carries data-featured, which the template tints.
+OTHER = "## Other Decks"
+
 PAGES = [
+    # the library, not decks, so no heading of its own
     ("collection.html", ["pokedex", "pokeball"],
      "A searchable collection of our combined binders. Every card, stat, and"
      " ability, and whether it's legal for tournament play."),
@@ -22,75 +27,95 @@ PAGES = [
      "The table rulebook: every game word the deck pages lean on, how a game"
      " actually runs, what the letters on the cards mean, and what a real"
      " tournament expects."),
+    # a bare string is a heading, and its hashes are its level, same as the
+    # markdown. every page after it takes the next level down for its title.
+    # the two decks we are sleeving now, Fox first. these are the only two
+    # titles that carry our names.
+    "## League Decks",
     ("fire.html", ["charmander", "charizard"],
      "Fox's deck, card by card: what each one is for, what it wants to sit next"
      " to, and how to beat dad."),
-    ("fire-tournament.html", ["flareon", "noctowl"],
-     "Fox's tournament deck. Flareon ex, Noctowl, and why a Bench dad cannot"
-     " touch changes how the whole game is played."),
-    ("dark.html", ["gengar", "weezing"],
-     "Xero's deck. The dark duo of Gengar and Weezing, and the two-turn combo"
-     " dad's whole deck is built around."),
-    ("psychic-lanterns.html", ["chandelure", "gourgeist"],
-     "Xero's lantern deck. Mega Chandelure ex turns the opponent's own"
-     " Retreat Cost into damage at the shop, and three card swaps turn the"
-     " whole thing into the Night Parade at home."),
-    ("dark-mega.html", ["seviper", "gengar-mega"],
-     "Xero's ex-battle mode. Eleven cards swap Gengar Gang into a prize cage:"
-     " Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall"
-     " takes the hits."),
-    ("dark-gang.html", ["gengar-smile", "okidogi"],
+    ("dark-gang.html", ["gengar", "okidogi"],
      "Xero's league-night 60, built on the 30th Celebration Gengar ex. Chaotic"
      " Pain kills the body every Mega grows out of, Grimsley's Move drops a"
      " Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi"
      " hold the door while the ghosts arrive."),
+    OTHER,
+    "### Gengar and the Dark Box",
+    ("dark-classic.html", ["gengar-smile", "weezing"],
+     "The original Gengar Gang, and the non-ex build. Nothing in it gives up"
+     " more than one Prize. The dark duo of Gengar and Weezing, and the"
+     " two-turn combo the whole deck is built around."),
+    ("dark-mega.html", ["seviper", "gengar-mega"],
+     "Ex-battle mode. Eleven cards swap Gengar Gang Classic into a prize"
+     " cage. Mega Gengar ex zeroes every trade, and Seviper hits 240 while the"
+     " wall takes the hits."),
+    ("dark-curse.html", ["gengar-smile", "gengar-mega"],
+     "The bigger plan, on hold until the Gnawing Curse pair is sourced. Two ex"
+     " Gengars on one Haunter line; the Mega bends every prize trade, and the"
+     " Curse taxes every Energy the opponent plays."),
     ("dark-dogs.html", ["okidogi", "gengar-smile"],
-     "Xero's Wednesday-night 60, the same box with the legal Gengar in it."
+     "A Wednesday-night 60, the same box with the legal Gengar in it."
      " Okidogi ex hits 300 under a Binding Mochi, Gnawing Curse and Risky"
      " Ruins supply the chip that turns 300 into lethal, and the Prize tax"
      " makes their Mega cost three while your dog costs one."),
-    ("dark-curse.html", ["gengar-smile", "gengar-mega"],
-     "Xero's bigger plan, on hold until the Gnawing Curse pair is sourced. Two"
-     " ex Gengars on one Haunter line: the Mega bends every prize trade, and"
-     " the Curse taxes every Energy the opponent plays."),
+    ("dark-rocket.html", ["gengar-mega", "crobat"],
+     "A game-night hybrid for when the other side brings ex. Mega Gengar ex"
+     " taxes every Prize taken off a Darkness Pokémon, and Team Rocket's"
+     " Crobat ex chips two Pokémon each time it comes down, then goes back to"
+     " hand healed."),
+    ("dark-smog.html", ["koffing", "weezing"],
+     "The other game-night hybrid, for when you don't know what's coming."
+     " Every Pokémon is a Koffing or a Weezing and none is an ex, so Team"
+     " Rocket's Weezing hits 40 for each one in play and the opponent needs"
+     " six knockouts whatever they bring."),
+    "### Lanterns",
+    ("psychic-lanterns.html", ["chandelure", "gourgeist"],
+     "The first lantern deck. Mega Chandelure ex turns the opponent's own"
+     " Retreat Cost into damage at the shop, and three card swaps turn the"
+     " whole thing into the Night Parade at home."),
+    ("flaming-lanterns.html", ["litwick", "chandelure"],
+     "The meta lantern. Four Fire Chandelure read the opponent's hand while"
+     " Mega Chandelure prices their exits; the archetype's tournament-winning"
+     " shape, rebuilt from the binder for about two dollars."),
     ("phantom-toll.html", ["chandelure", "gengar-mega"],
-     "Xero's two-color hybrid. Mega Chandelure makes leaving expensive and"
+     "The first two-color hybrid. Mega Chandelure makes leaving expensive and"
      " Mega Gengar makes losing cheap, while every gust drags something heavy"
      " into a toll booth it cannot afford to sit in."),
     ("phantom-tax.html", ["chandelure", "gengar"],
-     "Xero's Phantom Toll, rebuilt off the TCG Live ladder. Wondrous Patch"
+     "Phantom Toll, rebuilt off the TCG Live ladder. Wondrous Patch"
      " recharges the next lantern the turn the first one falls, a single-prize"
      " Gengar pays the opponent nothing, and Munkidori sends their counters"
      " home."),
     ("phantom-ferry.html", ["gengar-mega", "chandelure"],
-     "Xero's card-shop 60, built entirely from the box. Mega Gengar ex"
-     " carries the Energy, Mega Chandelure ex collects the Prizes, and"
-     " Okidogi ex holds the line against the Wednesday field."),
-    ("flaming-lanterns.html", ["litwick", "chandelure"],
-     "Xero's meta deck. Four Fire Chandelure read the opponent's hand while"
-     " Mega Chandelure prices their exits; the archetype's tournament-winning"
-     " shape, rebuilt from the binder for about two dollars."),
+     "A card-shop 60, built entirely from the box. Mega Gengar ex carries the"
+     " Energy, Mega Chandelure ex collects the Prizes, and Okidogi ex holds"
+     " the line against the Wednesday field."),
+    "### Fire and Eevee",
+    ("fire-tournament.html", ["flareon", "noctowl"],
+     "The tournament take on Fire Force. Flareon ex, Noctowl, and why a Bench"
+     " dad cannot touch changes how the whole game is played."),
+    ("eevee-standard.html", ["eevee", "umbreon", "espeon", "glaceon"],
+     "The Eevee deck, and the only one here that is two decks. Fifty cards"
+     " never move; ten swap between Sun and Moon for home and Fire and Ice for"
+     " game night."),
+    "### Rockets, Steel, and Dragons",
     ("rocket-mewtwo.html", ["crobat", "mewtwo"],
-     "Fox's game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
+     "A game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops"
      " payroll, and a Crobat line that fixes a bad Active for free."),
     ("metal-excadrill.html", ["drilbur", "metagross"],
-     "Fox's Metal deck, bought from zero. One Beldum line feeds both the"
-     " Energy engine and a Metagross that hits for 330 and gives up a single"
-     " Prize; the Mega only comes out to close."),
+     "A Metal deck, bought from zero. One Beldum line feeds both the Energy"
+     " engine and a Metagross that hits for 330 and gives up a single Prize;"
+     " the Mega only comes out to close."),
     ("steel-wolves.html", ["metagross", "snorlax"],
-     "Fox's online 60 for TCG Live. Three separate cards each add 30 to Hop's"
+     "An online 60 for TCG Live. Three separate cards each add 30 to Hop's"
      " Zacian ex, so Brave Slash lands at 330 and one-shots Dragapult; a"
      " Metagross on the Bench pays for it, and Zamazenta covers the turn"
      " Zacian is locked out."),
     ("dragons.html", ["giratina-origin", "clefairy"],
-     "Xero's Dragapult deck, rebuilt from the card that beat him. Four"
-     " Drakloaks draw every turn, Sparkling Crystal makes Phantom Dive cost"
-     " one Energy, and Lillie's Clefairy ex turns the mirror into a Fairy"
-     " Zone."),
-    ("eevee-standard.html", ["eevee", "umbreon", "espeon", "glaceon"],
-     "Fox's Eevee deck, and the only one here that is two decks. Fifty"
-     " cards never move; ten swap between Sun and Moon for home and Fire"
-     " and Ice for game night."),
+     "A Dragapult deck, rebuilt from the card that beat dad. Four Drakloaks"
+     " draw every turn, Sparkling Crystal makes Phantom Dive cost one Energy,"
+     " and Lillie's Clefairy ex turns the mirror into a Fairy Zone."),
 ]
 
 
@@ -114,13 +139,23 @@ def read(name):
 
 
 body, total = [], 0
-for name, sprites, blurb in PAGES:
+level = 2   # a page title sits one level under the last heading, h2 before any
+featured = True
+for entry in PAGES:
+    if isinstance(entry, str):
+        featured = featured and entry != OTHER
+        hashes, text = entry.split(" ", 1)
+        body.append(f"\t\t\t<h{len(hashes)}>{esc(text)}</h{len(hashes)}>")
+        level = len(hashes) + 1
+        continue
+    name, sprites, blurb = entry
     if not (ROOT / name).exists():
         print(f"  skipping {name}, not built yet")
         continue
     title, count = read(name)
     total += count
-    art = ['\t\t\t<article class="index">']
+    art = ['\t\t\t<article class="index" data-featured>' if featured
+           else '\t\t\t<article class="index">']
     # decorative, and the heading right beside them already names the page
     gifs = [s for s in sprites
             if (ROOT / "assets" / "sprites" / f"{s}.gif").exists()]
@@ -132,7 +167,7 @@ for name, sprites, blurb in PAGES:
     # rather than being pushed under a full-width row
     art += [
         "\t\t\t\t<section>",
-        f'\t\t\t\t\t<h2><a href="./{name}">{title}</a></h2>',
+        f'\t\t\t\t\t<h{level}><a href="./{name}">{title}</a></h{level}>',
         f"\t\t\t\t\t<p>{esc(blurb)}</p>",
     ]
     # the planning docs have no card pages to count, so they get no count line
@@ -145,5 +180,6 @@ for name, sprites, blurb in PAGES:
 out = page(ROOT / "index.html", "Pokémon TCG",
            "Deck planning for me and my son.",
            "", "\n".join(body), CREDITS_NOTE, back="")
-print(f"index.html: {len(PAGES)} pages, {total} cards linked, "
+pages = sum(1 for e in PAGES if not isinstance(e, str))
+print(f"index.html: {pages} pages, {total} cards linked, "
       f"{len(out.splitlines())} lines")

@@ -1,4 +1,4 @@
-# Xero's Phantom Ferry
+# Phantom Ferry
 
 ### Gengar carries, Chandelure collects · the paper build for the card shop · v6
 
@@ -618,7 +618,7 @@ The rooms the five test games and the Darkness deck before them actually met, fo
 
 **[Fox's Team Rocket's Mewtwo](./rocket-mewtwo.md).** Mewtwo ex is Psychic, Darkness-weak, and 280 HP. Void Gale lands 460 and Chain-Crazed 520. His board is ex-heavy, so Concealment runs all game. Crobat ex's _Assassin's Return_ at 240 doubles into a lantern, so the Psychic ghosts stay benched when Crobat is loaded.
 
-**[Xero's dark decks](./dark.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and Seviper's 240 kills a Poisoned Okidogi exactly. House rule of thumb: whoever's wall commits first loses the information war.
+**[Xero's dark decks](./dark-classic.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and Seviper's 240 kills a Poisoned Okidogi exactly. House rule of thumb: whoever's wall commits first loses the information war.
 
 ---
 

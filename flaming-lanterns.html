@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Flaming Lanterns</title>
+		<title>Flaming Lanterns</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Xero's Flaming Lanterns <img data-mascot src="./assets/sprites/litwick.gif" alt="" /> <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Flaming Lanterns <img data-mascot src="./assets/sprites/litwick.gif" alt="" /> <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /></h1>
 				<p>The lantern chassis, third face · the archetype's winning shape with a match lit under it</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1656,7 +1667,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>Search your deck for a Basic, a Stage 1, and a Stage 2, all to hand. One card assembles a whole lantern column, and the Stage 2 slot picks the register: the trap or the reader. Two copies against four owned; the <a href="./dark.html">Gang</a> sleeves three, so one copy crosses over on swap nights.</p>
+					<p>Search your deck for a Basic, a Stage 1, and a Stage 2, all to hand. One card assembles a whole lantern column, and the Stage 2 slot picks the register: the trap or the reader. Two copies against four owned; the <a href="./dark-classic.html">Gang</a> sleeves three, so one copy crosses over on swap nights.</p>
 				</section>
 			</article>
 			<article>
@@ -1955,7 +1966,7 @@
 					<p><strong><a href="./rocket-mewtwo.html">Fox&#x27;s Team Rocket&#x27;s Mewtwo</a>.</strong> His deck refills its hand professionally: Ariana draws to 5 or 8, Factory pays out 2 more. Every one of those refills is Mind Ruler ammunition; a post-Ariana swing reads 150 to 240 off a one-Prize Chandelure his 160-damage answers overkill. Mewtwo ex retreats for 3, so one Flame makes the Maze 330 into a 280 HP body when the trap register takes a turn. The game where both of this deck&#x27;s ledgers stay full.</p>
 					<p><strong><a href="./fire-tournament.html">Fox&#x27;s Flareon ex</a>.</strong> His Fire hits the lanterns neutral, the Fire Chandelure neutral too (its Weakness is Water), and the Grass techs for double, so Shaymin and Maractus mostly stay in hand this game. Nothing he has one-shots a healthy 350, which makes his math two-turn math while one Flame prices his Retreat-2 attackers at 280. An honest damage race the Maze wins on arithmetic, with the Ruler reading his setup turns.</p>
 					<p><strong><a href="./eevee-standard.html">Fox&#x27;s Sun and Moon</a>.</strong> Moon Mirage doubles into every Psychic lantern; the Fire Chandelure takes it neutral and answers for one Prize. Still a hard game, and the sibling deck was purpose-built for it; this one plays it as Ruler-plus-techs and respects the ×2 everywhere else.</p>
-					<p><strong><a href="./dark.html">Xero&#x27;s dark decks</a>.</strong> The known predator. Sleeve this deck at the table when the Gengars are resting; when they are not, twelve Dark-weak bodies is a donation. That is not a flaw to fix; it is the rock-paper-scissors the house runs on.</p>
+					<p><strong><a href="./dark-classic.html">Xero&#x27;s dark decks</a>.</strong> The known predator. Sleeve this deck at the table when the Gengars are resting; when they are not, twelve Dark-weak bodies is a donation. That is not a flaw to fix; it is the rock-paper-scissors the house runs on.</p>
 			</section>
 			<section>
 				<h3 id="versus-the-card-shop">Versus the Card Shop<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>

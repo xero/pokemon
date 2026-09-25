@@ -1,4 +1,4 @@
-# Fox's Flareon Engine
+# Flareon Engine
 
 > [!NOTE]
 > **How to read this file.**
@@ -1260,6 +1260,6 @@ Every deck gives something up. Know yours before your opponent finds them.
 
 **Water Weakness ×2.** Nothing in dad's Gengar Gang is Water, so you will never feel this at home. A tournament room is different. One Water deck across the table and your 270 HP attacker takes double, which means medium attacks knock it out in one hit. When you see Water Energy on their side, keep the [rotation](#4-the-bench-is-a-fortress) tight and never leave a hurt Flareon ex in front.
 
-**Eevee ex is Weak to Fighting ×2.** A Fighting deck removes it almost on contact, which is exactly why the [Fighting build on dad's shortlist](./fighting-standard.md) hard-counters this one. Against Fighting, plain [Eevee](#eevee) is the safer start even though it is slower.
+**Eevee ex is Weak to Fighting ×2.** A Fighting deck removes it almost on contact, which is exactly why the Fighting build on dad's shortlist hard-counters this one. Against Fighting, plain [Eevee](#eevee) is the safer start even though it is slower.
 
 **Damage counters go through Tera.** *Tera* stops damage from **attacks**. Effects that *place counters* skip it entirely: dad's Risky Ruins taxes your Basics as they arrive, and his [lantern deck's](./psychic-lanterns.md) Dusknoir and Froslass put counters straight onto your "untouchable" Bench. Against those decks the fortress has no walls, so win fast instead of slow.

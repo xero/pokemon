@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
 
-DARK = {  # dark.md, Xero's Gengar Gang
+DARK = {  # dark-classic.md, Gengar Gang Classic
     "me03-perfect-order/gastly",
     "me02-phantasmal-flames/haunter-055-094",
     "me03-perfect-order/gengar",

@@ -19,10 +19,12 @@ them on a page you carry into a shop turns a 25-card errand into a 71-card
 one. wanted-cards.tsv keeps the reason each card was added; cards.csv does not
 carry it, which is why quantity alone cannot tell the two apart.
 
-Need sums across decks rather than taking the highest. Four Poffin in one deck
-and four in another is eight cards, because both decks stay sleeved and get
-played against each other; taking the max would be right only if the copies
-moved between them.
+Need is the largest ask on each side of the table, added. We each sleeve one
+deck at a time, so two of Xero's decks asking for four Poffin need four, and
+the copies move between them. A Fox deck asking for four too makes eight,
+because his deck and Xero's get sleeved on the same night and played against
+each other. Summing every deck was the rule when there were two starter decks;
+with a dozen buy blocks it asked for 329 copies of what was really 89.
 
 Shares its data shaping with build_html.py by importing it is deliberately not
 done, for the same reason that file gives: importing it writes a page.
@@ -38,6 +40,20 @@ from pokelib import (CREDITS_NOTE, RARITY_SLUG, anchor, card_art, cards,
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
 DEST = ROOT / "wishlist.html"
+
+# which side of the table a deck sits on. Fox's decks are listed; every other
+# deck is Xero's. a new Fox deck with a buy block belongs here, or its asks
+# share copies with Xero's decks instead of adding to them.
+FOX = {"fire.md", "fire-tournament.md", "eevee-standard.md", "rocket-mewtwo.md",
+       "metal-excadrill.md", "steel-wolves.md"}
+
+
+def need_of(per):
+    """Copies needed, from {md: need}: the largest ask on each side, added."""
+    fox = [n for md, n in per.items() if md in FOX]
+    xero = [n for md, n in per.items() if md not in FOX]
+    return max(fox, default=0) + max(xero, default=0)
+
 
 TITLE = "Pull List"
 
@@ -124,7 +140,7 @@ def buy_blocks():
                     missing.append((query, where, need, note, md))
                     continue
                 k = key(r)
-                # one file asking twice is one ask; across files they add up
+                # one file asking twice is one ask; need_of() combines files
                 per = wants.setdefault(k, {})
                 per[md] = max(per.get(md, 0), want)
                 if note:
@@ -181,7 +197,7 @@ def tags(r):
 wants, notes, missing = buy_blocks()
 by_key = {key(r): r for r in cards()}
 
-need = {k: sum(v.values()) for k, v in wants.items()}
+need = {k: need_of(v) for k, v in wants.items()}
 own = {k: int(r["quantity"] or 0) for k, r in by_key.items()}
 buy = {k: max(0, n - own.get(k, 0)) for k, n in need.items()}
 
@@ -258,10 +274,11 @@ notes_out = [
     " candidates into the pipeline to be read and compared. The reason each"
     " one was added lives in the note column of"
     " <code>wanted-cards.tsv</code>.</p>",
-    "\t\t\t\t<p><b>Need adds up across decks.</b> Four of a card in one deck"
-    " and four in another is eight, because both decks stay sleeved and get"
-    " played against each other. It is not a mistake that a shared staple"
-    " wants more copies than any one list does.</p>",
+    "\t\t\t\t<p><b>Need is one deck per player.</b> Xero sleeves one of his"
+    " decks and Fox sleeves one of his, so four of a card in two of Xero's"
+    " decks is four, not eight. A card both of us run adds up: four in"
+    " Xero's deck and four in Fox's is eight, because those two decks get"
+    " sleeved on the same night.</p>",
     "\t\t\t</aside>",
 ]
 

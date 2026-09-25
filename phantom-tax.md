@@ -1,4 +1,4 @@
-# Xero's Phantom Tax
+# Phantom Tax
 
 ### Two Megas split one toll booth · the Phantom Toll rebuild, tuned on the TCG Live ladder · v3.1
 
@@ -481,7 +481,7 @@ The honest summary: this deck trades the lanterns' best-case consistency for cov
 
 **[Fox's Sun and Moon](./eevee-standard.md).** The matchup the lanterns lose is the matchup this deck is for. *Moon Mirage* doubles into every Psychic ghost and lands neutral on Mega Gengar, so the Dark wall leads, the lanterns work from the Bench, and the toll prices his pivots. Still a real fight; no longer a forfeit.
 
-**[Xero's dark decks](./dark.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever's wall commits first loses the information war.
+**[Xero's dark decks](./dark-classic.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever's wall commits first loses the information war.
 
 ---
 
@@ -543,7 +543,7 @@ The list is a hypothesis; games are the data. Symptoms and their fixes:
 | Nobody in your rooms places counters | Mystery Garden, Mega Evolution 122, over the second Battle Cage: discard an Energy from hand, draw to your Psychic count, then Patch the Energy back. |
 | Gengar never comes online | A second Haunter, Perfect Order 049, over the third Wondrous Patch. |
 | Froslass rooms still snipe | A second Munkidori over the Fezandipiti. |
-| Single-prize rooms keep winning | Sleeve [the Gang](./dark.md) for that room; this deck's answer is knowing when not to play it. |
+| Single-prize rooms keep winning | Sleeve [the Gang](./dark-classic.md) for that room; this deck's answer is knowing when not to play it. |
 
 ---
 

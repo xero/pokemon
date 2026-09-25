@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Crystal Dragons</title>
+		<title>Crystal Dragons</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Xero's Crystal Dragons <img data-mascot src="./assets/sprites/giratina-origin.gif" alt="" /> <img data-mascot src="./assets/sprites/clefairy.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Crystal Dragons <img data-mascot src="./assets/sprites/giratina-origin.gif" alt="" /> <img data-mascot src="./assets/sprites/clefairy.gif" alt="" /></h1>
 				<p>Tournament · Phantom Dive for one Energy, four Drakloaks drawing every turn, and a Fairy Zone for the mirror</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1709,14 +1720,14 @@
 				</section>
 				<section>
 					<p>The draw Supporter, at the full four. Shuffle your hand into your deck and draw 6, or 8 while all six of your Prizes are still up. Four Recons a turn make every Lillie&#x27;s better, because the deck you shuffle into has already had its worst cards sent to the bottom. Play the Items first; what they find changes whether you want to shuffle.</p>
-					<p>Full entry in <a href="./dark.html#lillies-determination">Gengar Gang</a>.</p>
+					<p>Full entry in <a href="./dark-classic.html#lillies-determination">Gengar Gang Classic</a>.</p>
 				</section>
 			</article>
 			<article>
 				<h3 id="bosss-orders-ghetsis">Boss&#x27;s Orders [Ghetsis]</h3>
 				<section>
 					<p>The gust, at three. Switch in one of their Benched Pokémon to the Active Spot. Three because the deck has no Prime Catcher, and because the Dive&#x27;s counters make Boss&#x27;s Orders into a Prize every time: the target that took sixty last turn is the target you drag up and finish. Against a Dragapult, Boss their Clefairy before it Rondos you. Against the counter decks, Boss the Duskull before it becomes thirteen counters.</p>
-					<p>Full entry in <a href="./dark.html#bosss-orders-ghetsis">Gengar Gang</a>.</p>
+					<p>Full entry in <a href="./dark-classic.html#bosss-orders-ghetsis">Gengar Gang Classic</a>.</p>
 				</section>
 			</article>
 			<article>
@@ -1754,7 +1765,7 @@
 				</section>
 				<section>
 					<p>Search your deck for a Basic, a Stage 1, and a Stage 2, and put them into your hand. Here that is <strong>Dreepy, Drakloak, and Dragapult ex in one card</strong>, the entire line. One copy, because the four Poke Pad already do the Drakloak half and the turn-two Dawn is usually the turn you would rather Lillie&#x27;s. It is the Supporter that turns a hand with no line into a board.</p>
-					<p>Full entry in <a href="./dark.html#dawn">Gengar Gang</a>.</p>
+					<p>Full entry in <a href="./dark-classic.html#dawn">Gengar Gang Classic</a>.</p>
 				</section>
 			</article>
 			<article>
@@ -1832,7 +1843,7 @@
 				</section>
 				<section>
 					<p>Search your deck for up to two Basic Pokémon with 70 HP or less and put them onto your Bench. Dreepy is 70, Mimikyu is 60, Budew is 30. Four copies. Turn one wants Poffin first, for two Dreepy; the second Poffin gets the third Dreepy and the Budew or Mimikyu the matchup wants. Munkidori at 110 and every ex here are out of range, and that is what Ultra Ball is for.</p>
-					<p>Full entry in <a href="./dark.html#buddy-buddy-poffin">Gengar Gang</a>.</p>
+					<p>Full entry in <a href="./dark-classic.html#buddy-buddy-poffin">Gengar Gang Classic</a>.</p>
 				</section>
 			</article>
 			<article>
@@ -1869,7 +1880,7 @@
 				</section>
 				<section>
 					<p>Put a Pokémon or a Basic Energy card from your discard pile into your hand. Two copies. The priority: a Knocked Out Dragapult ex first, a Drakloak second, a Basic Energy third when the Ultra Balls pitched too many. Nothing here is Special Energy, so every Energy in the discard is a legal target.</p>
-					<p>Full entry in <a href="./dark.html#night-stretcher">Gengar Gang</a>.</p>
+					<p>Full entry in <a href="./dark-classic.html#night-stretcher">Gengar Gang Classic</a>.</p>
 				</section>
 			</article>
 			<article>
@@ -1968,7 +1979,7 @@
 				<section>
 					<p>Whenever any player puts a Basic non-Darkness Pokémon onto their Bench, place two damage counters on it. One copy, and it cuts both ways on purpose. On their side it turns every 70 HP Basic into a one-Dive Bench kill and every 90 into a Dive-plus-Mind-Bend kill. On yours it puts twenty on each Dreepy, Clefairy, Meowth, Budew, and Mimikyu you bench, which is exactly the ammunition Adrena-Brain moves back across the table. Fezandipiti is Darkness and takes nothing.</p>
 					<p>One rather than the stock list&#x27;s two because the two Area Zero already fight the Stadium war, and three Stadiums plus a Tool is enough cards that do nothing in hand.</p>
-					<p>Full entry in <a href="./dark.html#risky-ruins">Gengar Gang</a>.</p>
+					<p>Full entry in <a href="./dark-classic.html#risky-ruins">Gengar Gang Classic</a>.</p>
 				</section>
 			</article>
 			<h2 id="energy">Energy</h2>

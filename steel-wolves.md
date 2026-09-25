@@ -1,4 +1,4 @@
-# Fox's Steel Wolves
+# Steel Wolves
 
 ### A tournament-legal 60 for TCG Live, built on Hop's Zacian ex with a shield dog and a steel engine behind it
 

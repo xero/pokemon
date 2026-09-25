@@ -1,11 +1,11 @@
-# Fox's Hostile Takeover
+# Hostile Takeover
 
 ### Fox's tournament 60 · Team Rocket's Mewtwo ex, powered by a Spidops payroll
 
 > [!NOTE]
 > **What this file is for.**
 >
-> Fox's registered deck for the [Worlds Celebration at CARDCRATE](./worlds-celebration.md), Junior division, and still the house deck for game night. Built out of the Team Rocket's Mewtwo ex League Battle Deck plus loose singles already in the collection — nothing of it is in the mail, and nothing is borrowed from the fire, fighting, or eevee decks, so all four stay sleeved. The only card that moves with Dad's deck choice is the ACE SPEC; the warning under the deck list carries that table.
+> Fox's registered deck for the Worlds Celebration at CARDCRATE, Junior division, and still the house deck for game night. Built out of the Team Rocket's Mewtwo ex League Battle Deck plus loose singles already in the collection — nothing of it is in the mail, and nothing is borrowed from the fire, fighting, or eevee decks, so all four stay sleeved. The only card that moves with Dad's deck choice is the ACE SPEC; the warning under the deck list carries that table.
 >
 > Every Pokémon in it is a Team Rocket's card. That is not a theme choice. Two cards in the list read the words "Team Rocket's Pokémon" and pay you for going all the way.
 
@@ -99,7 +99,7 @@ Three things fall out of building it this way.
 **Basics: 12** (3 Mewtwo ex, 3 Tarountula, 2 Zubat, 2 Koffing, 1 Wobbuffet, 1 Articuno). That is roughly a 19% mulligan rate, and every one of the twelve counts toward *Power Saver*. The nine-Basic list this replaced claimed the 75-85% no-mulligan band and actually sat at 70%; the Koffing pair and the Wobbuffet are what closed that gap, taking the slots the Petrel, the second Rare Candy, and a fourth Transceiver the hand count never found used to hold.
 
 > [!WARNING]
-> **The ACE SPEC slot follows Dad's deck choice.** Scramble Switch is the default: Mewtwo ex retreats for three, the single worst number in this deck, and Scramble Switch moves the Energy along with the body. But the house owns one copy and [the Gang](./dark.md) sleeves it too, so the slot resolves per branch:
+> **The ACE SPEC slot follows Dad's deck choice.** Scramble Switch is the default: Mewtwo ex retreats for three, the single worst number in this deck, and Scramble Switch moves the Energy along with the body. But the house owns one copy and [the Gang](./dark-classic.md) sleeves it too, so the slot resolves per branch:
 >
 > | The night | This slot holds |
 > | :--- | :--- |

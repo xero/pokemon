@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Phantom Ferry</title>
+		<title>Phantom Ferry</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Xero's Phantom Ferry <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Phantom Ferry <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /> <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /></h1>
 				<p>Gengar carries, Chandelure collects · the paper build for the card shop · v6</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -2187,7 +2198,7 @@ Energy: 11
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
 					<p><strong><a href="./eevee-standard.html">Fox&#x27;s Rainbow Eevee</a>.</strong> The shop notes above hold at home too, and at home he picks his deck after you name yours. When you say Ferry, expect Umbreon.</p>
 					<p><strong><a href="./rocket-mewtwo.html">Fox&#x27;s Team Rocket&#x27;s Mewtwo</a>.</strong> Mewtwo ex is Psychic, Darkness-weak, and 280 HP. Void Gale lands 460 and Chain-Crazed 520. His board is ex-heavy, so Concealment runs all game. Crobat ex&#x27;s _Assassin&#x27;s Return_ at 240 doubles into a lantern, so the Psychic ghosts stay benched when Crobat is loaded.</p>
-					<p><strong><a href="./dark.html">Xero&#x27;s dark decks</a>.</strong> Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and Seviper&#x27;s 240 kills a Poisoned Okidogi exactly. House rule of thumb: whoever&#x27;s wall commits first loses the information war.</p>
+					<p><strong><a href="./dark-classic.html">Xero&#x27;s dark decks</a>.</strong> Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and Seviper&#x27;s 240 kills a Poisoned Okidogi exactly. House rule of thumb: whoever&#x27;s wall commits first loses the information war.</p>
 			</section>
 			<section>
 				<h3 id="cards-that-look-right-skip-them">✗ Cards That Look Right, Skip Them<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
@@ -2243,25 +2254,25 @@ Energy: 11
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Gastly <small>ME03: Perfect Order 048/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>Surprise Attack; the Gang runs the same print</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Haunter <small>ME03: Perfect Order 049/088</small></span></td><td>2</td><td>1</td><td>✓</td><td>Haunt; the Candy insurance</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Mega Gengar ex <small>ME02: Phantasmal Flames 056/094</small></span></td><td>3</td><td>2</td><td>✓</td><td>Snake Charmer sleeves the owned 3</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Okidogi ex <small>SV: Shrouded Fable 036/064</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the no-Ability attacker; NOT the 082 or 090 illustration prints</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Okidogi ex <small>SV: Shrouded Fable 036/064</small></span></td><td>3</td><td>2</td><td>✓</td><td>the no-Ability attacker; NOT the 082 or 090 illustration prints</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>3</td><td>✓</td><td></td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared; printed Boss&#x27;s Orders [Ghetsis]</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Crispin <small>SV07: Stellar Crown 133/142</small></span></td><td>4</td><td>2</td><td>✓</td><td>the two-color accelerator</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Hilda <small>SV: White Flare 084/086</small></span></td><td>7</td><td>2</td><td>✓</td><td>shared; an Evolution and its Energy to hand</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Petrel <small>SV10: Destined Rivals 176/182</small></span></td><td>1</td><td>2</td><td><strong>1</strong></td><td>the second copy of every one-of</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>AZ&#x27;s Tranquility <small>ME04: Chaos Rising 076/086</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>switch, cure, and heal 80</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Petrel <small>SV10: Destined Rivals 176/182</small></span></td><td>2</td><td>2</td><td>✓</td><td>the second copy of every one-of</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>AZ&#x27;s Tranquility <small>ME04: Chaos Rising 076/086</small></span></td><td>1</td><td>1</td><td>✓</td><td>switch, cure, and heal 80</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>3</td><td>✓</td><td>shared</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>1</td><td>✓</td><td>shared; the Item that finds a Mega or the dog</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>five Energy back into the deck</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>2</td><td>1</td><td>✓</td><td>five Energy back into the deck</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared; the only recovery for a Mega</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Prime Catcher <small>SV05: Temporal Forces 157/162</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC; the TEF print</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Air Balloon <small>ME: Ascended Heroes 181/217</small></span></td><td>2</td><td>2</td><td>✓</td><td>one per Mega, on the hitter first</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Battle Cage <small>ME02: Phantasmal Flames 085/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>the Stadium; Cage first against Dragapult</td></tr>
 							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>5</td><td>✓</td><td>never rotates</td></tr>
 							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>6</td><td>✓</td><td>shared; two dogs eat six</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>5</strong></td><td></td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>0</strong></td><td></td></tr>
 						</tbody>
 					</table>
 			<aside data-callout="note">

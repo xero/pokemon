@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Smog Signals</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			/* a collapsed section, which is how What To Buy ships: the
+			   summary is the handle, so it carries the pointer and its own
+			   marker, and the h3 inside keeps the same face as every other
+			   section heading. */
+			> details {
+				> summary {
+					display: flex;
+					align-items: center;
+					gap: 0.4em;
+					cursor: pointer;
+
+					&::before {
+						content: "▶";
+						font-size: 0.7em;
+					}
+
+					h3 {
+						flex: 1;
+						display: flex;
+						flex-flow: row wrap;
+						align-items: center;
+						gap: 0.4em;
+						font-size: var(--text-lg);
+						scroll-margin-top: var(--pad);
+					}
+				}
+
+				&[open] > summary::before {
+					content: "▼";
+				}
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
+				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a closed What To Buy is a shopping list, and the shopping list is
+		   the single most likely reason this page meets a printer. force the
+		   contents onto the paper whether or not it was opened on screen. */
+		main details:not([open])::details-content {
+			content-visibility: visible;
+		}
+
+		main details:not([open]) > * {
+			display: block;
+		}
+
+		main details summary::before {
+			content: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Smog Signals <img data-mascot src="./assets/sprites/koffing.gif" alt="" /> <img data-mascot src="./assets/sprites/weezing.gif" alt="" /></h1>
+				<p>Game night hybrid, build 2 · every Pokémon is a Koffing or a Weezing, and none of them are ex</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#why-each-package-is-here">Why Each Package Is Here</a></li>
+			<li><a href="#key-card-text">Key Card Text</a></li>
+			<li><a href="#damage-math">Damage Math</a></li>
+			<li><a href="#the-prize-map">The Prize Map</a></li>
+			<li><a href="#game-plans">Game Plans</a></li>
+			<li><a href="#versus-the-table">Versus The Table</a></li>
+			<li><a href="#the-hole-in-it">The Hole In It</a></li>
+			<li><a href="#what-to-buy">What To Buy</a></li>
+			<li><a href="#test-and-tune">Test And Tune</a></li>
+		</ul>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>The second game night deck, built for the case where you do not know what Fox is bringing. <a href="./dark-rocket.html">Shadow Syndicate</a> leans on <em>Shadowy Concealment</em>, which is blank unless he attacks with Pokémon ex. This deck does not have that problem, because it does not have that card.</p>
+				<p>No Mega Gengar ex. No Pokémon ex at all. Nothing in here has a Rule Box. It hybridizes the Team Rocket engine with the Koffing and Weezing half of <a href="./dark-classic.html">Gengar Gang Classic</a> instead of the Gengar half.</p>
+			</aside>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
+					<p><strong>One attack scales off your own board, and every card in the deck is a legal target for it.</strong></p>
+					<p>Team Rocket&#x27;s Weezing does 40 damage for each Pokémon in play with &quot;Koffing&quot; or &quot;Weezing&quot; in its name, counting both sides of the table. Eighteen of the eighteen Pokémon in this deck qualify, including itself. A full board is 240 damage for two Energy.</p>
+					<p>Three cards turn that from a cute number into an engine.</p>
+					<p><strong>Galarian Weezing makes it cost one card.</strong> <em>Energy Factory</em> means every basic Darkness Energy attached to a Pokémon with &quot;Weezing&quot; in its name provides two Darkness. One Energy pays for the whole attack, and it pays for plain Weezing&#x27;s 170 too.</p>
+					<p><strong>Team Rocket&#x27;s Koffing rebuilds the board when it dies.</strong> <em>Smog Signals</em> fires when it is damaged in the Active Spot, even on the hit that knocks it out, and searches two more Koffing onto your Bench. Killing your Active raises your damage count.</p>
+					<p><strong>Gwynn turns spare Koffing into cards.</strong> Discard up to two Pokémon without a Rule Box and draw three for each. Every Pokémon here qualifies, and Night Stretcher brings back whatever you needed.</p>
+					<p>The strategic point is simpler than the combo. Fox needs six knockouts to win this game no matter what he brings, because you never give up more than one Prize. If he plays ex style, he needs six kills while you need two or three. If he plays single-prize, you are even on trade and ahead on damage.</p>
+			<aside data-callout="important">
+				<p><strong>This deck does not care which Fox shows up.</strong> That is the whole reason it exists. Build <a href="./dark-rocket.html">Shadow Syndicate</a> when you know he is on ex, and build this when you do not.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#team-rockets-koffing"><img src="./assets/632933_team-rockets-koffing.jpg" alt="Team Rocket&#x27;s Koffing" /><span data-count>x4</span></a></figure>
+				<figure><img src="./assets/623518_koffing.jpg" alt="Koffing" /><span data-count>x4</span></figure>
+				<figure><a href="#team-rockets-weezing"><img src="./assets/632934_team-rockets-weezing-126-182.jpg" alt="Team Rocket&#x27;s Weezing" /><span data-count>x4</span></a></figure>
+				<figure><a href="#weezing-journey-together-i"><img src="./assets/623519_weezing.jpg" alt="Weezing" /><span data-count>x2</span></a></figure>
+				<figure><a href="#galarian-weezing-chilling-reign-e"><img src="./assets/241765_galarian-weezing.jpg" alt="Galarian Weezing" /><span data-count>x2</span></a></figure>
+				<figure><a href="#galarian-weezing-chilling-reign-e"><img src="./assets/232505_galarian-weezing.jpg" alt="Galarian Weezing" /></a></figure>
+				<figure><a href="#weezing-journey-together-i"><img src="./assets/516680_weezing.jpg" alt="Weezing" /></a></figure>
+				<figure><a href="#gwynn"><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /><span data-count>x4</span></a></figure>
+				<figure><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632977_team-rockets-proton-177-182.jpg" alt="Team Rocket&#x27;s Proton" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></figure>
+				<figure><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/208489_evolution-incense.jpg" alt="Evolution Incense" /><span data-count>x4</span></figure>
+				<figure><img src="./assets/534446_nest-ball.jpg" alt="Nest Ball" /><span data-count>x3</span></figure>
+				<figure><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></figure>
+				<figure><a href="#dark-bell"><img src="./assets/704832_dark-bell-075-084.jpg" alt="Dark Bell" /><span data-count>x2</span></a></figure>
+				<figure><a href="#prime-catcher"><img src="./assets/542674_prime-catcher.jpg" alt="Prime Catcher" /></a></figure>
+				<figure><img src="./assets/660419_punk-helmet.jpg" alt="Punk Helmet" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/654466_risky-ruins.jpg" alt="Risky Ruins" /><span data-count>x2</span></figure>
+				<figure><img src="./assets/656269_basic-darkness-energy-007.jpg" alt="Basic Darkness Energy" /><span data-count>x8</span></figure>
+				<figure><img src="./assets/632982_team-rockets-energy.jpg" alt="Team Rocket&#x27;s Energy" /><span data-count>x2</span></figure>
+			</article>
+					<p><strong>Pokémon (18)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Team Rocket&#x27;s Koffing</td><td>Destined Rivals</td><td>125</td><td>I</td></tr>
+							<tr><td>4</td><td>Koffing</td><td>Journey Together</td><td>091</td><td>I</td></tr>
+							<tr><td>4</td><td>Team Rocket&#x27;s Weezing</td><td>Destined Rivals</td><td>126</td><td>I</td></tr>
+							<tr><td>2</td><td>Weezing</td><td>Journey Together</td><td>092</td><td>I</td></tr>
+							<tr><td>2</td><td>Galarian Weezing</td><td>Chilling Reign</td><td>096</td><td>E</td></tr>
+							<tr><td>1</td><td>Galarian Weezing</td><td>Shining Fates</td><td>042</td><td>D</td></tr>
+							<tr><td>1</td><td>Weezing</td><td>Scarlet &amp; Violet 151</td><td>110</td><td>G</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (32)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Gwynn</td><td>Supporter</td><td>Pitch Black</td><td>078</td><td>J</td></tr>
+							<tr><td>3</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>2</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Proton</td><td>Supporter</td><td>Destined Rivals</td><td>177</td><td>I</td></tr>
+							<tr><td>1</td><td>Team Rocket&#x27;s Petrel</td><td>Supporter</td><td>Destined Rivals</td><td>176</td><td>I</td></tr>
+							<tr><td>4</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>4</td><td>Evolution Incense</td><td>Item</td><td>Sword &amp; Shield</td><td>163</td><td>D</td></tr>
+							<tr><td>3</td><td>Nest Ball</td><td>Item</td><td>Paldean Fates</td><td>084</td><td>G</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>2</td><td>Dark Bell</td><td>Item</td><td>Pitch Black</td><td>075</td><td>J</td></tr>
+							<tr><td>1</td><td>Prime Catcher</td><td>Item</td><td>Temporal Forces</td><td>157</td><td>H</td></tr>
+							<tr><td>2</td><td>Punk Helmet</td><td>Tool</td><td>Phantasmal Flames</td><td>092</td><td>I</td></tr>
+							<tr><td>2</td><td>Risky Ruins</td><td>Stadium</td><td>Mega Evolution</td><td>127</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (10)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>8</td><td>Basic Darkness Energy</td><td>Mega Evolution Energies</td><td>007</td><td>-</td></tr>
+							<tr><td>2</td><td>Team Rocket&#x27;s Energy</td><td>Destined Rivals</td><td>182</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>18 + 32 + 10 = 60.</strong> ✓</p>
+					<p><strong>Basics: 8</strong> (4 Team Rocket&#x27;s Koffing, 4 Koffing). Both sit under 70 HP, so Buddy-Buddy Poffin fetches either one, two at a time. All eight are Darkness, which matters for the Stadium.</p>
+			<aside data-callout="warning">
+				<p><strong>Prime Catcher is this deck&#x27;s one ACE SPEC.</strong> You own the Japanese copy from the MEGA Starter Set, so it costs nothing. Scramble Switch or Legacy Energy could take the slot, but never two of them.</p>
+			</aside>
+			<aside data-callout="note">
+				<p><strong>Regulation marks D through J.</strong> This is a kitchen table deck and it is not Standard legal. Galarian Weezing, Evolution Incense, and Nest Ball all rotated. That is fine here and it is deliberate; the two Galarian Weezing are the reason this deck works.</p>
+			</aside>
+			</section>
+			<section>
+				<h3 id="why-each-package-is-here">Why Each Package Is Here</h3>
+					<p><strong>Main attacker.</strong> 4 Team Rocket&#x27;s Weezing. The 40x. It evolves only from Team Rocket&#x27;s Koffing, so the Basic count is split for it.</p>
+					<p><strong>The Basics.</strong> 4 Team Rocket&#x27;s Koffing and 4 Koffing. The Team Rocket ones feed the main attacker and carry <em>Smog Signals</em>; the plain ones feed everything else. Eight Basics is a slightly high mulligan rate for the format, and the fix is not more Basics, it is Poffin.</p>
+					<p><strong>Energy engine.</strong> 2 Galarian Weezing from Chilling Reign. <em>Energy Factory</em> halves every attack cost in the deck and works from the Bench.</p>
+					<p><strong>Ability lock.</strong> 1 Galarian Weezing from Shining Fates. <em>Neutralizing Gas</em> switches off every Ability your opponent has while it is Active, and it says &quot;your opponent&#x27;s,&quot; so <em>Energy Factory</em> keeps running.</p>
+					<p><strong>Second attacker.</strong> 2 Weezing from Journey Together. <em>Pervasive Gas</em> confuses, then <em>Crazy Blast</em> hits 170 for one Energy under <em>Energy Factory</em>. Use it when the board is too thin for the 40x to be worth it.</p>
+					<p><strong>Retaliation.</strong> 1 Weezing from 151. <em>Let&#x27;s Have a Blast</em> is a coin flip to knock out whatever killed it, and <em>Spinning Fumes</em> puts 10 on their whole Bench. A one-of on purpose.</p>
+					<p><strong>Draw.</strong> 4 Gwynn is the engine, because a hand full of spare Koffing converts to six cards. 3 Lillie&#x27;s Determination is the reset.</p>
+					<p><strong>Search.</strong> 4 Buddy-Buddy Poffin and 3 Nest Ball for Basics, 4 Evolution Incense for any Weezing. No Ultra Ball at all, which means no discard tax on a deck that wants its Pokémon in play rather than in the bin.</p>
+					<p><strong>Gust.</strong> 2 Boss&#x27;s Orders and the Prime Catcher. The 40x does fixed damage regardless of what is Active, so dragging up a 60 HP support Pokémon is a free Prize.</p>
+					<p><strong>Setup.</strong> 2 Team Rocket&#x27;s Proton, the only Supporter here you may play on your first turn going first, fetching three Team Rocket&#x27;s Koffing. 1 Team Rocket&#x27;s Petrel finds any Trainer, which in practice means the Prime Catcher or a Stadium.</p>
+					<p><strong>Recovery.</strong> 2 Night Stretcher, which retrieves both the Pokémon Gwynn discarded and basic Darkness Energy.</p>
+					<p><strong>Disruption.</strong> 2 Dark Bell confuses both Active non-Darkness Pokémon. Every Pokémon in this deck is Darkness, so it only ever hits theirs.</p>
+					<p><strong>Tool.</strong> 2 Punk Helmet. 4 damage counters back at anything that attacks your Active Darkness Pokémon, and it still fires on the knockout.</p>
+					<p><strong>Stadium.</strong> 2 Risky Ruins. All eight of your Basics are Darkness and therefore exempt, so this taxes their Bench and never yours.</p>
+			</section>
+			<section>
+				<h3 id="key-card-text">Key Card Text</h3>
+			<article>
+				<h3 id="team-rockets-weezing">Team Rocket&#x27;s Weezing<span data-count>x4</span><span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632934_team-rockets-weezing-126-182.jpg" target="_blank" rel="noopener"><img src="./assets/632934_team-rockets-weezing-126-182.jpg" alt="Team Rocket&#x27;s Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>126/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Explode Together Now (40x) - This attack does 40 damage for each Pokémon in play that has &quot;Koffing&quot; or &quot;Weezing&quot; in its name (both yours and your opponent&#x27;s).</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>130 HP, Stage 1, evolves from Team Rocket&#x27;s Koffing only.</p>
+					<ul>
+						<li><strong><em>Explode Together Now</em></strong> <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 40x. 40 damage for each Pokémon in play with &quot;Koffing&quot; or &quot;Weezing&quot; in its name, both yours and your opponent&#x27;s. It counts itself.</li>
+					</ul>
+					<p>Two things follow from the wording. Bench bodies count, so filling your Bench is the same action as raising your damage. And your opponent&#x27;s count too, which never comes up against Fox but is worth knowing.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="galarian-weezing-chilling-reign-e">Galarian Weezing (Chilling Reign · E)<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/241765_galarian-weezing.jpg" target="_blank" rel="noopener"><img src="./assets/241765_galarian-weezing.jpg" alt="Galarian Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>SWSH06: Chilling Reign <small>096/198</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Energy Factory - Each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide Darkness Darkness Energy. You can&#x27;t apply more than 1 Energy Factory Ability at a time.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out (Reg E)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Suffocating Gas (50)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Energy Factory</em></strong> makes each basic Darkness Energy attached to your Pokémon that have &quot;Weezing&quot; in their name provide two Darkness. You cannot apply more than one at a time, so the second copy is insurance, not a doubling.</p>
+					<p>Read the name clause carefully. It boosts Team Rocket&#x27;s Weezing, plain Weezing, and Galarian Weezing itself. It does nothing for a Koffing.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="galarian-weezing-shining-fates-d">Galarian Weezing (Shining Fates · D)<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/232505_galarian-weezing.jpg" target="_blank" rel="noopener"><img src="./assets/232505_galarian-weezing.jpg" alt="Galarian Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shining-fates.png" /><img src="./assets/sets/shining-fates.png" alt="Shining Fates" /></picture></span><span>Shining Fates <small>042/072</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Holo Rare" /></picture></span><span>Holo Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Neutralizing Gas - As long as this Pokémon is in the Active Spot, your opponent&#x27;s Pokémon in play have no Abilities, except for Neutralizing Gas.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out (Reg D)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Severe Poison - Your opponent&#x27;s Active Pokémon is now Poisoned. Put 4 damage counters instead of 1 on that Pokémon during Pokémon Checkup.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Neutralizing Gas</em></strong> turns off every Ability your opponent has in play, for as long as this is your Active Pokémon. Your own Abilities are untouched.</p>
+					<ul>
+						<li><strong><em>Severe Poison</em></strong> <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> poisons for 4 damage counters per Pokémon Checkup instead of 1. That is 40 a turn from a one-Energy attack.</li>
+					</ul>
+					<p>Retreat is 3, so committing to this is a decision, not a pivot. Bring it up when his deck is doing something you need to stop, and accept the turn you spend not attacking.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-koffing">Team Rocket&#x27;s Koffing<span data-count>x4</span><span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/632933_team-rockets-koffing.jpg" target="_blank" rel="noopener"><img src="./assets/632933_team-rockets-koffing.jpg" alt="Team Rocket&#x27;s Koffing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>125/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Smog Signals - If this Pokémon is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), search your deck for up to 2 Pokémon that have &quot;Koffing&quot; in their name and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Leaking Gas (30)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong><em>Smog Signals</em></strong> fires when this is Active and takes damage from an attack, explicitly including the attack that knocks it out. Search your deck for up to 2 Pokémon with &quot;Koffing&quot; in their name and put them onto your Bench.</p>
+					<p>This is the card that makes the deck resilient. Fox knocks out your Active for one Prize, and you replace it with two bodies that both add 40 to your next attack.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="weezing-journey-together-i">Weezing (Journey Together · I)<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/623519_weezing.jpg" target="_blank" rel="noopener"><img src="./assets/623519_weezing.jpg" alt="Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>SV09: Journey Together <small>092/159</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Pervasive Gas (30) - Your opponent’s Active Pokémon is now Confused.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Crazy Blast (50+) - If this Pokémon used Pervasive Gas during your last turn, this attack does 120 more damage.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<ul>
+						<li><strong><em>Pervasive Gas</em></strong> <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span> for 30, and confuses.</li>
+						<li><strong><em>Crazy Blast</em></strong> <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/darkness.png" alt="Darkness" /></span> for 50, or <strong>170</strong> if this Pokémon used <em>Pervasive Gas</em> on your last turn.</li>
+					</ul>
+					<p>Under <em>Energy Factory</em> both attacks cost one card. The two turn sequence is worth it when your board is small; once you have five bodies out, the 40x beats it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="weezing-scarlet-violet-151-g">Weezing (Scarlet &amp; Violet 151 · G)<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/516680_weezing.jpg" target="_blank" rel="noopener"><img src="./assets/516680_weezing.jpg" alt="Weezing" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/151.png" /><img src="./assets/sets/151.png" alt="SV: Scarlet &amp; Violet 151" /></picture></span><span>SV: Scarlet &amp; Violet 151 <small>110/165</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Let&#x27;s Have a Blast - If this Pokémon is in the Active Spot and is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>rotated out (Reg G)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Spinning Fumes (50) - This attack also does 10 damage to each of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<ul>
+						<li><strong><em>Let&#x27;s Have a Blast</em></strong> flips a coin when this is knocked out in the Active Spot, and on heads the attacking Pokémon is knocked out too.</li>
+						<li><strong><em>Spinning Fumes</em></strong> <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 50, plus 10 to each of their Benched Pokémon.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="gwynn">Gwynn<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/704835_gwynn-078-084.jpg" target="_blank" rel="noopener"><img src="./assets/704835_gwynn-078-084.jpg" alt="Gwynn" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>078/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Discard up to 2 Pokémon that don&#x27;t have a Rule Box from your hand, and draw 3 cards for each card you discarded in this way. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Discard up to 2 Pokémon without a Rule Box from your hand and draw 3 for each. This deck has no Rule Boxes at all, so this is always a live draw 6 as long as you are holding two spare Pokémon, which you usually are.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="dark-bell">Dark Bell<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/704832_dark-bell-075-084.jpg" target="_blank" rel="noopener"><img src="./assets/704832_dark-bell-075-084.jpg" alt="Dark Bell" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>ME05: Pitch Black <small>075/084</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Both Active non-Darkness Pokémon are now Confused.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Both Active non-Darkness Pokémon become Confused. Yours never is one, so this is a one-sided Item.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="prime-catcher">Prime Catcher<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/542674_prime-catcher.jpg" target="_blank" rel="noopener"><img src="./assets/542674_prime-catcher.jpg" alt="Prime Catcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>157/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent’s Benched Pokémon to the Active Spot. If you do, switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Gust one of their Benched Pokémon up, then switch your own Active for free. The free switch matters more here than it looks, because Team Rocket&#x27;s Weezing retreats for 2 and Galarian Weezing retreats for 3.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="damage-math">Damage Math</h3>
+					<p><em>Explode Together Now</em> is entirely a function of how many bodies you have out.</p>
+					<dl>
+						<dt data-head>Koffing and Weezing in play</dt><dd data-head>Damage</dd>
+						<dt>3</dt><dd><span>120</span></dd>
+						<dt>4</dt><dd><span>160</span></dd>
+						<dt>5</dt><dd><span>200</span></dd>
+						<dt>6</dt><dd><span><strong>240</strong></span></dd>
+					</dl>
+					<p>You have six slots, one Active and five Bench, and every Pokémon in this deck counts. Six is reachable, not theoretical.</p>
+					<table>
+						<thead><tr><th>Source</th><th>Cost</th><th>Damage</th></tr></thead>
+						<tbody>
+							<tr><td>Team Rocket&#x27;s Weezing, <em>Explode Together Now</em>, full board</td><td>one basic Darkness under <em>Energy Factory</em></td><td>240</td></tr>
+							<tr><td>Weezing, <em>Crazy Blast</em> after <em>Pervasive Gas</em></td><td>one basic Darkness under <em>Energy Factory</em></td><td>170</td></tr>
+							<tr><td>Galarian Weezing, <em>Severe Poison</em></td><td><span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /></span></td><td>40 per Checkup</td></tr>
+							<tr><td>Weezing, <em>Spinning Fumes</em></td><td><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>50, plus 10 to each Benched</td></tr>
+							<tr><td>Punk Helmet</td><td>free</td><td>40 back at the attacker</td></tr>
+							<tr><td>Risky Ruins</td><td>free</td><td>20 per non-Darkness Basic they Bench</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<thead><tr><th>Target</th><th>HP</th><th>The line</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Zygarde ex</td><td>310</td><td>200, then 170 after <em>Gaia Wave</em> reduction. Two turns.</td></tr>
+							<tr><td>Flareon ex</td><td>270</td><td>240 at a full board, plus a Punk Helmet tick or one Risky Ruins trigger.</td></tr>
+							<tr><td>Team Rocket&#x27;s Mewtwo ex</td><td>280</td><td>240 plus 40 from Punk Helmet.</td></tr>
+							<tr><td>Team Rocket&#x27;s Crobat ex</td><td>310</td><td>200 twice, and <em>Smog Signals</em> refills between them.</td></tr>
+							<tr><td>Anything under 170</td><td>-</td><td><em>Crazy Blast</em> on turn three, no board required.</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="the-prize-map">The Prize Map</h3>
+					<p>Every Pokémon in this deck gives up exactly <strong>1 Prize</strong>. There is nothing to calculate on your side of the table, which is the point.</p>
+					<table>
+						<thead><tr><th>His deck</th><th>Prizes per knockout</th><th>Kills he needs</th><th>Kills you need</th></tr></thead>
+						<tbody>
+							<tr><td>Ground Zero, Mega Zygarde ex</td><td>3</td><td>6</td><td><strong>2</strong></td></tr>
+							<tr><td>Team Rocket&#x27;s Mewtwo</td><td>2</td><td>6</td><td><strong>3</strong></td></tr>
+							<tr><td>An all single-prize deck</td><td>1</td><td>6</td><td>6</td></tr>
+						</tbody>
+					</table>
+					<p>Against anything with a Rule Box you are winning by construction, and you get there without a single conditional ability. Against a fair single-prize deck the race is even, and you win it on damage instead, because nothing he owns hits 240 for one Energy.</p>
+			</section>
+			<section>
+				<h3 id="game-plans">Game Plans</h3>
+			<article>
+				<h3 id="1-bench-first-attack-second">1. Bench first, attack second<span data-flavor><img src="./assets/sprites/koffing-shiny.gif" alt="" /></span></h3>
+				<section>
+					<p>The 40x rewards a wide board more than it rewards a fast one. Turn one, Poffin two Koffing. Turn two, Poffin or Nest Ball two more. Do not evolve everything; a Bench full of Koffing counts exactly the same as a Bench full of Weezing for the damage math, and unevolved Koffing are cheaper to lose.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-get-energy-factory-down-early">2. Get Energy Factory down early</h3>
+				<section>
+					<p>Galarian Weezing from Chilling Reign is the difference between attacking on turn two and attacking on turn four. Evolution Incense finds it. Once it is on the Bench, every attack in the deck costs one card, and your ten Energy behave like twenty.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-let-the-active-die">3. Let the Active die</h3>
+				<section>
+					<p>This is the counterintuitive one. When Team Rocket&#x27;s Koffing is Active and takes a hit, <em>Smog Signals</em> gives you two more bodies. Giving up one Prize to add 80 damage to your next attack is a good trade, and it is often the fastest way to a full board.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="4-the-neutralizing-gas-turn">4. The Neutralizing Gas turn<span data-flavor><img src="./assets/sprites/weezing-shiny.gif" alt="" /></span></h3>
+				<section>
+					<p>When his deck is running on an Ability, bring the Shining Fates Galarian Weezing up and turn it off. Poison for 40 a turn while it sits there. Understand what you are paying: retreat 3, and a turn not spent on the 40x. Prime Catcher gets you back out.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="5-crazy-blast-when-the-board-is-thin">5. Crazy Blast when the board is thin</h3>
+				<section>
+					<p>Early, or after he clears your Bench, <em>Pervasive Gas</em> into <em>Crazy Blast</em> is 170 from a two-card board. It does not care how many Weezing you have.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="versus-the-table">Versus The Table</h3>
+			<article>
+				<h3 id="foxs-ground-zero-mega-zygarde-ex">Fox&#x27;s Ground Zero, Mega Zygarde ex<span data-flavor><img src="./assets/sprites/zygarde.gif" alt="" /></span></h3>
+				<section>
+					<p>He needs six knockouts and you need two. <em>Gaia Wave</em> is 200 and doubles against your Fighting weakness, so it kills any of your Pokémon in one hit. It also can only kill one per turn.</p>
+					<p>Punk Helmet is the card that wins this. Every knockout he takes costs him 40, and he has to do it six times. That is 240 back on a 310 HP Pokémon before you have attacked at all. Add Risky Ruins on every Bench drop, and the 200 you hit for twice, and he does not get to six.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="foxs-team-rockets-mewtwo-deck">Fox&#x27;s Team Rocket&#x27;s Mewtwo deck<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+				<section>
+					<p><em>Power Saver</em> needs 4 or more Team Rocket&#x27;s Pokémon in play, and <em>Neutralizing Gas</em> does not stop an attack requirement. What it does stop is everything else his board is doing. <em>Erasure Ball</em> is 160 base and needs him to discard his own Bench Energy to reach 280, which is a real cost against a deck that is happy to keep trading one Prize at a time.</p>
+					<p>Watch for the overlap. If he is playing his Team Rocket cards the same night, you are both drawing Team Rocket&#x27;s Energy, Proton, and the Koffing line out of the same box. Sort that before you sit down.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="a-fair-single-prize-deck">A fair single-prize deck</h3>
+				<section>
+					<p>The trade is even and you win on damage. Nothing in this deck gives him a two or three Prize turn to catch up with, so the game comes down to who hits harder for less Energy, and 240 for one card is a very good answer to that question.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="the-hole-in-it">The Hole In It<span data-flavor><img src="./assets/sprites/wobbuffet-back.gif" alt="" /></span></h3>
+					<p><strong>Everything is Fighting weak.</strong> All eighteen Pokémon are Darkness with Fighting ×2. There is no second weakness the way <a href="./dark-rocket.html">Shadow Syndicate</a> has one, and no tech in the deck answers it.</p>
+					<p>That is a real cost and it is accepted on purpose. The trade is that adding an off-type attacker would take a slot off the board that the 40x counts, so it would cost damage every turn to hedge against one matchup. The single-prize Prize map is the hedge instead.</p>
+					<p><strong>The second real weakness is a slow open.</strong> Eight Basics is at the bottom of the healthy band, and a hand with no Koffing and no Poffin is a lost turn. Proton going first patches this; going second there is nothing to do but mulligan through it.</p>
+			</section>
+			<section>
+				<details>
+					<summary><h3 id="what-to-buy">What To Buy</h3></summary>
+					<p>More than the other deck needs, but all of it commons and uncommons.</p>
+					<table>
+						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
+						<tbody>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Koffing <small>SV10: Destined Rivals 125/182</small></span></td><td>2</td><td>4</td><td><strong>2</strong></td><td>common, the whole main line runs off it</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Weezing <small>SV10: Destined Rivals 126/182</small></span></td><td>2</td><td>4</td><td><strong>2</strong></td><td>uncommon, this is the deck</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>Koffing <small>SV09: Journey Together 091/159</small></span></td><td>3</td><td>4</td><td><strong>1</strong></td><td>common, fourth copy</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chilling-reign.png" /><img src="./assets/sets/chilling-reign.png" alt="SWSH06: Chilling Reign" /></picture></span><span>Galarian Weezing <small>SWSH06: Chilling Reign 096/198</small></span></td><td>1</td><td>2</td><td><strong>1</strong></td><td>the Energy Factory copy, second one is insurance</td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>6</strong></td><td></td></tr>
+						</tbody>
+					</table>
+					<p>Everything else is already in the box, including the Japanese Prime Catcher standing in for the ACE SPEC slot and the single Galarian Weezing from Shining Fates that carries <em>Neutralizing Gas</em>.</p>
+				</details>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test And Tune<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+					<p><strong>The board never gets past four bodies.</strong> If 160 is your ceiling most games, the problem is Bench-filling, not attackers. Go to 4 Nest Ball over 1 Night Stretcher and 1 Dark Bell. The 40x lives and dies on Bench count.</p>
+					<p><strong>Energy Factory is prized or missing.</strong> If you are paying two Energy for everything, add a third Galarian Weezing from Chilling Reign over the 151 Weezing. That drops a fun card for a load-bearing one, which is the right call once you have played five games.</p>
+					<p><strong>Gwynn has nothing to discard.</strong> If it is stuck in hand, you are evolving too eagerly. Hold spare Koffing. If it is still stuck, cut one for a fourth Lillie&#x27;s Determination.</p>
+					<p><strong>Dark Bell is doing nothing.</strong> Confusion is a coin flip and some nights it just loses. Two copies is already the minimum worth playing; if it is dead twice in a row, make them the third and fourth Boss&#x27;s Orders instead.</p>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

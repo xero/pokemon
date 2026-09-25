@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Convert a deck guide from markdown to HTML: dark.md -> dark.html.
+"""Convert a deck guide from markdown to HTML: dark-gang.md -> dark-gang.html.
 
-    python3 build_deck_html.py dark.md fire.md
+    python3 build_deck_html.py dark-gang.md fire.md
 
 Unlike collection.html, these are not generated from cards.csv. The prose in
 them is hand written and is the whole point of the files, so this converts what
@@ -42,7 +42,7 @@ NAV_LABEL = {
 
 # The mascot shown beside each deck's title.
 MASCOT = {"rules.md": ["gengar-hop", "cursed"],
-          "dark.md": ["gengar", "weezing"],
+          "dark-classic.md": ["gengar-smile", "weezing"],
           "fire.md": ["charmander", "charizard"],
           "fire-tournament.md": ["flareon", "noctowl"],
           "dark-curse.md": ["gengar-smile", "gengar-mega"],
@@ -59,13 +59,17 @@ MASCOT = {"rules.md": ["gengar-hop", "cursed"],
           "dragons.md": ["giratina-origin", "clefairy"],
           # the dog is a hand-drawn gif rather than a library sprite; it and
           # the Mega are the two engines
-          "dark-gang.md": ["gengar-smile", "okidogi"],
+          "dark-gang.md": ["gengar", "okidogi"],
           # the legal-Gengar build for the week dark-gang cannot be sleeved;
           # the dogs are the name and the win condition, so they lead here
           "dark-dogs.md": ["gengar-smile", "okidogi"],
           # no Zacian or Zamazenta sprite exists (the library stops before Gen
           # 8), so the deck's other two engines carry the page
-          "steel-wolves.md": ["metagross", "snorlax"]}
+          "steel-wolves.md": ["metagross", "snorlax"],
+          # the two game-night hybrids: each is named for the half of the
+          # Dark Box it keeps alongside the Team Rocket engine
+          "dark-rocket.md": ["gengar-mega", "crobat"],
+          "dark-smog.md": ["koffing", "weezing"]}
 
 # Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
 # exact heading text, so a reworded heading loses its sprite loudly rather than
@@ -215,6 +219,35 @@ FLAVOR = {
         "2. The Off Turn": ["metang"],
         "Versus the Ladder": ["excadrill", "genesect"],
         "Alternatives": ["scizor"],
+    },
+    # Persian is Giovanni's cat, so the boss gets it; Fox's decks in the
+    # table section get their own mascots
+    "dark-rocket.md": {
+        "The Thesis": ["gengar-mega"],
+        "Team Rocket's Crobat ex": ["crobat"],
+        "Team Rocket's Golbat": ["golbat"],
+        "Team Rocket's Zubat": ["zubat"],
+        "Seviper": ["seviper"],
+        "Team Rocket's Giovanni": ["persian"],
+        "The Prize Map": ["gengar-booty"],
+        "5. Sableye is the turn-two attacker": ["sableye"],
+        "Fox's Ground Zero, Mega Zygarde ex": ["zygarde"],
+        "Fox's Team Rocket's Mewtwo deck": ["mewtwo"],
+        "Fox's Flareon ex and Charizard decks": ["flareon", "charizard"],
+        "Test And Tune": ["eevee-back"],
+    },
+    # no Galarian Weezing sprite exists (the library stops before Gen 8), so
+    # the shiny plain Weezing stands in for the other Weezing prints
+    "dark-smog.md": {
+        "The Thesis": ["weezing"],
+        "Team Rocket's Weezing": ["weezing"],
+        "Team Rocket's Koffing": ["koffing"],
+        "1. Bench first, attack second": ["koffing-shiny"],
+        "4. The Neutralizing Gas turn": ["weezing-shiny"],
+        "Fox's Ground Zero, Mega Zygarde ex": ["zygarde"],
+        "Fox's Team Rocket's Mewtwo deck": ["mewtwo"],
+        "The Hole In It": ["wobbuffet-back"],
+        "Test And Tune": ["eevee-back"],
     },
     "dark-curse.md": {
         "Gastly": ["gastly"],
@@ -471,7 +504,7 @@ FLAVOR = {
         "Alternatives": ["scizor", "aggron"],
         "What To Buy": ["drilbur"],
     },
-    "dark.md": {
+    "dark-classic.md": {
         "Gastly": ["gastly"],
         "Haunter": ["haunter"],
         "Gengar": ["gengar"],
@@ -1376,10 +1409,11 @@ def bullets_or_para(text, ind):
     return [f"{ind}<p>{inline(' '.join(lines))}</p>"]
 
 
-DECKS = ["rules.md", "dark.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
+DECKS = ["rules.md", "dark-classic.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
          "rocket-mewtwo.md",
          "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "phantom-ferry.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
-         "dragons.md", "dark-gang.md", "dark-dogs.md", "steel-wolves.md"]
+         "dragons.md", "dark-gang.md", "dark-dogs.md", "steel-wolves.md",
+         "dark-rocket.md", "dark-smog.md"]
 
 for name in sys.argv[1:] or DECKS:
     src = ROOT / name

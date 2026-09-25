@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Fox's Iron Excavation</title>
+		<title>Iron Excavation</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Fox's Iron Excavation <img data-mascot src="./assets/sprites/drilbur.gif" alt="" /> <img data-mascot src="./assets/sprites/excadrill.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Iron Excavation <img data-mascot src="./assets/sprites/drilbur.gif" alt="" /> <img data-mascot src="./assets/sprites/excadrill.gif" alt="" /></h1>
 				<p>Tournament · one evolution line, two attackers, and only one of them costs three Prizes</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1867,7 +1878,7 @@
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
 					<p>Against the house decks this list is a wall with a hammer behind it, and the matchups split on exactly one axis: who is Fire.</p>
 					<p><strong>Versus <a href="./psychic-lanterns.html">the lantern decks</a>.</strong> Mega Chandelure ex prices your retreat and converts it into damage, and <strong>Excadrill&#x27;s Retreat 4 is the single worst stat line it can point at</strong> — one Binding Flame makes that a 5, and <em>Phantom Maze</em> reads 130 plus 50 per Colorless, which is 380 on an Active Excadrill. It one-shots your Mega through 340 HP. Keep Metagross active (Retreat 3, still bad) or Metang (Retreat 2), never Excadrill, and win the game on the Bench. This is the matchup where Metagross being the main attacker is not a preference, it is survival.</p>
-					<p><strong>Versus <a href="./dark.html">the Gengar decks</a>.</strong> Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.</p>
+					<p><strong>Versus <a href="./dark-classic.html">the Gengar decks</a>.</strong> Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.</p>
 					<p><strong>Versus <a href="./fire.html">the Fire decks</a>.</strong> This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and <strong>there is no weakness-removal card anywhere in the Standard pool</strong> — not a Tool, not a Stadium, not an Ability. Full Metal Lab&#x27;s 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck&#x27;s tax.</p>
 			</section>
 			<section>
@@ -2032,12 +2043,12 @@
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>2</td><td>✓</td><td>shared</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>NOT the Perfect Order 108 secret print</td></tr>
+							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>2</td><td>1</td><td>✓</td><td>NOT the Perfect Order 108 secret print</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>Precious Trolley <small>SV08: Surging Sparks 185/191</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>ACE SPEC; frees the house Prime Catcher</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Brave Bangle <small>SV: White Flare 080/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>NOT the Pitch Black 104 secret print</td></tr>
 							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Full Metal Lab <small>SV05: Temporal Forces 148/162</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the fire-weakness patch, such as it is</td></tr>
 							<tr><td><span>Basic Metal Energy <small>MEE: Mega Evolution Energies 8</small></span></td><td>18</td><td>12</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>28</strong></td><td></td></tr>
+							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>27</strong></td><td></td></tr>
 						</tbody>
 					</table>
 			<aside data-callout="important">

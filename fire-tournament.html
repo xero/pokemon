@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Fox's Flareon Engine</title>
+		<title>Flareon Engine</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Fox's Flareon Engine <img data-mascot src="./assets/sprites/flareon.gif" alt="" /> <img data-mascot src="./assets/sprites/noctowl.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Flareon Engine <img data-mascot src="./assets/sprites/flareon.gif" alt="" /> <img data-mascot src="./assets/sprites/noctowl.gif" alt="" /></h1>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -2233,7 +2244,7 @@ You need 6 knockouts to win.   (6 x 1 Prize  = 6)</code></pre>
 					<p>Every deck gives something up. Know yours before your opponent finds them.</p>
 					<p><strong>Three knockouts and it&#x27;s over.</strong> <a href="#flareon-ex">Flareon ex</a> and <a href="#eevee-ex">Eevee ex</a> give up 2 Prize cards each, and they are the only Pokémon that win you games. <a href="#5-the-prize-race-changed">The Prize Race Changed</a> is the manual; the summary is that you cannot afford a single free knockout.</p>
 					<p><strong>Water Weakness ×2.</strong> Nothing in dad&#x27;s Gengar Gang is Water, so you will never feel this at home. A tournament room is different. One Water deck across the table and your 270 HP attacker takes double, which means medium attacks knock it out in one hit. When you see Water Energy on their side, keep the <a href="#4-the-bench-is-a-fortress">rotation</a> tight and never leave a hurt Flareon ex in front.</p>
-					<p><strong>Eevee ex is Weak to Fighting ×2.</strong> A Fighting deck removes it almost on contact, which is exactly why the <a href="./fighting-standard.md">Fighting build on dad&#x27;s shortlist</a> hard-counters this one. Against Fighting, plain <a href="#eevee">Eevee</a> is the safer start even though it is slower.</p>
+					<p><strong>Eevee ex is Weak to Fighting ×2.</strong> A Fighting deck removes it almost on contact, which is exactly why the Fighting build on dad&#x27;s shortlist hard-counters this one. Against Fighting, plain <a href="#eevee">Eevee</a> is the safer start even though it is slower.</p>
 					<p><strong>Damage counters go through Tera.</strong> <em>Tera</em> stops damage from <strong>attacks</strong>. Effects that <em>place counters</em> skip it entirely: dad&#x27;s Risky Ruins taxes your Basics as they arrive, and his <a href="./psychic-lanterns.html">lantern deck&#x27;s</a> Dusknoir and Froslass put counters straight onto your &quot;untouchable&quot; Bench. Against those decks the fortress has no walls, so win fast instead of slow.</p>
 			</section>
 		</main>

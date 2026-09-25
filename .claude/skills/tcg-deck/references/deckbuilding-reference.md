@@ -96,7 +96,8 @@ Build the **Prize map** explicitly, in both directions: how many KOs does the op
 - **Manual line:** e.g. 4-3-2 or 3-2-2, little/no Rare Candy. Use when you evolve every turn or the Stage 1 does real work (a Stage 1 with a useful cheap attack earns its copies even in a Candy deck).
 - **Basic → Stage 1:** run more Basics than Stage 1s (4-3, 3-2) so you reliably start on the Basic.
 - **Big Basic (no evolving):** most consistent to pilot, best home/beginner default; the whole line question disappears.
-- **Mega jump (current format):** Wally's Compassion (MEG) is a Rare Candy alternative that current Mega lists actually run; Mega Signal (MEG) searches the Mega itself. Both exist because a 3-prize Stage 2 core cannot afford to whiff its own arrival.
+- **Mega jump (current format):** Rare Candy is the only generic card that skips a Stage 1; Mega Signal (MEG) searches the Mega itself, because a 3-prize Stage 2 core cannot afford to whiff its own arrival. **Wally's Compassion (MEG) is not an evolution card**: it heals all damage from one Mega Evolution Pokémon ex and returns that Pokémon's Energy to hand.
+- **Skipping the line entirely:** Grimsley's Move (PFL, Supporter) puts a Darkness Pokémon of *any stage* from the top 7 straight onto the Bench (Phantasmal Flames FAQ, TPCi Rules Team 2025-11-13), and can't be played on your first turn. Two lookalikes do not help a Stage 2 core with Abilities: Salvatore (TEF) only evolves into a card with no Abilities, and Grand Tree and Hyper Aroma need a Stage 1 in the deck.
 - **One Basic can feed two payoffs.** Different Stage 2s that evolve from the same Stage 1 (or two prints of different names in one line, like Mega Gengar ex and a single-prize Gengar) share the whole bottom of the line — a cheap way to add a plan B without new Basics.
 
 Match the pattern to what the core's text rewards, not to a template.
@@ -105,12 +106,12 @@ Match the pattern to what the core's text rewards, not to a template.
 
 ## 6. Consistency shell and packages
 
-**The shell is format-relative and rotates — verify the current list before trusting it.** The roster below was verified against live post-rotation tournament lists (Limitless, August 2026). The pre-rotation staples **Professor's Research, Nest Ball, Counter Catcher, Super Rod, Judge, Iono, Arven**, and the plain **N** and **Marnie** all carried mark G, rotated in April 2026, and have no legal reprint — a list containing any of them is a pre-rotation list. (The "N's" and "Marnie's" cards in current sets are different names; see §7 on brands.)
+**The shell is format-relative and rotates — verify the current list before trusting it.** The roster below was verified against live post-rotation tournament lists (Limitless, August 2026). The pre-rotation staples **Professor's Research, Nest Ball, Counter Catcher, Super Rod, Iono, Arven**, and the plain **N** and **Marnie** all carried mark G, rotated in April 2026, and have no legal reprint — a list containing any of them is a pre-rotation list. (The "N's" and "Marnie's" cards in current sets are different names; see §7 on brands.) **Judge is the exception:** Perfect Order reprinted it at mark J (POR 076, same text), so a Judge in a current list is legal.
 
 - **Draw Supporters:** Lillie's Determination (4 copies in effectively every list), Dawn (fetches one Basic + one Stage 1 + one Stage 2 — the evolution-deck enabler), Brock's Scouting, Drayton.
 - **Search Items:** Ultra Ball (MEG print), Buddy-Buddy Poffin (2 Basics ≤70 HP straight to Bench — design lines around the 70 HP cap), Poké Pad (POR).
 - **Gust:** Boss's Orders (MEG) — the only generic gust Supporter left, so 2–3 copies is the norm. Type-specific supplements exist (e.g. Grimsley's Move benches a Darkness Pokémon from the top 7).
-- **Disruption:** Special Red Card (CRI, Item), Unfair Stamp (ACE SPEC).
+- **Disruption:** Judge (POR, Supporter: both players shuffle their hand in and draw 4), Special Red Card (CRI, Item), Unfair Stamp (ACE SPEC).
 - **Recovery:** Night Stretcher (a Pokémon **or a basic Energy** from discard to hand). **Special Energy is unrecoverable once discarded** — price that in before building on one.
 - **Draw-engine Pokémon:** Fezandipiti ex (draw 3 after one of yours was KO'd — natural in decks that trade bodies), Noctowl + Hoothoot, Dudunsparce + Dunsparce, N's Zoroark ex (in Darkness shells).
 - **Energy acceleration is type-specific and era-specific** — check the type's current options instead of assuming an old analogue exists (Darkness right now: Janine's Secret Art from deck, Toxtricity's Sinister Surge ability from deck with self-damage; the self-damage is often a feature that feeds counter-moving abilities like Munkidori's).

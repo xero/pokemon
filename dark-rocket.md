@@ -1,4 +1,4 @@
-# Xero's Shadow Syndicate
+# Shadow Syndicate
 
 ### Game night hybrid · Mega Gengar ex and Team Rocket's Crobat ex in one Darkness shell
 
@@ -125,7 +125,7 @@ And *Shadowy Concealment* covers all of it, because Team Rocket's Crobat ex, Gol
 
 ## Key Card Text
 
-Staples are covered card by card in [Gengar Gang](./dark.md) and [Dark Box](./dark-curse.md). This section is the new material.
+Staples are covered card by card in [Gengar Gang Classic](./dark-classic.md) and [Dark Box](./dark-curse.md). This section is the new material.
 
 ### Team Rocket's Crobat ex
 

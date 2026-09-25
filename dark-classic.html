@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Gengar Gang</title>
+		<title>Gengar Gang Classic</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,8 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Xero's Gengar Gang <img data-mascot src="./assets/sprites/gengar.gif" alt="" /> <img data-mascot src="./assets/sprites/weezing.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Gengar Gang Classic <img data-mascot src="./assets/sprites/gengar-smile.gif" alt="" /> <img data-mascot src="./assets/sprites/weezing.gif" alt="" /></h1>
+				<p>The non-ex build · every Pokémon in it gives up one Prize, and Gengar and Weezing share the work</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>

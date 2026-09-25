@@ -68,7 +68,8 @@
   - [Gengar (2021 Copyright Date)](#gengar-2021-copyright-date) _Trick or Trade BOOster Bundle_
   - [Gengar (2022 Copyright Date)](#gengar-2022-copyright-date) _Trick or Trade BOOster Bundle 2023_
   - [Gengar (Cosmos Holo)](#gengar-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
-  - [Gengar ex](#gengar-ex) _SV05: Temporal Forces_
+  - [Gengar ex](#gengar-ex) _ME: 30th Celebration_
+  - [Gengar ex](#gengar-ex-1) _SV05: Temporal Forces_
   - [Gengar V](#gengar-v) _SWSH08: Fusion Strike_
   - [Glaceon](#glaceon) _SV: Prismatic Evolutions_
   - [Gourgeist](#gourgeist) _SV04: Paradox Rift_
@@ -119,6 +120,7 @@
   - [Noctowl](#noctowl) _SV07: Stellar Crown_
 - **O**
   - [Okidogi (Cosmos Holo)](#okidogi-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
+  - [Okidogi ex](#okidogi-ex) _SV: Shrouded Fable_
 - **P**
   - [Pumpkaboo](#pumpkaboo) _ME04: Chaos Rising_
   - [Pumpkaboo](#pumpkaboo-1) _SM - Crimson Invasion_
@@ -1251,6 +1253,24 @@
 <table>
   <tr><td colspan="2"><h3 id="gengar-ex">Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
+    <th rowspan="12" width="400"><a href="./assets/716485_gengar-ex-090-128.jpg"><img src="./assets/716485_gengar-ex-090-128.jpg" width="350" alt="Gengar ex"></a></th>
+  </tr>
+  <tr><td><b>ME: 30th Celebration</b> 090/128</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 280</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Fainting Spell - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Chaotic Pain - Place 13 damage counters on 1 of your opponent&#x27;s Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="gengar-ex-1">Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
     <th rowspan="12" width="400"><a href="./assets/542848_gengar-ex-104-162.jpg"><img src="./assets/542848_gengar-ex-104-162.jpg" width="350" alt="Gengar ex"></a></th>
   </tr>
   <tr><td><b>SV05: Temporal Forces</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png"><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" height="22" align="top"></picture> 104/162</td></tr>
@@ -2050,6 +2070,25 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="okidogi-ex">Okidogi ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/560346_okidogi-ex-036-064.jpg"><img src="./assets/560346_okidogi-ex-036-064.jpg" width="350" alt="Okidogi ex"></a></th>
+  </tr>
+  <tr><td><b>SV: Shrouded Fable</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png"><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" height="22" align="top"></picture> 036/064</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 250</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Poisonous Musculature - Search your deck for up to 2 Basic Darkness Energy cards and attach them to this Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, this Pokémon is now Poisoned.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Chain-Crazed (130+) - If this Pokémon is Poisoned, this attack does 130 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>

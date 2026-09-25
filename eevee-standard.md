@@ -1,4 +1,4 @@
-# Fox's Rainbow DNA
+# Rainbow DNA
 
 ### One deck, two modes, and ten cards that decide which
 

@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Xero's Phantom Toll</title>
+		<title>Phantom Toll</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1235,7 +1246,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Xero's Phantom Toll <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Phantom Toll <img data-mascot src="./assets/sprites/chandelure.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-mega.gif" alt="" /></h1>
 				<p>Two Megas split one toll booth · the house's first two-color 60</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
@@ -1469,7 +1480,7 @@
 					</dl>
 				</section>
 				<section>
-					<p>The bottom of the Gengar line, and deliberately the <strong>Phantasmal Flames print</strong>: <em>Petty Grudge</em> is a guaranteed 10 where the Perfect Order print flips coins, and <a href="./dark.html">Gengar Gang</a> runs that print anyway, so both decks stay sleeved. 70 HP, Poffin-legal. It is Darkness, which means two things worth memorizing: Telepathic Energy cannot trigger off it, and Janine&#x27;s Secret Art can feed it.</p>
+					<p>The bottom of the Gengar line, and deliberately the <strong>Phantasmal Flames print</strong>: <em>Petty Grudge</em> is a guaranteed 10 where the Perfect Order print flips coins, and <a href="./dark-classic.html">Gengar Gang Classic</a> runs that print anyway, so both decks stay sleeved. 70 HP, Poffin-legal. It is Darkness, which means two things worth memorizing: Telepathic Energy cannot trigger off it, and Janine&#x27;s Secret Art can feed it.</p>
 				</section>
 			</article>
 			<article>
@@ -2008,7 +2019,7 @@
 					<p><strong><a href="./rocket-mewtwo.html">Fox&#x27;s Team Rocket&#x27;s Mewtwo</a>.</strong> Mewtwo ex retreats for 3, so one Flame prices it at 330 into a 280 HP body: one shot, two Prizes. His board is ex-heavy, so Concealment runs all game, and his <em>Assassin&#x27;s Return</em> at 240 into Weakness is the reason the Psychic ghosts stay benched when Crobat is loaded; feed it the Dark wall instead, which takes it neutral. One wrinkle worth grinning at: three of his Arianas are in this deck until the singles arrive.</p>
 					<p><strong><a href="./fire-tournament.html">Fox&#x27;s Flareon ex</a>.</strong> Fire hits both halves neutral, and nothing he has one-shots a healthy 350. His Tera bench protection stops attacks, not damage counters, so Cursed Blast reaches whatever it likes. His math is two-turn math against walls that are cheaper to rebuild than his attackers are to recharge.</p>
 					<p><strong><a href="./eevee-standard.html">Fox&#x27;s Sun and Moon</a>.</strong> The matchup the lanterns lose is the matchup this rebuild is for. <em>Moon Mirage</em> doubles into every Psychic ghost and lands neutral on Mega Gengar, so the Dark wall leads, the lanterns work from the Bench, and the toll prices his pivots. Still a real fight; no longer a forfeit.</p>
-					<p><strong><a href="./dark.html">Xero&#x27;s dark decks</a>.</strong> Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever&#x27;s wall commits first loses the information war.</p>
+					<p><strong><a href="./dark-classic.html">Xero&#x27;s dark decks</a>.</strong> Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever&#x27;s wall commits first loses the information war.</p>
 			</section>
 			<section>
 				<h3 id="versus-the-card-shop">Versus the Card Shop<span data-flavor><img src="./assets/sprites/noctowl.gif" alt="" /></span></h3>
@@ -2041,7 +2052,7 @@
 						<dt>Stranded Actives under your own Gemstone</dt><dd><span>Air Balloon (owned, freed from the lanterns box) over Night Stretcher</span></dd>
 						<dt>Draw still thin after the Arianas</dt><dd><span>Naveen, Perfect Order 079, is Ariana without the borrowing; swap the engine at the next order</span></dd>
 						<dt>Mega-finding whiffs</dt><dd><span>Mega Signal (owned) over Poke Pad</span></dd>
-						<dt>Single-prize rooms keep winning</dt><dd><span>Sleeve <a href="./dark.html">the Gang</a> for that room; this deck&#x27;s answer is knowing when not to play it</span></dd>
+						<dt>Single-prize rooms keep winning</dt><dd><span>Sleeve <a href="./dark-classic.html">the Gang</a> for that room; this deck&#x27;s answer is knowing when not to play it</span></dd>
 						<dt>Wounded Megas keep dying loaded</dt><dd><span>Wally&#x27;s Compassion (owned, the lanterns run one) over the 3rd Lillie&#x27;s</span></dd>
 					</dl>
 			</section>

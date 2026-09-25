@@ -642,11 +642,22 @@
 		article.index {
 			background: var(--surface) var(--art-ball) center right no-repeat;
 
-			/* the first three rows are the library, not decks: the collection,
-			   the pull list, and the rulebook get a tint of their own,
-			   watermark kept. */
-			&:nth-of-type(-n+3) {
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
 				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
 			}
 		}
 
@@ -1236,7 +1247,7 @@
 		<header>
 			<div>
 				<h1><img src="./assets/pokeball.png" alt="" />Pokédex <img data-mascot src="./assets/sprites/pokedex.gif" alt="" /> <img data-mascot src="./assets/sprites/pokeball.gif" alt="" /></h1>
-				<p>139 Pok&eacute;mon caught, 59 of them tournament legal.</p>
+				<p>141 Pok&eacute;mon caught, 61 of them tournament legal.</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1310,7 +1321,8 @@
 						<li data-for="gengar-2021-copyright-date"><a href="#gengar-2021-copyright-date">Gengar (2021 Copyright Date)</a> <em>Trick or Trade BOOster Bundle</em></li>
 						<li data-for="gengar-2022-copyright-date"><a href="#gengar-2022-copyright-date">Gengar (2022 Copyright Date)</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
 						<li data-for="gengar-cosmos-holo"><a href="#gengar-cosmos-holo">Gengar (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
-						<li data-for="gengar-ex"><a href="#gengar-ex">Gengar ex</a> <em>SV05: Temporal Forces</em></li>
+						<li data-for="gengar-ex"><a href="#gengar-ex">Gengar ex</a> <em>ME: 30th Celebration</em></li>
+						<li data-for="gengar-ex-1"><a href="#gengar-ex-1">Gengar ex</a> <em>SV05: Temporal Forces</em></li>
 						<li data-for="gengar-v"><a href="#gengar-v">Gengar V</a> <em>SWSH08: Fusion Strike</em></li>
 						<li data-for="glaceon"><a href="#glaceon">Glaceon</a> <em>SV: Prismatic Evolutions</em></li>
 						<li data-for="gourgeist"><a href="#gourgeist">Gourgeist</a> <em>SV04: Paradox Rift</em></li>
@@ -1361,6 +1373,7 @@
 						<li data-for="noctowl"><a href="#noctowl">Noctowl</a> <em>SV07: Stellar Crown</em></li>
 						<li data-letter><b>O</b></li>
 						<li data-for="okidogi-cosmos-holo"><a href="#okidogi-cosmos-holo">Okidogi (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li data-for="okidogi-ex"><a href="#okidogi-ex">Okidogi ex</a> <em>SV: Shrouded Fable</em></li>
 						<li data-letter><b>P</b></li>
 						<li data-for="pumpkaboo"><a href="#pumpkaboo">Pumpkaboo</a> <em>ME04: Chaos Rising</em></li>
 						<li data-for="pumpkaboo-1"><a href="#pumpkaboo-1">Pumpkaboo</a> <em>SM - Crimson Invasion</em></li>
@@ -2669,8 +2682,29 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Gengar ex" data-set="ME: 30th Celebration" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="gengar-ex">Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/716485_gengar-ex-090-128.jpg" target="_blank" rel="noopener"><img src="./assets/716485_gengar-ex-090-128.jpg" alt="Gengar ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span>ME: 30th Celebration <small>090/128</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>280</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Fainting Spell - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, flip a coin. If heads, the Attacking Pokémon is Knocked Out.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Chaotic Pain - Place 13 damage counters on 1 of your opponent&#x27;s Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Gengar ex" data-set="SV05: Temporal Forces" data-rarity="Double Rare" data-type="Darkness" data-stage="Stage 2" data-tournament="legal">
-				<h2 id="gengar-ex">Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<h2 id="gengar-ex-1">Gengar ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
 				<aside>
 					<a data-art href="./assets/542848_gengar-ex-104-162.jpg" target="_blank" rel="noopener"><img src="./assets/542848_gengar-ex-104-162.jpg" alt="Gengar ex" /></a>
 				</aside>
@@ -3605,6 +3639,28 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Okidogi ex" data-set="SV: Shrouded Fable" data-rarity="Double Rare" data-type="Darkness" data-stage="Basic" data-tournament="legal">
+				<h2 id="okidogi-ex">Okidogi ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x3</span></h2>
+				<aside>
+					<a data-art href="./assets/560346_okidogi-ex-036-064.jpg" target="_blank" rel="noopener"><img src="./assets/560346_okidogi-ex-036-064.jpg" alt="Okidogi ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>036/064</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>250</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Poisonous Musculature - Search your deck for up to 2 Basic Darkness Energy cards and attach them to this Pokémon. Then, shuffle your deck. If you attached Energy to a Pokémon in this way, this Pokémon is now Poisoned.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Chain-Crazed (130+) - If this Pokémon is Poisoned, this attack does 130 more damage.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Pumpkaboo" data-set="ME04: Chaos Rising" data-rarity="Common" data-type="Psychic" data-stage="Basic" data-tournament="legal">
 				<h2 id="pumpkaboo">Pumpkaboo <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
 				<aside>
@@ -4137,7 +4193,7 @@
 				</section>
 			</article>
 			<article data-name="Toxel" data-set="ME02: Phantasmal Flames" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
-				<h2 id="toxel">Toxel <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x2</span></h2>
+				<h2 id="toxel">Toxel <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x4</span></h2>
 				<aside>
 					<a data-art href="./assets/660411_toxel.jpg" target="_blank" rel="noopener"><img src="./assets/660411_toxel.jpg" alt="Toxel" /></a>
 				</aside>

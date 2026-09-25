@@ -1,13 +1,13 @@
-# Xero's Snake Charmer
+# Snake Charmer
 
 ### Third build, locked for the 2026-08-26 game night. Two Surges a turn, a fish that costs one Energy, and the snake still hits for 240.
 
 > [!NOTE]
 > **What this file is for.**
 >
-> This is [Gengar Gang](./dark.md) re-tuned for the rooms where the opponent attacks with Pokémon ex, the way [the lantern deck](./psychic-lanterns.md) becomes the Night Parade at home. Thirty-eight cards never leave their sleeves. Twenty-two swap. Every card in both modes is a legal English print sitting in the binder tonight.
+> This is [Gengar Gang Classic](./dark-classic.md) re-tuned for the rooms where the opponent attacks with Pokémon ex, the way [the lantern deck](./psychic-lanterns.md) becomes the Night Parade at home. Thirty-eight cards never leave their sleeves. Twenty-two swap. Every card in both modes is a legal English print sitting in the binder tonight.
 >
-> **This is the third build**, and it is the one registered for the first TCG group night. It grew out of the second build's TCG Live games and the card store run that morning. The Toxel line went to 3-3 so two Toxtricity can Surge every turn. Chi-Yu replaced the second Gengar ex and the plain Gengar. The trainer line was re-cut around the one problem the Live games kept showing, Energy piling up in the discard where the engine cannot reach it. The sleeving sheet is `dark-tonight.md`; this page is the manual.
+> **This is the third build**, and it is the one registered for the first TCG group night. It grew out of the second build's TCG Live games and the card store run that morning. The Toxel line went to 3-3 so two Toxtricity can Surge every turn. Chi-Yu replaced the second Gengar ex and the plain Gengar. The trainer line was re-cut around the one problem the Live games kept showing, Energy piling up in the discard where the engine cannot reach it.
 >
 > It is written for a player who has never seen the field. Every matchup leads with numbers, and [The Numbers](#the-numbers) collects the ones to memorize before round one.
 >
@@ -49,7 +49,7 @@ The [Rulings Compendium](https://compendium.pokegym.net/category/4-abilities/sha
 
 Add it up. Their six Prizes against this list are **three Mega Knock Outs**, because two Megas and the Gengar ex only reach five. Night Stretcher rebuilds a fallen Mega four times over, and Wally's Compassion heals a standing one to full. Every ex they play is worth two or three Prizes to a snake that costs them nothing to lose.
 
-Against a deck that attacks with single-prize Pokémon, Concealment is a blank card and the Mega is a three-Prize gift. The first build handed those rooms to [Gengar Gang](./dark.md) entirely; this build keeps Gengar ex and Chi-Yu for them, and [game plan 4](#4-reading-the-room) is how you tell which room you are in before the Candy is spent.
+Against a deck that attacks with single-prize Pokémon, Concealment is a blank card and the Mega is a three-Prize gift. The first build handed those rooms to [Gengar Gang Classic](./dark-classic.md) entirely; this build keeps Gengar ex and Chi-Yu for them, and [game plan 4](#4-reading-the-room) is how you tell which room you are in before the Candy is spent.
 
 ---
 
@@ -214,7 +214,7 @@ The same four Perfect Order copies, doing the same job: sit on the Bench and bec
 
 Gastly is Fighting-weak and 70 HP, and it has no Ability, so Froslass ignores it and Cornerstone cannot block it. Neither fact will ever matter; it exists to evolve. Against Dragapult, bench it and Candy it the same turn you can, because six Phantom Dive counters leave it on 10.
 
-Full entry in [Gengar Gang](./dark.md#gastly).
+Full entry in [Gengar Gang Classic](./dark-classic.md#gastly).
 
 ---
 
@@ -224,7 +224,7 @@ The backup route when Rare Candy is late. Two copies, Phantasmal Flames, flat 40
 
 Two rather than the Live list's three, because Dawn's middle slot is usually better spent on Toxtricity, and three Candy plus two Haunter is five routes for the two or three ghosts a game actually evolves.
 
-Full entry in [Gengar Gang](./dark.md#haunter).
+Full entry in [Gengar Gang Classic](./dark-classic.md#haunter).
 
 ---
 
@@ -258,7 +258,7 @@ One copy, because it is the second ghost, not the first, and the Basics it gave 
 
 Three copies because the engine wants two Toxtricity standing, and because every Basic in this list pulls the mulligan rate down: 35% at the eight Basics the sleeved list had, 19% at twelve. It has no Ability, so Froslass leaves it alone and Cornerstone cannot stop its 20; neither will come up.
 
-Full entry in [Gengar Gang](./dark.md#toxel).
+Full entry in [Gengar Gang Classic](./dark-classic.md#toxel).
 
 ---
 
@@ -276,7 +276,7 @@ Surge searches the **deck**, which is why Energy Recycler is in this list and En
 
 Toxtricity has an Ability, so Froslass's _Freezing Shroud_ ticks it every Checkup and Cornerstone blocks its 100. Neither changes what it is for.
 
-Full entry in [Gengar Gang](./dark.md#toxtricity).
+Full entry in [Gengar Gang Classic](./dark-classic.md#toxtricity).
 
 ---
 
@@ -322,7 +322,7 @@ What it is for, in order of how often it comes up:
 
 The line assembler: a Basic, a Stage 1, and a Stage 2 in one card. In this deck the best Dawn is **Seviper, Toxtricity, and Mega Gengar ex**, three cards from three different engines, with the Candy already in hand. When the Candy is missing, the middle slot becomes Haunter. Four copies, because it is the best turn-one Supporter and the best turn-two Supporter, and 68% of games have it or Hilda in hand by turn two.
 
-Full entry in [Gengar Gang](./dark.md#dawn).
+Full entry in [Gengar Gang Classic](./dark-classic.md#dawn).
 
 ---
 
@@ -336,7 +336,7 @@ Search your deck for an Evolution Pokémon and an Energy card, both to hand. Tha
 
 The reset button. Shuffle your hand into your deck, draw 6, or draw 8 while all six of your Prizes are still up. Two copies. The hand this deck clogs with is ghosts, and Lillie's puts them back where Dawn and Hilda can find them again. Play it before the Items only when the Items are dead too.
 
-Full entry in [Gengar Gang](./dark.md#lillies-determination).
+Full entry in [Gengar Gang Classic](./dark-classic.md#lillies-determination).
 
 ---
 
@@ -344,7 +344,7 @@ Full entry in [Gengar Gang](./dark.md#lillies-determination).
 
 The gust, at two copies plus Prime Catcher, and it aims at Prizes. Drag up the two-Prize support piece that pays for a 240, or the Energy-loaded attacker hiding from it. Against the counter decks, drag up the Duskull before it becomes a Dusknoir. Spend it on Prizes, never on tempo.
 
-Full entry in [Gengar Gang](./dark.md#bosss-orders-ghetsis).
+Full entry in [Gengar Gang Classic](./dark-classic.md#bosss-orders-ghetsis).
 
 ---
 
@@ -369,7 +369,7 @@ Two copies. The turn you play one, Chi-Yu or Seviper fights in front while the M
 
 Three copies. The legal targets are Gastly and Toxel, both 70 HP; Seviper at 120 and Chi-Yu at 90 miss the cap, and _Call for Family_ covers them. Turn one wants Poffin first, fetching one Gastly and one Toxel, the bottoms of the two engines.
 
-Full entry in [Gengar Gang](./dark.md#buddy-buddy-poffin).
+Full entry in [Gengar Gang Classic](./dark-classic.md#buddy-buddy-poffin).
 
 ---
 
@@ -377,7 +377,7 @@ Full entry in [Gengar Gang](./dark.md#buddy-buddy-poffin).
 
 Gastly to the ghost of your choice, skipping Haunter. Three copies plus two Haunter is five routes. Both riders apply: never on your first turn, never on a Basic that entered play this turn. The fastest Mega is turn two off a turn-one Gastly, and 43% of games have the Candy in hand for it.
 
-Full entry in [Gengar Gang](./dark.md#rare-candy).
+Full entry in [Gengar Gang Classic](./dark-classic.md#rare-candy).
 
 ---
 
@@ -385,7 +385,7 @@ Full entry in [Gengar Gang](./dark.md#rare-candy).
 
 Four copies, and the job is resurrection. Put a Pokémon or a Basic Energy from the discard into your hand. The priority list: a Knocked Out Mega first, because the cage needs one in play; a Basic Darkness second, for the hand attachment; a Seviper or Chi-Yu third, for another Surge. Nothing here is Special Energy any more, so every Energy that hits the discard is a legal target.
 
-Full entry in [Gengar Gang](./dark.md#night-stretcher).
+Full entry in [Gengar Gang Classic](./dark-classic.md#night-stretcher).
 
 ---
 
@@ -401,7 +401,7 @@ Time it for after the first Seviper trade, when three Energy hit the discard at 
 
 One copy, one job: rescue whatever Boss's Orders dragged up, or walk an armed Chi-Yu forward. Air Balloon handles the Mega's retreats; this is for everything else.
 
-Full entry in [Gengar Gang](./dark.md#switch).
+Full entry in [Gengar Gang Classic](./dark-classic.md#switch).
 
 ---
 
@@ -438,7 +438,7 @@ Two copies, and every Pokémon here is Darkness, so it stays perfectly one-sided
 
 Two copies means you can win a Stadium war against Festival Grounds, Jamming Tower, or Team Rocket's Factory. Lead the first when their Bench is filling; hold the second for the overwrite.
 
-Full entry in [Gengar Gang](./dark.md#risky-ruins).
+Full entry in [Gengar Gang Classic](./dark-classic.md#risky-ruins).
 
 ---
 ---
@@ -451,7 +451,7 @@ Full entry in [Gengar Gang](./dark.md#risky-ruins).
 
 Ten copies, all Basic, none Special. The floor argument: Surge searches the deck, Void Gale only moves what is already in play, and Seviper drinks three at a time, so the deck has to hold Energy for two Surges a turn through the midgame. Recycler puts five back when the discard fills. Eleven flooded the Gang build when two extra copies replaced two Lillie's; ten with the Recycler is the count that testing has not punished.
 
-Full entry in [Gengar Gang](./dark.md#basic-darkness-energy).
+Full entry in [Gengar Gang Classic](./dark-classic.md#basic-darkness-energy).
 
 ---
 ---

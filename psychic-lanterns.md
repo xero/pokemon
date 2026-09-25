@@ -1,4 +1,4 @@
-# Xero's Psychic Lanterns
+# Psychic Lanterns
 
 ### One box, two decks · a legal tourney 60 that runs the Night Parade at home
 
@@ -317,9 +317,9 @@ There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists a
 
 **[Fox's Team Rocket's Mewtwo](./rocket-mewtwo.md), the dream matchup.** Mewtwo retreats for 3: one Flame, 330 into 280 HP, one shot, two Prizes. His board is wall-to-wall Abilities (Mewtwo, Spidops, Golbat, Crobat, Articuno), so the Shroud poisons everything, and his own *Biting Spree* counters on your Bench feed your Rondo. Two cautions. *Assassin's Return* is 240 into your Weakness, so trade Gourgeist into Crobat and save Phantom Maze for Mewtwo. And Articuno's *Repelling Veil* blocks *Shadow Bind*'s retreat lock on his Basics, but Abilities are not attack effects, so Cursed Blast and the Shroud sail through.
 
-**[Fox's Ground Zero](./fighting-standard.md), if it gets built.** Your Fighting Resistance makes this the house answer to Mega Zygarde: *Gaia Wave* lands on the Mega for 170, a three-hit kill against a deck that only needs to land two. Zygarde has Retreat 2 and no Ability, so the line is Phantom Maze for 280, then Cursed Blast for the rest; the counters ignore his 30-damage shield. Two Zygarde knockouts is the whole game.
+**Fox's Ground Zero, if it gets built.** Your Fighting Resistance makes this the house answer to Mega Zygarde: *Gaia Wave* lands on the Mega for 170, a three-hit kill against a deck that only needs to land two. Zygarde has Retreat 2 and no Ability, so the line is Phantom Maze for 280, then Cursed Blast for the rest; the counters ignore his 30-damage shield. Two Zygarde knockouts is the whole game.
 
-**[Xero's dark decks](./dark.md).** The underdog on purpose. Everything here except Froslass is Darkness-weak, and *Void Gale* one-shots a Mega through its Weakness. When the lanterns face the Gengars, the lanterns are the challenger.
+**[Xero's dark decks](./dark-classic.md).** The underdog on purpose. Everything here except Froslass is Darkness-weak, and *Void Gale* one-shots a Mega through its Weakness. When the lanterns face the Gengars, the lanterns are the challenger.
 
 ---
 
