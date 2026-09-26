@@ -7,8 +7,8 @@ tcg deck planning for me and my son
 
 ## our decks
 
-- [fox's fire force](./fire.md)
 - [xero's gengar gang](./dark-gang.md)
+- [fox's fire force](./fire.md)
 
 ## other decks
 
@@ -34,12 +34,18 @@ tcg deck planning for me and my son
 - [flareon engine](./fire-tournament.md)
 - [rainbow dna](./eevee-standard.md)
 
-### rockets, steel, and dragons
+### rockets and steel
 
 - [hostile takeover](./rocket-mewtwo.md)
-- [iron excavation](./metal-excadrill.md)
 - [steel wolves](./steel-wolves.md)
-- [crystal dragons](./dragons.md)
+
+## opponent decks
+
+models of what the league regulars bring
+
+- [iron excavation](./metal-excadrill.md), matt's excadrill
+- [champion's call](./cynthia-garchomp.md), elliot's garchomp
+- [crystal dragons](./dragons.md), steve's dragapult
 
 ## building
 
@@ -60,7 +66,7 @@ still matches the sources it came from.
 
 `decks.toml` is the one list of what is on the site, in the order the front
 page shows it: the library pages first, then the league decks, then every other
-deck under its group. a deck's entry says whose it is, which shelf it sits on,
+deck under its group, then the opponent decks. a deck's entry says whose it is, which shelf it sits on,
 its sprites, its front-page blurb, and the corner sprites on its headings.
 
 a deck goes live by getting an entry. `draft = true` keeps it off the site: no

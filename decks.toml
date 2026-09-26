@@ -17,6 +17,8 @@
 #   shelf       "league" for the two decks we are sleeving now. These are the
 #               only titles that carry our names, and they share the library's
 #               tint. "other" for everything else, whose titles drop the name.
+#               "opponent" for models of the decks league regulars play; they
+#               sit last on the front page, under Opponent Decks.
 #   group       the subheading an "other" deck is filed under
 #   draft       true keeps a deck off the site entirely: no page, no front-page
 #               row, and the pull list names it without a link. Delete the line
@@ -572,7 +574,7 @@ night."""
 source = "rocket-mewtwo.md"
 player = "fox"
 shelf = "other"
-group = "Rockets, Steel, and Dragons"
+group = "Rockets and Steel"
 sprites = ["crobat", "mewtwo"]
 blurb = """
 A game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops payroll,
@@ -608,17 +610,47 @@ and a Crobat line that fixes a bad Active for free."""
 "The mirror, at the card shop" = ["mewtwo"]
 
 [[deck]]
-source = "metal-excadrill.md"
+source = "steel-wolves.md"
 player = "fox"
 shelf = "other"
-group = "Rockets, Steel, and Dragons"
+group = "Rockets and Steel"
+# no Zacian or Zamazenta sprite exists (the library stops before Gen
+# 8), so the deck's other two engines carry the page
+sprites = ["metagross", "snorlax"]
+blurb = """
+An online 60 for TCG Live. Three separate cards each add 30 to Hop's Zacian
+ex, so Brave Slash lands at 330 and one-shots Dragapult; a Metagross on the
+Bench pays for it, and Zamazenta covers the turn Zacian is locked out."""
+
+# the two wolves have no sprite in the library, so the Metagross line and
+# the two support Pokemon carry the page. Excadrill and Genesect stand in
+# for the field table, which is mostly other Metal decks.
+[deck.flavor]
+"The Thesis" = ["metagross"]
+"Steven's Beldum" = ["beldum"]
+"Steven's Metang" = ["metang"]
+"Steven's Metagross ex" = ["metagross"]
+"Hop's Snorlax" = ["snorlax"]
+"Latias ex" = ["latias"]
+"The Energy Engine" = ["pokedex"]
+"2. The Off Turn" = ["metang"]
+"Versus the Ladder" = ["excadrill", "genesect"]
+"Alternatives" = ["scizor"]
+
+[[deck]]
+source = "metal-excadrill.md"
+player = "fox"
+shelf = "opponent"
 sprites = ["drilbur", "metagross"]
 mascot = ["drilbur", "excadrill"]
 blurb = """
-A model of Matt's Wednesday league deck. One Beldum line feeds both the
-Energy engine and a Metagross that hits for 330 and gives up a single Prize;
-the Mega only comes out to close."""
+A model of Matt's Wednesday league deck. Precious Trolley sets the Bench,
+Metang's Metal Maker loads each Mega Excadrill to five Energy for 330, and
+Metagross waits as the last resort."""
 
+# drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
+# aggron were promoted from assets/ani for this page. No Mega Excadrill
+# sprite exists, so the base form stands in for it.
 [deck.flavor]
 "Mega Excadrill ex" = ["excadrill"]
 "Drilbur" = ["drilbur"]
@@ -649,74 +681,9 @@ the Mega only comes out to close."""
 "Alternatives" = ["scizor", "aggron"]
 
 [[deck]]
-source = "steel-wolves.md"
-player = "fox"
-shelf = "other"
-group = "Rockets, Steel, and Dragons"
-# no Zacian or Zamazenta sprite exists (the library stops before Gen
-# 8), so the deck's other two engines carry the page
-sprites = ["metagross", "snorlax"]
-blurb = """
-An online 60 for TCG Live. Three separate cards each add 30 to Hop's Zacian
-ex, so Brave Slash lands at 330 and one-shots Dragapult; a Metagross on the
-Bench pays for it, and Zamazenta covers the turn Zacian is locked out."""
-
-# the two wolves have no sprite in the library, so the Metagross line and
-# the two support Pokemon carry the page. Excadrill and Genesect stand in
-# for the field table, which is mostly other Metal decks.
-[deck.flavor]
-"The Thesis" = ["metagross"]
-"Steven's Beldum" = ["beldum"]
-"Steven's Metang" = ["metang"]
-"Steven's Metagross ex" = ["metagross"]
-"Hop's Snorlax" = ["snorlax"]
-"Latias ex" = ["latias"]
-"The Energy Engine" = ["pokedex"]
-"2. The Off Turn" = ["metang"]
-"Versus the Ladder" = ["excadrill", "genesect"]
-"Alternatives" = ["scizor"]
-
-[[deck]]
-source = "dragons.md"
-player = "xero"
-shelf = "other"
-group = "Rockets, Steel, and Dragons"
-# no Gen 8 sprites exist, so the Ghost/Dragon Giratina stands in for Dragapult
-sprites = ["giratina-origin", "clefairy"]
-blurb = """
-A Dragapult deck, rebuilt from the card that beat dad. Four Drakloaks draw
-every turn, Sparkling Crystal makes Phantom Dive cost one Energy, and
-Lillie's Clefairy ex turns the mirror into a Fairy Zone."""
-
-# drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
-# aggron were promoted from assets/ani for this page. No Mega Excadrill
-# sprite exists, so the base form stands in for it.
-# the sprite library stops at Gen 6: nothing for the Dreepy line, Munkidori,
-# Fezandipiti, or Mimikyu. Giratina (Ghost/Dragon) stands in for Dragapult,
-# Diancie for the Crystal, Xatu for the room-reading plan.
-[deck.flavor]
-"The Thesis" = ["giratina"]
-"The Numbers" = ["pokedex"]
-"Lillie's Clefairy ex" = ["clefairy"]
-"Meowth ex" = ["meowth"]
-"Budew" = ["budew"]
-"Sparkling Crystal" = ["diancie"]
-"1. The Two-Turn Kill" = ["giratina-origin"]
-"2. The Crystal" = ["diancie"]
-"3. The Fairy Zone" = ["clefairy", "clefable"]
-"4. Reading the Room" = ["xatu"]
-"6. Things That Will Cost You a Game" = ["eevee-back"]
-"Versus the Field" = ["excadrill", "alakazam"]
-"Versus the Kitchen Table" = ["mewtwo", "gengar-mega"]
-# the card that was left out on purpose
-"Alternatives" = ["dusknoir"]
-
-[[deck]]
 source = "cynthia-garchomp.md"
 player = "xero"
-shelf = "other"
-group = "Rockets, Steel, and Dragons"
-draft = true
+shelf = "opponent"
 sprites = ["gible", "garchomp"]
 mascot = ["roserade", "garchomp"]
 blurb = """
@@ -746,3 +713,34 @@ adds 30, and against a Fighting-weak deck all of it doubles."""
 "Versus the Kitchen Table" = ["gengar", "gengar-mega"]
 "The Field" = ["pokedex"]
 "Tells at the Table" = ["xatu"]
+
+[[deck]]
+source = "dragons.md"
+player = "xero"
+shelf = "opponent"
+# no Gen 8 sprites exist, so the Ghost/Dragon Giratina stands in for Dragapult
+sprites = ["giratina-origin", "clefairy"]
+blurb = """
+A model of Steve's Wednesday league deck. Four Drakloaks draw every turn,
+Sparkling Crystal makes Phantom Dive cost one Energy, and Lillie's Clefairy ex
+turns the mirror into a Fairy Zone."""
+
+# the sprite library stops at Gen 6: nothing for the Dreepy line, Munkidori,
+# Fezandipiti, or Mimikyu. Giratina (Ghost/Dragon) stands in for Dragapult,
+# Diancie for the Crystal, Xatu for the room-reading plan.
+[deck.flavor]
+"The Thesis" = ["giratina"]
+"The Numbers" = ["pokedex"]
+"Lillie's Clefairy ex" = ["clefairy"]
+"Meowth ex" = ["meowth"]
+"Budew" = ["budew"]
+"Sparkling Crystal" = ["diancie"]
+"1. The Two-Turn Kill" = ["giratina-origin"]
+"2. The Crystal" = ["diancie"]
+"3. The Fairy Zone" = ["clefairy", "clefable"]
+"4. Reading the Room" = ["xatu"]
+"6. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Field" = ["excadrill", "alakazam"]
+"Versus the Kitchen Table" = ["mewtwo", "gengar-mega"]
+# the card that was left out on purpose
+"Alternatives" = ["dusknoir"]

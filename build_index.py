@@ -3,8 +3,9 @@
 
 What is listed, in what order, under which heading, and with what sprites and
 blurb all come from decks.toml. The library pages lead with no heading, then
-League Decks, then Other Decks with a subheading per group. Everything above
-Other Decks carries data-featured, which the template tints.
+League Decks, then Other Decks with a subheading per group, then Opponent
+Decks. Everything above Other Decks carries data-featured, which the template
+tints.
 
 Counts are read back out of the pages themselves rather than recomputed, so
 the index cannot claim a number the page it links to disagrees with.
@@ -17,7 +18,8 @@ from pokelib import CREDITS_NOTE, esc, page
 
 ROOT = Path(__file__).parent
 
-SHELVES = [("league", "League Decks"), ("other", "Other Decks")]
+SHELVES = [("league", "League Decks"), ("other", "Other Decks"),
+           ("opponent", "Opponent Decks")]
 
 
 def layout():

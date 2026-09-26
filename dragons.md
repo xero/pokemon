@@ -1,13 +1,13 @@
 # Crystal Dragons
 
-### Tournament · Phantom Dive for one Energy, four Drakloaks drawing every turn, and a Fairy Zone for the mirror
+### Modeled on Steve's league deck · Phantom Dive for one Energy, four Drakloaks drawing every turn, and a Fairy Zone for the mirror
 
 > [!NOTE]
 > **What this file is for.**
 >
-> The deck that beat me at the first game night, rebuilt from the card text up. Dragapult ex is the most-played line in Standard, and this is the light-Tera version of it: the stock engine, Sparkling Crystal instead of Unfair Stamp, and a mirror package built on Lillie's Clefairy ex. Every card carries regulation mark H, I, or J, so it is legal as it sits.
+> A model of Steve's deck. Steve is one of the regulars at CardCrate's Wednesday league, Dragapult ex is what he plays most weeks, and this list is modeled on his. It is also the archetype that beat me at the first game night, rebuilt here from the card text up. Dragapult ex is the most-played line in Standard, and this is the light-Tera version of it: the stock engine, Sparkling Crystal instead of Unfair Stamp, and a mirror package built on Lillie's Clefairy ex. Every card carries regulation mark H, I, or J, so it is legal as it sits.
 >
-> Three builds were on the table before this one. The stock hammer list, the Blaziken ex board, and this. The reasoning for what did not make it is in [Alternatives](#alternatives). None of the dragon line is in the binder yet; the nine cards the box does not hold come to about eighteen dollars, and the Trainer shell, the Crystal, and the Mimikyu are already in it.
+> Three builds were on the table before this one. The stock hammer list, the Blaziken ex board, and this. The reasoning for what did not make it is in [Alternatives](#alternatives).
 >
 > Written for a player who has seen this deck from the wrong side of the table exactly once. Every matchup leads with numbers, and [The Numbers](#the-numbers) collects the ones to memorize. Game words live in [the table rules](./rules.md); the ex-format habits live in [How To Play ex Style](./rules.md#how-to-play-ex-style).
 

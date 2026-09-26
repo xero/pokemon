@@ -14,7 +14,7 @@ ROOT = Path(__file__).parent
 REGISTRY = ROOT / "decks.toml"
 
 PLAYERS = ("xero", "fox")
-SHELVES = ("league", "other")
+SHELVES = ("league", "other", "opponent")
 
 
 def load():

@@ -5,8 +5,6 @@
 
 - **A**
   - [Absol](#absol) _MBG: MEGA Starter Set Mega Gengar ex_
-- **B**
-  - [Budew](#budew) _ME: Ascended Heroes_
 - **C**
   - [Chandelure](#chandelure) _SM - Guardians Rising_
   - [Chandelure](#chandelure-1) _SM - Lost Thunder_
@@ -116,7 +114,6 @@
   - [Lampent](#lampent) _ME05: Pitch Black_
   - [Latias ex](#latias-ex) _SV08: Surging Sparks_
   - [Leafeon ex](#leafeon-ex) _SV: Prismatic Evolutions_
-  - [Lillie's Clefairy ex](#lillies-clefairy-ex) _SV09: Journey Together_
   - [Litwick](#litwick) _ME05: Pitch Black_
   - [Litwick](#litwick-1) _SV06: Twilight Masquerade_
   - [Litwick](#litwick-2) _SV: White Flare_
@@ -212,24 +209,6 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> only English cards allowed</td></tr>
-</table>
-
-<table>
-  <tr><td colspan="2"><h3 id="budew">Budew <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
-  <tr>
-    <th rowspan="12" width="400"><a href="./assets/675828_budew-016-217.jpg"><img src="./assets/675828_budew-016-217.jpg" width="350" alt="Budew"></a></th>
-  </tr>
-  <tr><td><b>ME: Ascended Heroes</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png"><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" height="22" align="top"></picture> 016/217</td></tr>
-  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
-  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
-  <tr><td><b>HP</b>: 30</td></tr>
-  <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: -</td></tr>
-  <tr><td><b>Attack</b>: [] Itchy Pollen (10) - During your opponent&#x27;s next turn, they can&#x27;t play any Item cards from their hand.</td></tr>
-  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
-  <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: -</td></tr>
-  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -2069,24 +2048,6 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
-  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
-</table>
-
-<table>
-  <tr><td colspan="2"><h3 id="lillies-clefairy-ex">Lillie&#x27;s Clefairy ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
-  <tr>
-    <th rowspan="12" width="400"><a href="./assets/623483_lillies-clefairy-ex-056-159.jpg"><img src="./assets/623483_lillies-clefairy-ex-056-159.jpg" width="350" alt="Lillie&#x27;s Clefairy ex"></a></th>
-  </tr>
-  <tr><td><b>SV09: Journey Together</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> 056/159</td></tr>
-  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
-  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
-  <tr><td><b>HP</b>: 190</td></tr>
-  <tr><td><b>Stage</b>: Basic</td></tr>
-  <tr><td><b>Ability</b>: Fairy Zone - The Weakness of each of your opponent&#x27;s Dragon Pokémon in play is now Psychic. (Apply Weakness as ×2.)</td></tr>
-  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Full Moon Rondo (20+) - This attack does 20 more damage for each Benched Pokémon (both yours and your opponent’s).</td></tr>
-  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
-  <tr><td><b>Resistance</b>: -</td></tr>
-  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
