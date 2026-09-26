@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1262,7 +1215,6 @@
 			<li><a href="#the-prize-map">The Prize Map</a></li>
 			<li><a href="#versus-the-table">Versus the Table</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -2074,26 +2026,6 @@
 					<p><strong>The Spidops loop never starts.</strong> If <em>Erasure Ball</em> keeps coming in at 160, the Energy is not reaching the discard pile. Watch whether you are pitching Energy to Ultra Ball; if you are and it still stalls, add a fourth Basic Psychic over the last Rare Candy and go to 11.</p>
 					<p><strong>Mewtwo is stranded Active with three Energy on it.</strong> If retreat is what loses you games rather than damage, go to 3 Switch by cutting a Night Stretcher — and remember that on a Gang night the Prime Catcher in the ACE SPEC slot is already the extra out.</p>
 					<p>Three smaller notes. Articuno looks like a dead card until you read the field: <em>Phantom Dive</em>&#x27;s six Bench counters and Alakazam&#x27;s <em>Powerful Hand</em> are effects of attacks, so <em>Repelling Veil</em> blanks both on every Basic Team Rocket&#x27;s Pokémon, and Dragapult plus Alakazam is a quarter of the current Standard field. Bench it on turn one against a Dreepy or an Abra, and only pull it for the Petrel if the local room turns out to be neither. Team Rocket&#x27;s Mimikyu (Destined Rivals 087) is the parked tech: 60 HP, free retreat, a Team Rocket&#x27;s Pokémon for the <em>Power Saver</em> count, and <em>Gemstone Mimicry</em> copies an opposing Active Tera Pokémon&#x27;s attack for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, which is <em>Phantom Dive</em> against the field&#x27;s biggest deck and nothing at all against the Megas; if Fox wants it, it takes the second Night Stretcher. And if you are drawing <em>Biting Spree</em> damage but never converting it into a knockout, you are short on gust and the answer is a third Boss&#x27;s Orders, not more chip.</p>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/zubat.gif" alt="" /></span></h3></summary>
-					<p>Nothing. The list above is built entirely out of cards already in the box. The block below is the upgrade path if you want to thicken it later.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Zubat <small>SV10: Destined Rivals 120/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy, the Crobat line is the thinnest thing here</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Golbat <small>SV10: Destined Rivals 121/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy, and the better evolution route runs through it</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Crobat ex <small>SV10: Destined Rivals 122/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy</td></tr>
-							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>4</td><td>✓</td><td>a fourth Psychic, free out of any bulk lot</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Legacy Energy <small>SV06: Twilight Masquerade 167/167</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>optional ace spec swap, see below</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>4</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="tip">
-				<p><strong>Legacy Energy is the one upgrade that changes the deck rather than thickening it.</strong> One Energy of any type plus one fewer Prize when its holder dies, once a game. On a Mewtwo ex that turns a two-Prize knockout into a one-Prize knockout in the game&#x27;s most important trade. It costs you the Scramble Switch, so only make the swap if retreat is not the thing losing you games.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

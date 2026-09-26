@@ -24,7 +24,7 @@
 > [**The Toll Math**](#the-toll-math) · [**Game Plans**](#game-plans)
 > [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in) · [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Versus the Card Shop**](#versus-the-card-shop)
 > [**Where Gourgeist Went**](#where-gourgeist-went) · [**✗ Cards That Look Right, Skip Them**](#-cards-that-look-right-skip-them)
-> [**Test and Tune**](#test-and-tune) · [**What To Buy**](#what-to-buy)
+> [**Test and Tune**](#test-and-tune)
 
 ---
 
@@ -521,7 +521,7 @@ Gourgeist is not homeless. The lanterns page documents the clean version of his 
 | **Mystery Garden** | A Psychic draw Stadium that also puts Energy in the discard for Patch. It reads both sides, and Slowking, Alakazam, and the Dusknoir builds have Psychic boards too. Battle Cage is the Stadium that costs this deck nothing. |
 | **Eternatus** (Phantasmal Flames) | *Shatter* discards a Stadium for [DD] and 50, a Darkness body Janine's can feed. It spends the attack for the turn on what a second Battle Cage does for free. |
 | **Grimmsnarl** (Journey Together) | *Shadowy Knot* at 50 per [C] for one Prize is the meta's echo of the Maze and the reason those lists run it. Here it is a third Stage 2 line, and the Gengar line already holds that seat. |
-| **The Fire Chandelures** | The Twilight Masquerade print with *Alluring Light* is Standard-legal and genuinely good, and it belongs to the meta's one-line shell, not to this 60; the wanted list carries 4 for the day that deck gets built. |
+| **The Fire Chandelures** | The Twilight Masquerade print with *Alluring Light* is Standard-legal and genuinely good, and it belongs to the meta's one-line shell, not to this 60. |
 
 ---
 
@@ -544,39 +544,3 @@ The list is a hypothesis; games are the data. Symptoms and their fixes:
 | Gengar never comes online | A second Haunter, Perfect Order 049, over the third Wondrous Patch. |
 | Froslass rooms still snipe | A second Munkidori over the Fezandipiti. |
 | Single-prize rooms keep winning | Sleeve [the Gang](./dark-classic.md) for that room; this deck's answer is knowing when not to play it. |
-
----
-
-## What To Buy
-
-This list lives on TCG Live, where every card in it is a craft away. On paper the collection owns all but four cards, and the own counts below are live from the collection database; Need sums across deck pages, so the wishlist does the arithmetic. The binder holds one of the three Wondrous Patch, no Gravity Gemstone, and no Lana's Aid, about a dollar and a half of singles between them.
-
-```buy
-Litwick | Pitch Black 036 | 4 | the Psychic print; shared with the lanterns
-Lampent | Pitch Black 037 | 3 | shared with the lanterns
-Mega Chandelure ex | Pitch Black 038 | 3 | sleeved in the lanterns today; this build inherits them
-Gastly | Phantasmal Flames 054 | 4 | the 70 HP print; the Gang runs the Perfect Order print
-Haunter | Perfect Order 049 | 1 | the Haunt print, not Spooky Shot
-Mega Gengar ex | Phantasmal Flames 056 | 2 | Snake Charmer sleeves 2 of the owned 3
-Gengar | Perfect Order 050 | 1 | the single-prize Infinite Shadow print
-Munkidori | Twilight Masquerade 095 | 1 |
-Fezandipiti ex | Shrouded Fable 038 | 1 |
-Lillie's Determination | Mega Evolution 119 | 4 | shared
-Dawn | Phantasmal Flames 087 | 2 |
-Boss's Orders | Mega Evolution 114 | 3 | shared
-Janine's Secret Art | Shrouded Fable 059 | 1 | the only Darkness accel Supporter in Standard
-Lana's Aid | Twilight Masquerade 155 | 1 | three cards out of the discard; not owned
-Ultra Ball | Mega Evolution 131 | 2 | shared
-Buddy-Buddy Poffin | Temporal Forces 144 | 3 | shared
-Rare Candy | Mega Evolution 125 | 4 | shared
-Wondrous Patch | Phantasmal Flames 094 | 3 | the Psychic rebuild; the binder holds one
-Switch | Mega Evolution 130 | 2 | shared
-Prime Catcher | Temporal Forces 157 | 1 | ACE SPEC; the TEF print, the lanterns keep the PRE copy
-Gravity Gemstone | Stellar Crown 137 | 1 | not owned; about twenty cents
-Battle Cage | Phantasmal Flames 085 | 2 | owned; the Stadium
-Basic Psychic Energy | Mega Evolution Energies 005 | 6 | never rotates
-Basic Darkness Energy | Mega Evolution Energies 007 | 5 | shared
-```
-
-> [!IMPORTANT]
-> **The wanted list already knows.** Gravity Gemstone and the 4 Twilight Masquerade Chandelure for the future meta shell are both filed in [wanted-cards.tsv](./wanted-cards.tsv). Two more Wondrous Patch and one Lana's Aid, now filed there too, are the only other orders this page needs.

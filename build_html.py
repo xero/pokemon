@@ -21,7 +21,7 @@ from collections import Counter
 from pathlib import Path
 
 from pokelib import (CREDITS_NOTE, RARITY_SLUG, anchor, card_art,
-                     cost_icons, count_badge, energy_glyphs, esc, icon,
+                     cost_icons, energy_glyphs, esc, icon,
                      legal_cell, mega_sigil, page, row, stat_cell)
 
 ROOT = Path(__file__).parent
@@ -129,11 +129,11 @@ def tags(r):
     return "".join(f' data-{k}="{esc(x)}"' for k, x in v.items() if x)
 
 
-# quantity 0 is a card a deck plan wants but we do not own. It belongs in the
-# deck pages, not in a page called "Pokemon Caught!".
+# a card marked not owned is on the pull list, not in a page called "Pokemon
+# Caught!". There are no counts: a card is in the binders or it is not.
 rows = [r for r in csv.DictReader(open(SRC, encoding="utf-8"))
         if not r["card_type"].startswith(NOT_POKEMON)
-        and int(r.get("quantity") or 0) > 0]
+        and r.get("owned") != "0"]
 rows.sort(key=lambda r: (r["name"].lower(), r["set_name"], r["card_number"]))
 
 if any(not r["hp"] or not r["stage"] for r in rows):
@@ -164,8 +164,7 @@ nav += ["\t\t</ul>", "\t</details>", "\t<div data-active hidden></div>", "</nav>
 articles = []
 for r, a in entries:
     head = [mega_sigil(r["stage"], r["name"]), esc(r["name"]),
-            icon("rarities", RARITY_SLUG.get(r["rarity"]), r["rarity"]),
-            count_badge(r["quantity"])]
+            icon("rarities", RARITY_SLUG.get(r["rarity"]), r["rarity"])]
     art = [f"\t\t\t<article{tags(r)}>",
            f'\t\t\t\t<h2 id="{a}">' + " ".join(p for p in head if p) + "</h2>"]
     if r["image_file"]:

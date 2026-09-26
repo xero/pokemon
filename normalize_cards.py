@@ -9,6 +9,7 @@ Normalizations applied:
   * Redundant card-number suffix stripped from name (moved to card_number)
   * type_hp_stage split into atomic card_type / hp / stage, compound kept
   * regulation_mark and standard_legal resolved per printing, not per set
+  * owned carried over from product-ids.tsv as 1 or 0
   * attacks, weakness, resistance, and retreat cost carried through; the
     description field holds only the Ability, so attacks are where most of
     a card's printed text actually lives
@@ -23,41 +24,13 @@ RAW = ROOT / "raw-cards.json"
 API = "https://mp-search-api.tcgplayer.com/v1/search/request?q=&isList=false"
 CDN = "https://tcgplayer-cdn.tcgplayer.com/product/{id}_in_1000x1000.jpg"
 
-# Every card in the two starter decks: dark-classic.md and fire.md. Named for the drafts
-# they grew out of, gengar-weezing-deck.md and charizard-deck.md, both since
-# folded into the guides above and deleted.
-# The last two ship in the Vivid Voltage theme deck and were never ordered.
-DECK_SLUGS = {
-    "me03-perfect-order/gastly", "me02-phantasmal-flames/haunter-055-094",
-    "me03-perfect-order/gengar", "sv09-journey-together/koffing",
-    "sv09-journey-together/weezing", "me02-phantasmal-flames/dawn",
-    "me01-mega-evolution/lillies-determination-119-132", "me05-pitch-black/gwynn-078-084",
-    "me01-mega-evolution/bosss-orders-ghetsis", "sv05-temporal-forces/buddy-buddy-poffin",
-    "me01-mega-evolution/ultra-ball", "me01-mega-evolution/rare-candy-125-132",
-    "sv-shrouded-fable/night-stretcher", "me01-mega-evolution/switch",
-    "me05-pitch-black/dark-bell-075-084", "me02-phantasmal-flames/punk-helmet",
-    "me01-mega-evolution/risky-ruins", "me05-pitch-black/shadowy-darkness-energy",
-    "mee-mega-evolution-energies/basic-darkness-energy-007",
-    "swsh04-vivid-voltage/charmander", "swsh04-vivid-voltage/charmeleon",
-    "swsh04-vivid-voltage/charizard", "sv-prismatic-evolutions/eevee",
-    "sv-prismatic-evolutions/flareon", "swsh04-vivid-voltage/leon",
-    "sv-prismatic-evolutions/professors-research-professor-oak",
-    "battle-academy/welder-189-214-25-charizard-stamped",
-    "swsh09-brilliant-stars/kindler", "swsh07-evolving-skies/zinnias-resolve",
-    "sv-paldean-fates/nest-ball", "swsh01-sword-and-shield-base-set/evolution-incense",
-    "swsh01-sword-and-shield-base-set/ordinary-rod", "swsh09-brilliant-stars/magma-basin",
-    "swsh01-sword-and-shield-base-set/sudowoodo",
-    "mee-mega-evolution-energies/basic-fire-energy-002",
-}
-
-# id / url / quantity. scrape_quantities.py fills the third column by merging
-# order history with sealed-contents.tsv; a 0 means a card we want but do not
-# own, which still gets a full card page in the deck plans.
+# id / url / owned. owned is 1 unless someone marked the card 0, which is what
+# puts it on the pull list. The # lines at the top of the file are its notes.
 rows = [l.split("\t") for l in (ROOT / "product-ids.tsv").read_text().splitlines()
-        if l.strip()]
+        if l.strip() and not l.startswith("#")]
 pid_to_url = {int(float(r[0])): r[1] for r in rows}
-pid_to_qty = {int(float(r[0])): int(r[2]) if len(r) > 2 and r[2].strip() else 0
-              for r in rows}
+pid_owned = {int(float(r[0])): "0" if len(r) > 2 and r[2].strip() == "0" else "1"
+             for r in rows}
 ids = list(pid_to_url)
 
 
@@ -509,24 +482,23 @@ for pid in ids:
         "regulation_mark": mark,
         "standard_legal": legal,
         "image_file": img_name,
-        "quantity": str(pid_to_qty.get(pid, 0)),
-        "category": "deck" if slug in DECK_SLUGS else "collection",
+        "owned": pid_owned.get(pid, "1"),
         "source_url": url,
     }
     record.update(MANUAL_CARDS.get(reg_key(p.get("setCode") if p else "", number), {}))
     records.append(record)
 
-records.sort(key=lambda r: (r["category"], r["set_name"], r["name"]))
+records.sort(key=lambda r: (r["set_name"], r["name"]))
 cols = ["name", "set_name", "card_number", "rarity", "product_line",
         "card_type", "hp", "stage",
         "type_hp_stage", "card_text", "attack1", "attack2", "attack3", "attack4",
         "weakness", "resistance", "retreat_cost",
         "regulation_mark", "standard_legal",
-        "image_file", "quantity", "category", "source_url"]
+        "image_file", "owned", "source_url"]
 with open(ROOT / "cards.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.DictWriter(f, fieldnames=cols)
     w.writeheader()
     w.writerows(records)
 
-print(f"rows={len(records)} deck={sum(r['category']=='deck' for r in records)} "
-      f"collection={sum(r['category']=='collection' for r in records)}")
+print(f"rows={len(records)} owned={sum(r['owned'] == '1' for r in records)} "
+      f"pull={sum(r['owned'] == '0' for r in records)}")

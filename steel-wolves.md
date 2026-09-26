@@ -5,7 +5,7 @@
 > [!NOTE]
 > **What this file is for.**
 >
-> This is Fox's online deck. It plays on TCG Live, so every card is English and Standard legal; nothing here is sleeved in paper and no buy block reads this page. The shell comes from the Hop's Zacian lists winning events on [the Limitless ladder](https://play.limitlesstcg.com/decks/hop-zacian?format=standard&rotation=2026&set=PBL), with the draw engine traded out for an Energy engine and two Zamazenta added.
+> This is Fox's online deck. It plays on TCG Live, so every card is English and Standard legal; nothing here is sleeved in paper. The shell comes from the Hop's Zacian lists winning events on [the Limitless ladder](https://play.limitlesstcg.com/decks/hop-zacian?format=standard&rotation=2026&set=PBL), with the draw engine traded out for an Energy engine and two Zamazenta added.
 >
 > Game words are defined in [the table rules](./rules.md).
 

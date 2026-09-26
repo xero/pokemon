@@ -25,7 +25,7 @@
 > **Tool & Stadium** — [Air Balloon](#air-balloon) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Basic Darkness Energy](#basic-darkness-energy)
 >
-> [**Game Plans**](#game-plans) · [Versus the Field](#versus-the-field) · [Versus the Kitchen Table](#versus-the-kitchen-table) · [Upgrades](#upgrades) · [What To Buy](#what-to-buy)
+> [**Game Plans**](#game-plans) · [Versus the Field](#versus-the-field) · [Versus the Kitchen Table](#versus-the-kitchen-table) · [Upgrades](#upgrades)
 
 ---
 
@@ -657,15 +657,3 @@ Everything below is in the binder or costs about a dollar. Change one at a time,
 **The third Haunter and the third Lillie's.** Each trades against the second Risky Ruins, depending on what the games show. The Live list ran both at three; this list cut each one for a Basic.
 
 **The second Gengar ex, from the mail.** Gnawing Curse has no "doesn't stack" clause, so the pair doubles the toll. It is the right call if the local room turns out to be Festival Lead and hand-attachment decks; it costs a Chi-Yu.
-
----
-
-## What To Buy
-
-This is the deck's claim on cards the pipeline does not yet cover. All three rows are physically in hand as of 2026-08-26, from the card store run that morning, and each Buy column reads one until `wanted-cards.tsv` and `add_cards.py` catch up with the binder. Correct the pipeline, not this block.
-
-```buy
-Toxel | Phantasmal Flames 067 | 3 | third copy bought at the LGS 2026-08-26; not in the pipeline yet
-Toxtricity | Phantasmal Flames 068 | 3 | third copy bought at the LGS 2026-08-26; not in the pipeline yet
-Energy Recycler | Destined Rivals 164 | 1 | owned copy; not in the pipeline yet
-```

@@ -20,7 +20,6 @@
 > - [Damage Math](#damage-math)
 > - [Game Plans](#game-plans)
 > - [Versus The Table](#versus-the-table)
-> - [What To Buy](#what-to-buy)
 > - [Test And Tune](#test-and-tune)
 
 ---
@@ -257,21 +256,6 @@ Nearly all ex attackers, so Concealment is live for the entire game. *Erasure Ba
 ### Fox's Flareon ex and Charizard decks
 
 Concealment does less here because more of his attackers are single-prize, and against Charizard it does nothing at all. Win this one on damage instead. Seviper clears 270 with any chip attached, and Risky Ruins punishes his Bench-heavy setup turns.
-
----
-
-## What To Buy
-
-Almost nothing. This is built from what is already in the box.
-
-```buy
-Mega Gengar ex | Phantasmal Flames 056 | 3 | third copy, or play one of the two japanese MBG prints instead
-Team Rocket's Zubat | Destined Rivals 120 | 3 | common, third copy
-Legacy Energy | Twilight Masquerade 167 | 1 | the ace spec, or swap in the japanese Prime Catcher you already own
-```
-
-> [!TIP]
-> **The Japanese prints count at the kitchen table.** You own two Japanese Mega Gengar ex from the MEGA Starter Set, which makes the third English copy optional. They are not legal at a sanctioned event, and this deck is not for one.
 
 ---
 

@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1263,7 +1216,6 @@
 			<li><a href="#damage-math">Damage Math</a></li>
 			<li><a href="#game-plans">Game Plans</a></li>
 			<li><a href="#versus-the-table">Versus The Table</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 			<li><a href="#test-and-tune">Test And Tune</a></li>
 		</ul>
 	</details>
@@ -1672,24 +1624,6 @@
 					<p>Concealment does less here because more of his attackers are single-prize, and against Charizard it does nothing at all. Win this one on damage instead. Seviper clears 270 with any chip attached, and Risky Ruins punishes his Bench-heavy setup turns.</p>
 				</section>
 			</article>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy</h3></summary>
-					<p>Almost nothing. This is built from what is already in the box.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Mega Gengar ex <small>ME02: Phantasmal Flames 056/094</small></span></td><td>3</td><td>3</td><td>✓</td><td>third copy, or play one of the two japanese MBG prints instead</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Zubat <small>SV10: Destined Rivals 120/182</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>common, third copy</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Legacy Energy <small>SV06: Twilight Masquerade 167/167</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>the ace spec, or swap in the japanese Prime Catcher you already own</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>2</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="tip">
-				<p><strong>The Japanese prints count at the kitchen table.</strong> You own two Japanese Mega Gengar ex from the MEGA Starter Set, which makes the third English copy optional. They are not legal at a sanctioned event, and this deck is not for one.</p>
-			</aside>
-				</details>
 			</section>
 			<section>
 				<h3 id="test-and-tune">Test And Tune<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>

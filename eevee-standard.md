@@ -12,7 +12,7 @@
 >
 > The [Deck List](#deck-list) below is Sun and Moon, because home is where he plays most. [The Swap](#the-swap) shows the ten cards that turn it into Fire and Ice. If he wants to make the call himself, hand him [Pick Your Ten](#pick-your-ten).
 >
-> Everything here is Regulation **H**, which rotates around April 2027. See [What To Buy](#what-to-buy) before spending, and [the table rules](./rules.md) for any game word — ex, Tera, ACE SPEC, all of it.
+> Everything here is Regulation **H**, which rotates around April 2027. See [the table rules](./rules.md) for any game word — ex, Tera, ACE SPEC, all of it.
 
 ---
 
@@ -27,7 +27,7 @@
 > **Tool / Stadium** — [Sparkling Crystal](#sparkling-crystal) · [Battle Cage](#battle-cage)
 > **Energy** — [Darkness](#basic-darkness-energy) · [Fire](#basic-fire-energy) · [Psychic](#basic-psychic-energy) · [Water](#basic-water-energy)
 >
-> [**Game Plans**](#game-plans) · [**What To Buy**](#what-to-buy)
+> [**Game Plans**](#game-plans)
 
 ---
 
@@ -335,46 +335,3 @@ One Sparkling Crystal, one Pokémon, and the choice is not obvious.
 - **On Espeon ex** it makes *Amazez* castable at all from this Energy line.
 
 Decide by asking whether the game is a race or a grind. Races want it on Flareon; grinds want it on the gem.
-
----
-
-## What To Buy
-
-Counts are the maximum across both modes, so one purchase covers Sun and Moon and Fire and Ice together. Flareon ex is listed at 4 because Fire and Ice wants the fourth; Umbreon ex at 3 because Sun and Moon wants the third.
-
-```buy
-Eevee | Prismatic Evolutions 074 | 3 | Boosted Evolution, the turn-one play
-Eevee | Twilight Masquerade 135 | 1 | Ascension, the toolbox tutor
-Eevee ex | Prismatic Evolutions 075 | 2 | Rainbow DNA
-Flareon ex | Prismatic Evolutions 014 | 4 | 3 for Sun and Moon, 4 for Fire and Ice
-Umbreon ex | Prismatic Evolutions 060 | 3 | the plain Double Rare, never the 161 Special Illustration
-Espeon ex | Prismatic Evolutions 034 | 1 | Sun and Moon only
-Glaceon | Prismatic Evolutions 025 | 2 | the non-ex 025, not Glaceon ex 026
-Hoothoot | Stellar Crown 114 | 4 |
-Noctowl | Stellar Crown 115 | 2 | Jewel Seeker, always on
-Lillie's Determination | Mega Evolution 119 | 4 | shared
-Boss's Orders | Mega Evolution 114 | 3 | shared
-Crispin | Stellar Crown 133 | 3 | the pinch, see below
-Hilda | White Flare 084 | 2 | an Evolution and an Energy, one card
-Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared
-Ultra Ball | Mega Evolution 131 | 4 | carries the whole toolbox
-Switch | Mega Evolution 130 | 3 | shared
-Night Stretcher | Shrouded Fable 061 | 3 | shared
-Battle Cage | Phantasmal Flames 085 | 2 | Sun and Moon only; 085, not the 116 secret print
-Sparkling Crystal | Stellar Crown 142 | 1 | ACE SPEC
-Basic Darkness Energy | Mega Evolution Energies 7 | 6 | any English printing
-Basic Fire Energy | Mega Evolution Energies 2 | 7 | any English printing
-Basic Psychic Energy | Mega Evolution Energies 5 | 3 | any English printing
-Basic Water Energy | Mega Evolution Energies 3 | 3 | any English printing
-```
-
-> [!WARNING]
-> **Crispin is the collection pinch.** You own 4, this deck wants 3, and Frostfire wants 2. Unlike the two Psychic decks, this one and yours **will** be sleeved at the same time, so that is a genuine conflict rather than a rounding error. Hilda has the same problem from zero.
-
-> [!NOTE]
-> **Basic Energy never rotates and every English printing is legal**, so the four Energy lines above come out of a bulk box rather than an order. Fire and Darkness are already deep in the collection.
-
-> [!IMPORTANT]
-> **Regulation clock.** Every Eevee and every Eeveelution ex exists only at Regulation **H**, from Prismatic Evolutions plus a few promos. There is no I or J printing of any of them, so the whole archetype rotates around **April 2027** unless it gets reprinted.
->
-> That is fine at the kitchen table forever. For sanctioned play it is roughly eight months, which argues for buying the Flareon and Umbreon core deep and treating Espeon, Glaceon, and Battle Cage as the optional half.

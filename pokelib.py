@@ -275,9 +275,10 @@ def flair(names):
 def count_badge(n):
     """The count that sits in the corner of a card heading.
 
-    Means different things on different pages and that is deliberate: the
-    collection shows how many are owned, a deck page how many that deck runs.
-    Both read "xN" on a Pokedex, so the shape is shared and the number is not.
+    Means different things on different pages and that is deliberate: a deck
+    page shows how many that deck runs, the pull list how many to buy. Both
+    read "xN" on a Pokedex, so the shape is shared and the number is not. The
+    collection has no badge at all, since nothing counts what we own.
     """
     # values arrive as "4", "**1** (ACE SPEC)" or an int, so take the first
     # number rather than requiring the cell to be nothing else

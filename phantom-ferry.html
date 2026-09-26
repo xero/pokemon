@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1264,7 +1217,6 @@
 			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
 			<li><a href="#cards-that-look-right-skip-them">✗ Cards That Look Right, Skip Them</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt><a href="#the-numbers">The Numbers</a></dt>
@@ -2240,45 +2192,6 @@ Energy: 11
 						<dt>Jamming Tower rooms</dt><dd><span>Nothing to change. Two Cages plus Petrel is three answers, and Prime Catcher is the one rotation that does not care.</span></dd>
 						<dt>Single-prize rooms keep winning</dt><dd><span>This deck&#x27;s answer is knowing when not to play it. For a Festival Lead room, sleeve the Gengar ex Darkness list instead; <a href="./dark-gang.html">Gengar Gang</a> is its closest page, with the Temporal Forces Gengar ex in the 30th Celebration Gengar&#x27;s seat.</span></dd>
 					</dl>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pokeball.gif" alt="" /></span></h3></summary>
-					<p><strong>Nothing.</strong> Every card in this list is in the box, and the own counts below are live from the collection database. The Lillie&#x27;s, Boss&#x27;s Orders, Poffin, Rare Candy, Night Stretcher, Ultra Ball, Prime Catcher, and Hilda rows are shared with the other sleeved decks, so check <a href="./collection.html">the box</a> before sleeving two of them on the same night.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Litwick <small>ME05: Pitch Black 036/084</small></span></td><td>10</td><td>4</td><td>✓</td><td>the Psychic print; shared with the lanterns</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Lampent <small>ME05: Pitch Black 037/084</small></span></td><td>9</td><td>3</td><td>✓</td><td>shared with the lanterns</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Chandelure ex <small>ME05: Pitch Black 038/084</small></span></td><td>4</td><td>3</td><td>✓</td><td>shared with the lanterns</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Gastly <small>ME03: Perfect Order 048/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>Surprise Attack; the Gang runs the same print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Haunter <small>ME03: Perfect Order 049/088</small></span></td><td>2</td><td>1</td><td>✓</td><td>Haunt; the Candy insurance</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Mega Gengar ex <small>ME02: Phantasmal Flames 056/094</small></span></td><td>3</td><td>2</td><td>✓</td><td>Snake Charmer sleeves the owned 3</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Okidogi ex <small>SV: Shrouded Fable 036/064</small></span></td><td>3</td><td>2</td><td>✓</td><td>the no-Ability attacker; NOT the 082 or 090 illustration prints</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>3</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared; printed Boss&#x27;s Orders [Ghetsis]</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Crispin <small>SV07: Stellar Crown 133/142</small></span></td><td>4</td><td>2</td><td>✓</td><td>the two-color accelerator</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Hilda <small>SV: White Flare 084/086</small></span></td><td>7</td><td>2</td><td>✓</td><td>shared; an Evolution and its Energy to hand</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Petrel <small>SV10: Destined Rivals 176/182</small></span></td><td>2</td><td>2</td><td>✓</td><td>the second copy of every one-of</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>AZ&#x27;s Tranquility <small>ME04: Chaos Rising 076/086</small></span></td><td>1</td><td>1</td><td>✓</td><td>switch, cure, and heal 80</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>1</td><td>✓</td><td>shared; the Item that finds a Mega or the dog</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>2</td><td>1</td><td>✓</td><td>five Energy back into the deck</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared; the only recovery for a Mega</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Prime Catcher <small>SV05: Temporal Forces 157/162</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC; the TEF print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Air Balloon <small>ME: Ascended Heroes 181/217</small></span></td><td>2</td><td>2</td><td>✓</td><td>one per Mega, on the hitter first</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Battle Cage <small>ME02: Phantasmal Flames 085/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>the Stadium; Cage first against Dragapult</td></tr>
-							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>5</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>6</td><td>✓</td><td>shared; two dogs eat six</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>0</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="note">
-				<p><strong>Regulation clock.</strong> Everything here is Standard legal as of September 2026. The H cards, meaning Okidogi ex, Crispin, Buddy-Buddy Poffin, Night Stretcher, and Prime Catcher, rotate around April 2027, and that is the dog, the two-color accelerator, the ACE SPEC, and most of the setup. The Pitch Black, Phantasmal Flames, Perfect Order, and Chaos Rising core is Reg I and J and outlives them by a season or more. When the H cards go, the lantern half survives whole and the Dark half needs a new accelerator and a new closer.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

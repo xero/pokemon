@@ -32,7 +32,7 @@
 > [**The Prize Ladder**](#the-prize-ladder)
 > [**Game Plans**](#game-plans) · [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in)
 > [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**✗ Gengar Spirit Link — Skip It**](#-gengar-spirit-link--skip-it)
-> [**How To Play ex Style**](#how-to-play-ex-style) · [**What To Buy**](#what-to-buy)
+> [**How To Play ex Style**](#how-to-play-ex-style)
 
 ---
 
@@ -430,36 +430,3 @@ A card that looks purpose-built for this deck and does nothing in it. The reason
 ## How To Play ex Style
 
 See the **[rules](./rules.md#how-to-play-ex-style)** for ex-format habits such as racing to six, prize maps, and scoring a trade before you take it.
-
----
-
-## What To Buy
-
-Ten cards. Everything else is already in the binder in English, tournament-legal prints, including both Mega Gengar ex and the whole Trainer shell.
-
-```buy
-Gastly | Phantasmal Flames 054 | 4 |
-Haunter | Perfect Order 049 | 2 | the Haunt print, not Spooky Shot
-Gengar ex | Temporal Forces 104 | 2 | the Gnawing Curse print, sees no competitive play and prices like it
-Mega Gengar ex | Phantasmal Flames 056 | 2 |
-Munkidori | Twilight Masquerade 095 | 3 | the engine; Ascended Heroes 099 is the same card if cheaper
-Fezandipiti ex | Shrouded Fable 038 | 2 | Ascended Heroes 142 is the same card if cheaper
-Sableye | Phantasmal Flames 059 | 2 | Gengar Gang runs the owned pair; add 2 to keep both sleeved
-Toxel | Phantasmal Flames 067 | 2 | Gengar Gang runs the owned pair; add 2 to keep both sleeved
-Toxtricity | Phantasmal Flames 068 | 2 | Gengar Gang runs the owned pair; add 2 to keep both sleeved
-Lillie's Determination | Mega Evolution 119 | 4 |
-Dawn | Phantasmal Flames 087 | 2 | Gengar Gang runs 3 of the 4 owned
-Boss's Orders | Mega Evolution 114 | 3 |
-Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared with the other decks
-Rare Candy | Mega Evolution 125 | 3 | shared with the other decks
-Ultra Ball | Mega Evolution 131 | 3 |
-Night Stretcher | Shrouded Fable 061 | 3 |
-Energy Switch | Mega Evolution 115 | 2 | the SV01 copies are rotated, and Fox's
-Switch | Mega Evolution 130 | 1 |
-Prime Catcher | Prismatic Evolutions 119 | 1 | the ACE SPEC; the English print is owned
-Risky Ruins | Mega Evolution 127 | 2 |
-Basic Darkness Energy | Mega Evolution Energies 007 | 11 |
-```
-
-> [!IMPORTANT]
-> **Decide which game you are buying for.** Against Fox's Team Rocket's Mewtwo deck the Mega mode is fully live and the games are the prize ladder working as designed. Against his Charizard deck the Curse mode plays a fair, close game that Gengar Gang cannot quite reach. If neither of those nights needs improving, the ten singles above are the whole cost of finding out what Gnawing Curse does to a room that has never seen it.

@@ -1,29 +1,9 @@
-# Raw scrapes and order history. None of this is read by the generators, and
-# raw-cards.json rebuilds itself from product-ids.tsv on the next run.
+# The card-data cache normalize_cards.py keeps: one raw TCGplayer record per
+# product id. It rebuilds itself from product-ids.tsv on the next run, so it
+# is never worth committing.
 raw-cards.json
-ordered-card-urls.txt
-theme-deck-urls.txt
-
-# "*.tsv" used to sit here, which was too wide a net. It was aimed at the order
-# scrape below, but it also swallowed the two hand-written build inputs, so a
-# fresh clone could not run scrape_quantities.py or add_cards.py at all. Both
-# are public card data with nothing personal in them:
-#
-#   sealed-contents.tsv   decklists for the sealed products, off Bulbapedia
-#   wanted-cards.tsv      the wishlist, and what is in the sealed products
-#
-# product-ids.tsv was already tracked and stayed that way by accident: git keeps
-# a file it is already following whatever .gitignore says afterwards.
-
-# Purchase records: carts, prices paid, what shipped from whom.
-tcgplayer-order.md
-shopping-list.md
 
 # Scratch
 *.bak
 .DS_Store
 __pycache__/
-
-# Raw order-history quantity scrape. product-ids.tsv carries the merged result,
-# which is what the generators actually read.
-order-quantities.tsv

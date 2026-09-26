@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1281,7 +1234,7 @@
 		<main>
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
-				<p>This is Fox&#x27;s online deck. It plays on TCG Live, so every card is English and Standard legal; nothing here is sleeved in paper and no buy block reads this page. The shell comes from the Hop&#x27;s Zacian lists winning events on <a href="https://play.limitlesstcg.com/decks/hop-zacian?format=standard&amp;rotation=2026&amp;set=PBL">the Limitless ladder</a>, with the draw engine traded out for an Energy engine and two Zamazenta added.</p>
+				<p>This is Fox&#x27;s online deck. It plays on TCG Live, so every card is English and Standard legal; nothing here is sleeved in paper. The shell comes from the Hop&#x27;s Zacian lists winning events on <a href="https://play.limitlesstcg.com/decks/hop-zacian?format=standard&amp;rotation=2026&amp;set=PBL">the Limitless ladder</a>, with the draw engine traded out for an Energy engine and two Zamazenta added.</p>
 				<p>Game words are defined in <a href="./rules.html">the table rules</a>.</p>
 			</aside>
 			<section>

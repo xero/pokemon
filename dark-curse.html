@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1262,7 +1215,6 @@
 			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
 			<li><a href="#gengar-spirit-link-skip-it">✗ Gengar Spirit Link — Skip It</a></li>
 			<li><a href="#how-to-play-ex-style">How To Play ex Style</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -1975,42 +1927,6 @@ they re-attach         --Gnawing Curse--&gt;   2 more counters</code></pre>
 			<section>
 				<h3 id="how-to-play-ex-style">How To Play ex Style<span data-flavor><img src="./assets/sprites/charizard.gif" alt="" /></span></h3>
 					<p>See the <strong><a href="./rules.html#how-to-play-ex-style">rules</a></strong> for ex-format habits such as racing to six, prize maps, and scoring a trade before you take it.</p>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h3></summary>
-					<p>Ten cards. Everything else is already in the binder in English, tournament-legal prints, including both Mega Gengar ex and the whole Trainer shell.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Gastly <small>ME02: Phantasmal Flames 054/094</small></span></td><td>9</td><td>4</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Haunter <small>ME03: Perfect Order 049/088</small></span></td><td>2</td><td>2</td><td>✓</td><td>the Haunt print, not Spooky Shot</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Gengar ex <small>SV05: Temporal Forces 104/162</small></span></td><td>2</td><td>2</td><td>✓</td><td>the Gnawing Curse print, sees no competitive play and prices like it</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Mega Gengar ex <small>ME02: Phantasmal Flames 056/094</small></span></td><td>3</td><td>2</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Munkidori <small>SV06: Twilight Masquerade 095/167</small></span></td><td>3</td><td>3</td><td>✓</td><td>the engine; Ascended Heroes 099 is the same card if cheaper</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>2</td><td>2</td><td>✓</td><td>Ascended Heroes 142 is the same card if cheaper</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Sableye <small>ME02: Phantasmal Flames 059/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxel <small>ME02: Phantasmal Flames 067/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxtricity <small>ME02: Phantasmal Flames 068/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>Gengar Gang runs the owned pair; add 2 to keep both sleeved</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>Gengar Gang runs 3 of the 4 owned</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared with the other decks</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared with the other decks</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>3</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>3</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Energy Switch <small>ME01: Mega Evolution 115/132</small></span></td><td>2</td><td>2</td><td>✓</td><td>the SV01 copies are rotated, and Fox&#x27;s</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>1</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Prime Catcher <small>SV: Prismatic Evolutions 119/131</small></span></td><td>1</td><td>1</td><td>✓</td><td>the ACE SPEC; the English print is owned</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Risky Ruins <small>ME01: Mega Evolution 127/132</small></span></td><td>4</td><td>2</td><td>✓</td><td></td></tr>
-							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>11</td><td>✓</td><td></td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>0</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="important">
-				<p><strong>Decide which game you are buying for.</strong> Against Fox&#x27;s Team Rocket&#x27;s Mewtwo deck the Mega mode is fully live and the games are the prize ladder working as designed. Against his Charizard deck the Curse mode plays a fair, close game that Gengar Gang cannot quite reach. If neither of those nights needs improving, the ten singles above are the whole cost of finding out what Gnawing Curse does to a room that has never seen it.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

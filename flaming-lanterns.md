@@ -24,7 +24,7 @@
 > [**The Hand Ledger**](#the-hand-ledger) · [**Game Plans**](#game-plans)
 > [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in) · [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Versus the Card Shop**](#versus-the-card-shop)
 > [**✗ Four Cards That Look Right — Skip Them**](#-four-cards-that-look-right--skip-them)
-> [**Test and Tune**](#test-and-tune) · [**What To Buy**](#what-to-buy)
+> [**Test and Tune**](#test-and-tune)
 
 ---
 
@@ -32,7 +32,7 @@
 
 This deck is the one build in the house that started from tournament evidence rather than the binder, so the receipts come first.
 
-**The 4-4-4-3 line is the archetype's winning shape.** Two verified results lists on [Limitless online play](https://play.limitlesstcg.com/decks?game=PTCG&format=standard) run it card for card: Shoei's 7-2-0 (3rd of 119, SEASAC League Challenge) and GCampa's 6-1-0 (10th of 220). Both run 4 Litwick, 4 Lampent, 4 Fire Chandelure, 3 Mega Chandelure ex, a bench of single-prize tech Basics, zero Stadiums, and a 4 Telepathic / 3 Psychic / 3 Fire energy base. This 60 is Shoei's list at roughly 95 percent fidelity; every deviation is named in [What To Buy](#what-to-buy).
+**The 4-4-4-3 line is the archetype's winning shape.** Two verified results lists on [Limitless online play](https://play.limitlesstcg.com/decks?game=PTCG&format=standard) run it card for card: Shoei's 7-2-0 (3rd of 119, SEASAC League Challenge) and GCampa's 6-1-0 (10th of 220). Both run 4 Litwick, 4 Lampent, 4 Fire Chandelure, 3 Mega Chandelure ex, a bench of single-prize tech Basics, zero Stadiums, and a 4 Telepathic / 3 Psychic / 3 Fire energy base. This 60 is Shoei's list at roughly 95 percent fidelity.
 
 **"Chandelure" and "Mega Chandelure ex" are different names.** Separate 4-copy caps, and both evolve from Lampent, so one *Spreading Light* stocks a Bench where every Lampent is two different threats. The fork is the deck: a 3-Prize 350 HP trap and a 1-Prize hand-reader growing out of the same row.
 
@@ -367,42 +367,6 @@ The list is a hypothesis; games are the data. Symptoms and their fixes:
 | Mulligans sting past tolerance | 2nd Marshadow (owned) or 2nd Comfey (11 cents) over a Rare Candy; any consistency add should be a Basic |
 | The Ruler whiffs on Fire | 4th Basic Fire over the 3rd Psychic, free, before touching anything else |
 | Hand-dump opponents at the shop | 3rd Xerosic's Machinations (27 cents) over the 2nd Poffin |
-| Long events, prize races lost by one | Legacy Energy ($3.80, on the wanted list) over a Basic Psychic, and it takes the ACE slot from Prime Catcher; both winning lists split on exactly this call |
+| Long events, prize races lost by one | Legacy Energy over a Basic Psychic, and it takes the ACE slot from Prime Catcher; both winning lists split on exactly this call |
 | Stranded heavies | a Switch from the 7 owned over a Poke Pad |
 | The Mega keeps dying loaded | Wally's Compassion (owned) over the 3rd Lillie's |
-
----
-
-## What To Buy
-
-The cheapest real deck the house has ever stood up: everything structural is already owned and shared with the sibling lantern builds, and the entire purchase is eleven commons for about **$2.15**. The shared rows below live in one physical set of sleeves with [Phantom Toll](./phantom-toll.md); the two decks cannot be sleeved at once, and these pages are the swap sheets. Own counts are live from the collection database.
-
-```buy
-Litwick | Pitch Black 036 | 4 | the Psychic print; shared lantern chassis
-Lampent | Pitch Black 037 | 4 | shared lantern chassis
-Chandelure | Twilight Masquerade 038 | 4 | the Alluring Light print, ~18 cents a copy; the whole reason
-Mega Chandelure ex | Pitch Black 038 | 3 | shared lantern chassis; 4 owned across the sibling builds
-Shaymin | Destined Rivals 010 | 1 | Flower Curtain; ~30 cents
-Maractus | Journey Together 008 | 1 | Exploding Needles; ~15 cents
-Marshadow | Pitch Black 040 | 1 | owned; the deliberate Elgyem replacement
-Clefairy | Perfect Order 030 | 1 | Follow Me; ~8 cents
-Comfey | Stellar Crown 063 | 1 | Flower Shower; ~11 cents
-Boss's Orders | Mega Evolution 114 | 4 | shared
-Lillie's Determination | Mega Evolution 119 | 3 | shared
-Hilda | White Flare 084 | 3 | shared
-Dawn | Phantasmal Flames 087 | 2 | the Gang sleeves 3 of the 4 owned; one crosses over
-Xerosic's Machinations | Shrouded Fable 064 | 2 | the Mind Ruler floor; ~27 cents a copy
-Poke Pad | Perfect Order 081 | 4 | printed Poké Pad; the database drops the accent
-Night Stretcher | Shrouded Fable 061 | 3 | shared
-Buddy-Buddy Poffin | Temporal Forces 144 | 2 | shared
-Ultra Ball | Mega Evolution 131 | 2 | shared
-Rare Candy | Mega Evolution 125 | 2 | shared
-Prime Catcher | Prismatic Evolutions 119 | 1 | ACE SPEC; the PRE copy, freed when the lanterns came apart
-Air Balloon | Ascended Heroes 181 | 2 | one owned; the second is a 23-cent buy, the starter copies are Japanese
-Telepathic Psychic Energy | Perfect Order 088 | 4 | shared; Special, nothing recovers it
-Basic Psychic Energy | Mega Evolution Energies 005 | 3 | never rotates
-Basic Fire Energy | Mega Evolution Energies 002 | 3 | the Ruler's whole diet
-```
-
-> [!IMPORTANT]
-> **Every buy is already filed.** The 4 Twilight Masquerade Chandelure and the five tech singles are on [the wanted list](./wanted-cards.tsv) with their reasons; Legacy Energy sits there too, waiting on the Test and Tune verdict rather than the first order. Per the house rule, the shared cores are re-sleeve notes, not purchases: nothing gets double-bought until a lantern build earns permanent sleeves.

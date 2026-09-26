@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1262,7 +1215,6 @@
 			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
 			<li><a href="#alternatives">Alternatives</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -2051,56 +2003,8 @@
 				<section>
 					<p><strong>The counter that walks.</strong> <em>Shady Move</em> relocates 1 damage counter from any Pokémon to any other Pokémon, once per turn per copy, and <a href="https://compendium.pokegym.net/ruling/240/">the published ruling</a> confirms it moves them across the table, off your Pokémon and onto theirs. That is the Umbreon fuse from <a href="#versus-the-kitchen-table">the kitchen-table section</a> defused one tick per turn, with each tick landing on Fox&#x27;s board as another 20 of Vortex.</p>
 					<p>Fire type, and <em>Super Singe</em> costs <span data-icons="inline"><img src="./assets/types/fire.png" alt="Fire" /></span>, so it never attacks. Furniture does not need to fight; this chair moves damage for a living. Retreat 1, and it wears its own Shroud ping happily, because a damaged bencher is 50 more on Horrifying Rondo.</p>
-					<p>The whole module costs about six dollars.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/lost-thunder.png" /><img src="./assets/sets/lost-thunder.png" alt="SM - Lost Thunder" /></picture></span><span>Chandelure <small>SM - Lost Thunder 103/214</small></span></td><td>2</td><td>2</td><td>✓</td><td>Vortex of Pain; foil only, about $3 a copy shipped</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/guardians-rising.png" /><img src="./assets/sets/guardians-rising.png" alt="SM - Guardians Rising" /></picture></span><span>Chandelure <small>SM - Guardians Rising 13/145</small></span></td><td>1</td><td>1</td><td>✓</td><td>Shady Move; under a dollar</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>0</strong></td><td></td></tr>
-						</tbody>
-					</table>
 				</section>
 			</article>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pumpkaboo.gif" alt="" /></span></h3></summary>
-					<p>Own counts are live from the collection database; the Rare Candy, Poffin, Boss&#x27;s, and Lillie&#x27;s rows are shared with the other sleeved decks, so check <a href="./collection.html">the box</a> before ordering.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Litwick <small>ME05: Pitch Black 036/084</small></span></td><td>10</td><td>4</td><td>✓</td><td>the Psychic print; the Fire copies do not serve this line</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Lampent <small>ME05: Pitch Black 037/084</small></span></td><td>9</td><td>4</td><td>✓</td><td>Spreading Light</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Chandelure ex <small>ME05: Pitch Black 038/084</small></span></td><td>4</td><td>3</td><td>✓</td><td>Double Rare; skip the collector prints numbered above 084</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Pumpkaboo <small>ME04: Chaos Rising 040/086</small></span></td><td>2</td><td>2</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Gourgeist ex <small>ME04: Chaos Rising 041/086</small></span></td><td>2</td><td>2</td><td>✓</td><td>Double Rare; 041, not 102</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Snorunt <small>SV06: Twilight Masquerade 051/167</small></span></td><td>1</td><td>1</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Snorunt <small>ME: Ascended Heroes 046/217</small></span></td><td>1</td><td>1</td><td>✓</td><td>the Love Ball print; Reg I, outlives the TWM copy</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Froslass <small>SV06: Twilight Masquerade 053/167</small></span></td><td>2</td><td>2</td><td>✓</td><td>the engine; 2-2, never 1-1</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Duskull <small>SV: Shrouded Fable 018/064</small></span></td><td>6</td><td>2</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Dusknoir <small>SV: Shrouded Fable 020/064</small></span></td><td>2</td><td>1</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Hilda <small>SV: White Flare 084/086</small></span></td><td>7</td><td>3</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Wally&#x27;s Compassion <small>ME01: Mega Evolution 132/132</small></span></td><td>4</td><td>1</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Poke Pad <small>ME03: Perfect Order 081/088</small></span></td><td>4</td><td>3</td><td>✓</td><td>printed Poké Pad; the database drops the accent</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Wondrous Patch <small>ME02: Phantasmal Flames 094/094</small></span></td><td>1</td><td>1</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Air Balloon <small>ME: Ascended Heroes 181/217</small></span></td><td>2</td><td>1</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Prime Catcher <small>SV: Prismatic Evolutions 119/131</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC; the PRE reprint of TEF 157, same card, English</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Telepathic Psychic Energy <small>ME03: Perfect Order 088/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>Special Energy; nothing recovers it once discarded</td></tr>
-							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>6</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>0</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="important">
-				<p><strong>Regulation clock.</strong> Everything in this list is Standard legal as of August 2026; the <a href="#night-parade">Night Parade</a> prints, by design, are not. The H cards (the Snorunt and Duskull lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order core is Reg J with years left. The soul of the deck outlives its shell.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

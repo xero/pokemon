@@ -1,0 +1,748 @@
+# Every page on the site, in the order the front page lists them.
+#
+# This file is the one place a page is registered. build_deck_html.py builds
+# what it lists, build_index.py links it, and build_wishlist.py reads its deck
+# lists for the pull list. A markdown file that is not in here is a planning
+# doc: the build leaves it alone and says so.
+#
+# [[library]]   a page that is not a deck. The front page lists these first,
+#               with no heading, on the highlight tint.
+#   page        a generated page, built by its own script
+#   source      a markdown page, built like a deck
+#
+# [[deck]]
+#   source      the deck's markdown file
+#   player      "xero" or "fox". Each of us sleeves one deck at a time, so the
+#               pull list takes the largest ask on each side and adds the two.
+#   shelf       "league" for the two decks we are sleeving now. These are the
+#               only titles that carry our names, and they share the library's
+#               tint. "other" for everything else, whose titles drop the name.
+#   group       the subheading an "other" deck is filed under
+#   draft       true keeps a deck off the site entirely: no page, no front-page
+#               row, and the pull list names it without a link. Delete the line
+#               to publish.
+#
+# Both tables take:
+#   sprites     the animated sprites beside the front-page row
+#   mascot      the sprites beside the page's own title, when not the same
+#   blurb       the front-page description. Line breaks are only for reading.
+#   [*.flavor]  corner sprites for headings, keyed by the exact heading text.
+#               A reworded heading orphans its key, and the build names it.
+#
+# Sprites load from assets/sprites/. The full library is in assets/ani/;
+# promote one by copying it over. Gen 9 is absent from it.
+
+[[library]]
+page = "collection.html"
+sprites = ["pokedex", "pokeball"]
+blurb = """
+A searchable collection of our combined binders. Every card, stat, and
+ability, and whether it's legal for tournament play."""
+
+[[library]]
+page = "wishlist.html"
+sprites = ["deck"]
+blurb = """
+Every card we still have to buy, the decks that want it, and how many copies
+to pull. A card lands here when it is marked as not owned."""
+
+[[library]]
+source = "rules.md"
+sprites = ["gengar-hop", "cursed"]
+blurb = """
+The table rulebook: every game word the deck pages lean on, how a game
+actually runs, what the letters on the cards mean, and what a real
+tournament expects."""
+
+# the rules lawyers: the fake tree and the wall that just sits there.
+[library.flavor]
+"The board" = ["sudowoodo"]
+"Rules that trip people up" = ["wobbuffet"]
+"The big-card words" = ["gengar-mega"]
+"How a Game Runs" = ["hoothoot"]
+"Special Conditions" = ["drowzee"]
+"Standard Legal, and Why Some Decks Aren't" = ["charizard"]
+"Tournament Night" = ["noctowl"]
+"How To Play ex Style" = ["gengar-mega-shiny"]
+"7. Errors to expect on the way over" = ["eevee-back"]
+
+[[deck]]
+source = "dark-gang.md"
+player = "xero"
+shelf = "league"
+# the dog is a hand-drawn gif rather than a library sprite; it and
+# the Mega are the two engines
+sprites = ["gengar", "okidogi"]
+blurb = """
+Xero's league-night 60, built on the 30th Celebration Gengar ex. Chaotic
+Pain kills the body every Mega grows out of, Grimsley's Move drops a Mega
+Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the
+door while the ghosts arrive."""
+
+# Okidogi has two hand-drawn gifs: the idle one on its card, the panting
+# one on the plan for getting it back after a gust. Toxel and Toxtricity
+# are Gen 8 and absent from the library, so the ghosts carry the rest of
+# the card sections. Each matchup subsection gets its opponent's sprite
+# where the library has one; the Origin Giratina stands in for Dragapult
+# on the field table, the way it does on dragons.md.
+[deck.flavor]
+"The Thesis" = ["gengar-mega"]
+# the Candy rule is the evolve-into-which-Gengar decision
+"Which Stage 2 gets the Candy" = ["gengar-evo"]
+"Okidogi ex" = ["okidogi"]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Mega Gengar ex" = ["gengar-mega"]
+"Gengar ex" = ["gengar-smile"]
+# a shiny Gastly for the card that skips the whole line
+"Grimsley's Move" = ["gastly-shiny"]
+# Budew's Item lock is the case for AZ's; the plain Gengar sprite
+# moved to the Cape, since that is the body it goes on
+"AZ's Tranquility" = ["budew"]
+"Hero's Cape" = ["gengar"]
+"The Prize Tax" = ["gengar-booty"]
+"The Energy Engine" = ["pokedex"]
+"5. When the dog gets gusted" = ["okidogi-pant"]
+"6. Choosing the stadium" = ["gengar-hop"]
+"7. Bench discipline" = ["spin-haunter"]
+"8. When the Cape goes on" = ["gengar-shiny"]
+"Versus the Card Shop" = ["giratina-origin", "dusknoir"]
+"Versus Mega Lucario ex" = ["lucario-mega"]
+"Versus Mega Zygarde ex" = ["zygarde"]
+"Versus Cynthia's Garchomp ex" = ["gible", "garchomp"]
+"Versus Mega Excadrill ex" = ["excadrill", "metang"]
+"Versus Alakazam" = ["alakazam"]
+"Versus N's Zoroark ex" = ["zoroark"]
+"Versus Marnie's Grimmsnarl ex" = ["froslass"]
+"Versus Dhelmise" = ["spiritomb"]
+"Versus Beedrill ex" = ["beedrill"]
+"Versus Mega Starmie ex" = ["starmie"]
+"Versus Mega Floette ex" = ["floette"]
+"Versus Crustle" = ["dwebble", "crustle"]
+"Versus Mega Sharpedo ex" = ["carvanha", "sharpedo-mega"]
+"Versus Cinccino ex" = ["minccino", "cinccino"]
+"Versus Charizard and Battle Cage" = ["charizard-mega-x"]
+"Alternatives" = ["crobat", "zubat"]
+
+[[deck]]
+source = "fire.md"
+player = "fox"
+shelf = "league"
+sprites = ["charmander", "charizard"]
+blurb = """
+Fox's deck, card by card: what each one is for, what it wants to sit next
+to, and how to beat dad."""
+
+[deck.flavor]
+# the Pokemon card pages
+"Charmander" = ["charmander"]
+"Charmeleon" = ["charmeleon"]
+"Charizard" = ["charizard"]
+"Eevee" = ["eevee"]
+"Flareon" = ["flareon"]
+"Sudowoodo" = ["sudowoodo"]
+# the game plans
+"1. The Leon Engine" = ["charizard"]
+"2. Two Speeds" = ["eevee", "charmander"]
+"3. The Rock That Hits Back" = ["sudowoodo"]
+"4. Winning the Stadium War" = ["charizard-mega-y"]
+"5. Reading Your First Hand" = ["flareon"]
+"Weezing — his early attacker (130 HP)" = ["weezing"]
+"Gengar — his closer (130 HP)" = ["gengar"]
+"His annoying cards" = ["haunter"]
+"7. Mistakes That Will Cost You The Game" = ["eevee-back"]
+"8. The Turn Checklist" = ["charmeleon"]
+
+[[deck]]
+source = "dark-classic.md"
+player = "xero"
+shelf = "other"
+group = "Gengar and the Dark Box"
+sprites = ["gengar-smile", "weezing"]
+blurb = """
+The original Gengar Gang, and the non-ex build. Nothing in it gives up more
+than one Prize. The dark duo of Gengar and Weezing, and the two-turn combo
+the whole deck is built around."""
+
+[deck.flavor]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Gengar" = ["gengar"]
+"Koffing" = ["koffing"]
+"Weezing" = ["weezing"]
+# no sprite exists for Toxel or Toxtricity; Sableye's came from ani
+"Sableye" = ["sableye"]
+"1. The Two-Turn Fuse" = ["weezing"]
+"2. Growing a Ghost in the Dark" = ["gastly"]
+"3. The Bench Tax" = ["gengar"]
+"4. Wearing the Helmet" = ["koffing"]
+"5. Trading Ghosts" = ["haunter"]
+"7. Things That Will Cost You a Game" = ["gengar-booty"]
+"8. Teaching Notes" = ["gengar-mega"]
+"Versus Fox's Decks" = ["eevee", "seviper"]
+
+[[deck]]
+source = "dark-mega.md"
+player = "xero"
+shelf = "other"
+group = "Gengar and the Dark Box"
+sprites = ["seviper", "gengar-mega"]
+blurb = """
+Ex-battle mode. Eleven cards swap Gengar Gang Classic into a prize cage.
+Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall takes
+the hits."""
+
+# no sprite exists for Toxel, Toxtricity, Chi-Yu, or Hilda (Gen 9 is
+# absent from the library), so the cards that have one get it and the
+# rest go without. the two ghosts get a gengar variant each: smile for
+# the ex, mega for the Mega. the snake and the mega share the mode page;
+# weezing waves the swap out, and the field section gets the two decks
+# the stats tables lean on hardest.
+[deck.flavor]
+"The Thesis" = ["seviper"]
+"The Numbers" = ["pokedex"]
+"The Mode Swap" = ["weezing", "gengar-mega"]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Mega Gengar ex" = ["gengar-mega"]
+"Gengar ex" = ["gengar-smile"]
+"Seviper" = ["seviper"]
+"1. The Cage" = ["gengar-booty"]
+"2. The Charmer's Loop" = ["seviper"]
+"4. Reading the Room" = ["gengar-smile", "gengar-mega"]
+"6. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Field" = ["excadrill", "dusknoir"]
+"Versus the Kitchen Table" = ["mewtwo"]
+
+[[deck]]
+source = "dark-curse.md"
+player = "xero"
+shelf = "other"
+group = "Gengar and the Dark Box"
+sprites = ["gengar-smile", "gengar-mega"]
+blurb = """
+The bigger plan, on hold until the Gnawing Curse pair is sourced. Two ex
+Gengars on one Haunter line; the Mega bends every prize trade, and the Curse
+taxes every Energy the opponent plays."""
+
+[deck.flavor]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Gengar ex" = ["gengar"]
+"Mega Gengar ex" = ["gengar-mega"]
+"Sableye" = ["sableye"]
+"The Prize Ladder" = ["gengar-booty"]
+"1. Two Ghosts, One Line" = ["gengar", "gengar-mega"]
+"6. Things That Will Cost You a Game" = ["eevee-back"]
+"✗ Gengar Spirit Link — Skip It" = ["wobbuffet-back", "gengar-mega-shiny"]
+"Versus the Kitchen Table" = ["mewtwo"]
+"How To Play ex Style" = ["charizard"]
+
+[[deck]]
+source = "dark-dogs.md"
+player = "xero"
+shelf = "other"
+group = "Gengar and the Dark Box"
+# the legal-Gengar build for the week dark-gang cannot be sleeved;
+# the dogs are the name and the win condition, so they lead here
+sprites = ["okidogi", "gengar-smile"]
+mascot = ["gengar-smile", "okidogi"]
+blurb = """
+A Wednesday-night 60, the same box with the legal Gengar in it. Okidogi ex
+hits 300 under a Binding Mochi, Gnawing Curse and Risky Ruins supply the
+chip that turns 300 into lethal, and the Prize tax makes their Mega cost
+three while your dog costs one."""
+
+# same sprite problem as dark-gang: Toxel, Toxtricity, Hilda and Dawn are
+# Gen 9 or absent, so the dogs and the ghosts carry the card sections.
+# Giratina stands in for Dragapult on the two stadium sections, because
+# Battle Cage is in the list for exactly one deck.
+# the dog is a hand-drawn gif; the Perfect Order Gengar is the attacker
+# now, so the plain gengar sprite carries its card and the game plan.
+# no sprite exists for Toxel, Toxtricity, Hilda, Dawn or Grimsley (Gen 9
+# and the Supporters are absent from the library). Giratina stands in for
+# Dragapult on Battle Cage, which is in the list largely for that room.
+[deck.flavor]
+"The Thesis" = ["gengar"]
+"Okidogi ex" = ["okidogi"]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Gengar" = ["gengar-smile"]
+"AZ's Tranquility" = ["budew"]
+"Scramble Switch" = ["gengar-hop"]
+"Risky Ruins" = ["gengar-evo"]
+"Battle Cage" = ["giratina-origin"]
+"The Search Blind Spot" = ["pokedex"]
+"The Energy Engine" = ["gengar-booty"]
+"2. Leading with the ghost" = ["spin-haunter"]
+"3. When to bring out a dog" = ["okidogi-pant"]
+"4. Choosing the stadium" = ["gengar-shiny"]
+"Versus the Card Shop" = ["giratina-origin", "excadrill"]
+"Test and Tune" = ["eevee-back"]
+"Alternatives" = ["crobat", "zubat"]
+
+[[deck]]
+source = "dark-rocket.md"
+player = "xero"
+shelf = "other"
+group = "Gengar and the Dark Box"
+# the two game-night hybrids: each is named for the half of the
+# Dark Box it keeps alongside the Team Rocket engine
+sprites = ["gengar-mega", "crobat"]
+blurb = """
+A game-night hybrid for when the other side brings ex. Mega Gengar ex taxes
+every Prize taken off a Darkness Pokémon, and Team Rocket's Crobat ex chips
+two Pokémon each time it comes down, then goes back to hand healed."""
+
+# Persian is Giovanni's cat, so the boss gets it; Fox's decks in the
+# table section get their own mascots
+[deck.flavor]
+"The Thesis" = ["gengar-mega"]
+"Team Rocket's Crobat ex" = ["crobat"]
+"Team Rocket's Golbat" = ["golbat"]
+"Team Rocket's Zubat" = ["zubat"]
+"Seviper" = ["seviper"]
+"Team Rocket's Giovanni" = ["persian"]
+"The Prize Map" = ["gengar-booty"]
+"5. Sableye is the turn-two attacker" = ["sableye"]
+"Fox's Ground Zero, Mega Zygarde ex" = ["zygarde"]
+"Fox's Team Rocket's Mewtwo deck" = ["mewtwo"]
+"Fox's Flareon ex and Charizard decks" = ["flareon", "charizard"]
+"Test And Tune" = ["eevee-back"]
+
+[[deck]]
+source = "dark-smog.md"
+player = "xero"
+shelf = "other"
+group = "Gengar and the Dark Box"
+sprites = ["koffing", "weezing"]
+blurb = """
+The other game-night hybrid, for when you don't know what's coming. Every
+Pokémon is a Koffing or a Weezing and none is an ex, so Team Rocket's
+Weezing hits 40 for each one in play and the opponent needs six knockouts
+whatever they bring."""
+
+# no Galarian Weezing sprite exists (the library stops before Gen 8), so
+# the shiny plain Weezing stands in for the other Weezing prints
+[deck.flavor]
+"The Thesis" = ["weezing"]
+"Team Rocket's Weezing" = ["weezing"]
+"Team Rocket's Koffing" = ["koffing"]
+"1. Bench first, attack second" = ["koffing-shiny"]
+"4. The Neutralizing Gas turn" = ["weezing-shiny"]
+"Fox's Ground Zero, Mega Zygarde ex" = ["zygarde"]
+"Fox's Team Rocket's Mewtwo deck" = ["mewtwo"]
+"The Hole In It" = ["wobbuffet-back"]
+"Test And Tune" = ["eevee-back"]
+
+[[deck]]
+source = "psychic-lanterns.md"
+player = "xero"
+shelf = "other"
+group = "Lanterns"
+sprites = ["chandelure", "gourgeist"]
+blurb = """
+The first lantern deck. Mega Chandelure ex turns the opponent's own Retreat
+Cost into damage at the shop, and three card swaps turn the whole thing into
+the Night Parade at home."""
+
+[deck.flavor]
+# the ghost and ice lines came from assets/ani; no Mega Chandelure
+# sprite exists, so the base form stands in for it.
+"The Thesis" = ["litwick"]
+"Mega Chandelure ex" = ["chandelure"]
+"Litwick" = ["litwick"]
+"Lampent" = ["lampent"]
+"Pumpkaboo" = ["pumpkaboo"]
+"Gourgeist ex" = ["gourgeist"]
+"Snorunt" = ["snorunt"]
+"Froslass" = ["froslass"]
+"Duskull" = ["duskull"]
+"Dusknoir" = ["dusknoir"]
+"The Energy Engine" = ["snorunt"]
+"1. The Trap" = ["chandelure"]
+"2. Feeding the Rondo" = ["gourgeist"]
+"3. The Thirteen-Counter Button" = ["dusknoir"]
+"4. The Spreading Light Endgame" = ["lampent"]
+"5. Bench Discipline" = ["pumpkaboo"]
+"6. What This Deck Gives Up" = ["duskull"]
+"Versus the Kitchen Table" = ["charizard"]
+"Versus the Card Shop" = ["froslass"]
+# dusclops sits in the alternatives table, already owned
+"Alternatives" = ["dusclops"]
+# the swap module forks the same line, so it gets the two stages the
+# forks grow from; no back sprites exist for the lantern line.
+"Night Parade" = ["litwick", "lampent"]
+"Chandelure (Lost Thunder)" = ["chandelure"]
+"Chandelure (Guardians Rising)" = ["chandelure"]
+
+[[deck]]
+source = "flaming-lanterns.md"
+player = "xero"
+shelf = "other"
+group = "Lanterns"
+sprites = ["litwick", "chandelure"]
+blurb = """
+The meta lantern. Four Fire Chandelure read the opponent's hand while Mega
+Chandelure prices their exits; the archetype's tournament-winning shape,
+rebuilt from the binder for about two dollars."""
+
+# the whole tech bench got sprites in one sitting: Shaymin, Maractus, and
+# Clefairy came up from assets/ani, Comfey and Marshadow arrived new.
+[deck.flavor]
+"Litwick" = ["litwick"]
+"Lampent" = ["lampent"]
+"Chandelure" = ["chandelure"]
+"Mega Chandelure ex" = ["chandelure"]
+"Shaymin" = ["shaymin"]
+"Maractus" = ["maractus"]
+"Marshadow" = ["marshadow"]
+"Clefairy" = ["clefairy"]
+"Comfey" = ["comfey"]
+"The Hand Ledger" = ["hypno"]
+"1. The Two Registers" = ["chandelure"]
+"3. The Spreading Light Flood" = ["lampent"]
+"4. The Fire Drop" = ["litwick"]
+"6. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Kitchen Table" = ["mewtwo"]
+"Versus the Card Shop" = ["noctowl"]
+"✗ Four Cards That Look Right — Skip Them" = ["wobbuffet-back"]
+
+[[deck]]
+source = "phantom-toll.md"
+player = "xero"
+shelf = "other"
+group = "Lanterns"
+sprites = ["chandelure", "gengar-mega"]
+blurb = """
+The first two-color hybrid. Mega Chandelure makes leaving expensive and Mega
+Gengar makes losing cheap, while every gust drags something heavy into a
+toll booth it cannot afford to sit in."""
+
+# the base forms stand in for both Megas as usual.
+[deck.flavor]
+"Litwick" = ["litwick"]
+"Lampent" = ["lampent"]
+"Mega Chandelure ex" = ["chandelure"]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Mega Gengar ex" = ["gengar-mega"]
+"Duskull" = ["duskull"]
+"Dusknoir" = ["dusknoir"]
+"Marshadow" = ["marshadow"]
+"The Toll Math" = ["gengar-booty"]
+"1. Pick the Wall" = ["chandelure", "gengar-mega"]
+"3. The Dark Button" = ["gastly"]
+"4. The Closer" = ["dusknoir"]
+"6. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Kitchen Table" = ["mewtwo"]
+"Versus the Card Shop" = ["noctowl"]
+"Where Gourgeist Went" = ["gourgeist", "pumpkaboo"]
+"✗ Four Cards That Look Right — Skip Them" = ["wobbuffet-back"]
+
+[[deck]]
+source = "phantom-tax.md"
+player = "xero"
+shelf = "other"
+group = "Lanterns"
+sprites = ["chandelure", "gengar"]
+blurb = """
+Phantom Toll, rebuilt off the TCG Live ladder. Wondrous Patch recharges the
+next lantern the turn the first one falls, a single-prize Gengar pays the
+opponent nothing, and Munkidori sends their counters home."""
+
+# the Toll rebuild. no Munkidori or Fezandipiti sprite exists (Gen 9).
+[deck.flavor]
+"Litwick" = ["litwick"]
+"Lampent" = ["lampent"]
+"Mega Chandelure ex" = ["chandelure"]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Mega Gengar ex" = ["gengar-mega"]
+"Gengar" = ["gengar"]
+"The Toll Math" = ["gengar-booty"]
+"1. Pick the Wall" = ["chandelure", "gengar-mega"]
+"3. The Dark Button" = ["gastly"]
+"4. The Closer" = ["gengar-smile"]
+"5. The Rebuild" = ["lampent"]
+"7. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Kitchen Table" = ["mewtwo"]
+"Versus the Card Shop" = ["froslass"]
+"Where Gourgeist Went" = ["gourgeist", "pumpkaboo"]
+"✗ Cards That Look Right, Skip Them" = ["wobbuffet-back"]
+
+[[deck]]
+source = "phantom-ferry.md"
+player = "xero"
+shelf = "other"
+group = "Lanterns"
+sprites = ["gengar-mega", "chandelure"]
+blurb = """
+A card-shop 60, built entirely from the box. Mega Gengar ex carries the
+Energy, Mega Chandelure ex collects the Prizes, and Okidogi ex holds the
+line against the Wednesday field."""
+
+# v6 of the two-ghost deck: Gengar carries, Chandelure collects.
+[deck.flavor]
+"Litwick" = ["litwick"]
+"Lampent" = ["lampent"]
+"Mega Chandelure ex" = ["chandelure"]
+"Gastly" = ["gastly"]
+"Haunter" = ["haunter"]
+"Mega Gengar ex" = ["gengar-mega"]
+"Okidogi ex" = ["okidogi"]
+"1. Pick the Wall" = ["chandelure", "gengar-mega"]
+"4. How To Play Okidogi" = ["okidogi-pant"]
+"6. The Rebuild" = ["lampent"]
+"8. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Kitchen Table" = ["mewtwo"]
+"Versus the Card Shop" = ["excadrill"]
+"✗ Cards That Look Right, Skip Them" = ["wobbuffet-back"]
+
+[[deck]]
+source = "fire-tournament.md"
+player = "fox"
+shelf = "other"
+group = "Fire and Eevee"
+sprites = ["flareon", "noctowl"]
+blurb = """
+The tournament take on Fire Force. Flareon ex, Noctowl, and why a Bench dad
+cannot touch changes how the whole game is played."""
+
+[deck.flavor]
+# the Pokemon card pages
+"Eevee" = ["eevee"]
+"Eevee ex" = ["eevee-ex"]
+"Flareon ex" = ["flareon-ex"]
+"Hoothoot" = ["hoothoot"]
+"Noctowl" = ["noctowl"]
+# the game plans
+"1. The Two-Energy Engine" = ["flareon"]
+"2. Turn One, Flareon" = ["eevee"]
+"3. Jewel Seeker Is Your Real Draw Engine" = ["noctowl"]
+"4. The Bench Is a Fortress" = ["hoothoot"]
+"5. The Prize Race Changed" = ["gengar-mega"]
+"6. Reading Your First Hand" = ["eevee-back"]
+"7. Beating Dad's Gengar Gang" = ["gengar"]
+"Weezing — his early attacker (130 HP)" = ["weezing"]
+"Gengar — his closer (130 HP)" = ["gengar-booty"]
+"His answer to *Tera* is Boss's Orders" = ["koffing"]
+"His annoying cards" = ["haunter"]
+"8. Mistakes That Will Cost You The Game" = ["flareon-back"]
+"9. The Turn Checklist" = ["charizard"]
+# the argument up front and the honest downsides at the back, absorbed
+# from the retired fire-standard planning notes; a back sprite means
+# walking away, as in the other files.
+"The Thesis" = ["flareon"]
+"Honest Weaknesses" = ["eevee-back"]
+
+[[deck]]
+source = "eevee-standard.md"
+player = "fox"
+shelf = "other"
+group = "Fire and Eevee"
+sprites = ["eevee", "umbreon", "espeon", "glaceon"]
+blurb = """
+The Eevee deck, and the only one here that is two decks. Fifty cards never
+move; ten swap between Sun and Moon for home and Fire and Ice for game
+night."""
+
+# umbreon, espeon, and glaceon were promoted from assets/ani for this page.
+# the two module sections get their pair of Eeveelutions, which is the
+# fastest way to see at a glance which ten cards each one means.
+[deck.flavor]
+"Eevee (Prismatic Evolutions · H)" = ["eevee"]
+"Eevee (Twilight Masquerade · H)" = ["eevee"]
+"Eevee ex" = ["eevee-ex"]
+"Flareon ex" = ["flareon-ex"]
+"Umbreon ex" = ["umbreon"]
+"Espeon ex" = ["espeon"]
+"Glaceon" = ["glaceon"]
+"The Thesis" = ["eevee"]
+"Sun and Moon" = ["espeon", "umbreon"]
+"Fire and Ice" = ["flareon", "glaceon"]
+"Pick Your Ten" = ["eevee-ex"]
+"1. The Bench Is Safe, So Wait" = ["hoothoot"]
+"2. Flareon ex Pays for Everything" = ["flareon-ex"]
+# a back sprite for the honest downside, as in the other files
+"3. Three Knockouts and It Is Over" = ["eevee-back"]
+"4. Choosing the Crystal's Home" = ["noctowl"]
+
+[[deck]]
+source = "rocket-mewtwo.md"
+player = "fox"
+shelf = "other"
+group = "Rockets, Steel, and Dragons"
+sprites = ["crobat", "mewtwo"]
+blurb = """
+A game-night deck. Team Rocket's Mewtwo ex swinging off a Spidops payroll,
+and a Crobat line that fixes a bad Active for free."""
+
+# mewtwo, zubat, golbat, crobat and articuno were promoted from assets/ani
+# for this page. Spidops and Tarountula are gen 9, so the engine's own two
+# cards are the ones that go bare.
+[deck.flavor]
+"Team Rocket's Mewtwo ex" = ["mewtwo"]
+"Team Rocket's Crobat ex" = ["crobat"]
+"Team Rocket's Golbat" = ["golbat"]
+"Team Rocket's Zubat" = ["zubat"]
+"Team Rocket's Koffing" = ["koffing"]
+"Team Rocket's Wobbuffet" = ["wobbuffet"]
+"Team Rocket's Articuno" = ["articuno"]
+"The Thesis" = ["mewtwo"]
+"The Engine" = ["zubat", "golbat"]
+"Damage Math" = ["mewtwo"]
+"The Prize Map" = ["crobat"]
+"2. Two attachments, then Mewtwo swings" = ["mewtwo"]
+"4. Evolve Crobat by hand when you can afford the turn" = ["golbat"]
+"5. Crobat is the answer to a bad Active" = ["crobat"]
+"6. Articuno goes down early against effects" = ["articuno"]
+"7. The sacrifice lead" = ["koffing"]
+# the matchups get the deck they are about, not this deck's cards.
+# zygarde was promoted from assets/ani for the Fighting row.
+"The Fighting deck, Mega Zygarde ex" = ["zygarde"]
+"The Charizard deck" = ["charizard"]
+"The Eeveelution deck, Flareon ex" = ["flareon-ex"]
+"The Gengar decks" = ["gengar", "gengar-mega"]
+"The lantern deck, Mega Chandelure ex" = ["chandelure"]
+"The mirror, at the card shop" = ["mewtwo"]
+
+[[deck]]
+source = "metal-excadrill.md"
+player = "fox"
+shelf = "other"
+group = "Rockets, Steel, and Dragons"
+sprites = ["drilbur", "metagross"]
+mascot = ["drilbur", "excadrill"]
+blurb = """
+A model of Matt's Wednesday league deck. One Beldum line feeds both the
+Energy engine and a Metagross that hits for 330 and gives up a single Prize;
+the Mega only comes out to close."""
+
+[deck.flavor]
+"Mega Excadrill ex" = ["excadrill"]
+"Drilbur" = ["drilbur"]
+"Metang" = ["metang"]
+"Metagross" = ["metagross"]
+"Beldum" = ["beldum"]
+"Genesect ex" = ["genesect"]
+# the thesis and the plans are Matt's Mega line; the Metagross line keeps
+# the sprites it had when it was the thesis
+"The Thesis" = ["excadrill"]
+"How Matt Plays It" = ["drilbur", "excadrill"]
+"The Energy Engine" = ["metang"]
+"Damage Math" = ["excadrill"]
+"The Prize Map" = ["excadrill"]
+"1. The Trolley turn" = ["drilbur"]
+"2. Genesect early, then Stage 1" = ["genesect"]
+"3. Metal Maker, every turn, onto the Excadrill" = ["metang"]
+"4. Five on each Excadrill" = ["excadrill"]
+"5. Metagross as the last resort" = ["metagross"]
+"6. Reading the opening hand" = ["beldum"]
+"The Metagross-First Line" = ["metagross"]
+"1. Metagross swings first, always" = ["metagross"]
+"2. Count to five before the Mega comes out" = ["excadrill"]
+"3. Rebuilding after Metallic Hammer" = ["metang"]
+# the matchup plans get the deck they are about, as on the other pages
+"Versus the Kitchen Table" = ["gengar", "chandelure"]
+"Versus the Card Shop" = ["excadrill"]
+"Alternatives" = ["scizor", "aggron"]
+
+[[deck]]
+source = "steel-wolves.md"
+player = "fox"
+shelf = "other"
+group = "Rockets, Steel, and Dragons"
+# no Zacian or Zamazenta sprite exists (the library stops before Gen
+# 8), so the deck's other two engines carry the page
+sprites = ["metagross", "snorlax"]
+blurb = """
+An online 60 for TCG Live. Three separate cards each add 30 to Hop's Zacian
+ex, so Brave Slash lands at 330 and one-shots Dragapult; a Metagross on the
+Bench pays for it, and Zamazenta covers the turn Zacian is locked out."""
+
+# the two wolves have no sprite in the library, so the Metagross line and
+# the two support Pokemon carry the page. Excadrill and Genesect stand in
+# for the field table, which is mostly other Metal decks.
+[deck.flavor]
+"The Thesis" = ["metagross"]
+"Steven's Beldum" = ["beldum"]
+"Steven's Metang" = ["metang"]
+"Steven's Metagross ex" = ["metagross"]
+"Hop's Snorlax" = ["snorlax"]
+"Latias ex" = ["latias"]
+"The Energy Engine" = ["pokedex"]
+"2. The Off Turn" = ["metang"]
+"Versus the Ladder" = ["excadrill", "genesect"]
+"Alternatives" = ["scizor"]
+
+[[deck]]
+source = "dragons.md"
+player = "xero"
+shelf = "other"
+group = "Rockets, Steel, and Dragons"
+# no Gen 8 sprites exist, so the Ghost/Dragon Giratina stands in for Dragapult
+sprites = ["giratina-origin", "clefairy"]
+blurb = """
+A Dragapult deck, rebuilt from the card that beat dad. Four Drakloaks draw
+every turn, Sparkling Crystal makes Phantom Dive cost one Energy, and
+Lillie's Clefairy ex turns the mirror into a Fairy Zone."""
+
+# drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
+# aggron were promoted from assets/ani for this page. No Mega Excadrill
+# sprite exists, so the base form stands in for it.
+# the sprite library stops at Gen 6: nothing for the Dreepy line, Munkidori,
+# Fezandipiti, or Mimikyu. Giratina (Ghost/Dragon) stands in for Dragapult,
+# Diancie for the Crystal, Xatu for the room-reading plan.
+[deck.flavor]
+"The Thesis" = ["giratina"]
+"The Numbers" = ["pokedex"]
+"Lillie's Clefairy ex" = ["clefairy"]
+"Meowth ex" = ["meowth"]
+"Budew" = ["budew"]
+"Sparkling Crystal" = ["diancie"]
+"1. The Two-Turn Kill" = ["giratina-origin"]
+"2. The Crystal" = ["diancie"]
+"3. The Fairy Zone" = ["clefairy", "clefable"]
+"4. Reading the Room" = ["xatu"]
+"6. Things That Will Cost You a Game" = ["eevee-back"]
+"Versus the Field" = ["excadrill", "alakazam"]
+"Versus the Kitchen Table" = ["mewtwo", "gengar-mega"]
+# the card that was left out on purpose
+"Alternatives" = ["dusknoir"]
+
+[[deck]]
+source = "cynthia-garchomp.md"
+player = "xero"
+shelf = "other"
+group = "Rockets, Steel, and Dragons"
+draft = true
+sprites = ["gible", "garchomp"]
+mascot = ["roserade", "garchomp"]
+blurb = """
+A model of Elliot's Wednesday league deck, built from the list the field
+copies. Garchomp attacks for one Energy and draws back to six, every Roserade
+adds 30, and against a Fighting-weak deck all of it doubles."""
+
+# gabite, roselia, and roserade were promoted from assets/ani for this page
+[deck.flavor]
+"The Thesis" = ["garchomp"]
+"How It Plays" = ["gible", "garchomp"]
+"Cynthia's Garchomp ex" = ["garchomp"]
+"Cynthia's Gible" = ["gible"]
+"Cynthia's Gabite" = ["gabite"]
+"Cynthia's Roselia" = ["roselia"]
+"Cynthia's Roserade" = ["roserade"]
+"Cynthia's Spiritomb" = ["spiritomb"]
+"Shaymin" = ["shaymin"]
+"Damage Math" = ["garchomp"]
+"The Prize Map" = ["garchomp"]
+"1. The Poffin turn" = ["gible"]
+"2. Gabite, then Champion's Call every turn" = ["gabite"]
+"3. Garchomp on turn 3" = ["garchomp"]
+"4. Corkscrew every turn" = ["roserade", "garchomp"]
+"5. Buster for the big one" = ["garchomp"]
+"6. Spiritomb for the taxed room" = ["spiritomb"]
+"Versus the Kitchen Table" = ["gengar", "gengar-mega"]
+"The Field" = ["pokedex"]
+"Tells at the Table" = ["xatu"]

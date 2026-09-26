@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1263,7 +1216,6 @@
 			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
 			<li><a href="#four-cards-that-look-right-skip-them">✗ Four Cards That Look Right — Skip Them</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -1290,7 +1242,7 @@
 			<section>
 				<h3 id="what-the-research-says">What The Research Says</h3>
 					<p>This deck is the one build in the house that started from tournament evidence rather than the binder, so the receipts come first.</p>
-					<p><strong>The 4-4-4-3 line is the archetype&#x27;s winning shape.</strong> Two verified results lists on <a href="https://play.limitlesstcg.com/decks?game=PTCG&amp;format=standard">Limitless online play</a> run it card for card: Shoei&#x27;s 7-2-0 (3rd of 119, SEASAC League Challenge) and GCampa&#x27;s 6-1-0 (10th of 220). Both run 4 Litwick, 4 Lampent, 4 Fire Chandelure, 3 Mega Chandelure ex, a bench of single-prize tech Basics, zero Stadiums, and a 4 Telepathic / 3 Psychic / 3 Fire energy base. This 60 is Shoei&#x27;s list at roughly 95 percent fidelity; every deviation is named in <a href="#what-to-buy">What To Buy</a>.</p>
+					<p><strong>The 4-4-4-3 line is the archetype&#x27;s winning shape.</strong> Two verified results lists on <a href="https://play.limitlesstcg.com/decks?game=PTCG&amp;format=standard">Limitless online play</a> run it card for card: Shoei&#x27;s 7-2-0 (3rd of 119, SEASAC League Challenge) and GCampa&#x27;s 6-1-0 (10th of 220). Both run 4 Litwick, 4 Lampent, 4 Fire Chandelure, 3 Mega Chandelure ex, a bench of single-prize tech Basics, zero Stadiums, and a 4 Telepathic / 3 Psychic / 3 Fire energy base. This 60 is Shoei&#x27;s list at roughly 95 percent fidelity.</p>
 					<p><strong>&quot;Chandelure&quot; and &quot;Mega Chandelure ex&quot; are different names.</strong> Separate 4-copy caps, and both evolve from Lampent, so one <em>Spreading Light</em> stocks a Bench where every Lampent is two different threats. The fork is the deck: a 3-Prize 350 HP trap and a 1-Prize hand-reader growing out of the same row.</p>
 					<p><strong>Alluring Light is symmetric, and the winners run it anyway.</strong> Every activation hands the opponent a card too. The list pays that price because the fed card pumps <em>Mind Ruler</em> while it sits in their hand, and because <em>Xerosic&#x27;s Machinations</em> takes the surplus back; <a href="#2-feeding-the-ruler">game plan 2</a> is the discipline that keeps the engine from arming the other side.</p>
 					<p><strong>One owned substitution beat the meta&#x27;s card.</strong> The verification pass replaced Shoei&#x27;s Elgyem with the collection&#x27;s own Marshadow, whose <em>Shadowy Knot</em> scales with <em>Binding Flame</em> the way everything else here does. It is the only slot where this list knowingly diverges from the evidence, and the math note is on <a href="#marshadow">the card</a>.</p>
@@ -1993,49 +1945,10 @@
 						<dt>Mulligans sting past tolerance</dt><dd><span>2nd Marshadow (owned) or 2nd Comfey (11 cents) over a Rare Candy; any consistency add should be a Basic</span></dd>
 						<dt>The Ruler whiffs on Fire</dt><dd><span>4th Basic Fire over the 3rd Psychic, free, before touching anything else</span></dd>
 						<dt>Hand-dump opponents at the shop</dt><dd><span>3rd Xerosic&#x27;s Machinations (27 cents) over the 2nd Poffin</span></dd>
-						<dt>Long events, prize races lost by one</dt><dd><span>Legacy Energy ($3.80, on the wanted list) over a Basic Psychic, and it takes the ACE slot from Prime Catcher; both winning lists split on exactly this call</span></dd>
+						<dt>Long events, prize races lost by one</dt><dd><span>Legacy Energy over a Basic Psychic, and it takes the ACE slot from Prime Catcher; both winning lists split on exactly this call</span></dd>
 						<dt>Stranded heavies</dt><dd><span>a Switch from the 7 owned over a Poke Pad</span></dd>
 						<dt>The Mega keeps dying loaded</dt><dd><span>Wally&#x27;s Compassion (owned) over the 3rd Lillie&#x27;s</span></dd>
 					</dl>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pokeball.gif" alt="" /></span></h3></summary>
-					<p>The cheapest real deck the house has ever stood up: everything structural is already owned and shared with the sibling lantern builds, and the entire purchase is eleven commons for about <strong>$2.15</strong>. The shared rows below live in one physical set of sleeves with <a href="./phantom-toll.html">Phantom Toll</a>; the two decks cannot be sleeved at once, and these pages are the swap sheets. Own counts are live from the collection database.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Litwick <small>ME05: Pitch Black 036/084</small></span></td><td>10</td><td>4</td><td>✓</td><td>the Psychic print; shared lantern chassis</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Lampent <small>ME05: Pitch Black 037/084</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared lantern chassis</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Chandelure <small>SV06: Twilight Masquerade 038/167</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>the Alluring Light print, ~18 cents a copy; the whole reason</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Chandelure ex <small>ME05: Pitch Black 038/084</small></span></td><td>4</td><td>3</td><td>✓</td><td>shared lantern chassis; 4 owned across the sibling builds</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Shaymin <small>SV10: Destined Rivals 010/182</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Flower Curtain; ~30 cents</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>Maractus <small>SV09: Journey Together 008/159</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Exploding Needles; ~15 cents</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Marshadow <small>ME05: Pitch Black 040/084</small></span></td><td>2</td><td>1</td><td>✓</td><td>owned; the deliberate Elgyem replacement</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Clefairy <small>ME03: Perfect Order 030/088</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Follow Me; ~8 cents</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Comfey <small>SV07: Stellar Crown 063/142</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Flower Shower; ~11 cents</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Hilda <small>SV: White Flare 084/086</small></span></td><td>7</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>the Gang sleeves 3 of the 4 owned; one crosses over</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Xerosic&#x27;s Machinations <small>SV: Shrouded Fable 064/064</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the Mind Ruler floor; ~27 cents a copy</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Poke Pad <small>ME03: Perfect Order 081/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>printed Poké Pad; the database drops the accent</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Rare Candy <small>ME01: Mega Evolution 125/132</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Prime Catcher <small>SV: Prismatic Evolutions 119/131</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC; the PRE copy, freed when the lanterns came apart</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Air Balloon <small>ME: Ascended Heroes 181/217</small></span></td><td>2</td><td>2</td><td>✓</td><td>one owned; the second is a 23-cent buy, the starter copies are Japanese</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Telepathic Psychic Energy <small>ME03: Perfect Order 088/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>shared; Special, nothing recovers it</td></tr>
-							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>3</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><span>Basic Fire Energy <small>MEE: Mega Evolution Energies 2</small></span></td><td>18</td><td>3</td><td>✓</td><td>the Ruler&#x27;s whole diet</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>10</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="important">
-				<p><strong>Every buy is already filed.</strong> The 4 Twilight Masquerade Chandelure and the five tech singles are on <a href="./wanted-cards.tsv">the wanted list</a> with their reasons; Legacy Energy sits there too, waiting on the Test and Tune verdict rather than the first order. Per the house rule, the shared cores are re-sleeve notes, not purchases: nothing gets double-bought until a lantern build earns permanent sleeves.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

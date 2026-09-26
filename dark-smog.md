@@ -21,7 +21,6 @@
 > - [Game Plans](#game-plans)
 > - [Versus The Table](#versus-the-table)
 > - [The Hole In It](#the-hole-in-it)
-> - [What To Buy](#what-to-buy)
 > - [Test And Tune](#test-and-tune)
 
 ---
@@ -283,21 +282,6 @@ The trade is even and you win on damage. Nothing in this deck gives him a two or
 That is a real cost and it is accepted on purpose. The trade is that adding an off-type attacker would take a slot off the board that the 40x counts, so it would cost damage every turn to hedge against one matchup. The single-prize Prize map is the hedge instead.
 
 **The second real weakness is a slow open.** Eight Basics is at the bottom of the healthy band, and a hand with no Koffing and no Poffin is a lost turn. Proton going first patches this; going second there is nothing to do but mulligan through it.
-
----
-
-## What To Buy
-
-More than the other deck needs, but all of it commons and uncommons.
-
-```buy
-Team Rocket's Koffing | Destined Rivals 125 | 4 | common, the whole main line runs off it
-Team Rocket's Weezing | Destined Rivals 126 | 4 | uncommon, this is the deck
-Koffing | Journey Together 091 | 4 | common, fourth copy
-Galarian Weezing | Chilling Reign 096 | 2 | the Energy Factory copy, second one is insurance
-```
-
-Everything else is already in the box, including the Japanese Prime Catcher standing in for the ACE SPEC slot and the single Galarian Weezing from Shining Fates that carries *Neutralizing Gas*.
 
 ---
 

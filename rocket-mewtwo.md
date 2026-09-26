@@ -23,7 +23,7 @@
 >
 > [**The Engine**](#the-engine) · [**Damage Math**](#damage-math) · [**The Prize Map**](#the-prize-map)
 > [**Game Plans**](#game-plans) · [**Versus the Table**](#versus-the-table)
-> [**Test and Tune**](#test-and-tune) · [**What To Buy**](#what-to-buy)
+> [**Test and Tune**](#test-and-tune)
 
 ---
 
@@ -458,20 +458,3 @@ Three things to watch, and the exact ratio each one points at. The Koffing pair 
 **Mewtwo is stranded Active with three Energy on it.** If retreat is what loses you games rather than damage, go to 3 Switch by cutting a Night Stretcher — and remember that on a Gang night the Prime Catcher in the ACE SPEC slot is already the extra out.
 
 Three smaller notes. Articuno looks like a dead card until you read the field: *Phantom Dive*'s six Bench counters and Alakazam's *Powerful Hand* are effects of attacks, so *Repelling Veil* blanks both on every Basic Team Rocket's Pokémon, and Dragapult plus Alakazam is a quarter of the current Standard field. Bench it on turn one against a Dreepy or an Abra, and only pull it for the Petrel if the local room turns out to be neither. Team Rocket's Mimikyu (Destined Rivals 087) is the parked tech: 60 HP, free retreat, a Team Rocket's Pokémon for the *Power Saver* count, and *Gemstone Mimicry* copies an opposing Active Tera Pokémon's attack for [P][C], which is *Phantom Dive* against the field's biggest deck and nothing at all against the Megas; if Fox wants it, it takes the second Night Stretcher. And if you are drawing *Biting Spree* damage but never converting it into a knockout, you are short on gust and the answer is a third Boss's Orders, not more chip.
-
----
-
-## What To Buy
-
-Nothing. The list above is built entirely out of cards already in the box. The block below is the upgrade path if you want to thicken it later.
-
-```buy
-Team Rocket's Zubat | Destined Rivals 120 | 3 | third copy, the Crobat line is the thinnest thing here
-Team Rocket's Golbat | Destined Rivals 121 | 3 | third copy, and the better evolution route runs through it
-Team Rocket's Crobat ex | Destined Rivals 122 | 3 | third copy
-Basic Psychic Energy | Mega Evolution Energies 005 | 4 | a fourth Psychic, free out of any bulk lot
-Legacy Energy | Twilight Masquerade 167 | 1 | optional ace spec swap, see below
-```
-
-> [!TIP]
-> **Legacy Energy is the one upgrade that changes the deck rather than thickening it.** One Energy of any type plus one fewer Prize when its holder dies, once a game. On a Mewtwo ex that turns a two-Prize knockout into a one-Prize knockout in the game's most important trade. It costs you the Scramble Switch, so only make the swap if retreat is not the thing losing you games.

@@ -1,30 +1,21 @@
 #!/usr/bin/env python3
-"""Render the cards we want but do not have into wishlist.html.
+"""Render the pull list, wishlist.html: every card we still have to buy.
 
-The pull list. Same shape as collection.html, and deliberately so: the search,
-the letter index, and the click-to-filter stat rows are the same controls
-doing the same job, so assets/collection.js drives both pages unchanged. Only
-the rows differ.
+Same shape as collection.html, and deliberately so: the search, the letter
+index, and the click-to-filter stat rows are the same controls doing the same
+job, so assets/collection.js drives both pages unchanged. Only the rows differ.
 
-A row is here for exactly one reason: a deck's ```buy block asks for more
-copies than the collection holds. Buy is the shortfall, and a card the binders
-already cover does not appear at all.
+A card is here for exactly one reason: its owned flag in product-ids.tsv is 0.
+Nothing is counted, scraped, or inferred. Every card is owned unless someone
+says otherwise, and add_cards.py --need is how someone says it.
 
-quantity 0 in cards.csv is deliberately *not* the source, though it looks like
-the obvious one. Most of those rows are a shortlist rather than a shopping
-list: an energy-acceleration survey seeded 35 candidates into the pipeline at
-once, tagged "energy accel tier 1" and "tier 2" in wanted-cards.tsv, so they
-could be read and compared. They were never requested by a list, and putting
-them on a page you carry into a shop turns a 25-card errand into a 71-card
-one. wanted-cards.tsv keeps the reason each card was added; cards.csv does not
-carry it, which is why quantity alone cannot tell the two apart.
-
-Need is the largest ask on each side of the table, added. We each sleeve one
-deck at a time, so two of Xero's decks asking for four Poffin need four, and
+How many to buy comes from the deck lists, the Qty tables in each deck's
+markdown, and it is one deck per player. Xero sleeves one of his decks and Fox
+sleeves one of his, so two of Xero's decks asking for four Poffin need four:
 the copies move between them. A Fox deck asking for four too makes eight,
 because his deck and Xero's get sleeved on the same night and played against
-each other. Summing every deck was the rule when there were two starter decks;
-with a dozen buy blocks it asked for 329 copies of what was really 89.
+each other. Draft decks count, since a card is usually bought for a deck
+before that deck is published; the page names them without a link.
 
 Shares its data shaping with build_html.py by importing it is deliberately not
 done, for the same reason that file gives: importing it writes a page.
@@ -33,37 +24,21 @@ import re
 from collections import Counter
 from pathlib import Path
 
+from decklib import card_key, deck_cards, load
 from pokelib import (CREDITS_NOTE, RARITY_SLUG, anchor, card_art, cards,
-                     cost_icons, count_badge, energy_glyphs, esc, find_card,
-                     icon, legal_cell, mega_sigil, page, row, stat_cell)
+                     cost_icons, count_badge, energy_glyphs, esc, icon,
+                     legal_cell, mega_sigil, page, row, stat_cell)
 
 ROOT = Path(__file__).parent
 SRC = ROOT / "cards.csv"
 DEST = ROOT / "wishlist.html"
-
-# which side of the table a deck sits on. Fox's decks are listed; every other
-# deck is Xero's. a new Fox deck with a buy block belongs here, or its asks
-# share copies with Xero's decks instead of adding to them.
-FOX = {"fire.md", "fire-tournament.md", "eevee-standard.md", "rocket-mewtwo.md",
-       "metal-excadrill.md", "steel-wolves.md"}
-
-
-def need_of(per):
-    """Copies needed, from {md: need}: the largest ask on each side, added."""
-    fox = [n for md, n in per.items() if md in FOX]
-    xero = [n for md, n in per.items() if md not in FOX]
-    return max(fox, default=0) + max(xero, default=0)
-
 
 TITLE = "Pull List"
 
 # the hoarder and the dreamer
 MASCOT = ["deck"]
 
-# md filename -> the deck's own H1, filled in as pages are named. Every .md in
-# the repo is read for buy blocks rather than a list being kept in step by
-# hand: a planning doc that is not built into a page still knows what it wants
-# bought, and dark-smog and rocket-mewtwo are exactly that.
+# md filename -> the deck's own H1, filled in as decks are named
 DECK_TITLE = {}
 
 LABELS = [
@@ -101,51 +76,12 @@ TOURNAMENT = {"yes": "legal", "no": "too old", "japanese": "Japanese",
 ATTACKS = ("attack1", "attack2", "attack3", "attack4")
 
 
-def key(r):
-    return (r["name"], r["set_name"], r["card_number"])
-
-
 def title_of(md):
     """The deck's own H1, so the page names decks the way they name themselves."""
     if md not in DECK_TITLE:
         first = (ROOT / md).read_text(encoding="utf-8").split("\n", 1)[0]
         DECK_TITLE[md] = first.lstrip("# ").strip() or md
     return DECK_TITLE[md]
-
-
-def buy_blocks():
-    """{card key: {md: need}}, plus notes and the lines that resolved to nothing.
-
-    The same parse build_deck_html.buy_table does, so a line that costs out on
-    a deck page costs out here identically. Two blocks in one file are one
-    ask, not two, so a repeated card takes the larger of them.
-    """
-    wants, notes, missing = {}, {}, []
-    for md in sorted(p.name for p in ROOT.glob("*.md")):
-        text = (ROOT / md).read_text(encoding="utf-8")
-        for block in re.findall(r"^```buy\n(.*?)^```", text, re.S | re.M):
-            for line in block.splitlines():
-                if not line.strip() or line.lstrip().startswith("#"):
-                    continue
-                f = [x.strip() for x in (line.split("|") + [""] * 4)[:4]]
-                query, where, need, note = f
-                m = re.search(r"(\d{2,3})\s*$", where)
-                r = find_card(query, re.sub(r"\d+\s*$", "", where),
-                              m.group(1) if m else "")
-                try:
-                    want = int(need)
-                except ValueError:
-                    want = 0
-                if not r:
-                    missing.append((query, where, need, note, md))
-                    continue
-                k = key(r)
-                # one file asking twice is one ask; need_of() combines files
-                per = wants.setdefault(k, {})
-                per[md] = max(per.get(md, 0), want)
-                if note:
-                    notes.setdefault(k, []).append((md, note))
-    return wants, notes, missing
 
 
 def value(k, r):
@@ -194,18 +130,29 @@ def tags(r):
 
 
 # --- what belongs on the list ------------------------------------------------
-wants, notes, missing = buy_blocks()
-by_key = {key(r): r for r in cards()}
+LIBRARY, DECKS = load()
+PLAYER = {d["source"]: d["player"] for d in DECKS}
+LIVE = {d["source"] for d in DECKS if not d["draft"]}
 
-need = {k: need_of(v) for k, v in wants.items()}
-own = {k: int(r["quantity"] or 0) for k, r in by_key.items()}
-buy = {k: max(0, n - own.get(k, 0)) for k, n in need.items()}
+# {card key: {deck md: copies}} across every registered deck, drafts included
+wants = {}
+for d in DECKS:
+    for k, copies in deck_cards(d["source"]).items():
+        wants.setdefault(k, {})[d["source"]] = copies
 
-keys = sorted((k for k, n in buy.items() if n > 0 and k in by_key),
-              key=lambda k: (k[0].lower(), k[1], k[2]))
+
+def need_of(per):
+    """Copies to buy, from {md: copies}: the largest ask on each side, added."""
+    return sum(max((n for md, n in per.items() if PLAYER[md] == who), default=0)
+               for who in ("xero", "fox"))
+
+
+rows = sorted((r for r in cards() if r.get("owned") == "0"),
+              key=lambda r: (r["name"].lower(), r["set_name"], r["card_number"]))
+buy = {card_key(r): need_of(wants.get(card_key(r), {})) for r in rows}
 
 seen = Counter()
-entries = [(by_key[k], k, anchor(by_key[k]["name"], seen)) for k in keys]
+entries = [(r, card_key(r), anchor(r["name"], seen)) for r in rows]
 
 # --- navigation --------------------------------------------------------------
 nav = ["<nav>", "\t<details>", "\t\t<summary>Search</summary>",
@@ -241,16 +188,16 @@ for r, k, a in entries:
 
     # the pull numbers lead, because they are the reason the card is here
     links = []
-    for md, want in sorted(wants[k].items()):
+    for md, copies in sorted(wants.get(k, {}).items()):
         html = md.replace(".md", ".html")
-        label = f"{esc(title_of(md))} <small>&times;{want}</small>"
-        links.append(f'<a href="./{html}">{label}</a>'
-                     if (ROOT / html).exists() else label)
-    rows_ = [("Buy", f"<strong>{n}</strong>", ""),
-             ("Own", str(own.get(k, 0)), ""),
-             ("Need", str(need[k]), ""),
-             ("Wanted by", ", ".join(links), "")]
-    rows_ += [("Note", esc(note), "") for _, note in notes.get(k, [])]
+        label = f"{esc(title_of(md))} <small>&times;{copies}</small>"
+        links.append(f'<a href="./{html}">{label}</a>' if md in LIVE
+                     else f"{label} <small>(draft)</small>")
+    # one <span> round the list: the <dd> is a flex row, and loose text and
+    # tags inside it each become a flex item that drops its spaces, which ran
+    # the deck names together as "Dogs ×4,Gengar Gang ×3"
+    rows_ = [("Buy", f"<strong>{n}</strong>" if n else "no deck lists it yet", ""),
+             ("Wanted by", f"<span>{', '.join(links) or '&ndash;'}</span>", "")]
     rows_ += stats(r)
 
     for label, v, fk in rows_:
@@ -259,60 +206,37 @@ for r, k, a in entries:
     art += ["\t\t\t\t\t</dl>", "\t\t\t\t</section>", "\t\t\t</article>"]
     articles.append("\n".join(art))
 
-articles.append('\t\t\t<p data-empty hidden>No cards match.</p>')
-
 # --- footnotes ---------------------------------------------------------------
 notes_out = [
     '\t\t\t<aside data-callout="note">',
     "\t\t\t\t<h2>How a card gets on this list</h2>",
-    "\t\t\t\t<p>One way: a deck's buy block asks for more copies than the"
-    " collection holds. <b>Buy</b> is the shortfall, so a card the binders"
-    " already cover is not here at all.</p>",
-    "\t\t\t\t<p>Cards nobody owns but no deck has asked for are"
-    " <b>not</b> on this page. Most of them are a shortlist rather than a"
-    " shopping list &mdash; the energy-acceleration survey alone seeded 35"
-    " candidates into the pipeline to be read and compared. The reason each"
-    " one was added lives in the note column of"
-    " <code>wanted-cards.tsv</code>.</p>",
-    "\t\t\t\t<p><b>Need is one deck per player.</b> Xero sleeves one of his"
+    "\t\t\t\t<p>One way: it is marked as not owned. Every card is owned"
+    " unless someone says otherwise, so nothing lands here by accident, and"
+    " nothing is counted or guessed. <code>add_cards.py --need</code> puts a"
+    " card on the list and <code>--have</code> takes it off.</p>",
+    "\t\t\t\t<p><b>Buy is one deck per player.</b> Xero sleeves one of his"
     " decks and Fox sleeves one of his, so four of a card in two of Xero's"
     " decks is four, not eight. A card both of us run adds up: four in"
     " Xero's deck and four in Fox's is eight, because those two decks get"
     " sleeved on the same night.</p>",
     "\t\t\t</aside>",
+    CREDITS_NOTE,
 ]
 
-if missing:
-    notes_out += [
-        '\t\t\t<aside data-callout="warning">',
-        "\t\t\t\t<h2>Wanted, but not in the pipeline yet</h2>",
-        "\t\t\t\t<p>These are asked for by a buy block, but no row in"
-        " <code>cards.csv</code> matches them, so there is no scan, no card"
-        " text, and no price to check. Add them to"
-        " <code>wanted-cards.tsv</code> and run the pipeline, and they will"
-        " appear above like anything else.</p>",
-        "\t\t\t\t<ul>",
-    ]
-    for query, where, want, note, md in missing:
-        bits = f"<b>{esc(query)}</b>"
-        if where:
-            bits += f" <small>{esc(where)}</small>"
-        if want:
-            bits += f" &times;{esc(want)}"
-        notes_out.append(f"\t\t\t\t\t<li>{bits} &mdash; "
-                         f"<small>{esc(title_of(md))}</small></li>")
-    notes_out += ["\t\t\t\t</ul>", "\t\t\t</aside>"]
-
-notes_out.append(CREDITS_NOTE)
-
 # --- assemble ----------------------------------------------------------------
-copies = sum(buy.get(k, 0) for k in keys)
-subtitle = (f"{len(entries)} cards to pull, {copies} copies in all"
-            f"{f', plus {len(missing)} not in the pipeline yet' if missing else ''}.")
+copies = sum(buy.values())
+if entries:
+    subtitle = f"{len(entries)} cards to pull, {copies} copies in all."
+    articles.append('\t\t\t<p data-empty hidden>No cards match.</p>')
+    nav_html, script = "\n\t\t\t".join(nav), "./assets/collection.js"
+else:
+    # nothing to search and nothing to filter, so no search box and no script
+    subtitle = "Nothing to pull."
+    articles = ['\t\t\t<p data-empty>Every card is in the binders. Mark one'
+                ' as not owned and it lands here.</p>']
+    nav_html, script = "", ""
 
-out = page(DEST, TITLE, subtitle, "\n\t\t\t".join(nav),
-           "\n".join(articles), "\n".join(notes_out), MASCOT,
-           script="./assets/collection.js")
+out = page(DEST, TITLE, subtitle, nav_html, "\n".join(articles),
+           "\n".join(notes_out), MASCOT, script=script)
 print(f"wishlist.html: {len(entries)} cards, {copies} copies, "
-      f"{len(missing)} unresolved, {len(out.splitlines())} lines, "
-      f"{len(out) / 1024:.0f}kb")
+      f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")

@@ -22,7 +22,7 @@
 > **Energy** — [Basic Psychic Energy](#basic-psychic-energy) · [Basic Darkness Energy](#basic-darkness-energy)
 >
 > [**Game Plans**](#game-plans) · [**Versus the Card Shop**](#versus-the-card-shop) · [**Versus the Ladder**](#versus-the-ladder) · [**Versus the Kitchen Table**](#versus-the-kitchen-table)
-> [**✗ Cards That Look Right, Skip Them**](#-cards-that-look-right-skip-them) · [**Test and Tune**](#test-and-tune) · [**What To Buy**](#what-to-buy)
+> [**✗ Cards That Look Right, Skip Them**](#-cards-that-look-right-skip-them) · [**Test and Tune**](#test-and-tune)
 
 ---
 
@@ -663,39 +663,3 @@ The list is a hypothesis; games are the data. Symptoms and their fixes:
 | Megas keep ending up in the discard with nothing to bring them back | A third Night Stretcher over the Energy Recycler. |
 | Jamming Tower rooms | Nothing to change. Two Cages plus Petrel is three answers, and Prime Catcher is the one rotation that does not care. |
 | Single-prize rooms keep winning | This deck's answer is knowing when not to play it. For a Festival Lead room, sleeve the Gengar ex Darkness list instead; [Gengar Gang](./dark-gang.md) is its closest page, with the Temporal Forces Gengar ex in the 30th Celebration Gengar's seat. |
-
----
-
-## What To Buy
-
-**Nothing.** Every card in this list is in the box, and the own counts below are live from the collection database. The Lillie's, Boss's Orders, Poffin, Rare Candy, Night Stretcher, Ultra Ball, Prime Catcher, and Hilda rows are shared with the other sleeved decks, so check [the box](./collection.md) before sleeving two of them on the same night.
-
-```buy
-Litwick | Pitch Black 036 | 4 | the Psychic print; shared with the lanterns
-Lampent | Pitch Black 037 | 3 | shared with the lanterns
-Mega Chandelure ex | Pitch Black 038 | 3 | shared with the lanterns
-Gastly | Perfect Order 048 | 4 | Surprise Attack; the Gang runs the same print
-Haunter | Perfect Order 049 | 1 | Haunt; the Candy insurance
-Mega Gengar ex | Phantasmal Flames 056 | 2 | Snake Charmer sleeves the owned 3
-Okidogi ex | Shrouded Fable 036 | 2 | the no-Ability attacker; NOT the 082 or 090 illustration prints
-Lillie's Determination | Mega Evolution 119 | 4 | shared
-Dawn | Phantasmal Flames 087 | 3 |
-Boss's Orders | Mega Evolution 114 | 2 | shared; printed Boss's Orders [Ghetsis]
-Crispin | Stellar Crown 133 | 2 | the two-color accelerator
-Hilda | White Flare 084 | 2 | shared; an Evolution and its Energy to hand
-Team Rocket's Petrel | Destined Rivals 176 | 2 | the second copy of every one-of
-AZ's Tranquility | Chaos Rising 076 | 1 | switch, cure, and heal 80
-Buddy-Buddy Poffin | Temporal Forces 144 | 3 | shared
-Rare Candy | Mega Evolution 125 | 2 | shared
-Ultra Ball | Mega Evolution 131 | 1 | shared; the Item that finds a Mega or the dog
-Energy Recycler | Destined Rivals 164 | 1 | five Energy back into the deck
-Night Stretcher | Shrouded Fable 061 | 2 | shared; the only recovery for a Mega
-Prime Catcher | Temporal Forces 157 | 1 | ACE SPEC; the TEF print
-Air Balloon | Ascended Heroes 181 | 2 | one per Mega, on the hitter first
-Battle Cage | Phantasmal Flames 085 | 2 | the Stadium; Cage first against Dragapult
-Basic Psychic Energy | Mega Evolution Energies 005 | 5 | never rotates
-Basic Darkness Energy | Mega Evolution Energies 007 | 6 | shared; two dogs eat six
-```
-
-> [!NOTE]
-> **Regulation clock.** Everything here is Standard legal as of September 2026. The H cards, meaning Okidogi ex, Crispin, Buddy-Buddy Poffin, Night Stretcher, and Prime Catcher, rotate around April 2027, and that is the dog, the two-color accelerator, the ACE SPEC, and most of the setup. The Pitch Black, Phantasmal Flames, Perfect Order, and Chaos Rising core is Reg I and J and outlives them by a season or more. When the H cards go, the lantern half survives whole and the Dark half needs a new accelerator and a new closer.

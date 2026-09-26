@@ -24,7 +24,7 @@
 > [**The Toll Math**](#the-toll-math) · [**Game Plans**](#game-plans)
 > [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in) · [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Versus the Card Shop**](#versus-the-card-shop)
 > [**Where Gourgeist Went**](#where-gourgeist-went) · [**✗ Four Cards That Look Right — Skip Them**](#-four-cards-that-look-right--skip-them)
-> [**Test and Tune**](#test-and-tune) · [**What To Buy**](#what-to-buy)
+> [**Test and Tune**](#test-and-tune)
 
 ---
 
@@ -210,7 +210,7 @@ The ACE SPEC. Their Bench to the Active Spot, and your Active to your Bench, one
 
 ### Gravity Gemstone
 
-While the Pokémon this is attached to is in the Active Spot, **the Retreat Cost of both Active Pokémon is 1 more**. On an entrenched Mega Chandelure that is plus 50 on every Phantom Maze and one more tax on their exit, stacked on top of every Flame. The honest half of "both": it raises your Active's Retreat Cost too, which is why it lives on the Mega that plans to attack rather than retreat, and why the deck keeps Prime Catcher in reserve. The one card in the 60 the collection does not own; it is on [the wanted list](./wanted-cards.tsv) at about twenty cents.
+While the Pokémon this is attached to is in the Active Spot, **the Retreat Cost of both Active Pokémon is 1 more**. On an entrenched Mega Chandelure that is plus 50 on every Phantom Maze and one more tax on their exit, stacked on top of every Flame. The honest half of "both": it raises your Active's Retreat Cost too, which is why it lives on the Mega that plans to attack rather than retreat, and why the deck keeps Prime Catcher in reserve.
 
 There is no Stadium beside it, on purpose. The meta Chandelure lists run zero, the lanterns run zero, and the Stadium this deck's first draft carried was [shooting its own Litwicks](#where-gourgeist-went). The slot went to the Tool above.
 
@@ -396,7 +396,7 @@ Gourgeist is not homeless. The lanterns page already documents the clean version
 | **Team Rocket's Energy** | Provides exactly this deck's colors, and only attaches to Team Rocket's Pokémon; on anything here it discards itself. The dual-type fix it advertises does not exist without a Rocket Pokémon package this deck does not want. |
 | **Luminous Energy** | Any color, no ACE SPEC tag, looks perfect. Then the fine print: it provides Colorless instead if its Pokémon has any other Special Energy attached, and this deck runs four Telepathic. A rainbow that bricks next to the deck's best Energy is not a rainbow. |
 | **Neo Upper Energy** | Two Energy of any color on a Stage 2 would pay either Mega's whole attack. It is an ACE SPEC, so it costs Prime Catcher, and a trap deck sells its gust last. The lanterns reached the same verdict. |
-| **The Fire Chandelures** | Shady Move is rotated and already written up in [Night Parade](./psychic-lanterns.md#night-parade); Protective Glow is a rotated Trick or Trade print with no home there either. White Flare's is a Fire-discard engine for [Fox's deck](./fire-tournament.md). The Twilight Masquerade print is Standard-legal and genuinely good, and it belongs to the meta's one-line shell, not to this 60; the wanted list carries 4 for the day that deck gets built. |
+| **The Fire Chandelures** | Shady Move is rotated and already written up in [Night Parade](./psychic-lanterns.md#night-parade); Protective Glow is a rotated Trick or Trade print with no home there either. White Flare's is a Fire-discard engine for [Fox's deck](./fire-tournament.md). The Twilight Masquerade print is Standard-legal and genuinely good, and it belongs to the meta's one-line shell, not to this 60. |
 
 ---
 
@@ -413,40 +413,3 @@ The list is a hypothesis; games are the data. Symptoms and their fixes:
 | Mega-finding whiffs | Mega Signal (owned) over Poke Pad |
 | Single-prize rooms keep winning | Sleeve [the Gang](./dark-classic.md) for that room; this deck's answer is knowing when not to play it |
 | Wounded Megas keep dying loaded | Wally's Compassion (owned, the lanterns run one) over the 3rd Lillie's |
-
----
-
-## What To Buy
-
-Two ways to count the cost. Built the intended way, by taking the lanterns apart and borrowing Fox's trainers until their replacements arrive, the cash cost is about a dollar and a half: three Ariana, one Transceiver, one Gravity Gemstone. Kept as a fourth standing deck next to a sleeved Psychic Lanterns, the shared cores below stop being shared and the bill grows by two Mega Chandelure, four Telepathic, and a fourth Mega Gengar; the own counts are live from the collection database, and Need sums across deck pages, so the wishlist does that arithmetic for you.
-
-```buy
-Litwick | Pitch Black 036 | 4 | the Psychic print; shared with the lanterns
-Lampent | Pitch Black 037 | 3 | shared with the lanterns
-Mega Chandelure ex | Pitch Black 038 | 3 | sleeved in the lanterns today; this build inherits them
-Gastly | Phantasmal Flames 054 | 4 | the Gang runs the Perfect Order print; no conflict
-Haunter | Perfect Order 049 | 2 | the Haunt print, not Spooky Shot
-Mega Gengar ex | Phantasmal Flames 056 | 2 | Snake Charmer sleeves 2 of the owned 3; a 4th copy keeps every mode whole
-Duskull | Shrouded Fable 018 | 2 |
-Dusknoir | Shrouded Fable 020 | 1 |
-Marshadow | Pitch Black 040 | 1 |
-Lillie's Determination | Mega Evolution 119 | 3 | shared
-Team Rocket's Ariana | Destined Rivals 171 | 3 | Fox's copies are the loaners; buy 3 so his deck stays whole
-Hilda | White Flare 084 | 2 |
-Boss's Orders | Mega Evolution 114 | 2 | shared
-Janine's Secret Art | Shrouded Fable 059 | 2 | the only Darkness accel Supporter in Standard
-Crispin | Stellar Crown 133 | 1 |
-Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared
-Rare Candy | Mega Evolution 125 | 4 | shared
-Poke Pad | Perfect Order 081 | 1 | printed Poké Pad; the database drops the accent
-Night Stretcher | Shrouded Fable 061 | 1 | shared
-Team Rocket's Transceiver | Destined Rivals 178 | 1 | Fox's copy is the loaner; buy 1
-Prime Catcher | Temporal Forces 157 | 1 | ACE SPEC; the TEF print, the lanterns keep the PRE copy
-Gravity Gemstone | Stellar Crown 137 | 1 | the one card the collection does not own; about twenty cents
-Telepathic Psychic Energy | Perfect Order 088 | 4 | sleeved in the lanterns today
-Basic Psychic Energy | Mega Evolution Energies 005 | 4 | never rotates
-Basic Darkness Energy | Mega Evolution Energies 007 | 4 | shared
-```
-
-> [!IMPORTANT]
-> **The wanted list already knows.** Gravity Gemstone and the 4 Twilight Masquerade Chandelure for the future meta shell are both filed in [wanted-cards.tsv](./wanted-cards.tsv); the Ariana and Transceiver buys wait on the verdict from the borrowed test nights. Until those singles arrive, every game this deck plays against Fox's Rocket deck is a game his draw engine plays for both sides.

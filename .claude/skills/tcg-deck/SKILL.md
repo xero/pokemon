@@ -7,7 +7,7 @@ description: Xero's procedure for building a Pokémon TCG deck (paper, 60-card) 
 
 This skill builds a 60-card paper Pokémon TCG deck **outward from a core card**, the way a builder does it — not by copying a tournament list. The distinction matters: meta-chasing is *selection* (find the best-performing 60 and clone it); this is *construction* (start from a card's text, derive how it wins, and assemble the deck that makes it work). Most of the format's best cards never put you at a blank page; a chosen core card always does. This skill is the procedure for that blank page.
 
-The session this runs in already has the card database and the deck-building site wired up — use them for card text, the legal card pool, partner discovery, assembly, pricing, and export. In this repo that means `cards.csv` and the page generator; the repo's `CLAUDE.md` documents the pipeline contract (adding cards, buy blocks, the deck-page markdown shape). The public sites listed at the bottom are for cross-checking and for anything the local DB can't answer.
+The session this runs in already has the card database and the deck-building site wired up — use them for card text, the legal card pool, partner discovery, assembly, and export. In this repo that means `cards.csv`, the `legal-cards-*.json` pool, and the page generator; the repo's `CLAUDE.md` documents the pipeline contract (adding cards, the `decks.toml` registry, the deck-page markdown shape). Buying lives only on the repo's pull list, driven by a per-card owned flag, so a deck page never carries a What To Buy section or a buy block. The public sites listed at the bottom are for cross-checking and for anything the local DB can't answer.
 
 ---
 

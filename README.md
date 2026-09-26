@@ -56,28 +56,55 @@ running them by hand in the wrong order has produced a wrong index twice.
 everything generated is committed, so `--check` on a clean tree proves the html
 still matches the sources it came from.
 
+### the registry
+
+`decks.toml` is the one list of what is on the site, in the order the front
+page shows it: the library pages first, then the league decks, then every other
+deck under its group. a deck's entry says whose it is, which shelf it sits on,
+its sprites, its front-page blurb, and the corner sprites on its headings.
+
+a deck goes live by getting an entry. `draft = true` keeps it off the site: no
+page, no front-page row, and the pull list names it without a link. a full build
+deletes any page a draft left behind, because the site publishes every html file
+in the repo. markdown with no entry at all is a planning doc, and the build
+leaves it alone, naming it if it has a deck list in it.
+
 ### adding a card
 
-`add_cards.py` puts a card in `product-ids.tsv`. that file is the seed for
-everything else, and it needs a tcgplayer product id, which is not something you
-can work out from a card name. this looks it up.
+`add_cards.py` puts a card in `product-ids.tsv`, the seed for everything else.
+every card needs a tcgplayer product id, which is not something you can work out
+from a card name, so this looks it up.
 
 ```sh
-python3 add_cards.py "Umbreon ex Prismatic Evolutions" -n 060/131 -q 2
-python3 add_cards.py https://www.tcgplayer.com/product/94663/... -q 0
-python3 add_cards.py                       # everything in wanted-cards.tsv
+python3 add_cards.py "Umbreon ex Prismatic Evolutions" -n 060/131
+python3 add_cards.py "Umbreon ex Prismatic Evolutions" -n 060/131 --need
+python3 add_cards.py https://www.tcgplayer.com/product/94663/... --have
+python3 add_cards.py --file new-deck.tsv
 ```
 
 #### options
 
 | flag | | what it does |
 | :--- | :--- | :--- |
-| `card` | | positional. a card name and its set, or a tcgplayer product url. leave it off to read the batch file instead. |
+| `card` | | positional. a card name and its set, or a tcgplayer product url. |
 | `-n` | `--number` | the printed number, `060/131` or `060`. pins which printing. |
-| `-q` | `--quantity` | how many you own. `0` for a card you want but have not bought. defaults to `0`. |
-| | `--note` | why it is on the list. also picks the product line, see below. |
-| `-f` | `--file` | a batch of cards, tab separated. defaults to `wanted-cards.tsv`. |
+| | `--need` | not owned. adds the card to the pull list, or flips one already in the seed. |
+| | `--have` | owned. takes the card off the pull list. |
+| `-j` | `--japanese` | search the japanese product line. |
+| `-f` | `--file` | a batch of cards, tab separated. |
 | | `--dry-run` | say what would change, write nothing. |
+
+#### owned, and the pull list
+
+every card is owned unless someone says otherwise. that is the whole model:
+one flag per card, `1` or `0`, and nothing counts copies or scrapes an order
+history. `--need` sets the flag to `0`, which puts the card on
+[the pull list](./wishlist.html) with the decks that run it and how many to
+buy. `--have` sets it back once the card is in the binder.
+
+how many to buy comes from the decks' own lists, one deck per player. i sleeve
+one of my decks and fox sleeves one of his, so four of a card in two of my decks
+is four, while four in mine and four in his is eight.
 
 #### the three forms
 
@@ -90,13 +117,14 @@ skips the search entirely and is exact. everything after the id is ignored,
 query string and all, so a copied address bar works as is.
 
 **by file.** the batch form, tab separated, `#` comments and blank lines
-skipped:
+skipped. the third column is optional and takes `need` or `have`, the same as
+the flags:
 
 ```
-query<TAB>number<TAB>quantity<TAB>note
+query<TAB>number<TAB>need
 
-Umbreon ex Prismatic Evolutions   060/131   0   eevee-standard wants 2
-Yanmega Vivid Voltage             007/185   2   charizard theme deck
+Umbreon ex Prismatic Evolutions   060/131   need
+Yanmega Vivid Voltage             007/185
 ```
 
 #### pinning the printing
@@ -117,23 +145,13 @@ break the tie. both mega starter sets are 21 cards, so `011/021` exists in each,
 and matching on the number alone once put the gengar deck's ultra ball in the
 diancie set.
 
-#### quantity
-
-`-q 0` is a real value, not a missing one. it means a deck plan wants this card
-and we do not own it. the card still gets a full card page in the plans, with
-its art, stats, and text, and it is left off the collection page entirely.
-
-`scrape_quantities.py` leaves a row it knows nothing about alone, so a hand-set
-quantity survives a re-run.
-
 #### japanese cards
 
-the search runs against one product line at a time, and **the word `japan`
-anywhere in `--note` switches it** to the japanese one:
+the search runs against one product line at a time, and **`--japanese`
+switches it** to the japanese one:
 
 ```sh
-python3 add_cards.py "Ultra Ball MEGA Starter Set Mega Gengar ex" \
-  -n 011/021 -q 4 --note "japan, mbg starter"
+python3 add_cards.py --japanese "Ultra Ball MEGA Starter Set Mega Gengar ex" -n 011/021
 ```
 
 the url form needs no such hint. it asks both lines at once, since an id is
@@ -143,27 +161,25 @@ unique across them.
 
 | | |
 | :--- | :--- |
-| `add` | a new row went in |
-| `have` | already in the seed, nothing done |
-| `set` | quantity changed, with the old value and the new |
+| `add` | a new row went in, owned |
+| `want` | a new row went in not owned, or an owned one flipped to the pull list |
+| `got` | flipped back to owned |
+| `same` | already in the seed, nothing changed |
 | `??` | not resolved. the reason is on the next line |
-
-naming one card updates its quantity if the card is already there, because "add
-this, i own 2" is a statement about today. the batch file only ever adds, so it
-stays safe to re-run after appending a line.
 
 #### afterwards
 
 ```sh
-python3 normalize_cards.py   # pull the card text and scan
+python3 normalize_cards.py   # pull the card text and scan, carry the flag over
 python3 build.py             # rebuild every page
 ```
 
 `normalize_cards.py` only fetches what it does not already have, so adding one
-card costs one request rather than a refetch of all 172.
+card costs one request rather than a refetch of all of them, and flipping a flag
+costs none.
 
 there is also a **form on the actions tab** that runs all three and republishes
-the site. it takes the same four fields.
+the site. it takes a card, a number, and two checkboxes: need, and japanese.
 
 ## sources
 
@@ -180,18 +196,12 @@ weakness, resistance, retreat cost, and card text all come from the
 scans come from the tcgplayer cdn. `normalize_cards.py` pulls both and writes
 `cards.csv`.
 
-**what we own.** `product-ids.tsv` is the seed for everything else: a product
-id, a url, and how many we own. the count is merged by `scrape_quantities.py`
-from two places, because neither one knows the whole answer:
-
-- **singles**, scraped from tcgplayer order history. that scrape stays out of
-  the repo along with the raw api dumps. see `.gitignore`.
-- **sealed products**, listed card by card in `sealed-contents.tsv`. order
-  history knows we bought one theme deck; only a decklist knows it held 18 fire
-  energy.
-
-a quantity of 0 means a card a deck plan wants but we do not own. it still gets
-a full card page in the plans, and is left off the collection page entirely.
+**what we own.** one flag per card in `product-ids.tsv`, set by hand through
+`add_cards.py`. every card is owned unless it is marked otherwise, and the
+marked ones are the pull list. there used to be copy counts here, merged from a
+scrape of tcgplayer order history and a card-by-card list of every sealed
+product, and they were retired in september 2026 because they never matched the
+binders.
 
 **tournament legality.** regulation marks come from
 [pokemontcg.io](https://pokemontcg.io), one lookup per card rather than per set.

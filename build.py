@@ -5,9 +5,10 @@
     python3 build.py --check    # build, then fail if the result differs from git
     python3 build.py --data     # re-fetch cards.csv first, then build
 
-The order matters and is not obvious, which is the reason this file exists.
-build_index.py reads the finished pages back to count the cards on each one, so
-it has to run after every page it links to. Running the builders by hand in the
+What gets built is decks.toml's call; this file only runs the builders in an
+order that works. The order matters in one place, which is the reason this
+file exists: build_index.py reads the finished pages back to count the cards on
+each one, so it has to run after every page it links to. Running the builders by hand in the
 wrong order produced an index claiming one card for an eight-card page, twice.
 
 --check is the regression test. Every generated file is committed, so a clean
@@ -22,11 +23,11 @@ ROOT = Path(__file__).parent
 # (what it makes, what to run). Order is the dependency order, not preference.
 STEPS = [
     ("collection.html", "build_html.py"),
+    # every page decks.toml publishes. it also deletes the page of any deck
+    # marked draft, so a leftover cannot go live before the deck is ready.
     ("the deck pages", "build_deck_html.py"),
-    # after the deck pages, and it has to be: the pull list links a card to
-    # the decks asking for it, and only links the ones whose page exists. Run
-    # it first and a newly added deck renders as plain text on the first build
-    # and as a link on the second, so the build is not reproducible.
+    # the pull list reads decks.toml for which decks link, not the disk, so its
+    # place in the order no longer matters
     ("wishlist.html", "build_wishlist.py"),
     ("credits.html", "build_credits.py"),
     ("collection.md", "build_markdown.py"),

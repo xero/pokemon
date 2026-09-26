@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1260,7 +1213,6 @@
 			<li><a href="#versus-the-field">Versus the Field</a></li>
 			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt><a href="#the-numbers">The Numbers</a></dt>
@@ -1278,7 +1230,7 @@
 			<dt>Game Plans</dt>
 			<dd><a href="#1-the-two-turn-kill">1. The Two-Turn Kill</a> <a href="#2-the-crystal">2. The Crystal</a> <a href="#3-the-fairy-zone">3. The Fairy Zone</a> <a href="#4-reading-the-room">4. Reading the Room</a> <a href="#5-reading-the-opening-hand">5. Reading the Opening Hand</a> <a href="#6-things-that-will-cost-you-a-game">6. Things That Will Cost You a Game</a></dd>
 			<dt><a href="#alternatives">Alternatives</a></dt>
-			<dd><a href="#dusknoir">Dusknoir</a> <a href="#prime-catcher">Prime Catcher</a></dd>
+			<dd><a href="#team-rockets-watchtower">Team Rocket&#x27;s Watchtower</a> <a href="#dusknoir">Dusknoir</a> <a href="#neo-upper-energy">Neo Upper Energy</a> <a href="#prime-catcher">Prime Catcher</a></dd>
 		</dl>
 	</details>
 </nav>
@@ -2177,6 +2129,18 @@
 			</article>
 			<article>
 				<h3 id="team-rockets-watchtower">Team Rocket&#x27;s Watchtower</h3>
+				<aside>
+					<a data-art href="./assets/632980_team-rockets-watchtower.jpg" target="_blank" rel="noopener"><img src="./assets/632980_team-rockets-watchtower.jpg" alt="Team Rocket&#x27;s Watchtower" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>180/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Colorless Pokémon in play (both yours and your opponent&#x27;s) have no Abilities.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
 				<section>
 					<p>Colorless Pokémon have no Abilities, both sides. Every stock list runs one or two, aimed at Dudunsparce, Toucannon, Noctowl, and Bloodmoon Ursaluna. It switches off your own Meowth. It stays in the binder until the room shows those decks; it replaces the Risky Ruins.</p>
 				</section>
@@ -2225,6 +2189,18 @@
 			</article>
 			<article>
 				<h3 id="neo-upper-energy">Neo Upper Energy</h3>
+				<aside>
+					<a data-art href="./assets/542682_neo-upper-energy.jpg" target="_blank" rel="noopener"><img src="./assets/542682_neo-upper-energy.jpg" alt="Neo Upper Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>162/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Energy - Special Rainbow</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> Energy. If this card is attached to a Stage 2 Pokémon, this card provides every type of Energy but provides only 2 Energy at a time instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
 				<section>
 					<p>The other Tera-adjacent ACE SPEC: on a Stage 2 it provides two Energy of every type, so a Dragapult Dives off one attachment without any Tool. It is Special Energy, which Enhanced Hammer discards and Night Stretcher cannot return, and it costs $17.76. The Crystal does the same job for 34 cents and survives a Hammer.</p>
 				</section>
@@ -2263,48 +2239,6 @@
 							<tr><td>Dead hands full of Energy</td><td>Eight is already lean</td><td>Do not cut; play Lillie&#x27;s earlier and let Recon sink the surplus</td></tr>
 						</tbody>
 					</table>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/meowth.gif" alt="" /></span></h3></summary>
-					<p>Own counts are live from the collection database. Every Trainer here except Briar, Tera Orb, and Area Zero is shared with the sleeved decks, so check <a href="./collection.html">the box</a> before ordering; the shell, the Sparkling Crystal, and the Mimikyu are already bought, and the nine cards that are not come to about eighteen dollars together, with nothing over three.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Dreepy <small>SV06: Twilight Masquerade 128/167</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>70 HP, Poffin range; the Ascended Heroes 158 reprint is the same card</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Drakloak <small>SV06: Twilight Masquerade 129/167</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>Recon Directive; the engine</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Dragapult ex <small>SV06: Twilight Masquerade 130/167</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>NOT the 200 secret print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Munkidori <small>SV06: Twilight Masquerade 095/167</small></span></td><td>3</td><td>2</td><td>✓</td><td>shared with the lantern deck</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png" /><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" /></picture></span><span>Lillie&#x27;s Clefairy ex <small>SV09: Journey Together 056/159</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Fairy Zone; NOT the 173 or 184 prints</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Fezandipiti ex <small>SV: Shrouded Fable 038/064</small></span></td><td>2</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Meowth ex <small>ME03: Perfect Order 062/088</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>NOT the 107 or 121 prints</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Budew <small>ME: Ascended Heroes 016/217</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>the Prismatic Evolutions 004 print is the same card</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Team Rocket&#x27;s Mimikyu <small>SV10: Destined Rivals 087/182</small></span></td><td>1</td><td>1</td><td>✓</td><td>owned; the Ascended Heroes 097 print is the same card</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Crispin <small>SV07: Stellar Crown 133/142</small></span></td><td>4</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>1</td><td>✓</td><td>shared; NOT the 118 or 129 secret prints</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Briar <small>SV07: Stellar Crown 132/142</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>the Tera comeback Supporter</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>Poke Pad <small>ME03: Perfect Order 081/088</small></span></td><td>4</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>Tera Orb <small>SV08: Surging Sparks 189/191</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>finds only Dragapult ex here</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Energy Switch <small>ME01: Mega Evolution 115/132</small></span></td><td>2</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Sparkling Crystal <small>SV07: Stellar Crown 142/142</small></span></td><td>1</td><td>1</td><td>✓</td><td>owned; ACE SPEC, a Tool, so no Jamming Tower in this list</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>Air Balloon <small>ME: Ascended Heroes 181/217</small></span></td><td>2</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Area Zero Underdepths <small>SV07: Stellar Crown 131/142</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the Prismatic Evolutions 094 print is the same card</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Risky Ruins <small>ME01: Mega Evolution 127/132</small></span></td><td>4</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span>Basic Fire Energy <small>MEE: Mega Evolution Energies 2</small></span></td><td>18</td><td>3</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>3</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>2</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>20</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="important">
-				<p><strong>Regulation clock.</strong> Everything here is Standard legal as of August 2026. The core is mark H: Dreepy, Drakloak, and Dragapult ex in every print, plus Munkidori, Fezandipiti ex, Budew, Crispin, Poffin, Tera Orb, Night Stretcher, Sparkling Crystal, Area Zero Underdepths, and Briar. All of it rotates around April 2027 unless a reprint lands with a newer mark, and the Ascended Heroes reprints of the dragon line did not get one. Seven months of Standard for under twenty dollars is a fair trade; buy it knowing the date.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

@@ -24,7 +24,7 @@
 > [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
 > [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Versus the Card Shop**](#versus-the-card-shop)
 > [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
-> [**Night Parade**](#night-parade) · [**What To Buy**](#what-to-buy)
+> [**Night Parade**](#night-parade)
 
 ---
 
@@ -409,46 +409,3 @@ Play it like a banker, not an arsonist. Spread counters where nothing dies, beca
 **The counter that walks.** *Shady Move* relocates 1 damage counter from any Pokémon to any other Pokémon, once per turn per copy, and [the published ruling](https://compendium.pokegym.net/ruling/240/) confirms it moves them across the table, off your Pokémon and onto theirs. That is the Umbreon fuse from [the kitchen-table section](#versus-the-kitchen-table) defused one tick per turn, with each tick landing on Fox's board as another 20 of Vortex.
 
 Fire type, and *Super Singe* costs [R], so it never attacks. Furniture does not need to fight; this chair moves damage for a living. Retreat 1, and it wears its own Shroud ping happily, because a damaged bencher is 50 more on Horrifying Rondo.
-
-The whole module costs about six dollars.
-
-```buy
-Chandelure | Lost Thunder 103 | 2 | Vortex of Pain; foil only, about $3 a copy shipped
-Chandelure | Guardians Rising 013 | 1 | Shady Move; under a dollar
-```
-
----
-
-## What To Buy
-
-Own counts are live from the collection database; the Rare Candy, Poffin, Boss's, and Lillie's rows are shared with the other sleeved decks, so check [the box](./collection.md) before ordering.
-
-```buy
-Litwick | Pitch Black 036 | 4 | the Psychic print; the Fire copies do not serve this line
-Lampent | Pitch Black 037 | 4 | Spreading Light
-Mega Chandelure ex | Pitch Black 038 | 3 | Double Rare; skip the collector prints numbered above 084
-Pumpkaboo | Chaos Rising 040 | 2 |
-Gourgeist ex | Chaos Rising 041 | 2 | Double Rare; 041, not 102
-Snorunt | Twilight Masquerade 051 | 1 |
-Snorunt | Ascended Heroes 046 | 1 | the Love Ball print; Reg I, outlives the TWM copy
-Froslass | Twilight Masquerade 053 | 2 | the engine; 2-2, never 1-1
-Duskull | Shrouded Fable 018 | 2 |
-Dusknoir | Shrouded Fable 020 | 1 |
-Lillie's Determination | Mega Evolution 119 | 4 | shared
-Hilda | White Flare 084 | 3 |
-Boss's Orders | Mega Evolution 114 | 3 | shared
-Wally's Compassion | Mega Evolution 132 | 1 |
-Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared
-Rare Candy | Mega Evolution 125 | 4 | shared
-Poke Pad | Perfect Order 081 | 3 | printed Poké Pad; the database drops the accent
-Night Stretcher | Shrouded Fable 061 | 2 | shared
-Wondrous Patch | Phantasmal Flames 094 | 1 |
-Switch | Mega Evolution 130 | 1 | shared
-Air Balloon | Ascended Heroes 181 | 1 |
-Prime Catcher | Prismatic Evolutions 119 | 1 | ACE SPEC; the PRE reprint of TEF 157, same card, English
-Telepathic Psychic Energy | Perfect Order 088 | 4 | Special Energy; nothing recovers it once discarded
-Basic Psychic Energy | Mega Evolution Energies 005 | 6 | never rotates
-```
-
-> [!IMPORTANT]
-> **Regulation clock.** Everything in this list is Standard legal as of August 2026; the [Night Parade](#night-parade) prints, by design, are not. The H cards (the Snorunt and Duskull lines, Poffin, Night Stretcher, Prime Catcher) rotate around April 2027; the Pitch Black, Chaos Rising, and Perfect Order core is Reg J with years left. The soul of the deck outlives its shell.

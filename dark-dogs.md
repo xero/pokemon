@@ -23,7 +23,6 @@
 >
 > [**The Search Blind Spot**](#the-search-blind-spot) · [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
 > [**Versus the Card Shop**](#versus-the-card-shop) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
-> [**What To Buy**](#what-to-buy)
 
 ---
 
@@ -483,23 +482,3 @@ Where to go next:
 | Ultra Ball | never | it finds anything, including the dog. It is out because two cards to the discard fights a hand that is planned two turns ahead |
 | Munkidori | never | in 14 of 15 tournament Toxtricity lists and still wrong here: it is Psychic, so Janine cannot feed it and **your own Risky Ruins chips it** on the way down |
 | Fezandipiti ex, Pecharunt ex, Chi-Yu | never | all rejected in [dark-gang.md](./dark-gang.md), and nothing since has changed the verdicts |
-
----
-
-## What To Buy
-
-**Nothing.** Every card in this list is already in the box.
-
-> [!IMPORTANT]
-> **This page carries no buy block on purpose.** It is the same sleeves as [dark-gang.md](./dark-gang.md) with a different centrepiece, so the two can never be played on the same night, and [the pull list](./wishlist.html) sums Need across decks. A buy block here would ask for a second Okidogi line and a second set of Rare Candy that nobody needs. **Take the maximum of the two lists, never the sum.**
-
-If you are ordering anyway, in priority order:
-
-| Card | Get to | Why |
-| :--- | ---: | :--- |
-| Poke Pad | **4** | the field runs 3.7 and it tutors the entire line now that nothing in it has a Rule Box |
-| Night Stretcher | **2** | the field runs 2.3, and it is the only recovery for a Gengar that *Chaotic Pain* removed |
-| Mega Darkrai ex | **2** | the next build to test; *Dusk Raid* turns *Sinister Surge*'s damage counters from a cost into a trigger |
-
-> [!NOTE]
-> **Regulation clock.** Everything here is Standard legal as of September 2026. The H cards — Okidogi ex, Janine's Secret Art, Binding Mochi, Buddy-Buddy Poffin, Scramble Switch — rotate around April 2027, and that is the whole dog package plus the ACE SPEC. **The Gengar half is Reg J and outlives the dogs by a full season**, which is worth knowing before you spend anything on the closer.

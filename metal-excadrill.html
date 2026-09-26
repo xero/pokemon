@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1247,7 +1200,7 @@
 		<header>
 			<div>
 				<h1><img src="./assets/pokeball.png" alt="" />Iron Excavation <img data-mascot src="./assets/sprites/drilbur.gif" alt="" /> <img data-mascot src="./assets/sprites/excadrill.gif" alt="" /></h1>
-				<p>Tournament · one evolution line, two attackers, and only one of them costs three Prizes</p>
+				<p>Modeled on Matt's league deck · one evolution line, two attackers, and only one of them costs three Prizes</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1256,6 +1209,7 @@
 		<summary>Contents</summary>
 		<ul data-sections>
 			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#how-matt-plays-it">How Matt Plays It</a></li>
 			<li><a href="#deck-list">Deck List</a></li>
 			<li><a href="#the-energy-engine">The Energy Engine</a></li>
 			<li><a href="#damage-math">Damage Math</a></li>
@@ -1263,7 +1217,6 @@
 			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
 			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -1277,7 +1230,9 @@
 			<dt>Energy</dt>
 			<dd><a href="#basic-metal-energy">Basic Metal Energy</a></dd>
 			<dt>Game Plans</dt>
-			<dd><a href="#1-turn-one-is-drilbur-and-it-is-not-optional">1. Turn one is Drilbur, and it is not optional</a> <a href="#2-two-metang-before-anything-else">2. Two Metang before anything else</a> <a href="#3-metagross-swings-first-always">3. Metagross swings first, always</a> <a href="#4-count-to-five-before-the-mega-comes-out">4. Count to five before the Mega comes out</a> <a href="#5-rebuilding-after-metallic-hammer">5. Rebuilding after Metallic Hammer</a> <a href="#6-reading-the-opening-hand">6. Reading the opening hand</a></dd>
+			<dd><a href="#1-the-trolley-turn">1. The Trolley turn</a> <a href="#2-genesect-early-then-stage-1">2. Genesect early, then Stage 1</a> <a href="#3-metal-maker-every-turn-onto-the-excadrill">3. Metal Maker, every turn, onto the Excadrill</a> <a href="#4-five-on-each-excadrill">4. Five on each Excadrill</a> <a href="#5-metagross-as-the-last-resort">5. Metagross as the last resort</a> <a href="#6-reading-the-opening-hand">6. Reading the opening hand</a></dd>
+			<dt><a href="#the-metagross-first-line">The Metagross-First Line</a></dt>
+			<dd><a href="#1-metagross-swings-first-always">1. Metagross swings first, always</a> <a href="#2-count-to-five-before-the-mega-comes-out">2. Count to five before the Mega comes out</a> <a href="#3-rebuilding-after-metallic-hammer">3. Rebuilding after Metallic Hammer</a></dd>
 			<dt><a href="#alternatives">Alternatives</a></dt>
 			<dd><a href="#stevens-metagross-ex">Steven&#x27;s Metagross ex</a> <a href="#mega-signal">Mega Signal</a> <a href="#magnetic-metal-energy">Magnetic Metal Energy</a> <a href="#rare-candy">Rare Candy</a> <a href="#fezandipiti-ex">Fezandipiti ex</a></dd>
 		</dl>
@@ -1286,25 +1241,33 @@
 		<main>
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
-				<p>Fox&#x27;s Metal deck, built for the card shop. Every card carries regulation mark H, I, or J, so it is legal exactly as it sits.</p>
-				<p>This is the second version. The first one was the stock Mega Excadrill list — three Prizes a body, no plan B — and it is the most-played deck in Standard at a losing win rate. The rebuild keeps the engine that made it famous and adds the card that fixes it: a <strong>Metagross that hits for 330 and hands back one Prize</strong>. The reasoning for what changed is in <a href="#alternatives">Alternatives</a>. Game words are defined in <a href="./rules.html">the table rules</a>.</p>
-				<p>Nothing metal was in the binders when this was planned, so the Pokémon are all a first buy. The Trainer shell came from the shared box.</p>
+				<p>A model of Matt&#x27;s deck. Matt is a friend and one of the regulars at CardCrate&#x27;s Wednesday league, and Mega Excadrill ex is what he brings every week. Every card carries regulation mark H, I, or J, so the list is legal exactly as it sits.</p>
+				<p>The engine is the one Matt runs, the older build: Metang&#x27;s <em>Metal Maker</em> for Energy, Genesect ex for search, and Precious Trolley as the ACE SPEC. That stock list is the most-played deck in Standard at a losing win rate, because its main attacker costs three Prizes and there is no plan B. Matt adds two Metagross, a <strong>Metagross that hits for 330 and hands back one Prize</strong>, and keeps them as a situational last resort. <a href="#how-matt-plays-it">How Matt Plays It</a> has his order, and the reasoning behind the rest of the list is in <a href="#alternatives">Alternatives</a>. How the Gengar deck plays against Matt is in <a href="./dark-gang.html#versus-mega-excadrill-ex">Xero&#x27;s Gengar Gang</a>, and game words are defined in <a href="./rules.html">the table rules</a>.</p>
 			</aside>
 			<section>
-				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
-					<p>Beldum evolves into Metang. Metang evolves into Metagross. That is one line, three cards deep, and it does two completely different jobs at the same time.</p>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+					<p><strong>The Mega is the attacker, and the rest of the sixty is there to put five Energy on it.</strong> Mega Excadrill ex evolves straight from Drilbur, and <em>Maximum Drilling</em> hits 200 at three Energy and 330 at five. That is how Matt plays it, and everything else in the list is search or delivery.</p>
 					<p><strong>The Metang you leave on the Bench is the Energy engine.</strong> <em>Metal Maker</em> looks at the top four cards of your deck and attaches every basic Metal it finds, anywhere you like, once per copy per turn. Three Metang standing is three looks at four cards, every turn, and it never touches your hand.</p>
-					<p><strong>The Metang you evolve is a 300-damage attacker that gives up one Prize.</strong> <em>Metallic Hammer</em> is 150, and 300 if you discard three Metal from it. Put a <a href="#brave-bangle">Brave Bangle</a> on it — legal because Metagross has no Rule Box — and it does <strong>330 to an Active Pokémon ex</strong>.</p>
-					<p>That 330 is the number the whole format is built around. It one-shots Dragapult ex at 320 and every two-Prize ex beneath it. The stock Mega Excadrill list gets to 330 too, off a 340 HP Mega that hands back three Prizes when it dies. This deck gets there off a 180 HP Stage 2 that hands back one.</p>
+					<p><strong>340 HP is the defense.</strong> The hardest common single hit in Standard is 330, <em>Maximum Drilling</em> itself, so a loaded Excadrill survives almost anything the format swings and hits back for 330. Under <a href="#full-metal-lab">Full Metal Lab</a> it reads as 370. The three Prizes it gives up are the price, and the plan is to make the opponent spend two turns taking them.</p>
+					<p><strong>Metagross is the backup.</strong> The Metang you evolve instead is a 300-damage attacker that gives up one Prize. <em>Metallic Hammer</em> is 150, and 300 if you discard three Metal from it. Put a <a href="#brave-bangle">Brave Bangle</a> on it, legal because Metagross has no Rule Box, and it does <strong>330 to an Active Pokémon ex</strong>. Matt keeps two as a situational last resort.</p>
 					<table>
 						<thead><tr><th>Attacker</th><th>Energy</th><th>Damage</th><th>Prizes it gives up</th></tr></thead>
 						<tbody>
-							<tr><td>Metagross + Brave Bangle</td><td>4</td><td><strong>330</strong> vs ex</td><td><strong>1</strong></td></tr>
 							<tr><td>Mega Excadrill ex</td><td>5</td><td><strong>330</strong></td><td>3</td></tr>
+							<tr><td>Metagross + Brave Bangle</td><td>4</td><td><strong>330</strong> vs ex</td><td><strong>1</strong></td></tr>
 						</tbody>
 					</table>
-					<p>Both hit the same number. One of them costs a third of the game.</p>
-					<p>So the Mega is not the workhorse here. It is the closer — 340 HP of furniture that comes out when there are two Prizes left and a body that survives what the format throws. Metagross does the grinding, and it does it off the same four Beldum the engine already needed. <strong>The plan B costs zero extra Basics</strong>, which is the entire reason this list fits in 60 cards.</p>
+					<p>Both hit the same number, and one of them costs a third of the game. Matt takes that trade for the 340 HP. <a href="#the-metagross-first-line">The Metagross-First Line</a> takes the other side of it.</p>
+			</section>
+			<section>
+				<h3 id="how-matt-plays-it">How Matt Plays It<span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+					<p>The short version, in his order. <a href="#game-plans">Game Plans</a> walks through each step, and <a href="#the-metagross-first-line">The Metagross-First Line</a> is the other way to play the same sixty.</p>
+					<ol>
+						<li><strong>Trolley turn.</strong> Precious Trolley benches two Drilbur for the Excadrill and one Genesect ex, and fills the rest of the Bench with Beldum for Metang.</li>
+						<li><strong>Genesect early.</strong> <em>Metallic Signal</em> fetches the Stage 1s, and the Bench evolves into Metang and Mega Excadrill ex.</li>
+						<li><strong>Metal Maker, a lot of it.</strong> Every Metang looks at the top four each turn, and the Energy goes onto the Excadrill.</li>
+						<li><strong>Five on each Excadrill.</strong> <em>Maximum Drilling</em> is 330 at five Energy, and that is the plan. Metagross only comes out when the game calls for it, as a last resort.</li>
+					</ol>
 			</section>
 			<section>
 				<h3 id="deck-list">Deck List</h3>
@@ -1369,7 +1332,7 @@
 					<p><strong>20 + 28 + 12 = 60.</strong> ✓</p>
 					<p><strong>Basics: 11</strong> (4 Drilbur, 4 Beldum, 3 Genesect ex), which puts the no-mulligan rate at <strong>77.8%</strong>, inside the 75–85% band. Drilbur and Beldum both sit at exactly 70 HP, so every Buddy-Buddy Poffin finds two of the cards you actually want on turn one. That is not luck; it is why those two prints were chosen.</p>
 			<aside data-callout="warning">
-				<p><strong>One ACE SPEC per deck.</strong> Precious Trolley is this deck&#x27;s one. The old list used Prime Catcher, which the house owns a single English copy of and which <a href="./psychic-lanterns.html">the lantern deck</a> and <a href="./dark-curse.html">the Curse Toll deck</a> both claim. Trolley is a fresh buy and frees that copy for the other two.</p>
+				<p><strong>One ACE SPEC per deck.</strong> Precious Trolley is this deck&#x27;s one, and it is Matt&#x27;s pick too.</p>
 			</aside>
 			</section>
 			<h2 id="pokémon">Pokémon</h2>
@@ -1398,7 +1361,7 @@
 					<p><em>Maximum Drilling</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span> for 200, plus 130 more when at least two extra Energy are attached. Five Energy, 330 damage, every turn, no cooldown and no self-discard. The fourth Energy buys nothing at all; there is no ramp here, only a cliff.</p>
 					<p><em>Undermine</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /></span> for 90 and discards the top two cards of the opponent&#x27;s deck. It is the attack while you are still counting, and the mill is a rounding error you get for free.</p>
 					<p><strong>340 HP is above the format&#x27;s ceiling.</strong> The hardest common single hit in Standard is Maximum Drilling itself at 330, so in the mirror nobody one-shots anybody. Excadrill survives what it dishes out.</p>
-					<p>Three copies, and it is a Stage 1, so this deck runs <strong>no Rare Candy</strong> — four slots the other Mega decks in this house never get back. <strong>Retreat 4 is the worst number on the card</strong>; see <a href="#4-count-to-five-before-the-mega-comes-out">game plan 4</a> before you sleeve it.</p>
+					<p>Three copies, and it is a Stage 1, so this deck runs <strong>no Rare Candy</strong> — four slots the other Mega decks in this house never get back. <strong>Retreat 4 is the worst number on the card</strong>; see <a href="#4-five-on-each-excadrill">game plan 4</a> before you sleeve it.</p>
 				</section>
 			</article>
 			<article>
@@ -1499,10 +1462,10 @@
 					</dl>
 				</section>
 				<section>
-					<p><strong>The card the old list did not have, and the reason this one is better.</strong> Stage 2 from Metang. 180 HP, Retreat 3, one Prize.</p>
+					<p><strong>The card the stock list does not have, and Matt&#x27;s last resort.</strong> Stage 2 from Metang. 180 HP, Retreat 3, one Prize.</p>
 					<p><strong><em>Metallic Hammer</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 150, and you may discard 3 Metal Energy from this Pokémon to add 150 more.</strong> Three hundred damage from a single-Prize body. With a <a href="#brave-bangle">Brave Bangle</a> attached it is <strong>330 against an Active Pokémon ex</strong> — the same number the Mega hits, at a third of the price.</p>
 					<p><em>Bounce Back</em> is <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> for 60 and switches their Active to the Bench. One Energy, and it un-picks whatever wall they just parked in front of you. Note that <strong>they</strong> choose the replacement, so this is repositioning, not a gust; <a href="#bosss-orders">Boss&#x27;s Orders</a> is the gust.</p>
-					<p>Two copies. It costs a Metang to make one, and the Bench needs those Metang, so two is the number the line can actually support. Discarding three Metal every big swing is the real cost — read <a href="#5-rebuilding-after-metallic-hammer">game plan 5</a>.</p>
+					<p>Two copies. It costs a Metang to make one, and the Bench needs those Metang, so two is the number the line can actually support. Discarding three Metal every big swing is the real cost — read <a href="#3-rebuilding-after-metallic-hammer">rebuilding after Metallic Hammer</a>.</p>
 				</section>
 			</article>
 			<article>
@@ -1721,7 +1684,7 @@
 			<aside data-callout="note">
 				<p>Search your deck for any number of Basic Pokémon and put them onto your Bench.</p>
 			</aside>
-					<p><strong>ACE SPEC, and it is the answer to the only complaint anyone has about this archetype: it sets up too slowly.</strong> Any number. Two Beldum, a Drilbur, and a Genesect ex, from an empty board, for one card. Play it the turn it fixes a bad opening and never hold it for value.</p>
+					<p><strong>ACE SPEC, and it is the answer to the only complaint anyone has about this archetype: it sets up too slowly.</strong> Any number. Matt&#x27;s is two Drilbur, a Genesect ex, and Beldum in the rest of the Bench, from an empty board, for one card. Play it the turn it fixes a bad opening and never hold it for value.</p>
 				</section>
 			</article>
 			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
@@ -1829,7 +1792,7 @@
 					<p><strong>What 330 actually kills.</strong> Dragapult ex at 320, and every two-Prize ex in the format. What it does <em>not</em> kill is the 340-plus Mega tier — Mega Excadrill itself, Mega Lucario ex, Mega Gengar ex — and that wall is the same one every deck in Standard is hitting. Against those, both of your attackers are two-shot cards and the game is decided by the Prize trade instead.</p>
 			</section>
 			<section>
-				<h3 id="the-prize-map">The Prize Map<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+				<h3 id="the-prize-map">The Prize Map<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
 					<p>Six Prizes each way. Count both directions before you sleeve anything.</p>
 					<p><strong>What they have to knock out to beat you:</strong></p>
 					<dl>
@@ -1838,35 +1801,31 @@
 						<dt>Genesect ex</dt><dd><span>2</span></dd>
 						<dt>Mega Excadrill ex</dt><dd><span><strong>3</strong></span></dd>
 					</dl>
-					<p><strong>Two knockouts on Excadrill is the whole game.</strong> That single line is why the stock list loses more than it wins, and the fix is not a card, it is a habit: <strong>the Mega stays on the Bench until it is taking Prizes five and six.</strong> Lead with Metagross, trade one Prize for their two, and make them find six knockouts while you find three.</p>
-					<p>Played that way the deck asks the opponent for a six-KO game and gives itself a three-KO game. Played the other way — Excadrill out on turn three because it is the exciting card — it asks for the opposite, and that is the deck Fox kept losing to <em>and</em> the deck that keeps losing.</p>
+					<p><strong>Two knockouts on Excadrill is the whole game</strong>, and Matt&#x27;s line accepts that risk on purpose. A loaded Excadrill takes two attacks to knock out, so while the opponent spends two turns on one three-Prize knockout, it takes a two-Prize ex every turn. The line breaks against anything that one-shots 340, which is why Fire is this deck&#x27;s worst matchup.</p>
+					<p><a href="#the-metagross-first-line">The Metagross-First Line</a> plays the same map the other way, and keeps the Mega benched until Prizes five and six.</p>
 			</section>
 			<h2 id="game-plans">Game Plans</h2>
 			<section>
-				<h3 id="1-turn-one-is-drilbur-and-it-is-not-optional">1. Turn one is Drilbur, and it is not optional<span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /></span></h3>
-					<p>Drilbur active, attach a Metal, <em>Call for Family</em> for two Beldum. That is the whole turn and it beats every alternative, because one attack replaces two Poffins and leaves the Poffins in the deck for later.</p>
-					<p>If Drilbur is not in the opening seven, Poffin finds it, Ultra Ball finds it, Precious Trolley finds it, and Dawn finds it. Fifteen cards in the deck lead to a Drilbur — an 88% opening.</p>
+				<h3 id="1-the-trolley-turn">1. The Trolley turn<span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /></span></h3>
+					<p>Precious Trolley benches any number of Basics, and Matt&#x27;s turn one is two Drilbur for the Excadrill, one Genesect ex, and Beldum in the rest of the Bench. One card is the whole board, which is why Trolley is the ACE SPEC.</p>
+					<p>Without Trolley, Drilbur is the start. Drilbur active, attach a Metal, and <em>Call for Family</em> for two Beldum. If Drilbur is not in the opening seven, Poffin finds it, Ultra Ball finds it, Precious Trolley finds it, and Dawn finds it. Fifteen cards in the deck lead to a Drilbur, an 88% opening.</p>
 			</section>
 			<section>
-				<h3 id="2-two-metang-before-anything-else">2. Two Metang before anything else<span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
-					<p>Not one. Two Metang is where the engine starts producing faster than you spend, and every turn you spend at one Metang is a turn the deck is not really running. Evolve both before you think about a Metagross and long before you think about the Mega.</p>
-					<p>Genesect ex&#x27;s <em>Metallic Signal</em> grabs two Evolution Metal in one Ability — the fastest way to two Metang is usually to bench Genesect and take two Metang with it.</p>
+				<h3 id="2-genesect-early-then-stage-1">2. Genesect early, then Stage 1<span data-flavor><img src="./assets/sprites/genesect.gif" alt="" /></span></h3>
+					<p>Genesect ex&#x27;s <em>Metallic Signal</em> grabs two Evolution Metal Pokémon a turn, so the first Signals fetch Metang and Mega Excadrill ex, and the Bench evolves on the next turn instead of waiting to draw them. Two Metang is where the engine starts producing faster than you spend, and every turn at one Metang is a turn the deck is not really running.</p>
 			</section>
 			<section>
-				<h3 id="3-metagross-swings-first-always">3. Metagross swings first, always<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
-					<p>Third Metang goes down, one of the first two becomes Metagross, Brave Bangle goes on it, and it starts hitting for 330. Every Prize you can take with Metagross is a Prize you took for one instead of three.</p>
-					<p>The temptation is to skip this and go straight to the Mega. Do not. Read <a href="#the-prize-map">the Prize Map</a> again if the temptation wins.</p>
+				<h3 id="3-metal-maker-every-turn-onto-the-excadrill">3. Metal Maker, every turn, onto the Excadrill<span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+					<p>Every Metang looks at the top four each turn, and the Energy goes onto the Excadrill. Two Metang plus your attachment is about 2.8 Energy a turn, and three is about 3.7 (<a href="#the-energy-engine">the Energy Engine</a>). Count to three for 200, then to five for 330. The fourth Energy is worth nothing (<a href="#damage-math">Damage Math</a>).</p>
 			</section>
 			<section>
-				<h3 id="4-count-to-five-before-the-mega-comes-out">4. Count to five before the Mega comes out<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
-					<p>Mega Excadrill ex on the Bench with four Energy is doing nothing but standing there worth three Prizes. Evolve Drilbur into it <strong>on the turn it can already reach five</strong>, or on the turn something is going to die anyway.</p>
+				<h3 id="4-five-on-each-excadrill">4. Five on each Excadrill<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+					<p>The Active Excadrill swings as soon as it can, and the one on the Bench fills behind it, so when the first goes down the next is already at five.</p>
 					<p>And remember Retreat 4. Once Excadrill is in the Active Spot it is staying there, so put it there on purpose and never by accident. Two Switch exist to fix the accident.</p>
 			</section>
 			<section>
-				<h3 id="5-rebuilding-after-metallic-hammer">5. Rebuilding after Metallic Hammer<span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
-					<p>Metagross swings for 300 and throws three Metal in the discard. It now has one Energy and needs three more to do it again.</p>
-					<p>The turn after a big Hammer looks like: Metal Maker on two or three Metang (about 2.7), your attachment for the turn (one), and Philippe if you have it (two more). Metagross is loaded again before the opponent has finished answering the first swing. This is the loop the deck lives in, and it is why Philippe is at two and Energy Recycler is in the list.</p>
-					<p>If you cannot reload, <em>Bounce Back</em> for 60 costs one Energy and buys the turn.</p>
+				<h3 id="5-metagross-as-the-last-resort">5. Metagross as the last resort<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+					<p>Two Metagross sit in the list for when the game calls for them, and Matt treats them as a last resort rather than a plan. Making one costs a Metang off the engine, so it comes out late. With a Brave Bangle it hits 330 into an ex and gives up one Prize, and <a href="#3-rebuilding-after-metallic-hammer">rebuilding after Metallic Hammer</a> covers the reload.</p>
 			</section>
 			<section>
 				<h3 id="6-reading-the-opening-hand">6. Reading the opening hand<span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /></span></h3>
@@ -1875,10 +1834,39 @@
 					<p><strong>Mulligan math:</strong> 11 Basics, so you keep about 78% of openings. That is inside band but it is the softest number in the list, and it is the first thing <a href="#test-and-tune">Test and Tune</a> watches.</p>
 			</section>
 			<section>
+				<h3 id="the-metagross-first-line">The Metagross-First Line<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+					<p>The same sixty, played the other way round, with Metagross as the workhorse and the Mega as the closer. Matt does not play it this way. It is the stronger answer to the Prize trade, and it is how this page first argued the list should run.</p>
+					<p>The 330 that Metagross and the Mega share is the number the whole format is built around. It one-shots Dragapult ex at 320 and every two-Prize ex beneath it. The stock Mega Excadrill list gets to 330 too, off a 340 HP Mega that hands back three Prizes when it dies. This deck gets there off a 180 HP Stage 2 that hands back one.</p>
+					<p>So in this line the Mega is not the workhorse. It is the closer — 340 HP of furniture that comes out when there are two Prizes left and a body that survives what the format throws. Metagross does the grinding, and it does it off the same four Beldum the engine already needed. <strong>The plan B costs zero extra Basics</strong>, which is the entire reason this list fits in 60 cards.</p>
+					<p><strong>Two knockouts on Excadrill is the whole game.</strong> That single line is why the stock list loses more than it wins, and the fix is not a card, it is a habit: <strong>the Mega stays on the Bench until it is taking Prizes five and six.</strong> Lead with Metagross, trade one Prize for their two, and make them find six knockouts while you find three.</p>
+					<p>Played that way the deck asks the opponent for a six-KO game and gives itself a three-KO game. Played Matt&#x27;s way, with Excadrill out early, it asks for the opposite and leans on 340 HP to survive the trade.</p>
+			<article>
+				<h3 id="1-metagross-swings-first-always">1. Metagross swings first, always<span data-flavor><img src="./assets/sprites/metagross.gif" alt="" /></span></h3>
+				<section>
+					<p>Third Metang goes down, one of the first two becomes Metagross, Brave Bangle goes on it, and it starts hitting for 330. Every Prize you can take with Metagross is a Prize you took for one instead of three.</p>
+					<p>The temptation is to skip this and go straight to the Mega. Do not. Reread the Prize trade above if the temptation wins.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="2-count-to-five-before-the-mega-comes-out">2. Count to five before the Mega comes out<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /></span></h3>
+				<section>
+					<p>Mega Excadrill ex on the Bench with four Energy is doing nothing but standing there worth three Prizes. Evolve Drilbur into it <strong>on the turn it can already reach five</strong>, or on the turn something is going to die anyway.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="3-rebuilding-after-metallic-hammer">3. Rebuilding after Metallic Hammer<span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+				<section>
+					<p>Metagross swings for 300 and throws three Metal in the discard. It now has one Energy and needs three more to do it again.</p>
+					<p>The turn after a big Hammer looks like: Metal Maker on two or three Metang (about 2.7), your attachment for the turn (one), and Philippe if you have it (two more). Metagross is loaded again before the opponent has finished answering the first swing. This is the loop the deck lives in, and it is why Philippe is at two and Energy Recycler is in the list.</p>
+					<p>If you cannot reload, <em>Bounce Back</em> for 60 costs one Energy and buys the turn.</p>
+				</section>
+			</article>
+			</section>
+			<section>
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
 					<p>Against the house decks this list is a wall with a hammer behind it, and the matchups split on exactly one axis: who is Fire.</p>
 					<p><strong>Versus <a href="./psychic-lanterns.html">the lantern decks</a>.</strong> Mega Chandelure ex prices your retreat and converts it into damage, and <strong>Excadrill&#x27;s Retreat 4 is the single worst stat line it can point at</strong> — one Binding Flame makes that a 5, and <em>Phantom Maze</em> reads 130 plus 50 per Colorless, which is 380 on an Active Excadrill. It one-shots your Mega through 340 HP. Keep Metagross active (Retreat 3, still bad) or Metang (Retreat 2), never Excadrill, and win the game on the Bench. This is the matchup where Metagross being the main attacker is not a preference, it is survival.</p>
-					<p><strong>Versus <a href="./dark-classic.html">the Gengar decks</a>.</strong> Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.</p>
+					<p><strong>Versus <a href="./dark-gang.html">the Gengar decks</a>.</strong> Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.</p>
 					<p><strong>Versus <a href="./fire.html">the Fire decks</a>.</strong> This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and <strong>there is no weakness-removal card anywhere in the Standard pool</strong> — not a Tool, not a Stadium, not an Ability. Full Metal Lab&#x27;s 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck&#x27;s tax.</p>
 			</section>
 			<section>
@@ -1902,9 +1890,9 @@
 					<table>
 						<thead><tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr></thead>
 						<tbody>
-							<tr><td>Metagross online later than turn 3</td><td>search, not line count — Beldum and Metang are already maxed</td><td>cut a Full Metal Lab for a 3rd Dawn</td></tr>
+							<tr><td>Two Metang not up by turn 2</td><td>search, not line count; Beldum and Metang are already maxed</td><td>cut a Full Metal Lab for a 3rd Dawn</td></tr>
 							<tr><td>Metal Maker whiffing two turns running</td><td>12 basic Metal is the floor</td><td>go to 13 or 14; cut the Night Stretcher and a Switch</td></tr>
-							<tr><td>Excadrill dragged Active and killed early</td><td>discipline, not deckbuilding</td><td>it stays benched until Prizes five and six (<a href="#the-prize-map">the Prize Map</a>)</td></tr>
+							<tr><td>Excadrill knocked out before it reaches five</td><td>the Prize trade Matt&#x27;s line accepts</td><td><a href="#the-metagross-first-line">the Metagross-first line</a> keeps it benched until Prizes five and six</td></tr>
 							<tr><td>Mulliganing more than one game in four</td><td>11 Basics is the soft number</td><td>a 4th Genesect ex is the only Basic left worth adding</td></tr>
 							<tr><td>Dead hands full of Energy</td><td>12 is already lean</td><td>do not cut further; play Lillie&#x27;s earlier</td></tr>
 						</tbody>
@@ -2021,40 +2009,6 @@
 					<p>One copy in the old list, and dropped for two reasons. It is Darkness, and this is a mono-Metal deck. And its <em>Flip the Script</em> rewards you for getting knocked out, which is a payoff for the losing plan; the whole point of the rebuild is to stop trading three Prizes at a time. It stays in <a href="./dark-curse.html">the Curse Toll deck</a>, which actually wants it.</p>
 				</section>
 			</article>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/drilbur.gif" alt="" /></span></h3></summary>
-					<p>Own counts are live from the collection database. The Lillie&#x27;s, Ultra Ball, Poffin, Switch, Night Stretcher, and Dawn rows are shared with the other sleeved decks, so check <a href="./collection.html">the box</a> before ordering — the Trainer shell is very nearly bought already, and the Pokémon are all new.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Mega Excadrill ex <small>ME05: Pitch Black 065/084</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>Double Rare; NOT the 103 secret print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/pitch-black.png" /><img src="./assets/sets/pitch-black.png" alt="ME05: Pitch Black" /></picture></span><span>Drilbur <small>ME05: Pitch Black 046/084</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>the Call for Family print, not the other four</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Beldum <small>ME04: Chaos Rising 059/086</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>70 HP, Poffin range</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Metang <small>SV05: Temporal Forces 114/162</small></span></td><td>0</td><td>4</td><td><strong>4</strong></td><td>the Metal Maker print; the other Metang have no Ability</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Metagross <small>ME04: Chaos Rising 061/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>Metallic Hammer; the single-Prize hammer</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/black-bolt.png" /><img src="./assets/sets/black-bolt.png" alt="SV: Black Bolt" /></picture></span><span>Genesect ex <small>SV: Black Bolt 067/086</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>NOT the 161 or 169 secret prints</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>Philippe <small>ME04: Chaos Rising 079/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the reload card</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Dawn <small>ME02: Phantasmal Flames 087/094</small></span></td><td>4</td><td>2</td><td>✓</td><td>shared; NOT the 118 or 129 secret prints</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>2</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>1</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>2</td><td>1</td><td>✓</td><td>NOT the Perfect Order 108 secret print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>Precious Trolley <small>SV08: Surging Sparks 185/191</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>ACE SPEC; frees the house Prime Catcher</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Brave Bangle <small>SV: White Flare 080/086</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>NOT the Pitch Black 104 secret print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Full Metal Lab <small>SV05: Temporal Forces 148/162</small></span></td><td>0</td><td>2</td><td><strong>2</strong></td><td>the fire-weakness patch, such as it is</td></tr>
-							<tr><td><span>Basic Metal Energy <small>MEE: Mega Evolution Energies 8</small></span></td><td>18</td><td>12</td><td>✓</td><td>never rotates</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>27</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="important">
-				<p><strong>Regulation clock.</strong> Everything here is Standard legal as of August 2026. The mark H cards — Metang, Poffin, Night Stretcher, Precious Trolley, Full Metal Lab — rotate around April 2027, and <strong>Metang is the one that hurts</strong>, because Metal Maker is the deck. The Pitch Black and Chaos Rising core is mark J with years left. When H goes, this list needs a new Energy engine, not a new attacker.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

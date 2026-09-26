@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1261,7 +1214,6 @@
 			<li><a href="#versus-the-field">Versus the Field</a></li>
 			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
 			<li><a href="#upgrades">Upgrades</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt><a href="#the-numbers">The Numbers</a></dt>
@@ -2139,21 +2091,6 @@ Energy Recycler      --&gt; the discard goes back into the deck, where Surge loo
 					<p><strong>Poke Pad, when the mail lands.</strong> Search your deck for a Pokémon with no Rule Box, free: 17 of the 21 Pokémon here, including the Chi-Yu and Seviper that Poffin cannot reach. It was the plan for the second Ultra Ball&#x27;s slot until the hand count found all four copies still in transit. It comes in for the third Seviper.</p>
 					<p><strong>The third Haunter and the third Lillie&#x27;s.</strong> Each trades against the second Risky Ruins, depending on what the games show. The Live list ran both at three; this list cut each one for a Basic.</p>
 					<p><strong>The second Gengar ex, from the mail.</strong> Gnawing Curse has no &quot;doesn&#x27;t stack&quot; clause, so the pair doubles the toll. It is the right call if the local room turns out to be Festival Lead and hand-attachment decks; it costs a Chi-Yu.</p>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pokeball.gif" alt="" /></span></h3></summary>
-					<p>This is the deck&#x27;s claim on cards the pipeline does not yet cover. All three rows are physically in hand as of 2026-08-26, from the card store run that morning, and each Buy column reads one until <code>wanted-cards.tsv</code> and <code>add_cards.py</code> catch up with the binder. Correct the pipeline, not this block.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxel <small>ME02: Phantasmal Flames 067/094</small></span></td><td>4</td><td>3</td><td>✓</td><td>third copy bought at the LGS 2026-08-26; not in the pipeline yet</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Toxtricity <small>ME02: Phantasmal Flames 068/094</small></span></td><td>2</td><td>3</td><td><strong>1</strong></td><td>third copy bought at the LGS 2026-08-26; not in the pipeline yet</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>Energy Recycler <small>SV10: Destined Rivals 164/182</small></span></td><td>2</td><td>1</td><td>✓</td><td>owned copy; not in the pipeline yet</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>1</strong></td><td></td></tr>
-						</tbody>
-					</table>
-				</details>
 			</section>
 		</main>
 		<footer>

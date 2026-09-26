@@ -256,11 +256,11 @@ def value(key, r):
 
 
 all_rows = list(csv.DictReader(open(SRC, encoding="utf-8")))
-# quantity 0 is a card a deck plan wants but we do not own. Same rule as
-# build_html.py: it belongs on the deck pages, not on a list of what is caught.
+# a card marked not owned is on the pull list. Same rule as build_html.py: it
+# belongs on the deck pages, not on a list of what is caught.
 rows = [r for r in all_rows
         if not r["card_type"].startswith(NOT_POKEMON)
-        and int(r.get("quantity") or 0) > 0]
+        and r.get("owned") != "0"]
 rows.sort(key=lambda r: (r["name"].lower(), r["set_name"], r["card_number"]))
 
 if any(not r["hp"] or not r["stage"] for r in rows):
@@ -387,6 +387,4 @@ out += [">", "> Read the one in your hand every time.", ""]
 
 text = "\n".join(out)
 DEST.write_text(text, encoding="utf-8")
-print(f"collection.md: {len(rows)} entries, "
-      f"{sum(r['category'] == 'deck' for r in rows)} in decks, "
-      f"{len(text.splitlines())} lines")
+print(f"collection.md: {len(rows)} entries, {len(text.splitlines())} lines")

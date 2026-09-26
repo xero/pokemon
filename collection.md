@@ -5,11 +5,14 @@
 
 - **A**
   - [Absol](#absol) _MBG: MEGA Starter Set Mega Gengar ex_
+- **B**
+  - [Budew](#budew) _ME: Ascended Heroes_
 - **C**
   - [Chandelure](#chandelure) _SM - Guardians Rising_
   - [Chandelure](#chandelure-1) _SM - Lost Thunder_
-  - [Chandelure](#chandelure-2) _SV: White Flare_
-  - [Chandelure](#chandelure-3) _Trick or Trade BOOster Bundle_
+  - [Chandelure](#chandelure-2) _SV06: Twilight Masquerade_
+  - [Chandelure](#chandelure-3) _SV: White Flare_
+  - [Chandelure](#chandelure-4) _Trick or Trade BOOster Bundle_
   - [Charizard](#charizard) _SWSH04: Vivid Voltage_
   - [Charmander](#charmander) _ME02: Phantasmal Flames_
   - [Charmander](#charmander-1) _Pokémon GO_
@@ -25,7 +28,12 @@
   - [Charmeleon](#charmeleon-5) _SWSH04: Vivid Voltage_
   - [Charmeleon (Delta Species)](#charmeleon-delta-species) _EX Crystal Guardians_
   - [Chi-Yu](#chi-yu) _ME05: Pitch Black_
+  - [Clefairy](#clefairy) _ME03: Perfect Order_
+  - [Comfey](#comfey) _SV07: Stellar Crown_
 - **D**
+  - [Dragapult ex](#dragapult-ex) _SV06: Twilight Masquerade_
+  - [Drakloak](#drakloak) _SV06: Twilight Masquerade_
+  - [Dreepy](#dreepy) _SV06: Twilight Masquerade_
   - [Dusclops](#dusclops) _SV: Shrouded Fable_
   - [Dusknoir](#dusknoir) _SV: Prismatic Evolutions_
   - [Dusknoir](#dusknoir-1) _SV: Shrouded Fable_
@@ -38,10 +46,12 @@
   - [Eevee (Poké Ball Pattern)](#eevee-poké-ball-pattern) _SV: Prismatic Evolutions_
   - [Eevee ex](#eevee-ex) _SV: Prismatic Evolutions_
   - [Eevee V](#eevee-v) _SWSH: Sword & Shield Promo Cards_
+  - [Espeon ex](#espeon-ex) _SV: Prismatic Evolutions_
   - [Eternatus](#eternatus) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Eternatus](#eternatus-1) _ME02: Phantasmal Flames_
 - **F**
   - [Fezandipiti ex](#fezandipiti-ex) _SV: Shrouded Fable_
+  - [Flareon](#flareon) _SV: Prismatic Evolutions_
   - [Flareon ex](#flareon-ex) _SV: Prismatic Evolutions_
   - [Flareon V](#flareon-v) _SWSH: Sword & Shield Promo Cards_
   - [Flareon VMAX](#flareon-vmax) _SWSH07: Evolving Skies_
@@ -72,6 +82,8 @@
   - [Gengar ex](#gengar-ex-1) _SV05: Temporal Forces_
   - [Gengar V](#gengar-v) _SWSH08: Fusion Strike_
   - [Glaceon](#glaceon) _SV: Prismatic Evolutions_
+  - [Glaceon ex](#glaceon-ex) _SV: Prismatic Evolutions_
+  - [Glalie](#glalie) _SV06: Twilight Masquerade_
   - [Gourgeist](#gourgeist) _SV04: Paradox Rift_
   - [Gourgeist](#gourgeist-1) _Trick or Trade BOOster Bundle_
   - [Gourgeist ex](#gourgeist-ex) _ME04: Chaos Rising_
@@ -92,6 +104,8 @@
   - [Haunter](#haunter-13) _Trick or Trade BOOster Bundle 2024_
   - [Honchkrow](#honchkrow) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Hoothoot](#hoothoot) _SV07: Stellar Crown_
+  - [Hop's Snorlax](#hops-snorlax) _SV09: Journey Together_
+  - [Hop's Zacian ex](#hops-zacian-ex) _SV09: Journey Together_
   - [Houndoom](#houndoom) _Trick or Trade BOOster Bundle 2023_
 - **I**
   - [Iron Jugulis](#iron-jugulis) _Trick or Trade BOOster Bundle 2024_
@@ -100,6 +114,9 @@
   - [Koffing](#koffing-1) _SWSH06: Chilling Reign_
 - **L**
   - [Lampent](#lampent) _ME05: Pitch Black_
+  - [Latias ex](#latias-ex) _SV08: Surging Sparks_
+  - [Leafeon ex](#leafeon-ex) _SV: Prismatic Evolutions_
+  - [Lillie's Clefairy ex](#lillies-clefairy-ex) _SV09: Journey Together_
   - [Litwick](#litwick) _ME05: Pitch Black_
   - [Litwick](#litwick-1) _SV06: Twilight Masquerade_
   - [Litwick](#litwick-2) _SV: White Flare_
@@ -108,11 +125,14 @@
   - [Lugia](#lugia) _SWSH03: Darkness Ablaze_
 - **M**
   - [Magcargo](#magcargo) _SWSH04: Vivid Voltage_
+  - [Maractus](#maractus) _SV09: Journey Together_
   - [Marshadow](#marshadow) _ME05: Pitch Black_
   - [Mega Chandelure ex](#mega-chandelure-ex) _ME05: Pitch Black_
   - [Mega Charizard X ex](#mega-charizard-x-ex) _ME02: Phantasmal Flames_
   - [Mega Gengar ex](#mega-gengar-ex) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Mega Gengar ex](#mega-gengar-ex-1) _ME02: Phantasmal Flames_
+  - [Mega Zygarde ex](#mega-zygarde-ex) _ME03: Perfect Order_
+  - [Meowth ex](#meowth-ex) _ME03: Perfect Order_
   - [Mew V](#mew-v) _SWSH08: Fusion Strike_
   - [Munkidori](#munkidori) _SV06: Twilight Masquerade_
   - [Murkrow](#murkrow) _MBG: MEGA Starter Set Mega Gengar ex_
@@ -122,6 +142,8 @@
   - [Okidogi (Cosmos Holo)](#okidogi-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Okidogi ex](#okidogi-ex) _SV: Shrouded Fable_
 - **P**
+  - [Pecharunt](#pecharunt) _ME: Ascended Heroes_
+  - [Pecharunt ex](#pecharunt-ex) _SV: Shrouded Fable_
   - [Pumpkaboo](#pumpkaboo) _ME04: Chaos Rising_
   - [Pumpkaboo](#pumpkaboo-1) _SM - Crimson Invasion_
   - [Pumpkaboo](#pumpkaboo-2) _SV04: Paradox Rift_
@@ -131,10 +153,14 @@
   - [Seviper](#seviper) _ME02: Phantasmal Flames_
   - [Sinistcha (Cosmos Holo)](#sinistcha-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Slugma](#slugma) _SWSH04: Vivid Voltage_
+  - [Smoochum](#smoochum) _SV08: Surging Sparks_
   - [Snorunt](#snorunt) _ME: Ascended Heroes_
   - [Snorunt](#snorunt-1) _SV06: Twilight Masquerade_
   - [Snorunt (Love Ball)](#snorunt-love-ball) _ME: Ascended Heroes_
   - [Spiritomb](#spiritomb) _SWSH06: Chilling Reign_
+  - [Steven's Beldum](#stevens-beldum) _SV10: Destined Rivals_
+  - [Steven's Metagross ex](#stevens-metagross-ex) _SV10: Destined Rivals_
+  - [Steven's Metang](#stevens-metang) _SV10: Destined Rivals_
   - [Sudowoodo](#sudowoodo) _SWSH01: Sword & Shield Base Set_
 - **T**
   - [Tatsugiri](#tatsugiri) _MBG: MEGA Starter Set Mega Gengar ex_
@@ -153,6 +179,8 @@
   - [Toxtricity](#toxtricity) _ME02: Phantasmal Flames_
   - [Toxtricity (Cosmos Holo)](#toxtricity-cosmos-holo) _Prize Pack Series Cards_
   - [Trevenant](#trevenant) _Trick or Trade BOOster Bundle 2023_
+- **U**
+  - [Umbreon ex](#umbreon-ex) _SV: Prismatic Evolutions_
 - **W**
   - [Weezing](#weezing) _Hidden Fates_
   - [Weezing](#weezing-1) _SV09: Journey Together_
@@ -162,6 +190,8 @@
 - **Y**
   - [Yanma](#yanma) _SWSH04: Vivid Voltage_
   - [Yanmega](#yanmega) _SWSH04: Vivid Voltage_
+- **Z**
+  - [Zamazenta](#zamazenta) _ME: 30th Celebration_
 
 </details>
 
@@ -182,6 +212,24 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> only English cards allowed</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="budew">Budew <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/675828_budew-016-217.jpg"><img src="./assets/675828_budew-016-217.jpg" width="350" alt="Budew"></a></th>
+  </tr>
+  <tr><td><b>ME: Ascended Heroes</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png"><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" height="22" align="top"></picture> 016/217</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 30</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: [] Itchy Pollen (10) - During your opponent&#x27;s next turn, they can&#x27;t play any Item cards from their hand.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: -</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -224,6 +272,24 @@
 <table>
   <tr><td colspan="2"><h3 id="chandelure-2">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
+    <th rowspan="12" width="400"><a href="./assets/550082_chandelure.jpg"><img src="./assets/550082_chandelure.jpg" width="350" alt="Chandelure"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 038/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 130</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Alluring Light - Once during your turn, you may have each player draw a card.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Mind Ruler (30x) - This attack does 30 damage for each card in your opponent&#x27;s hand.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="chandelure-3">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
     <th rowspan="13" width="400"><a href="./assets/642466_chandelure.jpg"><img src="./assets/642466_chandelure.jpg" width="350" alt="Chandelure"></a></th>
   </tr>
   <tr><td><b>SV: White Flare</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png"><img src="./assets/sets/white-flare.png" alt="SV: White Flare" height="22" align="top"></picture> 018/086</td></tr>
@@ -241,7 +307,7 @@
 </table>
 
 <table>
-  <tr><td colspan="2"><h3 id="chandelure-3">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
+  <tr><td colspan="2"><h3 id="chandelure-4">Chandelure <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png"><img src="./assets/rarities/promo.png" alt="Promo" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/283790_chandelure.jpg"><img src="./assets/283790_chandelure.jpg" width="350" alt="Chandelure"></a></th>
   </tr>
@@ -537,6 +603,100 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="clefairy">Clefairy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/684414_clefairy-030-088.jpg"><img src="./assets/684414_clefairy-030-088.jpg" width="350" alt="Clefairy"></a></th>
+  </tr>
+  <tr><td><b>ME03: Perfect Order</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png"><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" height="22" align="top"></picture> 030/088</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Follow Me - Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Flop (30)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="comfey">Comfey <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/567289_comfey.jpg"><img src="./assets/567289_comfey.jpg" width="350" alt="Comfey"></a></th>
+  </tr>
+  <tr><td><b>SV07: Stellar Crown</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png"><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" height="22" align="top"></picture> 063/142</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Flower Shower - Each player draws 3 cards.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Play Rough (20+) - Flip a coin. If heads, this attack does 20 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="dragapult-ex">Dragapult ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/550174_dragapult-ex-130-167.jpg"><img src="./assets/550174_dragapult-ex-130-167.jpg" width="350" alt="Dragapult ex"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 130/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dragon.png" alt="Dragon" height="18" align="top"> Dragon</td></tr>
+  <tr><td><b>HP</b>: 320</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Tera - As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s).</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Jet Headbutt (70)</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Phantom Dive (200) - Put 6 damage counters on your opponent&#x27;s Benched Pokémon in any way you like.</td></tr>
+  <tr><td><b>Weakness</b>: -</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="drakloak">Drakloak <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/550173_drakloak.jpg"><img src="./assets/550173_drakloak.jpg" width="350" alt="Drakloak"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 129/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dragon.png" alt="Dragon" height="18" align="top"> Dragon</td></tr>
+  <tr><td><b>HP</b>: 90</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: Recon Directive - Once during your turn, you may look at the top 2 cards of your deck and put 1 of them into your hand. Put the other card on the bottom of your deck.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Dragon Headbutt (70)</td></tr>
+  <tr><td><b>Weakness</b>: -</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="dreepy">Dreepy <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/550172_dreepy.jpg"><img src="./assets/550172_dreepy.jpg" width="350" alt="Dreepy"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 128/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/dragon.png" alt="Dragon" height="18" align="top"> Dragon</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Petty Grudge (10)</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Bite (40)</td></tr>
+  <tr><td><b>Weakness</b>: -</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="dusclops">Dusclops <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/560329_dusclops-019-064.jpg"><img src="./assets/560329_dusclops-019-064.jpg" width="350" alt="Dusclops"></a></th>
@@ -739,6 +899,25 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="espeon-ex">Espeon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/610389_espeon-ex-034-131.jpg"><img src="./assets/610389_espeon-ex-034-131.jpg" width="350" alt="Espeon ex"></a></th>
+  </tr>
+  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 034/131</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 270</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Psych Out (160) - Discard a random card from your opponent&#x27;s hand.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Amazez - Devolve each of your opponent&#x27;s evolved Pokémon by shuffling the highest Stage Evolution card on it into your opponent&#x27;s deck.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="eternatus">Eternatus <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/660125_eternatus.jpg"><img src="./assets/660125_eternatus.jpg" width="350" alt="Eternatus"></a></th>
@@ -792,6 +971,25 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="flareon">Flareon <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/610368_flareon.jpg"><img src="./assets/610368_flareon.jpg" width="350" alt="Flareon"></a></th>
+  </tr>
+  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 013/131</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 130</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Destructive Flame (30) - Flip a coin. If heads, discard an Energy from your opponent&#x27;s Active Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Fighting Blaze (90+) - If your opponent&#x27;s Active Pokémon is a Pokémon ex or Pokémon V, this attack does 90 more damage.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
 </table>
 
 <table>
@@ -1325,6 +1523,44 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="glaceon-ex">Glaceon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/610381_glaceon-ex-026-131.jpg"><img src="./assets/610381_glaceon-ex-026-131.jpg" width="350" alt="Glaceon ex"></a></th>
+  </tr>
+  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 026/131</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 270</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Frost Bullet (110) - This attack also does 30 damage to 1 of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Euclase - Knock Out 1 of your opponent&#x27;s Pokémon that has exactly 6 damage counters on it.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="glalie">Glalie <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/550096_glalie.jpg"><img src="./assets/550096_glalie.jpg" width="350" alt="Glalie"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 052/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water</td></tr>
+  <tr><td><b>HP</b>: 120</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"> Damage Beat (20x) - This attack does 20 damage for each damage counter on your opponent&#x27;s Active Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/water.png" alt="Water" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Crazy Headbutt (140) - Discard an Energy from this Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="gourgeist">Gourgeist <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/523744_gourgeist.jpg"><img src="./assets/523744_gourgeist.jpg" width="350" alt="Gourgeist"></a></th>
@@ -1671,6 +1907,43 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="hops-snorlax">Hop&#x27;s Snorlax <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/623544_hops-snorlax.jpg"><img src="./assets/623544_hops-snorlax.jpg" width="350" alt="Hop&#x27;s Snorlax"></a></th>
+  </tr>
+  <tr><td><b>SV09: Journey Together</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> 117/159</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
+  <tr><td><b>HP</b>: 150</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Extra Helpings - Attacks used by your Hop&#x27;s Pokémon do 30 more damage to your opponent&#x27;s Active Pokémon (before applying Weakness and Resistance). The effect of Extra Helpings doesn&#x27;t stack.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Dynamic Press (140) - This Pokémon also does 80 damage to itself.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 4</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="hops-zacian-ex">Hop&#x27;s Zacian ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/623538_hops-zacian-ex-111-159.jpg"><img src="./assets/623538_hops-zacian-ex-111-159.jpg" width="350" alt="Hop&#x27;s Zacian ex"></a></th>
+  </tr>
+  <tr><td><b>SV09: Journey Together</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> 111/159</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal</td></tr>
+  <tr><td><b>HP</b>: 230</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Insta-Strike (30) - This attack also does 30 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/metal.png" alt="Metal" height="16" align="top"> Brave Slash (240) - During your next turn, this Pokémon can’t use Brave Slash.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="houndoom">Houndoom <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/515650_houndoom.jpg"><img src="./assets/515650_houndoom.jpg" width="350" alt="Houndoom"></a></th>
@@ -1758,6 +2031,61 @@
   <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Spreading Light - Search your deck for up to 3 Lampent and put them onto your Bench. Then, shuffle your deck.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
   <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="latias-ex">Latias ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/589983_latias-ex-076-191.jpg"><img src="./assets/589983_latias-ex-076-191.jpg" width="350" alt="Latias ex"></a></th>
+  </tr>
+  <tr><td><b>SV08: Surging Sparks</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png"><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" height="22" align="top"></picture> 076/191</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 210</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Skyliner - Your Basic Pokémon in play have no Retreat Cost.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Eon Blade (200) - During your next turn, this Pokémon can&#x27;t attack.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="leafeon-ex">Leafeon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/610361_leafeon-ex-006-131.jpg"><img src="./assets/610361_leafeon-ex-006-131.jpg" width="350" alt="Leafeon ex"></a></th>
+  </tr>
+  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 006/131</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 270</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Verdant Storm (60x) - This attack does 60 damage for each Energy attached to all of your opponent&#x27;s Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/water.png" alt="Water" height="16" align="top"> Moss Agate (230) - Heal 100 damage from each of your Benched Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="lillies-clefairy-ex">Lillie&#x27;s Clefairy ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/623483_lillies-clefairy-ex-056-159.jpg"><img src="./assets/623483_lillies-clefairy-ex-056-159.jpg" width="350" alt="Lillie&#x27;s Clefairy ex"></a></th>
+  </tr>
+  <tr><td><b>SV09: Journey Together</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> 056/159</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 190</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Fairy Zone - The Weakness of each of your opponent&#x27;s Dragon Pokémon in play is now Psychic. (Apply Weakness as ×2.)</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Full Moon Rondo (20+) - This attack does 20 more damage for each Benched Pokémon (both yours and your opponent’s).</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
@@ -1892,6 +2220,24 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="maractus">Maractus <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/623435_maractus-008-159.jpg"><img src="./assets/623435_maractus-008-159.jpg" width="350" alt="Maractus"></a></th>
+  </tr>
+  <tr><td><b>SV09: Journey Together</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/journey-together.png"><img src="./assets/sets/journey-together.png" alt="SV09: Journey Together" height="22" align="top"></picture> 008/159</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 110</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Exploding Needles - If this Pokémon is in the Active Spot and is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, put 6 damage counters on the Attacking Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Corner (20) - During your opponent’s next turn, the Defending Pokémon can’t retreat.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="marshadow">Marshadow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/704797_marshadow.jpg"><img src="./assets/704797_marshadow.jpg" width="350" alt="Marshadow"></a></th>
@@ -1978,6 +2324,43 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="mega-zygarde-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" height="20" align="top"> Mega Zygarde ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/684336_mega-zygarde-ex-047-088.jpg"><img src="./assets/684336_mega-zygarde-ex-047-088.jpg" width="350" alt="Mega Zygarde ex"></a></th>
+  </tr>
+  <tr><td><b>ME03: Perfect Order</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png"><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" height="22" align="top"></picture> 047/088</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting</td></tr>
+  <tr><td><b>HP</b>: 310</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"> Gaia Wave (200) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"> Nullifying Zero - For each of your opponent&#x27;s Pokémon, flip a coin. If heads, this attack does 150 damage to that Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="meowth-ex">Meowth ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/684340_meowth-ex-062-088.jpg"><img src="./assets/684340_meowth-ex-062-088.jpg" width="350" alt="Meowth ex"></a></th>
+  </tr>
+  <tr><td><b>ME03: Perfect Order</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png"><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" height="22" align="top"></picture> 062/088</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
+  <tr><td><b>HP</b>: 170</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Last-Ditch Catch - Once during your turn, when you play this Pokémon from your hand onto your Bench, you may use this Ability. Search your deck for a Supporter card, reveal it, and put it into your hand. Then, shuffle your deck. You can&#x27;t use more than 1 Ability that has &quot;Last-Ditch&quot; in its name each turn.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Tuck Tail (60) - Put this Pokémon and all attached cards into your hand.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
@@ -2088,6 +2471,42 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="pecharunt">Pecharunt <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/675955_pecharunt.jpg"><img src="./assets/675955_pecharunt.jpg" width="350" alt="Pecharunt"></a></th>
+  </tr>
+  <tr><td><b>ME: Ascended Heroes</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png"><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" height="22" align="top"></picture> 143/217</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Final Chain - If this Pokémon is Knocked Out by damage from an attack from your opponent&#x27;s Pokémon, search your deck for a card and put it into your hand. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Mochi Rush (20) - During your next turn, this Pokémon&#x27;s Mochi Rush attack does 50 more damage (before applying Weakness and Resistance).</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="pecharunt-ex">Pecharunt ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/560349_pecharunt-ex-039-064.jpg"><img src="./assets/560349_pecharunt-ex-039-064.jpg" width="350" alt="Pecharunt ex"></a></th>
+  </tr>
+  <tr><td><b>SV: Shrouded Fable</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png"><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" height="22" align="top"></picture> 039/064</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 190</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Subjugating Chains - Once during your turn, you may switch 1 of your Benched Darkness Pokémon, except any Pecharunt ex, with your Active Pokémon. If you do, the new Active Pokémon is now Poisoned. You can&#x27;t use more than 1 Subjugating Chains Ability each turn.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Irritated Outburst (60x) - This attack does 60 damage for each Prize card your opponent has taken.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
@@ -2239,6 +2658,24 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="smoochum">Smoochum <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/590059_smoochum.jpg"><img src="./assets/590059_smoochum.jpg" width="350" alt="Smoochum"></a></th>
+  </tr>
+  <tr><td><b>SV08: Surging Sparks</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png"><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" height="22" align="top"></picture> 075/191</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 30</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: Delightful Kiss - Search your deck for up to 2 Basic Psychic Energy cards and attach them to 1 of your Benched Pokémon. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: -</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="snorunt">Snorunt <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/675858_snorunt-046-217.jpg"><img src="./assets/675858_snorunt-046-217.jpg" width="350" alt="Snorunt"></a></th>
@@ -2309,6 +2746,60 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="stevens-beldum">Steven&#x27;s Beldum <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632950_stevens-beldum.jpg"><img src="./assets/632950_stevens-beldum.jpg" width="350" alt="Steven&#x27;s Beldum"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 143/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Ram (10)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="stevens-metagross-ex">Steven&#x27;s Metagross ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/630824_stevens-metagross-ex.jpg"><img src="./assets/630824_stevens-metagross-ex.jpg" width="350" alt="Steven&#x27;s Metagross ex"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 145/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal</td></tr>
+  <tr><td><b>HP</b>: 340</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: X-Boot - Once during your turn, you may search your deck for a Basic Psychic Energy card, a Basic Metal Energy card, or 1 of each and attach them to your Psychic Pokémon and Metal Pokémon in any way you like. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Metal Stomp (200)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="stevens-metang">Steven&#x27;s Metang <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/632951_stevens-metang.jpg"><img src="./assets/632951_stevens-metang.jpg" width="350" alt="Steven&#x27;s Metang"></a></th>
+  </tr>
+  <tr><td><b>SV10: Destined Rivals</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png"><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" height="22" align="top"></picture> 144/182</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal</td></tr>
+  <tr><td><b>HP</b>: 100</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Metal Slash (70) - During your next turn, this Pokémon can&#x27;t attack.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -2621,6 +3112,25 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="umbreon-ex">Umbreon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/610415_umbreon-ex-060-131.jpg"><img src="./assets/610415_umbreon-ex-060-131.jpg" width="350" alt="Umbreon ex"></a></th>
+  </tr>
+  <tr><td><b>SV: Prismatic Evolutions</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png"><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" height="22" align="top"></picture> 060/131</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness</td></tr>
+  <tr><td><b>HP</b>: 280</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Moon Mirage (160) - Your opponent&#x27;s Active Pokémon is now Confused.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/lightning.png" alt="Lightning" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Onyx - Discard all Energy from this Pokémon, and take a Prize card.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="weezing">Weezing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="12" width="400"><a href="./assets/197673_weezing.jpg"><img src="./assets/197673_weezing.jpg" width="350" alt="Weezing"></a></th>
@@ -2748,6 +3258,25 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: 0</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="zamazenta">Zamazenta <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/716500_zamazenta.jpg"><img src="./assets/716500_zamazenta.jpg" width="350" alt="Zamazenta"></a></th>
+  </tr>
+  <tr><td><b>ME: 30th Celebration</b> 107/128</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal</td></tr>
+  <tr><td><b>HP</b>: 130</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/metal.png" alt="Metal" height="16" align="top"> Fend Off (20) - Before doing damage, discard all Pokémon Tools from your opponent&#x27;s Active Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/metal.png" alt="Metal" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Shield Press (100) - During your opponent&#x27;s next turn, this Pokémon takes 50 less damage from attacks (after applying Weakness and Resistance).</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <h2 id="checking-the-letter">* Checking the letter</h2>

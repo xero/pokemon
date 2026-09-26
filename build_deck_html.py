@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """Convert a deck guide from markdown to HTML: dark-gang.md -> dark-gang.html.
 
-    python3 build_deck_html.py dark-gang.md fire.md
+    python3 build_deck_html.py                  # every page decks.toml publishes
+    python3 build_deck_html.py dark-gang.md     # just this one
+
+What gets built, and the sprites on it, come from decks.toml through decklib.
+A deck marked draft there is not built, and a full build deletes any page it
+left behind, since the site publishes every .html in the repo.
 
 Unlike collection.html, these are not generated from cards.csv. The prose in
 them is hand written and is the whole point of the files, so this converts what
@@ -25,9 +30,10 @@ import re, sys
 from collections import Counter
 from pathlib import Path
 
+from decklib import load as load_registry, published
 from pokelib import (CREDITS_NOTE, anchor, card_art, cost_icons,
                      count_badge, esc, find_card, flair, icon, img,
-                     legal_cell, page, row, set_folder, set_slug, stat_cell,
+                     legal_cell, page, row, set_slug, stat_cell,
                      type_icon)
 
 ROOT = Path(__file__).parent
@@ -40,488 +46,19 @@ NAV_LABEL = {
     "Trainers — Tool & Stadium": "Trainers (Tool / Stadium)",
 }
 
-# The mascot shown beside each deck's title.
-MASCOT = {"rules.md": ["gengar-hop", "cursed"],
-          "dark-classic.md": ["gengar-smile", "weezing"],
-          "fire.md": ["charmander", "charizard"],
-          "fire-tournament.md": ["flareon", "noctowl"],
-          "dark-curse.md": ["gengar-smile", "gengar-mega"],
-          "dark-mega.md": ["seviper", "gengar-mega"],
-          "psychic-lanterns.md": ["chandelure", "gourgeist"],
-          "phantom-toll.md": ["chandelure", "gengar-mega"],
-          "phantom-tax.md": ["chandelure", "gengar"],
-          "phantom-ferry.md": ["gengar-mega", "chandelure"],
-          "flaming-lanterns.md": ["litwick", "chandelure"],
-          "eevee-standard.md": ["eevee", "umbreon", "espeon", "glaceon"],
-          "rocket-mewtwo.md": ["crobat", "mewtwo"],
-          "metal-excadrill.md": ["drilbur", "excadrill"],
-          # no Gen 8 sprites exist, so the Ghost/Dragon Giratina stands in for Dragapult
-          "dragons.md": ["giratina-origin", "clefairy"],
-          # the dog is a hand-drawn gif rather than a library sprite; it and
-          # the Mega are the two engines
-          "dark-gang.md": ["gengar", "okidogi"],
-          # the legal-Gengar build for the week dark-gang cannot be sleeved;
-          # the dogs are the name and the win condition, so they lead here
-          "dark-dogs.md": ["gengar-smile", "okidogi"],
-          # no Zacian or Zamazenta sprite exists (the library stops before Gen
-          # 8), so the deck's other two engines carry the page
-          "steel-wolves.md": ["metagross", "snorlax"],
-          # the two game-night hybrids: each is named for the half of the
-          # Dark Box it keeps alongside the Team Rocket engine
-          "dark-rocket.md": ["gengar-mega", "crobat"],
-          "dark-smog.md": ["koffing", "weezing"]}
+# Which pages exist, their title sprites, and their heading sprites all live in
+# decks.toml, next to everything else about the page. decklib reads it.
+LIBRARY, DECKS = load_registry()
+ENTRIES = [e for e in LIBRARY + DECKS if e.get("source")]
+MASCOT = {e["source"]: e["mascot"] for e in ENTRIES}
+FLAVOR = {e["source"]: e["flavor"] for e in ENTRIES}
 
-# Sprites tucked into the corner of a heading, purely for flavour. Keyed by the
-# exact heading text, so a reworded heading loses its sprite loudly rather than
-# silently attaching it to the wrong section.
-FLAVOR = {
-    # the rules lawyers: the fake tree and the wall that just sits there.
-    "rules.md": {
-        "The board": ["sudowoodo"],
-        "Rules that trip people up": ["wobbuffet"],
-        "The big-card words": ["gengar-mega"],
-        "How a Game Runs": ["hoothoot"],
-        "Special Conditions": ["drowzee"],
-        "Standard Legal, and Why Some Decks Aren't": ["charizard"],
-        "Tournament Night": ["noctowl"],
-        "How To Play ex Style": ["gengar-mega-shiny"],
-        "7. Errors to expect on the way over": ["eevee-back"],
-    },
-    "fire.md": {
-        # the Pokemon card pages
-        "Charmander": ["charmander"],
-        "Charmeleon": ["charmeleon"],
-        "Charizard": ["charizard"],
-        "Eevee": ["eevee"],
-        "Flareon": ["flareon"],
-        "Sudowoodo": ["sudowoodo"],
-        # the game plans
-        "1. The Leon Engine": ["charizard"],
-        "2. Two Speeds": ["eevee", "charmander"],
-        "3. The Rock That Hits Back": ["sudowoodo"],
-        "4. Winning the Stadium War": ["charizard-mega-y"],
-        "5. Reading Your First Hand": ["flareon"],
-        "Weezing — his early attacker (130 HP)": ["weezing"],
-        "Gengar — his closer (130 HP)": ["gengar"],
-        "His annoying cards": ["haunter"],
-        "7. Mistakes That Will Cost You The Game": ["eevee-back"],
-        "8. The Turn Checklist": ["charmeleon"],
-    },
-    # no sprite exists for Toxel, Toxtricity, Chi-Yu, or Hilda (Gen 9 is
-    # absent from the library), so the cards that have one get it and the
-    # rest go without. the two ghosts get a gengar variant each: smile for
-    # the ex, mega for the Mega. the snake and the mega share the mode page;
-    # weezing waves the swap out, and the field section gets the two decks
-    # the stats tables lean on hardest.
-    "dark-mega.md": {
-        "The Thesis": ["seviper"],
-        "The Numbers": ["pokedex"],
-        "The Mode Swap": ["weezing", "gengar-mega"],
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Mega Gengar ex": ["gengar-mega"],
-        "Gengar ex": ["gengar-smile"],
-        "Seviper": ["seviper"],
-        "1. The Cage": ["gengar-booty"],
-        "2. The Charmer's Loop": ["seviper"],
-        "4. Reading the Room": ["gengar-smile", "gengar-mega"],
-        "6. Things That Will Cost You a Game": ["eevee-back"],
-        "Versus the Field": ["excadrill", "dusknoir"],
-        "Versus the Kitchen Table": ["mewtwo"],
-        "What To Buy": ["pokeball"],
-    },
-    # Okidogi has two hand-drawn gifs: the idle one on its card, the panting
-    # one on the plan for getting it back after a gust. Toxel and Toxtricity
-    # are Gen 8 and absent from the library, so the ghosts carry the rest of
-    # the card sections. Each matchup subsection gets its opponent's sprite
-    # where the library has one; the Origin Giratina stands in for Dragapult
-    # on the field table, the way it does on dragons.md.
-    "dark-gang.md": {
-        "The Thesis": ["gengar-mega"],
-        # the Candy rule is the evolve-into-which-Gengar decision
-        "Which Stage 2 gets the Candy": ["gengar-evo"],
-        "Okidogi ex": ["okidogi"],
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Mega Gengar ex": ["gengar-mega"],
-        "Gengar ex": ["gengar-smile"],
-        # a shiny Gastly for the card that skips the whole line
-        "Grimsley's Move": ["gastly-shiny"],
-        # Budew's Item lock is the case for AZ's; the plain Gengar sprite
-        # moved to the Cape, since that is the body it goes on
-        "AZ's Tranquility": ["budew"],
-        "Hero's Cape": ["gengar"],
-        "The Prize Tax": ["gengar-booty"],
-        "The Energy Engine": ["pokedex"],
-        "5. When the dog gets gusted": ["okidogi-pant"],
-        "6. Choosing the stadium": ["gengar-hop"],
-        "7. Bench discipline": ["spin-haunter"],
-        "8. When the Cape goes on": ["gengar-shiny"],
-        "Versus the Card Shop": ["giratina-origin", "dusknoir"],
-        "Versus Mega Lucario ex": ["lucario-mega"],
-        "Versus Mega Zygarde ex": ["zygarde"],
-        "Versus Cynthia's Garchomp ex": ["gible", "garchomp"],
-        "Versus Mega Excadrill ex": ["excadrill", "metang"],
-        "Versus Alakazam": ["alakazam"],
-        "Versus N's Zoroark ex": ["zoroark"],
-        "Versus Marnie's Grimmsnarl ex": ["froslass"],
-        "Versus Dhelmise": ["spiritomb"],
-        "Versus Beedrill ex": ["beedrill"],
-        "Versus Mega Starmie ex": ["starmie"],
-        "Versus Mega Floette ex": ["floette"],
-        "Versus Crustle": ["dwebble", "crustle"],
-        "Versus Mega Sharpedo ex": ["carvanha", "sharpedo-mega"],
-        "Versus Cinccino ex": ["minccino", "cinccino"],
-        "Versus Charizard and Battle Cage": ["charizard-mega-x"],
-        "Alternatives": ["crobat", "zubat"],
-        "What To Buy": ["pokeball"],
-    },
-    # same sprite problem as dark-gang: Toxel, Toxtricity, Hilda and Dawn are
-    # Gen 9 or absent, so the dogs and the ghosts carry the card sections.
-    # Giratina stands in for Dragapult on the two stadium sections, because
-    # Battle Cage is in the list for exactly one deck.
-    # the dog is a hand-drawn gif; the Perfect Order Gengar is the attacker
-    # now, so the plain gengar sprite carries its card and the game plan.
-    # no sprite exists for Toxel, Toxtricity, Hilda, Dawn or Grimsley (Gen 9
-    # and the Supporters are absent from the library). Giratina stands in for
-    # Dragapult on Battle Cage, which is in the list largely for that room.
-    "dark-dogs.md": {
-        "The Thesis": ["gengar"],
-        "Okidogi ex": ["okidogi"],
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Gengar": ["gengar-smile"],
-        "AZ's Tranquility": ["budew"],
-        "Scramble Switch": ["gengar-hop"],
-        "Risky Ruins": ["gengar-evo"],
-        "Battle Cage": ["giratina-origin"],
-        "The Search Blind Spot": ["pokedex"],
-        "The Energy Engine": ["gengar-booty"],
-        "2. Leading with the ghost": ["spin-haunter"],
-        "3. When to bring out a dog": ["okidogi-pant"],
-        "4. Choosing the stadium": ["gengar-shiny"],
-        "Versus the Card Shop": ["giratina-origin", "excadrill"],
-        "Test and Tune": ["eevee-back"],
-        "Alternatives": ["crobat", "zubat"],
-        "What To Buy": ["pokeball"],
-    },
-    # the two wolves have no sprite in the library, so the Metagross line and
-    # the two support Pokemon carry the page. Excadrill and Genesect stand in
-    # for the field table, which is mostly other Metal decks.
-    "steel-wolves.md": {
-        "The Thesis": ["metagross"],
-        "Steven's Beldum": ["beldum"],
-        "Steven's Metang": ["metang"],
-        "Steven's Metagross ex": ["metagross"],
-        "Hop's Snorlax": ["snorlax"],
-        "Latias ex": ["latias"],
-        "The Energy Engine": ["pokedex"],
-        "2. The Off Turn": ["metang"],
-        "Versus the Ladder": ["excadrill", "genesect"],
-        "Alternatives": ["scizor"],
-    },
-    # Persian is Giovanni's cat, so the boss gets it; Fox's decks in the
-    # table section get their own mascots
-    "dark-rocket.md": {
-        "The Thesis": ["gengar-mega"],
-        "Team Rocket's Crobat ex": ["crobat"],
-        "Team Rocket's Golbat": ["golbat"],
-        "Team Rocket's Zubat": ["zubat"],
-        "Seviper": ["seviper"],
-        "Team Rocket's Giovanni": ["persian"],
-        "The Prize Map": ["gengar-booty"],
-        "5. Sableye is the turn-two attacker": ["sableye"],
-        "Fox's Ground Zero, Mega Zygarde ex": ["zygarde"],
-        "Fox's Team Rocket's Mewtwo deck": ["mewtwo"],
-        "Fox's Flareon ex and Charizard decks": ["flareon", "charizard"],
-        "Test And Tune": ["eevee-back"],
-    },
-    # no Galarian Weezing sprite exists (the library stops before Gen 8), so
-    # the shiny plain Weezing stands in for the other Weezing prints
-    "dark-smog.md": {
-        "The Thesis": ["weezing"],
-        "Team Rocket's Weezing": ["weezing"],
-        "Team Rocket's Koffing": ["koffing"],
-        "1. Bench first, attack second": ["koffing-shiny"],
-        "4. The Neutralizing Gas turn": ["weezing-shiny"],
-        "Fox's Ground Zero, Mega Zygarde ex": ["zygarde"],
-        "Fox's Team Rocket's Mewtwo deck": ["mewtwo"],
-        "The Hole In It": ["wobbuffet-back"],
-        "Test And Tune": ["eevee-back"],
-    },
-    "dark-curse.md": {
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Gengar ex": ["gengar"],
-        "Mega Gengar ex": ["gengar-mega"],
-        "Sableye": ["sableye"],
-        "The Prize Ladder": ["gengar-booty"],
-        "1. Two Ghosts, One Line": ["gengar", "gengar-mega"],
-        "6. Things That Will Cost You a Game": ["eevee-back"],
-        "✗ Gengar Spirit Link — Skip It": ["wobbuffet-back", "gengar-mega-shiny"],
-        "Versus the Kitchen Table": ["mewtwo"],
-        "How To Play ex Style": ["charizard"],
-        "What To Buy": ["koffing"],
-    },
-    # the whole tech bench got sprites in one sitting: Shaymin, Maractus, and
-    # Clefairy came up from assets/ani, Comfey and Marshadow arrived new.
-    "flaming-lanterns.md": {
-        "Litwick": ["litwick"],
-        "Lampent": ["lampent"],
-        "Chandelure": ["chandelure"],
-        "Mega Chandelure ex": ["chandelure"],
-        "Shaymin": ["shaymin"],
-        "Maractus": ["maractus"],
-        "Marshadow": ["marshadow"],
-        "Clefairy": ["clefairy"],
-        "Comfey": ["comfey"],
-        "The Hand Ledger": ["hypno"],
-        "1. The Two Registers": ["chandelure"],
-        "3. The Spreading Light Flood": ["lampent"],
-        "4. The Fire Drop": ["litwick"],
-        "6. Things That Will Cost You a Game": ["eevee-back"],
-        "Versus the Kitchen Table": ["mewtwo"],
-        "Versus the Card Shop": ["noctowl"],
-        "✗ Four Cards That Look Right — Skip Them": ["wobbuffet-back"],
-        "What To Buy": ["pokeball"],
-    },
-    # the base forms stand in for both Megas as usual.
-    "phantom-toll.md": {
-        "Litwick": ["litwick"],
-        "Lampent": ["lampent"],
-        "Mega Chandelure ex": ["chandelure"],
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Mega Gengar ex": ["gengar-mega"],
-        "Duskull": ["duskull"],
-        "Dusknoir": ["dusknoir"],
-        "Marshadow": ["marshadow"],
-        "The Toll Math": ["gengar-booty"],
-        "1. Pick the Wall": ["chandelure", "gengar-mega"],
-        "3. The Dark Button": ["gastly"],
-        "4. The Closer": ["dusknoir"],
-        "6. Things That Will Cost You a Game": ["eevee-back"],
-        "Versus the Kitchen Table": ["mewtwo"],
-        "Versus the Card Shop": ["noctowl"],
-        "Where Gourgeist Went": ["gourgeist", "pumpkaboo"],
-        "✗ Four Cards That Look Right — Skip Them": ["wobbuffet-back"],
-        "What To Buy": ["pokeball"],
-    },
-    # the Toll rebuild. no Munkidori or Fezandipiti sprite exists (Gen 9).
-    "phantom-tax.md": {
-        "Litwick": ["litwick"],
-        "Lampent": ["lampent"],
-        "Mega Chandelure ex": ["chandelure"],
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Mega Gengar ex": ["gengar-mega"],
-        "Gengar": ["gengar"],
-        "The Toll Math": ["gengar-booty"],
-        "1. Pick the Wall": ["chandelure", "gengar-mega"],
-        "3. The Dark Button": ["gastly"],
-        "4. The Closer": ["gengar-smile"],
-        "5. The Rebuild": ["lampent"],
-        "7. Things That Will Cost You a Game": ["eevee-back"],
-        "Versus the Kitchen Table": ["mewtwo"],
-        "Versus the Card Shop": ["froslass"],
-        "Where Gourgeist Went": ["gourgeist", "pumpkaboo"],
-        "✗ Cards That Look Right, Skip Them": ["wobbuffet-back"],
-        "What To Buy": ["pokeball"],
-    },
-    # v6 of the two-ghost deck: Gengar carries, Chandelure collects.
-    "phantom-ferry.md": {
-        "Litwick": ["litwick"],
-        "Lampent": ["lampent"],
-        "Mega Chandelure ex": ["chandelure"],
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Mega Gengar ex": ["gengar-mega"],
-        "Okidogi ex": ["okidogi"],
-        "1. Pick the Wall": ["chandelure", "gengar-mega"],
-        "4. How To Play Okidogi": ["okidogi-pant"],
-        "6. The Rebuild": ["lampent"],
-        "8. Things That Will Cost You a Game": ["eevee-back"],
-        "Versus the Kitchen Table": ["mewtwo"],
-        "Versus the Card Shop": ["excadrill"],
-        "✗ Cards That Look Right, Skip Them": ["wobbuffet-back"],
-        "What To Buy": ["pokeball"],
-    },
-    "psychic-lanterns.md": {
-        # the ghost and ice lines came from assets/ani; no Mega Chandelure
-        # sprite exists, so the base form stands in for it.
-        "The Thesis": ["litwick"],
-        "Mega Chandelure ex": ["chandelure"],
-        "Litwick": ["litwick"],
-        "Lampent": ["lampent"],
-        "Pumpkaboo": ["pumpkaboo"],
-        "Gourgeist ex": ["gourgeist"],
-        "Snorunt": ["snorunt"],
-        "Froslass": ["froslass"],
-        "Duskull": ["duskull"],
-        "Dusknoir": ["dusknoir"],
-        "The Energy Engine": ["snorunt"],
-        "1. The Trap": ["chandelure"],
-        "2. Feeding the Rondo": ["gourgeist"],
-        "3. The Thirteen-Counter Button": ["dusknoir"],
-        "4. The Spreading Light Endgame": ["lampent"],
-        "5. Bench Discipline": ["pumpkaboo"],
-        "6. What This Deck Gives Up": ["duskull"],
-        "Versus the Kitchen Table": ["charizard"],
-        "Versus the Card Shop": ["froslass"],
-        # dusclops sits in the alternatives table, already owned
-        "Alternatives": ["dusclops"],
-        # the swap module forks the same line, so it gets the two stages the
-        # forks grow from; no back sprites exist for the lantern line.
-        "Night Parade": ["litwick", "lampent"],
-        "Chandelure (Lost Thunder)": ["chandelure"],
-        "Chandelure (Guardians Rising)": ["chandelure"],
-        "What To Buy": ["pumpkaboo"],
-    },
-    # umbreon, espeon, and glaceon were promoted from assets/ani for this page.
-    # the two module sections get their pair of Eeveelutions, which is the
-    # fastest way to see at a glance which ten cards each one means.
-    "eevee-standard.md": {
-        "Eevee (Prismatic Evolutions · H)": ["eevee"],
-        "Eevee (Twilight Masquerade · H)": ["eevee"],
-        "Eevee ex": ["eevee-ex"],
-        "Flareon ex": ["flareon-ex"],
-        "Umbreon ex": ["umbreon"],
-        "Espeon ex": ["espeon"],
-        "Glaceon": ["glaceon"],
-        "The Thesis": ["eevee"],
-        "Sun and Moon": ["espeon", "umbreon"],
-        "Fire and Ice": ["flareon", "glaceon"],
-        "Pick Your Ten": ["eevee-ex"],
-        "1. The Bench Is Safe, So Wait": ["hoothoot"],
-        "2. Flareon ex Pays for Everything": ["flareon-ex"],
-        # a back sprite for the honest downside, as in the other files
-        "3. Three Knockouts and It Is Over": ["eevee-back"],
-        "4. Choosing the Crystal's Home": ["noctowl"],
-        "What To Buy": ["flareon"],
-    },
-    "fire-tournament.md": {
-        # the Pokemon card pages
-        "Eevee": ["eevee"],
-        "Eevee ex": ["eevee-ex"],
-        "Flareon ex": ["flareon-ex"],
-        "Hoothoot": ["hoothoot"],
-        "Noctowl": ["noctowl"],
-        # the game plans
-        "1. The Two-Energy Engine": ["flareon"],
-        "2. Turn One, Flareon": ["eevee"],
-        "3. Jewel Seeker Is Your Real Draw Engine": ["noctowl"],
-        "4. The Bench Is a Fortress": ["hoothoot"],
-        "5. The Prize Race Changed": ["gengar-mega"],
-        "6. Reading Your First Hand": ["eevee-back"],
-        "7. Beating Dad's Gengar Gang": ["gengar"],
-        "Weezing — his early attacker (130 HP)": ["weezing"],
-        "Gengar — his closer (130 HP)": ["gengar-booty"],
-        "His answer to *Tera* is Boss's Orders": ["koffing"],
-        "His annoying cards": ["haunter"],
-        "8. Mistakes That Will Cost You The Game": ["flareon-back"],
-        "9. The Turn Checklist": ["charizard"],
-        # the argument up front and the honest downsides at the back, absorbed
-        # from the retired fire-standard planning notes; a back sprite means
-        # walking away, as in the other files.
-        "The Thesis": ["flareon"],
-        "Honest Weaknesses": ["eevee-back"],
-    },
-    # mewtwo, zubat, golbat, crobat and articuno were promoted from assets/ani
-    # for this page. Spidops and Tarountula are gen 9, so the engine's own two
-    # cards are the ones that go bare.
-    "rocket-mewtwo.md": {
-        "Team Rocket's Mewtwo ex": ["mewtwo"],
-        "Team Rocket's Crobat ex": ["crobat"],
-        "Team Rocket's Golbat": ["golbat"],
-        "Team Rocket's Zubat": ["zubat"],
-        "Team Rocket's Koffing": ["koffing"],
-        "Team Rocket's Wobbuffet": ["wobbuffet"],
-        "Team Rocket's Articuno": ["articuno"],
-        "The Thesis": ["mewtwo"],
-        "The Engine": ["zubat", "golbat"],
-        "Damage Math": ["mewtwo"],
-        "The Prize Map": ["crobat"],
-        "2. Two attachments, then Mewtwo swings": ["mewtwo"],
-        "4. Evolve Crobat by hand when you can afford the turn": ["golbat"],
-        "5. Crobat is the answer to a bad Active": ["crobat"],
-        "6. Articuno goes down early against effects": ["articuno"],
-        "7. The sacrifice lead": ["koffing"],
-        # the matchups get the deck they are about, not this deck's cards.
-        # zygarde was promoted from assets/ani for the Fighting row.
-        "The Fighting deck, Mega Zygarde ex": ["zygarde"],
-        "The Charizard deck": ["charizard"],
-        "The Eeveelution deck, Flareon ex": ["flareon-ex"],
-        "The Gengar decks": ["gengar", "gengar-mega"],
-        "The lantern deck, Mega Chandelure ex": ["chandelure"],
-        "The mirror, at the card shop": ["mewtwo"],
-        "What To Buy": ["zubat"],
-    },
-    # drilbur, excadrill, beldum, metang, genesect, metagross, scizor and
-    # aggron were promoted from assets/ani for this page. No Mega Excadrill
-    # sprite exists, so the base form stands in for it.
-    # the sprite library stops at Gen 6: nothing for the Dreepy line, Munkidori,
-    # Fezandipiti, or Mimikyu. Giratina (Ghost/Dragon) stands in for Dragapult,
-    # Diancie for the Crystal, Xatu for the room-reading plan.
-    "dragons.md": {
-        "The Thesis": ["giratina"],
-        "The Numbers": ["pokedex"],
-        "Lillie's Clefairy ex": ["clefairy"],
-        "Meowth ex": ["meowth"],
-        "Budew": ["budew"],
-        "Sparkling Crystal": ["diancie"],
-        "1. The Two-Turn Kill": ["giratina-origin"],
-        "2. The Crystal": ["diancie"],
-        "3. The Fairy Zone": ["clefairy", "clefable"],
-        "4. Reading the Room": ["xatu"],
-        "6. Things That Will Cost You a Game": ["eevee-back"],
-        "Versus the Field": ["excadrill", "alakazam"],
-        "Versus the Kitchen Table": ["mewtwo", "gengar-mega"],
-        # the card that was left out on purpose
-        "Alternatives": ["dusknoir"],
-        "What To Buy": ["meowth"],
-    },
-    "metal-excadrill.md": {
-        "Mega Excadrill ex": ["excadrill"],
-        "Drilbur": ["drilbur"],
-        "Metang": ["metang"],
-        "Metagross": ["metagross"],
-        "Beldum": ["beldum"],
-        "Genesect ex": ["genesect"],
-        # the thesis is Metagross now, not the Mega
-        "The Thesis": ["metagross"],
-        "The Energy Engine": ["metang"],
-        "Damage Math": ["excadrill"],
-        "The Prize Map": ["metagross"],
-        "1. Turn one is Drilbur, and it is not optional": ["drilbur"],
-        "2. Two Metang before anything else": ["beldum", "metang"],
-        "3. Metagross swings first, always": ["metagross"],
-        "4. Count to five before the Mega comes out": ["excadrill"],
-        "5. Rebuilding after Metallic Hammer": ["metang"],
-        "6. Reading the opening hand": ["beldum"],
-        # the matchup plans get the deck they are about, as on the other pages
-        "Versus the Kitchen Table": ["gengar", "chandelure"],
-        "Versus the Card Shop": ["excadrill"],
-        "Alternatives": ["scizor", "aggron"],
-        "What To Buy": ["drilbur"],
-    },
-    "dark-classic.md": {
-        "Gastly": ["gastly"],
-        "Haunter": ["haunter"],
-        "Gengar": ["gengar"],
-        "Koffing": ["koffing"],
-        "Weezing": ["weezing"],
-        # no sprite exists for Toxel or Toxtricity; Sableye's came from ani
-        "Sableye": ["sableye"],
-        "1. The Two-Turn Fuse": ["weezing"],
-        "2. Growing a Ghost in the Dark": ["gastly"],
-        "3. The Bench Tax": ["gengar"],
-        "4. Wearing the Helmet": ["koffing"],
-        "5. Trading Ghosts": ["haunter"],
-        "7. Things That Will Cost You a Game": ["gengar-booty"],
-        "8. Teaching Notes": ["gengar-mega"],
-        "Versus Fox's Decks": ["eevee", "seviper"],
-    },
-}
+# every page the site publishes, by stem, generated or built from markdown
+PUBLISHED = {Path(e["page"]).stem for e in published(LIBRARY + DECKS)}
+
+# markdown that is never a page: the repo's own docs, and the GitHub copy of
+# the collection that build_markdown.py writes
+NOT_PAGES = {"README.md", "CLAUDE.md", "collection.md"}
 
 
 def flavor(name, table, used):
@@ -537,14 +74,16 @@ GLYPH_ROWS = {"Type", "Weakness", "Resistance"}
 
 
 def local_href(url):
-    """Point a sibling .md link at its built page when there is one.
+    """Point a sibling .md link at its built page when that page is published.
 
     The markdown has to link .md so the files navigate on GitHub. From the
-    built page that lands on the raw source instead, so a link is rewritten
-    only when the .html actually exists.
+    built page that lands on the raw source instead, so a link to a published
+    page is rewritten to its .html. Asking the registry rather than the disk
+    keeps the first build after adding a deck identical to the second, and
+    keeps a draft's leftover .html from being linked.
     """
     m = re.fullmatch(r"(\./)([\w-]+)\.md(#[^\s]*)?", url)
-    if m and (ROOT / f"{m.group(2)}.html").exists():
+    if m and m.group(2) in PUBLISHED:
         return f"./{m.group(2)}.html{m.group(3) or ''}"
     return url
 
@@ -928,11 +467,6 @@ def in_deck(counts, name, number):
     return counts.get((n, num)) or counts.get((n, "")) or 0
 
 
-def owned(n):
-    n = int(n or 0)
-    return "none yet" if n == 0 else ("1 copy" if n == 1 else f"{n} copies")
-
-
 def card_block(heading, ind, prints=None):
     """Art and stats for the card a Key Card Text heading names.
 
@@ -975,48 +509,6 @@ def card_block(heading, ind, prints=None):
     return blocks, found
 
 
-def buy_table(body, ind):
-    """A ```buy block into a shopping table costed from cards.csv.
-
-    The Own column used to be typed by hand and went stale the moment anything
-    was ordered. Here it is looked up, and Buy is arithmetic, so the table
-    cannot disagree with the collection.
-    """
-    out = [f"{ind}<table>",
-           f"{ind}\t<thead><tr><th>Card</th><th>Own</th><th>Need</th>"
-           f"<th>Buy</th><th>Note</th></tr></thead>", f"{ind}\t<tbody>"]
-    total = 0
-    for line in body.splitlines():
-        if not line.strip() or line.lstrip().startswith("#"):
-            continue
-        f = [x.strip() for x in (line.split("|") + [""] * 4)[:4]]
-        query, where, need, note = f
-        m = re.search(r"(\d{2,3})\s*$", where)
-        r = find_card(query, re.sub(r"\d+\s*$", "", where), m.group(1) if m else "")
-        own = int(r["quantity"]) if r else 0
-        try:
-            want = int(need)
-        except ValueError:
-            want = 0
-        buy = max(0, want - own)
-        total += buy
-        label = esc(query)
-        if r:
-            label = row(icon(set_folder(r.get("product_line")),
-                             set_slug(r["set_name"]), r["set_name"]),
-                        f'{esc(r["name"])} <small>{esc(r["set_name"])} '
-                        f'{esc(r["card_number"])}</small>')
-        elif where:
-            label += f" <small>{esc(where)}</small>"
-        cells = [label, str(own), esc(need),
-                 f"<strong>{buy}</strong>" if buy else "✓",
-                 inline(note) if note else ""]
-        out.append(f"{ind}\t\t<tr>" + "".join(f"<td>{c}</td>" for c in cells) + "</tr>")
-    out.append(f"{ind}\t\t<tr><td><strong>Total to buy</strong></td><td></td><td></td>"
-               f"<td><strong>{total}</strong></td><td></td></tr>")
-    return out + [f"{ind}\t</tbody>", f"{ind}</table>"]
-
-
 def convert(src):
     lines = src.read_text(encoding="utf-8").splitlines()
     title, subtitle = "", ""
@@ -1050,8 +542,6 @@ def convert(src):
         nonlocal sect
         close_art()
         if sect is not None:
-            if sect and sect[0].lstrip() == "<details>":
-                sect.append("\t\t\t\t</details>")
             body.append("\n".join(["\t\t\t<section>"] + sect + ["\t\t\t</section>"]))
             sect = None
 
@@ -1208,13 +698,7 @@ def convert(src):
                     f'{flavor(name, flav, seen_flav)}</h3>')
             # a game plan gets its own box, the way a card does. left loose in
             # <main> its list markers hang outside the text column.
-            if name == "What To Buy":
-                # the shopping list collapses behind its own heading; the box
-                # and the corner sprite stay, the contents wait to be asked.
-                sect = ["\t\t\t\t<details>",
-                        f"\t\t\t\t\t<summary>{head}</summary>"]
-            else:
-                sect = [f"\t\t\t\t{head}"]
+            sect = [f"\t\t\t\t{head}"]
             i += 1
             continue
 
@@ -1235,12 +719,8 @@ def convert(src):
                 code.append(lines[i])
                 i += 1
             i += 1
-            if lang == "buy":
-                for h in buy_table("\n".join(code), "\t\t\t\t\t"):
-                    emit(h)
-            else:
-                emit("<pre><code>" + "\n".join(esc(c) for c in code)
-                     + "</code></pre>")
+            emit("<pre><code>" + "\n".join(esc(c) for c in code)
+                 + "</code></pre>")
             continue
 
         if stripped.startswith("|"):
@@ -1320,7 +800,7 @@ def build_nav(toc):
     listing those buries the plans they belong to.
 
     A ## heading that is not a numbered plan is a section of its own, not a
-    child of the last group: The Thesis, the Versus pages, What To Buy. It
+    child of the last group: The Thesis, the Versus pages, Alternatives. It
     gets its own linked row, and if it carries indexed subsections of its own,
     like Fox's word list, they follow it after the dash.
 
@@ -1409,13 +889,7 @@ def bullets_or_para(text, ind):
     return [f"{ind}<p>{inline(' '.join(lines))}</p>"]
 
 
-DECKS = ["rules.md", "dark-classic.md", "dark-mega.md", "dark-curse.md", "fire.md", "fire-tournament.md",
-         "rocket-mewtwo.md",
-         "psychic-lanterns.md", "phantom-toll.md", "phantom-tax.md", "phantom-ferry.md", "flaming-lanterns.md", "eevee-standard.md", "metal-excadrill.md",
-         "dragons.md", "dark-gang.md", "dark-dogs.md", "steel-wolves.md",
-         "dark-rocket.md", "dark-smog.md"]
-
-for name in sys.argv[1:] or DECKS:
+def build(name):
     src = ROOT / name
     dest = src.with_suffix(".html")
     title, subtitle, nav, body, notes = convert(src)
@@ -1423,3 +897,33 @@ for name in sys.argv[1:] or DECKS:
                MASCOT.get(src.name, []))
     print(f"{dest.name}: {body.count('<article>')} cards, "
           f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")
+
+
+def main():
+    """Build the pages named on the command line, or every published one.
+
+    A full build also clears out the page of any deck marked draft, because
+    the site publishes every .html in the repo and a leftover would put the
+    deck online before it is ready. And it names any deck-shaped markdown the
+    registry does not list, since that is usually a deck someone forgot to add.
+    """
+    if sys.argv[1:]:
+        for name in sys.argv[1:]:
+            build(name)
+        return
+    for e in ENTRIES:
+        if e["draft"] and (ROOT / e["page"]).exists():
+            (ROOT / e["page"]).unlink()
+            print(f"  removed {e['page']}: {e['source']} is a draft")
+    for e in published(ENTRIES):
+        build(e["source"])
+    known = {e["source"] for e in ENTRIES} | NOT_PAGES
+    for md in sorted(ROOT.glob("*.md")):
+        if md.name not in known and re.search(r"^\|\s*\**Qty", md.read_text(
+                encoding="utf-8"), re.M):
+            print(f"  {md.name}: has a deck list but is not in decks.toml, so not built")
+
+
+# guarded so the pull list can import the markdown readers without building
+if __name__ == "__main__":
+    main()

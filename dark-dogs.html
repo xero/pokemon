@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1262,7 +1215,6 @@
 			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
 			<li><a href="#alternatives">Alternatives</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -2066,27 +2018,6 @@
 							<tr><td>Fezandipiti ex, Pecharunt ex, Chi-Yu</td><td>never</td><td>all rejected in <a href="./dark-gang.html">dark-gang.md</a>, and nothing since has changed the verdicts</td></tr>
 						</tbody>
 					</table>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/pokeball.gif" alt="" /></span></h3></summary>
-					<p><strong>Nothing.</strong> Every card in this list is already in the box.</p>
-			<aside data-callout="important">
-				<p><strong>This page carries no buy block on purpose.</strong> It is the same sleeves as <a href="./dark-gang.html">dark-gang.md</a> with a different centrepiece, so the two can never be played on the same night, and <a href="./wishlist.html">the pull list</a> sums Need across decks. A buy block here would ask for a second Okidogi line and a second set of Rare Candy that nobody needs. <strong>Take the maximum of the two lists, never the sum.</strong></p>
-			</aside>
-					<p>If you are ordering anyway, in priority order:</p>
-					<table>
-						<thead><tr><th>Card</th><th>Get to</th><th>Why</th></tr></thead>
-						<tbody>
-							<tr><td>Poke Pad</td><td><strong>4</strong></td><td>the field runs 3.7 and it tutors the entire line now that nothing in it has a Rule Box</td></tr>
-							<tr><td>Night Stretcher</td><td><strong>2</strong></td><td>the field runs 2.3, and it is the only recovery for a Gengar that <em>Chaotic Pain</em> removed</td></tr>
-							<tr><td>Mega Darkrai ex</td><td><strong>2</strong></td><td>the next build to test; <em>Dusk Raid</em> turns <em>Sinister Surge</em>&#x27;s damage counters from a cost into a trigger</td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="note">
-				<p><strong>Regulation clock.</strong> Everything here is Standard legal as of September 2026. The H cards — Okidogi ex, Janine&#x27;s Secret Art, Binding Mochi, Buddy-Buddy Poffin, Scramble Switch — rotate around April 2027, and that is the whole dog package plus the ACE SPEC. <strong>The Gengar half is Reg J and outlives the dogs by a full season</strong>, which is worth knowing before you spend anything on the closer.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>

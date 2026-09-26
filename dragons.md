@@ -23,7 +23,7 @@
 > **Tool & Stadium** — [Sparkling Crystal](#sparkling-crystal) · [Air Balloon](#air-balloon) · [Area Zero Underdepths](#area-zero-underdepths) · [Risky Ruins](#risky-ruins)
 > **Energy** — [Fire](#basic-fire-energy) · [Psychic](#basic-psychic-energy) · [Darkness](#basic-darkness-energy)
 >
-> [**Game Plans**](#game-plans) · [Versus the Field](#versus-the-field) · [Versus the Kitchen Table](#versus-the-kitchen-table) · [Alternatives](#alternatives) · [Test and Tune](#test-and-tune) · [What To Buy](#what-to-buy)
+> [**Game Plans**](#game-plans) · [Versus the Field](#versus-the-field) · [Versus the Kitchen Table](#versus-the-kitchen-table) · [Alternatives](#alternatives) · [Test and Tune](#test-and-tune)
 
 ---
 
@@ -667,42 +667,3 @@ The list is a hypothesis. These are the things to watch, and the ratio each one 
 | Area Zero costing three Pokémon a game | Their Stadium count is higher than you thought | Cut the second copy for a Crushing Hammer, and never pass five without a reason |
 | Mulliganing more than one game in five | 12 Basics is the number; 19% is the rate | A second Budew is the only Basic left worth adding |
 | Dead hands full of Energy | Eight is already lean | Do not cut; play Lillie's earlier and let Recon sink the surplus |
-
----
-
-## What To Buy
-
-Own counts are live from the collection database. Every Trainer here except Briar, Tera Orb, and Area Zero is shared with the sleeved decks, so check [the box](./collection.md) before ordering; the shell, the Sparkling Crystal, and the Mimikyu are already bought, and the nine cards that are not come to about eighteen dollars together, with nothing over three.
-
-```buy
-Dreepy | Twilight Masquerade 128 | 4 | 70 HP, Poffin range; the Ascended Heroes 158 reprint is the same card
-Drakloak | Twilight Masquerade 129 | 4 | Recon Directive; the engine
-Dragapult ex | Twilight Masquerade 130 | 3 | NOT the 200 secret print
-Munkidori | Twilight Masquerade 095 | 2 | shared with the lantern deck
-Lillie's Clefairy ex | Journey Together 056 | 2 | Fairy Zone; NOT the 173 or 184 prints
-Fezandipiti ex | Shrouded Fable 038 | 1 | shared
-Meowth ex | Perfect Order 062 | 1 | NOT the 107 or 121 prints
-Budew | Ascended Heroes 016 | 1 | the Prismatic Evolutions 004 print is the same card
-Team Rocket's Mimikyu | Destined Rivals 087 | 1 | owned; the Ascended Heroes 097 print is the same card
-Lillie's Determination | Mega Evolution 119 | 4 | shared
-Boss's Orders | Mega Evolution 114 | 3 | shared
-Crispin | Stellar Crown 133 | 2 | shared
-Dawn | Phantasmal Flames 087 | 1 | shared; NOT the 118 or 129 secret prints
-Briar | Stellar Crown 132 | 1 | the Tera comeback Supporter
-Ultra Ball | Mega Evolution 131 | 4 | shared
-Poke Pad | Perfect Order 081 | 4 | shared
-Buddy-Buddy Poffin | Temporal Forces 144 | 4 | shared
-Tera Orb | Surging Sparks 189 | 2 | finds only Dragapult ex here
-Night Stretcher | Shrouded Fable 061 | 2 | shared
-Energy Switch | Mega Evolution 115 | 1 | shared
-Sparkling Crystal | Stellar Crown 142 | 1 | owned; ACE SPEC, a Tool, so no Jamming Tower in this list
-Air Balloon | Ascended Heroes 181 | 1 | shared
-Area Zero Underdepths | Stellar Crown 131 | 2 | the Prismatic Evolutions 094 print is the same card
-Risky Ruins | Mega Evolution 127 | 1 | shared
-Basic Fire Energy | Mega Evolution Energies 002 | 3 | never rotates
-Basic Psychic Energy | Mega Evolution Energies 005 | 3 | never rotates
-Basic Darkness Energy | Mega Evolution Energies 007 | 2 | never rotates
-```
-
-> [!IMPORTANT]
-> **Regulation clock.** Everything here is Standard legal as of August 2026. The core is mark H: Dreepy, Drakloak, and Dragapult ex in every print, plus Munkidori, Fezandipiti ex, Budew, Crispin, Poffin, Tera Orb, Night Stretcher, Sparkling Crystal, Area Zero Underdepths, and Briar. All of it rotates around April 2027 unless a reprint lands with a newer mark, and the Ascended Heroes reprints of the dragon line did not get one. Seven months of Standard for under twenty dollars is a fair trade; buy it knowing the date.

@@ -2,7 +2,8 @@ name: add a card
 
 # The form on the Actions tab. Fill it in, and this looks the card up on
 # TCGplayer, pulls its text and scan, rebuilds every page, commits, and
-# republishes the site.
+# republishes the site. Tick "need" and the card lands on the pull list; the
+# same form with "need" ticked on a card already in the seed flips it there.
 #
 # Adding a card by hand is still fine, and is the same three commands this
 # runs: add_cards.py, then normalize_cards.py, then build.py.
@@ -17,16 +18,16 @@ on:
         description: "Printed number, e.g. 060/131. Pins which printing when a name has more than one."
         required: false
         type: string
-      quantity:
-        description: "How many you own. 0 for a card a deck plan wants but you have not bought."
-        required: true
-        default: "0"
-        type: string
-      note:
-        description: "Why it is on the list. Include the word japan for a Japanese card."
+      need:
+        description: "We do not own it yet: put it on the pull list."
         required: false
-        default: "added from the web form"
-        type: string
+        default: false
+        type: boolean
+      japanese:
+        description: "A Japanese card: search the Japanese product line."
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -50,11 +51,13 @@ jobs:
         env:
           CARD: ${{ inputs.card }}
           NUMBER: ${{ inputs.number }}
-          QUANTITY: ${{ inputs.quantity }}
-          NOTE: ${{ inputs.note }}
+          NEED: ${{ inputs.need }}
+          JAPANESE: ${{ inputs.japanese }}
         run: |
-          python3 add_cards.py "$CARD" \
-            --number "$NUMBER" --quantity "$QUANTITY" --note "$NOTE"
+          flags=()
+          [ "$NEED" = "true" ] && flags+=(--need)
+          [ "$JAPANESE" = "true" ] && flags+=(--japanese)
+          python3 add_cards.py "$CARD" --number "$NUMBER" "${flags[@]}"
 
       - name: fetch its text and scan
         run: python3 normalize_cards.py
@@ -62,9 +65,8 @@ jobs:
       - name: rebuild the site
         run: python3 build.py
 
-      # Named paths, not "git add -A". assets/ani holds ~880 untracked sprite
-      # gifs, and the order-history scrape is only one .gitignore line away
-      # from the working tree. Neither belongs in a commit made by a robot.
+      # Named paths, not "git add -A": the robot commits only what this run
+      # produces, so nothing stray on the runner can ride along.
       - name: commit
         env:
           CARD: ${{ inputs.card }}

@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1256,15 +1209,15 @@
 				<section>
 					<h2><a href="./collection.html">Pokédex</a></h2>
 					<p>A searchable collection of our combined binders. Every card, stat, and ability, and whether it&#x27;s legal for tournament play.</p>
-					<p><small><em>141 unique cards</em></small></p>
+					<p><small><em>168 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index" data-featured>
 				<aside data-sprite><img src="./assets/sprites/deck.gif" alt="" /></aside>
 				<section>
 					<h2><a href="./wishlist.html">Pull List</a></h2>
-					<p>The pull list: every card a deck asks for that the binders cannot cover, costed against what we already own.</p>
-					<p><small><em>45 unique cards</em></small></p>
+					<p>Every card we still have to buy, the decks that want it, and how many copies to pull. A card lands here when it is marked as not owned.</p>
+					<p><small><em>20 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index" data-featured>
@@ -1277,19 +1230,19 @@
 			</article>
 			<h2>League Decks</h2>
 			<article class="index" data-featured>
-				<aside data-sprite><img src="./assets/sprites/charmander.gif" alt="" /><img src="./assets/sprites/charizard.gif" alt="" /></aside>
-				<section>
-					<h3><a href="./fire.html">Fox's Fire Force</a></h3>
-					<p>Fox&#x27;s deck, card by card: what each one is for, what it wants to sit next to, and how to beat dad.</p>
-					<p><small><em>20 unique cards</em></small></p>
-				</section>
-			</article>
-			<article class="index" data-featured>
 				<aside data-sprite><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/okidogi.gif" alt="" /></aside>
 				<section>
 					<h3><a href="./dark-gang.html">Xero's Gengar Gang</a></h3>
 					<p>Xero&#x27;s league-night 60, built on the 30th Celebration Gengar ex. Chaotic Pain kills the body every Mega grows out of, Grimsley&#x27;s Move drops a Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the door while the ghosts arrive.</p>
 					<p><small><em>23 unique cards</em></small></p>
+				</section>
+			</article>
+			<article class="index" data-featured>
+				<aside data-sprite><img src="./assets/sprites/charmander.gif" alt="" /><img src="./assets/sprites/charizard.gif" alt="" /></aside>
+				<section>
+					<h3><a href="./fire.html">Fox's Fire Force</a></h3>
+					<p>Fox&#x27;s deck, card by card: what each one is for, what it wants to sit next to, and how to beat dad.</p>
+					<p><small><em>20 unique cards</em></small></p>
 				</section>
 			</article>
 			<h2>Other Decks</h2>
@@ -1413,7 +1366,7 @@
 				<aside data-sprite><img src="./assets/sprites/drilbur.gif" alt="" /><img src="./assets/sprites/metagross.gif" alt="" /></aside>
 				<section>
 					<h4><a href="./metal-excadrill.html">Iron Excavation</a></h4>
-					<p>A Metal deck, bought from zero. One Beldum line feeds both the Energy engine and a Metagross that hits for 330 and gives up a single Prize; the Mega only comes out to close.</p>
+					<p>A model of Matt&#x27;s Wednesday league deck. One Beldum line feeds both the Energy engine and a Metagross that hits for 330 and gives up a single Prize; the Mega only comes out to close.</p>
 					<p><small><em>24 unique cards</em></small></p>
 				</section>
 			</article>
@@ -1430,7 +1383,7 @@
 				<section>
 					<h4><a href="./dragons.html">Crystal Dragons</a></h4>
 					<p>A Dragapult deck, rebuilt from the card that beat dad. Four Drakloaks draw every turn, Sparkling Crystal makes Phantom Dive cost one Energy, and Lillie&#x27;s Clefairy ex turns the mirror into a Fairy Zone.</p>
-					<p><small><em>28 unique cards</em></small></p>
+					<p><small><em>30 unique cards</em></small></p>
 				</section>
 			</article>
 		</main>

@@ -540,38 +540,6 @@
 				font-size: var(--text-lg);
 				scroll-margin-top: var(--pad);
 			}
-
-			/* a collapsed section, which is how What To Buy ships: the
-			   summary is the handle, so it carries the pointer and its own
-			   marker, and the h3 inside keeps the same face as every other
-			   section heading. */
-			> details {
-				> summary {
-					display: flex;
-					align-items: center;
-					gap: 0.4em;
-					cursor: pointer;
-
-					&::before {
-						content: "▶";
-						font-size: 0.7em;
-					}
-
-					h3 {
-						flex: 1;
-						display: flex;
-						flex-flow: row wrap;
-						align-items: center;
-						gap: 0.4em;
-						font-size: var(--text-lg);
-						scroll-margin-top: var(--pad);
-					}
-				}
-
-				&[open] > summary::before {
-					content: "▼";
-				}
-			}
 		}
 
 		article {
@@ -1123,21 +1091,6 @@
 			background: none;
 		}
 
-		/* a closed What To Buy is a shopping list, and the shopping list is
-		   the single most likely reason this page meets a printer. force the
-		   contents onto the paper whether or not it was opened on screen. */
-		main details:not([open])::details-content {
-			content-visibility: visible;
-		}
-
-		main details:not([open]) > * {
-			display: block;
-		}
-
-		main details summary::before {
-			content: none;
-		}
-
 		/* a card, a callout, or a table row sliced across a page break is
 		   most of what makes these unreadable on paper.
 
@@ -1261,7 +1214,6 @@
 			<li><a href="#sun-and-moon">Sun and Moon</a></li>
 			<li><a href="#fire-and-ice">Fire and Ice</a></li>
 			<li><a href="#pick-your-ten">Pick Your Ten</a></li>
-			<li><a href="#what-to-buy">What To Buy</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -1288,7 +1240,7 @@
 					<li><strong><a href="#fire-and-ice">Fire and Ice</a></strong> is the game-night build. Flareon and Glaceon, aimed at the real field.</li>
 				</ul>
 				<p>The <a href="#deck-list">Deck List</a> below is Sun and Moon, because home is where he plays most. <a href="#the-swap">The Swap</a> shows the ten cards that turn it into Fire and Ice. If he wants to make the call himself, hand him <a href="#pick-your-ten">Pick Your Ten</a>.</p>
-				<p>Everything here is Regulation <strong>H</strong>, which rotates around April 2027. See <a href="#what-to-buy">What To Buy</a> before spending, and <a href="./rules.html">the table rules</a> for any game word — ex, Tera, ACE SPEC, all of it.</p>
+				<p>Everything here is Regulation <strong>H</strong>, which rotates around April 2027. See <a href="./rules.html">the table rules</a> for any game word — ex, Tera, ACE SPEC, all of it.</p>
 			</aside>
 			<section>
 				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
@@ -1934,51 +1886,6 @@
 						<li><strong>On Espeon ex</strong> it makes <em>Amazez</em> castable at all from this Energy line.</li>
 					</ul>
 					<p>Decide by asking whether the game is a race or a grind. Races want it on Flareon; grinds want it on the gem.</p>
-			</section>
-			<section>
-				<details>
-					<summary><h3 id="what-to-buy">What To Buy<span data-flavor><img src="./assets/sprites/flareon.gif" alt="" /></span></h3></summary>
-					<p>Counts are the maximum across both modes, so one purchase covers Sun and Moon and Fire and Ice together. Flareon ex is listed at 4 because Fire and Ice wants the fourth; Umbreon ex at 3 because Sun and Moon wants the third.</p>
-					<table>
-						<thead><tr><th>Card</th><th>Own</th><th>Need</th><th>Buy</th><th>Note</th></tr></thead>
-						<tbody>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee <small>SV: Prismatic Evolutions 074/131</small></span></td><td>3</td><td>3</td><td>✓</td><td>Boosted Evolution, the turn-one play</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>Eevee <small>SV06: Twilight Masquerade 135/167</small></span></td><td>2</td><td>1</td><td>✓</td><td>Ascension, the toolbox tutor</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Eevee ex <small>SV: Prismatic Evolutions 075/131</small></span></td><td>2</td><td>2</td><td>✓</td><td>Rainbow DNA</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Flareon ex <small>SV: Prismatic Evolutions 014/131</small></span></td><td>4</td><td>4</td><td>✓</td><td>3 for Sun and Moon, 4 for Fire and Ice</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Umbreon ex <small>SV: Prismatic Evolutions 060/131</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>the plain Double Rare, never the 161 Special Illustration</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Espeon ex <small>SV: Prismatic Evolutions 034/131</small></span></td><td>0</td><td>1</td><td><strong>1</strong></td><td>Sun and Moon only</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>Glaceon <small>SV: Prismatic Evolutions 025/131</small></span></td><td>2</td><td>2</td><td>✓</td><td>the non-ex 025, not Glaceon ex 026</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Hoothoot <small>SV07: Stellar Crown 114/142</small></span></td><td>4</td><td>4</td><td>✓</td><td></td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Noctowl <small>SV07: Stellar Crown 115/142</small></span></td><td>3</td><td>2</td><td>✓</td><td>Jewel Seeker, always on</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Lillie&#x27;s Determination <small>ME01: Mega Evolution 119/132</small></span></td><td>11</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Boss&#x27;s Orders [Ghetsis] <small>ME01: Mega Evolution 114/132</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Crispin <small>SV07: Stellar Crown 133/142</small></span></td><td>4</td><td>3</td><td>✓</td><td>the pinch, see below</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>Hilda <small>SV: White Flare 084/086</small></span></td><td>7</td><td>2</td><td>✓</td><td>an Evolution and an Energy, one card</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>Buddy-Buddy Poffin <small>SV05: Temporal Forces 144/162</small></span></td><td>9</td><td>4</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Ultra Ball <small>ME01: Mega Evolution 131/132</small></span></td><td>10</td><td>4</td><td>✓</td><td>carries the whole toolbox</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>Switch <small>ME01: Mega Evolution 130/132</small></span></td><td>7</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>Night Stretcher <small>SV: Shrouded Fable 061/064</small></span></td><td>10</td><td>3</td><td>✓</td><td>shared</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>Battle Cage <small>ME02: Phantasmal Flames 085/094</small></span></td><td>2</td><td>2</td><td>✓</td><td>Sun and Moon only; 085, not the 116 secret print</td></tr>
-							<tr><td><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>Sparkling Crystal <small>SV07: Stellar Crown 142/142</small></span></td><td>1</td><td>1</td><td>✓</td><td>ACE SPEC</td></tr>
-							<tr><td><span>Basic Darkness Energy <small>MEE: Mega Evolution Energies 7</small></span></td><td>38</td><td>6</td><td>✓</td><td>any English printing</td></tr>
-							<tr><td><span>Basic Fire Energy <small>MEE: Mega Evolution Energies 2</small></span></td><td>18</td><td>7</td><td>✓</td><td>any English printing</td></tr>
-							<tr><td><span>Basic Psychic Energy <small>MEE: Mega Evolution Energies 5</small></span></td><td>27</td><td>3</td><td>✓</td><td>any English printing</td></tr>
-							<tr><td><span>Basic Water Energy <small>MEE: Mega Evolution Energies 3</small></span></td><td>0</td><td>3</td><td><strong>3</strong></td><td>any English printing</td></tr>
-							<tr><td><strong>Total to buy</strong></td><td></td><td></td><td><strong>7</strong></td><td></td></tr>
-						</tbody>
-					</table>
-			<aside data-callout="warning">
-				<p><strong>Crispin is the collection pinch.</strong> You own 4, this deck wants 3, and Frostfire wants 2. Unlike the two Psychic decks, this one and yours <strong>will</strong> be sleeved at the same time, so that is a genuine conflict rather than a rounding error. Hilda has the same problem from zero.</p>
-			</aside>
-			<aside data-callout="note">
-				<p><strong>Basic Energy never rotates and every English printing is legal</strong>, so the four Energy lines above come out of a bulk box rather than an order. Fire and Darkness are already deep in the collection.</p>
-			</aside>
-			<aside data-callout="important">
-				<p><strong>Regulation clock.</strong> Every Eevee and every Eeveelution ex exists only at Regulation <strong>H</strong>, from Prismatic Evolutions plus a few promos. There is no I or J printing of any of them, so the whole archetype rotates around <strong>April 2027</strong> unless it gets reprinted.</p>
-				<p>That is fine at the kitchen table forever. For sanctioned play it is roughly eight months, which argues for buying the Flareon and Umbreon core deep and treating Espeon, Glaceon, and Battle Cage as the optional half.</p>
-			</aside>
-				</details>
 			</section>
 		</main>
 		<footer>
