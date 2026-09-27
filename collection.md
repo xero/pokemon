@@ -100,6 +100,7 @@
   - [Haunter](#haunter-11) _Trick or Trade BOOster Bundle_
   - [Haunter](#haunter-12) _Trick or Trade BOOster Bundle 2023_
   - [Haunter](#haunter-13) _Trick or Trade BOOster Bundle 2024_
+  - [Ho-Oh](#ho-oh) _ME04: Chaos Rising_
   - [Honchkrow](#honchkrow) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Hoothoot](#hoothoot) _SV07: Stellar Crown_
   - [Hop's Snorlax](#hops-snorlax) _SV09: Journey Together_
@@ -138,6 +139,7 @@
 - **O**
   - [Okidogi (Cosmos Holo)](#okidogi-cosmos-holo) _Trick or Trade BOOster Bundle 2024_
   - [Okidogi ex](#okidogi-ex) _SV: Shrouded Fable_
+  - [Oricorio ex](#oricorio-ex) _ME02: Phantasmal Flames_
 - **P**
   - [Pecharunt](#pecharunt) _ME: Ascended Heroes_
   - [Pecharunt ex](#pecharunt-ex) _SV: Shrouded Fable_
@@ -1849,6 +1851,25 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="ho-oh">Ho-Oh <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/693500_ho-oh.jpg"><img src="./assets/693500_ho-oh.jpg" width="350" alt="Ho-Oh"></a></th>
+  </tr>
+  <tr><td><b>ME04: Chaos Rising</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png"><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" height="22" align="top"></picture> 010/086</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 130</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Flames of Revival - Put up to 3 Basic Pokémon from your discard pile onto your Bench.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/fire.png" alt="Fire" height="16" align="top"> Bright Wing (130) - Discard a Fire Energy from this Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="honchkrow">Honchkrow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/660122_honchkrow.jpg"><img src="./assets/660122_honchkrow.jpg" width="350" alt="Honchkrow"></a></th>
@@ -2432,6 +2453,24 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="oricorio-ex">Oricorio ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/662206_oricorio-ex-018-094.jpg"><img src="./assets/662206_oricorio-ex-018-094.jpg" width="350" alt="Oricorio ex"></a></th>
+  </tr>
+  <tr><td><b>ME02: Phantasmal Flames</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png"><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" height="22" align="top"></picture> 018/094</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire</td></tr>
+  <tr><td><b>HP</b>: 190</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Excited Turbo - As often as you like during your turn, if you have any Fire Mega Evolution Pokémon ex in play, you may use this Ability. Attach a Basic Fire Energy card from your hand to 1 of your Benched Fire Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/fire.png" alt="Fire" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Fire Wing (110)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/water.png" alt="Water" height="18" align="top"> Water ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 

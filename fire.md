@@ -1,4 +1,4 @@
-# Fox's Fire Force
+# Fire Force
 
 > [!NOTE]
 > **How to read this file.**
@@ -26,7 +26,7 @@
 > Every Pokémon in your deck is worth **1 Prize card**. So is every Pokémon in your dad's deck. That means nobody has a giant unfair monster. Whoever plays better wins. That's on purpose.
 
 > [!NOTE]
-> **This deck is home-only.** Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. [The table rules](./rules.md#standard-legal-and-why-some-decks-arent) explain the letters, and your [Flareon Engine](./fire-tournament.md) is the deck that is allowed there.
+> **This deck is home-only.** Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. [The table rules](./rules.md#standard-legal-and-why-some-decks-arent) explain the letters, and your [Blue Flame](./blue-flame.md) and [Flareon Engine](./fire-tournament.md) decks are the ones allowed there.
 
 ---
 

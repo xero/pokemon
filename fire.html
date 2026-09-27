@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Fox's Fire Force</title>
+		<title>Fire Force</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -627,6 +627,13 @@
 				line-height: inherit;
 				padding-top: 0;
 			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -1199,7 +1206,7 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Fox's Fire Force <img data-mascot src="./assets/sprites/charmander.gif" alt="" /> <img data-mascot src="./assets/sprites/charizard.gif" alt="" /></h1>
+				<h1><img src="./assets/pokeball.png" alt="" />Fire Force <img data-mascot src="./assets/sprites/charmander.gif" alt="" /> <img data-mascot src="./assets/sprites/charizard.gif" alt="" /></h1>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1247,7 +1254,7 @@
 				<p>Every Pokémon in your deck is worth <strong>1 Prize card</strong>. So is every Pokémon in your dad&#x27;s deck. That means nobody has a giant unfair monster. Whoever plays better wins. That&#x27;s on purpose.</p>
 			</aside>
 			<aside data-callout="note">
-				<p><strong>This deck is home-only.</strong> Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. <a href="./rules.html#standard-legal-and-why-some-decks-arent">The table rules</a> explain the letters, and your <a href="./fire-tournament.html">Flareon Engine</a> is the deck that is allowed there.</p>
+				<p><strong>This deck is home-only.</strong> Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. <a href="./rules.html#standard-legal-and-why-some-decks-arent">The table rules</a> explain the letters, and your <a href="./blue-flame.html">Blue Flame</a> and <a href="./fire-tournament.html">Flareon Engine</a> decks are the ones allowed there.</p>
 			</aside>
 			<section>
 				<h3 id="deck-list">Deck List</h3>

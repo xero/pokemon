@@ -8,7 +8,7 @@ import re
 import tomllib
 from pathlib import Path
 
-from pokelib import find_card
+from pokelib import cards, find_card
 
 ROOT = Path(__file__).parent
 REGISTRY = ROOT / "decks.toml"
@@ -122,3 +122,18 @@ def deck_cards(source):
         if r:
             out[card_key(r)] = copies
     return out
+
+
+def not_legal(source):
+    """The names of the cards in one deck's list that Standard does not allow.
+
+    Any at all makes it a kitchen-table deck, and the front page says so. It is
+    read from cards.csv on every build, so the mark follows a rotation or a
+    list change without anyone keeping it. Only the Qty tables count, which
+    keeps a page's swap modules and alternatives out of it. Basic Energy is
+    skipped, since every printing of it is legal whatever its row says.
+    """
+    rows = {card_key(r): r for r in cards()}
+    return sorted({k[0] for k in deck_cards(source)
+                   if rows[k]["standard_legal"] in ("no", "japanese")
+                   and not re.fullmatch(r"Basic \w+ Energy", k[0])})

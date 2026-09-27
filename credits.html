@@ -627,6 +627,13 @@
 				line-height: inherit;
 				padding-top: 0;
 			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown

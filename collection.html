@@ -627,6 +627,13 @@
 				line-height: inherit;
 				padding-top: 0;
 			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -1200,7 +1207,7 @@
 		<header>
 			<div>
 				<h1><img src="./assets/pokeball.png" alt="" />Pokédex <img data-mascot src="./assets/sprites/pokedex.gif" alt="" /> <img data-mascot src="./assets/sprites/pokeball.gif" alt="" /></h1>
-				<p>166 Pok&eacute;mon caught, 85 of them tournament legal.</p>
+				<p>168 Pok&eacute;mon caught, 87 of them tournament legal.</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1306,6 +1313,7 @@
 						<li data-for="haunter-11"><a href="#haunter-11">Haunter</a> <em>Trick or Trade BOOster Bundle</em></li>
 						<li data-for="haunter-12"><a href="#haunter-12">Haunter</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
 						<li data-for="haunter-13"><a href="#haunter-13">Haunter</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li data-for="ho-oh"><a href="#ho-oh">Ho-Oh</a> <em>ME04: Chaos Rising</em></li>
 						<li data-for="honchkrow"><a href="#honchkrow">Honchkrow</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
 						<li data-for="hoothoot"><a href="#hoothoot">Hoothoot</a> <em>SV07: Stellar Crown</em></li>
 						<li data-for="hops-snorlax"><a href="#hops-snorlax">Hop&#x27;s Snorlax</a> <em>SV09: Journey Together</em></li>
@@ -1344,6 +1352,7 @@
 						<li data-letter><b>O</b></li>
 						<li data-for="okidogi-cosmos-holo"><a href="#okidogi-cosmos-holo">Okidogi (Cosmos Holo)</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
 						<li data-for="okidogi-ex"><a href="#okidogi-ex">Okidogi ex</a> <em>SV: Shrouded Fable</em></li>
+						<li data-for="oricorio-ex"><a href="#oricorio-ex">Oricorio ex</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-letter><b>P</b></li>
 						<li data-for="pecharunt"><a href="#pecharunt">Pecharunt</a> <em>ME: Ascended Heroes</em></li>
 						<li data-for="pecharunt-ex"><a href="#pecharunt-ex">Pecharunt ex</a> <em>SV: Shrouded Fable</em></li>
@@ -3326,6 +3335,28 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Ho-Oh" data-set="ME04: Chaos Rising" data-rarity="Rare" data-type="Fire" data-stage="Basic" data-tournament="legal">
+				<h2 id="ho-oh">Ho-Oh <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/693500_ho-oh.jpg" target="_blank" rel="noopener"><img src="./assets/693500_ho-oh.jpg" alt="Ho-Oh" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>010/086</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /></span><span>Flames of Revival - Put up to 3 Basic Pokémon from your discard pile onto your Bench.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /></span><span>Bright Wing (130) - Discard a Fire Energy from this Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Honchkrow" data-set="MBG: MEGA Starter Set Mega Gengar ex" data-rarity="Common" data-type="Darkness" data-stage="Stage 1" data-tournament="Japanese">
 				<h2 id="honchkrow">Honchkrow <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
@@ -4005,6 +4036,27 @@
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Oricorio ex" data-set="ME02: Phantasmal Flames" data-rarity="Double Rare" data-type="Fire" data-stage="Basic" data-tournament="legal">
+				<h2 id="oricorio-ex">Oricorio ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/662206_oricorio-ex-018-094.jpg" target="_blank" rel="noopener"><img src="./assets/662206_oricorio-ex-018-094.jpg" alt="Oricorio ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>018/094</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire</span></dd>
+						<dt>HP</dt><dd><span>190</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Excited Turbo - As often as you like during your turn, if you have any Fire Mega Evolution Pokémon ex in play, you may use this Ability. Attach a Basic Fire Energy card from your hand to 1 of your Benched Fire Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/fire.png" alt="Fire" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Fire Wing (110)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/water.png" alt="Water" /></span><span>Water ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>

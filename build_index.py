@@ -13,8 +13,8 @@ the index cannot claim a number the page it links to disagrees with.
 import re
 from pathlib import Path
 
-from decklib import load, published
-from pokelib import CREDITS_NOTE, esc, page
+from decklib import load, not_legal, published
+from pokelib import CREDITS_NOTE, esc, img, page
 
 ROOT = Path(__file__).parent
 
@@ -23,7 +23,8 @@ SHELVES = [("league", "League Decks"), ("other", "Other Decks"),
 
 
 def layout():
-    """The front page top to bottom: heading strings and (page, sprites, blurb).
+    """The front page top to bottom: heading strings and
+    (page, sprites, blurb, cards Standard doesn't allow).
 
     A string is a heading, and its hashes are its level, same as the markdown.
     Every page after it takes the next level down for its title. Groups keep
@@ -31,7 +32,7 @@ def layout():
     page.
     """
     library, decks = load()
-    out = [(e["page"], e["sprites"], e["blurb"]) for e in published(library)]
+    out = [(e["page"], e["sprites"], e["blurb"], 0) for e in published(library)]
     for shelf, title in SHELVES:
         rows = [d for d in published(decks) if d["shelf"] == shelf]
         if not rows:
@@ -42,7 +43,8 @@ def layout():
             if d.get("group") and d["group"] != group:
                 group = d["group"]
                 out.append(f"### {group}")
-            out.append((d["page"], d["sprites"], d["blurb"]))
+            out.append((d["page"], d["sprites"], d["blurb"],
+                        len(not_legal(d["source"]))))
     return out
 
 
@@ -79,7 +81,7 @@ for entry in PAGES:
         body.append(f"\t\t\t<h{len(hashes)}>{esc(text)}</h{len(hashes)}>")
         level = len(hashes) + 1
         continue
-    name, sprites, blurb = entry
+    name, sprites, blurb, rotated = entry
     if not (ROOT / name).exists():
         print(f"  skipping {name}, not built yet")
         continue
@@ -99,8 +101,16 @@ for entry in PAGES:
     art += [
         "\t\t\t\t<section>",
         f'\t\t\t\t\t<h{level}><a href="./{name}">{title}</a></h{level}>',
-        f"\t\t\t\t\t<p>{esc(blurb)}</p>",
     ]
+    # a deck whose list carries a card Standard doesn't allow can only be
+    # played at home. the badge is the deck pages' own NO, and the count is
+    # worked out every build, so the mark comes and goes with the list
+    if rotated:
+        verb = "is" if rotated == 1 else "are"
+        art.append(f'\t\t\t\t\t<p data-home>{img("./assets/no.png", "")} '
+                   f"<strong>Home only.</strong> {rotated} of its cards "
+                   f"{verb} not Standard legal.</p>")
+    art.append(f"\t\t\t\t\t<p>{esc(blurb)}</p>")
     # the planning docs have no card pages to count, so they get no count line
     # rather than an honest-looking "0 unique cards"
     if count:

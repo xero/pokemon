@@ -387,7 +387,7 @@ Against the house decks this list is a wall with a hammer behind it, and the mat
 
 **Versus [the Gengar decks](./dark-gang.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.
 
-**Versus [the Fire decks](./fire.md).** This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and **there is no weakness-removal card anywhere in the Standard pool** — not a Tool, not a Stadium, not an Ability. Full Metal Lab's 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck's tax.
+**Versus [the Fire decks](./blue-flame.md).** This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and **there is no weakness-removal card anywhere in the Standard pool** — not a Tool, not a Stadium, not an Ability. Full Metal Lab's 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck's tax.
 
 ---
 

@@ -350,7 +350,7 @@ Against a deck that discounts Knock Outs by Pokémon ex, Spiritomb is the attack
 
 How the Gengar deck plays against this is in [Versus Cynthia's Garchomp ex](./dark-gang.md#versus-cynthias-garchomp-ex).
 
-**Versus [Fox's Fire decks](./fire.md).** Roselia, Roserade, and Shaymin are weak to Fire, and the Garchomp line isn't. Expect the Roserades to go first.
+**Versus [Fox's Fire decks](./blue-flame.md).** Roselia, Roserade, and Shaymin are weak to Fire, and the Garchomp line isn't. Expect the Roserades to go first.
 
 ---
 

@@ -8,7 +8,7 @@ tcg deck planning for me and my son
 ## our decks
 
 - [xero's gengar gang](./dark-gang.md)
-- [fox's fire force](./fire.md)
+- [fox's blue flame](./blue-flame.md)
 
 ## other decks
 
@@ -19,7 +19,7 @@ tcg deck planning for me and my son
 - [curse toll](./dark-curse.md)
 - [gengar's guard dogs](./dark-dogs.md)
 - [shadow syndicate](./dark-rocket.md)
-- [smog signals](./dark-smog.md)
+- [smog signals](./dark-smog.md), home only
 
 ### lanterns
 
@@ -31,6 +31,7 @@ tcg deck planning for me and my son
 
 ### fire and eevee
 
+- [fire force](./fire.md), home only
 - [flareon engine](./fire-tournament.md)
 - [rainbow dna](./eevee-standard.md)
 

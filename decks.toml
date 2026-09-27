@@ -127,33 +127,37 @@ door while the ghosts arrive."""
 "Alternatives" = ["crobat", "zubat"]
 
 [[deck]]
-source = "fire.md"
+source = "blue-flame.md"
 player = "fox"
 shelf = "league"
-sprites = ["charmander", "charizard"]
+sprites = ["charmander", "charizard-mega-x"]
+mascot = ["charizard-mega-x", "charizard-mega-y"]
 blurb = """
-Fox's deck, card by card: what each one is for, what it wants to sit next
-to, and how to beat dad."""
+Mega Charizard X ex on an Oricorio engine. Firebreather fetches seven Fire,
+Oricorio throws them onto the Bench, and Inferno X turns every one into 90
+damage, so four is 360 and a knockout on anything at the Wednesday league."""
 
+# heatmor, ho-oh, delphox and reshiram were promoted from assets/ani for this
+# page. Oricorio is absent from the library, so the engine goes bare.
 [deck.flavor]
-# the Pokemon card pages
+"The Thesis" = ["charizard-mega-x"]
+"Mega Charizard X ex" = ["charizard-mega-x"]
 "Charmander" = ["charmander"]
 "Charmeleon" = ["charmeleon"]
-"Charizard" = ["charizard"]
-"Eevee" = ["eevee"]
-"Flareon" = ["flareon"]
-"Sudowoodo" = ["sudowoodo"]
-# the game plans
-"1. The Leon Engine" = ["charizard"]
-"2. Two Speeds" = ["eevee", "charmander"]
-"3. The Rock That Hits Back" = ["sudowoodo"]
-"4. Winning the Stadium War" = ["charizard-mega-y"]
-"5. Reading Your First Hand" = ["flareon"]
-"Weezing — his early attacker (130 HP)" = ["weezing"]
-"Gengar — his closer (130 HP)" = ["gengar"]
-"His annoying cards" = ["haunter"]
-"7. Mistakes That Will Cost You The Game" = ["eevee-back"]
-"8. The Turn Checklist" = ["charmeleon"]
+"Mega Charizard Y ex" = ["charizard-mega-y"]
+"Heatmor" = ["heatmor"]
+"Ho-Oh" = ["ho-oh"]
+"The Energy Engine" = ["pokedex"]
+"1. The Firebreather Turn" = ["charmander", "charizard-mega-x"]
+"2. The Nitro Loop" = ["charizard-mega-x-shiny"]
+"4. When the Y Comes Out" = ["charizard-mega-y"]
+"5. Crustle Night" = ["ho-oh"]
+# a back sprite for the honest downside, as in the other files
+"6. What This Deck Gives Up" = ["eevee-back"]
+# the matchups get the deck they are about, as on the other pages
+"Versus the Kitchen Table" = ["gengar-mega", "chandelure"]
+"Versus the Card Shop" = ["excadrill", "garchomp", "crustle"]
+"Alternatives" = ["delphox", "reshiram"]
 
 [[deck]]
 source = "dark-classic.md"
@@ -502,6 +506,36 @@ line against the Wednesday field."""
 "✗ Cards That Look Right, Skip Them" = ["wobbuffet-back"]
 
 [[deck]]
+source = "fire.md"
+player = "fox"
+shelf = "other"
+group = "Fire and Eevee"
+sprites = ["charmander", "charizard"]
+blurb = """
+Fox's home deck, card by card: what each one is for, what it wants to sit next
+to, and how to beat dad."""
+
+[deck.flavor]
+# the Pokemon card pages
+"Charmander" = ["charmander"]
+"Charmeleon" = ["charmeleon"]
+"Charizard" = ["charizard"]
+"Eevee" = ["eevee"]
+"Flareon" = ["flareon"]
+"Sudowoodo" = ["sudowoodo"]
+# the game plans
+"1. The Leon Engine" = ["charizard"]
+"2. Two Speeds" = ["eevee", "charmander"]
+"3. The Rock That Hits Back" = ["sudowoodo"]
+"4. Winning the Stadium War" = ["charizard-mega-y"]
+"5. Reading Your First Hand" = ["flareon"]
+"Weezing — his early attacker (130 HP)" = ["weezing"]
+"Gengar — his closer (130 HP)" = ["gengar"]
+"His annoying cards" = ["haunter"]
+"7. Mistakes That Will Cost You The Game" = ["eevee-back"]
+"8. The Turn Checklist" = ["charmeleon"]
+
+[[deck]]
 source = "fire-tournament.md"
 player = "fox"
 shelf = "other"
@@ -636,6 +670,34 @@ Bench pays for it, and Zamazenta covers the turn Zacian is locked out."""
 "2. The Off Turn" = ["metang"]
 "Versus the Ladder" = ["excadrill", "genesect"]
 "Alternatives" = ["scizor"]
+
+[[deck]]
+source = "ground-zero.md"
+player = "fox"
+shelf = "other"
+group = "Fighting"
+draft = true
+sprites = ["zygarde", "audino-mega"]
+blurb = """
+Mega Zygarde ex on a Cinderace launch. Cinderace starts face down, throws three
+Energy onto the Bench on turn one, and walks off for free; Zygarde hits for 200
+behind a 30-damage shield, or 350 with Core Memory."""
+
+# audino, audino-mega, riolu and barbaracle were promoted from assets/ani for
+# this page. Cinderace is gen 8 and Ogerpon gen 9, so both go bare.
+[deck.flavor]
+"The Thesis" = ["zygarde"]
+"Mega Zygarde ex" = ["zygarde"]
+"Mega Audino ex" = ["audino-mega"]
+"Riolu" = ["riolu"]
+"Mega Lucario ex" = ["lucario-mega"]
+"The Energy Engine" = ["audino"]
+"2. The Audino Opening" = ["audino"]
+"4. After Geobuster" = ["lucario-mega"]
+# the matchups get the deck they are about, as on the other pages
+"Versus the Kitchen Table" = ["gengar-mega", "chandelure"]
+"Versus the Card Shop" = ["garchomp", "excadrill", "crustle"]
+"Alternatives" = ["barbaracle"]
 
 [[deck]]
 source = "metal-excadrill.md"

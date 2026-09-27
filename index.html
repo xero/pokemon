@@ -627,6 +627,13 @@
 				line-height: inherit;
 				padding-top: 0;
 			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
 		}
 
 		/* the Qty tables under the deck-list strip. they stay in the markdown
@@ -1209,7 +1216,7 @@
 				<section>
 					<h2><a href="./collection.html">Pokédex</a></h2>
 					<p>A searchable collection of our combined binders. Every card, stat, and ability, and whether it&#x27;s legal for tournament play.</p>
-					<p><small><em>166 unique cards</em></small></p>
+					<p><small><em>168 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index" data-featured>
@@ -1217,7 +1224,7 @@
 				<section>
 					<h2><a href="./wishlist.html">Pull List</a></h2>
 					<p>Every card we still have to buy, the decks that want it, and how many copies to pull. A card lands here when it is marked as not owned.</p>
-					<p><small><em>23 unique cards</em></small></p>
+					<p><small><em>37 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index" data-featured>
@@ -1238,11 +1245,11 @@
 				</section>
 			</article>
 			<article class="index" data-featured>
-				<aside data-sprite><img src="./assets/sprites/charmander.gif" alt="" /><img src="./assets/sprites/charizard.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/charmander.gif" alt="" /><img src="./assets/sprites/charizard-mega-x.gif" alt="" /></aside>
 				<section>
-					<h3><a href="./fire.html">Fox's Fire Force</a></h3>
-					<p>Fox&#x27;s deck, card by card: what each one is for, what it wants to sit next to, and how to beat dad.</p>
-					<p><small><em>20 unique cards</em></small></p>
+					<h3><a href="./blue-flame.html">Fox's Blue Flame</a></h3>
+					<p>Mega Charizard X ex on an Oricorio engine. Firebreather fetches seven Fire, Oricorio throws them onto the Bench, and Inferno X turns every one into 90 damage, so four is 360 and a knockout on anything at the Wednesday league.</p>
+					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>
 			<h2>Other Decks</h2>
@@ -1291,6 +1298,7 @@
 				<aside data-sprite><img src="./assets/sprites/koffing.gif" alt="" /><img src="./assets/sprites/weezing.gif" alt="" /></aside>
 				<section>
 					<h4><a href="./dark-smog.html">Smog Signals</a></h4>
+					<p data-home><img src="./assets/no.png" alt="" /> <strong>Home only.</strong> 4 of its cards are not Standard legal.</p>
 					<p>The other game-night hybrid, for when you don&#x27;t know what&#x27;s coming. Every Pokémon is a Koffing or a Weezing and none is an ex, so Team Rocket&#x27;s Weezing hits 40 for each one in play and the opponent needs six knockouts whatever they bring.</p>
 					<p><small><em>9 unique cards</em></small></p>
 				</section>
@@ -1337,6 +1345,15 @@
 				</section>
 			</article>
 			<h3>Fire and Eevee</h3>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/charmander.gif" alt="" /><img src="./assets/sprites/charizard.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./fire.html">Fire Force</a></h4>
+					<p data-home><img src="./assets/no.png" alt="" /> <strong>Home only.</strong> 14 of its cards are not Standard legal.</p>
+					<p>Fox&#x27;s home deck, card by card: what each one is for, what it wants to sit next to, and how to beat dad.</p>
+					<p><small><em>20 unique cards</em></small></p>
+				</section>
+			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/flareon.gif" alt="" /><img src="./assets/sprites/noctowl.gif" alt="" /></aside>
 				<section>
