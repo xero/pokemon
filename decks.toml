@@ -676,28 +676,31 @@ source = "ground-zero.md"
 player = "fox"
 shelf = "other"
 group = "Fighting"
-draft = true
-sprites = ["zygarde", "audino-mega"]
+sprites = ["zygarde", "barbaracle", "audino-mega"]
 blurb = """
-Mega Zygarde ex on a Cinderace launch. Cinderace starts face down, throws three
-Energy onto the Bench on turn one, and walks off for free; Zygarde hits for 200
-behind a 30-damage shield, or 350 with Core Memory."""
+Mega Zygarde ex on a Barbaracle engine. Stone Arms lands Gaia Wave on turn two,
+going first or second, Tarragon pays Geobuster back in a turn, and Mega Audino
+ex flips for Energy when it opens."""
 
-# audino, audino-mega, riolu and barbaracle were promoted from assets/ani for
-# this page. Cinderace is gen 8 and Ogerpon gen 9, so both go bare.
+# binacle, lunatone and solrock were promoted from assets/ani for this page;
+# barbaracle, audino and audino-mega came over for the first version. Ogerpon
+# is gen 9, so it goes bare.
 [deck.flavor]
 "The Thesis" = ["zygarde"]
 "Mega Zygarde ex" = ["zygarde"]
+"Binacle" = ["binacle"]
+"Barbaracle" = ["barbaracle"]
 "Mega Audino ex" = ["audino-mega"]
-"Riolu" = ["riolu"]
-"Mega Lucario ex" = ["lucario-mega"]
-"The Energy Engine" = ["audino"]
-"2. The Audino Opening" = ["audino"]
-"4. After Geobuster" = ["lucario-mega"]
+"Lunatone" = ["lunatone"]
+"Solrock" = ["solrock"]
+"The Hard Rules" = ["solrock", "lunatone"]
+"The Energy Engine" = ["barbaracle"]
+"3. The Audino opening" = ["audino"]
+"4. After Geobuster" = ["binacle"]
 # the matchups get the deck they are about, as on the other pages
 "Versus the Kitchen Table" = ["gengar-mega", "chandelure"]
 "Versus the Card Shop" = ["garchomp", "excadrill", "crustle"]
-"Alternatives" = ["barbaracle"]
+"Alternatives" = ["audino"]
 
 [[deck]]
 source = "metal-excadrill.md"

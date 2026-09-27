@@ -19,6 +19,9 @@ RAW = ROOT / "raw-cards.json"
 DEST = ROOT / "regulation-marks.json"
 API = "https://api.pokemontcg.io/v2"
 ATTEMPTS = 4
+# A phone browser, not curl's default or a bare "Mozilla/5.0".
+UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 "
+      "(KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1")
 
 # Our TCGplayer setCode -> pokemontcg.io set id. Their ptcgoCode agrees with us
 # often enough to be tempting and not often enough to rely on, so this is
@@ -47,7 +50,7 @@ SET_IDS = {
 
 def get(path):
     for i in range(ATTEMPTS):
-        out = subprocess.run(["curl", "-s", f"{API}/{path}", "--max-time", "40"],
+        out = subprocess.run(["curl", "-s", "-A", UA, f"{API}/{path}", "--max-time", "40"],
                              capture_output=True, text=True).stdout
         try:
             d = json.loads(out)

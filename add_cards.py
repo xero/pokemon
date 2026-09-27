@@ -41,6 +41,9 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 SEED = ROOT / "product-ids.tsv"
 API = "https://mp-search-api.tcgplayer.com/v1/search/request"
+# A phone browser, not curl's default or a bare "Mozilla/5.0".
+UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 "
+      "(KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1")
 
 # TCGplayer product URLs carry the id in the path, whatever the slug says:
 # https://www.tcgplayer.com/product/94663/pokemon-xy-phantom-forces-gengar...
@@ -59,7 +62,7 @@ def api(payload, query=""):
     url = f"{API}?q={urllib.parse.quote(query)}&isList=false"
     out = subprocess.run(
         ["curl", "-s", url, "-H", "Content-Type: application/json",
-         "-H", "User-Agent: Mozilla/5.0", "-d", json.dumps(payload),
+         "-A", UA, "-d", json.dumps(payload),
          "--max-time", "40"], capture_output=True, text=True).stdout
     try:
         return json.loads(out)["results"][0]["results"]

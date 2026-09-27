@@ -23,6 +23,9 @@ ASSETS.mkdir(exist_ok=True)
 RAW = ROOT / "raw-cards.json"
 API = "https://mp-search-api.tcgplayer.com/v1/search/request?q=&isList=false"
 CDN = "https://tcgplayer-cdn.tcgplayer.com/product/{id}_in_1000x1000.jpg"
+# A phone browser, not curl's default or a bare "Mozilla/5.0".
+UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 "
+      "(KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1")
 
 # id / url / owned. owned is 1 unless someone marked the card 0, which is what
 # puts it on the pull list. The # lines at the top of the file are its notes.
@@ -45,7 +48,7 @@ def fetch(chunk):
         "context": {"cart": {}, "shippingCountry": "US"},
         "sort": {"field": "product-sorting-name", "order": "asc"}})
     out = subprocess.run(["curl", "-s", API, "-H", "Content-Type: application/json",
-                          "-H", "User-Agent: Mozilla/5.0", "-d", body, "--max-time", "40"],
+                          "-A", UA, "-d", body, "--max-time", "40"],
                          capture_output=True, text=True).stdout
     return json.loads(out)["results"][0]["results"]
 
@@ -452,7 +455,7 @@ for pid in ids:
 
     img_name = f"{pid}_{card_slug}.jpg"
     if not (ASSETS / img_name).exists():
-        rc = subprocess.run(["curl", "-s", "-f", "-o", str(ASSETS / img_name),
+        rc = subprocess.run(["curl", "-s", "-f", "-A", UA, "-o", str(ASSETS / img_name),
                              CDN.format(id=pid), "--max-time", "40"]).returncode
         if rc != 0:
             print(f"  WARNING: image download failed for {name}", file=sys.stderr)

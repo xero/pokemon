@@ -24,6 +24,9 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 API = "https://api.pokemontcg.io/v2/cards"
 ATTEMPTS = 12
+# A phone browser, not curl's default or a bare "Mozilla/5.0".
+UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) AppleWebKit/605.1.15 "
+      "(KHTML, like Gecko) Version/26.0 Mobile/15E148 Safari/604.1")
 
 # Standard as of the 2026 rotation. Verified against regulation-marks.json,
 # which is built from the same upstream and is what cards.csv actually uses.
@@ -39,7 +42,7 @@ FIELDS = ("id,name,supertype,subtypes,number,set,regulationMark,rules,"
 def get(query, page):
     for i in range(ATTEMPTS):
         out = subprocess.run(
-            ["curl", "-s", "-G", API,
+            ["curl", "-s", "-A", UA, "-G", API,
              "--data-urlencode", f"q={query}",
              "--data-urlencode", f"select={FIELDS}",
              "--data-urlencode", f"page={page}",

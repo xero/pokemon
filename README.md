@@ -40,6 +40,10 @@ tcg deck planning for me and my son
 - [hostile takeover](./rocket-mewtwo.md)
 - [steel wolves](./steel-wolves.md)
 
+### fighting
+
+- [ground zero](./ground-zero.md)
+
 ## opponent decks
 
 models of what the league regulars bring

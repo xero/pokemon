@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Ground Zero</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
+				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4. inside an article that is the prose subheading, so undo
+			   it here and let the title read like the h2 and h3 titles do. */
+			h4 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
+			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Ground Zero <img data-mascot src="./assets/sprites/zygarde.gif" alt="" /> <img data-mascot src="./assets/sprites/barbaracle.gif" alt="" /> <img data-mascot src="./assets/sprites/audino-mega.gif" alt="" /></h1>
+				<p>Mega Zygarde ex on a Barbaracle engine · a tournament-legal 60 for Fox</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#the-prize-tax">The Prize Tax</a></li>
+			<li><a href="#the-energy-engine">The Energy Engine</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#alternatives">Alternatives</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#mega-zygarde-ex">Mega Zygarde ex</a> <a href="#binacle">Binacle</a> <a href="#barbaracle">Barbaracle</a> <a href="#mega-audino-ex">Mega Audino ex</a> <a href="#lunatone">Lunatone</a> <a href="#solrock">Solrock</a> <a href="#cornerstone-mask-ogerpon-ex">Cornerstone Mask Ogerpon ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#tarragon">Tarragon</a> <a href="#wallys-compassion">Wally&#x27;s Compassion</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#fighting-gong">Fighting Gong</a> <a href="#poke-pad">Poke Pad</a> <a href="#pokegear-30">Pokegear 3.0</a> <a href="#switch">Switch</a> <a href="#ultra-ball">Ultra Ball</a> <a href="#unfair-stamp">Unfair Stamp</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#core-memory">Core Memory</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-fighting-energy">Basic Fighting Energy</a></dd>
+			<dt><a href="#the-hard-rules">The Hard Rules</a></dt>
+			<dd><a href="#opening-turns">Opening turns</a> <a href="#where-the-energy-goes">Where the Energy goes</a> <a href="#gaia-wave-or-geobuster">Gaia Wave or Geobuster</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-turn-one-going-second">1. Turn one, going second</a> <a href="#2-turn-one-going-first">2. Turn one, going first</a> <a href="#3-the-audino-opening">3. The Audino opening</a> <a href="#4-after-geobuster">4. After Geobuster</a> <a href="#5-bench-discipline">5. Bench discipline</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>Fox&#x27;s Mega Zygarde ex deck. Every card carries regulation mark H, I, or J, so the same sleeves play at the kitchen table and at the card shop. The list is a ranked Barbaracle list Xero found on an older deck site, with one change: two Mega Audino ex in for two Acerola&#x27;s Mischief. Fox and Xero play it on <a href="https://tcg.pokemon.com/en-us/tcgl/">TCG Live</a> before buying any of it.</p>
+				<p>The deck list and the cards come first, then <a href="#the-thesis">The Thesis</a> and <a href="#the-hard-rules">The Hard Rules</a>. The first version of this page ran Cinderace and Mega Lucario ex, and <a href="#alternatives">Alternatives</a> says why it changed. Game words are defined in <a href="./rules.html">the table rules</a>.</p>
+			</aside>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#mega-zygarde-ex"><img src="./assets/684336_mega-zygarde-ex-047-088.jpg" alt="Mega Zygarde ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#binacle"><img src="./assets/684334_binacle.jpg" alt="Binacle" /><span data-count>x3</span></a></figure>
+				<figure><a href="#barbaracle"><img src="./assets/684335_barbaracle.jpg" alt="Barbaracle" /><span data-count>x3</span></a></figure>
+				<figure><a href="#mega-audino-ex"><img src="./assets/675984_mega-audino-ex-172-217.jpg" alt="Mega Audino ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#lunatone"><img src="./assets/675917_lunatone.jpg" alt="Lunatone" /><span data-count>x2</span></a></figure>
+				<figure><a href="#solrock"><img src="./assets/675918_solrock.jpg" alt="Solrock" /><span data-count>x2</span></a></figure>
+				<figure><a href="#cornerstone-mask-ogerpon-ex"><img src="./assets/550156_cornerstone-mask-ogerpon-ex-112-167.jpg" alt="Cornerstone Mask Ogerpon ex" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#tarragon"><img src="./assets/684344_tarragon-085-088.jpg" alt="Tarragon" /><span data-count>x3</span></a></figure>
+				<figure><a href="#wallys-compassion"><img src="./assets/654471_wallys-compassion-132-132.jpg" alt="Wally&#x27;s Compassion" /></a></figure>
+				<figure><a href="#fighting-gong"><img src="./assets/654455_fighting-gong-116-132.jpg" alt="Fighting Gong" /><span data-count>x4</span></a></figure>
+				<figure><a href="#poke-pad"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /><span data-count>x4</span></a></figure>
+				<figure><a href="#pokegear-30"><img src="./assets/642530_pokegear-30.jpg" alt="Pokegear 3.0" /><span data-count>x4</span></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x2</span></a></figure>
+				<figure><a href="#unfair-stamp"><img src="./assets/550209_unfair-stamp.jpg" alt="Unfair Stamp" /></a></figure>
+				<figure><a href="#core-memory"><img src="./assets/684343_core-memory.jpg" alt="Core Memory" /><span data-count>x2</span></a></figure>
+				<figure><a href="#basic-fighting-energy"><img src="./assets/656268_basic-fighting-energy-006.jpg" alt="Basic Fighting Energy" /><span data-count>x14</span></a></figure>
+			</article>
+					<p><strong>Pokémon (16)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Mega Zygarde ex</td><td>Perfect Order</td><td>047</td><td>J</td></tr>
+							<tr><td>3</td><td>Binacle</td><td>Perfect Order</td><td>042</td><td>J</td></tr>
+							<tr><td>3</td><td>Barbaracle</td><td>Perfect Order</td><td>043</td><td>J</td></tr>
+							<tr><td>2</td><td>Mega Audino ex</td><td>Ascended Heroes</td><td>172</td><td>J</td></tr>
+							<tr><td>2</td><td>Lunatone</td><td>Ascended Heroes</td><td>105</td><td>I</td></tr>
+							<tr><td>2</td><td>Solrock</td><td>Ascended Heroes</td><td>106</td><td>I</td></tr>
+							<tr><td>1</td><td>Cornerstone Mask Ogerpon ex</td><td>Twilight Masquerade</td><td>112</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (30)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>3</td><td>Tarragon</td><td>Supporter</td><td>Perfect Order</td><td>085</td><td>J</td></tr>
+							<tr><td>1</td><td>Wally&#x27;s Compassion</td><td>Supporter</td><td>Mega Evolution</td><td>132</td><td>I</td></tr>
+							<tr><td>4</td><td>Fighting Gong</td><td>Item</td><td>Mega Evolution</td><td>116</td><td>I</td></tr>
+							<tr><td>4</td><td>Poke Pad</td><td>Item</td><td>Perfect Order</td><td>081</td><td>J</td></tr>
+							<tr><td>4</td><td>Pokegear 3.0</td><td>Item</td><td>Black Bolt</td><td>084</td><td>I</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>2</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>1</td><td>Unfair Stamp</td><td>Item</td><td>Twilight Masquerade</td><td>165</td><td>H</td></tr>
+							<tr><td>2</td><td>Core Memory</td><td>Tool</td><td>Perfect Order</td><td>070</td><td>J</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (14)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>14</td><td>Basic Fighting Energy</td><td>Mega Evolution Energies</td><td>006</td><td>-</td></tr>
+						</tbody>
+					</table>
+					<p><strong>16 + 30 + 14 = 60.</strong> ✓ Thirteen Basics, eleven Supporters, one ACE SPEC, and nothing over four copies.</p>
+					<p><strong>Thirteen Basics is a 16% mulligan.</strong> The opening seven holds a Binacle 32% of the time. Counting the first draw, 88% of hands hold a Binacle or a card that finds one, which is Fighting Gong, Poke Pad, or Ultra Ball. A Zygarde, or a Gong or Ultra Ball to find one, is there 75% of the time. Audino opens 22% of the time, and 40% counting Ultra Ball. Only 14% of opening hands hold no Energy, and Fighting Gong covers most of those.</p>
+					<p>Cornerstone Mask Ogerpon ex and Unfair Stamp carry mark H and rotate around April 2027. Everything else is I or J.</p>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="mega-zygarde-ex">Mega Zygarde ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/zygarde.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684336_mega-zygarde-ex-047-088.jpg" target="_blank" rel="noopener"><img src="./assets/684336_mega-zygarde-ex-047-088.jpg" alt="Mega Zygarde ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>047/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>310</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Gaia Wave (200) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Nullifying Zero - For each of your opponent&#x27;s Pokémon, flip a coin. If heads, this attack does 150 damage to that Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 310 HP, 3 Prizes, Grass Weakness, Retreat 2.</strong> The attacker.</p>
+					<p><strong><em>Gaia Wave</em> does 200 for <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span>, and during the opponent&#x27;s next turn this Pokémon takes 30 less damage from attacks</strong>, after Weakness and Resistance. It keeps its Energy, so the same Zygarde swings again next turn.</p>
+					<p><em>Nullifying Zero</em> costs <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span> and flips a coin for each of the opponent&#x27;s Pokémon; every heads is 150 to that Pokémon, with no Weakness or Resistance on the Bench. <a href="#core-memory">Core Memory</a> adds a third attack, <em>Geobuster</em>, for 350. <a href="#gaia-wave-or-geobuster">Gaia Wave or Geobuster</a> says which to use.</p>
+					<p><strong>Three copies</strong>, so a prized one still leaves two. Fighting Gong and Ultra Ball find it. Poke Pad can&#x27;t, since it has a Rule Box.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="binacle">Binacle<span data-count>x3</span><span data-flavor><img src="./assets/sprites/binacle.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684334_binacle.jpg" target="_blank" rel="noopener"><img src="./assets/684334_binacle.jpg" alt="Binacle" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>042/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Double Draw - Draw 2 cards.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Scratch (30)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 80 HP, Grass Weakness, Retreat 2.</strong> Its job is becoming Barbaracle, so bench one on your first turn every game. A Pokémon can evolve from your second turn on, once it has sat in play for a turn.</p>
+					<p><em>Double Draw</em> is <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /></span> for two cards. Going second with Binacle in front and nothing better to do, it is a fine turn-one attack.</p>
+					<p>Three copies. Fighting Gong, Poke Pad, and Ultra Ball all find it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="barbaracle">Barbaracle<span data-count>x3</span><span data-flavor><img src="./assets/sprites/barbaracle.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684335_barbaracle.jpg" target="_blank" rel="noopener"><img src="./assets/684335_barbaracle.jpg" alt="Barbaracle" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>043/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Stone Arms - Once during your turn, you may use this Ability. Attach a Basic Fighting Energy card from your hand to 1 of your Fighting Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Hammer In (80)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 1, 130 HP, Grass Weakness, Retreat 2.</strong> The engine.</p>
+					<p><strong><em>Stone Arms</em> attaches a Basic Fighting Energy from your hand to one of your Fighting Pokémon, once a turn for each Barbaracle.</strong> It is an Ability, so it costs no attack and no Supporter, and it reaches the Active Spot. Two Barbaracle and your attachment put three Energy on a Zygarde in one turn, which is a <em>Gaia Wave</em> from nothing. It can&#x27;t feed Audino, which is Colorless.</p>
+					<p><em>Hammer In</em> is 80 for <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>. Barbaracle is not a Pokémon ex, so Crustle&#x27;s <em>Mysterious Rock Inn</em> can&#x27;t stop it, and it gives up one Prize.</p>
+					<p><strong>Three copies, and two in play is the target.</strong> Poke Pad and Ultra Ball find it. It does nothing without Energy in your hand, which is what Fighting Gong, Tarragon, and Lunatone are for.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mega-audino-ex">Mega Audino ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/audino-mega.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/675984_mega-audino-ex-172-217.jpg" target="_blank" rel="noopener"><img src="./assets/675984_mega-audino-ex-172-217.jpg" alt="Mega Audino ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>172/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>270</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Kaleidowaltz - Flip 3 coins. For each heads, search your deck for up to 2 Basic Energy cards and attach them to your Pokémon in any way you like. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Ear Force (20+) - This attack does 80 more damage for each Energy attached to your opponent&#x27;s Active Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic Colorless, 270 HP, 3 Prizes, Fighting Weakness, Retreat 1.</strong> Fox&#x27;s pick, and the deck&#x27;s turn-one Energy.</p>
+					<p><strong><em>Kaleidowaltz</em> costs <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>: flip 3 coins, and for each heads, search your deck for up to 2 Basic Energy and attach them to your Pokémon in any way you like.</strong> It averages 3 Energy, it reaches the Active and the Bench alike, and it comes up empty 1 time in 8. Going second, it loads a Zygarde before Barbaracle exists.</p>
+					<p><strong><em>Ear Force</em> is <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 20, plus 80 for each Energy attached to the opponent&#x27;s Active Pokémon.</strong> A Mega Excadrill ex holding four Energy takes 340, which is exactly its HP.</p>
+					<p><strong>Only Ultra Ball finds it.</strong> It is Colorless, so Fighting Gong misses it, and it has a Rule Box, so Poke Pad does too. It is also a 3-Prize body that is weak to Fighting. Get it out of the Active Spot once its job is done, and against Elliot&#x27;s Garchomp leave it in the deck.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lunatone">Lunatone<span data-count>x2</span><span data-flavor><img src="./assets/sprites/lunatone.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/675917_lunatone.jpg" target="_blank" rel="noopener"><img src="./assets/675917_lunatone.jpg" alt="Lunatone" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>105/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Lunar Cycle - Once during your turn, if you have Solrock in play, you may discard a Basic Fighting Energy card from your hand in order to use this Ability. Draw 3 cards. You can&#x27;t use more than 1 Lunar Cycle Ability each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Power Gem (50)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 110 HP, Grass Weakness, Retreat 1.</strong></p>
+					<p><strong><em>Lunar Cycle</em> draws 3 cards once during your turn, if you have Solrock in play and discard a Basic Fighting Energy from your hand to use it.</strong> Only one <em>Lunar Cycle</em> works each turn, however many Lunatone you have. It is draw that doesn&#x27;t spend your Supporter, and the Energy it discards is what Tarragon brings back.</p>
+					<p><em>Power Gem</em> is 50 for <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span>. Two copies, beside two Solrock.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="solrock">Solrock<span data-count>x2</span><span data-flavor><img src="./assets/sprites/solrock.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/675918_solrock.jpg" target="_blank" rel="noopener"><img src="./assets/675918_solrock.jpg" alt="Solrock" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>106/217</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Cosmic Beam (70) - If you don&#x27;t have Lunatone on your Bench, this attack does nothing. This attack&#x27;s damage isn&#x27;t affected by Weakness or Resistance.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 110 HP, Grass Weakness, Retreat 1.</strong> It switches Lunatone on.</p>
+					<p><strong><em>Cosmic Beam</em> is 70 for <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /></span></strong>, and it does nothing unless Lunatone is on your Bench. Its damage ignores Weakness and Resistance. That makes it a one-Energy, single-Prize attacker that finishes anything 70 short, and with Barbaracle it is the Crustle answer. Two copies.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="cornerstone-mask-ogerpon-ex">Cornerstone Mask Ogerpon ex<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/550156_cornerstone-mask-ogerpon-ex-112-167.jpg" target="_blank" rel="noopener"><img src="./assets/550156_cornerstone-mask-ogerpon-ex-112-167.jpg" alt="Cornerstone Mask Ogerpon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>112/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Tera As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent&#x27;s). Ability — Cornerstone Stance Prevent all damage from attacks done to this Pokémon by your opponent&#x27;s Pokémon that have an Ability.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Demolish (140) - This attack&#x27;s damage isn&#x27;t affected by Weakness or Resistance, or by any effects on your opponent&#x27;s Active Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 210 HP, 2 Prizes, Grass Weakness, Retreat 1. Tera.</strong></p>
+					<p><strong><em>Cornerstone Stance</em> prevents all damage from attacks by the opponent&#x27;s Pokémon that have an Ability.</strong> Read their attacker&#x27;s card before you commit. <em>Demolish</em> is <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 140, and its damage ignores Weakness, Resistance, and any effects on the opponent&#x27;s Active Pokémon.</p>
+					<p><strong>It stops damage, not damage counters.</strong> <em>Chaotic Pain</em> and the Bench half of <em>Phantom Dive</em> still land. As a Tera Pokémon, it takes no damage from attacks while it sits on your Bench. One copy.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Shuffle your hand into your deck and draw six, or eight while you still have all six Prizes.</strong> Four copies. Going second, the turn-one Lillie&#x27;s for eight is legal and good. Look at the hand first; one that already holds a Binacle, a Zygarde, and two Energy doesn&#x27;t want shuffling.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Switch one of the opponent&#x27;s Benched Pokémon into the Active Spot.</strong> Three copies. A 350 is only worth what it lands on. The best targets are the pieces that build their attacker, and a damaged Pokémon ex worth two or three Prizes.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="tarragon">Tarragon<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/684344_tarragon-085-088.jpg" target="_blank" rel="noopener"><img src="./assets/684344_tarragon-085-088.jpg" alt="Tarragon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>085/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Put up to 4 in any combination of Fighting Pokémon and Basic Fighting Energy cards from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Put up to 4 in any combination of Fighting Pokémon and Basic Fighting Energy cards from your discard pile into your hand.</strong> Three copies, Perfect Order 085, mark J.</p>
+					<p><strong>This is how the deck gets its Energy back.</strong> <em>Geobuster</em> discards four and <em>Lunar Cycle</em> discards one a turn. Tarragon returns four at once, straight to your hand, where Stone Arms and your attachment spend them. It also returns a Knocked Out Zygarde, Barbaracle, or Binacle. Mix them; two Energy and a Barbaracle is often the right four.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="wallys-compassion">Wally&#x27;s Compassion<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/654471_wallys-compassion-132-132.jpg" target="_blank" rel="noopener"><img src="./assets/654471_wallys-compassion-132-132.jpg" alt="Wally&#x27;s Compassion" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>132/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Heal all damage from 1 of your Mega Evolution Pokémon ex. If you healed any damage in this way, put all Energy attached to that Pokémon into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Heal all damage from one of your Mega Evolution Pokémon ex, then put all Energy attached to it into your hand.</strong> One copy.</p>
+					<p><strong>The best target is the Zygarde that just used Geobuster.</strong> It has no Energy left to lose, so Wally&#x27;s is a full heal for free. On a loaded Zygarde, the Energy goes to your hand, and with two Barbaracle in play your attachment and two Stone Arms put three of it back on the same turn. That is a full heal and a <em>Gaia Wave</em> in one turn.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="fighting-gong">Fighting Gong<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654455_fighting-gong-116-132.jpg" target="_blank" rel="noopener"><img src="./assets/654455_fighting-gong-116-132.jpg" alt="Fighting Gong" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>116/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Basic Fighting Energy card or a Basic Fighting Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Search your deck for a Basic Fighting Energy or a Basic Fighting Pokémon.</strong> Four copies. It finds Zygarde, Binacle, Lunatone, Solrock, Ogerpon, and Energy. It can&#x27;t find Barbaracle, which is a Stage 1, or Audino, which is Colorless. On turn one it is a Binacle or a Zygarde; after that it is the Energy for Stone Arms.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="poke-pad">Poke Pad<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/684332_poke-pad-081-088.jpg" target="_blank" rel="noopener"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>081/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Pokémon that doesn&#x27;t have a Rule Box, reveal it, and put it into your hand. Then, shuffle your deck. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Search your deck for a Pokémon without a Rule Box.</strong> Four copies, printed Poké Pad, Perfect Order 081, mark J. It finds Binacle, Barbaracle, Lunatone, and Solrock, and never Zygarde, Audino, or Ogerpon. <strong>It is the main road to Barbaracle.</strong></p>
+				</section>
+			</article>
+			<article>
+				<h3 id="pokegear-30">Pokegear 3.0<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/642530_pokegear-30.jpg" target="_blank" rel="noopener"><img src="./assets/642530_pokegear-30.jpg" alt="Pokegear 3.0" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/black-bolt.png" /><img src="./assets/sets/black-bolt.png" alt="SV: Black Bolt" /></picture></span><span>SV: Black Bolt <small>084/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Look at the top 7 cards of your deck. You may reveal a Supporter card you find there and put it into your hand. Shuffle the other cards back into your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Look at the top 7 cards of your deck and put a Supporter you find there into your hand.</strong> Four copies, Black Bolt 084, mark I. With eleven Supporters, it hits 88% of the time early and 95% by mid-game. It is how Tarragon arrives on the turn after a Geobuster.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Switch your Active Pokémon with one of your Benched Pokémon.</strong> Two copies. Zygarde and Barbaracle both retreat for 2, and Retreat is paid in Energy the next attack needs. Switch pays in a card instead. Its main jobs are moving Audino out once the Zygarde is loaded, and pulling an empty Zygarde back after Geobuster.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Discard 2 other cards from your hand, then search your deck for any Pokémon.</strong> Two copies. It is the only card that finds Audino. The discard costs less here than in most decks, because Energy you discard is Energy Tarragon brings back.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="unfair-stamp">Unfair Stamp<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/550209_unfair-stamp.jpg" target="_blank" rel="noopener"><img src="./assets/550209_unfair-stamp.jpg" alt="Unfair Stamp" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>165/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn. Each player shuffles their hand into their deck. Then, you draw 5 cards, and your opponent draws 2 cards.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Play it only if one of your Pokémon was Knocked Out during your opponent&#x27;s last turn. Each player shuffles their hand into their deck, then you draw 5 and your opponent draws 2.</strong> The ACE SPEC, Twilight Masquerade 165, mark H.</p>
+					<p>It is the comeback card. They take a Zygarde with a hand full of the pieces for the next hit, and Stamp leaves them two cards to find it. It is an Item, so you still get your Supporter after it. Bench what you want to keep first, because it shuffles your hand too.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="core-memory">Core Memory<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/684343_core-memory.jpg" target="_blank" rel="noopener"><img src="./assets/684343_core-memory.jpg" alt="Core Memory" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>070/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>The Mega Zygarde ex this card is attached to can use the attack on this card. (You still need the necessary Energy to use this attack.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Mega Zygarde ex this card is attached to can use <em>Geobuster</em>: 350 for <span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span>, and discard all Energy from this Pokémon.</strong> Two copies. One of the two is prized in 18% of games, and both in under 1%.</p>
+					<p>Being a Tool, it stays attached when the Energy goes, so the next Geobuster from the same Zygarde needs only four more Energy. If that Zygarde is Knocked Out, the Tool goes to the discard pile with it. The deck runs no Stadium.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-fighting-energy">Basic Fighting Energy<span data-count>x14</span></h3>
+				<aside>
+					<a data-art href="./assets/656268_basic-fighting-energy-006.jpg" target="_blank" rel="noopener"><img src="./assets/656268_basic-fighting-energy-006.jpg" alt="Basic Fighting Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>6</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Fourteen. Your attachment, <em>Stone Arms</em>, and <em>Lunar Cycle</em> all spend Energy from your hand, so the hand is where the count matters. Fighting Gong fetches it, Tarragon returns it, and only <em>Kaleidowaltz</em> moves it straight from the deck to the board. Any Basic Fighting print works.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/zygarde.gif" alt="" /></span></h3>
+					<p>Mega Zygarde ex is a Basic with 310 HP that hits for 200 and takes 30 less on the way back. The catch is the price. <em>Gaia Wave</em> costs three Energy, <em>Geobuster</em> four, and <em>Nullifying Zero</em> five, so a deck that attaches one Energy a turn throws its first real punch on turn three.</p>
+					<p><strong>Barbaracle makes it turn two, going first or second.</strong> Bench a Binacle on turn one and attach an Energy to a Zygarde. On turn two, evolve, attach, and use <em>Stone Arms</em>, and the Zygarde has the three Energy <em>Gaia Wave</em> needs. With two Barbaracle it has four, which is <em>Geobuster</em>.</p>
+					<table>
+						<thead><tr><th>Attack</th><th>Cost</th><th>Damage</th><th>One-shots</th></tr></thead>
+						<tbody>
+							<tr><td><em>Gaia Wave</em></td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>200</td><td>anything Fighting-weak up to 400, which is every Darkness Pokémon in Gengar Gang</td></tr>
+							<tr><td><em>Geobuster</em>, with Core Memory</td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>350</td><td>Dragapult ex 320, Cynthia&#x27;s Garchomp ex 330, Mega Excadrill ex 340</td></tr>
+							<tr><td><em>Nullifying Zero</em></td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>150 per heads</td><td>a coin for every Pokémon they have in play</td></tr>
+							<tr><td><em>Hammer In</em>, Barbaracle</td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>80</td><td>not an ex, so Crustle can&#x27;t stop it</td></tr>
+							<tr><td><em>Cosmic Beam</em>, Solrock</td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>70</td><td>ignores Weakness and Resistance</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Gaia Wave is the attack most turns.</strong> It keeps its Energy, and its shield means their answer has to deal 340 in one hit. Geobuster is the finisher for the big ex that Gaia Wave needs two turns for, and it pays with every Energy on the Zygarde. Tarragon and Stone Arms pay that back in one turn.</p>
+					<p>A Mega gives up 3 Prizes, so losing two of them loses the game. Most of the big attackers in the field are 2-Prize ex or 3-Prize Megas, and against those, Fox&#x27;s six Prizes are two or three knockouts. <a href="#the-prize-tax">The Prize Tax</a> covers the rest.</p>
+			</section>
+			<section>
+				<h3 id="the-hard-rules">The Hard Rules<span data-flavor><img src="./assets/sprites/solrock.gif" alt="" /><img src="./assets/sprites/lunatone.gif" alt="" /></span></h3>
+					<p>A few rules decide most games with this deck. The card sections explain the cards; this section explains the decisions.</p>
+			<article>
+				<h3 id="opening-turns">Opening turns</h3>
+				<section>
+					<dl>
+						<dt data-head>When</dt><dd data-head>Do this</dd>
+						<dt>Setup</dt><dd><span>Going second with Audino in hand, lead Audino. Otherwise lead a Zygarde. Bench every Binacle you hold.</span></dd>
+						<dt>Your first turn</dt><dd><span>A Binacle goes down before anything else, because it has to sit a turn before it evolves. Attach to the Zygarde that attacks next turn.</span></dd>
+						<dt>First turn, going second</dt><dd><span>Attack with what is in front. <em>Kaleidowaltz</em> from Audino, <em>Double Draw</em> from Binacle, or <em>Cosmic Beam</em> from Solrock with Lunatone on the Bench. Play Lillie&#x27;s for eight unless the hand already holds its line.</span></dd>
+						<dt>First turn, going first</dt><dd><span>Items and Tools only. Core Memory can go on the Zygarde now.</span></dd>
+						<dt>Second turn</dt><dd><span>Evolve, attach, use Stone Arms, and attack. Use <em>Lunar Cycle</em> first only when the hand holds an Energy you won&#x27;t need this turn.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="where-the-energy-goes">Where the Energy goes</h3>
+				<section>
+					<dl>
+						<dt data-head>Rule</dt><dd data-head>Why</dd>
+						<dt><strong>Stone Arms goes on the Active Zygarde first.</strong></dt><dd><span>Stone Arms, your attachment, and <em>Kaleidowaltz</em> are the only things that reach the Active Spot.</span></dd>
+						<dt><strong>Keep Energy in hand for next turn.</strong></dt><dd><span>Two Barbaracle and your attachment spend three a turn. Fighting Gong finds one, and Tarragon finds four.</span></dd>
+						<dt><strong>Lunar Cycle only discards a spare.</strong></dt><dd><span>The card it throws away is next turn&#x27;s Stone Arms. Tarragon brings it back, but that costs your Supporter.</span></dd>
+						<dt><strong>Never retreat a loaded Zygarde.</strong></dt><dd><span>Retreat 2 is paid in Energy the next attack needs. Use Switch.</span></dd>
+						<dt><strong>Kaleidowaltz loads Zygarde, not Audino.</strong></dt><dd><span>Unless <em>Ear Force</em> is the plan, Energy on Audino only pays its Retreat Cost.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="gaia-wave-or-geobuster">Gaia Wave or Geobuster</h3>
+				<section>
+					<table>
+						<thead><tr><th>Their Active</th><th>Use</th><th>Why</th></tr></thead>
+						<tbody>
+							<tr><td>200 HP or less, or Fighting-weak up to 400</td><td><em>Gaia Wave</em></td><td>it kills, keeps every Energy, and shields</td></tr>
+							<tr><td>201 to 350 HP, and your Zygarde survives its hit</td><td><em>Gaia Wave</em></td><td>two of them kill it and keep the Energy</td></tr>
+							<tr><td>201 to 350 HP, and its next hit kills your Zygarde</td><td><em>Geobuster</em></td><td>a knockout now beats a shield</td></tr>
+							<tr><td>Over 350</td><td><em>Gaia Wave</em>, then finish</td><td>Geobuster can&#x27;t one-shot it either; Solrock or <em>Hammer In</em> finishes</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Never Geobuster twice in a row out of habit.</strong> Two Gaia Waves kill everything one Geobuster does, and they keep the Energy.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="the-prize-tax">The Prize Tax</h3>
+					<dl>
+						<dt data-head>Pokémon</dt><dd data-head>Prizes it gives up</dd>
+						<dt>Mega Zygarde ex, Mega Audino ex</dt><dd><span>3</span></dd>
+						<dt>Cornerstone Mask Ogerpon ex</dt><dd><span>2</span></dd>
+						<dt>Binacle, Barbaracle, Lunatone, Solrock</dt><dd><span>1</span></dd>
+					</dl>
+					<p><strong>Six Prizes is two Megas.</strong> Every Mega on your Bench is half the game sitting where Boss&#x27;s Orders can reach it.</p>
+					<ul>
+						<li><strong>One Zygarde in front.</strong> The next one comes down when the first is about to go, not before.</li>
+						<li><strong>Bench Audino only on a turn it attacks.</strong> An Audino with its job done is 3 Prizes for a Boss&#x27;s Orders.</li>
+						<li><strong>The single-Prize bodies are what they should be hitting.</strong> A Barbaracle knocked out costs 1 Prize, and Tarragon brings it back.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/barbaracle.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th>Source</th><th>From</th><th>To</th><th>Costs</th></tr></thead>
+						<tbody>
+							<tr><td>Your attachment</td><td>hand</td><td>any of your Pokémon</td><td>once a turn</td></tr>
+							<tr><td><em>Stone Arms</em></td><td>hand</td><td>a Fighting Pokémon, Active or Benched</td><td>nothing; once per Barbaracle</td></tr>
+							<tr><td><em>Kaleidowaltz</em></td><td>deck, 0 to 6</td><td>any of your Pokémon</td><td>Audino&#x27;s attack</td></tr>
+							<tr><td>Fighting Gong</td><td>deck</td><td>hand</td><td>an Item</td></tr>
+							<tr><td>Tarragon</td><td>discard pile, up to 4</td><td>hand</td><td>your Supporter</td></tr>
+							<tr><td>Wally&#x27;s Compassion</td><td>a healed Mega</td><td>hand</td><td>your Supporter</td></tr>
+							<tr><td><em>Lunar Cycle</em></td><td>hand</td><td>discard pile</td><td>one Energy, for three cards</td></tr>
+						</tbody>
+					</table>
+					<p>Two Barbaracle and your attachment can spend three Energy a turn, so the hand runs dry before the board does. Gong adds one a turn, and Tarragon adds four at once.</p>
+					<p><strong>The discard pile is stock, not loss.</strong> Everything <em>Geobuster</em> and <em>Lunar Cycle</em> throw away is what Tarragon looks for next.</p>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-turn-one-going-second">1. Turn one, going second</h3>
+					<p>You can attack on your first turn going second, and the deck has two openers.</p>
+					<p><strong>With Audino in front</strong>, attach to it and use <em>Kaleidowaltz</em>. Put every Energy it finds on the Zygarde that attacks next turn.</p>
+					<p><strong>Otherwise</strong>, bench a Binacle and a Zygarde, attach to the Zygarde, and attack with whatever is in front if it helps. <em>Double Draw</em> from a Binacle and <em>Cosmic Beam</em> from a Solrock both work. Play Lillie&#x27;s while it still draws eight.</p>
+					<p>Either way, a Binacle goes down on turn one.</p>
+			</section>
+			<section>
+				<h3 id="2-turn-one-going-first">2. Turn one, going first</h3>
+					<p><strong>You can&#x27;t attack or play a Supporter, and every Item and Tool is still legal.</strong> Poke Pad and Fighting Gong take Binacle first, then a Zygarde. Attach to the Zygarde and put Core Memory on it. Turn two is the same <em>Gaia Wave</em> as going second.</p>
+			</section>
+			<section>
+				<h3 id="3-the-audino-opening">3. The Audino opening<span data-flavor><img src="./assets/sprites/audino.gif" alt="" /></span></h3>
+					<p>Audino opens 22% of the time, and 40% counting Ultra Ball. Going second, it is the fastest start the deck has.</p>
+					<ol>
+						<li><strong>Turn one:</strong> attach to Audino, since <em>Kaleidowaltz</em> costs one, and put everything it finds on a benched Zygarde. Three is the average.</li>
+						<li><strong>Turn two:</strong> retreat Audino for its one Energy, or Switch it out. Attach to the Zygarde, add a Stone Arms if Barbaracle is up, and that is four or five Energy, which is <em>Geobuster</em>.</li>
+					</ol>
+					<p><strong>Get Audino out of the Active Spot as soon as the Zygarde is loaded.</strong> It is 270 HP, weak to Fighting, and worth 3 Prizes. Later it becomes a refuel. When the deck still holds Energy and your hand doesn&#x27;t, Switch it in and <em>Kaleidowaltz</em> again.</p>
+			</section>
+			<section>
+				<h3 id="4-after-geobuster">4. After Geobuster<span data-flavor><img src="./assets/sprites/binacle.gif" alt="" /></span></h3>
+					<p><strong>Geobuster costs every Energy on the Zygarde. With two Barbaracle, you pay it back in one turn.</strong></p>
+					<p>The Zygarde that swung is empty but alive, and the discard pile holds four more Energy than it did. Choose the Supporter by the damage on it.</p>
+					<ul>
+						<li><strong>Healthy: Tarragon.</strong> Four back to your hand. Attach one, Stone Arms two, and it has three Energy for <em>Gaia Wave</em>.</li>
+						<li><strong>Damaged: Wally&#x27;s Compassion.</strong> It has nothing left to lose, so the heal is free. Stone Arms and your attachment then load it from whatever Energy is in hand.</li>
+						<li><strong>Neither in hand: Pokegear 3.0 first.</strong> With eleven Supporters it usually finds one of them.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="5-bench-discipline">5. Bench discipline</h3>
+					<p>The Bench holds five, and a working board fills it: two Barbaracle, Lunatone, Solrock, and one spare.</p>
+					<ul>
+						<li>The spare slot is a Binacle while a Barbaracle is missing, and the next Zygarde once the first is in trouble.</li>
+						<li>Audino sits on the Bench only when it has to, per <a href="#the-prize-tax">The Prize Tax</a>.</li>
+						<li>Against <em>Chaotic Pain</em> and <em>Phantom Dive</em>, bench a Binacle only when it evolves next turn. A Binacle waiting on the Bench is a free Prize.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
+					<p>Xero&#x27;s decks, from Fox&#x27;s side of the table. Several of his pages carry their own &quot;Fox&#x27;s Ground Zero&quot; sections, written from the other chair. Read them before a game; they are the plan he is bringing.</p>
+					<p><strong><a href="./dark-gang.html">Gengar Gang</a>, Xero&#x27;s league deck.</strong></p>
+					<ul>
+						<li><strong>Every Darkness Pokémon in it is weak to Fighting.</strong> <em>Gaia Wave</em> lands as 400 and one-shots Okidogi ex at 250, Gengar ex at 280, and Mega Gengar ex at 350. A Mega Gengar in Hero&#x27;s Cape is 450 and needs <em>Geobuster</em>.</li>
+						<li><strong><em>Chaotic Pain</em> kills every engine piece in one shot.</strong> It places 13 damage counters on any Pokémon, and Binacle is 80, Lunatone and Solrock are 110, and Barbaracle is exactly 130. Keep a second Barbaracle coming.</li>
+						<li><strong><em>Shadowy Concealment</em> takes a Prize off every knockout your Pokémon ex score</strong> while a Mega Gengar is in play. Barbaracle, Solrock, Lunatone, and Binacle take the full count.</li>
+						<li><strong><em>Fainting Spell</em> flips a coin at whatever knocks out a Gengar ex.</strong> Heads, the attacker is Knocked Out too. Finish a damaged Gengar ex with a Solrock or Barbaracle and the bet is 1 Prize, not 3.</li>
+						<li><strong>Both Gengars have Abilities, so neither can damage Ogerpon with an attack.</strong> <em>Chaotic Pain</em> places counters, so it still reaches Ogerpon. Okidogi ex has no Ability and hits it normally.</li>
+						<li><strong>Risky Ruins puts 2 damage counters on every Basic you bench</strong> while it is in play. Everything in this deck is a Basic except Barbaracle.</li>
+					</ul>
+					<p><strong><a href="./psychic-lanterns.html">The lantern decks</a>.</strong> Mega Chandelure ex resists Fighting by 30, so <em>Gaia Wave</em> lands as 170 and <em>Geobuster</em> as 320 on its 350. Two Gaia Waves leave it on 10, and Solrock&#x27;s <em>Cosmic Beam</em> and Ogerpon&#x27;s <em>Demolish</em> ignore Resistance to finish it. <em>Binding Flame</em> adds one <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> to your Active&#x27;s Retreat Cost, and <em>Phantom Maze</em> is 130 plus 50 for each <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>, so a Zygarde in front takes 280, or 250 after Gaia Wave. Binding Flame is an Ability, so Chandelure can&#x27;t damage Ogerpon.</p>
+			</section>
+			<section>
+				<h3 id="versus-the-card-shop">Versus the Card Shop<span data-flavor><img src="./assets/sprites/garchomp.gif" alt="" /><img src="./assets/sprites/excadrill.gif" alt="" /><img src="./assets/sprites/crustle.gif" alt="" /></span></h3>
+					<p>The Wednesday league at CardCrate draws from this field. Mega Zygarde is a fringe deck, about 0.1% of the online ladder with a 38-46% win rate since Perfect Order. Each opponent page below has the pilot&#x27;s full plan.</p>
+					<table>
+						<thead><tr><th>Deck</th><th>The problem</th><th>The answer</th></tr></thead>
+						<tbody>
+							<tr><td><a href="./dragons.html">Steve&#x27;s Dragapult ex</a></td><td><em>Phantom Dive</em> is 200 to the Active and 6 damage counters across your Bench</td><td>A Zygarde takes the 200 and lives. <em>Geobuster</em> kills its 320, and so do two Gaia Waves. Bench Binacle only when it evolves next turn.</td></tr>
+							<tr><td><a href="./metal-excadrill.html">Matt&#x27;s Mega Excadrill ex</a></td><td><em>Maximum Drilling</em> is 330 with two extra Energy, which kills a bare Zygarde</td><td>A Zygarde that used <em>Gaia Wave</em> takes 300 and lives on 10. <em>Geobuster</em> kills its 340. <em>Ear Force</em> does exactly 340 to an Excadrill holding four Energy.</td></tr>
+							<tr><td><a href="./cynthia-garchomp.html">Elliot&#x27;s Cynthia&#x27;s Garchomp ex</a></td><td><em>Draconic Buster</em> is 260, plus 30 for each Roserade and 30 for Premium Power Pro. Roserade&#x27;s <em>Leaf Step</em> is Grass, and every Fighting Pokémon here is weak to it.</td><td><em>Geobuster</em> kills a bare Garchomp at 330. Cynthia&#x27;s Power Weight makes it 400, which two Gaia Waves reach exactly. Audino is weak to Fighting and stays in the deck.</td></tr>
+							<tr><td>Crustle</td><td><em>Mysterious Rock Inn</em> prevents all damage from Pokémon ex. <em>Superb Scissors</em> is 120, doubles into Zygarde&#x27;s Grass Weakness, and ignores Gaia Wave&#x27;s shield.</td><td>Barbaracle&#x27;s <em>Hammer In</em> at 80 and Solrock&#x27;s <em>Cosmic Beam</em> at 70 are not ex, and together they kill its 150.</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>The list is a hypothesis, and games on Live are the data.</p>
+					<dl>
+						<dt data-head>Symptom</dt><dd data-head>Fix</dd>
+						<dt>Barbaracle keeps arriving late</dt><dd><span>4th Barbaracle over a Pokegear 3.0</span></dd>
+						<dt>Audino rarely opens</dt><dd><span>Mega Signal over a Pokegear 3.0; it finds Audino or a Zygarde</span></dd>
+						<dt>Hands run out of Energy for Stone Arms</dt><dd><span>15th Basic Fighting Energy over a Pokegear 3.0</span></dd>
+						<dt><em>Chaotic Pain</em> or <em>Phantom Dive</em> keeps killing the Bench</dt><dd><span>Battle Cage over a Pokegear 3.0</span></dd>
+						<dt><em>Kaleidowaltz</em> finds nothing late because the deck is out of Energy</dt><dd><span>Energy Recycler over a Pokegear 3.0</span></dd>
+						<dt>Home games against Gengar Gang keep going long</dt><dd><span>Hero&#x27;s Cape over Unfair Stamp</span></dd>
+						<dt>Audino keeps getting Boss&#x27;d for 3 Prizes</dt><dd><span>cut to one Audino and add back one Acerola&#x27;s Mischief</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="alternatives">Alternatives<span data-flavor><img src="./assets/sprites/audino.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th>Card</th><th>Swaps for</th><th>Play it when</th></tr></thead>
+						<tbody>
+							<tr><td>Acerola&#x27;s Mischief (Mega Evolution 113), 2</td><td>the 2 Mega Audino ex</td><td>you want the published list as it was. It works only once your opponent has 2 or fewer Prizes left, and for a turn one of your Pokémon takes no damage or effects from their Pokémon ex.</td></tr>
+							<tr><td>Cinderace (Mega Evolution 028), with a Mega Lucario ex line</td><td>Binacle, Barbaracle, Lunatone, and Solrock</td><td>not for now. It was this page&#x27;s first build. <em>Turbo Flare</em> puts three Energy on the Bench on turn one, but only going second, and its refuel after Geobuster was Mega Lucario ex, which Fox doesn&#x27;t like.</td></tr>
+							<tr><td>Hero&#x27;s Cape (ACE SPEC)</td><td>Unfair Stamp</td><td>home nights. A Zygarde in the Cape has 410 HP, and after <em>Gaia Wave</em> the next hit has to deal 440.</td></tr>
+							<tr><td>Battle Cage</td><td>a Pokegear 3.0</td><td><em>Chaotic Pain</em> or <em>Phantom Dive</em> keeps killing the Bench. It stops damage counters that attacks and Abilities place on Benched Pokémon, on both sides. Xero&#x27;s Risky Ruins replaces it.</td></tr>
+							<tr><td>Mega Signal</td><td>a Pokegear 3.0</td><td>Audino should open more. It searches out any Mega Evolution Pokémon ex.</td></tr>
+							<tr><td>Energy Recycler</td><td>a Pokegear 3.0</td><td>the deck runs out of Energy for Gong and <em>Kaleidowaltz</em>. It shuffles 5 Basic Energy from the discard pile back into the deck.</td></tr>
+							<tr><td>Bloodmoon Ursaluna (Shrouded Fable 025)</td><td>the Ogerpon</td><td>Crustle shows up. It is not an ex. <em>Battle-Hardened</em> attaches up to 2 Basic Fighting Energy from your hand when you bench it, and <em>Mad Bite</em> is 100 plus 30 for each damage counter on their Active.</td></tr>
+							<tr><td>Mega Lucario ex</td><td>never</td><td>Fox&#x27;s call.</td></tr>
+						</tbody>
+					</table>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>
