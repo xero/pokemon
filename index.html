@@ -789,6 +789,16 @@
 			   the centre, opening a gap the real tables do not have. */
 			margin-block: 30px 25px;
 
+			/* a prose table's left column can be a whole sentence, and
+			   max-content would lay it out on one line, wider than the page,
+			   squeezing the answer column to nothing. fit-content keeps a
+			   short label on one line and wraps a long one at half the width.
+			   behind the media query so the phone layout's single column
+			   below still wins. */
+			@media (width >= 34em) {
+				grid-template-columns: fit-content(50%) minmax(0, 70ch);
+			}
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
@@ -1216,7 +1226,7 @@
 				<section>
 					<h2><a href="./collection.html">Pokédex</a></h2>
 					<p>A searchable collection of our combined binders. Every card, stat, and ability, and whether it&#x27;s legal for tournament play.</p>
-					<p><small><em>168 unique cards</em></small></p>
+					<p><small><em>177 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index" data-featured>
@@ -1224,7 +1234,7 @@
 				<section>
 					<h2><a href="./wishlist.html">Pull List</a></h2>
 					<p>Every card we still have to buy, the decks that want it, and how many copies to pull. A card lands here when it is marked as not owned.</p>
-					<p><small><em>38 unique cards</em></small></p>
+					<p><small><em>39 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index" data-featured>
@@ -1254,6 +1264,14 @@
 			</article>
 			<h2>Other Decks</h2>
 			<h3>Gengar and the Dark Box</h3>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/blissey.gif" alt="" /><img src="./assets/sprites/gengar.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./dark-lucky.html">Lucky Haunt</a></h4>
+					<p>The Gengar Gang with a Blissey ex on the Bench. Happy Switch walks Surge&#x27;s Energy onto whatever attacks and loops Void Gale back to the Mega, and Neo Upper Energy pays a whole Chaotic Pain with one card.</p>
+					<p><small><em>25 unique cards</em></small></p>
+				</section>
+			</article>
 			<article class="index">
 				<aside data-sprite><img src="./assets/sprites/gengar-smile.gif" alt="" /><img src="./assets/sprites/weezing.gif" alt="" /></aside>
 				<section>
@@ -1341,6 +1359,24 @@
 				<section>
 					<h4><a href="./phantom-ferry.html">Phantom Ferry</a></h4>
 					<p>A card-shop 60, built entirely from the box. Mega Gengar ex carries the Energy, Mega Chandelure ex collects the Prizes, and Okidogi ex holds the line against the Wednesday field.</p>
+					<p><small><em>23 unique cards</em></small></p>
+				</section>
+			</article>
+			<h3>Dragons</h3>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/giratina-origin.gif" alt="" /><img src="./assets/sprites/okidogi.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./dragon-dogs.html">Dragon Dogs</a></h4>
+					<p>The Dragapult ex list Xero plays on TCG Live. Phantom Dive puts sixty counters on the Mega it means to take next, and a Poisoned Okidogi ex under a Binding Mochi finishes it for 300.</p>
+					<p><small><em>22 unique cards</em></small></p>
+				</section>
+			</article>
+			<h3>Grass</h3>
+			<article class="index">
+				<aside data-sprite><img src="./assets/sprites/meganium.gif" alt="" /><img src="./assets/sprites/venusaur-mega.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./overgrowth.html">Overgrowth</a></h4>
+					<p>An online 60 for TCG Live. Meganium makes every Grass Energy count twice, so Teal Mask Ogerpon ex hits 330 off five cards, and Mega Venusaur ex moves the whole board&#x27;s Energy onto whichever Ogerpon is in front.</p>
 					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>

@@ -789,6 +789,16 @@
 			   the centre, opening a gap the real tables do not have. */
 			margin-block: 30px 25px;
 
+			/* a prose table's left column can be a whole sentence, and
+			   max-content would lay it out on one line, wider than the page,
+			   squeezing the answer column to nothing. fit-content keeps a
+			   short label on one line and wraps a long one at half the width.
+			   behind the media query so the phone layout's single column
+			   below still wins. */
+			@media (width >= 34em) {
+				grid-template-columns: fit-content(50%) minmax(0, 70ch);
+			}
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
@@ -1207,7 +1217,7 @@
 		<header>
 			<div>
 				<h1><img src="./assets/pokeball.png" alt="" />Pull List <img data-mascot src="./assets/sprites/deck.gif" alt="" /></h1>
-				<p>38 cards to pull, 103 copies in all.</p>
+				<p>39 cards to pull, 106 copies in all.</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1222,6 +1232,7 @@
 						<li data-for="barbaracle"><a href="#barbaracle">Barbaracle</a> <em>ME03: Perfect Order</em> <em>buy 3</em></li>
 						<li data-for="beldum"><a href="#beldum">Beldum</a> <em>ME04: Chaos Rising</em> <em>buy 4</em></li>
 						<li data-for="binacle"><a href="#binacle">Binacle</a> <em>ME03: Perfect Order</em> <em>buy 3</em></li>
+						<li data-for="blissey-ex"><a href="#blissey-ex">Blissey ex</a> <em>SV06: Twilight Masquerade</em> <em>buy 2</em></li>
 						<li data-for="budew"><a href="#budew">Budew</a> <em>ME: Ascended Heroes</em> <em>buy 1</em></li>
 						<li data-letter><b>C</b></li>
 						<li data-for="core-memory"><a href="#core-memory">Core Memory</a> <em>ME03: Perfect Order</em> <em>buy 2</em></li>
@@ -1269,7 +1280,7 @@
 						<li data-for="tarragon"><a href="#tarragon">Tarragon</a> <em>ME03: Perfect Order</em> <em>buy 3</em></li>
 						<li data-for="team-rockets-petrel"><a href="#team-rockets-petrel">Team Rocket&#x27;s Petrel</a> <em>SV10: Destined Rivals</em> <em>buy 5</em></li>
 						<li data-letter><b>U</b></li>
-						<li data-for="unfair-stamp"><a href="#unfair-stamp">Unfair Stamp</a> <em>SV06: Twilight Masquerade</em> <em>buy 1</em></li>
+						<li data-for="unfair-stamp"><a href="#unfair-stamp">Unfair Stamp</a> <em>SV06: Twilight Masquerade</em> <em>buy 2</em></li>
 					</ul>
 				</details>
 				<div data-active hidden></div>
@@ -1283,7 +1294,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>2</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./dragons.html">Crystal Dragons <small>&times;2</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./dragon-dogs.html">Dragon Dogs <small>&times;2</small></a>, <a href="./dragons.html">Crystal Dragons <small>&times;2</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/stellar-crown.png" /><img src="./assets/sets/stellar-crown.png" alt="SV07: Stellar Crown" /></picture></span><span>SV07: Stellar Crown <small>131/142</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Stadium</span></dd>
@@ -1359,6 +1370,28 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Blissey ex" data-set="SV06: Twilight Masquerade" data-rarity="Double Rare" data-type="Colorless" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="blissey-ex">Blissey ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture> <span data-count>x2</span></h2>
+				<aside>
+					<a data-art href="./assets/550178_blissey-ex-134-167.jpg" target="_blank" rel="noopener"><img src="./assets/550178_blissey-ex-134-167.jpg" alt="Blissey ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Wanted by</dt><dd><span><a href="./dark-lucky.html">Lucky Haunt <small>&times;2</small></a></span></dd>
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>134/167</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>300</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Happy Switch - Once during your turn, you may move a Basic Energy from 1 of your Pokémon to another of your Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Return (180) - You may draw cards until you have 6 cards in your hand.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>4</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Budew" data-set="ME: Ascended Heroes" data-rarity="Common" data-type="Grass" data-stage="Basic" data-tournament="legal">
 				<h2 id="budew">Budew <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture> <span data-count>x1</span></h2>
 				<aside>
@@ -1367,7 +1400,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>1</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./dragons.html">Crystal Dragons <small>&times;1</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./dragons.html">Crystal Dragons <small>&times;1</small></a>, <a href="./overgrowth.html">Overgrowth <small>&times;1</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>016/217</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
@@ -1845,7 +1878,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>1</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;1</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;1</small></a>, <a href="./dark-lucky.html">Lucky Haunt <small>&times;1</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>162/162</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Energy - Special Rainbow</span></dd>
@@ -1896,7 +1929,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>8</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./blue-flame.html">Fox&#x27;s Blue Flame <small>&times;3</small></a>, <a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;3</small></a>, <a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;3</small></a>, <a href="./dark-gang.html">Xero&#x27;s Gengar Gang <small>&times;2</small></a>, <a href="./dragons.html">Crystal Dragons <small>&times;4</small></a>, <a href="./flaming-lanterns.html">Flaming Lanterns <small>&times;4</small></a>, <a href="./ground-zero.html">Ground Zero <small>&times;4</small></a>, <a href="./phantom-toll.html">Phantom Toll <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Psychic Lanterns <small>&times;3</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./blue-flame.html">Fox&#x27;s Blue Flame <small>&times;3</small></a>, <a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;3</small></a>, <a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;3</small></a>, <a href="./dark-gang.html">Xero&#x27;s Gengar Gang <small>&times;2</small></a>, <a href="./dark-lucky.html">Lucky Haunt <small>&times;2</small></a>, <a href="./dragon-dogs.html">Dragon Dogs <small>&times;3</small></a>, <a href="./dragons.html">Crystal Dragons <small>&times;4</small></a>, <a href="./flaming-lanterns.html">Flaming Lanterns <small>&times;4</small></a>, <a href="./ground-zero.html">Ground Zero <small>&times;4</small></a>, <a href="./overgrowth.html">Overgrowth <small>&times;1</small></a>, <a href="./phantom-toll.html">Phantom Toll <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Psychic Lanterns <small>&times;3</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>081/088</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
@@ -2007,7 +2040,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>5</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;2</small></a>, <a href="./dark-gang.html">Xero&#x27;s Gengar Gang <small>&times;2</small></a>, <a href="./dark-smog.html">Smog Signals <small>&times;1</small></a>, <a href="./phantom-ferry.html">Phantom Ferry <small>&times;2</small></a>, <a href="./steel-wolves.html">Steel Wolves <small>&times;3</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;2</small></a>, <a href="./dark-gang.html">Xero&#x27;s Gengar Gang <small>&times;2</small></a>, <a href="./dark-lucky.html">Lucky Haunt <small>&times;2</small></a>, <a href="./dark-smog.html">Smog Signals <small>&times;1</small></a>, <a href="./phantom-ferry.html">Phantom Ferry <small>&times;2</small></a>, <a href="./steel-wolves.html">Steel Wolves <small>&times;3</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>176/182</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>
@@ -2017,14 +2050,14 @@
 				</section>
 			</article>
 			<article data-name="Unfair Stamp" data-set="SV06: Twilight Masquerade" data-rarity="ACE SPEC Rare" data-type="Trainer - Item" data-tournament="legal">
-				<h2 id="unfair-stamp">Unfair Stamp <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x1</span></h2>
+				<h2 id="unfair-stamp">Unfair Stamp <img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /> <span data-count>x2</span></h2>
 				<aside>
 					<a data-art href="./assets/550209_unfair-stamp.jpg" target="_blank" rel="noopener"><img src="./assets/550209_unfair-stamp.jpg" alt="Unfair Stamp" /></a>
 				</aside>
 				<section>
 					<dl class="card">
-						<dt>Buy</dt><dd><strong>1</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./ground-zero.html">Ground Zero <small>&times;1</small></a></span></dd>
+						<dt>Buy</dt><dd><strong>2</strong></dd>
+						<dt>Wanted by</dt><dd><span><a href="./ground-zero.html">Ground Zero <small>&times;1</small></a>, <a href="./overgrowth.html">Overgrowth <small>&times;1</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>165/167</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>

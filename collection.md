@@ -5,12 +5,17 @@
 
 - **A**
   - [Absol](#absol) _MBG: MEGA Starter Set Mega Gengar ex_
+- **B**
+  - [Bayleef](#bayleef) _ME01: Mega Evolution_
+  - [Bulbasaur](#bulbasaur) _ME01: Mega Evolution_
 - **C**
+  - [Celebi](#celebi) _ME01: Mega Evolution_
   - [Chandelure](#chandelure) _SM - Guardians Rising_
   - [Chandelure](#chandelure-1) _SM - Lost Thunder_
   - [Chandelure](#chandelure-2) _SV06: Twilight Masquerade_
   - [Chandelure](#chandelure-3) _SV: White Flare_
   - [Chandelure](#chandelure-4) _Trick or Trade BOOster Bundle_
+  - [Chansey](#chansey) _SV06: Twilight Masquerade_
   - [Charizard](#charizard) _SWSH04: Vivid Voltage_
   - [Charmander](#charmander) _ME02: Phantasmal Flames_
   - [Charmander](#charmander-1) _Pokémon GO_
@@ -26,6 +31,7 @@
   - [Charmeleon](#charmeleon-5) _SWSH04: Vivid Voltage_
   - [Charmeleon (Delta Species)](#charmeleon-delta-species) _EX Crystal Guardians_
   - [Chi-Yu](#chi-yu) _ME05: Pitch Black_
+  - [Chikorita](#chikorita) _ME: Ascended Heroes_
   - [Clefairy](#clefairy) _ME03: Perfect Order_
   - [Comfey](#comfey) _SV07: Stellar Crown_
 - **D**
@@ -108,6 +114,7 @@
   - [Houndoom](#houndoom) _Trick or Trade BOOster Bundle 2023_
 - **I**
   - [Iron Jugulis](#iron-jugulis) _Trick or Trade BOOster Bundle 2024_
+  - [Ivysaur](#ivysaur) _ME01: Mega Evolution_
 - **K**
   - [Koffing](#koffing) _SV09: Journey Together_
   - [Koffing](#koffing-1) _SWSH06: Chilling Reign_
@@ -129,7 +136,9 @@
   - [Mega Charizard X ex](#mega-charizard-x-ex) _ME02: Phantasmal Flames_
   - [Mega Gengar ex](#mega-gengar-ex) _MBG: MEGA Starter Set Mega Gengar ex_
   - [Mega Gengar ex](#mega-gengar-ex-1) _ME02: Phantasmal Flames_
+  - [Mega Venusaur ex](#mega-venusaur-ex) _ME01: Mega Evolution_
   - [Mega Zygarde ex](#mega-zygarde-ex) _ME03: Perfect Order_
+  - [Meganium](#meganium) _ME01: Mega Evolution_
   - [Meowth ex](#meowth-ex) _ME03: Perfect Order_
   - [Mew V](#mew-v) _SWSH08: Fusion Strike_
   - [Munkidori](#munkidori) _SV06: Twilight Masquerade_
@@ -163,6 +172,7 @@
   - [Sudowoodo](#sudowoodo) _SWSH01: Sword & Shield Base Set_
 - **T**
   - [Tatsugiri](#tatsugiri) _MBG: MEGA Starter Set Mega Gengar ex_
+  - [Teal Mask Ogerpon ex](#teal-mask-ogerpon-ex) _SV06: Twilight Masquerade_
   - [Team Rocket's Articuno](#team-rockets-articuno) _SV10: Destined Rivals_
   - [Team Rocket's Crobat ex](#team-rockets-crobat-ex) _SV10: Destined Rivals_
   - [Team Rocket's Golbat](#team-rockets-golbat) _SV10: Destined Rivals_
@@ -211,6 +221,61 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> only English cards allowed</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="bayleef">Bayleef <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/654348_bayleef.jpg"><img src="./assets/654348_bayleef.jpg" width="350" alt="Bayleef"></a></th>
+  </tr>
+  <tr><td><b>ME01: Mega Evolution</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png"><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" height="22" align="top"></picture> 009/132</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 110</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Push Down (50) - Switch out your opponent&#x27;s Active Pokémon to the Bench. (Your opponent chooses the new Active Pokémon.)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="bulbasaur">Bulbasaur <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/654340_bulbasaur-001-132.jpg"><img src="./assets/654340_bulbasaur-001-132.jpg" width="350" alt="Bulbasaur"></a></th>
+  </tr>
+  <tr><td><b>ME01: Mega Evolution</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png"><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" height="22" align="top"></picture> 001/132</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Bind Down (10) - During your opponent&#x27;s next turn, the Defending Pokémon can&#x27;t retreat.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="celebi">Celebi <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/654351_celebi.jpg"><img src="./assets/654351_celebi.jpg" width="350" alt="Celebi"></a></th>
+  </tr>
+  <tr><td><b>ME01: Mega Evolution</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png"><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" height="22" align="top"></picture> 012/132</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 80</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Traverse Time - Search your deck for up to 3 in any combination of Grass Pokémon and Stadium cards, reveal them, and put them into your hand. Then, shuffle your deck.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Solar Cutter (30)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -303,6 +368,25 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> card is too old</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="chansey">Chansey <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/550177_chansey-133-167.jpg"><img src="./assets/550177_chansey-133-167.jpg" width="350" alt="Chansey"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 133/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="18" align="top"> Colorless</td></tr>
+  <tr><td><b>HP</b>: 120</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Lucky Attachment - Attach a Basic Energy card from your hand to 1 of your Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Boundless Power (80) - during your next turn, this Pokémon can&#x27;t attack.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>
@@ -578,6 +662,25 @@
   <tr><td><b>Ability</b>: -</td></tr>
   <tr><td><b>Attack</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="16" align="top"> Whirling Envy (20+) - If this Pokémon has 2 or more damage counters on it, this attack does 90 more damage. This attack&#x27;s damage isn&#x27;t affected by Weakness.</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="chikorita">Chikorita <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="13" width="400"><a href="./assets/675820_chikorita.jpg"><img src="./assets/675820_chikorita.jpg" width="350" alt="Chikorita"></a></th>
+  </tr>
+  <tr><td><b>ME: Ascended Heroes</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png"><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" height="22" align="top"></picture> 008/217</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 70</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Growl - During your opponent&#x27;s next turn, attacks used by the Defending Pokémon do 20 less damage (before applying Weakness and Resistance).</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Seed Bomb (30)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
@@ -1981,6 +2084,24 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="ivysaur">Ivysaur <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/654341_ivysaur-002-132.jpg"><img src="./assets/654341_ivysaur-002-132.jpg" width="350" alt="Ivysaur"></a></th>
+  </tr>
+  <tr><td><b>ME01: Mega Evolution</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png"><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" height="22" align="top"></picture> 002/132</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="16" align="top"></picture> Common</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 110</td></tr>
+  <tr><td><b>Stage</b>: Stage 1</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Razor Leaf (60)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 3</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="koffing">Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png"><img src="./assets/rarities/common.png" alt="Common" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/623518_koffing.jpg"><img src="./assets/623518_koffing.jpg" width="350" alt="Koffing"></a></th>
@@ -2310,6 +2431,24 @@
 </table>
 
 <table>
+  <tr><td colspan="2"><h3 id="mega-venusaur-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" height="20" align="top"> Mega Venusaur ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/654342_mega-venusaur-ex-003-132.jpg"><img src="./assets/654342_mega-venusaur-ex-003-132.jpg" width="350" alt="Mega Venusaur ex"></a></th>
+  </tr>
+  <tr><td><b>ME01: Mega Evolution</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png"><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" height="22" align="top"></picture> 003/132</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 380</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Solar Transfer - As often as you like during your turn, you may use this Ability. Move a Basic Grass Energy from 1 of your Pokémon to another of your Pokémon.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Jungle Dump (240) - Heal 30 damage from this Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 4</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
   <tr><td colspan="2"><h3 id="mega-zygarde-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" height="20" align="top"> Mega Zygarde ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
   <tr>
     <th rowspan="13" width="400"><a href="./assets/684336_mega-zygarde-ex-047-088.jpg"><img src="./assets/684336_mega-zygarde-ex-047-088.jpg" width="350" alt="Mega Zygarde ex"></a></th>
@@ -2323,6 +2462,24 @@
   <tr><td><b>Attack</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"> Gaia Wave (200) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</td></tr>
   <tr><td><b>Attack</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"><img src="./assets/types/fighting.png" alt="Fighting" height="16" align="top"> Nullifying Zero - For each of your opponent&#x27;s Pokémon, flip a coin. If heads, this attack does 150 damage to that Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
   <tr><td><b>Weakness</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="meganium">Meganium <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/654349_meganium.jpg"><img src="./assets/654349_meganium.jpg" width="350" alt="Meganium"></a></th>
+  </tr>
+  <tr><td><b>ME01: Mega Evolution</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png"><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" height="22" align="top"></picture> 010/132</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png"><img src="./assets/rarities/rare.png" alt="Rare" height="16" align="top"></picture> Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 160</td></tr>
+  <tr><td><b>Stage</b>: Stage 2</td></tr>
+  <tr><td><b>Ability</b>: Wild Growth - Each Basic Grass Energy attached to all of your Pokémon provides GrassGrass Energy. The effect of Wild Growth doesn&#x27;t stack.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> Solar Beam (140)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
@@ -2837,6 +2994,24 @@
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/no.png" alt="NO" height="22" align="top"> only English cards allowed</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="teal-mask-ogerpon-ex">Teal Mask Ogerpon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/550069_teal-mask-ogerpon-ex-025-167.jpg"><img src="./assets/550069_teal-mask-ogerpon-ex-025-167.jpg" width="350" alt="Teal Mask Ogerpon ex"></a></th>
+  </tr>
+  <tr><td><b>SV06: Twilight Masquerade</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png"><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" height="22" align="top"></picture> 025/167</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png"><img src="./assets/rarities/double-rare.png" alt="Double Rare" height="16" align="top"></picture> Double Rare</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/grass.png" alt="Grass" height="18" align="top"> Grass</td></tr>
+  <tr><td><b>HP</b>: 210</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: Teal Dance - Once during your turn, you may attach a basic G Energy card from your hand to this Pokémon. If you attached Energy to a Pokémon in this way, draw a card.</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"><img src="./assets/types/grass.png" alt="Grass" height="16" align="top"> Myriad Leaf Shower (30+) - This attack does 30 more damage for each energy attached to both Active Pokémon.</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/fire.png" alt="Fire" height="18" align="top"> Fire ×2</td></tr>
+  <tr><td><b>Resistance</b>: -</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 
 <table>

@@ -14,6 +14,7 @@ tcg deck planning for me and my son
 
 ### gengar and the dark box
 
+- [lucky haunt](./dark-lucky.md), the blissey build
 - [gengar gang classic](./dark-classic.md), the non-ex build
 - [snake charmer](./dark-mega.md)
 - [curse toll](./dark-curse.md)

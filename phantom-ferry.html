@@ -789,6 +789,16 @@
 			   the centre, opening a gap the real tables do not have. */
 			margin-block: 30px 25px;
 
+			/* a prose table's left column can be a whole sentence, and
+			   max-content would lay it out on one line, wider than the page,
+			   squeezing the answer column to nothing. fit-content keeps a
+			   short label on one line and wraps a long one at half the width.
+			   behind the media query so the phone layout's single column
+			   below still wins. */
+			@media (width >= 34em) {
+				grid-template-columns: fit-content(50%) minmax(0, 70ch);
+			}
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;

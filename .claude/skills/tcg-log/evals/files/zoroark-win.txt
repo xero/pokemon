@@ -1,0 +1,382 @@
+Setup
+xer0style chose tails for the opening coin flip.
+Jamalcalde won the coin toss.
+Jamalcalde decided to go second.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • Energy Recycler, Gastly, Toxel, Basic Darkness Energy, Toxel, Basic Darkness Energy, Gastly
+Jamalcalde drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style played Toxel to the Active Spot.
+xer0style played Gastly to the Bench.
+xer0style played Toxel to the Bench.
+xer0style played Gastly to the Bench.
+Jamalcalde played N's Zorua to the Active Spot.
+
+xer0style's Turn
+xer0style drew Okidogi ex.
+xer0style played Okidogi ex to the Bench.
+xer0style attached Basic Darkness Energy to Toxel in the Active Spot.
+xer0style ended their turn.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played Buddy-Buddy Poffin.
+- Jamalcalde drew 2 cards and played them to the Bench.
+   • N's Zorua, N's Zorua
+- Jamalcalde shuffled their deck.
+Jamalcalde ended their turn.
+
+xer0style's Turn
+xer0style drew Neo Upper Energy.
+xer0style retreated Toxel to the Bench.
+- Basic Darkness Energy was discarded from xer0style's Toxel.
+xer0style's Okidogi ex is now in the Active Spot.
+xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+xer0style's Okidogi ex used Poisonous Musculature.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is now Poisoned.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde evolved N's Zorua to N's Zoroark ex on the Bench.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Yveltal.
+- Jamalcalde drew 2 cards.
+Jamalcalde attached Punk Helmet to N's Zorua in the Active Spot.
+Jamalcalde played Lillie's Determination.
+- Jamalcalde shuffled 5 cards into their deck.
+- Jamalcalde drew 8 cards.
+Jamalcalde ended their turn.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Grimsley's Move.
+xer0style played Grimsley's Move.
+- xer0style drew Toxtricity and played it to the Bench.
+- xer0style shuffled their cards.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Toxtricity on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Toxtricity.
+xer0style's Okidogi ex used Chain-Crazed on Jamalcalde’s N's Zorua for 260 damage.
+- Damage breakdown:
+   • Base damage: 130 damage
+   • Has Special Condition: 130 damage
+   • Total damage: 260 damage
+
+Jamalcalde's N's Zorua was Knocked Out!
+Punk Helmet was discarded from Jamalcalde's N's Zorua.
+Punk Helmet was activated.
+- xer0style put 4 damage counters on Jamalcalde's Okidogi ex.
+xer0style took a Prize card.
+Gengar ex was added to xer0style's hand.
+Jamalcalde's N's Zorua is now in the Active Spot.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde attached Punk Helmet to N's Zorua in the Active Spot.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Tool Scrapper.
+- Jamalcalde drew 2 cards.
+Jamalcalde ended their turn.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Energy Recycler.
+xer0style attached Neo Upper Energy to Gastly on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Toxtricity on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Toxtricity.
+xer0style's Okidogi ex used Chain-Crazed on Jamalcalde’s N's Zorua for 260 damage.
+- Damage breakdown:
+   • Base damage: 130 damage
+   • Has Special Condition: 130 damage
+   • Total damage: 260 damage
+
+Jamalcalde's N's Zorua was Knocked Out!
+Punk Helmet was discarded from Jamalcalde's N's Zorua.
+Punk Helmet was activated.
+- xer0style put 4 damage counters on Jamalcalde's Okidogi ex.
+xer0style took a Prize card.
+Toxel was added to xer0style's hand.
+Jamalcalde's N's Zoroark ex is now in the Active Spot.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played Pecharunt ex to the Bench.
+Jamalcalde attached Basic Darkness Energy to N's Zoroark ex in the Active Spot.
+Jamalcalde played Boss's Orders.
+- xer0style's Gastly was switched with xer0style's Okidogi ex to become the Active Pokémon.
+xer0style's Gastly is now in the Active Spot.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Lillie's Determination.
+- Jamalcalde drew 2 cards.
+Jamalcalde played Poké Pad.
+- Jamalcalde drew N's Reshiram.
+- Jamalcalde shuffled their deck.
+Jamalcalde ended their turn.
+
+xer0style's Turn
+xer0style drew Okidogi ex.
+xer0style ended their turn.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde attached Basic Darkness Energy to N's Zoroark ex in the Active Spot.
+Jamalcalde played N's Reshiram to the Bench.
+Jamalcalde played Boss's Orders.
+- xer0style's Okidogi ex was switched with xer0style's Gastly to become the Active Pokémon.
+xer0style's Okidogi ex is now in the Active Spot.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Energy Switch.
+- Jamalcalde drew 2 cards.
+Jamalcalde's N's Zoroark ex used Night Joker on xer0style’s Okidogi ex for 170 damage.
+- Jamalcalde chose Virtuous Flame
+xer0style's Okidogi ex was Knocked Out!
+- 3 cards were discarded from xer0style's Okidogi ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+Jamalcalde took 2 Prize cards.
+A card was added to Jamalcalde's hand.
+A card was added to Jamalcalde's hand.
+xer0style's Toxel is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Lillie's Determination.
+xer0style played Lillie's Determination.
+- xer0style shuffled 5 cards into their deck.
+   • Energy Recycler, Gengar ex, Energy Recycler, Toxel, Okidogi ex
+- xer0style drew 6 cards.
+   • Toxel, Risky Ruins, Dawn, Grimsley's Move, Lillie's Determination, Haunter
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Toxel on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Toxel.
+xer0style played Risky Ruins to the Stadium spot.
+xer0style ended their turn.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played Team Rocket's Watchtower to the Stadium spot.
+- xer0style discarded Risky Ruins.
+Jamalcalde played Night Stretcher.
+- Jamalcalde moved Jamalcalde's N's Zorua to their hand.
+Jamalcalde played N's Zorua to the Bench.
+Jamalcalde attached Basic Darkness Energy to N's Zorua on the Bench.
+Jamalcalde played Cyrano.
+- Jamalcalde drew 3 cards.
+   • N's Zoroark ex, Meowth ex, N's Zoroark ex
+- Jamalcalde shuffled their deck.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Meowth ex.
+- Jamalcalde drew 2 cards.
+Jamalcalde's N's Zoroark ex used Night Joker on xer0style’s Toxel for 170 damage.
+- Jamalcalde chose Virtuous Flame
+xer0style's Toxel was Knocked Out!
+Jamalcalde took a Prize card.
+A card was added to Jamalcalde's hand.
+xer0style's Haunter is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Energy Recycler.
+xer0style played Dawn.
+- xer0style drew 3 cards.
+   • Gastly, Haunter, Gengar ex
+- xer0style shuffled their deck.
+xer0style evolved Haunter to Gengar ex in the Active Spot.
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style played Energy Recycler.
+- xer0style shuffled 4 cards into their deck.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Toxtricity on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Toxtricity.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's N's Reshiram.
+Jamalcalde's N's Reshiram was Knocked Out!
+xer0style took a Prize card.
+Mega Gengar ex was added to xer0style's hand.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played N's Zekrom to the Bench.
+Jamalcalde played Black Belt's Training.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Lillie's Determination.
+- Jamalcalde drew 2 cards.
+Jamalcalde evolved N's Zorua to N's Zoroark ex on the Bench.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Ultra Ball.
+- Jamalcalde drew 2 cards.
+Jamalcalde played Munkidori to the Bench.
+Jamalcalde attached Basic Darkness Energy to Munkidori on the Bench.
+Jamalcalde's N's Zoroark ex used Night Joker on xer0style’s Gengar ex for 290 damage.
+- Damage breakdown:
+   • Base damage: 250 damage
+   • (Supporter) Black Belt's Training: 40 damage
+   • Total damage: 290 damage
+
+- Jamalcalde chose Rampaging Thunder
+xer0style's Gengar ex was Knocked Out!
+- 3 cards were discarded from xer0style's Gengar ex.
+   • Neo Upper Energy, Haunter, Gastly
+Jamalcalde's N's Zoroark ex was Knocked Out!
+- 3 cards were discarded from Jamalcalde's N's Zoroark ex.
+   • Basic Darkness Energy, Basic Darkness Energy, N's Zorua
+xer0style's Gengar ex used Fainting Spell.
+- xer0style flipped a coin and it landed on heads.
+xer0style took 2 Prize cards.
+Rare Candy was added to xer0style's hand.
+Rare Candy was added to xer0style's hand.
+Jamalcalde took 2 Prize cards.
+A card was added to Jamalcalde's hand.
+A card was added to Jamalcalde's hand.
+xer0style's Toxtricity is now in the Active Spot.
+Jamalcalde's N's Zoroark ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Team Rocket's Petrel.
+xer0style evolved Haunter to Mega Gengar ex on the Bench.
+xer0style played Team Rocket's Petrel.
+- xer0style drew Boss's Orders.
+- xer0style shuffled their deck.
+xer0style's Toxtricity used Gentle Slap on Jamalcalde’s N's Zoroark ex for 100 damage.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played Ultra Ball.
+- Jamalcalde discarded 2 cards.
+   • Buddy-Buddy Poffin, Buddy-Buddy Poffin
+- Jamalcalde drew N's Zekrom.
+- Jamalcalde shuffled their deck.
+Jamalcalde's Munkidori used Adrena-Brain.
+- Jamalcalde moved 3 damage counters from Jamalcalde's N's Zoroark ex to Jamalcalde's Toxtricity.
+Jamalcalde played N's Zekrom to the Bench.
+Jamalcalde attached Basic Darkness Energy to N's Zoroark ex in the Active Spot.
+Jamalcalde played Poké Pad.
+- Jamalcalde drew N's Zorua.
+- Jamalcalde shuffled their deck.
+Jamalcalde's N's Zoroark ex used Night Joker on xer0style’s Toxtricity for 250 damage.
+- Jamalcalde chose Rampaging Thunder
+xer0style's Toxtricity was Knocked Out!
+- 3 cards were discarded from xer0style's Toxtricity.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+xer0style's Toxel is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Toxel.
+xer0style played Boss's Orders.
+- Jamalcalde's N's Zekrom was switched with Jamalcalde's N's Zoroark ex to become the Active Pokémon.
+Jamalcalde's N's Zekrom is now in the Active Spot.
+xer0style retreated Toxel to the Bench.
+- Basic Darkness Energy was discarded from xer0style's Toxel.
+xer0style's Mega Gengar ex is now in the Active Spot.
+xer0style ended their turn.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played N's Castle to the Stadium spot.
+- Jamalcalde discarded Team Rocket's Watchtower.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded Pecharunt.
+- Jamalcalde drew 2 cards.
+Jamalcalde's Munkidori used Adrena-Brain.
+- Jamalcalde moved 3 damage counters from Jamalcalde's N's Zoroark ex to Jamalcalde's Toxel.
+Jamalcalde retreated N's Zekrom to the Bench.
+Jamalcalde's N's Zoroark ex is now in the Active Spot.
+Jamalcalde played Black Belt's Training.
+Jamalcalde's N's Zoroark ex used Night Joker on xer0style’s Mega Gengar ex for 290 damage.
+- Damage breakdown:
+   • Base damage: 250 damage
+   • (Supporter) Black Belt's Training: 40 damage
+   • Total damage: 290 damage
+
+- Jamalcalde chose Rampaging Thunder
+
+xer0style's Turn
+xer0style drew Okidogi ex.
+xer0style played Lillie's Determination.
+- xer0style shuffled 7 cards into their deck.
+   • Toxel, Grimsley's Move, Gastly, Rare Candy, Rare Candy, Toxel, Okidogi ex
+- xer0style drew 6 cards.
+   • Toxtricity, Hilda, Basic Darkness Energy, Switch, Risky Ruins, Lillie's Determination
+xer0style played Risky Ruins to the Stadium spot.
+- Jamalcalde discarded N's Castle.
+xer0style attached Basic Darkness Energy to Mega Gengar ex in the Active Spot.
+xer0style evolved Toxel to Toxtricity on the Bench.
+xer0style ended their turn.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde's Munkidori used Adrena-Brain.
+- Jamalcalde moved 3 damage counters from Jamalcalde's N's Zoroark ex to Jamalcalde's Mega Gengar ex.
+Jamalcalde played Lillie's Determination.
+- Jamalcalde shuffled 8 cards into their deck.
+- Jamalcalde drew 6 cards.
+Jamalcalde played Ultra Ball.
+- Jamalcalde discarded 2 cards.
+   • Ultra Ball, N's Zoroark ex
+- Jamalcalde drew N's Zoroark ex.
+- Jamalcalde shuffled their deck.
+Jamalcalde played Night Stretcher.
+- Jamalcalde moved Jamalcalde's N's Reshiram to their hand.
+Jamalcalde played N's Reshiram to the Bench.
+Risky Ruins was activated.
+- Jamalcalde put 2 damage counters on xer0style's N's Reshiram.
+Jamalcalde's N's Zoroark ex used Trade.
+- Jamalcalde discarded N's PP Up.
+- Jamalcalde drew 2 cards.
+Jamalcalde ended their turn.
+
+xer0style's Turn
+xer0style drew Buddy-Buddy Poffin.
+xer0style played Hilda.
+- xer0style drew 2 cards.
+   • Gengar ex, Basic Darkness Energy
+- xer0style shuffled their deck.
+xer0style attached Basic Darkness Energy to Mega Gengar ex in the Active Spot.
+xer0style's Mega Gengar ex used Void Gale on Jamalcalde’s N's Zoroark ex for 230 damage.
+- xer0style attached Basic Darkness Energy to Toxtricity on the Bench.
+
+Jamalcalde's Turn
+Jamalcalde drew a card.
+Jamalcalde played Boss's Orders.
+- xer0style's Toxtricity was switched with xer0style's Mega Gengar ex to become the Active Pokémon.
+xer0style's Toxtricity is now in the Active Spot.
+Jamalcalde's N's Zoroark ex used Night Joker on xer0style’s Toxtricity for 480 damage.
+- Damage breakdown:
+   • 24 damage counters: 480 damage
+
+- Jamalcalde chose Powerful Rage
+xer0style's Toxtricity was Knocked Out!
+- 2 cards were discarded from xer0style's Toxtricity.
+   • Basic Darkness Energy, Toxel
+xer0style's Mega Gengar ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Basic Darkness Energy.
+xer0style attached Basic Darkness Energy to Mega Gengar ex in the Active Spot.
+xer0style played Lillie's Determination.
+- xer0style shuffled 3 cards into their deck.
+   • Switch, Buddy-Buddy Poffin, Gengar ex
+- xer0style drew 6 cards.
+   • Basic Darkness Energy, Gengar ex, Poké Pad, Energy Recycler, Okidogi ex, Gastly
+Opponent conceded. xer0style wins.

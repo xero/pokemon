@@ -1,0 +1,346 @@
+Setup
+LulunaMoroll chose tails for the opening coin flip.
+xer0style won the coin toss.
+xer0style decided to go second.
+LulunaMoroll drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • Lillie's Determination, Okidogi ex, Risky Ruins, Toxtricity, Basic Darkness Energy, Toxel, Neo Upper Energy
+LulunaMoroll played Gastly to the Active Spot.
+xer0style played Okidogi ex to the Active Spot.
+xer0style played Toxel to the Bench.
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll played Buddy-Buddy Poffin.
+- LulunaMoroll drew 2 cards and played them to the Bench.
+   • Dunsparce, Toxel
+- LulunaMoroll shuffled their deck.
+LulunaMoroll played Poké Pad.
+- LulunaMoroll drew Dudunsparce.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll attached Basic Darkness Energy to Gastly in the Active Spot.
+LulunaMoroll ended their turn.
+
+xer0style's Turn
+xer0style drew Gengar ex.
+xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+xer0style played Risky Ruins to the Stadium spot.
+xer0style played Lillie's Determination.
+- xer0style shuffled 3 cards into their deck.
+   • Toxtricity, Neo Upper Energy, Gengar ex
+- xer0style drew 8 cards.
+   • Gastly, Gengar ex, Rare Candy, Toxel, Neo Upper Energy, Switch, AZ's Tranquility, Haunter
+xer0style played Gastly to the Bench.
+xer0style's Okidogi ex used Poisonous Musculature.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is now Poisoned.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll played Rare Candy.
+- LulunaMoroll evolved Gastly to Gengar ex in the Active Spot.
+LulunaMoroll evolved Dunsparce to Dudunsparce on the Bench.
+LulunaMoroll played Lillie's Determination.
+- LulunaMoroll shuffled 2 cards into their deck.
+- LulunaMoroll drew 8 cards.
+LulunaMoroll played Dudunsparce.
+- LulunaMoroll drew 3 cards.
+- LulunaMoroll shuffled 2 cards into their deck.
+   • Dudunsparce, Dunsparce
+LulunaMoroll played Jamming Tower to the Stadium spot.
+- xer0style discarded Risky Ruins.
+LulunaMoroll played Gastly to the Bench.
+LulunaMoroll attached Basic Darkness Energy to Gengar ex in the Active Spot.
+LulunaMoroll's Gengar ex used Chaotic Pain.
+- LulunaMoroll put 13 damage counters on LulunaMoroll's Toxel.
+xer0style's Toxel was Knocked Out!
+LulunaMoroll took a Prize card.
+A card was added to LulunaMoroll's hand.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Poké Pad.
+xer0style attached Neo Upper Energy to Gastly on the Bench.
+xer0style played Rare Candy.
+- xer0style evolved Gastly to Gengar ex on the Bench.
+xer0style played Toxel to the Bench.
+xer0style played Poké Pad.
+- xer0style drew Toxtricity.
+- xer0style shuffled their deck.
+xer0style's Okidogi ex used Chain-Crazed on LulunaMoroll’s Gengar ex for 260 damage.
+- Damage breakdown:
+   • Base damage: 130 damage
+   • Has Special Condition: 130 damage
+   • Total damage: 260 damage
+
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll played Dawn.
+- LulunaMoroll drew 2 cards.
+   • Pecharunt ex, Toxtricity
+- LulunaMoroll shuffled their deck.
+LulunaMoroll evolved Toxel to Toxtricity on the Bench.
+LulunaMoroll's Toxtricity used Sinister Surge.
+- LulunaMoroll attached Basic Darkness Energy to Gastly on the Bench.
+- LulunaMoroll shuffled their deck.
+- LulunaMoroll put 2 damage counters on LulunaMoroll's Gastly.
+LulunaMoroll attached Basic Darkness Energy to Gastly on the Bench.
+LulunaMoroll played Rare Candy.
+- LulunaMoroll evolved Gastly to Mega Gengar ex on the Bench.
+LulunaMoroll played Pecharunt ex to the Bench.
+LulunaMoroll's Pecharunt ex used Subjugating Chains.
+- LulunaMoroll's Mega Gengar ex was switched with LulunaMoroll's Gengar ex to become the Active Pokémon.
+- LulunaMoroll's Mega Gengar ex is now Poisoned.
+LulunaMoroll's Mega Gengar ex is now in the Active Spot.
+LulunaMoroll's Mega Gengar ex used Void Gale on xer0style’s Okidogi ex for 230 damage.
+- LulunaMoroll attached Basic Darkness Energy to Pecharunt ex on the Bench.
+xer0style's Okidogi ex was Knocked Out!
+- 3 cards were discarded from xer0style's Okidogi ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+LulunaMoroll took 2 Prize cards.
+A card was added to LulunaMoroll's hand.
+A card was added to LulunaMoroll's hand.
+xer0style's Gengar ex is now in the Active Spot.
+
+Pokémon Checkup
+1 damage counter was placed on LulunaMoroll's Mega Gengar ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Gastly.
+xer0style played Gastly to the Bench.
+xer0style evolved Toxel to Toxtricity on the Bench.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Gengar ex.
+LulunaMoroll's Gengar ex was Knocked Out!
+- 3 cards were discarded from LulunaMoroll's Gengar ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Gastly
+xer0style took 2 Prize cards.
+Risky Ruins was added to xer0style's hand.
+Rare Candy was added to xer0style's hand.
+
+Pokémon Checkup
+1 damage counter was placed on LulunaMoroll's Mega Gengar ex for the Special Condition Poisoned.
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll played Fezandipiti ex to the Bench.
+LulunaMoroll's Fezandipiti ex used Flip the Script.
+- LulunaMoroll drew 3 cards.
+LulunaMoroll played Dawn.
+- LulunaMoroll drew 2 cards.
+   • Gastly, Dudunsparce
+- LulunaMoroll shuffled their deck.
+LulunaMoroll attached Basic Darkness Energy to Mega Gengar ex in the Active Spot.
+LulunaMoroll's Toxtricity used Sinister Surge.
+- LulunaMoroll attached Basic Darkness Energy to Pecharunt ex on the Bench.
+- LulunaMoroll shuffled their deck.
+- LulunaMoroll put 2 damage counters on LulunaMoroll's Pecharunt ex.
+LulunaMoroll's Mega Gengar ex used Void Gale on xer0style’s Gengar ex for 230 damage.
+- LulunaMoroll attached Basic Darkness Energy to Fezandipiti ex on the Bench.
+
+Pokémon Checkup
+1 damage counter was placed on LulunaMoroll's Mega Gengar ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Dawn.
+xer0style played Dawn.
+- xer0style drew 3 cards.
+   • Chansey, Blissey ex, Mega Gengar ex
+- xer0style shuffled their deck.
+xer0style played Rare Candy.
+- xer0style evolved Gastly to Mega Gengar ex on the Bench.
+xer0style played Chansey to the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Toxtricity on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Toxtricity.
+xer0style played Risky Ruins to the Stadium spot.
+- LulunaMoroll discarded Jamming Tower.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Pecharunt ex.
+
+Pokémon Checkup
+1 damage counter was placed on LulunaMoroll's Mega Gengar ex for the Special Condition Poisoned.
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll played Gastly to the Bench.
+LulunaMoroll played Poké Pad.
+- LulunaMoroll drew Dunsparce.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll played Dunsparce to the Bench.
+Risky Ruins was activated.
+- LulunaMoroll put 2 damage counters on xer0style's Dunsparce.
+LulunaMoroll's Pecharunt ex used Subjugating Chains.
+- LulunaMoroll's Fezandipiti ex was switched with LulunaMoroll's Mega Gengar ex to become the Active Pokémon.
+- LulunaMoroll's Fezandipiti ex is now Poisoned.
+LulunaMoroll's Fezandipiti ex is now in the Active Spot.
+LulunaMoroll retreated Fezandipiti ex to the Bench.
+- Basic Darkness Energy was discarded from LulunaMoroll's Fezandipiti ex.
+LulunaMoroll's Pecharunt ex is now in the Active Spot.
+LulunaMoroll played Dawn.
+- LulunaMoroll drew 2 cards.
+   • Dunsparce, Dudunsparce
+- LulunaMoroll shuffled their deck.
+LulunaMoroll's Pecharunt ex used Irritated Outburst on xer0style’s Gengar ex for 120 damage.
+- Damage breakdown:
+   • 2 Prize cards: 120 damage
+
+xer0style's Gengar ex was Knocked Out!
+- 2 cards were discarded from xer0style's Gengar ex.
+   • Neo Upper Energy, Gastly
+xer0style's Gengar ex used Fainting Spell.
+- xer0style flipped a coin and it landed on tails.
+LulunaMoroll took a Prize card.
+A card was added to LulunaMoroll's hand.
+xer0style's Toxtricity is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Energy Recycler.
+xer0style played Energy Recycler.
+- xer0style shuffled 3 cards into their deck.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+xer0style evolved Chansey to Blissey ex on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Mega Gengar ex on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Mega Gengar ex.
+xer0style's Blissey ex used Happy Switch.
+- xer0style attached Basic Darkness Energy to Mega Gengar ex on the Bench.
+xer0style played Switch.
+- xer0style's Mega Gengar ex was switched with xer0style's Toxtricity to become the Active Pokémon.
+xer0style's Mega Gengar ex is now in the Active Spot.
+xer0style's Mega Gengar ex used Void Gale on LulunaMoroll’s Pecharunt ex for 230 damage.
+- xer0style attached Basic Darkness Energy to Blissey ex on the Bench.
+LulunaMoroll's Pecharunt ex was Knocked Out!
+- 2 cards were discarded from LulunaMoroll's Pecharunt ex.
+   • Basic Darkness Energy, Basic Darkness Energy
+xer0style took a Prize card.
+Blissey ex was added to xer0style's hand.
+LulunaMoroll's Dunsparce is now in the Active Spot.
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll played Buddy-Buddy Poffin.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll's Toxtricity used Sinister Surge.
+- LulunaMoroll attached Basic Darkness Energy to Gastly on the Bench.
+- LulunaMoroll shuffled their deck.
+- LulunaMoroll put 2 damage counters on LulunaMoroll's Gastly.
+LulunaMoroll evolved Dunsparce to Dudunsparce in the Active Spot.
+LulunaMoroll played Dudunsparce.
+- LulunaMoroll drew 3 cards.
+- LulunaMoroll shuffled 2 cards into their deck.
+   • Dudunsparce, Dunsparce
+LulunaMoroll's Gastly is now in the Active Spot.
+LulunaMoroll's Fezandipiti ex used Flip the Script.
+- LulunaMoroll drew 3 cards.
+LulunaMoroll played Rare Candy.
+- LulunaMoroll evolved Gastly to Gengar ex in the Active Spot.
+LulunaMoroll played Poké Pad.
+- LulunaMoroll drew Dunsparce.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll played Ultra Ball.
+- LulunaMoroll discarded 2 cards.
+   • Lillie's Determination, Haunter
+- LulunaMoroll drew Munkidori.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll played Munkidori to the Bench.
+Risky Ruins was activated.
+- LulunaMoroll put 2 damage counters on xer0style's Munkidori.
+LulunaMoroll played Janine's Secret Art.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll attached Basic Darkness Energy to Gengar ex in the Active Spot.
+LulunaMoroll played Dunsparce to the Bench.
+Risky Ruins was activated.
+- LulunaMoroll put 2 damage counters on xer0style's Dunsparce.
+LulunaMoroll played Energy Recycler.
+- LulunaMoroll shuffled 5 cards into their deck.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+LulunaMoroll's Gengar ex used Chaotic Pain.
+- LulunaMoroll put 13 damage counters on LulunaMoroll's Toxtricity.
+xer0style's Toxtricity was Knocked Out!
+Toxel was discarded from xer0style's Toxtricity.
+LulunaMoroll took a Prize card.
+A card was added to LulunaMoroll's hand.
+
+xer0style's Turn
+xer0style drew Basic Darkness Energy.
+xer0style played AZ's Tranquility.
+- xer0style's Blissey ex was switched with xer0style's Mega Gengar ex to become the Active Pokémon.
+- xer0style's Mega Gengar ex healed 80 damage.
+xer0style's Blissey ex is now in the Active Spot.
+xer0style attached Basic Darkness Energy to Blissey ex in the Active Spot.
+xer0style's Blissey ex used Happy Switch.
+- xer0style attached Basic Darkness Energy to Blissey ex in the Active Spot.
+xer0style's Blissey ex used Return on LulunaMoroll’s Gengar ex for 180 damage.
+- xer0style drew 4 cards.
+   • Basic Darkness Energy, Team Rocket's Petrel, Basic Darkness Energy, Basic Darkness Energy
+
+LulunaMoroll's Turn
+LulunaMoroll drew a card.
+LulunaMoroll attached Basic Darkness Energy to Munkidori on the Bench.
+LulunaMoroll's Munkidori used Adrena-Brain.
+- LulunaMoroll moved 3 damage counters from LulunaMoroll's Mega Gengar ex to LulunaMoroll's Blissey ex.
+LulunaMoroll played Special Red Card.
+- xer0style shuffled their hand.
+- xer0style put 6 cards on the bottom of their deck.
+   • Basic Darkness Energy, Team Rocket's Petrel, Blissey ex, Basic Darkness Energy, Basic Darkness Energy, Haunter
+- xer0style drew 3 cards.
+   • Hilda, Gengar ex, Okidogi ex
+LulunaMoroll played Grand Tree to the Stadium spot.
+- xer0style discarded Risky Ruins.
+LulunaMoroll played Grand Tree.
+- LulunaMoroll evolved Dunsparce to Dudunsparce on the Bench.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll's Toxtricity used Sinister Surge.
+- LulunaMoroll attached Basic Darkness Energy to Mega Gengar ex on the Bench.
+- LulunaMoroll shuffled their deck.
+- LulunaMoroll put 2 damage counters on LulunaMoroll's Mega Gengar ex.
+LulunaMoroll played Dudunsparce.
+- LulunaMoroll drew 3 cards.
+- LulunaMoroll shuffled 2 cards into their deck.
+   • Dudunsparce, Dunsparce
+LulunaMoroll played Dunsparce to the Bench.
+LulunaMoroll played Team Rocket's Petrel.
+- LulunaMoroll drew Boss's Orders.
+- LulunaMoroll shuffled their deck.
+LulunaMoroll's Gengar ex used Chaotic Pain.
+- LulunaMoroll put 13 damage counters on LulunaMoroll's Blissey ex.
+
+xer0style's Turn
+xer0style drew Hilda.
+xer0style played Hilda.
+- xer0style drew 2 cards.
+   • Haunter, Basic Darkness Energy
+- xer0style shuffled their deck.
+xer0style attached Basic Darkness Energy to Mega Gengar ex on the Bench.
+xer0style's Blissey ex used Return on LulunaMoroll’s Gengar ex for 180 damage.
+- xer0style drew 2 cards.
+   • Switch, Haunter
+LulunaMoroll's Gengar ex was Knocked Out!
+- 3 cards were discarded from LulunaMoroll's Gengar ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Gastly
+xer0style's Blissey ex was Knocked Out!
+- 4 cards were discarded from xer0style's Blissey ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy, Chansey
+LulunaMoroll took a Prize card.
+A card was added to LulunaMoroll's hand.
+LulunaMoroll's Gengar ex used Fainting Spell.
+- LulunaMoroll flipped a coin and it landed on heads.
+xer0style took a Prize card.
+Basic Darkness Energy was added to xer0style's hand.
+Opponent took all of their Prize cards. LulunaMoroll wins.

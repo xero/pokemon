@@ -1,0 +1,280 @@
+Setup
+xer0style chose tails for the opening coin flip.
+xer0style won the coin toss.
+xer0style decided to go second.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • Hilda, Gengar ex, Grimsley's Move, Risky Ruins, Basic Darkness Energy, Dawn, Rare Candy
+werdna0418 drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style took a mulligan.
+- Cards revealed from Mulligan 1
+   • Hilda, Gengar ex, Grimsley's Move, Risky Ruins, Basic Darkness Energy, Dawn, Rare Candy
+werdna0418 drew 1 more card because xer0style took at least 1 mulligan.
+- werdna0418 drew a card.
+xer0style played Okidogi ex to the Active Spot.
+werdna0418 played Igglybuff to the Active Spot.
+werdna0418 played Poltchageist to the Bench.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 played Tyrogue to the Bench.
+werdna0418 played Buddy-Buddy Poffin.
+- werdna0418 drew 2 cards and played them to the Bench.
+   • Igglybuff, Budew
+- werdna0418 shuffled their deck.
+werdna0418 ended their turn.
+
+xer0style's Turn
+xer0style drew Haunter.
+xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+xer0style played Dawn.
+- xer0style drew 3 cards.
+   • Toxel, Toxtricity, Gengar ex
+- xer0style shuffled their deck.
+xer0style played Toxel to the Bench.
+xer0style's Okidogi ex used Poisonous Musculature.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is now Poisoned.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 played Pokégear 3.0.
+- werdna0418 drew Morty's Conviction.
+- werdna0418 shuffled their deck.
+werdna0418 played Pokégear 3.0.
+- werdna0418 drew Lillie's Determination.
+- werdna0418 shuffled their deck.
+werdna0418 played Lillie's Determination.
+- werdna0418 shuffled 5 cards into their deck.
+- werdna0418 drew 8 cards.
+werdna0418 played Misty's Magikarp to the Bench.
+werdna0418's Igglybuff used Bouncy Circle on xer0style’s Okidogi ex for 150 damage.
+- Damage breakdown:
+   • 5 Benched Pokémon: 150 damage
+
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew AZ's Tranquility.
+xer0style evolved Toxel to Toxtricity on the Bench.
+xer0style played Team Rocket's Petrel.
+- xer0style drew Buddy-Buddy Poffin.
+- xer0style shuffled their deck.
+xer0style played Buddy-Buddy Poffin.
+- xer0style drew 2 cards and played them to the Bench.
+   • Gastly, Gastly
+- xer0style shuffled their deck.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Gastly on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Gastly.
+xer0style's Okidogi ex used Chain-Crazed on werdna0418’s Igglybuff for 260 damage.
+- Damage breakdown:
+   • Base damage: 130 damage
+   • Has Special Condition: 130 damage
+   • Total damage: 260 damage
+
+werdna0418's Igglybuff was Knocked Out!
+xer0style took a Prize card.
+Mega Gengar ex was added to xer0style's hand.
+werdna0418's Igglybuff is now in the Active Spot.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 attached Legacy Energy to Igglybuff in the Active Spot.
+werdna0418 played Morty's Conviction.
+- werdna0418 discarded Mist Energy.
+- werdna0418 drew 3 cards.
+werdna0418 played Igglybuff to the Bench.
+werdna0418 played Battle Cage to the Stadium spot.
+werdna0418 played Pokégear 3.0.
+- werdna0418 drew Lillie's Determination.
+- werdna0418 shuffled their deck.
+werdna0418's Igglybuff used Bouncy Circle on xer0style’s Okidogi ex for 150 damage.
+- Damage breakdown:
+   • 5 Benched Pokémon: 150 damage
+
+xer0style's Okidogi ex was Knocked Out!
+- 3 cards were discarded from xer0style's Okidogi ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+werdna0418 took 2 Prize cards.
+A card was added to werdna0418's hand.
+A card was added to werdna0418's hand.
+xer0style's Gastly is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Rare Candy.
+xer0style played Rare Candy.
+- xer0style evolved Gastly to Gengar ex in the Active Spot.
+xer0style played Hilda.
+- xer0style drew 2 cards.
+   • Haunter, Neo Upper Energy
+- xer0style shuffled their deck.
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style attached Neo Upper Energy to Gengar ex in the Active Spot.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Igglybuff.
+xer0style took a Prize card.
+Legacy Energy was discarded from werdna0418's Igglybuff.
+werdna0418's Igglybuff was Knocked Out!
+Battle Cage was activated.
+- Damage to Igglybuff was prevented.
+Buddy-Buddy Poffin was added to xer0style's hand.
+Battle Cage was activated.
+- Damage to Budew was prevented.
+Battle Cage was activated.
+- Damage to Tyrogue was prevented.
+werdna0418's Poltchageist used Hide 'n' Sneak.
+- Effects of Chaotic Pain did not affect Poltchageist.
+werdna0418's Misty's Magikarp used So Submerged.
+- Effects of Chaotic Pain did not affect Misty's Magikarp.
+werdna0418's Igglybuff is now in the Active Spot.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 played Igglybuff to the Bench.
+werdna0418 played Boss's Orders.
+- xer0style's Haunter was switched with xer0style's Gengar ex to become the Active Pokémon.
+xer0style's Haunter is now in the Active Spot.
+werdna0418's Igglybuff used Bouncy Circle on xer0style’s Haunter for 150 damage.
+- Damage breakdown:
+   • 5 Benched Pokémon: 150 damage
+
+xer0style's Haunter was Knocked Out!
+Gastly was discarded from xer0style's Haunter.
+werdna0418 took a Prize card.
+A card was added to werdna0418's hand.
+xer0style's Gengar ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Okidogi ex.
+xer0style played Buddy-Buddy Poffin.
+- xer0style drew Gastly and played it to the Bench.
+- xer0style shuffled their deck.
+xer0style played Okidogi ex to the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Okidogi ex on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Okidogi ex.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Igglybuff.
+werdna0418's Poltchageist used Hide 'n' Sneak.
+- Effects of Chaotic Pain did not affect Poltchageist.
+Battle Cage was activated.
+- Damage to Tyrogue was prevented.
+Battle Cage was activated.
+- Damage to Budew was prevented.
+werdna0418's Misty's Magikarp used So Submerged.
+- Effects of Chaotic Pain did not affect Misty's Magikarp.
+Battle Cage was activated.
+- Damage to Igglybuff was prevented.
+werdna0418's Igglybuff was Knocked Out!
+xer0style took a Prize card.
+Blissey ex was added to xer0style's hand.
+werdna0418's Igglybuff is now in the Active Spot.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 played Night Stretcher.
+- werdna0418 moved werdna0418's Igglybuff to their hand.
+werdna0418 played Igglybuff to the Bench.
+werdna0418 played Lillie's Determination.
+- werdna0418 shuffled 7 cards into their deck.
+- werdna0418 drew 6 cards.
+werdna0418's Igglybuff used Bouncy Circle on xer0style’s Gengar ex for 150 damage.
+- Damage breakdown:
+   • 5 Benched Pokémon: 150 damage
+
+
+xer0style's Turn
+xer0style drew Lillie's Determination.
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style played Lillie's Determination.
+- xer0style shuffled 5 cards into their deck.
+   • Switch, Mega Gengar ex, AZ's Tranquility, Mega Gengar ex, Blissey ex
+- xer0style drew 6 cards.
+   • Lillie's Determination, Switch, Poké Pad, Gengar ex, Boss's Orders, Basic Darkness Energy
+xer0style attached Basic Darkness Energy to Haunter on the Bench.
+xer0style played Poké Pad.
+- xer0style drew Chansey.
+- xer0style shuffled their deck.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Haunter on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Haunter.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Igglybuff.
+werdna0418's Poltchageist used Hide 'n' Sneak.
+- Effects of Chaotic Pain did not affect Poltchageist.
+Battle Cage was activated.
+- Damage to Tyrogue was prevented.
+Battle Cage was activated.
+- Damage to Budew was prevented.
+werdna0418's Misty's Magikarp used So Submerged.
+- Effects of Chaotic Pain did not affect Misty's Magikarp.
+Battle Cage was activated.
+- Damage to Igglybuff was prevented.
+werdna0418's Igglybuff was Knocked Out!
+xer0style took a Prize card.
+Risky Ruins was added to xer0style's hand.
+werdna0418's Igglybuff is now in the Active Spot.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 played Morty's Conviction.
+- werdna0418 discarded Poké Pad.
+- werdna0418 drew 3 cards.
+werdna0418's Igglybuff used Bouncy Circle on xer0style’s Gengar ex for 120 damage.
+- Damage breakdown:
+   • 4 Benched Pokémon: 120 damage
+
+xer0style's Gengar ex was Knocked Out!
+- 3 cards were discarded from xer0style's Gengar ex.
+   • Basic Darkness Energy, Neo Upper Energy, Gastly
+xer0style's Gengar ex used Fainting Spell.
+- xer0style flipped a coin and it landed on tails.
+werdna0418 took 2 Prize cards.
+A card was added to werdna0418's hand.
+A card was added to werdna0418's hand.
+xer0style's Haunter is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Team Rocket's Petrel.
+xer0style evolved Haunter to Gengar ex in the Active Spot.
+xer0style played Risky Ruins to the Stadium spot.
+- werdna0418 discarded Battle Cage.
+xer0style played Team Rocket's Petrel.
+- xer0style drew Janine's Secret Art.
+- xer0style shuffled their deck.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Okidogi ex on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Okidogi ex.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Igglybuff.
+werdna0418's Poltchageist used Hide 'n' Sneak.
+- Effects of Chaotic Pain did not affect Poltchageist.
+werdna0418's Misty's Magikarp used So Submerged.
+- Effects of Chaotic Pain did not affect Misty's Magikarp.
+werdna0418's Igglybuff was Knocked Out!
+xer0style took a Prize card.
+Gastly was added to xer0style's hand.
+werdna0418's Budew is now in the Active Spot.
+
+werdna0418's Turn
+werdna0418 drew a card.
+werdna0418 played Lillie's Determination.
+- werdna0418 shuffled 10 cards into their deck.
+- werdna0418 drew 6 cards.
+Opponent conceded. xer0style wins.

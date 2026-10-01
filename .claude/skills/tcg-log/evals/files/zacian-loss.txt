@@ -1,0 +1,276 @@
+Setup
+Champonion chose tails for the opening coin flip.
+xer0style won the coin toss.
+xer0style decided to go second.
+Champonion drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • Boss's Orders, Basic Darkness Energy, Basic Darkness Energy, Risky Ruins, Toxel, Basic Darkness Energy, Gengar ex
+Champonion played Hop's Phantump to the Active Spot.
+Champonion played Hop's Wooloo to the Bench.
+xer0style played Toxel to the Active Spot.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion ended their turn.
+
+xer0style's Turn
+xer0style drew Hilda.
+xer0style played Risky Ruins to the Stadium spot.
+xer0style attached Basic Darkness Energy to Toxel in the Active Spot.
+xer0style played Hilda.
+- xer0style drew 2 cards.
+   • Gengar ex, Neo Upper Energy
+- xer0style shuffled their deck.
+xer0style's Toxel used Call for Family.
+- xer0style drew 2 cards and played them to the Bench.
+   • Gastly, Okidogi ex
+- xer0style shuffled their deck.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Postwick to the Stadium spot.
+- xer0style discarded Risky Ruins.
+Champonion played Hilda.
+- Champonion drew 2 cards.
+   • Hop's Trevenant, Enriching Energy
+- Champonion shuffled their deck.
+Champonion attached Enriching Energy to Hop's Phantump in the Active Spot.
+Enriching Energy was activated.
+- Champonion drew 4 cards.
+Champonion played Hop's Zacian ex to the Bench.
+Champonion evolved Hop's Phantump to Hop's Trevenant in the Active Spot.
+Champonion played Crushing Hammer.
+- Champonion flipped a coin and it landed on heads.
+- Basic Darkness Energy was discarded from xer0style's Toxel.
+Champonion's Hop's Trevenant used Horrifying Revenge on xer0style’s Toxel for 60 damage.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • (Stadium) Postwick: 30 damage
+   • Total damage: 60 damage
+
+
+xer0style's Turn
+xer0style drew Rare Candy.
+xer0style played Rare Candy.
+- xer0style evolved Gastly to Gengar ex on the Bench.
+xer0style attached Neo Upper Energy to Gengar ex on the Bench.
+xer0style played Boss's Orders.
+- Champonion's Hop's Wooloo was switched with Champonion's Hop's Trevenant to become the Active Pokémon.
+Champonion's Hop's Wooloo is now in the Active Spot.
+xer0style ended their turn.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Crispin.
+- Champonion drew Basic Metal Energy.
+- Champonion attached Basic Psychic Energy to Hop's Wooloo in the Active Spot.
+- Champonion shuffled their deck.
+Champonion attached Magnetic Metal Energy to Hop's Zacian ex on the Bench.
+Champonion retreated Hop's Wooloo to the Bench.
+- Basic Psychic Energy was discarded from Champonion's Hop's Wooloo.
+Champonion's Hop's Zacian ex is now in the Active Spot.
+Champonion's Hop's Zacian ex used Insta-Strike on xer0style’s Toxel for 60 damage.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • (Stadium) Postwick: 30 damage
+   • Total damage: 60 damage
+
+- xer0style's Okidogi ex took 30 damage.
+xer0style's Toxel was Knocked Out!
+Champonion took a Prize card.
+A card was added to Champonion's hand.
+xer0style's Gengar ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Haunter.
+xer0style attached Basic Darkness Energy to Okidogi ex on the Bench.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Hop's Wooloo.
+Champonion's Hop's Wooloo was Knocked Out!
+xer0style took a Prize card.
+Rare Candy was added to xer0style's hand.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Hop's Bag.
+- Champonion drew 2 cards and played them to the Bench.
+   • Hop's Cramorant, Hop's Cramorant
+- Champonion shuffled their deck.
+Champonion attached Basic Metal Energy to Hop's Zacian ex in the Active Spot.
+Champonion played Lillie's Determination.
+- Champonion shuffled 6 cards into their deck.
+- Champonion drew 6 cards.
+Champonion's Hop's Zacian ex used Insta-Strike on xer0style’s Gengar ex for 60 damage.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • (Stadium) Postwick: 30 damage
+   • Total damage: 60 damage
+
+- xer0style's Okidogi ex took 30 damage.
+
+xer0style's Turn
+xer0style drew Mega Gengar ex.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Hop's Cramorant.
+Champonion's Hop's Cramorant was Knocked Out!
+xer0style took a Prize card.
+Toxel was added to xer0style's hand.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion attached Hop's Choice Band to Hop's Zacian ex in the Active Spot.
+Champonion attached Basic Psychic Energy to Hop's Cramorant on the Bench.
+Champonion retreated Hop's Zacian ex to the Bench.
+Champonion's Hop's Cramorant is now in the Active Spot.
+Champonion played Kieran.
+- Champonion chose During this turn, attacks used by your Pokémon do 30 more damage to your opponent's Active Pokémon <sprite name="ex_lower_atk" tint=1> and Active Pokémon <sprite name="v_atk" tint=1>.
+Champonion's Hop's Cramorant used Fickle Spitting on xer0style’s Gengar ex for 180 damage.
+- Damage breakdown:
+   • Base damage: 120 damage
+   • (Stadium) Postwick: 30 damage
+   • (Supporter) Kieran: 30 damage
+   • Total damage: 180 damage
+
+
+xer0style's Turn
+xer0style drew Mega Gengar ex.
+xer0style played Toxel to the Bench.
+xer0style attached Basic Darkness Energy to Toxel on the Bench.
+xer0style's Gengar ex used Chaotic Pain.
+- xer0style put 13 damage counters on xer0style's Hop's Cramorant.
+Champonion's Hop's Cramorant was Knocked Out!
+Basic Psychic Energy was discarded from Champonion's Hop's Cramorant.
+xer0style took a Prize card.
+Poké Pad was added to xer0style's hand.
+Champonion's Hop's Zacian ex is now in the Active Spot.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Black Belt's Training.
+Champonion attached Basic Psychic Energy to Hop's Trevenant on the Bench.
+Champonion's Hop's Zacian ex used Insta-Strike on xer0style’s Gengar ex for 130 damage.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • (Stadium) Postwick: 30 damage
+   • (Pokémon Tool) Hop's Choice Band: 30 damage
+   • (Supporter) Black Belt's Training: 40 damage
+   • Total damage: 130 damage
+
+- xer0style's Okidogi ex took 30 damage.
+xer0style's Gengar ex was Knocked Out!
+- 2 cards were discarded from xer0style's Gengar ex.
+   • Neo Upper Energy, Gastly
+xer0style's Gengar ex used Fainting Spell.
+- xer0style flipped a coin and it landed on tails.
+Champonion took 2 Prize cards.
+A card was added to Champonion's hand.
+A card was added to Champonion's hand.
+xer0style's Okidogi ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Buddy-Buddy Poffin.
+xer0style played Buddy-Buddy Poffin.
+- xer0style drew 2 cards and played them to the Bench.
+   • Gastly, Gastly
+- xer0style shuffled their deck.
+xer0style played Poké Pad.
+- xer0style drew Toxtricity.
+- xer0style shuffled their deck.
+xer0style evolved Toxel to Toxtricity on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Gastly on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Gastly.
+xer0style's Okidogi ex used Poisonous Musculature.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is now Poisoned.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Energy Search.
+- Champonion drew Basic Metal Energy.
+- Champonion shuffled their deck.
+Champonion attached Basic Metal Energy to Hop's Zacian ex in the Active Spot.
+Champonion played Hop's Snorlax to the Bench.
+Champonion's Hop's Zacian ex used Brave Slash on xer0style’s Okidogi ex for 330 damage.
+- Damage breakdown:
+   • Base damage: 240 damage
+   • (Stadium) Postwick: 30 damage
+   • (Pokémon Tool) Hop's Choice Band: 30 damage
+   • (Ability) Extra Helpings: 30 damage
+   • Total damage: 330 damage
+
+xer0style's Okidogi ex was Knocked Out!
+- 3 cards were discarded from xer0style's Okidogi ex.
+   • Basic Darkness Energy, Basic Darkness Energy, Basic Darkness Energy
+Champonion took 2 Prize cards.
+A card was added to Champonion's hand.
+A card was added to Champonion's hand.
+xer0style's Gastly is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Risky Ruins.
+xer0style played Risky Ruins to the Stadium spot.
+- Champonion discarded Postwick.
+xer0style played Rare Candy.
+- xer0style evolved Gastly to Mega Gengar ex in the Active Spot.
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Haunter on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Haunter.
+xer0style ended their turn.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Postwick to the Stadium spot.
+- xer0style discarded Risky Ruins.
+Champonion attached Basic Metal Energy to Hop's Trevenant on the Bench.
+Champonion's Hop's Zacian ex used Insta-Strike on xer0style’s Mega Gengar ex for 120 damage.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • (Pokémon Tool) Hop's Choice Band: 30 damage
+   • (Ability) Extra Helpings: 30 damage
+   • (Stadium) Postwick: 30 damage
+   • Total damage: 120 damage
+
+- xer0style's Haunter took 30 damage.
+
+xer0style's Turn
+xer0style drew Boss's Orders.
+xer0style played Boss's Orders.
+- Champonion's Hop's Snorlax was switched with Champonion's Hop's Zacian ex to become the Active Pokémon.
+Champonion's Hop's Snorlax is now in the Active Spot.
+xer0style evolved Haunter to Gengar ex on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Gengar ex on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Gengar ex.
+xer0style ended their turn.
+
+Champonion's Turn
+Champonion drew a card.
+Champonion played Surfer.
+- Champonion's Hop's Zacian ex was switched with Champonion's Hop's Snorlax to become the Active Pokémon.
+Champonion's Hop's Zacian ex is now in the Active Spot.
+Champonion's Hop's Zacian ex used Brave Slash on xer0style’s Mega Gengar ex for 330 damage.
+- Damage breakdown:
+   • Base damage: 240 damage
+   • (Pokémon Tool) Hop's Choice Band: 30 damage
+   • (Ability) Extra Helpings: 30 damage
+   • (Stadium) Postwick: 30 damage
+   • Total damage: 330 damage
+
+xer0style's Mega Gengar ex was Knocked Out!
+- 2 cards were discarded from xer0style's Mega Gengar ex.
+   • Basic Darkness Energy, Gastly
+Champonion took a Prize card.
+A card was added to Champonion's hand.
+Opponent took all of their Prize cards. Champonion wins.

@@ -7,3 +7,6 @@ raw-cards.json
 *.bak
 .DS_Store
 __pycache__/
+
+# TCG Live battle logs, archived by the tcg-log skill. They stay on this machine.
+logs/

@@ -789,6 +789,16 @@
 			   the centre, opening a gap the real tables do not have. */
 			margin-block: 30px 25px;
 
+			/* a prose table's left column can be a whole sentence, and
+			   max-content would lay it out on one line, wider than the page,
+			   squeezing the answer column to nothing. fit-content keeps a
+			   short label on one line and wraps a long one at half the width.
+			   behind the media query so the phone layout's single column
+			   below still wins. */
+			@media (width >= 34em) {
+				grid-template-columns: fit-content(50%) minmax(0, 70ch);
+			}
+
 			dt,
 			dd {
 				border-bottom: 2px solid #393636;
@@ -1207,7 +1217,7 @@
 		<header>
 			<div>
 				<h1><img src="./assets/pokeball.png" alt="" />Pokédex <img data-mascot src="./assets/sprites/pokedex.gif" alt="" /> <img data-mascot src="./assets/sprites/pokeball.gif" alt="" /></h1>
-				<p>168 Pok&eacute;mon caught, 87 of them tournament legal.</p>
+				<p>177 Pok&eacute;mon caught, 96 of them tournament legal.</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
@@ -1218,12 +1228,17 @@
 					<ul>
 						<li data-letter><b>A</b></li>
 						<li data-for="absol"><a href="#absol">Absol</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li data-letter><b>B</b></li>
+						<li data-for="bayleef"><a href="#bayleef">Bayleef</a> <em>ME01: Mega Evolution</em></li>
+						<li data-for="bulbasaur"><a href="#bulbasaur">Bulbasaur</a> <em>ME01: Mega Evolution</em></li>
 						<li data-letter><b>C</b></li>
+						<li data-for="celebi"><a href="#celebi">Celebi</a> <em>ME01: Mega Evolution</em></li>
 						<li data-for="chandelure"><a href="#chandelure">Chandelure</a> <em>SM - Guardians Rising</em></li>
 						<li data-for="chandelure-1"><a href="#chandelure-1">Chandelure</a> <em>SM - Lost Thunder</em></li>
 						<li data-for="chandelure-2"><a href="#chandelure-2">Chandelure</a> <em>SV06: Twilight Masquerade</em></li>
 						<li data-for="chandelure-3"><a href="#chandelure-3">Chandelure</a> <em>SV: White Flare</em></li>
 						<li data-for="chandelure-4"><a href="#chandelure-4">Chandelure</a> <em>Trick or Trade BOOster Bundle</em></li>
+						<li data-for="chansey"><a href="#chansey">Chansey</a> <em>SV06: Twilight Masquerade</em></li>
 						<li data-for="charizard"><a href="#charizard">Charizard</a> <em>SWSH04: Vivid Voltage</em></li>
 						<li data-for="charmander"><a href="#charmander">Charmander</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-for="charmander-1"><a href="#charmander-1">Charmander</a> <em>Pokémon GO</em></li>
@@ -1239,6 +1254,7 @@
 						<li data-for="charmeleon-5"><a href="#charmeleon-5">Charmeleon</a> <em>SWSH04: Vivid Voltage</em></li>
 						<li data-for="charmeleon-delta-species"><a href="#charmeleon-delta-species">Charmeleon (Delta Species)</a> <em>EX Crystal Guardians</em></li>
 						<li data-for="chi-yu"><a href="#chi-yu">Chi-Yu</a> <em>ME05: Pitch Black</em></li>
+						<li data-for="chikorita"><a href="#chikorita">Chikorita</a> <em>ME: Ascended Heroes</em></li>
 						<li data-for="clefairy"><a href="#clefairy">Clefairy</a> <em>ME03: Perfect Order</em></li>
 						<li data-for="comfey"><a href="#comfey">Comfey</a> <em>SV07: Stellar Crown</em></li>
 						<li data-letter><b>D</b></li>
@@ -1321,6 +1337,7 @@
 						<li data-for="houndoom"><a href="#houndoom">Houndoom</a> <em>Trick or Trade BOOster Bundle 2023</em></li>
 						<li data-letter><b>I</b></li>
 						<li data-for="iron-jugulis"><a href="#iron-jugulis">Iron Jugulis</a> <em>Trick or Trade BOOster Bundle 2024</em></li>
+						<li data-for="ivysaur"><a href="#ivysaur">Ivysaur</a> <em>ME01: Mega Evolution</em></li>
 						<li data-letter><b>K</b></li>
 						<li data-for="koffing"><a href="#koffing">Koffing</a> <em>SV09: Journey Together</em></li>
 						<li data-for="koffing-1"><a href="#koffing-1">Koffing</a> <em>SWSH06: Chilling Reign</em></li>
@@ -1342,7 +1359,9 @@
 						<li data-for="mega-charizard-x-ex"><a href="#mega-charizard-x-ex">Mega Charizard X ex</a> <em>ME02: Phantasmal Flames</em></li>
 						<li data-for="mega-gengar-ex"><a href="#mega-gengar-ex">Mega Gengar ex</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
 						<li data-for="mega-gengar-ex-1"><a href="#mega-gengar-ex-1">Mega Gengar ex</a> <em>ME02: Phantasmal Flames</em></li>
+						<li data-for="mega-venusaur-ex"><a href="#mega-venusaur-ex">Mega Venusaur ex</a> <em>ME01: Mega Evolution</em></li>
 						<li data-for="mega-zygarde-ex"><a href="#mega-zygarde-ex">Mega Zygarde ex</a> <em>ME03: Perfect Order</em></li>
+						<li data-for="meganium"><a href="#meganium">Meganium</a> <em>ME01: Mega Evolution</em></li>
 						<li data-for="meowth-ex"><a href="#meowth-ex">Meowth ex</a> <em>ME03: Perfect Order</em></li>
 						<li data-for="mew-v"><a href="#mew-v">Mew V</a> <em>SWSH08: Fusion Strike</em></li>
 						<li data-for="munkidori"><a href="#munkidori">Munkidori</a> <em>SV06: Twilight Masquerade</em></li>
@@ -1376,6 +1395,7 @@
 						<li data-for="sudowoodo"><a href="#sudowoodo">Sudowoodo</a> <em>SWSH01: Sword &amp; Shield Base Set</em></li>
 						<li data-letter><b>T</b></li>
 						<li data-for="tatsugiri"><a href="#tatsugiri">Tatsugiri</a> <em>MBG: MEGA Starter Set Mega Gengar ex</em></li>
+						<li data-for="teal-mask-ogerpon-ex"><a href="#teal-mask-ogerpon-ex">Teal Mask Ogerpon ex</a> <em>SV06: Twilight Masquerade</em></li>
 						<li data-for="team-rockets-articuno"><a href="#team-rockets-articuno">Team Rocket&#x27;s Articuno</a> <em>SV10: Destined Rivals</em></li>
 						<li data-for="team-rockets-crobat-ex"><a href="#team-rockets-crobat-ex">Team Rocket&#x27;s Crobat ex</a> <em>SV10: Destined Rivals</em></li>
 						<li data-for="team-rockets-golbat"><a href="#team-rockets-golbat">Team Rocket&#x27;s Golbat</a> <em>SV10: Destined Rivals</em></li>
@@ -1428,6 +1448,70 @@
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>only English cards allowed</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Bayleef" data-set="ME01: Mega Evolution" data-rarity="Common" data-type="Grass" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="bayleef">Bayleef <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/654348_bayleef.jpg" target="_blank" rel="noopener"><img src="./assets/654348_bayleef.jpg" alt="Bayleef" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>009/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Push Down (50) - Switch out your opponent&#x27;s Active Pokémon to the Bench. (Your opponent chooses the new Active Pokémon.)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Bulbasaur" data-set="ME01: Mega Evolution" data-rarity="Common" data-type="Grass" data-stage="Basic" data-tournament="legal">
+				<h2 id="bulbasaur">Bulbasaur <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/654340_bulbasaur-001-132.jpg" target="_blank" rel="noopener"><img src="./assets/654340_bulbasaur-001-132.jpg" alt="Bulbasaur" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>001/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /></span><span>Bind Down (10) - During your opponent&#x27;s next turn, the Defending Pokémon can&#x27;t retreat.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Celebi" data-set="ME01: Mega Evolution" data-rarity="Uncommon" data-type="Grass" data-stage="Basic" data-tournament="legal">
+				<h2 id="celebi">Celebi <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/654351_celebi.jpg" target="_blank" rel="noopener"><img src="./assets/654351_celebi.jpg" alt="Celebi" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>012/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>80</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /></span><span>Traverse Time - Search your deck for up to 3 in any combination of Grass Pokémon and Stadium cards, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /></span><span>Solar Cutter (30)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>
 			</article>
@@ -1535,6 +1619,28 @@
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>card is too old</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Chansey" data-set="SV06: Twilight Masquerade" data-rarity="Common" data-type="Colorless" data-stage="Basic" data-tournament="legal">
+				<h2 id="chansey">Chansey <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/550177_chansey-133-167.jpg" target="_blank" rel="noopener"><img src="./assets/550177_chansey-133-167.jpg" alt="Chansey" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>133/167</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Lucky Attachment - Attach a Basic Energy card from your hand to 1 of your Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Boundless Power (80) - during your next turn, this Pokémon can&#x27;t attack.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>
 			</article>
@@ -1855,6 +1961,28 @@
 						<dt>Ability</dt><dd>&ndash;</dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Whirling Envy (20+) - If this Pokémon has 2 or more damage counters on it, this attack does 90 more damage. This attack&#x27;s damage isn&#x27;t affected by Weakness.</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Chikorita" data-set="ME: Ascended Heroes" data-rarity="Common" data-type="Grass" data-stage="Basic" data-tournament="legal">
+				<h2 id="chikorita">Chikorita <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/675820_chikorita.jpg" target="_blank" rel="noopener"><img src="./assets/675820_chikorita.jpg" alt="Chikorita" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/ascended-heroes.png" /><img src="./assets/sets/ascended-heroes.png" alt="ME: Ascended Heroes" /></picture></span><span>ME: Ascended Heroes <small>008/217</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Growl - During your opponent&#x27;s next turn, attacks used by the Defending Pokémon do 20 less damage (before applying Weakness and Resistance).</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /></span><span>Seed Bomb (30)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
@@ -3486,6 +3614,27 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Ivysaur" data-set="ME01: Mega Evolution" data-rarity="Common" data-type="Grass" data-stage="Stage 1" data-tournament="legal">
+				<h2 id="ivysaur">Ivysaur <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/654341_ivysaur-002-132.jpg" target="_blank" rel="noopener"><img src="./assets/654341_ivysaur-002-132.jpg" alt="Ivysaur" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>002/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd>&ndash;</dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /></span><span>Razor Leaf (60)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Koffing" data-set="SV09: Journey Together" data-rarity="Common" data-type="Darkness" data-stage="Basic" data-tournament="legal">
 				<h2 id="koffing">Koffing <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></h2>
 				<aside>
@@ -3869,6 +4018,27 @@
 					</dl>
 				</section>
 			</article>
+			<article data-name="Mega Venusaur ex" data-set="ME01: Mega Evolution" data-rarity="Double Rare" data-type="Grass" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="mega-venusaur-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Venusaur ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/654342_mega-venusaur-ex-003-132.jpg" target="_blank" rel="noopener"><img src="./assets/654342_mega-venusaur-ex-003-132.jpg" alt="Mega Venusaur ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>003/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>380</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Solar Transfer - As often as you like during your turn, you may use this Ability. Move a Basic Grass Energy from 1 of your Pokémon to another of your Pokémon.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /></span><span>Jungle Dump (240) - Heal 30 damage from this Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>4</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
 			<article data-name="Mega Zygarde ex" data-set="ME03: Perfect Order" data-rarity="Double Rare" data-type="Fighting" data-stage="Basic" data-tournament="legal">
 				<h2 id="mega-zygarde-ex"><img src="./assets/glyphs/mega-evolution.svg" alt="Mega Evolution" /> Mega Zygarde ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
 				<aside>
@@ -3885,6 +4055,27 @@
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Gaia Wave (200) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</span></dd>
 						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Nullifying Zero - For each of your opponent&#x27;s Pokémon, flip a coin. If heads, this attack does 150 damage to that Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
 						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Meganium" data-set="ME01: Mega Evolution" data-rarity="Rare" data-type="Grass" data-stage="Stage 2" data-tournament="legal">
+				<h2 id="meganium">Meganium <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/654349_meganium.jpg" target="_blank" rel="noopener"><img src="./assets/654349_meganium.jpg" alt="Meganium" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>010/132</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>160</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Stage 2</span></dd>
+						<dt>Ability</dt><dd><span>Wild Growth - Each Basic Grass Energy attached to all of your Pokémon provides GrassGrass Energy. The effect of Wild Growth doesn&#x27;t stack.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Solar Beam (140)</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
@@ -4483,6 +4674,27 @@
 						<dt>Resistance</dt><dd>&ndash;</dd>
 						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
 						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/no.png" alt="NO" /></span><span>only English cards allowed</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article data-name="Teal Mask Ogerpon ex" data-set="SV06: Twilight Masquerade" data-rarity="Double Rare" data-type="Grass" data-stage="Basic" data-tournament="legal">
+				<h2 id="teal-mask-ogerpon-ex">Teal Mask Ogerpon ex <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></h2>
+				<aside>
+					<a data-art href="./assets/550069_teal-mask-ogerpon-ex-025-167.jpg" target="_blank" rel="noopener"><img src="./assets/550069_teal-mask-ogerpon-ex-025-167.jpg" alt="Teal Mask Ogerpon ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>025/167</small></span></dd>
+						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt class="filter" data-filter="stage">Stage</dt><dd class="filter" data-filter="stage"><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Teal Dance - Once during your turn, you may attach a basic G Energy card from your hand to this Pokémon. If you attached Energy to a Pokémon in this way, draw a card.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /><img src="./assets/types/grass.png" alt="Grass" /></span><span>Myriad Leaf Shower (30+) - This attack does 30 more damage for each energy attached to both Active Pokémon.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd>&ndash;</dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt class="filter" data-filter="tournament">Tournament</dt><dd class="filter" data-filter="tournament"><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal, and good to go!</span></dd>
 					</dl>
 				</section>
 			</article>

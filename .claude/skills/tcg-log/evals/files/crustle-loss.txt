@@ -1,0 +1,148 @@
+Setup
+xer0style chose tails for the opening coin flip.
+CristopherCL won the coin toss.
+CristopherCL decided to go first.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • Basic Darkness Energy, Risky Ruins, Chansey, Basic Darkness Energy, AZ's Tranquility, Basic Darkness Energy, Poké Pad
+CristopherCL drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style played Chansey to the Active Spot.
+CristopherCL played Dwebble to the Active Spot.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL attached Growing Grass Energy to Dwebble in the Active Spot.
+CristopherCL ended their turn.
+
+xer0style's Turn
+xer0style drew Buddy-Buddy Poffin.
+xer0style played Buddy-Buddy Poffin.
+- xer0style drew 2 cards and played them to the Bench.
+   • Gastly, Toxel
+- xer0style shuffled their deck.
+xer0style played Risky Ruins to the Stadium spot.
+xer0style played Poké Pad.
+- xer0style drew Haunter.
+- xer0style shuffled their deck.
+xer0style attached Basic Darkness Energy to Chansey in the Active Spot.
+xer0style's Chansey used Lucky Attachment.
+- xer0style attached Basic Darkness Energy to Gastly on the Bench.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL attached Mist Energy to Dwebble in the Active Spot.
+CristopherCL evolved Dwebble to Crustle in the Active Spot.
+CristopherCL played Lillie's Determination.
+- CristopherCL shuffled 4 cards into their deck.
+- CristopherCL drew 8 cards.
+CristopherCL played Mega Kangaskhan ex to the Bench.
+Risky Ruins was activated.
+- CristopherCL put 2 damage counters on xer0style's Mega Kangaskhan ex.
+CristopherCL ended their turn.
+
+xer0style's Turn
+xer0style drew Team Rocket's Petrel.
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style played Team Rocket's Petrel.
+- xer0style drew Lillie's Determination.
+- xer0style shuffled their deck.
+xer0style attached Basic Darkness Energy to Toxel on the Bench.
+xer0style ended their turn.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL attached Spiky Energy to Crustle in the Active Spot.
+CristopherCL's Crustle used Superb Scissors on xer0style’s Chansey for 120 damage.
+xer0style's Chansey was Knocked Out!
+Basic Darkness Energy was discarded from xer0style's Chansey.
+CristopherCL took a Prize card.
+A card was added to CristopherCL's hand.
+xer0style's Toxel is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Toxel.
+xer0style played Toxel to the Bench.
+xer0style played Lillie's Determination.
+- xer0style shuffled AZ's Tranquility into their deck.
+- xer0style drew 8 cards.
+   • Rare Candy, Rare Candy, Risky Ruins, Rare Candy, Gengar ex, Basic Darkness Energy, Basic Darkness Energy, Blissey ex
+xer0style evolved Haunter to Gengar ex on the Bench.
+xer0style attached Basic Darkness Energy to Gengar ex on the Bench.
+xer0style retreated Toxel to the Bench.
+- Basic Darkness Energy was discarded from xer0style's Toxel.
+xer0style's Gengar ex is now in the Active Spot.
+xer0style's Gengar ex used Chaotic Pain.
+Mist Energy was activated.
+- Effects of Chaotic Pain did not affect Crustle.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL attached Mist Energy to Mega Kangaskhan ex on the Bench.
+CristopherCL played Eri.
+- xer0style discarded 2 cards.
+   • Rare Candy, Rare Candy
+CristopherCL's Crustle used Superb Scissors on xer0style’s Gengar ex for 120 damage.
+
+xer0style's Turn
+xer0style drew Switch.
+xer0style attached Basic Darkness Energy to Toxel on the Bench.
+xer0style played Switch.
+- xer0style's Toxel was switched with xer0style's Gengar ex to become the Active Pokémon.
+xer0style's Toxel is now in the Active Spot.
+xer0style's Toxel used Call for Family.
+- xer0style drew 2 cards and played them to the Bench.
+   • Chansey, Okidogi ex
+- xer0style shuffled their deck.
+Risky Ruins was activated.
+- xer0style put 2 damage counters on xer0style's Chansey.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL attached Mist Energy to Mega Kangaskhan ex on the Bench.
+CristopherCL's Crustle used Superb Scissors on xer0style’s Toxel for 120 damage.
+xer0style's Toxel was Knocked Out!
+Basic Darkness Energy was discarded from xer0style's Toxel.
+CristopherCL took a Prize card.
+A card was added to CristopherCL's hand.
+xer0style's Okidogi ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew Janine's Secret Art.
+xer0style evolved Chansey to Blissey ex on the Bench.
+xer0style played Janine's Secret Art.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Toxel on the Bench.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is now Poisoned.
+xer0style's Okidogi ex used Poisonous Musculature.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is no longer Poisoned.
+- xer0style's Okidogi ex is now Poisoned.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL played Boss's Orders.
+- xer0style's Blissey ex was switched with xer0style's Okidogi ex to become the Active Pokémon.
+xer0style's Blissey ex is now in the Active Spot.
+CristopherCL's Crustle used Superb Scissors on xer0style’s Blissey ex for 120 damage.
+
+xer0style's Turn
+xer0style drew Okidogi ex.
+xer0style played Okidogi ex to the Bench.
+xer0style's Blissey ex used Happy Switch.
+- xer0style attached Basic Darkness Energy to Okidogi ex on the Bench.
+xer0style ended their turn.
+
+CristopherCL's Turn
+CristopherCL drew a card.
+CristopherCL's Crustle used Superb Scissors on xer0style’s Blissey ex for 120 damage.
+
+xer0style's Turn
+xer0style drew Gastly.
+You conceded. CristopherCL wins.

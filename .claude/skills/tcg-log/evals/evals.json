@@ -1,0 +1,75 @@
+{
+  "skill_name": "tcg-log",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "ok played a few games w/ neo and lost all of them. not sure neo is to blame per-se. but it is what it is. he's the log from my last match: <contents of files/zacian-loss.txt>",
+      "expected_output": "Archives the log in logs/ with deck dark-gang.md, the list commit, unlisted Neo Upper Energy, changes -1 Hero's Cape +1 Neo Upper Energy, ranked, a loss 3-6 against Hop's Zacian ex. The review clears Neo Upper, then names the Mega never landing against a Pokémon ex attacker (Hilda fetched a second Gengar ex), Chaotic Pain going to single-Prize bodies while the 230 HP Zacian never took a counter, the stranded Gengar ex on turns 2 and 8, the Energy drought on turns 6 to 8, and the thin Supporter draws.",
+      "files": [
+        "files/zacian-loss.txt"
+      ],
+      "expectations": [
+        "Archives the log in logs/ with a header naming deck dark-gang.md, commit df7ccfe, and result loss 3-6",
+        "The header's changes field records the swap (Hero's Cape out, Neo Upper Energy in), or the reply asks what came out",
+        "Names the Mega Gengar never landing until turn 7 against a Pokémon ex attacker, costing the Prize discount",
+        "Names turn 2's Gengar ex stranded on the Bench with Neo Upper and no way to switch it in",
+        "Points out Hop's Zacian ex (230 HP) never took a Chaotic Pain, when two Pains or one Void Gale kill it",
+        "Names the turns with no Energy in hand, or the Mega Active one Energy short with a loaded Gengar ex behind it",
+        "Does not blame Neo Upper for the loss",
+        "Puts a number on the draw luck",
+        "Makes no false claim about the opponent's card text (Zacian 230 HP; Brave Slash 240 base; Fickle Spitting needs 3 or 4 Prizes left)",
+        "Lists misplays as the turn, what was done, and what to do instead, each with an alternative that was legal at the time",
+        "Says what's working and what isn't in the deck, with evidence from this game",
+        "Names at least one card or out that would have changed a key turn, with the turn"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "i won this one, by consession. but i had em on the ropes. <contents of files/kangaskhan-win.txt>",
+      "expected_output": "Archives a win by timeout, 3-0, against Mega Kangaskhan ex and Slowking. The review credits the turn 1 Musculature, Poffin, and Dawn curve and the turn 2 Chain-Crazed, names the unused second Surge on turn 3 and the Toxel held on turn 1 as leaks, notes no Mega is correct against single-Prize Slowking, and says Neo Upper never appeared, so the game says nothing about it.",
+      "files": [
+        "files/kangaskhan-win.txt"
+      ],
+      "expectations": [
+        "Archives the log with result win, prizes 3-0, and an ending that records the timeout",
+        "Names the second Toxtricity's unused Sinister Surge on turn 3",
+        "Names the Toxel held in hand on turn 1 with Bench space open",
+        "Says Neo Upper never appeared, so the game says nothing about the test",
+        "Makes no false claim about the game (Mega Kangaskhan ex has 300 HP, so no single attack KOs it on turn 2)",
+        "Lists misplays as the turn, what was done, and what to do instead, each with an alternative that was legal at the time",
+        "Says what's working and what isn't in the deck, with evidence from this game"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "i put a new win log in ./logs/test.txt for your review. i wasnt sure what to name it",
+      "expected_output": "Runs save on logs/test.txt, which archives it under a dated name and removes test.txt, records the mode as ranked and says so, and reviews a 6-4 win against Teal Mask Ogerpon ex with Igglybuff. The review checks Bouncy Circle's text before judging the held Basics, names the Gastly and Toxels held on turn 2 and the Neo Upper held on turn 3, and credits the Void Gale then AZ's line on turns 6 and 7.",
+      "files": [
+        "files/ogerpon-win.txt"
+      ],
+      "expectations": [
+        "Replaces logs/test.txt with a dated archive of the same game (win, 6-4, went first)",
+        "Records the mode, defaulting to ranked, and says so or asks",
+        "States Bouncy Circle's condition correctly: it counts the attacker's own Benched Pokémon with 30 max HP",
+        "Identifies at least one real leak: turn 5's Boss's Orders on a free-retreat Pichu, or turn 4's Pain on the Active Igglybuff instead of a benched baby",
+        "Credits the Void Gale knockouts on Teal Mask Ogerpon ex and the AZ's Tranquility retreat",
+        "Lists misplays as the turn, what was done, and what to do instead, each with an alternative that was legal at the time",
+        "Says what's working and what isn't in the deck, with evidence from this game",
+        "Keeps list-test commentary brief and tied to this game, with no standing test section, since the message didn't ask about the test",
+        "Names at least one card or out that would have changed a key turn, with the turn"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "hows the neo upper test going so far? be honest",
+      "expected_output": "Runs summary, reports the record for dark-gang with the Neo Upper change grouped by list commit, lists the opponents, says how few games the answer rests on, and separates games Neo Upper appeared in from games it didn't.",
+      "files": [],
+      "expectations": [
+        "Reports the record as 2-1 over three games",
+        "Says three games is too few to judge",
+        "Separates the games where Neo Upper appeared from the one where it didn't",
+        "Invents no games, results, or opponents beyond the three archived"
+      ]
+    }
+  ]
+}

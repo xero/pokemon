@@ -1,0 +1,148 @@
+Setup
+RDS202 chose tails for the opening coin flip.
+xer0style won the coin toss.
+xer0style decided to go second.
+RDS202 drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • Okidogi ex, Toxel, Buddy-Buddy Poffin, Haunter, Team Rocket's Petrel, Basic Darkness Energy, Basic Darkness Energy
+RDS202 took a mulligan.
+- Cards revealed from Mulligan 1
+   • Buddy-Buddy Poffin, Switch, Boss's Orders, Wondrous Patch, Metagross, Boomerang Energy, Night Stretcher
+xer0style drew 1 more card because RDS202 took at least 1 mulligan.
+- xer0style drew Dawn.
+RDS202 played Mega Kangaskhan ex to the Active Spot.
+xer0style played Okidogi ex to the Active Spot.
+xer0style played Toxel to the Bench.
+
+RDS202's Turn
+RDS202 drew a card.
+RDS202's Mega Kangaskhan ex used Run Errand.
+- RDS202 drew 2 cards.
+RDS202 played Ultra Ball.
+- RDS202 discarded 2 cards.
+   • Metagross, Academy at Night
+- RDS202 drew Slowpoke.
+- RDS202 shuffled their deck.
+RDS202 played Slowpoke to the Bench.
+RDS202 attached Basic Psychic Energy to Slowpoke on the Bench.
+RDS202 ended their turn.
+
+xer0style's Turn
+xer0style drew Grimsley's Move.
+xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+xer0style played Buddy-Buddy Poffin.
+- xer0style drew 2 cards and played them to the Bench.
+   • Gastly, Gastly
+- xer0style shuffled their deck.
+xer0style played Dawn.
+- xer0style drew 3 cards.
+   • Toxel, Toxtricity, Gengar ex
+- xer0style shuffled their deck.
+xer0style's Okidogi ex used Poisonous Musculature.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style attached Basic Darkness Energy to Okidogi ex in the Active Spot.
+- xer0style shuffled their deck.
+- xer0style's Okidogi ex is now Poisoned.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+RDS202's Turn
+RDS202 drew a card.
+RDS202 evolved Slowpoke to Slowking on the Bench.
+RDS202 played Academy at Night to the Stadium spot.
+RDS202 attached Basic Psychic Energy to Slowking on the Bench.
+RDS202's Mega Kangaskhan ex used Run Errand.
+- RDS202 drew 2 cards.
+RDS202 played Lillie's Determination.
+- RDS202 shuffled 4 cards into their deck.
+- RDS202 drew 8 cards.
+RDS202 played Slowpoke to the Bench.
+RDS202 played Buddy-Buddy Poffin.
+- RDS202 drew 2 cards and played them to the Bench.
+   • Slowpoke, Slowpoke
+- RDS202 shuffled their deck.
+RDS202 ended their turn.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Rare Candy.
+xer0style played Rare Candy.
+- xer0style evolved Gastly to Gengar ex on the Bench.
+xer0style evolved Toxel to Toxtricity on the Bench.
+xer0style played Toxel to the Bench.
+xer0style evolved Gastly to Haunter on the Bench.
+xer0style attached Basic Darkness Energy to Gengar ex on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Gengar ex on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Gengar ex.
+xer0style played Team Rocket's Petrel.
+- xer0style drew Lillie's Determination.
+- xer0style shuffled their deck.
+xer0style's Okidogi ex used Chain-Crazed on RDS202’s Mega Kangaskhan ex for 260 damage.
+- Damage breakdown:
+   • Base damage: 130 damage
+   • Has Special Condition: 130 damage
+   • Total damage: 260 damage
+
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+RDS202's Turn
+RDS202 drew a card.
+RDS202 evolved Slowpoke to Slowking on the Bench.
+RDS202 played Ciphermaniac's Codebreaking.
+- RDS202 shuffled their deck.
+RDS202's Mega Kangaskhan ex used Run Errand.
+- RDS202 drew 2 cards.
+RDS202 played Night Stretcher.
+- RDS202 moved RDS202's Metagross to their hand.
+RDS202 played Mega Kangaskhan ex to the Bench.
+RDS202 didn't take an action in time.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew Toxel.
+xer0style played Lillie's Determination.
+- xer0style shuffled 2 cards into their deck.
+   • Grimsley's Move, Toxel
+- xer0style drew 8 cards.
+   • Risky Ruins, Lillie's Determination, Basic Darkness Energy, Buddy-Buddy Poffin, Haunter, Grimsley's Move, Poké Pad, Hilda
+xer0style played Risky Ruins to the Stadium spot.
+- RDS202 discarded Academy at Night.
+xer0style played Poké Pad.
+- xer0style drew Toxtricity.
+- xer0style shuffled their deck.
+xer0style evolved Toxel to Toxtricity on the Bench.
+xer0style attached Basic Darkness Energy to Haunter on the Bench.
+xer0style's Toxtricity used Sinister Surge.
+- xer0style attached Basic Darkness Energy to Haunter on the Bench.
+- xer0style shuffled their deck.
+- xer0style put 2 damage counters on xer0style's Haunter.
+xer0style's Okidogi ex used Chain-Crazed on RDS202’s Mega Kangaskhan ex for 260 damage.
+- Damage breakdown:
+   • Base damage: 130 damage
+   • Has Special Condition: 130 damage
+   • Total damage: 260 damage
+
+RDS202's Mega Kangaskhan ex was Knocked Out!
+xer0style took 3 Prize cards.
+Switch was added to xer0style's hand.
+Basic Darkness Energy was added to xer0style's hand.
+Basic Darkness Energy was added to xer0style's hand.
+RDS202's Slowking is now in the Active Spot.
+
+Pokémon Checkup
+1 damage counter was placed on xer0style's Okidogi ex for the Special Condition Poisoned.
+
+RDS202's Turn
+RDS202 drew a card.
+Opponent was inactive for too long. xer0style wins.

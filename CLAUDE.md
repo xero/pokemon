@@ -70,7 +70,16 @@ python3 build.py --data     # re-fetch cards.csv first
 - **Run `build.py`, never the builders individually.** `build_index.py` reads the finished pages back off disk to count the cards on each, so it runs last.
 - **`assets/template.html` has an `@media print` block, and it is load-bearing.** The screen type scale is `vw` clamps that resolve against the sheet and arrive oversized, the dark-mode block has no print guard, and browsers drop backgrounds. Anything that encodes meaning in a fill needs an explicit print rule; the table headers and the `[data-count]` badge already have one.
 - **Every generated file is committed.** `--check` on a clean tree is the regression test. No workflow runs it, so run it before committing a builder change. After changing a builder, a deck .md, or `decks.toml`, run a build before committing or the commit is stale.
-- Generated: `collection.html`, `wishlist.html`, every deck page, `credits.html`, `collection.md`, `index.html`. Hand-written: the deck `.md` files, `decks.toml`, `product-ids.tsv` through `add_cards.py`, the Python. (`deck-registration.html` is a hand-made Worlds Celebration sheet, not part of the build.)
+- Generated: `collection.html`, `wishlist.html`, every deck page, `credits.html`, `collection.md`, `index.html`. Hand-written: the deck `.md` files, `decks.toml`, `product-ids.tsv` through `add_cards.py`, the Python. (`deck-registration.html` is a hand-made Worlds Celebration sheet, not part of the build.) Neither: `logs/`, the TCG Live battle logs the tcg-log skill (`.claude/skills/tcg-log/`) archives, which is gitignored. Xero drops raw logs there under any name, and the skill's `save` renames them.
+
+## The deck simulator
+
+`tools/dark_gang_sim.py` plays dark-gang.md's list against three opponent models and counts how often the deck attacks: its first attack by turn 3, an attack the turn after losing the Active, stranded turns, and dry turns. `--vs "Label=Card:+1,Card:-1"` compares a variant against the committed list, and `--cards` lists the card keys. The docstring covers the metrics and the models.
+
+- **Read it as relative.** Compare variants to each other, never to a real win rate.
+- **It can't see durability or disruption.** Its opponent KOs whatever it targets, so tanky lines score low. Boss's Orders, Risky Ruins, and Hero's Cape do nothing in it, so cutting them looks free.
+- **Its list is hard-coded.** `BASE` is dark-gang.md at `df7ccfe`; update it when the Qty tables change. Nothing in the build reads it.
+- **`tools/lucky_sim.py` runs dark-lucky.md's list through it, one decision at a time.** `order` tests what the board builds first, and `call` tests Call for Family's first two picks; Lucky Haunt's Build order section cites it. It subclasses the simulator through two hooks, `Game.cff_pick()` and `run(game=...)`. Its `LUCKY` list is hard-coded too, and it adds a blind spot of its own: the simulator barely uses *Happy Switch*, so it sees what building Blissey costs, not what Blissey gives back.
 
 ## Deck page markdown contract
 
