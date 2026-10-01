@@ -1,0 +1,717 @@
+/* The damage calculator's own rules, on top of template.html.
+ *
+ * Only calc.html loads this. Everything here leans on the template's tokens,
+ * so the page follows the site's light and dark themes without saying so.
+ * Phone first: it is built for a Pixel 6 at a card table, 412px wide, held in
+ * one hand, so every control is a 44px target and the card image stays beside
+ * the form rather than dropping below it.
+ */
+
+:root {
+	/* the template's leaf and ember are tuned for the dark theme, and on the
+	   light one they are too pale to read as text. these are the callout and
+	   verdict colours, one shade darker in light. */
+	--calc-good: #2e7d32;
+	--calc-bad:  #c62828;
+	--calc-pick: var(--gold);
+	--calc-tap:  44px;
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+	--calc-good: var(--leaf);
+	--calc-bad:  #ff7043;
+}
+}
+
+/* both boxes are main > section, so the template already gives them the
+   surface, the padding, and a column. this adds the space between rows. */
+[data-opponent],
+[data-attacker] {
+	gap: var(--gap);
+
+	h2 {
+		font-size: var(--text-lg);
+		color: var(--heading);
+		line-height: 1.2;
+	}
+}
+
+/* the small-caps label over every control, the same treatment as a card's
+   stat block on the deck pages */
+[data-search] > label,
+[data-field] > span,
+[data-opponent] legend {
+	color: var(--muted);
+	font-size: 0.85em;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+/* form controls opt out of inheriting type, and the template's reset zeroes
+   their padding, so both have to be said out loud */
+[data-opponent] :is(input, select),
+[data-clear] {
+	min-height: var(--calc-tap);
+	padding: 0.45em 0.7em;
+	background: var(--bg);
+	color: var(--fg);
+	border: 1px solid var(--line);
+	border-radius: var(--round);
+	font: inherit;
+
+	&:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 1px;
+	}
+}
+
+/* the attacker box ends on its table, whose cells carry their own padding,
+   so the box's own would only double it */
+[data-attacker] {
+	padding-bottom: 0;
+}
+
+[data-opponent] button,
+[data-attacker] button {
+	cursor: pointer;
+}
+
+/* the template indents every list inside a section, for prose. none of the
+   lists here are prose: they are a menu, chips, and callouts. */
+#hits,
+[data-chips],
+[data-callouts],
+[data-notes] ul {
+	padding: 0;
+
+	li {
+		padding-top: 0;
+	}
+}
+
+/* --- search ------------------------------------------------------------- */
+
+[data-search] {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.3em;
+	/* where focus scrolls it to on a phone, so the list opens downward into
+	   the half of the screen the keyboard leaves */
+	scroll-margin-top: 0.5rem;
+}
+
+[data-box] {
+	display: flex;
+	gap: 0.5em;
+
+	input {
+		flex: 1 1 auto;
+		min-width: 0;
+		/* under 16px and Chrome zooms the page in on focus */
+		font-size: max(16px, 1em);
+
+		/* Chrome's own × empties the box and leaves the form as it was,
+		   right beside the Clear that resets it. one way out, not two. */
+		&::-webkit-search-cancel-button {
+			appearance: none;
+		}
+	}
+}
+
+[data-clear] {
+	flex: none;
+	font-weight: 700;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+#hits {
+	position: absolute;
+	top: 100%;
+	inset-inline: 0;
+	z-index: 10;
+	max-height: min(60svh, 30rem);
+	overflow-y: auto;
+	margin-top: 0.3em;
+	list-style: none;
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--round);
+	box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.35);
+
+	&[hidden] {
+		display: none;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+		gap: 0.7em;
+		min-height: var(--calc-tap);
+		padding: 0.45em 0.8em;
+		cursor: pointer;
+
+		& + li {
+			border-top: 1px solid var(--line);
+		}
+
+		&:hover,
+		&[aria-selected="true"] {
+			background: var(--line);
+		}
+	}
+
+	img {
+		flex: none;
+		width: 1.4em;
+		height: 1.4em;
+
+		/* same disc as the cost icons, for the same two symbols */
+		@media (prefers-color-scheme: dark) {
+			background: #000;
+			border-radius: 50%;
+			padding: 0.12em;
+		}
+	}
+
+	small {
+		display: block;
+		color: var(--muted);
+	}
+}
+
+/* --- the form beside the card ------------------------------------------- */
+
+[data-row] {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--gap);
+}
+
+[data-fields] {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 0;
+	min-width: 0;
+	gap: 0.9em;
+}
+
+/* a fieldset keeps its legend out of the flex flow on its own, so the
+   legend still sits on top while the controls wrap beneath it */
+[data-opponent] fieldset {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	gap: 0.4em 0.6em;
+	min-width: 0;
+	border: 0;
+
+	legend {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		padding-bottom: 0.3em;
+	}
+}
+
+[data-field] {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3em;
+	min-width: 0;
+
+	&[hidden] {
+		display: none;
+	}
+
+	select {
+		width: 100%;
+	}
+}
+
+[data-stepper] {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+
+	> span {
+		min-width: 3.2em;
+	}
+
+	button {
+		flex: none;
+		width: var(--calc-tap);
+		height: var(--calc-tap);
+		background: var(--bg);
+		color: var(--fg);
+		border: 1px solid var(--line);
+		border-radius: var(--round);
+		font: inherit;
+		font-size: var(--text-lg);
+		font-weight: 700;
+		line-height: 1;
+	}
+
+	output,
+	input {
+		min-width: 2.5ch;
+		text-align: center;
+		font-size: var(--text-lg);
+		font-weight: 700;
+	}
+
+	input {
+		width: 4.5em;
+		min-width: 0;
+		padding-inline: 0.3em;
+		/* the arrows are the steppers' job, and on a phone they're too small
+		   to hit anyway */
+		appearance: textfield;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			appearance: none;
+		}
+	}
+}
+
+/* the running total sits in the legend, as a badge rather than a word */
+#energy-total {
+	min-width: 1.6em;
+	padding: 0 0.45em;
+	background: var(--line);
+	color: var(--fg);
+	border-radius: 1em;
+	text-align: center;
+	letter-spacing: 0;
+}
+
+[data-energy] select {
+	flex: 1 1 100%;
+	min-width: 0;
+}
+
+/* the Special Energy on it, one chip each. the same chips as the Pokédex's
+   active filters, so a tap on one reads as "take this off". */
+[data-chips] {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 0.4em;
+	list-style: none;
+
+	&:empty {
+		display: none;
+	}
+
+	button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		min-height: 2.2em;
+		padding: 0.2em 0.7em;
+		background: var(--bg);
+		color: var(--fg);
+		border: 1px solid var(--line);
+		border-radius: 2em;
+		font: inherit;
+		font-size: 0.9em;
+
+		b {
+			color: var(--muted);
+			font-weight: 400;
+		}
+
+		&:hover b {
+			color: var(--calc-bad);
+		}
+	}
+}
+
+/* Active or Bench, as one two-way switch */
+[data-position] {
+	flex-wrap: nowrap;
+
+	label {
+		flex: 1 1 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: var(--calc-tap);
+		background: var(--bg);
+		border: 1px solid var(--line);
+		border-radius: var(--round);
+		cursor: pointer;
+		font-weight: 700;
+
+		&:has(:checked) {
+			background: var(--line);
+			border-color: var(--calc-pick);
+		}
+
+		&:has(:focus-visible) {
+			outline: 2px solid var(--accent);
+			outline-offset: 1px;
+		}
+	}
+
+	input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+}
+
+/* the card. a fixed share of the row on every screen, capped so a desktop
+   doesn't get a poster, and centred against the form beside it, which runs
+   a good deal taller */
+[data-preview] {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	flex: 0 0 38%;
+	max-width: 17rem;
+	gap: 0.4em;
+
+	a {
+		display: block;
+		border-radius: 4.5% / 3.2%;
+
+		&:focus-visible {
+			outline: 2px solid var(--accent);
+			outline-offset: 3px;
+		}
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 365 / 512;
+		/* the card back is 369 wide to the scans' 365. cropping two pixels a
+		   side beats squashing the whole thing. */
+		object-fit: cover;
+		border-radius: 4.5% / 3.2%;
+		background: var(--bg);
+	}
+
+	figcaption {
+		color: var(--muted);
+		font-size: 0.85em;
+		text-align: center;
+		line-height: 1.3;
+	}
+}
+
+/* --- callouts ----------------------------------------------------------- */
+
+[data-callouts],
+[data-notes] ul {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55em;
+	list-style: none;
+
+	&:empty {
+		display: none;
+	}
+
+	li {
+		padding-inline-start: 0.7em;
+		border-inline-start: 4px solid var(--quiet);
+		line-height: 1.45;
+	}
+
+	[data-tone="good"] {
+		color: var(--calc-good);
+		border-color: var(--calc-good);
+	}
+
+	[data-tone="bad"] {
+		color: var(--calc-bad);
+		border-color: var(--calc-bad);
+	}
+
+	/* energy symbols in the text, sized to it */
+	img {
+		height: 1.1em;
+		width: auto;
+		vertical-align: -0.15em;
+	}
+}
+
+/* the notes under the table hold one list per attacker, stacked like the
+   table's cells below, so a note only one attacker gets doesn't push the
+   opponent section down when you switch to it */
+[data-notes] {
+	display: grid;
+
+	&:empty {
+		display: none;
+	}
+
+	> ul {
+		grid-area: 1 / 1;
+	}
+
+	> [data-off] {
+		visibility: hidden;
+	}
+}
+
+/* --- attacker ----------------------------------------------------------- */
+
+/* five across, evenly. the border is the box's own colour until picked, so
+   the art doesn't shift when the highlight arrives. */
+[data-picks] {
+	position: relative;
+	display: flex;
+	gap: clamp(0.3rem, 1.5vw, 0.9rem);
+	border: 0;
+	min-width: 0;
+
+	legend {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	label {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 1 1 0;
+		min-width: 0;
+		gap: 0.2em;
+		cursor: pointer;
+	}
+
+	input {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	/* the ones not picked step back, faded and drained of colour, so the
+	   pick reads from across the table. the results under them stay at full
+	   strength: those are the point of the row. */
+	img {
+		width: 100%;
+		height: auto;
+		aspect-ratio: 386 / 266;
+		object-fit: cover;
+		border: 5px solid var(--surface);
+		border-radius: var(--round);
+		opacity: 0.4;
+		filter: grayscale(0.85);
+		transition: opacity 0.15s, filter 0.15s;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	label:hover img {
+		opacity: 0.7;
+	}
+
+	label:has(:checked) img {
+		border-color: var(--calc-pick);
+		opacity: 1;
+		filter: none;
+	}
+
+	label:has(:focus-visible) img {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+
+	/* each attacker's result, so the whole row answers at a glance */
+	output {
+		font-size: var(--text-lg);
+		font-weight: 700;
+		line-height: 1.1;
+		font-variant-numeric: tabular-nums;
+
+		&[data-verdict="ok"] {
+			color: var(--calc-good);
+		}
+
+		&[data-verdict="no"] {
+			color: var(--calc-bad);
+		}
+	}
+}
+
+/* one row, three even columns, at a size readable at arm's length */
+[data-moves] {
+	table-layout: fixed;
+	margin: 0;
+	font-size: var(--text-lg);
+
+	/* one row, so the template's rule under every cell only underlines the
+	   bottom of the box */
+	td {
+		vertical-align: middle;
+		padding-block: 0.6em;
+		border-bottom: 0;
+	}
+
+	[data-attack] b {
+		display: block;
+		line-height: 1.2;
+	}
+
+	/* the cost sits centred under its own heading. both get even padding,
+	   since the table's default inset is lopsided and would pull the centre
+	   off to the left. */
+	th:nth-child(2),
+	[data-cost] {
+		text-align: center;
+		padding-inline: 0.25em;
+	}
+}
+
+/* every attacker's cell content in one grid cell, only the picked one
+   visible, so the row is always as tall as its tallest version */
+[data-stack] {
+	display: grid;
+
+	> * {
+		grid-area: 1 / 1;
+		align-self: center;
+	}
+
+	> [data-off] {
+		visibility: hidden;
+	}
+}
+
+[data-cost] {
+	img {
+		width: 1.5em;
+		height: 1.5em;
+
+		& + img {
+			margin-inline-start: 0.25em;
+		}
+
+		/* the Colorless symbol is mid grey and the Darkness one slate, and
+		   no one disc suits both. a pale one hid the grey star entirely
+		   (1.3:1); black gives the star 7.8:1 and keeps the slate at 2.9:1,
+		   better for the pair than the bare surface. the disc is a ring of
+		   padding, sized so three of them still fit one row of a third of
+		   a Pixel 6 screen. */
+		@media (prefers-color-scheme: dark) {
+			width: 1.7em;
+			height: 1.7em;
+			padding: 0.2em;
+			background: #000;
+			border-radius: 50%;
+		}
+
+		/* phones narrower than a Pixel 6 get a third of a smaller row */
+		@media (width < 400px) {
+			width: 1.3em;
+			height: 1.3em;
+
+			@media (prefers-color-scheme: dark) {
+				width: 1.45em;
+				height: 1.45em;
+				padding: 0.17em;
+			}
+		}
+	}
+
+	/* a cost raised by their card, set apart from the printed one */
+	[data-extra] {
+		outline: 2px solid var(--calc-bad);
+		border-radius: 50%;
+	}
+}
+
+[data-poison] {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	min-height: var(--calc-tap);
+	font-size: 0.8em;
+	color: var(--muted);
+	cursor: pointer;
+
+	input {
+		width: 1.3em;
+		height: 1.3em;
+		accent-color: var(--poison);
+	}
+
+	&:has(:disabled) {
+		text-decoration: line-through;
+	}
+}
+
+[data-damage] {
+	strong {
+		display: block;
+		font-size: 1.9em;
+		line-height: 1.05;
+		font-variant-numeric: tabular-nums;
+	}
+
+	small {
+		display: block;
+		color: var(--muted);
+		font-size: 0.6em;
+		line-height: 1.3;
+		padding-block: 0.2em;
+	}
+}
+
+[data-damage] [data-verdict] {
+	display: inline-block;
+	font-size: 0.7em;
+	font-weight: 700;
+	line-height: 1.3;
+	border-radius: var(--round);
+
+	&[data-verdict="ok"],
+	&[data-verdict="no"] {
+		padding: 0.1em 0.5em;
+		color: #fff;
+	}
+
+	&[data-verdict="ok"] {
+		background: var(--calc-good);
+	}
+
+	&[data-verdict="no"] {
+		background: var(--calc-bad);
+	}
+
+	&[data-verdict="left"] {
+		color: var(--muted);
+	}
+}
+
+/* the verdict is a fill, and print drops fills; the template's print block
+   has no idea this page exists */
+@media print {
+	[data-damage] [data-verdict="ok"],
+	[data-damage] [data-verdict="no"] {
+		color: #000;
+		background: none;
+		border: 1pt solid #000;
+	}
+
+	#hits {
+		display: none;
+	}
+}

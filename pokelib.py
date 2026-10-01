@@ -301,7 +301,7 @@ BACK = '<a data-back href="./index.html">← back to all decks</a>'
 
 
 def page(dest, title, subtitle, nav, body, notes="", sprite="", script="",
-         back=BACK):
+         back=BACK, head=""):
     """Fill the shared template and write it out.
 
     sprite names one file in assets/sprites, or several, shown beside the
@@ -313,6 +313,10 @@ def page(dest, title, subtitle, nav, body, notes="", sprite="", script="",
 
     back is the banner's way home to the index. Every page gets it by
     default; the index itself passes "" rather than linking to itself.
+
+    head is extra markup for the <head>, which today is only the damage
+    calculator's own stylesheet. Like script, its line is dropped entirely
+    when there is nothing to put there, so no other page changes.
     """
     out = TEMPLATE.read_text(encoding="utf-8")
     if not back:                      # the index, which is already home
@@ -326,11 +330,14 @@ def page(dest, title, subtitle, nav, body, notes="", sprite="", script="",
         out = re.sub(r"\n\t*\$\{NAV\}", "", out)
     if not subtitle:                  # likewise, no empty <p> left behind
         out = re.sub(r"\n\t*<p>\$\{SUBTITLE\}</p>", "", out)
+    if not head:
+        out = re.sub(r"\n\t*\$\{HEAD\}", "", out)
     if script:
         out = out.replace("${SCRIPT}", f'<script defer src="{script}"></script>')
     else:
         out = re.sub(r"\n\t*\$\{SCRIPT\}", "", out)
-    for token, repl in (("${TITLE}", title), ("${SUBTITLE}", subtitle),
+    for token, repl in (("${HEAD}", head),
+                        ("${TITLE}", title), ("${SUBTITLE}", subtitle),
                         ("${NAV}", nav), ("${ARTICLES}", body),
                         ("${NOTES}", notes), ("${BACK}", back)):
         out = out.replace(token, repl)

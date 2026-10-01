@@ -31,6 +31,8 @@ STEPS = [
     ("wishlist.html", "build_wishlist.py"),
     ("credits.html", "build_credits.py"),
     ("collection.md", "build_markdown.py"),
+    # reads the newest legal-cards snapshot, never the network
+    ("calc.html", "build_calc.py"),
     # last, and it has to be: this one reads the pages above back off disk
     ("index.html", "build_index.py"),
 ]

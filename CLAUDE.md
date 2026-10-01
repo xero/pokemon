@@ -10,6 +10,7 @@
 ```
 add_cards.py --> product-ids.tsv --normalize_cards.py--> cards.csv + assets/*.jpg
 pokemontcg.io --fetch_regulation.py--> regulation-marks.json --> the reg mark and legal columns
+pokemontcg.io --fetch_legal_pool.py--> legal-cards-<epoch>.json --build_calc.py--> assets/calc/pool.json
 decks.toml + the deck .md files --build.py--> the site
 ```
 
@@ -21,12 +22,13 @@ decks.toml + the deck .md files --build.py--> the site
 
 ## The legal card pool
 
-`legal-cards-<epoch>.json` is a snapshot of every Standard-legal card, pulled from pokemontcg.io. `python3 fetch_legal_pool.py` writes a fresh one. It takes a few minutes, and nothing in the build reads the result.
+`legal-cards-<epoch>.json` is a snapshot of every Standard-legal card, pulled from pokemontcg.io. `python3 fetch_legal_pool.py` writes a fresh one. It takes a few minutes. The one thing in the build that reads it is `build_calc.py`, which takes the newest snapshot by epoch, so a fresh pull changes the damage calculator on the next build.
 
 - **`cards.csv` is our cards; this is what exists.** Roughly 300 cards against roughly 3,000. Any question shaped like "what is legal that does X" has to be answered from here. Our cards are the wrong pool to search, and the answer is not reliably in anyone's memory.
 - **The legal marks are H, I, and J**, as of the 2026 rotation. `LEGAL_MARKS` in the script is the one line to change when that moves.
 - **The filename carries the fetch time because the answer expires.** Keep the old snapshots rather than replacing them; diffing two shows what a rotation took away.
-- **It carries card text, not card stats.** Every card keeps its `rules`, `abilities`, and `attacks`, so grepping card text is the intended use. Prices, ids, and image urls are stripped, and so are `weaknesses`, `convertedRetreatCost`, and `evolvesFrom`. "What does this hit for double", "what is its Retreat Cost", and "what does this evolve from" all need a live API pull. `FIELDS` in the script is where to widen it.
+- **It carries card text and the stats the calculator needs.** Every card keeps its `rules`, `abilities`, and `attacks`, so grepping card text is the intended use, plus `weaknesses`, `resistances`, and `evolvesFrom` since 2026-10-01. Snapshots older than that lack those three. Prices and image urls are stripped, and so is `convertedRetreatCost`, so "what is its Retreat Cost" still needs a live API pull. `FIELDS` in the script is where to widen it.
+- **Upstream has typos.** 30th Celebration's Murkrow lists a Fighting Resistance of "×2". `build_calc.py` reports a value it can't read and leaves it off.
 - The upstream API returns bare 502s in bursts and spells the supertype one way in the query and another in the response. The script already handles both, so reach for it instead of hitting the API by hand.
 
 ## Adding a card
@@ -70,7 +72,19 @@ python3 build.py --data     # re-fetch cards.csv first
 - **Run `build.py`, never the builders individually.** `build_index.py` reads the finished pages back off disk to count the cards on each, so it runs last.
 - **`assets/template.html` has an `@media print` block, and it is load-bearing.** The screen type scale is `vw` clamps that resolve against the sheet and arrive oversized, the dark-mode block has no print guard, and browsers drop backgrounds. Anything that encodes meaning in a fill needs an explicit print rule; the table headers and the `[data-count]` badge already have one.
 - **Every generated file is committed.** `--check` on a clean tree is the regression test. No workflow runs it, so run it before committing a builder change. After changing a builder, a deck .md, or `decks.toml`, run a build before committing or the commit is stale.
-- Generated: `collection.html`, `wishlist.html`, every deck page, `credits.html`, `collection.md`, `index.html`. Hand-written: the deck `.md` files, `decks.toml`, `product-ids.tsv` through `add_cards.py`, the Python. (`deck-registration.html` is a hand-made Worlds Celebration sheet, not part of the build.) Neither: `logs/`, the TCG Live battle logs the tcg-log skill (`.claude/skills/tcg-log/`) archives, which is gitignored. Xero drops raw logs there under any name, and the skill's `save` renames them.
+- Generated: `collection.html`, `wishlist.html`, every deck page, `credits.html`, `collection.md`, `calc.html`, `assets/calc/pool.json`, `index.html`. Hand-written: the deck `.md` files, `decks.toml`, `calc.toml`, `assets/calc/calc.js` and `calc.css`, `product-ids.tsv` through `add_cards.py`, the Python. (`deck-registration.html` is a hand-made Worlds Celebration sheet, not part of the build.) Neither: `logs/`, the TCG Live battle logs the tcg-log skill (`.claude/skills/tcg-log/`) archives, which is gitignored. Xero drops raw logs there under any name, and the skill's `save` renames them.
+
+## The damage calculator
+
+`calc.html` is a phone-first form for Lucky Haunt: pick the opponent's Pokémon, say what is on it, and each of the deck's five attackers shows its damage and whether it Knocks Out. `build_calc.py` writes the page and `assets/calc/pool.json`; `assets/calc/calc.js` and `calc.css` are hand-written and only this page loads them. It is a `[[library]]` entry in `decks.toml`.
+
+- **The attackers come from the deck, never from the code.** `ATTACKERS` in the builder names each one and the attack it is there for; the deck list in dark-lucky.md pins the printing and `cards.csv` supplies the cost and damage. Okidogi ex shows only *Chain-Crazed*, with a Poisoned switch that starts on, because that is what Xero asked for. The icons are `assets/calc/<key>.png`.
+- **Card text becomes effects at build time.** Abilities and "during your opponent's next turn" attacks are read by patterns in `read_sentence()`. A sentence that sounds like it should matter and matched nothing is printed as a build warning, so a new set's wording shows up as a line in the build rather than a wrong number at the table. `python3 build_calc.py --review` prints every attack sentence that fell back to a plain callout too. Board-wide Abilities (Rabsca, Bronzong, Gastrodon) are written by hand in `BY_HAND`, and so are Tools, Stadiums, and Special Energy in `TOOLS`, `STADIUMS`, and `ENERGIES`; an empty list puts a card in the menu's "Nothing to your attacks" group.
+- **Effects carry condition tokens** (`atk:ex`, `tgt:bench`, `dmg:>=240`), and `test()` in calc.js reads them. An unknown token is false, so a token the builder learns first switches its effect off, not on. A new token needs a case in both files.
+- **`calc.toml` holds what card text can't say: what to do about it.** Each note is seeded from dark-lucky.md's Cards to Watch Out For and links back to it. **A note never claims what lands or what Knocks Out.** A note can't see the board, and "Pain still lands" on Crustle sat beside a table saying Mist Energy blocked it. The calculator says what gets through in one summary line built from every attacker's actual result, and each effect's line says only what that effect stops. Hang a note on `abilities` rather than `cards` when only some prints of a name carry the Ability (Banette, Sylveon, Crustle). A name the pool lacks prints a warning and is skipped. When the Watch Out table changes, change the note in the same commit.
+- **Images load from Scrydex by card id** (`images.scrydex.com/pokemon/<id>/medium`), the same host pokemontcg.io's own image field points at. None are in the repo, and no header is needed: an `<img>` from another origin needs no CORS.
+- **The template's `${HEAD}` slot exists for this page's stylesheet.** Its line drops out when empty, like `${SCRIPT}`, so no other page changes. Script, stylesheet, and pool URLs carry a `?v=` hash of the file, so a phone never runs new HTML against a cached old script.
+- **It saves the form to `localStorage`**, because Android discards background tabs. Clear resets the opponent's Pokémon and what is on it, and leaves the Stadium, the attacker, and the Poisoned switch alone.
 
 ## The deck simulator
 

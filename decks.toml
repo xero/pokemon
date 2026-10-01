@@ -68,6 +68,14 @@ tournament expects."""
 "How To Play ex Style" = ["gengar-mega-shiny"]
 "7. Errors to expect on the way over" = ["eevee-back"]
 
+[[library]]
+page = "calc.html"
+sprites = ["pokedex", "gengar-hop"]
+blurb = """
+The damage calculator for Lucky Haunt, built for a phone at the table. Pick
+their Pokémon and what is on it, and every attacker shows what it does:
+Weakness, Abilities, Tools, and Stadiums included."""
+
 [[deck]]
 source = "dark-gang.md"
 player = "xero"

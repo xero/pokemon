@@ -1,0 +1,134 @@
+# Hand-written callouts for the damage calculator, calc.html.
+#
+# The calculator reads card text and works out for itself what a card does to
+# the math: Mist Energy stops Chaotic Pain, Crustle stops the ex attackers,
+# Hero's Cape adds 100 HP. What the text can't say is what to do about it, and
+# that is what lives here. Every note was seeded from dark-lucky.md's Cards to
+# Watch Out For, which stays the reasoning; a note here is the one line to read
+# at the table, with a link back to the section that explains it.
+#
+# [[note]]
+#   cards      exact names, spelled the way the legal pool spells them. A
+#              Pokémon's note shows when it is picked; a Tool, Stadium, or
+#              Special Energy note shows when it is attached or in play.
+#   abilities  Ability names. The note shows on any Pokémon that has one.
+#              Safer than a card name when only some prints of a name carry
+#              the Ability, which is true of Banette, Sylveon, and Crustle.
+#   attacks    attack names, the same way
+#   tone       "bad" for red, "good" for green
+#   text       the line. *Asterisks* make italics, for attack and Ability
+#              names, the same as the deck pages.
+#   link       an anchor on dark-lucky.html, optional
+#
+# A name the pool doesn't have prints a warning and that part of the note is
+# skipped, so a rotation never breaks the build. Read the warning anyway; it
+# usually means the card has left Standard.
+#
+# A note says what to do, never what lands or what kills. A note can't see the
+# board: "Pain still lands" on Crustle was true until a Mist Energy went on it,
+# and then the page said it right beside the table saying it didn't. The
+# calculator works out what gets through and what Knocks Out, live. A note that
+# only repeats one of those numbers is noise, and a note that asserts one is a
+# contradiction waiting for the right Energy.
+
+[[note]]
+cards = ["Mist Energy"]
+tone = "bad"
+text = "Pain it before the Mist lands, or hit it with damage."
+link = "versus-crustle"
+
+[[note]]
+cards = ["Rocky Fighting Energy"]
+tone = "bad"
+text = "Pain something else. *Draconic Buster* discards Garchomp's own."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Hide 'n' Sneak"]
+tone = "bad"
+text = "Hit it with damage instead: a dog, *Void Gale*, or Haunter's *Spooky Shot* on a Poltchageist. It stops *Fainting Spell*'s coin too."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Emperor's Stance", "Unaware", "Protective Cover"]
+tone = "bad"
+text = "Hit it with damage instead. Empoleon ex usually takes two."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Repelling Veil"]
+tone = "bad"
+text = "It shields every Basic Team Rocket's Pokémon they have, not just itself. Knock it out with damage first, and Pain reaches the rest."
+link = "cards-to-watch-out-for"
+
+[[note]]
+cards = ["Battle Cage"]
+tone = "bad"
+text = "Risky Ruins replaces the Cage."
+link = "versus-charizard-and-battle-cage"
+
+[[note]]
+abilities = ["Spherical Shield"]
+tone = "bad"
+text = "It shields their whole Bench, itself included while it sits there. Boss's Orders brings it up, where nothing protects it."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Mysterious Rock Inn"]
+tone = "bad"
+text = "Expect Mist Energy on any Crustle that attacks. The non-ex Pokémon are the answer, and a Crustle has to go in one turn, since Jumbo Ice Cream heals the chip."
+link = "versus-crustle"
+
+[[note]]
+cards = ["Neutralization Zone"]
+tone = "bad"
+text = "Pain them, or hit with Toxtricity, Haunter, or Chansey. Risky Ruins replaces it, and as an ACE SPEC it can't come back."
+link = "cards-to-watch-out-for"
+
+[[note]]
+cards = ["Team Rocket's Watchtower"]
+tone = "bad"
+text = "Risky Ruins replaces it, and Petrel finds the Ruins. Janine's is the Energy route that doesn't need Blissey."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Sticky Bind"]
+tone = "bad"
+text = "Knock it out first. On their Bench it switches off the parked Mega's *Shadowy Concealment*."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Initialization"]
+tone = "bad"
+text = "While it is Active, your Pokémon ex have no Abilities: no Concealment, *Fainting Spell*, or *Happy Switch*. Surge still works, and the dog has no Ability to lose."
+link = "cards-to-watch-out-for"
+
+[[note]]
+abilities = ["Midnight Fluttering"]
+tone = "bad"
+text = "While it is Active, your Active Pokémon has no Abilities, so no *Fainting Spell* coin."
+link = "cards-to-watch-out-for"
+
+[[note]]
+cards = ["Munkidori", "Froslass"]
+tone = "bad"
+text = "Knock it out first. Moved and placed counters skip Concealment and *Fainting Spell*."
+link = "who-chaotic-pain-hits"
+
+[[note]]
+attacks = ["Singe Off", "Mach Cut", "Righteous Edge"]
+tone = "bad"
+text = "It discards Special Energy. Neo Upper pays for the turn it lands; after that expect it gone, and keep a Basic Energy route behind it."
+link = "cards-to-watch-out-for"
+
+[[note]]
+cards = ["Festival Grounds"]
+tone = "bad"
+text = "Risky Ruins replaces it."
+link = "cards-to-watch-out-for"
+
+[[note]]
+cards = ["Budew", "Flaaffy", "Frillish", "Galvantula ex", "Jellicent ex", "Tyranitar"]
+tone = "bad"
+text = "Item lock: no Rare Candy, Switch, Poffin, or Poke Pad. AZ's, Grimsley's, Janine's, and Surge all still work."
+link = "cards-to-watch-out-for"

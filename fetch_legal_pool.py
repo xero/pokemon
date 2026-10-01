@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Snapshot every Standard-legal card to legal-cards-<epoch>.json.
 
-Nothing in the build reads this. It exists so a session can answer "what is
-legal that does X" by grepping a local file, instead of guessing from memory or
-paging a flaky API mid-conversation. cards.csv only knows the ~200 cards we own,
-which is the wrong pool for that question.
+It exists so a session can answer "what is legal that does X" by grepping a
+local file, instead of guessing from memory or paging a flaky API
+mid-conversation. cards.csv only knows the ~200 cards we own, which is the
+wrong pool for that question. The one reader in the build is build_calc.py,
+which takes the newest snapshot as the damage calculator's opponent list.
 
 The filename carries the fetch time because the answer expires: rotation moves
 the legal marks every April, and sets are added between rotations. An old
@@ -34,9 +35,10 @@ LEGAL_MARKS = ["H", "I", "J"]
 
 # The fields that answer "what does this card do". The full record carries
 # prices, market ids, and a dozen image urls, which would quadruple the file
-# and go stale immediately.
+# and go stale immediately. Weakness, Resistance, and what a card evolves from
+# are here for build_calc.py, which does the damage math from this file.
 FIELDS = ("id,name,supertype,subtypes,number,set,regulationMark,rules,"
-          "abilities,attacks,types,hp")
+          "abilities,attacks,types,hp,weaknesses,resistances,evolvesFrom")
 
 
 def get(query, page):

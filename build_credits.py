@@ -68,6 +68,14 @@ SOURCES = [
         ' <a href="https://bulbapedia.bulbagarden.net/wiki/2026-27_Standard_format_%28TCG%29">'
         "Bulbapedia's 2026-27 Standard format page</a>.",
     ]),
+    ("The damage calculator", "gengar-hop", [
+        'Every Standard-legal card the calculator can pick, with its text,'
+        ' Weakness, and Resistance, comes from'
+        ' <a href="https://pokemontcg.io">pokemontcg.io</a>, pulled whole by'
+        ' <code>fetch_legal_pool.py</code>. The card images it shows load from'
+        ' <a href="https://scrydex.com">Scrydex</a>, which is where'
+        ' pokemontcg.io keeps them.',
+    ]),
     ("Set symbols, set logos, and rarity symbols", "gastly", [
         '<a href="https://pokesymbols.com">pokesymbols.com</a>, covering the'
         ' <a href="https://pokesymbols.com/tcg/rarities">rarities</a>,'

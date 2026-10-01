@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#14121a" />
-		<title>Credits</title>
+		<title>Damage Calculator</title>
 		<!-- Every path here is relative. Pages ship to a project subfolder on
 		     GitHub Pages, so a leading slash would resolve to the domain root
 		     and every icon would 404. The manifest points at its own icons the
@@ -15,6 +15,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="pokedex" />
 		<link rel="manifest" href="./assets/site.webmanifest" />
+		<link rel="stylesheet" href="./assets/calc/calc.css?v=37a632e3" />
 		<style>
 		:root {
 			/* palette */
@@ -1216,82 +1217,83 @@
 	<body>
 		<header>
 			<div>
-				<h1><img src="./assets/pokeball.png" alt="" />Credits</h1>
-				<p>Where the card text, images, and symbols came from.</p>
+				<h1><img src="./assets/pokeball.png" alt="" />Damage Calculator <img data-mascot src="./assets/sprites/pokedex.gif" alt="" /> <img data-mascot src="./assets/sprites/gengar-hop.gif" alt="" /></h1>
+				<p>For the <a href="./dark-lucky.html">Lucky Haunt</a> deck</p>
 				<a data-back href="./index.html">← back to all decks</a>
 			</div>
 		</header>
 		<main>
-			<article>
-				<section>
-					<h2>Header and footer artwork<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /></span></h2>
-					<p>The spooky forest Gengar, Haunter, and Gastly artwork in the banner and footer of every page is by <a href="https://www.artofpkm.com/illustrators/204/cards">Arai Kiriko</a>.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Card text and rulings<span data-flavor><img src="./assets/sprites/haunter.gif" alt="" /></span></h2>
-					<p>The wording on every card, and the rulings for how it actually behaves, come from <a href="https://pkmncards.com/">PkmnCards</a>, <a href="https://www.tcgcollector.com/">TCG Collector</a>, and <a href="https://bulbapedia.bulbagarden.net/">Bulbapedia</a>.</p>
-					<p>Two Bulbapedia pages did most of the work: <a href="https://bulbapedia.bulbagarden.net/wiki/Confused_(TCG)">Confused (TCG)</a>, because both decks lean on it, and <a href="https://bulbapedia.bulbagarden.net/wiki/Gengar_(Perfect_Order_50)">Gengar (Perfect Order 50)</a>, for the exact text of Infinite Shadow.</p>
-					<p>The awkward rules questions were settled by <a href="https://www.justinbasil.com/guide/damage">JustinBasil</a> on why damage counters ignore Weakness and every prevent-damage effect, the <a href="https://compendium.pokegym.net/category/7-gameplay/retreating/">Pokégym Compendium</a> on retreating, and <a href="https://bulbapedia.bulbagarden.net/wiki/Special_Conditions_(TCG)">Bulbapedia on Special Conditions</a> for how Sleep and Confusion actually resolve.</p>
-					<p>Deck lists and what people are really playing come from <a href="https://limitlesstcg.com/">Limitless TCG</a> and the <a href="https://www.pokemon.com/us/pokemon-tcg/">Pokémon.com card database</a>. Full set lists, for checking a card exists before planning around it, come from <a href="https://www.serebii.net/card/">Serebii</a>. And <a href="https://www.josephwriteranderson.com/blog/mega-gengar-ex-deck-list-and-guide">Joseph Writer Anderson's Mega Gengar ex guide</a> worked out how that deck is actually piloted.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Card data<span data-flavor><img src="./assets/sprites/weezing.gif" alt="" /></span></h2>
-					<p>Names, sets, numbers, rarity, types, HP, stage, attacks, weakness, resistance, retreat cost, and card text come from the <a href="https://www.tcgplayer.com">TCGplayer</a> marketplace search API. The card scans come from the TCGplayer CDN.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Tournament legality<span data-flavor><img src="./assets/sprites/sudowoodo.gif" alt="" /></span></h2>
-					<p>Regulation marks come from <a href="https://pokemontcg.io">pokemontcg.io</a>, one lookup per card rather than one per set. That distinction matters. Prismatic Evolutions prints Flareon 013 with a G mark and Flareon ex 014 with an H, so a set-level table would call rotated cards legal.</p>
-					<p>The rotation rules behind the yes or no come from the <a href="https://www.pokemon.com/us/pokemon-news/2026-pokemon-tcg-standard-format-rotation-announcement">2026 Standard rotation announcement</a> and <a href="https://bulbapedia.bulbagarden.net/wiki/2026-27_Standard_format_%28TCG%29">Bulbapedia's 2026-27 Standard format page</a>.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>The damage calculator<span data-flavor><img src="./assets/sprites/gengar-hop.gif" alt="" /></span></h2>
-					<p>Every Standard-legal card the calculator can pick, with its text, Weakness, and Resistance, comes from <a href="https://pokemontcg.io">pokemontcg.io</a>, pulled whole by <code>fetch_legal_pool.py</code>. The card images it shows load from <a href="https://scrydex.com">Scrydex</a>, which is where pokemontcg.io keeps them.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Set symbols, set logos, and rarity symbols<span data-flavor><img src="./assets/sprites/gastly.gif" alt="" /></span></h2>
-					<p><a href="https://pokesymbols.com">pokesymbols.com</a>, covering the <a href="https://pokesymbols.com/tcg/rarities">rarities</a>, <a href="https://pokesymbols.com/tcg/sets">English sets</a>, and <a href="https://pokesymbols.com/tcg/japanese-sets">Japanese sets</a>.</p>
-					<p>pokesymbols has no entry for the Halloween bundles, so the Pikachu jack-o&#x27;-lantern stamp on the Trick or Trade cards comes from <a href="https://dextcg.com">DexTCG</a> instead.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Energy glyphs and the Mega sigil<span data-flavor><img src="./assets/sprites/gengar-mega-shiny.gif" alt="" /></span></h2>
-					<p>The energy type symbols beside every cost, and the <a href="https://www.pokepedia.fr/Fichier:Symbole_M%C3%A9ga-%C3%89volution_LPZA.svg">Mega sigil</a> beside a Mega card, are both zero-licence SVGs from <a href="https://www.pokepedia.fr/">Poképédia</a>.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Poké Ball<span data-flavor><img src="./assets/sprites/koffing.gif" alt="" /></span></h2>
-					<p>The ball at the top of every page is the app icon from <a href="https://github.com/HybridShivam/Pokemon">HybridShivam/Pokemon</a>.</p>
-				</section>
-			</article>
-			<article>
-				<section>
-					<h2>Sprites<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h2>
-					<p>The animated sprites tucked into the headings are the 3D models from <a href="https://pkparaiso.com">pkparaiso.com</a>, by way of <a href="https://github.com/tdmalone/pokecss-media">tdmalone/pokecss-media</a>.</p>
-				</section>
-			</article>
-			<aside data-callout="important">
-				<h2>We claim no ownership of any of it.<span data-flavor><img src="./assets/sprites/charizard-mega-y.gif" alt="" /></span></h2>
-				<p>Pokémon and all related names, characters, card text, card images, set symbols, and type symbols are © Nintendo, Creatures Inc., and Game Freak. Pokémon and the Pokémon TCG are trademarks of Nintendo. Every card image and every piece of card text reproduced here belongs to them.</p>
-				<p>Nothing on these pages is official, endorsed, or affiliated with Nintendo, Creatures Inc., Game Freak, or The Pokémon Company. This is an unofficial fan project made for a father and son to plan decks at the kitchen table. No money changes hands and nothing is for sale.</p>
-				<p>All rights remain reserved by the original artists. <i>Thank you for sharing!</i></p>
-			</aside>
+			<section data-attacker aria-labelledby="attacker">
+				<h2 id="attacker">Attacker</h2>
+				<fieldset data-picks>
+					<legend>Who attacks</legend>
+					<label><input type="radio" name="attacker" value="gengar" checked /><img src="./assets/calc/gengar.png" alt="Gengar ex" width="386" height="266" /><output data-badge="gengar"></output></label>
+					<label><input type="radio" name="attacker" value="mega" /><img src="./assets/calc/mega.png" alt="Mega Gengar ex" width="386" height="266" /><output data-badge="mega"></output></label>
+					<label><input type="radio" name="attacker" value="okidogi" /><img src="./assets/calc/okidogi.png" alt="Okidogi ex" width="386" height="266" /><output data-badge="okidogi"></output></label>
+					<label><input type="radio" name="attacker" value="blissey" /><img src="./assets/calc/blissey.png" alt="Blissey ex" width="386" height="266" /><output data-badge="blissey"></output></label>
+					<label><input type="radio" name="attacker" value="toxtricity" /><img src="./assets/calc/toxtricity.png" alt="Toxtricity" width="386" height="266" /><output data-badge="toxtricity"></output></label>
+				</fieldset>
+				<table data-moves>
+					<thead>
+						<tr><th>Attack</th><th>Cost</th><th>Damage</th></tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<div data-notes></div>
+			</section>
+			<section data-opponent data-pool="./assets/calc/pool.json?v=cbe5e9c7" aria-labelledby="opponent">
+				<h2 id="opponent">Opponent</h2>
+				<div data-search>
+					<label for="q">Their Pokémon</label>
+					<div data-box>
+						<input id="q" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hits" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" placeholder="Search every legal Pokémon" />
+						<button type="button" data-clear hidden>Clear</button>
+					</div>
+					<ul id="hits" role="listbox" aria-label="Matching Pokémon" hidden></ul>
+				</div>
+				<div data-row>
+					<div data-fields>
+						<fieldset data-energy>
+							<legend>Energy <output id="energy-total">0</output></legend>
+							<div data-stepper>
+								<span>Basic</span>
+								<button type="button" data-step="basic" data-by="-1" aria-label="One less Basic Energy">−</button>
+								<output id="basic">0</output>
+								<button type="button" data-step="basic" data-by="1" aria-label="One more Basic Energy">+</button>
+							</div>
+							<select id="special" aria-label="Add a Special Energy"><option value="">+ Special Energy</option><optgroup label="Changes the math"><option value="Growing Grass Energy">Growing Grass Energy</option><option value="Legacy Energy">Legacy Energy</option><option value="Mist Energy">Mist Energy</option><option value="Rocky Fighting Energy">Rocky Fighting Energy</option><option value="Spiky Energy">Spiky Energy</option></optgroup><optgroup label="Nothing to your attacks"><option value="Boomerang Energy">Boomerang Energy</option><option value="Bubbly Water Energy">Bubbly Water Energy</option><option value="Enriching Energy">Enriching Energy</option><option value="Ignition Energy">Ignition Energy</option><option value="Luminous Energy">Luminous Energy</option><option value="Magnetic Metal Energy">Magnetic Metal Energy</option><option value="Neo Upper Energy">Neo Upper Energy</option><option value="Nitro Fire Energy">Nitro Fire Energy</option><option value="Prism Energy">Prism Energy</option><option value="Shadowy Darkness Energy">Shadowy Darkness Energy</option><option value="Team Rocket&#x27;s Energy">Team Rocket&#x27;s Energy</option><option value="Telepathic Psychic Energy">Telepathic Psychic Energy</option><option value="Voltaic Lightning Energy">Voltaic Lightning Energy</option></optgroup></select>
+							<ul data-chips></ul>
+						</fieldset>
+						<fieldset data-position>
+							<legend>Position</legend>
+							<label><input type="radio" name="position" value="active" checked /> Active</label>
+							<label><input type="radio" name="position" value="bench" /> Bench</label>
+						</fieldset>
+						<label data-field><span>Damage on it</span>
+							<span data-stepper>
+								<button type="button" data-step="damage" data-by="-10" aria-label="10 less damage">−</button>
+								<input id="damage" type="number" inputmode="numeric" min="0" step="10" value="0" />
+								<button type="button" data-step="damage" data-by="10" aria-label="10 more damage">+</button>
+							</span>
+						</label>
+						<label data-field><span>Tool</span> <select id="tool"><option value="">No Tool</option><optgroup label="Changes the math"><option value="Ancient Booster Energy Capsule">Ancient Booster Energy Capsule</option><option value="Colbur Berry">Colbur Berry</option><option value="Cynthia&#x27;s Power Weight">Cynthia&#x27;s Power Weight</option><option value="Deluxe Bomb">Deluxe Bomb</option><option value="Handheld Fan">Handheld Fan</option><option value="Hero&#x27;s Cape">Hero&#x27;s Cape</option><option value="Lillie&#x27;s Pearl">Lillie&#x27;s Pearl</option><option value="Punk Helmet">Punk Helmet</option><option value="Sacred Charm">Sacred Charm</option><option value="Survival Brace">Survival Brace</option><option value="Team Rocket&#x27;s Hypnotizer">Team Rocket&#x27;s Hypnotizer</option><option value="Tremendous Bomb">Tremendous Bomb</option></optgroup><optgroup label="Nothing to your attacks"><option value="Adversity Policy">Adversity Policy</option><option value="Air Balloon">Air Balloon</option><option value="Amulet of Hope">Amulet of Hope</option><option value="Babiri Berry">Babiri Berry</option><option value="Backtrack Badge">Backtrack Badge</option><option value="Binding Mochi">Binding Mochi</option><option value="Brave Bangle">Brave Bangle</option><option value="Core Memory">Core Memory</option><option value="Counter Gain">Counter Gain</option><option value="Future Booster Energy Capsule">Future Booster Energy Capsule</option><option value="Gravity Gemstone">Gravity Gemstone</option><option value="Haban Berry">Haban Berry</option><option value="Heavy Baton">Heavy Baton</option><option value="Hop&#x27;s Choice Band">Hop&#x27;s Choice Band</option><option value="Light Ball">Light Ball</option><option value="Lucky Helmet">Lucky Helmet</option><option value="Maximum Belt">Maximum Belt</option><option value="Occa Berry">Occa Berry</option><option value="Passho Berry">Passho Berry</option><option value="Payapa Berry">Payapa Berry</option><option value="Powerglass">Powerglass</option><option value="Rescue Board">Rescue Board</option><option value="Sparkling Crystal">Sparkling Crystal</option><option value="Technical Machine: Fluorite">Technical Machine: Fluorite</option><option value="Thick Scale">Thick Scale</option></optgroup></select></label>
+						<label data-field data-last hidden><span>Last attack used</span> <select id="last"></select></label>
+						<label data-field><span>Stadium in play</span> <select id="stadium"><option value="">No Stadium</option><optgroup label="Changes the math"><option value="Ange Floette">Ange Floette</option><option value="Battle Cage">Battle Cage</option><option value="Festival Grounds">Festival Grounds</option><option value="Full Metal Lab">Full Metal Lab</option><option value="Granite Cave">Granite Cave</option><option value="Gravity Mountain">Gravity Mountain</option><option value="Jamming Tower">Jamming Tower</option><option value="Lively Stadium">Lively Stadium</option><option value="Neutralization Zone">Neutralization Zone</option><option value="Team Rocket&#x27;s Watchtower">Team Rocket&#x27;s Watchtower</option></optgroup><optgroup label="Nothing to your attacks"><option value="Academy at Night">Academy at Night</option><option value="Area Zero Underdepths">Area Zero Underdepths</option><option value="Community Center">Community Center</option><option value="Dizzying Valley">Dizzying Valley</option><option value="Forest of Vitality">Forest of Vitality</option><option value="Fossil Quarry">Fossil Quarry</option><option value="Grand Tree">Grand Tree</option><option value="Levincia">Levincia</option><option value="Lumiose City">Lumiose City</option><option value="Mystery Garden">Mystery Garden</option><option value="N&#x27;s Castle">N&#x27;s Castle</option><option value="Nighttime Mine">Nighttime Mine</option><option value="Paradise Resort">Paradise Resort</option><option value="Perilous Jungle">Perilous Jungle</option><option value="Postwick">Postwick</option><option value="Prism Tower">Prism Tower</option><option value="Risky Ruins">Risky Ruins</option><option value="Spikemuth Gym">Spikemuth Gym</option><option value="Surfing Beach">Surfing Beach</option><option value="Team Rocket&#x27;s Factory">Team Rocket&#x27;s Factory</option></optgroup></select></label>
+					</div>
+					<figure data-preview>
+						<a data-art target="_blank" rel="noopener"><img src="./assets/calc/card-back.png" alt="" width="365" height="512" /></a>
+						<figcaption>Pick a Pokémon</figcaption>
+					</figure>
+				</div>
+				<ul data-callouts></ul>
+			</section>
 		</main>
 		<footer>
 			<div>
-			<p><a href="./index.html">Back to the decks</a></p>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
 			</div>
 		</footer>
+		<script defer src="./assets/calc/calc.js?v=be7fa417"></script>
 	</body>
 </html>

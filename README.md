@@ -4,6 +4,8 @@ tcg deck planning for me and my son
 
 - [caught pokemon](./collection.md)
 - [table rules](./rules.md)
+- [damage calculator](https://xero.github.io/pokemon/calc.html), for lucky
+  haunt, on the published site only
 
 ## our decks
 
@@ -223,6 +225,13 @@ legal. `fetch_regulation.py` caches the marks in `regulation-marks.json`. the
 rotation rules behind the yes/no answer come from the
 [2026 standard rotation announcement](https://www.pokemon.com/us/pokemon-news/2026-pokemon-tcg-standard-format-rotation-announcement)
 and [bulbapedia's 2026-27 standard format page](https://bulbapedia.bulbagarden.net/wiki/2026-27_Standard_format_%28TCG%29).
+
+**the damage calculator.** every standard-legal card it can pick, with its
+text, weakness, and resistance, comes from [pokemontcg.io](https://pokemontcg.io)
+by way of `fetch_legal_pool.py`, and `build_calc.py` reads the newest snapshot
+into `assets/calc/pool.json`. the card images load straight from
+[scrydex](https://scrydex.com), which is where pokemontcg.io keeps them, so none
+of them are in the repo.
 
 **set symbols, set logos, and rarity symbols.**
 [pokesymbols.com](https://pokesymbols.com), covering the
