@@ -437,6 +437,19 @@ function buildCallouts(/** @type {Map<string, any>} */ results) {
 		if (line) out.push(line);
 	}
 
+	// what it can do back to your Bench, where the Mega and Toxtricity sit.
+	// the text is the card's own, turned to face you by the builder.
+	const REACH = {
+		every: "hits every Pokémon you have",
+		"every-ex": "hits every Pokémon ex you have",
+		bench: "hits your whole Bench",
+		pick: "can hit your Bench",
+	};
+	for (const r of card.reach || []) {
+		const via = r.via === "ability" ? " (Ability)" : "";
+		out.push({ tone: "bad", html: `<b>${esc(r.name)}</b>${via} ${REACH[r.kind]}: ${fmt(r.text)}` });
+	}
+
 	// Weakness only applies in the Active Spot, and only to a hit that lands
 	const weakTo = state.position === "active"
 		? (card.weak || []).filter((/** @type {string} */ t) => A.some((/** @type {any} */ a) => a.type === t))
@@ -509,7 +522,9 @@ function find(/** @type {string} */ q) {
 function showHits() {
 	shown = find(input.value);
 	active = -1;
-	hits.innerHTML = shown.map((c, i) => `<li role="option" id="hit-${i}" data-i="${i}" aria-selected="false">${typeIcon(c.types[0])}<span><b>${esc(c.name)}</b><small>${esc(c.set)} ${esc(c.no)} · ${c.hp} HP</small></span></li>`).join("");
+	// each row carries a crop of the card's artwork, from Scrydex's small
+	// scan: 243px wide, which is about what a thumbnail needs on a Pixel
+	hits.innerHTML = shown.map((c, i) => `<li role="option" id="hit-${i}" data-i="${i}" aria-selected="false">${typeIcon(c.types[0])}<span><b>${esc(c.name)}</b><small>${esc(c.set)} ${esc(c.no)} · ${c.hp} HP</small></span><span data-thumb><img src="${image(c.id, "small")}" alt="" loading="lazy" decoding="async" /></span></li>`).join("");
 	const open = shown.length > 0;
 	hits.hidden = !open;
 	input.setAttribute("aria-expanded", String(open));

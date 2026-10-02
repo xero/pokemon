@@ -27,7 +27,7 @@ damage ... from Pokémon ex" becomes a prevent gated on the attacker being an
 ex, and so on. The patterns cover everything in the pool that touches the
 math; a sentence that sounds like it should and matched nothing is printed,
 so a new card's wording turns up as a line in the build rather than as a
-wrong number at the table. Tools, Stadiums, and Special Energy are few and
+wrong number on the page. Tools, Stadiums, and Special Energy are few and
 named, so those are written out by hand below instead of parsed.
 
 The condition tokens an effect carries ("atk:ex", "tgt:bench", "dmg:>=200")
@@ -399,6 +399,73 @@ def read_attack(card, atk):
     return when, out
 
 
+# --- what reaches your Bench -----------------------------------------------
+# An attack or Ability that damages, places counters on, or Knocks Out one of
+# your Benched Pokémon, or every Pokémon you have. Your Bench is where the
+# Mega sits for Concealment and Toxtricity sits for Surge, so a card that can
+# reach it gets a warning however it does it.
+
+# phrases that mention your Pokémon only to count them, for their own damage:
+# Mind Jack's "30 more damage for each of your opponent's Benched Pokémon"
+# never touches the Bench it counts
+COUNTING = re.compile(r"for each (?:of your opponent's|Energy attached to all "
+                      r"of your opponent's|damage counter on all of your "
+                      r"opponent's)|attached to all of your opponent's|"
+                      r"counters? on all of your opponent's", re.I)
+# every Pokémon you have, every Pokémon ex you have, and your whole Bench
+EVERY = re.compile(r"each of your opponent's Pokémon(?! ex)\b(?!')", re.I)
+EVERY_EX = re.compile(r"each of your opponent's Pokémon ex\b", re.I)
+WHOLE_BENCH = re.compile(r"each of your opponent's Benched Pokémon", re.I)
+# a choice that can land anywhere, the Bench included
+PICK = re.compile(r"\d+ of your opponent's (?:Benched )?Pokémon(?!'s)|"
+                  r"your opponent's (?:Benched )?Pokémon in any way|"
+                  r"Knock Out 1 of your opponent's", re.I)
+HARM = re.compile(r"damage|Knock Out", re.I)
+
+
+def second_person(s):
+    """Card text turned to face you. Both sides swap: their "your opponent's"
+    is yours, and their own "your" and "you" become "their" and "they", or
+    Munkidori reads as moving counters from your Pokémon to your Pokémon."""
+    # held in placeholders while their own "your" and "you" are swapped
+    s = re.sub(r"your opponent's", "\0", s)
+    s = re.sub(r"your opponent has", "\1", s)
+    s = re.sub(r"your opponent\b", "\2", s)
+    s = re.sub(r"\byour\b", "their", s)
+    s = re.sub(r"\bYour\b", "Their", s)
+    s = re.sub(r"\byou\b", "they", s)
+    s = re.sub(r"\bYou\b", "They", s)
+    s = s.replace("\0", "your").replace("\1", "you have").replace("\2", "you")
+    return s[0].lower() + s[1:]
+
+
+def reach(text):
+    """(kind, sentence) for the first sentence that reaches your Bench, or
+    None. kind is "every", "every-ex", "bench", or "pick"."""
+    for s in sentences(text):
+        if "your opponent's" not in s or not HARM.search(s) \
+                or COUNTING.search(s):
+            continue
+        for kind, rx in (("every-ex", EVERY_EX), ("every", EVERY),
+                         ("bench", WHOLE_BENCH), ("pick", PICK)):
+            if rx.search(s):
+                return kind, second_person(s)
+    return None
+
+
+def reaches(c):
+    """Every attack and Ability of a card that reaches your Bench."""
+    out = []
+    for src, items in (("attack", c.get("attacks")),
+                       ("ability", c.get("abilities"))):
+        for a in items or []:
+            got = reach(a.get("text"))
+            if got:
+                out.append({"name": a["name"], "via": src, "kind": got[0],
+                            "text": got[1]})
+    return out
+
+
 # --- the pool --------------------------------------------------------------
 
 def newest_snapshot():
@@ -513,6 +580,10 @@ def load_pool(snap):
         # an attack that deals damage, for whether Concealment matters here
         card["hits"] = any(re.match(r"\d", a.get("damage") or "")
                            for a in c.get("attacks") or [])
+        # what it can do to your Bench, for the warning callouts
+        bench = reaches(c)
+        if bench:
+            card["reach"] = bench
 
         abilities = []
         for a in c.get("abilities") or []:
@@ -781,7 +852,11 @@ def main():
     pool_url = f"./assets/calc/pool.json?v={stamp(POOL)}"
     css = OUT / "calc.css"
     js = OUT / "calc.js"
-    subtitle = f'For the <a href="./{DECK_PAGE}">Lucky Haunt</a> deck'
+    # Play! Pokémon rules keep phones off the table during league play, so
+    # the page says up front what it is for
+    subtitle = (f'For the <a href="./{DECK_PAGE}">Lucky Haunt</a> deck. Note '
+                "this is for matchup planning only, phones are illegal during "
+                "league play")
     out = page(DEST, TITLE, subtitle, "",
                body(atk, options(TOOLS, tool_names, "No Tool"),
                     options(STADIUMS, stadium_names, "No Stadium"),

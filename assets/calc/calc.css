@@ -2,9 +2,10 @@
  *
  * Only calc.html loads this. Everything here leans on the template's tokens,
  * so the page follows the site's light and dark themes without saying so.
- * Phone first: it is built for a Pixel 6 at a card table, 412px wide, held in
- * one hand, so every control is a 44px target and the card image stays beside
- * the form rather than dropping below it.
+ * Phone first: it is built for a Pixel 6, 412px wide, held in one hand, so
+ * every control is a 44px target and the card image stays beside the form
+ * rather than dropping below it. It is for planning a matchup before the
+ * game; phones aren't allowed during league play.
  */
 
 :root {
@@ -182,6 +183,35 @@
 	small {
 		display: block;
 		color: var(--muted);
+	}
+
+	/* the card's artwork alone, pushed to the right edge. the box is a wide
+	   window, about the shape of a regular card's art, and the scan inside it is drawn wider than the box and pulled
+	   up and left, so the window starts about 50px down a full-size card,
+	   clear of the name bar, the HP, and the evolves-from portrait in the
+	   art's corner, and trims the frame a regular card puts round its art. an ex card's art runs
+	   edge to edge, and the same window lands in the middle of it. margins
+	   in percent are a share of the box's width, which is what keeps the
+	   crop the same at any size. */
+	[data-thumb] {
+		flex: none;
+		width: 5.6em;
+		aspect-ratio: 21 / 10;
+		margin-inline: auto 0.2em;
+		overflow: hidden;
+		border-radius: 0.35em;
+		background: var(--bg);
+
+		img {
+			display: block;
+			width: 118%;
+			max-width: none;
+			height: auto;
+			margin: -23.5% 0 0 -9%;
+			padding: 0;
+			background: none;
+			border-radius: 0;
+		}
 	}
 }
 
@@ -501,7 +531,7 @@
 	}
 
 	/* the ones not picked step back, faded and drained of colour, so the
-	   pick reads from across the table. the results under them stay at full
+	   pick reads at a glance. the results under them stay at full
 	   strength: those are the point of the row. */
 	img {
 		width: 100%;
