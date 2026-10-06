@@ -94,10 +94,10 @@ For planning a matchup before the game. Pick their Pokémon and what is on it,
 and each of the five attackers shows its damage and whether it Knocks Out,
 with Weakness, Abilities, Tools, and Stadiums counted."""
 
-# the dark-gang keys carry over; Blissey and Chansey come from ani, the plain
-# Gengar moved from the Cape to Neo Upper, since it goes on the Stage 2, and
-# the shiny Gengar moved from the Cape plan to the ferry. Toxel, Toxtricity,
-# and the yelling Gastly are hand-added gifs, not library sprites.
+# the dark-gang keys carry over; Blissey and Chansey come from ani, and the
+# shiny Gengar moved from the Cape plan to the ferry. Trainer and Energy cards
+# go bare. Toxel, Toxtricity, and the yelling Gastly are hand-added gifs, not
+# library sprites.
 [deck.flavor]
 "The Thesis" = ["gengar-mega"]
 "The Hard Rules" = ["gastly-yell"]
@@ -111,9 +111,6 @@ with Weakness, Abilities, Tools, and Stadiums counted."""
 "Toxtricity" = ["toxtricity"]
 "Chansey" = ["chansey"]
 "Blissey ex" = ["blissey"]
-"Grimsley's Move" = ["gastly-shiny"]
-"AZ's Tranquility" = ["budew"]
-"Neo Upper Energy" = ["gengar"]
 "The Prize Tax" = ["gengar-booty"]
 "The Energy Engine" = ["pokedex"]
 "5. When the dog gets gusted" = ["okidogi-pant"]
