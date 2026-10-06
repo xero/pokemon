@@ -619,9 +619,11 @@
 			}
 
 			/* a deck filed under a group heading has its title one level down,
-			   at h4. inside an article that is the prose subheading, so undo
-			   it here and let the title read like the h2 and h3 titles do. */
-			h4 {
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
 				font-size: var(--text-lg);
 				letter-spacing: normal;
 				line-height: inherit;
@@ -633,6 +635,18 @@
 			[data-home] img {
 				height: var(--icon-h);
 				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
 			}
 		}
 
@@ -1255,7 +1269,7 @@
 			<aside data-callout="note">
 				<p><strong>What this file is for.</strong></p>
 				<p>A model of Elliot&#x27;s deck. Elliot is a friend and one of the regulars at CardCrate&#x27;s Wednesday league, and Cynthia&#x27;s Garchomp ex is what he brings every week. He built it from someone else&#x27;s list, so this page models the list the field has settled on. It is Chloe Abbott&#x27;s 137th-place list from NAIC 2026, the closest real list to the average of 35 current ones. Every card carries regulation mark H, I, or J, so it is legal exactly as it sits.</p>
-				<p>The page exists to know the enemy, and it reads the deck from the pilot&#x27;s chair, because the fastest way to beat a deck is to know what its player wants to do next. <a href="#the-field">The Field</a> has the evidence behind the list, and <a href="#tells-at-the-table">Tells at the Table</a> sorts out which version is across from you. How the Gengar deck plays against it is in <a href="./dark-gang.html#versus-cynthias-garchomp-ex">Xero&#x27;s Gengar Gang</a>, and game words are defined in <a href="./rules.html">the table rules</a>.</p>
+				<p>The page exists to know the enemy, and it reads the deck from the pilot&#x27;s chair, because the fastest way to beat a deck is to know what its player wants to do next. <a href="#the-field">The Field</a> has the evidence behind the list, and <a href="#tells-at-the-table">Tells at the Table</a> sorts out which version is across from you. How the Gengar deck plays against it is in <a href="./dark-lucky.html#versus-cynthias-garchomp-ex">Xero&#x27;s Lucky Haunt</a>, and game words are defined in <a href="./rules.html">the table rules</a>.</p>
 			</aside>
 			<section>
 				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/garchomp.gif" alt="" /></span></h3>
@@ -1920,7 +1934,7 @@
 			</section>
 			<section>
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/gengar-mega.gif" alt="" /></span></h3>
-					<p><strong>Versus <a href="./dark-gang.html">the Gengar decks</a>.</strong> This is the matchup the page exists for. Every Pokémon in Xero&#x27;s Gengar Gang is weak to Fighting, so every number doubles. Corkscrew alone is 200, which kills Toxtricity, Haunter, and every Basic but the dog. One boost is 260 and kills Okidogi ex. Two boosts are 320 and kill Gengar ex. Buster kills anything. Here is what they have.</p>
+					<p><strong>Versus <a href="./dark-lucky.html">the Gengar decks</a>.</strong> This is the matchup the page exists for. Every Pokémon in Xero&#x27;s Lucky Haunt is weak to Fighting, Chansey and Blissey ex included, so every number doubles. Corkscrew alone is 200, which kills Toxtricity, Haunter, and every Basic but the dog. One boost is 260 and kills Okidogi ex. Two boosts are 320 and kill Gengar ex and Blissey ex. Buster kills anything. Here is what they have.</p>
 					<ul>
 						<li><strong><em>Chaotic Pain</em> places 13 counters on anything</strong>, Bench included, and kills a bare Roserade, Gabite, Gible, or Spiritomb. Rocky stops it on a Fighting Pokémon, so a Gible or Gabite wearing one is safe. A Power Weight puts a Roserade out of reach.</li>
 						<li><strong><em>Shadowy Concealment</em>, from a Mega Gengar ex on their Bench, takes one Prize off every Knock Out your Garchomp scores.</strong> Boss&#x27;s Orders and a Buster take the Mega for 2 and end it. Spiritomb isn&#x27;t a Pokémon ex, so Concealment never applies to it.</li>
@@ -1928,7 +1942,7 @@
 						<li><strong>Risky Ruins puts 2 counters on every Gible and Roselia you bench during a turn</strong>, and they stay through evolution. Watchtower replaces it. Spiritomb is Darkness, so Ruins never touches it, and every Ruins counter on your Bench adds 10 to <em>Raging Curse</em>.</li>
 						<li><strong>A Poisoned Okidogi ex hits for 260.</strong> That leaves a bare Garchomp at 70 and a Weighted one at 140. Retreat 0 means the damaged one steps back and feeds Spiritomb.</li>
 					</ul>
-					<p>How the Gengar deck plays against this is in <a href="./dark-gang.html#versus-cynthias-garchomp-ex">Versus Cynthia&#x27;s Garchomp ex</a>.</p>
+					<p>How the Gengar deck plays against this is in <a href="./dark-lucky.html#versus-cynthias-garchomp-ex">Versus Cynthia&#x27;s Garchomp ex</a>.</p>
 					<p><strong>Versus <a href="./blue-flame.html">Fox&#x27;s Fire decks</a>.</strong> Roselia, Roserade, and Shaymin are weak to Fire, and the Garchomp line isn&#x27;t. Expect the Roserades to go first.</p>
 			</section>
 			<section>

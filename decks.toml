@@ -23,6 +23,11 @@
 #   draft       true keeps a deck off the site entirely: no page, no front-page
 #               row, and the pull list names it without a link. Delete the line
 #               to publish.
+#   [deck.companion]
+#               a generated page that belongs to this deck, listed as a second
+#               section inside the deck's front-page row: its own page,
+#               sprites, and blurb. The damage calculator rides on Lucky Haunt
+#               this way.
 #
 # Both tables take:
 #   sprites     the animated sprites beside the front-page row
@@ -68,54 +73,53 @@ tournament expects."""
 "How To Play ex Style" = ["gengar-mega-shiny"]
 "7. Errors to expect on the way over" = ["eevee-back"]
 
-[[library]]
+[[deck]]
+source = "dark-lucky.md"
+player = "xero"
+shelf = "league"
+# the Blissey build of dark-gang, and the league deck since 2026-10-06
+sprites = ["blissey", "gengar"]
+blurb = """
+Xero's league-night 60, the Gengar Gang with a Blissey ex on the Bench. Happy
+Switch walks Surge's Energy onto whatever attacks and loops Void Gale back to
+the Mega, and Neo Upper Energy pays a whole Chaotic Pain with one card."""
+
+# the calculator models this list's five attackers, so it rides in this
+# deck's front-page row rather than taking a row of its own
+[deck.companion]
 page = "calc.html"
 sprites = ["pokedex", "gengar-hop"]
 blurb = """
-The damage calculator for Lucky Haunt, for planning a matchup before the
-game. Pick their Pokémon and what is on it, and every attacker shows what it
-does: Weakness, Abilities, Tools, and Stadiums included."""
+For planning a matchup before the game. Pick their Pokémon and what is on it,
+and each of the five attackers shows its damage and whether it Knocks Out,
+with Weakness, Abilities, Tools, and Stadiums counted."""
 
-[[deck]]
-source = "dark-gang.md"
-player = "xero"
-shelf = "league"
-# the dog is a hand-drawn gif rather than a library sprite; it and
-# the Mega are the two engines
-sprites = ["gengar", "okidogi"]
-blurb = """
-Xero's league-night 60, built on the 30th Celebration Gengar ex. Chaotic
-Pain kills the body every Mega grows out of, Grimsley's Move drops a Mega
-Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the
-door while the ghosts arrive."""
-
-# Okidogi has two hand-drawn gifs: the idle one on its card, the panting
-# one on the plan for getting it back after a gust. Toxel and Toxtricity
-# are Gen 8 and absent from the library, so the ghosts carry the rest of
-# the card sections. Each matchup subsection gets its opponent's sprite
-# where the library has one; the Origin Giratina stands in for Dragapult
-# on the field table, the way it does on dragons.md.
+# the dark-gang keys carry over; Blissey and Chansey come from ani, the plain
+# Gengar moved from the Cape to Neo Upper, since it goes on the Stage 2, and
+# the shiny Gengar moved from the Cape plan to the ferry. Toxel, Toxtricity,
+# and the yelling Gastly are hand-added gifs, not library sprites.
 [deck.flavor]
 "The Thesis" = ["gengar-mega"]
-# the Candy rule is the evolve-into-which-Gengar decision
+"The Hard Rules" = ["gastly-yell"]
 "Which Stage 2 gets the Candy" = ["gengar-evo"]
 "Okidogi ex" = ["okidogi"]
 "Gastly" = ["gastly"]
 "Haunter" = ["haunter"]
 "Mega Gengar ex" = ["gengar-mega"]
 "Gengar ex" = ["gengar-smile"]
-# a shiny Gastly for the card that skips the whole line
+"Toxel" = ["toxel"]
+"Toxtricity" = ["toxtricity"]
+"Chansey" = ["chansey"]
+"Blissey ex" = ["blissey"]
 "Grimsley's Move" = ["gastly-shiny"]
-# Budew's Item lock is the case for AZ's; the plain Gengar sprite
-# moved to the Cape, since that is the body it goes on
 "AZ's Tranquility" = ["budew"]
-"Hero's Cape" = ["gengar"]
+"Neo Upper Energy" = ["gengar"]
 "The Prize Tax" = ["gengar-booty"]
 "The Energy Engine" = ["pokedex"]
 "5. When the dog gets gusted" = ["okidogi-pant"]
 "6. Choosing the stadium" = ["gengar-hop"]
 "7. Bench discipline" = ["spin-haunter"]
-"8. When the Cape goes on" = ["gengar-shiny"]
+"8. The ferry" = ["gengar-shiny"]
 "Versus the Card Shop" = ["giratina-origin", "dusknoir"]
 "Versus Mega Lucario ex" = ["lucario-mega"]
 "Versus Mega Zygarde ex" = ["zygarde"]
@@ -129,6 +133,7 @@ door while the ghosts arrive."""
 "Versus Mega Starmie ex" = ["starmie"]
 "Versus Mega Floette ex" = ["floette"]
 "Versus Crustle" = ["dwebble", "crustle"]
+"Versus Mega Gengar ex" = ["gengar-mega-shiny"]
 "Versus Mega Sharpedo ex" = ["carvanha", "sharpedo-mega"]
 "Versus Cinccino ex" = ["minccino", "cinccino"]
 "Versus Charizard and Battle Cage" = ["charizard-mega-x"]
@@ -168,40 +173,50 @@ damage, so four is 360 and a knockout on anything at the Wednesday league."""
 "Alternatives" = ["delphox", "reshiram"]
 
 [[deck]]
-source = "dark-lucky.md"
+source = "dark-gang.md"
 player = "xero"
 shelf = "other"
 group = "Gengar and the Dark Box"
-# the league deck's Blissey build, waiting on its cards before it takes the
-# league slot
-sprites = ["blissey", "gengar"]
+# the league deck until 2026-10-06, when its Blissey build took the slot.
+# the dog is a hand-drawn gif rather than a library sprite; it and the Mega
+# are the two engines
+sprites = ["gengar", "okidogi"]
 blurb = """
-The Gengar Gang with a Blissey ex on the Bench. Happy Switch walks Surge's
-Energy onto whatever attacks and loops Void Gale back to the Mega, and Neo
-Upper Energy pays a whole Chaotic Pain with one card."""
+The Okidogi build Lucky Haunt started from, on the 30th Celebration Gengar
+ex. Chaotic Pain kills the body every Mega grows out of, Grimsley's Move drops a Mega
+Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the
+door while the ghosts arrive."""
 
-# the dark-gang keys carry over; Blissey and Chansey come from ani, the plain
-# Gengar moved from the Cape to Neo Upper, since it goes on the Stage 2, and
-# the shiny Gengar moved from the Cape plan to the ferry
+# Okidogi has two hand-drawn gifs: the idle one on its card, the panting
+# one on the plan for getting it back after a gust. Toxel and Toxtricity
+# are Gen 8 and absent from the library, so theirs are hand-added gifs
+# too, shared by every dark deck that runs them. Each matchup subsection
+# gets its opponent's sprite where the library has one; the Origin
+# Giratina stands in for Dragapult on the field table, the way it does on
+# dragons.md.
 [deck.flavor]
 "The Thesis" = ["gengar-mega"]
+# the Candy rule is the evolve-into-which-Gengar decision
 "Which Stage 2 gets the Candy" = ["gengar-evo"]
 "Okidogi ex" = ["okidogi"]
 "Gastly" = ["gastly"]
 "Haunter" = ["haunter"]
 "Mega Gengar ex" = ["gengar-mega"]
 "Gengar ex" = ["gengar-smile"]
-"Chansey" = ["chansey"]
-"Blissey ex" = ["blissey"]
+"Toxel" = ["toxel"]
+"Toxtricity" = ["toxtricity"]
+# a shiny Gastly for the card that skips the whole line
 "Grimsley's Move" = ["gastly-shiny"]
+# Budew's Item lock is the case for AZ's; the plain Gengar sprite
+# moved to the Cape, since that is the body it goes on
 "AZ's Tranquility" = ["budew"]
-"Neo Upper Energy" = ["gengar"]
+"Hero's Cape" = ["gengar"]
 "The Prize Tax" = ["gengar-booty"]
 "The Energy Engine" = ["pokedex"]
 "5. When the dog gets gusted" = ["okidogi-pant"]
 "6. Choosing the stadium" = ["gengar-hop"]
 "7. Bench discipline" = ["spin-haunter"]
-"8. The ferry" = ["gengar-shiny"]
+"8. When the Cape goes on" = ["gengar-shiny"]
 "Versus the Card Shop" = ["giratina-origin", "dusknoir"]
 "Versus Mega Lucario ex" = ["lucario-mega"]
 "Versus Mega Zygarde ex" = ["zygarde"]
@@ -215,7 +230,6 @@ Upper Energy pays a whole Chaotic Pain with one card."""
 "Versus Mega Starmie ex" = ["starmie"]
 "Versus Mega Floette ex" = ["floette"]
 "Versus Crustle" = ["dwebble", "crustle"]
-"Versus Mega Gengar ex" = ["gengar-mega-shiny"]
 "Versus Mega Sharpedo ex" = ["carvanha", "sharpedo-mega"]
 "Versus Cinccino ex" = ["minccino", "cinccino"]
 "Versus Charizard and Battle Cage" = ["charizard-mega-x"]
@@ -238,7 +252,9 @@ the whole deck is built around."""
 "Gengar" = ["gengar"]
 "Koffing" = ["koffing"]
 "Weezing" = ["weezing"]
-# no sprite exists for Toxel or Toxtricity; Sableye's came from ani
+"Toxel" = ["toxel"]
+"Toxtricity" = ["toxtricity"]
+# Toxel and Toxtricity are hand-added gifs; Sableye's came from ani
 "Sableye" = ["sableye"]
 "1. The Two-Turn Fuse" = ["weezing"]
 "2. Growing a Ghost in the Dark" = ["gastly"]
@@ -260,12 +276,12 @@ Ex-battle mode. Eleven cards swap Gengar Gang Classic into a prize cage.
 Mega Gengar ex zeroes every trade, and Seviper hits 240 while the wall takes
 the hits."""
 
-# no sprite exists for Toxel, Toxtricity, Chi-Yu, or Hilda (Gen 9 is
-# absent from the library), so the cards that have one get it and the
-# rest go without. the two ghosts get a gengar variant each: smile for
-# the ex, mega for the Mega. the snake and the mega share the mode page;
-# weezing waves the swap out, and the field section gets the two decks
-# the stats tables lean on hardest.
+# no sprite exists for Chi-Yu or Hilda (Gen 9 is absent from the
+# library), so the cards that have one get it and the rest go without.
+# Toxel and Toxtricity are hand-added gifs. the two ghosts get a gengar
+# variant each: smile for the ex, mega for the Mega. the snake and the
+# mega share the mode page; weezing waves the swap out, and the field
+# section gets the two decks the stats tables lean on hardest.
 [deck.flavor]
 "The Thesis" = ["seviper"]
 "The Numbers" = ["pokedex"]
@@ -274,6 +290,8 @@ the hits."""
 "Haunter" = ["haunter"]
 "Mega Gengar ex" = ["gengar-mega"]
 "Gengar ex" = ["gengar-smile"]
+"Toxel" = ["toxel"]
+"Toxtricity" = ["toxtricity"]
 "Seviper" = ["seviper"]
 "1. The Cage" = ["gengar-booty"]
 "2. The Charmer's Loop" = ["seviper"]
@@ -298,6 +316,8 @@ taxes every Energy the opponent plays."""
 "Haunter" = ["haunter"]
 "Gengar ex" = ["gengar"]
 "Mega Gengar ex" = ["gengar-mega"]
+"Toxel" = ["toxel"]
+"Toxtricity" = ["toxtricity"]
 "Sableye" = ["sableye"]
 "The Prize Ladder" = ["gengar-booty"]
 "1. Two Ghosts, One Line" = ["gengar", "gengar-mega"]
@@ -321,21 +341,20 @@ hits 300 under a Binding Mochi, Gnawing Curse and Risky Ruins supply the
 chip that turns 300 into lethal, and the Prize tax makes their Mega cost
 three while your dog costs one."""
 
-# same sprite problem as dark-gang: Toxel, Toxtricity, Hilda and Dawn are
-# Gen 9 or absent, so the dogs and the ghosts carry the card sections.
-# Giratina stands in for Dragapult on the two stadium sections, because
-# Battle Cage is in the list for exactly one deck.
-# the dog is a hand-drawn gif; the Perfect Order Gengar is the attacker
-# now, so the plain gengar sprite carries its card and the game plan.
-# no sprite exists for Toxel, Toxtricity, Hilda, Dawn or Grimsley (Gen 9
-# and the Supporters are absent from the library). Giratina stands in for
-# Dragapult on Battle Cage, which is in the list largely for that room.
+# the dog is a hand-drawn gif, and so are Toxel and Toxtricity; the
+# Perfect Order Gengar is the attacker now, so the plain gengar sprite
+# carries its card and the game plan. no sprite exists for Hilda, Dawn,
+# or Grimsley (the Supporters are absent from the library). Giratina
+# stands in for Dragapult on Battle Cage, which is in the list largely
+# for that room.
 [deck.flavor]
 "The Thesis" = ["gengar"]
 "Okidogi ex" = ["okidogi"]
 "Gastly" = ["gastly"]
 "Haunter" = ["haunter"]
 "Gengar" = ["gengar-smile"]
+"Toxel" = ["toxel"]
+"Toxtricity" = ["toxtricity"]
 "AZ's Tranquility" = ["budew"]
 "Scramble Switch" = ["gengar-hop"]
 "Risky Ruins" = ["gengar-evo"]

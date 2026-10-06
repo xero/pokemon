@@ -619,9 +619,11 @@
 			}
 
 			/* a deck filed under a group heading has its title one level down,
-			   at h4. inside an article that is the prose subheading, so undo
-			   it here and let the title read like the h2 and h3 titles do. */
-			h4 {
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
 				font-size: var(--text-lg);
 				letter-spacing: normal;
 				line-height: inherit;
@@ -633,6 +635,18 @@
 			[data-home] img {
 				height: var(--icon-h);
 				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
 			}
 		}
 
@@ -1588,7 +1602,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="toxel">Toxel<span data-count>x2</span></h3>
+				<h3 id="toxel">Toxel<span data-count>x2</span><span data-flavor><img src="./assets/sprites/toxel.gif" alt="" /></span></h3>
 				<aside><a data-art href="./assets/660411_toxel.jpg" target="_blank" rel="noopener"><img src="./assets/660411_toxel.jpg" alt="Toxel" /></a></aside>
 				<section>
 					<dl class="card">
@@ -1620,7 +1634,7 @@
 				</section>
 			</article>
 			<article>
-				<h3 id="toxtricity">Toxtricity<span data-count>x2</span></h3>
+				<h3 id="toxtricity">Toxtricity<span data-count>x2</span><span data-flavor><img src="./assets/sprites/toxtricity.gif" alt="" /></span></h3>
 				<aside><a data-art href="./assets/660409_toxtricity.jpg" target="_blank" rel="noopener"><img src="./assets/660409_toxtricity.jpg" alt="Toxtricity" /></a></aside>
 				<section>
 					<dl class="card">

@@ -21,10 +21,10 @@ def load():
     """(library, decks) from decks.toml, checked, with the defaults filled in.
 
     Every entry comes back with page, sprites, mascot, blurb, flavor, and
-    draft set, so no reader has to know which keys are optional. A problem
-    stops the build rather than printing a warning nobody reads, because a
-    registry typo otherwise publishes a page nobody links or links a page
-    nobody built.
+    draft set, and every deck with companion, so no reader has to know which
+    keys are optional. A problem stops the build rather than printing a
+    warning nobody reads, because a registry typo otherwise publishes a page
+    nobody links or links a page nobody built.
     """
     data = tomllib.loads(REGISTRY.read_text(encoding="utf-8"))
     library, decks = data.get("library", []), data.get("deck", [])
@@ -54,6 +54,15 @@ def load():
             problems.append(f"{name}: shelf must be one of {SHELVES}")
         if d.get("shelf") == "other" and not d.get("group"):
             problems.append(f"{name}: an other-shelf deck needs a group")
+        # a page that rides in the deck's own front-page row, like the
+        # calculator on Lucky Haunt. None when the deck has none.
+        c = d.get("companion")
+        if c is not None and not c.get("page"):
+            problems.append(f"{name}: a companion needs a page")
+        elif c is not None:
+            c.setdefault("sprites", [])
+            c["blurb"] = " ".join(c.get("blurb", "").split())
+        d["companion"] = c
 
     if problems:
         raise SystemExit("decks.toml:\n  " + "\n  ".join(problems))

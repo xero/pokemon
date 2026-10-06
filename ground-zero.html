@@ -619,9 +619,11 @@
 			}
 
 			/* a deck filed under a group heading has its title one level down,
-			   at h4. inside an article that is the prose subheading, so undo
-			   it here and let the title read like the h2 and h3 titles do. */
-			h4 {
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
 				font-size: var(--text-lg);
 				letter-spacing: normal;
 				line-height: inherit;
@@ -633,6 +635,18 @@
 			[data-home] img {
 				height: var(--icon-h);
 				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
 			}
 		}
 
@@ -1729,7 +1743,7 @@
 					<table>
 						<thead><tr><th>Attack</th><th>Cost</th><th>Damage</th><th>One-shots</th></tr></thead>
 						<tbody>
-							<tr><td><em>Gaia Wave</em></td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>200</td><td>anything Fighting-weak up to 400, which is every Darkness Pokémon in Gengar Gang</td></tr>
+							<tr><td><em>Gaia Wave</em></td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>200</td><td>anything Fighting-weak up to 400, which is every Pokémon in Lucky Haunt</td></tr>
 							<tr><td><em>Geobuster</em>, with Core Memory</td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>350</td><td>Dragapult ex 320, Cynthia&#x27;s Garchomp ex 330, Mega Excadrill ex 340</td></tr>
 							<tr><td><em>Nullifying Zero</em></td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /></span></td><td>150 per heads</td><td>a coin for every Pokémon they have in play</td></tr>
 							<tr><td><em>Hammer In</em>, Barbaracle</td><td><span data-icons="inline"><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/fighting.png" alt="Fighting" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>80</td><td>not an ex, so Crustle can&#x27;t stop it</td></tr>
@@ -1859,13 +1873,13 @@
 			<section>
 				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/chandelure.gif" alt="" /></span></h3>
 					<p>Xero&#x27;s decks, from Fox&#x27;s side of the table. Several of his pages carry their own &quot;Fox&#x27;s Ground Zero&quot; sections, written from the other chair. Read them before a game; they are the plan he is bringing.</p>
-					<p><strong><a href="./dark-gang.html">Gengar Gang</a>, Xero&#x27;s league deck.</strong></p>
+					<p><strong><a href="./dark-lucky.html">Lucky Haunt</a>, Xero&#x27;s league deck.</strong></p>
 					<ul>
-						<li><strong>Every Darkness Pokémon in it is weak to Fighting.</strong> <em>Gaia Wave</em> lands as 400 and one-shots Okidogi ex at 250, Gengar ex at 280, and Mega Gengar ex at 350. A Mega Gengar in Hero&#x27;s Cape is 450 and needs <em>Geobuster</em>.</li>
+						<li><strong>Every Pokémon in it is weak to Fighting, Chansey and Blissey ex included.</strong> <em>Gaia Wave</em> lands as 400 and one-shots Okidogi ex at 250, Gengar ex at 280, Blissey ex at 300, and Mega Gengar ex at 350.</li>
 						<li><strong><em>Chaotic Pain</em> kills every engine piece in one shot.</strong> It places 13 damage counters on any Pokémon, and Binacle is 80, Lunatone and Solrock are 110, and Barbaracle is exactly 130. Keep a second Barbaracle coming.</li>
 						<li><strong><em>Shadowy Concealment</em> takes a Prize off every knockout your Pokémon ex score</strong> while a Mega Gengar is in play. Barbaracle, Solrock, Lunatone, and Binacle take the full count.</li>
 						<li><strong><em>Fainting Spell</em> flips a coin at whatever knocks out a Gengar ex.</strong> Heads, the attacker is Knocked Out too. Finish a damaged Gengar ex with a Solrock or Barbaracle and the bet is 1 Prize, not 3.</li>
-						<li><strong>Both Gengars have Abilities, so neither can damage Ogerpon with an attack.</strong> <em>Chaotic Pain</em> places counters, so it still reaches Ogerpon. Okidogi ex has no Ability and hits it normally.</li>
+						<li><strong>Both Gengars and Blissey ex have Abilities, so none of them can damage Ogerpon with an attack.</strong> <em>Chaotic Pain</em> places counters, so it still reaches Ogerpon. Okidogi ex has no Ability and hits it normally.</li>
 						<li><strong>Risky Ruins puts 2 damage counters on every Basic you bench</strong> while it is in play. Everything in this deck is a Basic except Barbaracle.</li>
 					</ul>
 					<p><strong><a href="./psychic-lanterns.html">The lantern decks</a>.</strong> Mega Chandelure ex resists Fighting by 30, so <em>Gaia Wave</em> lands as 170 and <em>Geobuster</em> as 320 on its 350. Two Gaia Waves leave it on 10, and Solrock&#x27;s <em>Cosmic Beam</em> and Ogerpon&#x27;s <em>Demolish</em> ignore Resistance to finish it. <em>Binding Flame</em> adds one <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span> to your Active&#x27;s Retreat Cost, and <em>Phantom Maze</em> is 130 plus 50 for each <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>, so a Zygarde in front takes 280, or 250 after Gaia Wave. Binding Flame is an Ability, so Chandelure can&#x27;t damage Ogerpon.</p>
@@ -1893,7 +1907,7 @@
 						<dt>Hands run out of Energy for Stone Arms</dt><dd><span>15th Basic Fighting Energy over a Pokegear 3.0</span></dd>
 						<dt><em>Chaotic Pain</em> or <em>Phantom Dive</em> keeps killing the Bench</dt><dd><span>Battle Cage over a Pokegear 3.0</span></dd>
 						<dt><em>Kaleidowaltz</em> finds nothing late because the deck is out of Energy</dt><dd><span>Energy Recycler over a Pokegear 3.0</span></dd>
-						<dt>Home games against Gengar Gang keep going long</dt><dd><span>Hero&#x27;s Cape over Unfair Stamp</span></dd>
+						<dt>Home games against Lucky Haunt keep going long</dt><dd><span>Hero&#x27;s Cape over Unfair Stamp</span></dd>
 						<dt>Audino keeps getting Boss&#x27;d for 3 Prizes</dt><dd><span>cut to one Audino and add back one Acerola&#x27;s Mischief</span></dd>
 					</dl>
 			</section>

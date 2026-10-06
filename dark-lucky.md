@@ -1,4 +1,4 @@
-# Lucky Haunt
+# Xero's Lucky Haunt
 
 ### The Gengar Gang with a Blissey ex on the Bench, carrying the Energy forward
 

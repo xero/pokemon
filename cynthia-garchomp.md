@@ -7,7 +7,7 @@
 >
 > A model of Elliot's deck. Elliot is a friend and one of the regulars at CardCrate's Wednesday league, and Cynthia's Garchomp ex is what he brings every week. He built it from someone else's list, so this page models the list the field has settled on. It is Chloe Abbott's 137th-place list from NAIC 2026, the closest real list to the average of 35 current ones. Every card carries regulation mark H, I, or J, so it is legal exactly as it sits.
 >
-> The page exists to know the enemy, and it reads the deck from the pilot's chair, because the fastest way to beat a deck is to know what its player wants to do next. [The Field](#the-field) has the evidence behind the list, and [Tells at the Table](#tells-at-the-table) sorts out which version is across from you. How the Gengar deck plays against it is in [Xero's Gengar Gang](./dark-gang.md#versus-cynthias-garchomp-ex), and game words are defined in [the table rules](./rules.md).
+> The page exists to know the enemy, and it reads the deck from the pilot's chair, because the fastest way to beat a deck is to know what its player wants to do next. [The Field](#the-field) has the evidence behind the list, and [Tells at the Table](#tells-at-the-table) sorts out which version is across from you. How the Gengar deck plays against it is in [Xero's Lucky Haunt](./dark-lucky.md#versus-cynthias-garchomp-ex), and game words are defined in [the table rules](./rules.md).
 
 ---
 
@@ -340,7 +340,7 @@ Against a deck that discounts Knock Outs by Pokémon ex, Spiritomb is the attack
 
 ## Versus the Kitchen Table
 
-**Versus [the Gengar decks](./dark-gang.md).** This is the matchup the page exists for. Every Pokémon in Xero's Gengar Gang is weak to Fighting, so every number doubles. Corkscrew alone is 200, which kills Toxtricity, Haunter, and every Basic but the dog. One boost is 260 and kills Okidogi ex. Two boosts are 320 and kill Gengar ex. Buster kills anything. Here is what they have.
+**Versus [the Gengar decks](./dark-lucky.md).** This is the matchup the page exists for. Every Pokémon in Xero's Lucky Haunt is weak to Fighting, Chansey and Blissey ex included, so every number doubles. Corkscrew alone is 200, which kills Toxtricity, Haunter, and every Basic but the dog. One boost is 260 and kills Okidogi ex. Two boosts are 320 and kill Gengar ex and Blissey ex. Buster kills anything. Here is what they have.
 
 - ***Chaotic Pain* places 13 counters on anything**, Bench included, and kills a bare Roserade, Gabite, Gible, or Spiritomb. Rocky stops it on a Fighting Pokémon, so a Gible or Gabite wearing one is safe. A Power Weight puts a Roserade out of reach.
 - ***Shadowy Concealment*, from a Mega Gengar ex on their Bench, takes one Prize off every Knock Out your Garchomp scores.** Boss's Orders and a Buster take the Mega for 2 and end it. Spiritomb isn't a Pokémon ex, so Concealment never applies to it.
@@ -348,7 +348,7 @@ Against a deck that discounts Knock Outs by Pokémon ex, Spiritomb is the attack
 - **Risky Ruins puts 2 counters on every Gible and Roselia you bench during a turn**, and they stay through evolution. Watchtower replaces it. Spiritomb is Darkness, so Ruins never touches it, and every Ruins counter on your Bench adds 10 to *Raging Curse*.
 - **A Poisoned Okidogi ex hits for 260.** That leaves a bare Garchomp at 70 and a Weighted one at 140. Retreat 0 means the damaged one steps back and feeds Spiritomb.
 
-How the Gengar deck plays against this is in [Versus Cynthia's Garchomp ex](./dark-gang.md#versus-cynthias-garchomp-ex).
+How the Gengar deck plays against this is in [Versus Cynthia's Garchomp ex](./dark-lucky.md#versus-cynthias-garchomp-ex).
 
 **Versus [Fox's Fire decks](./blue-flame.md).** Roselia, Roserade, and Shaymin are weak to Fire, and the Garchomp line isn't. Expect the Roserades to go first.
 

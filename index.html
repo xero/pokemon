@@ -619,9 +619,11 @@
 			}
 
 			/* a deck filed under a group heading has its title one level down,
-			   at h4. inside an article that is the prose subheading, so undo
-			   it here and let the title read like the h2 and h3 titles do. */
-			h4 {
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
 				font-size: var(--text-lg);
 				letter-spacing: normal;
 				line-height: inherit;
@@ -633,6 +635,18 @@
 			[data-home] img {
 				height: var(--icon-h);
 				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
 			}
 		}
 
@@ -1245,20 +1259,19 @@
 					<p><small><em>1 unique cards</em></small></p>
 				</section>
 			</article>
-			<article class="index" data-featured>
-				<aside data-sprite><img src="./assets/sprites/pokedex.gif" alt="" /><img src="./assets/sprites/gengar-hop.gif" alt="" /></aside>
-				<section>
-					<h2><a href="./calc.html">Damage Calculator</a></h2>
-					<p>The damage calculator for Lucky Haunt, for planning a matchup before the game. Pick their Pokémon and what is on it, and every attacker shows what it does: Weakness, Abilities, Tools, and Stadiums included.</p>
-				</section>
-			</article>
 			<h2>League Decks</h2>
 			<article class="index" data-featured>
-				<aside data-sprite><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/okidogi.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/blissey.gif" alt="" /><img src="./assets/sprites/gengar.gif" alt="" /></aside>
 				<section>
-					<h3><a href="./dark-gang.html">Xero's Gengar Gang</a></h3>
-					<p>Xero&#x27;s league-night 60, built on the 30th Celebration Gengar ex. Chaotic Pain kills the body every Mega grows out of, Grimsley&#x27;s Move drops a Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the door while the ghosts arrive.</p>
-					<p><small><em>23 unique cards</em></small></p>
+					<h3><a href="./dark-lucky.html">Xero's Lucky Haunt</a></h3>
+					<p>Xero&#x27;s league-night 60, the Gengar Gang with a Blissey ex on the Bench. Happy Switch walks Surge&#x27;s Energy onto whatever attacks and loops Void Gale back to the Mega, and Neo Upper Energy pays a whole Chaotic Pain with one card.</p>
+					<p><small><em>25 unique cards</em></small></p>
+				</section>
+				<hr />
+				<aside data-sprite><img src="./assets/sprites/pokedex.gif" alt="" /><img src="./assets/sprites/gengar-hop.gif" alt="" /></aside>
+				<section>
+					<h4><a href="./calc.html">Damage Calculator</a></h4>
+					<p>For planning a matchup before the game. Pick their Pokémon and what is on it, and each of the five attackers shows its damage and whether it Knocks Out, with Weakness, Abilities, Tools, and Stadiums counted.</p>
 				</section>
 			</article>
 			<article class="index" data-featured>
@@ -1272,11 +1285,11 @@
 			<h2>Other Decks</h2>
 			<h3>Gengar and the Dark Box</h3>
 			<article class="index">
-				<aside data-sprite><img src="./assets/sprites/blissey.gif" alt="" /><img src="./assets/sprites/gengar.gif" alt="" /></aside>
+				<aside data-sprite><img src="./assets/sprites/gengar.gif" alt="" /><img src="./assets/sprites/okidogi.gif" alt="" /></aside>
 				<section>
-					<h4><a href="./dark-lucky.html">Lucky Haunt</a></h4>
-					<p>The Gengar Gang with a Blissey ex on the Bench. Happy Switch walks Surge&#x27;s Energy onto whatever attacks and loops Void Gale back to the Mega, and Neo Upper Energy pays a whole Chaotic Pain with one card.</p>
-					<p><small><em>25 unique cards</em></small></p>
+					<h4><a href="./dark-gang.html">Gengar Gang</a></h4>
+					<p>The Okidogi build Lucky Haunt started from, on the 30th Celebration Gengar ex. Chaotic Pain kills the body every Mega grows out of, Grimsley&#x27;s Move drops a Mega Gengar straight onto the Bench for the Prize tax, and the Okidogi hold the door while the ghosts arrive.</p>
+					<p><small><em>23 unique cards</em></small></p>
 				</section>
 			</article>
 			<article class="index">

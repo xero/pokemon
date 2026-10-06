@@ -1,4 +1,4 @@
-# Xero's Gengar Gang
+# Gengar Gang
 
 ### Every Mega in the format stands on a body that one Chaotic Pain kills
 

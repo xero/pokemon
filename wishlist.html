@@ -619,9 +619,11 @@
 			}
 
 			/* a deck filed under a group heading has its title one level down,
-			   at h4. inside an article that is the prose subheading, so undo
-			   it here and let the title read like the h2 and h3 titles do. */
-			h4 {
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
 				font-size: var(--text-lg);
 				letter-spacing: normal;
 				line-height: inherit;
@@ -633,6 +635,18 @@
 			[data-home] img {
 				height: var(--icon-h);
 				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
 			}
 		}
 
@@ -1378,7 +1392,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>2</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./dark-lucky.html">Lucky Haunt <small>&times;2</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./dark-lucky.html">Xero&#x27;s Lucky Haunt <small>&times;2</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>134/167</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
@@ -1878,7 +1892,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>1</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;1</small></a>, <a href="./dark-lucky.html">Lucky Haunt <small>&times;1</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;1</small></a>, <a href="./dark-lucky.html">Xero&#x27;s Lucky Haunt <small>&times;1</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>162/162</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Energy - Special Rainbow</span></dd>
@@ -1929,7 +1943,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>8</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./blue-flame.html">Fox&#x27;s Blue Flame <small>&times;3</small></a>, <a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;3</small></a>, <a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;3</small></a>, <a href="./dark-gang.html">Xero&#x27;s Gengar Gang <small>&times;2</small></a>, <a href="./dark-lucky.html">Lucky Haunt <small>&times;2</small></a>, <a href="./dragon-dogs.html">Dragon Dogs <small>&times;3</small></a>, <a href="./dragons.html">Crystal Dragons <small>&times;4</small></a>, <a href="./flaming-lanterns.html">Flaming Lanterns <small>&times;4</small></a>, <a href="./ground-zero.html">Ground Zero <small>&times;4</small></a>, <a href="./overgrowth.html">Overgrowth <small>&times;1</small></a>, <a href="./phantom-toll.html">Phantom Toll <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Psychic Lanterns <small>&times;3</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./blue-flame.html">Fox&#x27;s Blue Flame <small>&times;3</small></a>, <a href="./cynthia-garchomp.html">Champion&#x27;s Call <small>&times;3</small></a>, <a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;3</small></a>, <a href="./dark-gang.html">Gengar Gang <small>&times;2</small></a>, <a href="./dark-lucky.html">Xero&#x27;s Lucky Haunt <small>&times;2</small></a>, <a href="./dragon-dogs.html">Dragon Dogs <small>&times;3</small></a>, <a href="./dragons.html">Crystal Dragons <small>&times;4</small></a>, <a href="./flaming-lanterns.html">Flaming Lanterns <small>&times;4</small></a>, <a href="./ground-zero.html">Ground Zero <small>&times;4</small></a>, <a href="./overgrowth.html">Overgrowth <small>&times;1</small></a>, <a href="./phantom-toll.html">Phantom Toll <small>&times;1</small></a>, <a href="./psychic-lanterns.html">Psychic Lanterns <small>&times;3</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>081/088</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Item</span></dd>
@@ -2040,7 +2054,7 @@
 				<section>
 					<dl class="card">
 						<dt>Buy</dt><dd><strong>5</strong></dd>
-						<dt>Wanted by</dt><dd><span><a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;2</small></a>, <a href="./dark-gang.html">Xero&#x27;s Gengar Gang <small>&times;2</small></a>, <a href="./dark-lucky.html">Lucky Haunt <small>&times;2</small></a>, <a href="./dark-smog.html">Smog Signals <small>&times;1</small></a>, <a href="./phantom-ferry.html">Phantom Ferry <small>&times;2</small></a>, <a href="./steel-wolves.html">Steel Wolves <small>&times;3</small></a></span></dd>
+						<dt>Wanted by</dt><dd><span><a href="./dark-dogs.html">Gengar&#x27;s Guard Dogs <small>&times;2</small></a>, <a href="./dark-gang.html">Gengar Gang <small>&times;2</small></a>, <a href="./dark-lucky.html">Xero&#x27;s Lucky Haunt <small>&times;2</small></a>, <a href="./dark-smog.html">Smog Signals <small>&times;1</small></a>, <a href="./phantom-ferry.html">Phantom Ferry <small>&times;2</small></a>, <a href="./steel-wolves.html">Steel Wolves <small>&times;3</small></a></span></dd>
 						<dt class="filter" data-filter="set">Set</dt><dd class="filter" data-filter="set"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>176/182</small></span></dd>
 						<dt class="filter" data-filter="rarity">Rarity</dt><dd class="filter" data-filter="rarity"><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
 						<dt class="filter" data-filter="type">Type</dt><dd class="filter" data-filter="type"><span>Trainer - Supporter</span></dd>

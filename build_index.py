@@ -5,7 +5,8 @@ What is listed, in what order, under which heading, and with what sprites and
 blurb all come from decks.toml. The library pages lead with no heading, then
 League Decks, then Other Decks with a subheading per group, then Opponent
 Decks. Everything above Other Decks carries data-featured, which the template
-tints.
+tints. A deck with a companion page, like the calculator on Lucky Haunt, gets
+it as a second section inside its own row, under a rule.
 
 Counts are read back out of the pages themselves rather than recomputed, so
 the index cannot claim a number the page it links to disagrees with.
@@ -24,7 +25,7 @@ SHELVES = [("league", "League Decks"), ("other", "Other Decks"),
 
 def layout():
     """The front page top to bottom: heading strings and
-    (page, sprites, blurb, cards Standard doesn't allow).
+    (page, sprites, blurb, cards Standard doesn't allow, companion or None).
 
     A string is a heading, and its hashes are its level, same as the markdown.
     Every page after it takes the next level down for its title. Groups keep
@@ -32,7 +33,8 @@ def layout():
     page.
     """
     library, decks = load()
-    out = [(e["page"], e["sprites"], e["blurb"], 0) for e in published(library)]
+    out = [(e["page"], e["sprites"], e["blurb"], 0, None)
+           for e in published(library)]
     for shelf, title in SHELVES:
         rows = [d for d in published(decks) if d["shelf"] == shelf]
         if not rows:
@@ -44,7 +46,7 @@ def layout():
                 group = d["group"]
                 out.append(f"### {group}")
             out.append((d["page"], d["sprites"], d["blurb"],
-                        len(not_legal(d["source"]))))
+                        len(not_legal(d["source"])), d["companion"]))
     return out
 
 
@@ -71,6 +73,47 @@ def read(name):
     return title, cards
 
 
+def row(name, sprites, blurb, level, rotated=0):
+    """(lines, card count) for one page: its sprite column and its section.
+
+    The lines are None when the page is not built yet, so a missing page drops
+    its row rather than linking to nothing.
+    """
+    if not (ROOT / name).exists():
+        print(f"  skipping {name}, not built yet")
+        return None, 0
+    title, count = read(name)
+    out = []
+    # decorative, and the heading right beside them already names the page
+    gifs = [s for s in sprites
+            if (ROOT / "assets" / "sprites" / f"{s}.gif").exists()]
+    if gifs:
+        tags = "".join(f'<img src="./assets/sprites/{s}.gif" alt="" />'
+                       for s in gifs)
+        out.append(f"\t\t\t\t<aside data-sprite>{tags}</aside>")
+    # the heading lives inside the section so the sprite can sit beside it
+    # rather than being pushed under a full-width row
+    out += [
+        "\t\t\t\t<section>",
+        f'\t\t\t\t\t<h{level}><a href="./{name}">{title}</a></h{level}>',
+    ]
+    # a deck whose list carries a card Standard doesn't allow can only be
+    # played at home. the badge is the deck pages' own NO, and the count is
+    # worked out every build, so the mark comes and goes with the list
+    if rotated:
+        verb = "is" if rotated == 1 else "are"
+        out.append(f'\t\t\t\t\t<p data-home>{img("./assets/no.png", "")} '
+                   f"<strong>Home only.</strong> {rotated} of its cards "
+                   f"{verb} not Standard legal.</p>")
+    out.append(f"\t\t\t\t\t<p>{esc(blurb)}</p>")
+    # the planning docs have no card pages to count, so they get no count line
+    # rather than an honest-looking "0 unique cards"
+    if count:
+        out.append(f"\t\t\t\t\t<p><small><em>{count} unique cards</em></small></p>")
+    out.append("\t\t\t\t</section>")
+    return out, count
+
+
 body, total = [], 0
 level = 2   # a page title sits one level under the last heading, h2 before any
 featured = True
@@ -81,46 +124,26 @@ for entry in PAGES:
         body.append(f"\t\t\t<h{len(hashes)}>{esc(text)}</h{len(hashes)}>")
         level = len(hashes) + 1
         continue
-    name, sprites, blurb, rotated = entry
-    if not (ROOT / name).exists():
-        print(f"  skipping {name}, not built yet")
+    name, sprites, blurb, rotated, companion = entry
+    inner, count = row(name, sprites, blurb, level, rotated)
+    if inner is None:
         continue
-    title, count = read(name)
     total += count
-    art = ['\t\t\t<article class="index" data-featured>' if featured
-           else '\t\t\t<article class="index">']
-    # decorative, and the heading right beside them already names the page
-    gifs = [s for s in sprites
-            if (ROOT / "assets" / "sprites" / f"{s}.gif").exists()]
-    if gifs:
-        tags = "".join(f'<img src="./assets/sprites/{s}.gif" alt="" />'
-                       for s in gifs)
-        art.append(f"\t\t\t\t<aside data-sprite>{tags}</aside>")
-    # the heading lives inside the section so the sprite can sit beside it
-    # rather than being pushed under a full-width row
-    art += [
-        "\t\t\t\t<section>",
-        f'\t\t\t\t\t<h{level}><a href="./{name}">{title}</a></h{level}>',
-    ]
-    # a deck whose list carries a card Standard doesn't allow can only be
-    # played at home. the badge is the deck pages' own NO, and the count is
-    # worked out every build, so the mark comes and goes with the list
-    if rotated:
-        verb = "is" if rotated == 1 else "are"
-        art.append(f'\t\t\t\t\t<p data-home>{img("./assets/no.png", "")} '
-                   f"<strong>Home only.</strong> {rotated} of its cards "
-                   f"{verb} not Standard legal.</p>")
-    art.append(f"\t\t\t\t\t<p>{esc(blurb)}</p>")
-    # the planning docs have no card pages to count, so they get no count line
-    # rather than an honest-looking "0 unique cards"
-    if count:
-        art.append(f"\t\t\t\t\t<p><small><em>{count} unique cards</em></small></p>")
-    art += ["\t\t\t\t</section>", "\t\t\t</article>"]
-    body += art
+    # the companion belongs to the deck, so it shares the deck's card and
+    # titles one level under it. the rule is a full-width flex item, which
+    # is what drops the companion onto a row of its own.
+    if companion:
+        more, count = row(companion["page"], companion["sprites"],
+                          companion["blurb"], level + 1)
+        if more:
+            total += count
+            inner += ["\t\t\t\t<hr />"] + more
+    body += ['\t\t\t<article class="index" data-featured>' if featured
+             else '\t\t\t<article class="index">'] + inner + ["\t\t\t</article>"]
 
 out = page(ROOT / "index.html", "Pokémon TCG",
            "Deck planning for me and my son.",
            "", "\n".join(body), CREDITS_NOTE, back="")
-pages = sum(1 for e in PAGES if not isinstance(e, str))
+pages = sum(1 + bool(e[4]) for e in PAGES if not isinstance(e, str))
 print(f"index.html: {pages} pages, {total} cards linked, "
       f"{len(out.splitlines())} lines")

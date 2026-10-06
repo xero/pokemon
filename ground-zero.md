@@ -221,7 +221,7 @@ Mega Zygarde ex is a Basic with 310 HP that hits for 200 and takes 30 less on th
 
 | Attack | Cost | Damage | One-shots |
 | :--- | :--- | ---: | :--- |
-| *Gaia Wave* | [F][F][F] | 200 | anything Fighting-weak up to 400, which is every Darkness Pokémon in Gengar Gang |
+| *Gaia Wave* | [F][F][F] | 200 | anything Fighting-weak up to 400, which is every Pokémon in Lucky Haunt |
 | *Geobuster*, with Core Memory | [F][F][F][F] | 350 | Dragapult ex 320, Cynthia's Garchomp ex 330, Mega Excadrill ex 340 |
 | *Nullifying Zero* | [F][F][F][F][F] | 150 per heads | a coin for every Pokémon they have in play |
 | *Hammer In*, Barbaracle | [F][F][C] | 80 | not an ex, so Crustle can't stop it |
@@ -353,13 +353,13 @@ The Bench holds five, and a working board fills it: two Barbaracle, Lunatone, So
 
 Xero's decks, from Fox's side of the table. Several of his pages carry their own "Fox's Ground Zero" sections, written from the other chair. Read them before a game; they are the plan he is bringing.
 
-**[Gengar Gang](./dark-gang.md), Xero's league deck.**
+**[Lucky Haunt](./dark-lucky.md), Xero's league deck.**
 
-- **Every Darkness Pokémon in it is weak to Fighting.** *Gaia Wave* lands as 400 and one-shots Okidogi ex at 250, Gengar ex at 280, and Mega Gengar ex at 350. A Mega Gengar in Hero's Cape is 450 and needs *Geobuster*.
+- **Every Pokémon in it is weak to Fighting, Chansey and Blissey ex included.** *Gaia Wave* lands as 400 and one-shots Okidogi ex at 250, Gengar ex at 280, Blissey ex at 300, and Mega Gengar ex at 350.
 - ***Chaotic Pain* kills every engine piece in one shot.** It places 13 damage counters on any Pokémon, and Binacle is 80, Lunatone and Solrock are 110, and Barbaracle is exactly 130. Keep a second Barbaracle coming.
 - ***Shadowy Concealment* takes a Prize off every knockout your Pokémon ex score** while a Mega Gengar is in play. Barbaracle, Solrock, Lunatone, and Binacle take the full count.
 - ***Fainting Spell* flips a coin at whatever knocks out a Gengar ex.** Heads, the attacker is Knocked Out too. Finish a damaged Gengar ex with a Solrock or Barbaracle and the bet is 1 Prize, not 3.
-- **Both Gengars have Abilities, so neither can damage Ogerpon with an attack.** *Chaotic Pain* places counters, so it still reaches Ogerpon. Okidogi ex has no Ability and hits it normally.
+- **Both Gengars and Blissey ex have Abilities, so none of them can damage Ogerpon with an attack.** *Chaotic Pain* places counters, so it still reaches Ogerpon. Okidogi ex has no Ability and hits it normally.
 - **Risky Ruins puts 2 damage counters on every Basic you bench** while it is in play. Everything in this deck is a Basic except Barbaracle.
 
 **[The lantern decks](./psychic-lanterns.md).** Mega Chandelure ex resists Fighting by 30, so *Gaia Wave* lands as 170 and *Geobuster* as 320 on its 350. Two Gaia Waves leave it on 10, and Solrock's *Cosmic Beam* and Ogerpon's *Demolish* ignore Resistance to finish it. *Binding Flame* adds one [C] to your Active's Retreat Cost, and *Phantom Maze* is 130 plus 50 for each [C], so a Zygarde in front takes 280, or 250 after Gaia Wave. Binding Flame is an Ability, so Chandelure can't damage Ogerpon.
@@ -390,7 +390,7 @@ The list is a hypothesis, and games on Live are the data.
 | Hands run out of Energy for Stone Arms | 15th Basic Fighting Energy over a Pokegear 3.0 |
 | *Chaotic Pain* or *Phantom Dive* keeps killing the Bench | Battle Cage over a Pokegear 3.0 |
 | *Kaleidowaltz* finds nothing late because the deck is out of Energy | Energy Recycler over a Pokegear 3.0 |
-| Home games against Gengar Gang keep going long | Hero's Cape over Unfair Stamp |
+| Home games against Lucky Haunt keep going long | Hero's Cape over Unfair Stamp |
 | Audino keeps getting Boss'd for 3 Prizes | cut to one Audino and add back one Acerola's Mischief |
 
 ---

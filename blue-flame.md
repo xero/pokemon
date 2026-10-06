@@ -337,7 +337,7 @@ Bench a Charizard so Turbo works, then Turbo three onto a Benched Ho-Oh. Switch 
 
 ## Versus the Kitchen Table
 
-**[Xero's Gengar decks](./dark-gang.md).** His biggest hits are *Void Gale* at 230 and Okidogi ex's *Chain-Crazed* at 260, and neither kills a Charizard at 360. Two of them do. He has three real answers, and Fox should know all of them.
+**[Xero's Gengar decks](./dark-lucky.md).** His biggest hits are *Void Gale* at 230 and Okidogi ex's *Chain-Crazed* at 260, and neither kills a Charizard at 360. Two of them do. He has three real answers, and Fox should know all of them.
 
 - ***Chaotic Pain*.** Gengar ex places 13 damage counters on any one Pokémon, which kills a Charmander, a Charmeleon, a Heatmor, or a Ho-Oh, and stops a Mega before it ever evolves. Battle Cage stops it on the Bench. Xero's answer is Risky Ruins, which replaces the Cage, and Fox's answer is the second Cage.
 - ***Shadowy Concealment*.** While a Mega Gengar ex is in play, every Darkness Pokémon an ex knocks out gives one Prize less, and both Charizards are ex. Kill the Mega Gengar first. Four Fire does it, and it gives 2 Prizes under its own Concealment.

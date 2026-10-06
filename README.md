@@ -4,19 +4,19 @@ tcg deck planning for me and my son
 
 - [caught pokemon](./collection.md)
 - [table rules](./rules.md)
-- [damage calculator](https://xero.github.io/pokemon/calc.html), for lucky
-  haunt, on the published site only
 
 ## our decks
 
-- [xero's gengar gang](./dark-gang.md)
+- [xero's lucky haunt](./dark-lucky.md)
+  - [damage calculator](https://xero.github.io/pokemon/calc.html), on the
+    published site only
 - [fox's blue flame](./blue-flame.md)
 
 ## other decks
 
 ### gengar and the dark box
 
-- [lucky haunt](./dark-lucky.md), the blissey build
+- [gengar gang](./dark-gang.md), the okidogi build
 - [gengar gang classic](./dark-classic.md), the non-ex build
 - [snake charmer](./dark-mega.md)
 - [curse toll](./dark-curse.md)
@@ -75,7 +75,10 @@ still matches the sources it came from.
 `decks.toml` is the one list of what is on the site, in the order the front
 page shows it: the library pages first, then the league decks, then every other
 deck under its group, then the opponent decks. a deck's entry says whose it is, which shelf it sits on,
-its sprites, its front-page blurb, and the corner sprites on its headings.
+its sprites, its front-page blurb, and the corner sprites on its headings. a
+deck can also carry a companion, a generated page listed as a second section
+inside the deck's own front-page row; the damage calculator rides on lucky
+haunt that way.
 
 a deck goes live by getting an entry. `draft = true` keeps it off the site: no
 page, no front-page row, and the pull list names it without a link. a full build

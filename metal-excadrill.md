@@ -7,7 +7,7 @@
 >
 > A model of Matt's deck. Matt is a friend and one of the regulars at CardCrate's Wednesday league, and Mega Excadrill ex is what he brings every week. Every card carries regulation mark H, I, or J, so the list is legal exactly as it sits.
 >
-> The engine is the one Matt runs, the older build: Metang's *Metal Maker* for Energy, Genesect ex for search, and Precious Trolley as the ACE SPEC. That stock list is the most-played deck in Standard at a losing win rate, because its main attacker costs three Prizes and there is no plan B. Matt adds two Metagross, a **Metagross that hits for 330 and hands back one Prize**, and keeps them as a situational last resort. [How Matt Plays It](#how-matt-plays-it) has his order, and the reasoning behind the rest of the list is in [Alternatives](#alternatives). How the Gengar deck plays against Matt is in [Xero's Gengar Gang](./dark-gang.md#versus-mega-excadrill-ex), and game words are defined in [the table rules](./rules.md).
+> The engine is the one Matt runs, the older build: Metang's *Metal Maker* for Energy, Genesect ex for search, and Precious Trolley as the ACE SPEC. That stock list is the most-played deck in Standard at a losing win rate, because its main attacker costs three Prizes and there is no plan B. Matt adds two Metagross, a **Metagross that hits for 330 and hands back one Prize**, and keeps them as a situational last resort. [How Matt Plays It](#how-matt-plays-it) has his order, and the reasoning behind the rest of the list is in [Alternatives](#alternatives). How the Gengar deck plays against Matt is in [Xero's Lucky Haunt](./dark-lucky.md#versus-mega-excadrill-ex), and game words are defined in [the table rules](./rules.md).
 
 ---
 
@@ -385,7 +385,7 @@ Against the house decks this list is a wall with a hammer behind it, and the mat
 
 **Versus [the lantern decks](./psychic-lanterns.md).** Mega Chandelure ex prices your retreat and converts it into damage, and **Excadrill's Retreat 4 is the single worst stat line it can point at** — one Binding Flame makes that a 5, and *Phantom Maze* reads 130 plus 50 per Colorless, which is 380 on an Active Excadrill. It one-shots your Mega through 340 HP. Keep Metagross active (Retreat 3, still bad) or Metang (Retreat 2), never Excadrill, and win the game on the Bench. This is the matchup where Metagross being the main attacker is not a preference, it is survival.
 
-**Versus [the Gengar decks](./dark-gang.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.
+**Versus [the Gengar decks](./dark-lucky.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.
 
 **Versus [the Fire decks](./blue-flame.md).** This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and **there is no weakness-removal card anywhere in the Standard pool** — not a Tool, not a Stadium, not an Ability. Full Metal Lab's 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck's tax.
 
