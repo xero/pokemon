@@ -133,10 +133,12 @@ with Weakness, Abilities, Tools, and Stadiums counted."""
 "Versus Mega Starmie ex" = ["starmie"]
 "Versus Mega Floette ex" = ["floette"]
 "Versus Crustle" = ["dwebble", "crustle"]
+"Versus Tyrantrum" = ["tyrantrum"]
 "Versus Mega Gengar ex" = ["gengar-mega-shiny"]
 "Versus Mega Sharpedo ex" = ["carvanha", "sharpedo-mega"]
 "Versus Cinccino ex" = ["minccino", "cinccino"]
 "Versus Charizard and Battle Cage" = ["charizard-mega-x"]
+"Versus the Kitchen Table" = ["zygarde", "umbreon"]
 "Alternatives" = ["crobat", "zubat"]
 
 [[deck]]
@@ -158,6 +160,7 @@ damage, so four is 360 and a knockout on anything at the Wednesday league."""
 "Charmander" = ["charmander"]
 "Charmeleon" = ["charmeleon"]
 "Mega Charizard Y ex" = ["charizard-mega-y"]
+"Oricorio ex" = ["oricorio"]
 "Heatmor" = ["heatmor"]
 "Ho-Oh" = ["ho-oh"]
 "The Energy Engine" = ["pokedex"]
@@ -316,6 +319,7 @@ taxes every Energy the opponent plays."""
 "Haunter" = ["haunter"]
 "Gengar ex" = ["gengar"]
 "Mega Gengar ex" = ["gengar-mega"]
+"Munkidori" = ["munkidori"]
 "Toxel" = ["toxel"]
 "Toxtricity" = ["toxtricity"]
 "Sableye" = ["sableye"]
@@ -415,6 +419,8 @@ whatever they bring."""
 "The Thesis" = ["weezing"]
 "Team Rocket's Weezing" = ["weezing"]
 "Team Rocket's Koffing" = ["koffing"]
+"Weezing (Journey Together · I)" = ["weezing-shiny"]
+"Weezing (Scarlet & Violet 151 · G)" = ["weezing-shiny"]
 "1. Bench first, attack second" = ["koffing-shiny"]
 "4. The Neutralizing Gas turn" = ["weezing-shiny"]
 "Fox's Ground Zero, Mega Zygarde ex" = ["zygarde"]
@@ -525,7 +531,7 @@ toll booth it cannot afford to sit in."""
 "Versus the Kitchen Table" = ["mewtwo"]
 "Versus the Card Shop" = ["noctowl"]
 "Where Gourgeist Went" = ["gourgeist", "pumpkaboo"]
-"✗ Four Cards That Look Right — Skip Them" = ["wobbuffet-back"]
+"Four Cards That Look Right, Skip Them" = ["wobbuffet-back"]
 
 [[deck]]
 source = "phantom-tax.md"
@@ -547,6 +553,7 @@ opponent nothing, and Munkidori sends their counters home."""
 "Haunter" = ["haunter"]
 "Mega Gengar ex" = ["gengar-mega"]
 "Gengar" = ["gengar"]
+"Munkidori" = ["munkidori"]
 "The Toll Math" = ["gengar-booty"]
 "1. Pick the Wall" = ["chandelure", "gengar-mega"]
 "3. The Dark Button" = ["gastly"]
@@ -584,7 +591,7 @@ line against the Wednesday field."""
 "8. Things That Will Cost You a Game" = ["eevee-back"]
 "Versus the Kitchen Table" = ["mewtwo"]
 "Versus the Card Shop" = ["excadrill"]
-"✗ Cards That Look Right, Skip Them" = ["wobbuffet-back"]
+"Cards That Look Right, Skip Them" = ["wobbuffet-back"]
 
 [[deck]]
 source = "dragon-dogs.md"
@@ -625,6 +632,7 @@ whole board's Energy onto whichever Ogerpon is in front."""
 # Fezandipiti are gen 9, so they go bare; Blaziken stands in for the one
 # matchup the deck can't win.
 [deck.flavor]
+"Teal Mask Ogerpon ex" = ["ogerpon"]
 "The Thesis" = ["meganium"]
 "Chikorita" = ["chikorita"]
 "Bayleef" = ["bayleef"]
@@ -664,8 +672,10 @@ to, and how to beat dad."""
 "3. The Rock That Hits Back" = ["sudowoodo"]
 "4. Winning the Stadium War" = ["charizard-mega-y"]
 "5. Reading Your First Hand" = ["flareon"]
-"Weezing — his early attacker (130 HP)" = ["weezing"]
-"Gengar — his closer (130 HP)" = ["gengar"]
+"6. Beating Dad's Lucky Haunt" = ["gengar-mega"]
+"Gengar ex, his main attacker (280 HP)" = ["gengar"]
+"Okidogi ex, the dog (250 HP)" = ["okidogi"]
+"His other Pokémon" = ["blissey"]
 "His annoying cards" = ["haunter"]
 "7. Mistakes That Will Cost You The Game" = ["eevee-back"]
 "8. The Turn Checklist" = ["charmeleon"]
@@ -677,8 +687,8 @@ shelf = "other"
 group = "Fire and Eevee"
 sprites = ["flareon", "noctowl"]
 blurb = """
-The tournament take on Fire Force. Flareon ex, Noctowl, and why a Bench dad
-cannot touch changes how the whole game is played."""
+The tournament take on Fire Force. Flareon ex, Noctowl, and a Tera Bench that
+attack damage can't touch, though Dad's Chaotic Pain still can."""
 
 [deck.flavor]
 # the Pokemon card pages
@@ -694,10 +704,12 @@ cannot touch changes how the whole game is played."""
 "4. The Bench Is a Fortress" = ["hoothoot"]
 "5. The Prize Race Changed" = ["gengar-mega"]
 "6. Reading Your First Hand" = ["eevee-back"]
-"7. Beating Dad's Gengar Gang" = ["gengar"]
-"Weezing — his early attacker (130 HP)" = ["weezing"]
-"Gengar — his closer (130 HP)" = ["gengar-booty"]
-"His answer to *Tera* is Boss's Orders" = ["koffing"]
+"7. Beating Dad's Lucky Haunt" = ["gengar"]
+"His answer to *Tera* is Chaotic Pain" = ["gengar-smile"]
+"Mega Gengar ex shrinks your Prizes" = ["gengar-mega-shiny"]
+"Okidogi ex, his early attacker (250 HP)" = ["okidogi"]
+"Gengar ex, his closer (280 HP)" = ["gengar-booty"]
+"Blissey ex, the one to drag out" = ["blissey"]
 "His annoying cards" = ["haunter"]
 "8. Mistakes That Will Cost You The Game" = ["flareon-back"]
 "9. The Turn Checklist" = ["charizard"]
@@ -729,6 +741,8 @@ night."""
 "Umbreon ex" = ["umbreon"]
 "Espeon ex" = ["espeon"]
 "Glaceon" = ["glaceon"]
+"Hoothoot" = ["hoothoot"]
+"Noctowl" = ["noctowl"]
 "The Thesis" = ["eevee"]
 "Sun and Moon" = ["espeon", "umbreon"]
 "Fire and Ice" = ["flareon", "glaceon"]
@@ -754,6 +768,8 @@ and a Crobat line that fixes a bad Active for free."""
 # cards are the ones that go bare.
 [deck.flavor]
 "Team Rocket's Mewtwo ex" = ["mewtwo"]
+"Team Rocket's Tarountula" = ["tarountula"]
+"Team Rocket's Spidops" = ["spidops"]
 "Team Rocket's Crobat ex" = ["crobat"]
 "Team Rocket's Golbat" = ["golbat"]
 "Team Rocket's Zubat" = ["zubat"]
@@ -796,6 +812,7 @@ Bench pays for it, and Zamazenta covers the turn Zacian is locked out."""
 # for the field table, which is mostly other Metal decks.
 [deck.flavor]
 "The Thesis" = ["metagross"]
+"Hop's Zacian ex" = ["zacian"]
 "Steven's Beldum" = ["beldum"]
 "Steven's Metang" = ["metang"]
 "Steven's Metagross ex" = ["metagross"]
@@ -879,6 +896,7 @@ Metagross waits as the last resort."""
 "Versus the Kitchen Table" = ["gengar", "chandelure"]
 "Versus the Card Shop" = ["excadrill"]
 "Alternatives" = ["scizor", "aggron"]
+"Steven's Metagross ex" = ["metagross"]
 
 [[deck]]
 source = "cynthia-garchomp.md"
@@ -931,9 +949,11 @@ turns the mirror into a Fairy Zone."""
 [deck.flavor]
 "The Thesis" = ["giratina"]
 "The Numbers" = ["pokedex"]
+"Munkidori" = ["munkidori"]
 "Lillie's Clefairy ex" = ["clefairy"]
 "Meowth ex" = ["meowth"]
 "Budew" = ["budew"]
+"Team Rocket's Mimikyu" = ["mimikyu"]
 "Sparkling Crystal" = ["diancie"]
 "1. The Two-Turn Kill" = ["giratina-origin"]
 "2. The Crystal" = ["diancie"]
@@ -944,3 +964,6 @@ turns the mirror into a Fairy Zone."""
 "Versus the Kitchen Table" = ["mewtwo", "gengar-mega"]
 # the card that was left out on purpose
 "Alternatives" = ["dusknoir"]
+"Dusknoir" = ["dusknoir"]
+"Blaziken ex" = ["blaziken"]
+"Azumarill" = ["azumarill"]

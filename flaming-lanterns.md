@@ -318,7 +318,7 @@ Current Standard, per [Limitless play data](https://play.limitlesstcg.com/decks?
 | Mega Chandelure (this archetype) | posting 3rd/119 and 10th/220 finishes | The mirror is a Binding Flame race; the Ruler decides it, because the mirror's hand is always full. |
 | Dragapult variants | ~18% | Phantom Dive places counters, and placed counters sail through Flower Curtain, so the flood loses bodies anyway. Win it on the prize ledger instead: their attackers pay 2-3 apiece while the Ruler pays 1, and a Dive deck's held hand is readable. |
 | Single-prize rooms | ~25% | The Mega stays boxed, the Ruler and the techs trade one for one, and Xerosic's strips their engine. Fair games this house's other decks concede. |
-| Fighting rooms (Mega Excadrill, Lucario) | ~10% | The whole lantern side resists Fighting; the Grass techs eat the hits the lanterns cannot. |
+| Mega Excadrill, Lucario | ~10% | Excadrill is Metal, not Fighting, so the Resistance does nothing there. *Maximum Drilling*'s 330 lands in full and leaves a Mega on 20, and one Flame makes the Maze 380 into Excadrill's 340 at Retreat 4. Lucario is the real Fighting room, where the whole lantern side resists and the Grass techs eat the hits the lanterns cannot. |
 | Darkness rooms | ~10% | The bad seat. Twelve of twenty bodies take ×2; the Ruler alone hits back for neutral. [Phantom Toll](./phantom-toll.md) is the sibling built for these rooms; sleeve accordingly. |
 
 ---
@@ -331,7 +331,7 @@ Current Standard, per [Limitless play data](https://play.limitlesstcg.com/decks?
 
 **[Fox's Sun and Moon](./eevee-standard.md).** Moon Mirage doubles into every Psychic lantern; the Fire Chandelure takes it neutral and answers for one Prize. Still a hard game, and the sibling deck was purpose-built for it; this one plays it as Ruler-plus-techs and respects the ×2 everywhere else.
 
-**[Xero's dark decks](./dark-classic.md).** The known predator. Sleeve this deck at the table when the Gengars are resting; when they are not, twelve Dark-weak bodies is a donation. That is not a flaw to fix; it is the rock-paper-scissors the house runs on.
+**[Xero's Lucky Haunt](./dark-lucky.md).** The known predator. Twelve of the twenty bodies here are Darkness-weak, so his *Void Gale* lands 460 and a Poisoned *Chain-Crazed* 520 on a Mega, and *Chaotic Pain* picks off Litwick and Lampent before they grow. The Fire Chandelure takes all of it neutral and still dies to one *Chaotic Pain*, 130 into 130. What this deck has is the Ruler and the Maze. Every card in his hand is 30 to the Ruler: five is 150 and kills a Toxtricity, nine kills Okidogi ex, and ten kills a Gengar ex or a Blissey ex, all from a one-Prize Chandelure that Concealment never discounts, because it isn't a Pokémon ex. Lillie's draws him eight while all six of his Prizes remain, and *Return* refills him to six, so read his hand before Xerosic's throws it away. One Flame makes the Maze 280 into a Gengar ex, 330 into Okidogi ex, and 380 into Blissey ex, which is Colorless, two full Prizes, and one *Follow Me* away from the Active Spot. A Maze that knocks out a Gengar ex flips *Fainting Spell* at a 3-Prize Mega, and a Ruler that does it risks one Prize, so the Ruler takes the ghosts. His Risky Ruins puts 2 counters on every Litwick, Shaymin, and tech you bench while it stands. Sleeve this deck at the table when the Gengars are resting. That is not a flaw to fix; it is the rock-paper-scissors the house runs on.
 
 ---
 

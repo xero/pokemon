@@ -38,7 +38,7 @@ Mega Charizard X ex is a Stage 2 with 360 HP and one attack. *Inferno X* costs [
 | 1 | 90 | Cynthia's Roserade 130 and Metang 100, which are Fire-weak |
 | 2 | 180 | Mega Excadrill ex 340 and Genesect ex 220, which are Fire-weak |
 | 3 | 270 | Okidogi ex 250, Cinccino ex 240 |
-| 4 | 360 | Dragapult ex 320, Cynthia's Garchomp ex 330, Mega Sharpedo ex 330, Mega Kangaskhan ex 300, Gengar ex 280, Mega Gengar ex 350, Mega Chandelure ex 350 |
+| 4 | 360 | Dragapult ex 320, Cynthia's Garchomp ex 330, Mega Sharpedo ex 330, Mega Kangaskhan ex 300, Gengar ex 280, Blissey ex 300, Mega Gengar ex 350, Mega Chandelure ex 350 |
 | 5 | 450 | Garchomp in Cynthia's Power Weight at 400, Mega Venusaur ex 380 |
 
 **The Energy that stays behind is the real rule.** Oricorio only reaches the Bench. The Active Charizard gets one attachment a turn from your hand, and *Inferno X* needs two on it, so never discard the Charizard's own Basic Fire unless the knockout needs it. [Nitro R Energy](#nitro-r-energy) makes this cheap. On the attacking Charizard it returns to your hand after *Inferno X* discards it, so a Charizard holding one Basic Fire and a Nitro swings every turn, and only the Bench pays.
@@ -337,11 +337,28 @@ Bench a Charizard so Turbo works, then Turbo three onto a Benched Ho-Oh. Switch 
 
 ## Versus the Kitchen Table
 
-**[Xero's Gengar decks](./dark-lucky.md).** His biggest hits are *Void Gale* at 230 and Okidogi ex's *Chain-Crazed* at 260, and neither kills a Charizard at 360. Two of them do. He has three real answers, and Fox should know all of them.
+**[Lucky Haunt](./dark-lucky.md), Xero's league deck.** Nothing in it is weak to Fire and nothing in Fox's deck is weak to Darkness, so every number lands at face value. That makes it a race between one 360 HP body and a deck built to make its Prizes expensive.
 
-- ***Chaotic Pain*.** Gengar ex places 13 damage counters on any one Pokémon, which kills a Charmander, a Charmeleon, a Heatmor, or a Ho-Oh, and stops a Mega before it ever evolves. Battle Cage stops it on the Bench. Xero's answer is Risky Ruins, which replaces the Cage, and Fox's answer is the second Cage.
-- ***Shadowy Concealment*.** While a Mega Gengar ex is in play, every Darkness Pokémon an ex knocks out gives one Prize less, and both Charizards are ex. Kill the Mega Gengar first. Four Fire does it, and it gives 2 Prizes under its own Concealment.
-- ***Fainting Spell*.** When a Gengar ex is Knocked Out by an attack, Xero flips a coin, and heads knocks out the attacker too. A Charizard that kills a Gengar ex is betting 3 Prizes on a coin. Finish a damaged one with Heatmor or Ho-Oh when you can, and the bet drops to 1.
+| Xero's hit | Damage | Into a Charizard at 360 |
+| :--- | ---: | :--- |
+| *Chain-Crazed*, Okidogi ex while Poisoned | 260 | lives on 100 |
+| *Void Gale*, Mega Gengar ex | 230 | lives on 130 |
+| *Return*, Blissey ex | 180 | lives on 180 |
+| *Chaotic Pain*, Gengar ex | 130 as counters | lives on 230 |
+
+**Charizard survives any one of them, and any two that include a Poisoned dog or *Void Gale* kill it.** *Void Gale* and a *Chaotic Pain* are exactly 360; two Pains are only 260. Every Charizard hit, in turn, kills anything he has: four Fire is 360, which clears the Mega at 350, Blissey ex at 300, and Gengar ex at 280. Three Fire is 270, which kills Okidogi ex at 250 and a Gengar ex already carrying Toxtricity's 20. One kills a Gastly or a Toxel, and two kill a Haunter, a Chansey, or a Toxtricity.
+
+His three answers to that, and what Fox does about each:
+
+- ***Chaotic Pain* is his only way onto your Bench.** Gengar ex places 13 damage counters on any one Pokémon, which kills a Charmander, a Charmeleon, a Heatmor, or Ho-Oh, and stops a Charizard before it ever evolves. Oricorio ex at 190 lives through one. Battle Cage stops it on the Bench, and nothing else in his deck reaches your Bench at all. His answer is Risky Ruins, two of them and two Team Rocket's Petrel to find them; Fox's answer is the second Cage.
+- ***Shadowy Concealment*.** While a Mega Gengar ex is in play, every Darkness Pokémon an ex knocks out gives one Prize less, and both Charizards are ex. Under it his Gastly, Toxel, Haunter, and Toxtricity pay 0, a Gengar ex or Okidogi ex pays 1, and the Mega itself pays 2. Kill the Mega Gengar first. He parks it on the Bench, so it takes a Boss's Orders and four Fire, and the moment it goes, every Gengar ex and Okidogi ex is worth 2 again. Blissey ex and Chansey are Colorless, so Concealment never covers them: Blissey ex is always 2 Prizes, and four Fire kills it.
+- ***Fainting Spell*.** When a Gengar ex is Knocked Out by an attack, Xero flips a coin, and heads knocks out the attacker too. A Charizard that kills a Gengar ex is betting 3 Prizes on a coin. Finish a damaged one with Heatmor's *Fire Claws* or Ho-Oh's *Bright Wing* when you can. Neither is an ex, so the bet drops to 1 Prize and Concealment doesn't apply to their knockout, which means the Gengar ex pays its full 2.
+
+**Play the Cage before the Basics.** Risky Ruins puts 2 damage counters on every Basic non-Darkness Pokémon either player benches during their turn, and every Basic Fox owns is Fire. A Precious Trolley under his Ruins chips every Pokémon it benches, and the 20 stays on through evolution: Oricorio ex drops to 170, and a Charizard grown from a chipped Charmander starts at 340. When his Ruins is up, play your Cage first, then the Trolley. Pokémon you put down before the game starts are never chipped, because setup isn't anyone's turn.
+
+**The Bench is the safe place under the Cage.** None of his attacks damage a Benched Pokémon, so a hurt Charizard with Air Balloon retreats for free and sits there untouched until his one Boss's Orders, or a Petrel that finds it, drags it back up.
+
+**The Prize count.** Fox needs six: the Mega for 2, then any two of Gengar ex, Okidogi ex, and Blissey ex at 2 each. Xero needs two Charizards, and each one costs him two attacks. His Okidogi ex attacks on his first turn going second and swings 260 on his second, so the first Charizard should arrive with a plan for that dog: three Fire kills it.
 
 **[Xero's lantern decks](./psychic-lanterns.md).** *Binding Flame* adds [C] to Fox's Active's Retreat Cost for every Mega Chandelure ex in play, and *Phantom Maze* does 130 plus 50 for every [C]. A bare Charizard X under one Flame takes 280, and 330 under two. With Air Balloon those drop to 180 and 230. Charizard survives all four, and four Fire kills a Mega Chandelure at 350. Dusknoir's 13-counter Ability can't touch the Bench while Battle Cage is up.
 

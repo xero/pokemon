@@ -103,6 +103,7 @@ Three things fall out of building it this way.
 >
 > | The night | This slot holds |
 > | :--- | :--- |
+> | Dad plays [Lucky Haunt](./dark-lucky.md) | Scramble Switch, as listed; his ACE SPEC is Neo Upper Energy, so nothing is shared |
 > | Dad plays [the lanterns](./psychic-lanterns.md), their Prime Catcher arrived | Scramble Switch, as listed |
 > | Dad plays the lanterns, Prime Catcher still in the mail | a third Switch — a deck needs no ACE SPEC |
 > | Dad plays the Gang | Prime Catcher, freed up by the unsleeved lanterns |
@@ -310,12 +311,14 @@ The chip is what carries 280 over the top HP tier.
 | --- | --- | --- |
 | Flareon ex | 270 | *Erasure Ball* 280 outright |
 | Team Rocket's Mewtwo ex | 280 | *Erasure Ball* 280 outright |
-| Team Rocket's Crobat ex | 310 | *Erasure Ball* 280 plus *Biting Spree* 40 |
-| Mega Zygarde ex, after *Gaia Wave* | 310 | *Erasure Ball* 280 cut to 250, plus *Biting Spree* 40 and *Sneaky Bite* 20 |
-| Mega Gengar ex | 350 | *Erasure Ball* 280, *Biting Spree* 40, *Sneaky Bite* 20, one turn of Poison 10 |
+| Team Rocket's Crobat ex | 310 | *Erasure Ball* 280 plus *Biting Spree* 20 and *Sneaky Bite* 20 |
+| Mega Zygarde ex, after *Gaia Wave* | 310 | *Erasure Ball* 280 cut to 250, plus 60 of chip: *Biting Spree* 20 and both Golbats' *Sneaky Bite* |
+| Gengar ex | 280 | *Erasure Ball* 280 outright |
+| Okidogi ex | 250 | *Erasure Ball* 280 outright |
+| Blissey ex | 300 | *Erasure Ball* 280 plus one *Sneaky Bite* |
+| Mega Gengar ex | 350 | *Erasure Ball* 280 plus 70 of chip: *Biting Spree* 20, *Sneaky Bite* 20, and the 20 his own *Sinister Surge* leaves on it, then one turn of Poison or a second *Sneaky Bite* |
 | Mega Chandelure ex | 350 | *Assassin's Return* 240 into Darkness Weakness, then 110 more from chip or a second swing |
 | Charizard, Vivid Voltage | 170 | *Erasure Ball* at 220, or *Rocket Rush* on a full board |
-| Gengar, Perfect Order | 130 | *Rocket Rush* 180 for one Prize |
 
 ---
 
@@ -399,7 +402,7 @@ With no Koffing in the opening hand, the lead is Tarountula or Zubat and the pla
 
 Your best matchup, and it is structural. *Gaia Wave* is 200 and doubles into Fighting Weakness, of which you have none. Mewtwo resists Fighting and takes 170, so it survives and swings back for 280. Crobat takes 170 on 310 HP and then bounces the damage away entirely.
 
-Mega Zygarde ex is 310 HP and worth three Prizes, so killing it twice wins the game. Killing it once takes a little care, because *Gaia Wave* leaves it taking 30 less damage on your next turn. A full 280 *Erasure Ball* lands as 250. The chip covers the rest, and *Biting Spree* and *Sneaky Bite* place damage counters rather than dealing attack damage, so the reduction does not touch them. 250 plus 40 plus 20 is exactly 310.
+Mega Zygarde ex is 310 HP and worth three Prizes, so killing it twice wins the game. Killing it once takes a little care, because *Gaia Wave* leaves it taking 30 less damage on your next turn. A full 280 *Erasure Ball* lands as 250. The chip covers the rest, and *Biting Spree* and *Sneaky Bite* place damage counters rather than dealing attack damage, so the reduction does not touch them. *Biting Spree* puts 20 on each of two different Pokémon, so one Zygarde gets 20 of it; with both Golbats' *Sneaky Bite*, 250 plus 20 plus 20 plus 20 is exactly 310.
 
 The other attack is worse for you. *Nullifying Zero* flips a coin per Pokémon you have and does 150 to each heads, which reaches your Benched Spidops. Keep the Bench at what you need and no wider.
 
@@ -419,9 +422,30 @@ The Fire Weakness on your Spidops line is the same problem it is against Chariza
 
 ### The Gengar decks
 
-Your worst matchup, and it is worth knowing why. Mewtwo is weak to Darkness, so *Void Gale* at 230 doubles to 460 and one-shots a 280 HP Basic without any setup at all. Do not lead with Mewtwo into a Darkness board.
+[Lucky Haunt](./dark-lucky.md) is what Dad brings now, and it is the hardest matchup at this table. Mewtwo and Wobbuffet are weak to Darkness, and two of his attacks one-shot a full-health Mewtwo.
 
-Crobat ex is the card that plays this matchup. 310 HP, no Darkness Weakness, and *Assassin's Return* deletes the damage. Chip with *Biting Spree* and *Sneaky Bite*, attack with Crobat, and only bring Mewtwo out for the turn it takes a Prize and gets switched straight back with Giovanni.
+| His hit | Into Mewtwo ex at 280 |
+| :--- | :--- |
+| *Void Gale*, Mega Gengar ex | 460, dead |
+| *Chain-Crazed*, Okidogi ex while Poisoned | 520, dead |
+| *Chain-Crazed*, a dog that lost its Poison | 260, lives on 20 |
+| *Gentle Slap*, Toxtricity | 200, lives |
+| *Chaotic Pain*, Gengar ex | 13 counters, and none at all while Articuno is in play |
+
+**Articuno is the card that plays this matchup.** *Chaotic Pain* places its counters as an effect of an attack, and *Repelling Veil* prevents every effect of their attacks on your Basic Team Rocket's Pokémon. With Articuno in play, Pain can't touch Mewtwo, Tarountula, Zubat, Koffing, Wobbuffet, or Articuno itself, and Pain is the only way his deck reaches your Bench. It still reaches Spidops, Golbat, and Crobat ex, because they are evolved. Proton finds Articuno, so it goes down on turn one. To get rid of it he has to drag it up with Boss's Orders, which he runs one of plus two Petrel to find it, and hit it with damage; *Return* at 180 or either big attacker kills its 120, and *Gentle Slap* at 100 doesn't.
+
+**Spidops is exactly one Pain.** 130 HP against 13 counters, and Articuno can't cover a Stage 1. He will aim at the battery first, so keep the third Tarountula coming and spend Night Stretcher on a Spidops.
+
+**Mewtwo still takes the Prizes, and he makes them cheap.** *Erasure Ball* at 280 kills a Gengar ex exactly, an Okidogi ex with 30 to spare, and a Blissey ex after one *Sneaky Bite*. The catch is Mega Gengar ex. While it is in play, every Darkness Pokémon a Pokémon ex knocks out gives you one Prize less, so Mewtwo and Crobat get 1 for a Gengar ex or Okidogi ex and 0 for the small bodies. Blissey ex and Chansey are Colorless and always pay full.
+
+- **Take the Mega first.** He parks it on the Bench. It needs 70 of chip before *Erasure Ball* finishes it, and he usually supplies 20 himself, because he banks *Sinister Surge* on it. *Biting Spree*, *Sneaky Bite*, and that Surge get you to 340, and a second Bite or one Poison finishes. Under its own Ability it gives you 2, and every Gengar ex and dog after it is worth 2.
+- **Never finish a Gengar ex with Mewtwo.** *Fainting Spell* flips a coin when an attack's damage knocks one out, and heads takes Mewtwo with it for 2 of your Prizes. *Rocket Mirror* moves counters instead of dealing damage, so a Gengar ex it finishes flips nothing, and Concealment doesn't apply to a Wobbuffet anyway. Spidops's *Rocket Rush* bets only 1 Prize.
+- **Crobat ex is the bait and the battery for Wobbuffet.** 310 HP, no Darkness Weakness, and Retreat 1. Pain can reach it, and every counter on a Benched Crobat is a *Rocket Mirror* waiting to happen: a Crobat that took a Pain is a full heal and 130 thrown back at his Active.
+- **Mewtwo goes Active on the turn it swings, not before.** Giovanni brings it up and drags the target in one card. After it swings, his answer has to be a loaded Mega or a Poisoned dog, and if the dog's Poison is gone, Mewtwo lives.
+
+**His Risky Ruins and your Factory replace each other.** Ruins puts 2 counters on every Basic non-Darkness Pokémon you bench during your turn, which here means Mewtwo, Tarountula, Wobbuffet, and Articuno; Zubat and Koffing are Darkness and go free. A Mewtwo benched under Ruins starts at 260, and then even the un-Poisoned dog kills it. Bench Mewtwo at setup or under your own Factory. The Factory works for him too, though: his Team Rocket's Petrel is a Team Rocket Supporter, so every Petrel he plays under it draws him two.
+
+**The Prize count.** He needs three of your ex, or fewer if Spidops and Koffing feed him singles. You need six: the Mega for 2, then any two of Gengar ex, Okidogi ex, and Blissey ex at 2 each.
 
 ### The lantern deck, Mega Chandelure ex
 

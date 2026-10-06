@@ -133,15 +133,21 @@ That lands Fire and Ice on **20 Pokémon, 27 Trainers, 13 Energy**, also 60.
 
 ## Sun and Moon
 
-**Espeon is the Sun evolution and Umbreon is the Moon evolution.** That is where the name comes from, and the pairing is aimed squarely at Dad's side of the table.
+**Espeon is the Sun evolution and Umbreon is the Moon evolution.** That is where the name comes from, and the pairing is aimed squarely at Dad's side of the table. His deck this season is [Lucky Haunt](./dark-lucky.md), and against it the build wins on three cards: the Battle Cage, Espeon's *Amazez*, and Umbreon's 280 HP.
 
-**Umbreon ex is the reason this build exists.** Every card in the lantern decks is Darkness Weakness ×2, top to bottom: Mega Chandelure ex, Gourgeist ex, Dusknoir, Litwick, Lampent, Pumpkaboo, Duskull. *Moon Mirage* does 160, which becomes **320**. That one-shots Gourgeist ex at 270, Dusknoir at 160, and every small body on the board. Mega Chandelure ex survives at 350, but only by 30.
+**Battle Cage and Tera together close the Bench.** Tera stops all attack damage to an Eeveelution ex on the Bench, but it does nothing about damage counters, and Dad's Gengar ex places counters. *Chaotic Pain* puts 13 of them on any one Pokémon, Bench included, and it is the only thing in Lucky Haunt that reaches past your Active Spot. Battle Cage prevents damage counters being placed on **Benched** Pokémon by the opponent's attacks and Abilities, so with both up, the only Pokémon he can hurt is the one in front. Fox places no counters at all, so a card that reads as symmetric is entirely one-sided in his favour. Dad's answer is Risky Ruins, which replaces the Cage, and the second Cage is Fox's answer back.
 
-**Espeon ex is a single copy doing a single job.** *Amazez* devolves **every** evolved Pokémon the opponent controls, shuffling the top Stage card back into their deck. Against a board of Mega Chandelure ex, Dusknoir, Gengar, and Crobat ex that erases an entire game's setup in one attack. It costs [G][P][D], which the Crystal turns into P and D, both of which this build already runs.
+**Umbreon ex outlasts every hit he has.** His biggest are Okidogi ex's *Chain-Crazed* at 260 and Mega Gengar ex's *Void Gale* at 230, and a healthy Umbreon has 280, so it takes two. The one catch is Risky Ruins: it puts 2 damage counters on every Eevee benched while it is up, they stay through evolution, and an Umbreon that grew from a chipped Eevee is exactly one *Chain-Crazed*. *Moon Mirage* does 160 and Confuses, which makes his next attack a coin flip unless he moves that Pokémon out of the Active Spot first. Two Mirages kill a Gengar ex at 280, an Okidogi ex at 250, or a Blissey ex at 300.
 
-Espeon is Darkness Weakness ×2 and Dad's decks are full of Darkness attackers, so it dies the turn after it fires. That is a fair price for undoing his board, and it is why there is only one.
+**Espeon ex is a single copy doing a single job.** *Amazez* devolves **every** evolved Pokémon the opponent controls, shuffling the top Stage card back into their deck. Against Lucky Haunt that sends Gengar ex and Mega Gengar ex back down to the Gastly or Haunter under them, Toxtricity to Toxel, and Blissey ex to Chansey, and the damage stays where it was. A Gengar ex carrying 80 becomes a 70 HP Gastly holding 80, which is Knocked Out on the spot. Until he rebuilds, *Shadowy Concealment*, *Fainting Spell*, *Sinister Surge*, and *Happy Switch* are all gone. **The one Pokémon it can't touch is anything he put down with Grimsley's Move.** *Amazez* only devolves an evolved Pokémon, and a Pokémon that Grimsley's benched straight from his deck never evolved and has no card under it. That is often how his Mega arrives, so count which of his Stage 2s came that way before you spend the attack. It costs [G][P][D], which the Crystal turns into P and D, both of which this build already runs.
 
-**Battle Cage is the sleeper.** Dad wins with damage counters placed by Abilities, and Tera bench-immunity does not stop those. Dusknoir's *Cursed Blast* puts 13 counters anywhere it likes; Froslass pings every Ability Pokémon each Checkup. Battle Cage prevents damage counters being placed on **Benched** Pokémon by the opponent's attacks and Abilities. Fox places no counters at all, so a card that reads as symmetric is entirely one-sided in his favour.
+Espeon is Darkness Weakness ×2, so it dies the turn after it fires: *Void Gale* lands as 460 and a Poisoned *Chain-Crazed* as 520. That is a fair price for undoing his board, and it is why there is only one.
+
+**Onyx is the Prize he can't argue with.** *Shadowy Concealment* only cuts Prizes from knockouts, and *Fainting Spell* only fires on a knockout. *Onyx* takes a Prize card without knocking anything out, so neither one applies. With the Crystal on Umbreon it costs [P][D], and it discards Umbreon's Energy.
+
+**The Prize math.** Every Eeveelution here is an ex, so while his Mega Gengar ex is in play, each Darkness Pokémon they knock out pays one Prize less: a Gengar ex or Okidogi ex is 1, the Mega itself 2, and Gastly, Toxel, Haunter, and Toxtricity nothing. Blissey ex and Chansey are Colorless, so they always pay full. Knock out the Mega first and everything is worth its whole count again. A Gengar ex knocked out by an attack also flips *Fainting Spell*, and heads takes the attacker down with it for 2 of Fox's Prizes. Dad needs three of Fox's ex. Umbreon and Flareon ex take him two hits each; Espeon and Eevee ex take one.
+
+**Against the lantern decks, Umbreon doubles.** Every card in them is Darkness Weakness ×2, top to bottom: Mega Chandelure ex, Gourgeist ex, Dusknoir, Litwick, Lampent, Pumpkaboo, Duskull. *Moon Mirage* does 160, which becomes **320**. That one-shots Gourgeist ex at 270, Dusknoir at 160, and every small body on the board. Mega Chandelure ex survives at 350, but only by 30. The Cage does the same job there, against Dusknoir's *Cursed Blast* and Froslass's pings on the Bench.
 
 ---
 
@@ -168,7 +174,7 @@ Giving up two Prizes for every knockout is this archetype's real weakness, and a
 
 Your deck is 50 cards that never change, plus 10 cards you choose. Pick before we start shuffling.
 
-**Playing Dad at home? Take Sun and Moon.** Espeon and Umbreon. Umbreon hits his ghosts for double damage, which means almost everything he plays falls over twice as fast. Espeon has one job: use *Amazez* and send his big evolved Pokémon back into his deck. He will not be happy. The two Battle Cage stop him sneaking damage onto your Bench.
+**Playing Dad at home? Take Sun and Moon.** Espeon and Umbreon. The two Battle Cage stop his Gengar sneaking damage onto your Bench, so the only Pokémon he can hurt is the one in front. Umbreon has 280 HP, and nothing in his Lucky Haunt deck knocks out a healthy one in one hit. Espeon has one job: use *Amazez* and send his big Gengars back into his deck. He will not be happy. And if he brings his lantern decks instead, Umbreon hits every one of those ghosts for double.
 
 **Going to game night? Take Fire and Ice.** Flareon and Glaceon. Flareon's *Carnelian* hits for 280, and doubles to 560 against the metal Pokémon lots of people play, which knocks out almost anything in one shot. Glaceon is not an ex, so if it gets knocked out your opponent only takes **one** Prize instead of two. That matters more than it sounds like it does.
 
@@ -312,7 +318,7 @@ Every Eeveelution ex is Tera, which prevents all attack damage while it is Bench
 
 So the deck's real skill is patience. Build the Bench, hold Eevee ex undeclared, and only commit to Umbreon or Espeon once you know what you are looking at. Rotate with Switch and it is genuinely possible to go a long game losing one body.
 
-The exception, and it matters at home: **Tera does not stop damage counters placed by Abilities.** That is what Battle Cage is for.
+The exception, and it matters at home: **Tera stops damage, not damage counters.** Dad's *Chaotic Pain* places 13 counters on a Benched Pokémon as easily as on the Active one. That is what Battle Cage is for.
 
 ## 2. Flareon ex Pays for Everything
 

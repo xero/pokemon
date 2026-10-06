@@ -351,16 +351,34 @@ The Bench holds five, and a working board fills it: two Barbaracle, Lunatone, So
 
 ## Versus the Kitchen Table
 
-Xero's decks, from Fox's side of the table. Several of his pages carry their own "Fox's Ground Zero" sections, written from the other chair. Read them before a game; they are the plan he is bringing.
+Xero's decks, from Fox's side of the table. [His own page](./dark-lucky.md#versus-the-kitchen-table) has the plan from the other chair; read it before a game.
 
-**[Lucky Haunt](./dark-lucky.md), Xero's league deck.**
+**[Lucky Haunt](./dark-lucky.md), Xero's league deck.** Every Pokémon in it is weak to Fighting, Chansey and Blissey ex included, so this is the one house matchup where Fox's whole deck hits for double. Nothing in Lucky Haunt is Grass, so nothing of his doubles back.
 
-- **Every Pokémon in it is weak to Fighting, Chansey and Blissey ex included.** *Gaia Wave* lands as 400 and one-shots Okidogi ex at 250, Gengar ex at 280, Blissey ex at 300, and Mega Gengar ex at 350.
-- ***Chaotic Pain* kills every engine piece in one shot.** It places 13 damage counters on any Pokémon, and Binacle is 80, Lunatone and Solrock are 110, and Barbaracle is exactly 130. Keep a second Barbaracle coming.
-- ***Shadowy Concealment* takes a Prize off every knockout your Pokémon ex score** while a Mega Gengar is in play. Barbaracle, Solrock, Lunatone, and Binacle take the full count.
-- ***Fainting Spell* flips a coin at whatever knocks out a Gengar ex.** Heads, the attacker is Knocked Out too. Finish a damaged Gengar ex with a Solrock or Barbaracle and the bet is 1 Prize, not 3.
-- **Both Gengars and Blissey ex have Abilities, so none of them can damage Ogerpon with an attack.** *Chaotic Pain* places counters, so it still reaches Ogerpon. Okidogi ex has no Ability and hits it normally.
-- **Risky Ruins puts 2 damage counters on every Basic you bench** while it is in play. Everything in this deck is a Basic except Barbaracle.
+| Fox's hit | Into Lucky Haunt | Kills |
+| :--- | ---: | :--- |
+| *Gaia Wave* | 400 | everything: Okidogi ex 250, Gengar ex 280, Blissey ex 300, Mega Gengar ex 350 |
+| *Hammer In*, Barbaracle | 160 | Gastly, Toxel, Haunter, Chansey, and Toxtricity at 140 |
+| *Power Gem*, Lunatone | 100 | Gastly, Toxel, Haunter |
+| *Cosmic Beam*, Solrock | 70, no Weakness | Gastly, Toxel |
+| *Demolish*, Ogerpon ex | 140, no Weakness | Toxtricity, Chansey, and everything smaller |
+
+| Xero's hit | Damage | Into a Mega Zygarde ex at 310 |
+| :--- | ---: | :--- |
+| *Chain-Crazed*, Okidogi ex while Poisoned | 260 | lives on 50, or 80 behind the *Gaia Wave* shield |
+| *Void Gale*, Mega Gengar ex | 230 | lives on 80, or 110 behind the shield |
+| *Return*, Blissey ex | 180 | lives |
+| *Chaotic Pain*, Gengar ex | 130 as counters | lives on 180; the shield doesn't touch counters |
+
+**Zygarde survives any one of his hits, and any two that include a Poisoned dog or *Void Gale* kill it.** Two *Chaotic Pains* are only 260. The shield only works on damage, so *Chaotic Pain* plus a shielded *Void Gale* is still 330. Two Zygardes are his whole game, and each costs him two attacks.
+
+- ***Chaotic Pain* kills every engine piece in one shot.** It places 13 damage counters on any Pokémon, and Binacle is 80, Lunatone and Solrock are 110, and Barbaracle is exactly 130. It is his only way onto your Bench, and Ground Zero runs no Battle Cage, so keep a second Barbaracle coming and Tarragon the first one back.
+- ***Shadowy Concealment* takes a Prize off every knockout your Pokémon ex score** while a Mega Gengar is in play. Under it, a *Gaia Wave* on Gastly, Toxel, Haunter, or Toxtricity pays 0, and one on Gengar ex or Okidogi ex pays 1. Barbaracle, Solrock, Lunatone, and Binacle aren't ex, so they take the full count, which is why they get the small bodies.
+- **Kill the Mega Gengar first.** He parks it on the Bench. Boss's Orders and a *Gaia Wave* take it for 2 Prizes, and from then on every Gengar ex and Okidogi ex is 2 Prizes as well. Blissey ex and Chansey are Colorless, so Concealment never covers them: Blissey ex is always 2 Prizes and always a *Gaia Wave* knockout. The Mega, then any two of Gengar ex, Okidogi ex, and Blissey ex, is six Prizes in three attacks, and the deck runs three Boss's Orders. His six take four.
+- ***Fainting Spell* flips a coin at whatever knocks out a Gengar ex.** Heads, the attacker is Knocked Out too. Finish a damaged Gengar ex with a Solrock or Barbaracle and the bet is 1 Prize, not 3, and since neither is an ex, Concealment doesn't touch the knockout.
+- **Gengar ex, Mega Gengar ex, Toxtricity, and Blissey ex all have Abilities, so none of them can damage Ogerpon with an attack.** *Chaotic Pain* places counters, so it still reaches Ogerpon, Bench included, and Okidogi ex has no Ability and hits it normally: *Chain-Crazed*'s 260 kills its 210.
+- **Mega Audino ex has an answer to the dog.** *Ear Force* is 20 plus 80 for each Energy on his Active. A Poisoned Okidogi ex holding three takes 260, which kills it. Audino at 270 lives through *Chain-Crazed* by 10, as long as it never took a Risky Ruins chip.
+- **Risky Ruins puts 2 damage counters on every Basic you bench during your turn,** and this deck runs no Stadium to take it down, so once it lands it stays. Everything here is a Basic except Barbaracle. Bench what you can at setup, which isn't anyone's turn, and expect the rest to arrive 20 down: a Zygarde benched under Ruins starts at 290, which *Chain-Crazed* plus Haunter's 40-damage *Spooky Shot* clears. A clean one survives that pair by 10.
 
 **[The lantern decks](./psychic-lanterns.md).** Mega Chandelure ex resists Fighting by 30, so *Gaia Wave* lands as 170 and *Geobuster* as 320 on its 350. Two Gaia Waves leave it on 10, and Solrock's *Cosmic Beam* and Ogerpon's *Demolish* ignore Resistance to finish it. *Binding Flame* adds one [C] to your Active's Retreat Cost, and *Phantom Maze* is 130 plus 50 for each [C], so a Zygarde in front takes 280, or 250 after Gaia Wave. Binding Flame is an Ability, so Chandelure can't damage Ogerpon.
 

@@ -145,6 +145,8 @@ Your HP: Dragapult ex **320**, Fezandipiti ex **210**, Lillie's Clefairy ex **19
 | Lillie's Clefairy ex, _Full Moon Rondo_ under their Fairy Zone | 20 plus 20 per Benched, doubled | **440 into Dragapult ex** at five a side. Your Area Zero Bench makes it worse. Kill their Clefairy first, and keep your Bench at five in the mirror. |
 | Dhelmise, _Vengeful Anchor_ under their Fairy Zone | 170, doubled to 340 | Dragapult ex. The Hide 'n' Sneak deck, and its Pokémon are immune to your counters. |
 | Mega Gengar ex, _Void Gale_ | 230 | Clefairy, Meowth, Fezandipiti, and every small body. Dragapult survives on 90 and dies to the second. |
+| Okidogi ex, _Chain-Crazed_ while Poisoned | 260 | Everything but Dragapult, which survives on 60. Munkidori and Mimikyu are Weak to Darkness and take 520. |
+| Gengar ex, _Chaotic Pain_ | 13 counters, anywhere | Dreepy, Drakloak, Munkidori, Budew, Mimikyu. Never Dragapult, Clefairy, Meowth, or Fezandipiti. The Tera rule doesn't stop it. |
 | Blaziken ex, _Smolder-sault_ | 200 | Clefairy and Meowth. It cannot attack the next turn. |
 | Marnie's Grimmsnarl ex, _Shadow Bullet_ | 180, plus 30 to one bencher | Meowth. The 30 finishes a Mimikyu or Budew. |
 | Toucannon, _Feather Rondo_ | 60, plus 20 per Benched on both sides | 260 at five a side. **320 if your Bench is at eight.** Area Zero stays in the deck against Toucannon. |
@@ -528,7 +530,7 @@ Both decks want the same thing: Drakloaks standing, a Dragapult Diving, and sixt
 | Pikipek | Toucannon | Pikipek 70 | Feather Rondo counts your Bench. Stay at five, leave Area Zero in the deck, Dive Toucannon at 150. |
 | Riolu, Fighting Energy | Mega Lucario or Lucario Hariyama | Riolu 70 or 80 | Nothing you own is Fighting-weak but Meowth. Mega Brave 270 leaves Dragapult on 50; Dive it twice on its rest turn. |
 | Raging Bolt, Teal Mask Ogerpon | Raging Bolt Ogerpon | Ogerpon takes nothing on the Bench; Raging Bolt does | Raging Bolt ex is a Dragon: Rondo under the Zone is 440 into 240. Bellowing Thunder at five discards is 350; count their Energy. |
-| Gastly, Toxel, Seviper | Snake Charmer | Gastly 70, Toxel 70, Chi-Yu 90 | Concealment discounts their bodies when your Dive kills them, but not when the counters do. Kill the Bench with counters and the Prizes are honest. |
+| Gastly, Toxel, Okidogi ex | Xero's Lucky Haunt | Gastly 70, Toxel 70; one *Sinister Surge* on either puts it inside a single Dive's counters | Concealment discounts what the Dive kills, never what the counters kill. Dive the Mega twice, then Boss Blissey ex. [Versus the Kitchen Table](#versus-the-kitchen-table). |
 
 **The tell is the Basics, not the ex.** By the end of their second turn you know the line, and the counters know their targets. When in doubt, sixty onto the single most important Stage 1 they are trying to reach.
 
@@ -608,7 +610,30 @@ Standard, 2026 rotation, the online field on [Limitless](https://play.limitlesst
 
 **Fox's Flaming Lanterns is a race, and it is your race.** Chandelure is 150 HP and _Burn It All Up_ is 180, which kills Clefairy and Meowth and leaves Dragapult on 140. Litwick is 70 and Lampent is 90, so a Dive's counters kill a Litwick a turn and two Dives kill a Lampent. The lanterns need ten Fire in the discard for Incendiary Pillar's 150; kill the line before the discard fills.
 
-**The Gengar decks are the interesting one.** Mega Gengar ex's _Shadowy Concealment_ discounts every Darkness Pokémon of mine that dies to an ex's attack, and Phantom Dive is an ex's attack, so a Seviper Knocked Out by the 200 pays zero. But the counters are not attack damage. A Gastly, Toxel, or Chi-Yu killed by six counters on the Bench pays a full Prize, cage or no cage, and the Snake Charmer's Bench is all 70 and 90 HP bodies. Kill the Bench with counters and the front with the Dive, in that order. Gengar ex's _Gnawing Curse_ puts two counters on Dragapult for every Energy attached from hand; the Crystal halves how often that happens, and Munkidori moves the counters back. Void Gale is 230, Fangs is 240, and Dragapult survives either once.
+**[Xero's Lucky Haunt](./dark-lucky.md) is the interesting one, and the counters are why.** Mega Gengar ex's _Shadowy Concealment_ takes one Prize off every Knock Out your Pokémon ex score on his Darkness Pokémon with damage from an attack, and Phantom Dive's 200 is exactly that. The six counters are not damage. A Gastly or Toxel that dies to counters on the Bench pays a full Prize, Mega or no Mega, and so does anything Munkidori finishes. Kill the Bench with counters and the front with the Dive.
+
+| His body | HP | What the Dive does to it |
+| :--- | ---: | :--- |
+| Gastly, Toxel | 70 | Sixty leaves it on 10. One _Sinister Surge_ already on it makes the sixty a Knock Out, for a full Prize. |
+| Haunter | 100 | Two Dives of counters, or one _Cruel Arrow_. |
+| Chansey | 120 | Two Dives of counters, or the 200 in front. Colorless, so it always pays its Prize. |
+| Toxtricity | 140 | The 200 in front. On the Bench it takes three Dives of counters, two if it Surged itself. |
+| Okidogi ex | 250 | Survives the 200 on 50, less its own Poison. _Cruel Arrow_ or the next Dive finishes it. |
+| Gengar ex | 280 | Survives the 200 on 80. Finish it with Munkidori, below. |
+| Blissey ex | 300 | Survives the 200 on 100. Two Dives, and 2 Prizes whether the Mega is up or not. |
+| Mega Gengar ex | 350 | Two Dives are 400. It pays 2 under its own Concealment, and every Knock Out after it pays full. |
+
+- **_Fainting Spell_ is a coin on your Dragapult.** When a Gengar ex is Knocked Out by damage from any attack, Xero flips, and heads Knocks Out the attacker too. Don't finish a Gengar ex with a Dragapult. Dive it to 80, then let Munkidori do it: _Adrena-Brain_ moves 30, and _Mind Bend_ does 60. The coin now aims at a one-Prize Munkidori, and Munkidori isn't an ex, so Concealment gives nothing back and the Gengar ex pays its full 2.
+- **Munkidori is the first thing he shoots.** It is 110 HP, _Chaotic Pain_ is 130 in counters, and it is Weak to Darkness, so even an un-Poisoned _Chain-Crazed_ doubles to 260. Bench it on the turn it has a Darkness Energy and counters to move, not before.
+- **Kill the Mega and the tax ends.** It parks on his Bench and comes up only to swing _Void Gale_. Boss's Orders brings it up, and two Dives kill it. Switch and AZ's Tranquility are how he saves it, and AZ's heals 80 on the way out.
+- **Blissey ex and Chansey are never discounted.** Both are Colorless, so Concealment skips them. Blissey ex retreats for 4, so a Boss's Orders strands it in front for two Dives unless he spends a Switch or the AZ's.
+- **_Chaotic Pain_ kills the engine.** Thirteen counters kill a Dreepy, Drakloak, Munkidori, Budew, or Mimikyu wherever it sits, and the Tera rule doesn't stop counters, so a benched Dragapult is in reach too. Keep three Drakloaks standing so losing one a turn doesn't stop the Recons. Pain can't one-shot Clefairy, Meowth, Fezandipiti, or Dragapult.
+- **His Dragapult kills come in pairs.** _Chain-Crazed_ for 260 plus a Pain is 390, and _Void Gale_ for 230 plus a Pain is 360. A Dragapult that took 260 last turn dies to the counters wherever it sits, so retreating it saves nothing.
+- **Going second, he swings on his turn 2.** Okidogi ex attaches, _Poisonous Musculature_ fetches two Darkness Energy, and next turn it hits for 260. Budew can't stop that, because Musculature is an attack, but _Itchy Pollen_ going second turns off his Rare Candy, Poffin, Poke Pad, and Switch on the turn the first Gengar wanted them.
+- **The mirror package does nothing here.** Lucky Haunt has no Dragons and no Tera, so Fairy Zone and Mimikyu are blank. Clefairy's Rondo is 220 at five a side, which kills Toxtricity and Chansey and no ghost. Keep both in the deck; Clefairy is two Prizes that _Chain-Crazed_ one-shots.
+- **The Stadiums.** His Risky Ruins and yours put 20 on every Dreepy, Munkidori, Clefairy, Meowth, Budew, and Mimikyu you bench, and on his Bench only the Chansey; everything else he plays is Darkness. Every one of those counters is _Adrena-Brain_ ammunition. His Ruins replacing your Area Zero cuts both Benches to five and you discard first, so stay at five.
+
+The six that win: the Mega and Blissey ex for four, and two more from Bench Knock Outs by counters or a Gengar ex that Munkidori finishes.
 
 ---
 

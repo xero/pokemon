@@ -23,7 +23,7 @@
 >
 > [**The Toll Math**](#the-toll-math) · [**Game Plans**](#game-plans)
 > [**The Meta This Deck Lives In**](#the-meta-this-deck-lives-in) · [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Versus the Card Shop**](#versus-the-card-shop)
-> [**Where Gourgeist Went**](#where-gourgeist-went) · [**✗ Four Cards That Look Right — Skip Them**](#-four-cards-that-look-right--skip-them)
+> [**Where Gourgeist Went**](#where-gourgeist-went) · [**Four Cards That Look Right, Skip Them**](#four-cards-that-look-right-skip-them)
 > [**Test and Tune**](#test-and-tune)
 
 ---
@@ -38,7 +38,7 @@ Four findings shaped this 60, and each one is checkable.
 
 **Exactly one Trainer in Standard raises the opponent's Retreat Cost.** A sweep of the full legal pool found four opponent-side retreat raisers in the format: *Binding Flame*, Ariados's *Big Net*, Gravity Gemstone, and Rillaboom's *Drum Beating*. Only the first three stack with Phantom Maze on your own attack turn, and Gemstone is the only one that is not a Pokémon. It costs about twenty cents, and it is the one card in this list the collection does not own.
 
-**Team Rocket's Energy cannot power this deck.** It reads like the fix for a two-color 60, it provides exactly this deck's colors, and it self-discards off anything that is not a Team Rocket's Pokémon. The Rocket splash here is trainers only, and the [skip table](#-four-cards-that-look-right--skip-them) has the receipts.
+**Team Rocket's Energy cannot power this deck.** It reads like the fix for a two-color 60, it provides exactly this deck's colors, and it self-discards off anything that is not a Team Rocket's Pokémon. The Rocket splash here is trainers only, and the [skip table](#four-cards-that-look-right-skip-them) has the receipts.
 
 > [!IMPORTANT]
 > **Format check, August 2026.** Standard is regulation marks **H, I, and J**. Every card in this list carries one of the three. The 13 reg-H cards (the Duskull line, Janine's Secret Art, Crispin, Buddy-Buddy Poffin, Night Stretcher, Prime Catcher, Gravity Gemstone) rotate around April 2027; the Pitch Black and Phantasmal Flames core is years from the door.
@@ -269,7 +269,8 @@ The discount only exists while a Mega Gengar is in play, only against attack dam
 
 | They attack with | Lead | Why |
 | :--- | :--- | :--- |
-| Fighting (Mega Excadrill, Mega Lucario, Mega Zygarde) | **Mega Chandelure** | The lantern half resists Fighting; the room the dark decks dodge, this deck plays. |
+| Metal (Mega Excadrill) | **Mega Chandelure** | Retreat 4 is 380 for one Flame. Metal hits both halves neutral, and the lantern one-shots back. |
+| Fighting (Mega Lucario, Mega Zygarde) | **Mega Chandelure** | The lantern half resists Fighting and Mega Gengar is Weak to it. Keep the Gengar half benched. |
 | Darkness (Umbreon, the house Gengars, Rocket's Crobat) | **Mega Gengar** | The one ghost in the house with no Darkness Weakness; the lanterns' worst matchup becomes a fair fight. |
 | Pokémon ex generally | **Either, Gengar benched early** | Concealment turns on and every Dark body they crack pays less. |
 | Single-prize grinders | **Neither, reluctantly** | Both Megas are 3-Prize liabilities and the discount is blank. Lean on Marshadow, Dusknoir, and the toll floor, and expect a grind. |
@@ -351,7 +352,7 @@ Current Standard, per [Limitless play data](https://play.limitlesstcg.com/decks?
 | :--- | :--- | :--- |
 | Dragapult variants | ~18% | Every attacker is an ex, so Concealment is on and the toll prices their Bench. Good games. |
 | Festival Lead, Slowking, Alakazam, and the single-prize rooms | ~25% | The discount is blank and the Megas are liabilities. The hardest games; the Gang covers this room better. |
-| Mega Excadrill ex | ~8% | Fighting. The lanterns half resists it, and the dark decks call it near unwinnable. This is the seat this deck was built to sit in. |
+| Mega Excadrill ex | ~8% | Metal, so neither half resists it and neither half is weak to it. *Maximum Drilling*'s 330 leaves either Mega on 20, and Excadrill retreats for 4, so one Flame makes the Maze 380 into its 340. This is the seat this deck was built to sit in. |
 | N's Zoroark ex, Grimmsnarl Froslass | ~10% | Darkness rooms. Gengar walls, the lanterns stay benched, and the games are fair where the mono-Psychic list forfeited. |
 | Mega Lucario ex | ~2% | Fighting again, worse. Lead the lanterns and trade carefully. |
 
@@ -367,7 +368,9 @@ The honest summary: this deck trades the lanterns' best-case consistency for cov
 
 **[Fox's Sun and Moon](./eevee-standard.md).** The matchup the lanterns lose is the matchup this rebuild is for. *Moon Mirage* doubles into every Psychic ghost and lands neutral on Mega Gengar, so the Dark wall leads, the lanterns work from the Bench, and the toll prices his pivots. Still a real fight; no longer a forfeit.
 
-**[Xero's dark decks](./dark-classic.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and both sides know exactly where the toll booth is. House rule of thumb: whoever's wall commits first loses the information war.
+**[Xero's Lucky Haunt](./dark-lucky.md).** Ghost against ghost, and both sides park the same Mega Gengar, so both Concealments are live and the counters take the Prizes. *Chaotic Pain*, Cursed Blast, and *Haunt* all place counters, which skip Concealment and *Fainting Spell* on both sides of the table. His Pain kills every Litwick, Lampent, Duskull, Gastly, Haunter, and Marshadow you bench, for full Prizes. His *Void Gale* lands 460 and a Poisoned *Chain-Crazed* 520 on a lantern, while your Mega Gengar takes them neutral at 230 and 260 and lives through either. So the Dark wall leads, and the lantern Flames from the Bench. His Risky Ruins taxes every Litwick, Duskull, and Marshadow you bench, and never touches a Gastly.
+
+When the lantern comes forward, one Flame prices his board: 280 into a Gengar ex, 330 into Okidogi ex, and 380 into Blissey ex. Two Flames and the Gemstone are 380 into his Mega Gengar too, which is 2 Prizes under its own Concealment. Blissey ex is the best target he gives you. It is Colorless, so Concealment never covers it, and it is two full Prizes. Any attack that knocks out his Gengar ex flips *Fainting Spell* at the attacker, so finish a damaged one with Cursed Blast or *Haunt*, which never flip. House rule of thumb: whoever's wall commits first loses the information war.
 
 ---
 
@@ -389,7 +392,7 @@ Gourgeist is not homeless. The lanterns page already documents the clean version
 
 ---
 
-## ✗ Four Cards That Look Right — Skip Them
+## Four Cards That Look Right, Skip Them
 
 | Card | Why not |
 | :--- | :--- |

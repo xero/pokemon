@@ -22,7 +22,7 @@
 > **Energy** — [Basic Psychic Energy](#basic-psychic-energy) · [Basic Darkness Energy](#basic-darkness-energy)
 >
 > [**Game Plans**](#game-plans) · [**Versus the Card Shop**](#versus-the-card-shop) · [**Versus the Ladder**](#versus-the-ladder) · [**Versus the Kitchen Table**](#versus-the-kitchen-table)
-> [**✗ Cards That Look Right, Skip Them**](#-cards-that-look-right-skip-them) · [**Test and Tune**](#test-and-tune)
+> [**Cards That Look Right, Skip Them**](#cards-that-look-right-skip-them) · [**Test and Tune**](#test-and-tune)
 
 ---
 
@@ -40,7 +40,7 @@ v5.1 leaned on five cards the box does not hold: two Rosa's Encouragement, two E
 | 3rd Rare Candy | Haunter | A Gengar line with no Stage 1 makes Rare Candy a single point of failure, and one prized Candy strands a Mega Gengar in hand. Three routes to Gengar, split across two card names. |
 | 3 Lillie's Determination | 4 | Draw is the deck's only fix for a dead opening hand. |
 
-Three cards were tried on the way and did not stay. Janine's Secret Art went zero for four games and was shuffled away twice. Telepathic Psychic Energy was played twice as a plain Psychic with its Bench search declined both times, and it never comes back from the discard. Binding Mochi never made the list, because nothing the shop plays dies to 300 and survives 260. All three have rows in [the skip table](#-cards-that-look-right-skip-them).
+Three cards were tried on the way and did not stay. Janine's Secret Art went zero for four games and was shuffled away twice. Telepathic Psychic Energy was played twice as a plain Psychic with its Bench search declined both times, and it never comes back from the discard. Binding Mochi never made the list, because nothing the shop plays dies to 300 and survives 260. All three have rows in [the skip table](#cards-that-look-right-skip-them).
 
 ---
 
@@ -618,11 +618,13 @@ The rooms the five test games and the Darkness deck before them actually met, fo
 
 **[Fox's Team Rocket's Mewtwo](./rocket-mewtwo.md).** Mewtwo ex is Psychic, Darkness-weak, and 280 HP. Void Gale lands 460 and Chain-Crazed 520. His board is ex-heavy, so Concealment runs all game. Crobat ex's _Assassin's Return_ at 240 doubles into a lantern, so the Psychic ghosts stay benched when Crobat is loaded.
 
-**[Xero's dark decks](./dark-classic.md).** Ghost against ghost. The Gengars hit the lantern half for double and the Gengar half for neutral, and Seviper's 240 kills a Poisoned Okidogi exactly. House rule of thumb: whoever's wall commits first loses the information war.
+**[Xero's Lucky Haunt](./dark-lucky.md).** Ghost against ghost, with the dog mirror inside it. Both sides park a Mega Gengar, so both Concealments are live, and counters skip both. *Chaotic Pain* skips your Concealment and takes full Prizes off every Gastly, Haunter, Litwick, and Lampent it reaches. Battle Cage stops it at your Bench line, and he runs two Risky Ruins and two Petrel to take the Cage down, so hold the second one. His *Void Gale* lands 460 and a Poisoned *Chain-Crazed* 520 on a lantern, so the Dark half leads and the lantern works from the Bench as a Flame.
+
+The dogs trade evenly. Either Poisoned dog's 260 kills the other at 250, and leaves a Gengar ex on 20. When the lantern comes forward, one Flame prices his board: 280 into a Gengar ex, 330 into Okidogi ex, and 380 into Blissey ex. Blissey ex is Colorless, so Concealment never covers it, and Prime Catcher plus one Maze takes it for two full Prizes. Any attack that knocks out his Gengar ex flips *Fainting Spell* at the attacker, and heads costs you 3 Prizes on a lantern or 2 on a dog, so let *Haunt* finish one when it can. House rule of thumb: whoever's wall commits first loses the information war.
 
 ---
 
-## ✗ Cards That Look Right, Skip Them
+## Cards That Look Right, Skip Them
 
 | Card | Why not |
 | :--- | :--- |

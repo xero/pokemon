@@ -98,7 +98,9 @@ SOURCES = [
     ("Sprites", "eevee", [
         'The animated sprites tucked into the headings are the 3D models from'
         ' <a href="https://pkparaiso.com">pkparaiso.com</a>, by way of'
-        ' <a href="https://github.com/tdmalone/pokecss-media">tdmalone/pokecss-media</a>.',
+        ' <a href="https://github.com/tdmalone/pokecss-media">tdmalone/pokecss-media</a>.'
+        ' The newer Pokémon that collection stops short of come from the'
+        ' <a href="https://www.pokeos.com/ptbr/archive/art/pokemon">PokéOS art archive</a>.',
     ]),
 ]
 

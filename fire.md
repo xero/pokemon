@@ -23,7 +23,7 @@
 > [!TIP]
 > **Your deck is 60 cards.** 16 Pokémon, 31 Trainers, 13 Energy.
 >
-> Every Pokémon in your deck is worth **1 Prize card**. So is every Pokémon in your dad's deck. That means nobody has a giant unfair monster. Whoever plays better wins. That's on purpose.
+> Every Pokémon in your deck is worth **1 Prize card**. Your dad's deck is different. His biggest Pokémon are **ex**, and each one is worth **2 Prize cards** when you knock it out. He has the bigger monsters. You have the shortcut: knock out three of his ex and you've won. [Beating Dad's Lucky Haunt](#6-beating-dads-lucky-haunt) has the plan.
 
 > [!NOTE]
 > **This deck is home-only.** Some of your cards — Charizard, Leon, Welder, Sudowoodo — are a few years too old for real tournaments. [The table rules](./rules.md#standard-legal-and-why-some-decks-arent) explain the letters, and your [Blue Flame](./blue-flame.md) and [Flareon Engine](./fire-tournament.md) decks are the ones allowed there.
@@ -137,12 +137,12 @@ You have 4 because you can't build a Charizard without one, and because you need
 
 **Play more than one.** The most common beginner mistake is putting down one Charmander and saving the rest "for later." Don't. Your dad can only knock out one Pokémon per turn. Every Charmander you *didn't* bench is a Charizard you can't build.
 
-Two or three Charmander on the Bench early is not being greedy. It's insurance.
+Two or three Charmander on the Bench early is not being greedy. It's insurance. His Gengar ex can knock out a Charmander **on your Bench**, so with only one out there, one attack ends your Charizard plan. With two, he has to pick.
 
 *Collect* costs one Fire Energy and draws a card. It's a real option on a turn where you have nothing better to do — but if you're attacking with Charmander, something has already gone wrong.
 
 > [!WARNING]
-> **Watch out for Risky Ruins.** Your dad's Stadium card puts **2 damage counters (20 damage)** on every Basic Pokémon he *or you* put on the Bench — unless it's a Darkness Pokémon. All his are. None of yours are.
+> **Watch out for Risky Ruins.** Your dad's Stadium card puts **2 damage counters (20 damage)** on every Basic Pokémon he *or you* put on the Bench, unless it's a Darkness Pokémon. Almost all of his are; his Chansey is the only one that isn't. None of yours are.
 >
 > So under Risky Ruins, your Charmander shows up at 50 HP instead of 70. That is a real problem, and it's the main reason to bench your Charmanders **before** he gets that Stadium down.
 
@@ -218,19 +218,19 @@ charmander → charmeleon → **charizard**
 
 #### General use
 
-This is your best card and the whole point of the deck. 170 HP is the biggest number on either side of the table.
+This is your best card and the whole point of the deck. 170 HP is the biggest number in your deck, and it is the one Pokémon you have that lives through your dad's *Chaotic Pain*.
 
-*Royal Blaze* starts at 100 damage for just two Fire Energy. Then it gets bigger every time a **Leon** card ends up in your discard pile. Learn this table — it's the most important math in your deck:
+*Royal Blaze* starts at 100 damage for just two Fire Energy. Then it gets bigger every time a **Leon** card ends up in your discard pile. Learn this table. It's the most important math in your deck:
 
-| Leon cards in your discard pile | Royal Blaze damage |
-| :--- | :--- |
-| 0 | 100 |
-| 1 | **150** |
-| 2 | **200** |
-| 3 | 250 |
-| 4 | 300 |
+| Leon cards in your discard pile | Royal Blaze damage | Knocks out from Dad's deck |
+| :--- | :--- | :--- |
+| 0 | 100 | Gastly, Toxel, Haunter |
+| 1 | **150** | **and Chansey and Toxtricity** |
+| 2 | **200** | the same; his ex are bigger |
+| 3 | 250 | **and Okidogi ex** (250) |
+| 4 | 300 | **and Gengar ex** (280) **and Blissey ex** (300) |
 
-**Your dad's Gengar and Weezing both have 130 HP.** So with just **one** Leon in your discard pile, Royal Blaze knocks out anything he has, in one hit. That's the number to aim for.
+**One Leon in your discard pile is the first goal.** At 150, Royal Blaze knocks out every 1-Prize Pokémon he has in one hit, including Toxtricity, his Energy machine. His ex Pokémon are bigger, but each one is worth **2 Prizes**, so they're worth the work. Playing a Leon that turn adds 30 more: three Leons in the discard plus one played is **280**, exactly a Gengar ex.
 
 *Battle Sense* is free every single turn. **Use it every turn.** It costs nothing, it doesn't end your turn, and it digs you toward what you need.
 
@@ -248,7 +248,9 @@ This is your best card and the whole point of the deck. 170 HP is the biggest nu
 
 **Get the Energy on before Charizard arrives.** Charizard needs [R][R]. If it walks into the Active Spot with nothing attached, it just stands there for two turns getting hit. Load a benched Charmander or Charmeleon with Energy *first*, or use [Welder](#welder) the same turn Charizard shows up.
 
-**That retreat cost of 3 is a real weakness, and your dad's deck knows it.** His Weezing makes your Active Pokémon **Confused**, and Confused only wears off when the Pokémon *leaves* the Active Spot. A Confused Charizard is stuck flipping coins unless you spend a [Switch](#switch) on it. Keep a Switch in hand when you can.
+**That retreat cost of 3 is a real weakness.** A Charizard stuck in front is a target for his dog, Okidogi ex, which hits for 260. Nothing you have survives that. Retreating costs 3 Energy, so keep a [Switch](#switch) in hand when you can.
+
+**Keep the extra damage off Charizard.** *Chaotic Pain* places 130 on any Pokémon, and Charizard has 170, so a fresh one lives with 40 left. Every 20 on it before then counts. A Charmander that got chipped by Risky Ruins carries that 20 into the Charizard it becomes, and a [Magma Basin](#magma-basin) Energy puts 20 more on it. That's 40, and then one Pain knocks it out exactly. **One chip is fine. Two is not.**
 
 ---
 
@@ -295,7 +297,7 @@ That means: play Eevee Active, evolve it into Flareon *right away*. A Stage 1 at
 
 So if you want the fast Flareon, **play Eevee as your Active Pokémon**, not to the Bench.
 
-**50 HP is tiny.** It's the smallest number in either deck. Your dad's Gengar does 130 damage pretty easily, so an Eevee left sitting around is a free Prize card for him. Either evolve it fast or accept that you're using it as a shield.
+**50 HP is tiny.** It's the smallest number in either deck. Your dad's Gengar ex places 130 damage on any Pokémon, even one on your Bench, so an Eevee left sitting around is a free Prize card for him. Either evolve it fast or accept that you're using it as a shield.
 
 **Careful with *Reckless Charge*.** 30 damage is okay, but the 10 damage to itself means Eevee is now at 40 HP and even easier to knock out. Only do it if you're fine losing that Eevee.
 
@@ -329,9 +331,11 @@ eevee → **flareon**
 
 #### General use
 
-Flareon is your early attacker. It shows up way faster than Charizard and it hits hard enough to matter — 130 HP is the same as your dad's Gengar and Weezing.
+Flareon is your early attacker. It shows up way faster than Charizard, and against your dad it has the biggest single hit in your deck: *Fighting Blaze* does **180** to an ex.
 
-Its real weapon is *Destructive Flame*. Only 30 damage, but on heads it **throws away one of his Energy cards.**
+It also has *Destructive Flame*. Only 30 damage, but on heads it **throws away one of his Energy cards.**
+
+Its 130 HP is exactly what his *Chaotic Pain* does, so one Pain knocks a Flareon out. Use it while it's here.
 
 #### Pairing
 
@@ -342,16 +346,20 @@ Its real weapon is *Destructive Flame*. Only 30 damage, but on heads it **throws
 
 #### Strategy
 
-**Destructive Flame is better than it looks, and here's why.** Your dad's deck has only **12 Energy cards in 60**, and he can only attach **1 per turn**. Every Energy you knock off is a whole turn of his stolen. Doing that to a Weezing he's setting up can wreck his big two-turn combo.
+**Destructive Flame is better than it looks, and here's why.** Your dad's attackers carry exactly the Energy they need. His dog, Okidogi ex, needs **3** for its 260 attack. His Gengar ex needs **2**. Knock one off and that attack is gone until he puts another one on.
 
-It's a coin flip, so it won't always work. Do it anyway — 30 damage plus a 50% chance to ruin his turn is a fine deal.
+He can get Energy back fast, because his Toxtricity drops one from his deck every turn. So this won't starve him. It slows him down, and on the turn before his dog hits for 260, slowing him down is everything.
+
+**You pick which Energy goes.** If his Gengar ex is holding a shiny **Neo Upper Energy**, take that one. On a Gengar it counts as 2 Energy, so heads takes away his whole attack, and he only has one.
+
+It's a coin flip, so it won't always work. Do it anyway. 30 damage plus a 50% chance to ruin his turn is a fine deal.
 
 > [!IMPORTANT]
-> **Fighting Blaze will never get its bonus against your dad's deck.** The +90 only works against a Pokémon **ex** or **V**, and he isn't playing any. So *Fighting Blaze* is just "90 damage for 3 Energy" in this matchup.
+> **Fighting Blaze gets its bonus against your dad's deck.** The +90 works when his Active Pokémon is a Pokémon **ex**, and his dog, his Gengar ex, his Blissey ex, and his Mega Gengar ex are all ex. Against them, *Fighting Blaze* does **180**, or **210** with a [Leon](#leon).
 >
-> 90 doesn't knock out his 130 HP Gengar or Weezing. So most of the time, **the cheap attack is the better attack**: use *Destructive Flame* for 30 and steal his Energy, or add a [Leon](#leon) to *Fighting Blaze* to reach 120.
+> Against his little Pokémon (Gastly, Toxel, Haunter, Toxtricity, and Chansey) it's just 90. Use *Destructive Flame* or Charizard on those instead.
 >
-> Save *Fighting Blaze* for the day someone brings out an ex. Then it does **180**.
+> **Two Fighting Blazes are 360.** That knocks out anything he owns, even the Mega Gengar ex at 350.
 
 ---
 
@@ -380,13 +388,13 @@ It's a coin flip, so it won't always work. Do it anyway — 30 damage plus a 50%
 
 #### General use
 
-Sudowoodo is the secret weapon, and it is the card your dad is most scared of. Here's why:
+Sudowoodo is the secret weapon. Here's why:
 
 **Sudowoodo is a Fighting type. Every single Pokémon in your dad's deck is Weak to Fighting ×2.**
 
-That means Sudowoodo's damage gets **doubled** against Gastly, Haunter, Gengar, Koffing, and Weezing. All of them.
+That means Sudowoodo's damage gets **doubled** against Gastly, Haunter, Gengar ex, Okidogi ex, Toxel, Toxtricity, Chansey, and Blissey ex. All of them.
 
-And *Flail* gets stronger the more beaten up Sudowoodo is. Every damage counter on Sudowoodo is 10 more damage — then doubled.
+And *Flail* gets stronger the more beaten up Sudowoodo is. Every damage counter on Sudowoodo is 10 more damage, and then it doubles.
 
 #### Pairing
 
@@ -398,26 +406,31 @@ And *Flail* gets stronger the more beaten up Sudowoodo is. Every damage counter 
 
 **Learn this table. It wins games.**
 
-| Damage on Sudowoodo | *Flail* does | Doubled vs Dark Pokémon |
-| :--- | :--- | :--- |
-| 20 | 20 | **40** |
-| 40 | 40 | **80** |
-| 50 | 50 | **100** |
-| **70** | 70 | **140** ← knocks out Gengar *or* Weezing |
-| 90 | 90 | **180** |
+| Damage on Sudowoodo | *Flail* does | Doubled vs Dad's Pokémon | Knocks out |
+| :--- | :--- | :--- | :--- |
+| 20 | 20 | **40** | nothing yet |
+| 40 | 40 | **80** | Gastly, Toxel |
+| 50 | 50 | **100** | Haunter |
+| 60 | 60 | **120** | Chansey |
+| **70** | 70 | **140** | **Toxtricity**, his Energy machine |
+| 90 | 90 | **180** | none of his ex on its own |
 
-**At 70 damage taken, Sudowoodo one-shots anything your dad has.** For **one** Energy. Any Energy.
+**At 70 damage taken, Sudowoodo one-shots every 1-Prize Pokémon your dad has.** For **one** Energy. Any Energy.
 
-**So Sudowoodo is a revenge attacker.** You *want* it to get hurt. The plan:
+**His ex Pokémon are too big for one Flail.** The smallest is his dog at 250. So against them, Sudowoodo is the **finisher**. A Gengar ex that already took a 150 Royal Blaze has 130 left, and a Sudowoodo with 50 damage plus a [Leon](#leon) does (50 + 30) × 2 = **160**. That's 2 Prizes.
 
-1. Put Sudowoodo out where it will take a hit.
-2. Let your dad attack it. Now it's damaged — which means it's dangerous.
-3. [Switch](#switch) it into the Active Spot if it isn't already.
-4. *Flail* for double damage.
+**Finishing a Gengar ex is Sudowoodo's best job.** When a Gengar ex gets knocked out, his *Fainting Spell* flips a coin, and heads knocks out the Pokémon that did it. Better that's a Sudowoodo than your Charizard.
 
-**Free bonus: his own Stadium helps you.** His **Risky Ruins** puts 2 damage counters on your Basic Pokémon when you bench them. On Sudowoodo, that's **20 free Flail damage — 40 after doubling.** His own card arms your best weapon. Don't tell him.
+**How does it get hurt?** Carefully. Most of his attacks just knock Sudowoodo out: *Chaotic Pain* is 130, and Sudowoodo has 100. The damage you actually get comes from:
 
-**The danger:** Sudowoodo only has 100 HP. At 70 damage it's terrifying, but it's also 30 away from dying. You get about one shot. Make it count — use [Boss's Orders](#bosss-orders-ghetsis) to drag out the Pokémon you most want gone, *then* Flail it.
+1. His **Risky Ruins**, when you bench Sudowoodo while it's out. 20 free.
+2. His small attacks: Haunter's *Spooky Shot* (40), Gastly's *Surprise Attack* (30), Toxel's *Playful Kick* (20), and Chansey's *Boundless Power* (80).
+
+Then [Switch](#switch) it into the Active Spot and *Flail* for double damage.
+
+**Free bonus: his own Stadium helps you.** His **Risky Ruins** puts 2 damage counters on your Basic Pokémon when you bench them. On Sudowoodo, that's **20 free Flail damage, 40 after doubling.** Add a Leon and it's (20 + 30) × 2 = **100**, enough for a Haunter. His own card arms your weapon. Don't tell him.
+
+**The danger:** Sudowoodo only has 100 HP, and *Chaotic Pain* reaches the Bench. He can knock it out before it ever attacks. So bench it the turn before you need it, not three turns early. If he spends a Pain on Sudowoodo anyway, that's a Pain that didn't hit a Charmander.
 
 > [!TIP]
 > *Flail* costs **[C]** — one Colorless. That means **any** Energy pays for it, including a Fire Energy. You never need special Energy for Sudowoodo.
@@ -468,7 +481,7 @@ So Leon isn't a card you "use up." Using it is how you power up Charizard. **Eve
 
 - **[Charizard](#charizard)** — this is the deck's main engine. See **[The Leon Engine](#1-the-leon-engine)**.
 - **[Flareon](#flareon)** — Leon boosts *any* attack. Flareon's *Fighting Blaze* goes from 90 to 120.
-- **[Sudowoodo](#sudowoodo)** — Leon's +30 happens **before** Weakness doubles it, so it turns into **+60** against your dad's Dark Pokémon.
+- **[Sudowoodo](#sudowoodo)** — Leon's +30 happens **before** Weakness doubles it, so it turns into **+60** against every Pokémon your dad has.
 - **[Professor's Research](#professors-research-professor-oak)** — can dump extra Leons into the discard, which is exactly where you want them.
 
 #### Strategy
@@ -477,12 +490,12 @@ So Leon isn't a card you "use up." Using it is how you power up Charizard. **Eve
 
 **The first Leon is the most important one.** Look at the jump:
 
-- 0 Leon in discard → Royal Blaze does 100. His Gengar (130 HP) survives.
-- 1 Leon in discard → Royal Blaze does **150**. His Gengar dies.
+- 0 Leon in discard → Royal Blaze does 100. His Toxtricity (140 HP) survives.
+- 1 Leon in discard → Royal Blaze does **150**. His Toxtricity dies, and so does every other 1-Prize Pokémon he has.
 
 Getting that first Leon into the discard is the single biggest power spike in your deck.
 
-**The perfect first Charizard turn:** play **Leon**, then attack with *Royal Blaze*. 100 + 30 = **130**, which knocks out a Gengar or a Weezing exactly. And the Leon you just played is now in your discard, so **next** turn Royal Blaze does 150 all by itself.
+**The perfect first Charizard turn:** play **Leon**, then attack with *Royal Blaze*. 100 + 30 = **130**, which knocks out a Chansey exactly, or anything smaller. And the Leon you just played is now in your discard, so **next** turn Royal Blaze does 150 all by itself.
 
 You have 4 Leons. Play them freely. They're worth more used than saved.
 
@@ -505,7 +518,7 @@ You have 4 Leons. Play them freely. They're worth more used than saved.
 
 #### General use
 
-Welder is the strongest card in either deck. It breaks the biggest rule in the game.
+Welder is the strongest card in your deck. It breaks the biggest rule in the game.
 
 Normally you attach **1 Energy per turn**. Welder attaches **2 more** — and then **draws you 3 cards** for doing it.
 
@@ -522,7 +535,7 @@ Two Fire Energy is exactly what [Charizard's](#charizard) *Royal Blaze* costs. S
 > [!NOTE]
 > **You only have 2, and that was on purpose.**
 >
-> Welder is so strong that 4 copies would make your deck much better than your dad's, and the games would stop being close. Two means you get the awesome turn sometimes, not every game. That's the trade for a fair fight.
+> Welder is so strong that 4 copies would make every game the same Welder turn. Two means you get the awesome turn sometimes, not every game. That's the trade for a fair fight.
 
 **Save it for the big turn.** Don't Welder a Charmander on turn one just because you can. Welder is worth the most when it turns "my Charizard can't attack" into "my Charizard attacks right now." Hold it until that turn exists.
 
@@ -592,21 +605,23 @@ The big reset. Throw your whole hand away, draw 7 fresh cards. Simple and powerf
 
 This is how you choose who you fight.
 
-Your dad puts a big healthy Pokémon in front and hides the hurt ones on his Bench. Boss's Orders reaches past the big one and **drags out whoever you want.**
+Your dad keeps his helpers on his Bench: Toxtricity, which gives him an Energy every turn, and Blissey ex, which moves Energy around. He also hides hurt ex there, and his AZ's Tranquility heals one 80 on the way back. Boss's Orders reaches past whoever is in front and **drags out whoever you want.**
 
 #### Pairing
 
 - **[Charizard](#charizard)** — drag out the Pokémon Royal Blaze can finish.
-- **[Sudowoodo](#sudowoodo)** — drag out a Gengar, then *Flail* it for double.
+- **[Sudowoodo](#sudowoodo)** — drag out a Toxtricity, then *Flail* it for double.
 - **[Leon](#leon)** — you can't play both in one turn (one Supporter per turn!), so plan a turn ahead.
 
 #### Strategy
 
 **This is your finishing card.** Late in the game, when you need one more Prize to win, the answer is almost always Boss's Orders. He hides a hurt Pokémon on the Bench thinking it's safe. It isn't.
 
-**Use it on Gengar before it grows up.** Your dad's Gengar has an Ability called *Infinite Shadow*: if it gets knocked out, it goes back to his **hand** instead of the discard pile, and it brings its whole family with it. Annoying!
+**Use it on the little ones before they grow up.** A Gastly on his Bench is 70 HP and 1 Prize. Next turn it can be a Gengar ex with 280 HP. Knock it out while it's small. A Toxtricity is his Energy machine, and it's 1 Prize too.
 
-But that only helps him **after** it's already a Gengar. If you Boss's Orders a **Gastly** off his Bench and knock it out while it's still small, there's no Gengar yet — so nothing comes back. Killing the little ones early is worth more than it looks.
+**Drag out his Blissey ex.** It costs **4** Energy to retreat, so once it's in front, it's stuck there. It's worth **2 Prizes**.
+
+**Sneaky trick: Boss's Orders cures his dog.** His Okidogi ex hits for 260 only while it's **Poisoned**, and Poison goes away the moment it leaves the Active Spot. Drag something else out, and the dog goes to his Bench un-Poisoned. Next time it attacks it's only 130, which your Charizard survives. He has one card, Janine's Secret Art, that Poisons it again.
 
 > [!TIP]
 > Boss's Orders is *not* a draw card and *not* a setup card. If playing it doesn't take a Prize this turn, or stop him from taking one next turn, play a different Supporter instead. You only have 3.
@@ -671,7 +686,7 @@ You paid nothing and looked at 7 cards. That's a great deal.
 
 The bigger your dad's board, the more cards you draw. "In play" means **everything** — his Active Pokémon and his whole Bench.
 
-His deck *loves* a big Bench. He plays Gastly and Koffing everywhere so his Gengar hits harder. Every one of those is a card for you.
+His deck fills its Bench fast. Buddy-Buddy Poffin and his Toxel's *Call for Family* put Pokémon down two at a time, and he wants Gastly, Toxel, Toxtricity, and Chansey out there. Every one of those is a card for you.
 
 #### Pairing
 
@@ -886,15 +901,13 @@ Free retreat. Move your Active Pokémon to the Bench and bring out whoever you w
 #### Strategy
 
 > [!IMPORTANT]
-> **Switch cures Confused.** This is the most useful thing to know about this card in this matchup.
+> **Switch is how Charizard moves.** This is the most useful thing to know about this card.
 >
-> Your dad's Weezing and his Dark Bell both make your Active Pokémon **Confused**, and Confused only goes away when that Pokémon **leaves the Active Spot**. Retreating a Charizard costs 3 Energy. A Switch costs nothing.
->
-> So a Confused Charizard plus a Switch = a healthy Charizard. Try to keep one in hand for exactly this.
+> Retreating a Charizard costs 3 Energy. A Switch costs nothing. When his dog is loaded and ready to hit for 260, a Charizard stuck in front is a free Prize for him, and a Switch gets it out of the way.
 
-**Only 2 copies, so don't waste them.** Save Switch for a stuck attacker or a Confusion problem — not just to shuffle things around.
+**Only 2 copies, so don't waste them.** Save Switch for a stuck attacker, not just to shuffle things around.
 
-**Switch also saves a Pokémon that's about to die.** If your Charizard is at 20 HP and it's his turn next, Switching it to the Bench means he has to knock out something else first.
+**Switch doesn't hide a hurt Pokémon from your dad.** Against most decks, moving a hurt Pokémon to the Bench saves it. Not against his. *Chaotic Pain* places 130 on a Benched Pokémon just as easily. Switching only saves it from his dog and his other attacks, which can only hit your Active.
 
 ---
 
@@ -969,7 +982,7 @@ It costs you 2 damage counters (20 damage) on whatever you attach to, and it onl
 #### Strategy
 
 > [!TIP]
-> **This card only helps you.** It says "Benched **Fire** Pokémon." Your dad's whole deck is **Darkness**. He has zero Fire Pokémon, so he can never use your Stadium even though the card says both players may.
+> **This card only helps you.** It says "Benched **Fire** Pokémon." Your dad's deck is **Darkness**, plus a Chansey and a Blissey ex. He has zero Fire Pokémon, so he can never use your Stadium even though the card says both players may.
 >
 > Free Energy every turn, and he gets nothing. Excellent.
 
@@ -979,7 +992,9 @@ It costs you 2 damage counters (20 damage) on whatever you attach to, and it onl
 
 **The Stadium war.** Your dad plays **Risky Ruins**, which is also a Stadium — and only one Stadium can be on the table at a time. Playing yours throws his away, and playing his throws yours away.
 
-That's why you have **2**. When he replaces your Magma Basin, you can put it right back. Whoever runs out of Stadiums first has to live with the other person's.
+That's why you have **2**. When he replaces your Magma Basin, you can put it right back. Whoever runs out of Stadiums first has to live with the other person's. He has 2 Risky Ruins, and his Team Rocket's Petrel can go find one, so make each Magma Basin count.
+
+**Careful with Charizard.** Every Magma Basin Energy puts 20 damage on the Pokémon it lands on. Charizard can carry one 20 and still live through a *Chaotic Pain*, but not two. See [Charizard](#charizard).
 
 > [!NOTE]
 > **His Risky Ruins hurts you; your Magma Basin doesn't hurt him.** So getting your Stadium down is worth more than it looks — it's not just "I get Energy," it's also "his card stops working."
@@ -1066,7 +1081,7 @@ So the more you use Leon, the stronger Charizard gets — **forever**.
 4. Your turn ends. Leon lands in the discard pile.
 ```
 
-**130 damage knocks out his Gengar or his Weezing exactly** — they both have 130 HP.
+**130 damage knocks out his Chansey exactly**, and anything smaller: Gastly, Toxel, and Haunter.
 
 And now here's the good part. **Next turn**, you don't even need to play a Leon:
 
@@ -1077,7 +1092,9 @@ And now here's the good part. **Next turn**, you don't even need to play a Leon:
 | Turn after that (playing another Leon) | 1 | 150 + 30 = **180** |
 | After that | 2 | **200** |
 
-**150 is the magic number.** Once one Leon is in your discard, every Royal Blaze knocks out anything he owns in one hit, with no help. Getting there is your whole early game.
+**150 is the first magic number.** Once one Leon is in your discard, every Royal Blaze knocks out any 1-Prize Pokémon he owns in one hit, Toxtricity included. Getting there is your whole early game.
+
+**His ex Pokémon need more.** His dog is 250, his Gengar ex is 280, and his Blissey ex is 300. That's **three** Leons in the discard for the dog, three plus one played for a Gengar ex, and all **four** for a Blissey ex. Until then, hit them twice, or use Flareon's *Fighting Blaze*, which does 180 to an ex.
 
 > [!TIP]
 > Leon is worth **more in the discard pile than in your hand.** So when a card asks you to discard something — [Ultra Ball](#ultra-ball), [Professor's Research](#professors-research-professor-oak), [Zinnia's Resolve](#zinnias-resolve) — a spare Leon is the best possible thing to throw away. You're not losing it. You're loading it.
@@ -1103,7 +1120,7 @@ So you have a second, faster attacker: **[Flareon](#flareon)**.
 ### How to run both
 
 1. **Turn one:** play **Eevee in the Active Spot** and evolve it into Flareon right away. (*Boosted Evolution* lets you break the "no evolving the turn you play it" rule — but **only in the Active Spot**.) At the same time, put a **Charmander on the Bench**.
-2. **Turns two and three:** attack with Flareon while Charizard grows up behind it. *Destructive Flame* is only 30 damage, but the coin flip can knock an Energy right off his Pokémon — and his deck only has 12 Energy in it.
+2. **Turns two and three:** attack with Flareon while Charizard grows up behind it. *Destructive Flame* is only 30 damage, but the coin flip can knock an Energy right off his Pokémon. On his dog, that means no 260 attack until he puts another one on. When his Active is an ex, *Fighting Blaze* does 180 instead.
 3. **Turn three or four:** Flareon has done its job. Bring out a fully-loaded Charizard and start the [Leon Engine](#1-the-leon-engine).
 
 **The point:** Flareon isn't supposed to win. It's supposed to keep you in the game until Charizard can.
@@ -1114,7 +1131,7 @@ So you have a second, faster attacker: **[Flareon](#flareon)**.
 
 **How [Sudowoodo](#sudowoodo) wins you a game nobody expected.**
 
-Every Pokémon in your dad's deck — Gastly, Haunter, Gengar, Koffing, Weezing — is **Weak to Fighting ×2**. Sudowoodo is the only Fighting Pokémon in either deck.
+Every Pokémon in your dad's deck is **Weak to Fighting ×2**: Gastly, Haunter, Gengar ex, Okidogi ex, Toxel, Toxtricity, Chansey, and Blissey ex. Sudowoodo is the only Fighting Pokémon in either deck.
 
 So Sudowoodo's damage gets **doubled**. Always. Against everything he has.
 
@@ -1123,8 +1140,8 @@ And *Flail* does 10 damage **for each damage counter on Sudowoodo itself.** The 
 ### The plan
 
 ```
-1. Bench Sudowoodo. Let it sit there.
-2. Let your dad attack it. Now it's damaged — which is GOOD.
+1. Bench Sudowoodo while his Risky Ruins is out. 20 free damage.
+2. Let his small attacks hit it. Haunter, Gastly, Toxel, Chansey.
 3. Boss's Orders to drag out whatever you most want gone.
 4. Switch Sudowoodo into the Active Spot.
 5. FLAIL. For one Energy.
@@ -1132,19 +1149,23 @@ And *Flail* does 10 damage **for each damage counter on Sudowoodo itself.** The 
 
 ### The numbers
 
-| Damage on Sudowoodo | *Flail* | Doubled vs his Dark Pokémon |
-| :--- | :--- | :--- |
-| 20 | 20 | 40 |
-| 50 | 50 | 100 |
-| **70** | 70 | **140** — knocks out Gengar or Weezing |
-| 90 | 90 | 180 |
+| Damage on Sudowoodo | *Flail* | Doubled vs his Pokémon | Knocks out |
+| :--- | :--- | :--- | :--- |
+| 20 | 20 | 40 | nothing yet |
+| 40 | 40 | 80 | Gastly, Toxel |
+| 50 | 50 | 100 | Haunter |
+| 60 | 60 | 120 | Chansey |
+| **70** | 70 | **140** | **Toxtricity** |
+| 90 | 90 | 180 | no ex on its own |
 
 Add a **[Leon](#leon)** and it gets silly: the +30 happens *before* the doubling, so Leon is really **+60** here. A Sudowoodo with 50 damage on it plus a Leon does **(50 + 30) × 2 = 160**.
 
-> [!TIP]
-> **His own Stadium helps you.** Risky Ruins puts 2 damage counters on your Basic Pokémon when you bench them. On Sudowoodo that's **20 free Flail damage — 40 after doubling.** Every other card in your deck hates Risky Ruins. Sudowoodo loves it.
+**Sudowoodo finishes his ex.** One Flail can't knock out a 250 HP dog or a 280 HP Gengar ex. But a Gengar ex that already took a Royal Blaze is in range, and when Sudowoodo knocks it out, the *Fainting Spell* coin risks a Sudowoodo instead of your Charizard.
 
-**The catch:** Sudowoodo has only 100 HP. At 70 damage it's a monster, but it's also 30 away from dying. You get roughly **one** big Flail. Set it up properly and make it the one that matters.
+> [!TIP]
+> **His own Stadium helps you.** Risky Ruins puts 2 damage counters on your Basic Pokémon when you bench them. On Sudowoodo that's **20 free Flail damage, 40 after doubling.** Every other card in your deck hates Risky Ruins. Sudowoodo loves it.
+
+**The catch:** Sudowoodo has only 100 HP, and his big attacks knock it out in one go. *Chaotic Pain* is 130, and it reaches the Bench. You get roughly **one** big Flail, and only if he doesn't Pain it first. Bench it the turn before you need it, and make the Flail count.
 
 ---
 
@@ -1155,15 +1176,16 @@ Add a **[Leon](#leon)** and it gets silly: the +30 happens *before* the doubling
 Only **one Stadium** can be on the table at a time. Playing a new one throws the old one in the discard pile.
 
 - **Your [Magma Basin](#magma-basin)** gives you a free Energy every turn from your discard pile. He can't use it — he has no Fire Pokémon.
-- **His Risky Ruins** puts 20 damage on every Basic Pokémon you bench. You can't dodge it — you have no Darkness Pokémon.
+- **His Risky Ruins** puts 20 damage on every Basic Pokémon you bench. You can't dodge it, because you have no Darkness Pokémon.
 
-So the Stadium on the table is worth a lot to whoever put it there. You each have **2**.
+So the Stadium on the table is worth a lot to whoever put it there. You have **2**. He has 2 Risky Ruins, and his Team Rocket's Petrel can search his deck for one, so he usually has an answer to your Basin.
 
 **How to play it:**
 
 - **Don't play Magma Basin on turn one for no reason.** Wait until you actually have Fire Energy in the discard pile to pick up, or until his Risky Ruins is out and hurting you.
 - **Replacing his Risky Ruins does two things at once:** you get your Energy engine *and* you turn off his damage. That's why it's worth more than it looks.
 - **Keep the second one.** When he puts Risky Ruins back, you want an answer. Whoever runs out first has to live with the other person's Stadium for the rest of the game.
+- **Bench your Basics before his Ruins lands.** Basics you put down at the start of the game, or before his Ruins is out, never take the 20.
 
 ---
 
@@ -1199,47 +1221,99 @@ Put it on whatever will be attacking soonest. Usually that's the Active Eevee or
 
 ---
 
-## 6. Beating Dad's Gengar Gang
+## 6. Beating Dad's Lucky Haunt
 
-[His deck](./dark-classic.md) is all **Darkness** Pokémon. Two main threats:
+[His deck](./dark-lucky.md) is his tournament deck now, and it is not the old Gengar Gang. Almost everything in it is **Darkness**, plus a Chansey and a Blissey ex. Three things decide this game.
 
-### Weezing — his early attacker (130 HP)
+**1. His big Pokémon are ex, and you have none.** Every ex you knock out gives you **2 Prizes**. Every Pokémon he knocks out gives him **1**. So he needs **six** knockouts to win, and three good knockouts on his ex win it for you.
 
-It's a two-turn combo:
+| His Pokémon | HP | Prizes you take |
+| :--- | :--- | :--- |
+| Gastly | 70 | 1 |
+| Toxel | 70 | 1 |
+| Haunter | 100 | 1 |
+| Chansey | 120 | 1 |
+| Toxtricity | 140 | 1 |
+| Okidogi ex | 250 | **2** |
+| Gengar ex | 280 | **2** |
+| Blissey ex | 300 | **2** |
+| Mega Gengar ex | 350 | **3** |
 
-- **Turn A:** *Pervasive Gas* — 30 damage, and your Active Pokémon is now **Confused**.
-- **Turn B:** *Crazy Blast* — **170 damage.**
+**2. His Gengar ex can hit your Bench.** Nowhere on your side of the table is safe.
 
-**170 is exactly your Charizard's HP.** Weezing is the one card he has that can one-shot your best Pokémon.
+**3. Everything he has is Weak to Fighting ×2.** That's still [Sudowoodo's](#3-the-rock-that-hits-back) job.
 
-**How to fight it:** the huge 170 only works if **the same Weezing** used *Pervasive Gas* on his previous turn. So when you see a Weezing use *Pervasive Gas*, you have **one turn** to react. Knock it out, or move your Charizard somewhere safe, or accept the hit on something you don't mind losing.
+### Gengar ex, his main attacker (280 HP)
 
-### Gengar — his closer (130 HP)
+*Chaotic Pain* costs two Energy and places **13 damage counters (130 damage)** on **any one** of your Pokémon. Active or Bench, his pick.
 
-*Mind Jack* costs one Energy and does **10 damage, plus 30 for every Pokémon on YOUR Bench.**
+| Your Pokémon | HP | One *Chaotic Pain* |
+| :--- | :--- | :--- |
+| Eevee | 50 | knocked out |
+| Charmander | 70 | knocked out |
+| Charmeleon | 90 | knocked out |
+| Sudowoodo | 100 | knocked out |
+| Flareon | 130 | knocked out, exactly |
+| **Charizard** | **170** | **lives, with 40 left** |
 
-| Your Bench | Mind Jack does |
+**Charizard is the only Pokémon you have that lives through it.** Keep it that way. A Ruins chip on the Charmander it grew from plus a Magma Basin Energy is 40 damage, and then one Pain knocks it out exactly. One chip is fine. Two is not.
+
+**He can only Pain one Pokémon a turn.** That's why you bench two Charmanders, not one. Whatever he Pains, the other one still grows up.
+
+**Watch out for *Fainting Spell*.** When you knock out a Gengar ex with an attack, he flips a coin. Heads, your attacking Pokémon is knocked out too, and he takes a Prize for it. So finish a Gengar ex with a Flareon or a Sudowoodo when you can, and keep Charizard away from the coin.
+
+**How to knock it out.** 280 is a lot, so plan on two hits:
+
+| Hits | Total |
 | :--- | :--- |
-| 2 | 70 |
-| 3 | 100 |
-| 4 | **130** |
-| 5 | **160** |
+| Flareon's *Fighting Blaze* (180, because Gengar ex is an ex), then Royal Blaze with one Leon in the discard (150) | **330** |
+| *Fighting Blaze* twice | **360** |
+| Royal Blaze with three Leons in the discard, plus a Leon played this turn | **280**, in one hit |
 
-**This is the one time a big Bench is bad for you.** 130 knocks out your Flareon. 160 still doesn't kill Charizard (170 HP) — Charizard is the only thing he *can't* one-shot with Gengar.
+### Okidogi ex, the dog (250 HP)
 
-**How to fight it:** don't bench Pokémon you don't need. There's a real balance here — [Zinnia's Resolve](#zinnias-resolve) and Charizard both want you developing your board, but every extra Pokémon out there is 30 more Mind Jack damage. When Gengar is out, think before you bench.
+**This is the card that knocks out your Charizard.** It's a two-turn combo:
+
+- **Turn A:** *Poisonous Musculature*. It grabs 2 Energy from his deck, puts them on itself, and Poisons itself **on purpose**.
+- **Turn B:** *Chain-Crazed*. **260 damage** while it's Poisoned. That knocks out anything you have, Charizard included. If it isn't Poisoned, it's only 130, and Charizard lives.
+
+**How to fight it:**
+
+- **Steal an Energy.** *Chain-Crazed* costs 3 Energy. Heads on Flareon's *Destructive Flame* takes one, and the dog can't swing until he puts another one on.
+- **Cure its Poison with [Boss's Orders](#bosss-orders-ghetsis).** Drag something else into his Active Spot. The dog goes to his Bench, and leaving the Active Spot cures Poison. His one Janine's Secret Art can Poison it again; nothing else can until it uses *Musculature* again.
+- **Hit it with *Fighting Blaze*.** The dog is an ex, so it takes **180**, or **210** with a Leon. Poison also puts 10 on it between every turn. *Fighting Blaze* plus one more real hit knocks it out.
+- **It costs 3 to retreat.** He hates moving it.
+
+### His other Pokémon
+
+| His Pokémon | What it does | What knocks it out |
+| :--- | :--- | :--- |
+| **Toxtricity** (140) | **His Energy machine.** Every turn it puts an Energy from his deck onto a Benched Pokémon. | Royal Blaze with one Leon in the discard (150), or a Sudowoodo carrying 70 |
+| **Gastly** (70) | Becomes a Gengar ex, sometimes the very next turn | anything |
+| **Toxel** (70) | *Call for Family* puts two more Pokémon on his Bench | anything |
+| **Haunter** (100) | *Spooky Shot* does 40; becomes a Gengar ex next turn | Royal Blaze (100) |
+| **Chansey** (120) | becomes Blissey ex | Leon plus Royal Blaze (130) |
+| **Blissey ex** (300) | Moves Energy around from his Bench. *Return* does 180, enough for Charizard, but he keeps it on the Bench. | **Boss's Orders it out.** It costs 4 to retreat, so it's stuck there while you hit it twice, and it's worth 2 Prizes. |
+| **Mega Gengar ex** (350) | Its Ability only works against ex Pokémon. You have none, so it does nothing to you. | two *Fighting Blazes* (360), for **3 Prizes** |
+
+**Knock out Toxtricity and the Gastlys first.** Each one is 1 Prize, and each one gone is an Energy or a Gengar ex he doesn't get. You probably won't see his Mega Gengar ex at all, because it's 3 Prizes of nothing for him against your deck. If it shows up, that's half the game sitting there.
 
 ### His annoying cards
 
 | Card | What it does | What you do |
 | :--- | :--- | :--- |
-| **Dark Bell** | Confuses your Active for free | Keep a [Switch](#switch) around |
-| **Risky Ruins** | 20 damage to each Basic you bench | Replace it with [Magma Basin](#magma-basin) |
-| **Punk Helmet** | You take 40 damage for attacking it | Just accept it — or knock that Pokémon out first |
-| **Infinite Shadow** | His knocked-out Gengar goes back to his hand | **You still get the Prize card.** Knock it out anyway. |
+| **Risky Ruins** | 20 damage to each Basic you bench | Bench early, then replace it with [Magma Basin](#magma-basin) |
+| **Boss's Orders** | drags a Pokémon off your Bench into your Active Spot | Keep a [Switch](#switch) to send it back |
+| **AZ's Tranquility** | moves a hurt ex to his Bench and heals it 80 | Finish an ex in one turn when you can |
+| **Fainting Spell** | a coin when you knock out a Gengar ex | Finish Gengar ex with Flareon or Sudowoodo, not Charizard |
+| **Neo Upper Energy** | one card that pays for a whole Gengar attack | *Destructive Flame* on heads throws it away, and he has only one |
 
 > [!IMPORTANT]
-> **Infinite Shadow does NOT stop you from taking a Prize.** It just means the Gengar card goes back to his hand instead of the discard pile. You still take your Prize card. So never be afraid to knock out a Gengar.
+> **The two numbers to remember.**
+>
+> **130** is *Chaotic Pain*, on anything, anywhere. Only Charizard lives through it.
+>
+> **260** is the Poisoned dog. Nothing you have lives through it, so steal its Energy or cure its Poison with Boss's Orders.
 
 ---
 
@@ -1259,7 +1333,11 @@ The specific traps in *your* deck. Read this one twice.
 
 **Playing Eevee to the Bench and expecting to evolve it.** *Boosted Evolution* only works in the **Active Spot**.
 
-**Using *Fighting Blaze* expecting 180.** He has no ex or V Pokémon. It's just 90. Use *Destructive Flame* instead.
+**Forgetting *Fighting Blaze* does 180 to an ex.** When his Active is a dog, a Gengar ex, or a Blissey ex, it's your biggest hit. Against his small Pokémon it's just 90.
+
+**Finishing a Gengar ex with Charizard when something else could.** *Fainting Spell* flips a coin, and heads takes your attacker with it.
+
+**Hiding a hurt Pokémon on the Bench.** *Chaotic Pain* reaches the Bench. Switching only saves it from his other attacks.
 
 **Professor's Research with a good hand.** It **discards**, it does not shuffle back. Those cards are gone.
 
@@ -1411,6 +1489,10 @@ So why aren't they in? Two reasons, and neither is "they're bad."
 | Flareon ex | 270 | **2** |
 | **Flareon VMAX** | 320 | **3** |
 
-Your dad's entire deck is **1-Prize** Pokémon. Every single one.
-
 Games go to **6 Prize cards**. So if you play a Flareon VMAX and he knocks it out, he's taken **half the game from one attack.** He'd only need three good turns instead of six. You'd be handing him a shortcut every time something died.
+
+That's the same shortcut you use against **his** ex Pokémon. Right now his ex give you 2 Prizes each, and nothing in your deck gives him more than 1. Keep it that way.
+
+### They switch on his Mega Gengar ex
+
+Your dad's Mega Gengar ex has an Ability called *Shadowy Concealment*. When an **ex** Pokémon knocks out one of his Darkness Pokémon, he gives up **1 fewer Prize**. Against your deck it does nothing, because you have no ex. Put a Flareon ex in, and every knockout it scores on his Darkness Pokémon pays you a Prize less.

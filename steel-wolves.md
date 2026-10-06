@@ -22,7 +22,7 @@
 > **Energy** — [Basic Metal Energy](#basic-metal-energy) · [Magnetic Metal Energy](#magnetic-metal-energy)
 >
 > [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
-> [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
+> [**Versus the Ladder**](#versus-the-ladder) · [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
 
 ---
 
@@ -337,7 +337,36 @@ Shares from [the Limitless online ladder](https://play.limitlesstcg.com/decks?ga
 | Dragapult Blaziken | 5.1% | The bad matchup. Fire Weakness on the whole board and nothing to do about it. |
 | Grimmsnarl Froslass | 3.6% | Froslass chips the Bench and Grimmsnarl hits hard, but neither is Fire. A normal game. |
 
-**Against Xero's Darkness decks**, which is the other half of Fox's games, Metal has no Darkness Weakness and Zacian is not a Psychic card, so the wolves are the one Fox deck that does not fold to the Gengars. Latias ex is the exception and the card to keep off the Active Spot.
+---
+
+## Versus the Kitchen Table
+
+**[Lucky Haunt](./dark-lucky.md), Xero's deck this season**, and the other half of Fox's games. Metal has no Darkness Weakness, nothing in Lucky Haunt is Fire, and Zacian is not a Psychic card, so the wolves are the one Fox deck that doesn't fold to the Gengars. Every number lands at face value.
+
+| Fox's hit | Damage | Into Lucky Haunt |
+| :--- | ---: | :--- |
+| *Brave Slash*, with Band, Postwick, and Snorlax | 330 | kills Okidogi ex 250, Gengar ex 280, and Blissey ex 300; the Mega at 350 lives on 20 |
+| *Brave Slash*, with his Risky Ruins over your Postwick | 300 | kills the same three, Blissey ex exactly |
+| *Insta-Strike*, with all three boosts | 120, and 30 to the Bench | kills Gastly, Toxel, Haunter, and Chansey |
+| *Shield Press*, Zamazenta | 100 | kills Gastly, Toxel, and Haunter |
+
+| His hit | Into Hop's Zacian ex at 230 |
+| :--- | :--- |
+| *Chain-Crazed*, Okidogi ex while Poisoned | 260, dead |
+| *Void Gale*, Mega Gengar ex | 230, dead |
+| *Return*, Blissey ex | 180, lives on 50 |
+| *Chaotic Pain*, Gengar ex | 13 counters on anything, Bench included |
+
+**It is a one-hit trade both ways, so the Prizes decide it.**
+
+- **Mega Gengar ex makes your Zacian's Prizes cheap.** While it is in play, every Darkness Pokémon a Pokémon ex knocks out gives one Prize less, so a Zacian gets 1 for a Gengar ex or Okidogi ex and nothing for the small ones. Blissey ex and Chansey are Colorless and always pay full.
+- **Kill the Mega with the Bench half of *Insta-Strike*.** He parks it on the Bench, and 330 leaves it on 20. *Insta-Strike*'s Bench damage never gets the three boosts, but 30 on the parked Mega is exactly what the next *Brave Slash* needs. Boss's Orders brings it up, and 30 plus 330 is 360. That fits the off turn perfectly. He often banks *Sinister Surge* on the Mega as well, and one Surge already leaves it at exactly 330. Under its own Ability it gives you 2, and after it every Gengar ex and dog is worth 2.
+- **Zamazenta finishes a Gengar ex.** *Fainting Spell* flips a coin whenever an attack's damage knocks out a Gengar ex, and heads takes the attacker down too, which is 2 of your Prizes if it was a Zacian. Zamazenta is 1 Prize and not an ex, so Concealment doesn't touch its knockouts either. *Shield Press* finishes a Gengar ex at 100 or less.
+- **Zamazenta isn't a wall here.** *Shield Press* takes 50 off damage, and *Chaotic Pain* isn't damage. Thirteen counters kill a 130 HP Zamazenta straight through the shield.
+- **Beldum and Snorlax are his Pain targets.** One Pain kills a Beldum before Rare Candy reaches it. A Snorlax benched under Risky Ruins is down to 130, exactly one Pain, and without Snorlax the 330 is a 300.
+- **Latias ex stays off the Active Spot.** It is Psychic, 210 HP, and weak to Darkness, so even a dog that lost its Poison hits it for 260. On the Bench it takes two Pains.
+- **His Risky Ruins and your Postwick replace each other.** Ruins puts 2 counters on every Basic non-Darkness Pokémon either player benches during their turn, and everything here is a Basic except Metang and Metagross. A Zacian benched under it starts at 210. You run four Postwick, so play one before benching when his Ruins is up.
+- **The Prize count.** He needs three Zacians, or two and a pair of singles. You need six: the Mega for 2, then any two of Gengar ex, Okidogi ex, and Blissey ex at 2 each.
 
 ---
 

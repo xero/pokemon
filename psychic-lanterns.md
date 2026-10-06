@@ -305,7 +305,7 @@ There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists a
 - **Three Prizes on the core, no discount.** Two Mega knockouts plus a Dusknoir self-KO is a lost game. Position the Megas behind cheap bodies, never two exposed at once.
 - **A 26% mulligan rate.** Four evolution lines on ten Basics. The Poffins are load-bearing; dig for them.
 - **The 180 floor.** A disciplined free-retreat deck blunts Phantom Maze all game. Gourgeist is the answer, and games against those decks are honest grinds.
-- **Darkness Weakness on almost everything.** Every Gengar, Weezing, and Umbreon in this house strikes it. That is not a flaw; that is the rock-paper-scissors the table needed.
+- **Darkness Weakness on almost everything.** Every Gengar, Okidogi, and Umbreon in this house strikes it. That is not a flaw; that is the rock-paper-scissors the table needed.
 
 ---
 
@@ -319,7 +319,9 @@ There is no legal non-ACE way to scoop your own Bench; Scoop Up Cyclone exists a
 
 **Fox's Ground Zero, if it gets built.** Your Fighting Resistance makes this the house answer to Mega Zygarde: *Gaia Wave* lands on the Mega for 170, a three-hit kill against a deck that only needs to land two. Zygarde has Retreat 2 and no Ability, so the line is Phantom Maze for 280, then Cursed Blast for the rest; the counters ignore his 30-damage shield. Two Zygarde knockouts is the whole game.
 
-**[Xero's dark decks](./dark-classic.md).** The underdog on purpose. Everything here except Froslass is Darkness-weak, and *Void Gale* one-shots a Mega through its Weakness. When the lanterns face the Gengars, the lanterns are the challenger.
+**[Xero's Lucky Haunt](./dark-lucky.md).** The underdog on purpose. Everything here except Froslass is Darkness-weak, so his *Void Gale* lands 460 and a Poisoned *Chain-Crazed* 520, and either one kills a Mega or a Gourgeist ex in one swing. An un-Poisoned dog does 260, ten short of Gourgeist. *Chaotic Pain* places 13 counters on anything, Bench included, and this list has no Battle Cage to stop it. It picks off Litwick, Lampent, Duskull, and Pumpkaboo before they grow, and Froslass before anything, because the Shroud ticks his Gengar ex, Mega Gengar, Toxtricity, and Blissey ex every Checkup. His Risky Ruins puts 2 counters on every Litwick, Duskull, Pumpkaboo, and Snorunt you bench while it stands, and the counters ride the evolution, so Poffin before it lands.
+
+Your answer is that one Flame prices his whole board. *Phantom Maze* is 230 into Gastly, Haunter, and Toxel, 280 into Gengar ex, Toxtricity, and Chansey, 330 into Okidogi ex, and 380 into Blissey ex. Only the Mega Gengar lives, on 70, or on 20 under two Flames. Three things blunt the Maze. A Mega Gengar on his Bench takes a Prize off every Knock Out your Pokémon ex score on his Darkness Pokémon, while Cursed Blast and the Shroud place counters and always pay full. Any attack that knocks out a Gengar ex flips *Fainting Spell* at the attacker, and heads Knocks it Out too, which is 3 Prizes when the attacker is a Mega, so finish a damaged Gengar ex with Cursed Blast, which never flips. And a Mega Gengar left on 70 after a Maze is three full Prizes to Cursed Blast, because counters skip its own Concealment, unless AZ's heals it first. Blissey ex is the soft spot. It is Colorless, so Concealment never covers it, it retreats for 4, and Boss's Orders plus one Maze takes it for two full Prizes. When the lanterns face the Gengars, the lanterns are the challenger.
 
 ---
 
@@ -331,7 +333,7 @@ Current Standard, per [Limitless play data](https://play.limitlesstcg.com/decks?
 | :--- | :--- | :--- |
 | Dragapult ex variants | ~18% | The biggest seat. Phantom Dive sprays damage counters across your Bench, and every damaged bencher adds 50 to Horrifying Rondo, so their spread loads your cheapest attack. The trap two-shots the 320 HP body either way. |
 | Festival Lead, Slowking, Alakazam, Dhelmise, Toucannon | ~24% | Single-prize rooms. Gourgeist leads and the Prize race runs honest; the paragraph below has the discipline. |
-| Mega Excadrill ex | ~8% | The field's top single deck, and the seat the dark box cannot sit in. The whole lantern core resists Fighting, so the 330 lands as 300 on a 350 HP wall, and Wally's Compassion undoes the hit. Their two-shot math never completes. |
+| Mega Excadrill ex | ~8% | The field's top single deck. It is Metal, not Fighting, so the lanterns' Resistance does nothing, and *Maximum Drilling*'s 330 lands in full on a 350 HP Mega, which lives on 20 for Wally's Compassion to undo. It retreats for 4, so one Flame makes the Maze 380 into its 340, and it dies to one swing. |
 | N's Zoroark, Grimmsnarl Froslass | ~10% | Darkness rooms. The bad night; know it walking in. |
 | Mega Lucario ex, other Fighting rooms | ~4% | More Fighting the Resistance blunts. |
 

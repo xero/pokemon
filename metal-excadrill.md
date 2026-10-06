@@ -7,7 +7,7 @@
 >
 > A model of Matt's deck. Matt is a friend and one of the regulars at CardCrate's Wednesday league, and Mega Excadrill ex is what he brings every week. Every card carries regulation mark H, I, or J, so the list is legal exactly as it sits.
 >
-> The engine is the one Matt runs, the older build: Metang's *Metal Maker* for Energy, Genesect ex for search, and Precious Trolley as the ACE SPEC. That stock list is the most-played deck in Standard at a losing win rate, because its main attacker costs three Prizes and there is no plan B. Matt adds two Metagross, a **Metagross that hits for 330 and hands back one Prize**, and keeps them as a situational last resort. [How Matt Plays It](#how-matt-plays-it) has his order, and the reasoning behind the rest of the list is in [Alternatives](#alternatives). How the Gengar deck plays against Matt is in [Xero's Lucky Haunt](./dark-lucky.md#versus-mega-excadrill-ex), and game words are defined in [the table rules](./rules.md).
+> The engine is the one Matt runs, the older build: Metang's *Metal Maker* for Energy, Genesect ex for search, and Precious Trolley as the ACE SPEC. That stock list is the most-played deck in Standard at a losing win rate, because its main attacker costs three Prizes and there is no plan B. Matt adds two Metagross, a **Metagross that hits for 330 and hands back one Prize**, and keeps them as a situational last resort. [How Matt Plays It](#how-matt-plays-it) has his order, and the reasoning behind the rest of the list is in [Alternatives](#alternatives). How the Gengar deck plays against Matt is in [Xero's Lucky Haunt](./dark-lucky.md#versus-mega-excadrill-ex), how Matt plays into it is in [Versus the Kitchen Table](#versus-the-kitchen-table), and game words are defined in [the table rules](./rules.md).
 
 ---
 
@@ -385,7 +385,31 @@ Against the house decks this list is a wall with a hammer behind it, and the mat
 
 **Versus [the lantern decks](./psychic-lanterns.md).** Mega Chandelure ex prices your retreat and converts it into damage, and **Excadrill's Retreat 4 is the single worst stat line it can point at** — one Binding Flame makes that a 5, and *Phantom Maze* reads 130 plus 50 per Colorless, which is 380 on an Active Excadrill. It one-shots your Mega through 340 HP. Keep Metagross active (Retreat 3, still bad) or Metang (Retreat 2), never Excadrill, and win the game on the Bench. This is the matchup where Metagross being the main attacker is not a preference, it is survival.
 
-**Versus [the Gengar decks](./dark-lucky.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so it is a fair fight decided by the Prize trade — which is the fight this deck is built to win. Their Mega Gengar ex gives up three Prizes; your Metagross gives up one.
+**Versus [Xero's Lucky Haunt](./dark-lucky.md).** Darkness has no type edge on Metal and Metal has none on Darkness, so every number lands at face value and the game is the Prize trade. Lucky Haunt rigs that trade two ways. *Shadowy Concealment*, from a Mega Gengar ex parked on its Bench, takes one Prize off every Knock Out a Pokémon ex scores on its Darkness Pokémon. *Fainting Spell* flips a coin whenever a Gengar ex is Knocked Out by an attack, and heads Knocks Out the attacker too. Into an Excadrill that coin is three Prizes; into a Metagross it is one. **This is the matchup where [the Metagross-first line](#the-metagross-first-line) stops being optional.**
+
+| Lucky Haunt body | HP | *Drilling* at 3 Energy, 200 | *Drilling* at 5, 330 | *Metallic Hammer*, 300, or 330 with a Bangle | Prizes to Excadrill | Prizes to Metagross |
+| :--- | ---: | :---: | :---: | :---: | ---: | ---: |
+| Gastly, Toxel | 70 | ✓ | ✓ | ✓ | 0 | 1 |
+| Haunter | 100 | ✓ | ✓ | ✓ | 0 | 1 |
+| Chansey | 120 | ✓ | ✓ | ✓ | 1 | 1 |
+| Toxtricity | 140 | ✓ | ✓ | ✓ | 0 | 1 |
+| Okidogi ex | 250 | ✗ | ✓ | ✓ | 1 | 2 |
+| Gengar ex | 280 | ✗ | ✓ | ✓ | 1 | 2 |
+| Blissey ex | 300 | ✗ | ✓ | ✓ | 2 | 2 |
+| Mega Gengar ex | 350 | ✗ | 20 short | 20 short | 2 | 3 |
+
+The Prize columns assume a Mega Gengar ex is in play, which is how Lucky Haunt plays against you. Without one, the Excadrill column reads the same as the Metagross column.
+
+- **Metagross takes the ghosts and the dog.** A Gengar ex or an Okidogi ex is two Prizes to Metagross and one to Excadrill, and the *Fainting Spell* coin risks a one-Prize body instead of a three-Prize one. Never finish a Gengar ex with Excadrill unless that Knock Out wins the game.
+- **Excadrill takes what Concealment can't cover.** Chansey and Blissey ex are Colorless, so the Mega never discounts them. Blissey ex is two Prizes at Retreat 4, so Boss's Orders strands it and *Maximum Drilling* kills it.
+- **Kill the Mega and the tax ends.** It sits on the Bench at 350, so Boss's Orders brings it up, *Maximum Drilling* leaves it on 20, and anything finishes it next turn, *Undermine* included. That is two Prizes, and every Knock Out after it pays full. A Mega carrying *Sinister Surge*'s two counters dies to one Drilling.
+- **Protect the Metang.** *Chaotic Pain* places 13 damage counters on any Pokémon, Bench included, and it kills Drilbur, Beldum, and Metang outright. Lucky Haunt aims it at the engine first. Keep three Metang standing and a Beldum behind them. Genesect ex at 220 and Metagross at 180 both survive one Pain.
+- **Lab before Trolley.** Risky Ruins puts 2 damage counters on every Basic non-Darkness Pokémon benched during a turn, so a Trolley under it chips both Drilbur, the Genesect ex, and every Beldum, and the counters ride the evolution. An Excadrill grown from a chipped Drilbur is 320, and *Void Gale* plus *Chaotic Pain* is 330 even through the Lab. When Ruins is down and a Full Metal Lab is in hand, play the Lab first.
+- **Their kill lines on Excadrill.** Through the Lab, a Poisoned *Chain-Crazed* is 230, and with one Pain it is 360, which clears 340. *Void Gale* is 200 through the Lab, and with a Pain it is 330, ten short. Keep the Lab up and the Mega needs a dog's help. Counters ignore the Lab completely.
+- **Going second, they swing on turn 2.** Okidogi ex attaches, *Poisonous Musculature* fetches two Darkness Energy, and turn 2 is *Chain-Crazed* for 260, or 230 through the Lab. That kills a Genesect ex in front, so lead Drilbur or Beldum.
+- **Drilbur is Fighting, and every Lucky Haunt body is Weak to Fighting.** *Dig Claws* is 50 for three Colorless, doubled to 100: a Gastly, Toxel, or Haunter in front for a full Prize Concealment can't touch. It spends three Energy the Excadrill wanted, so it is a finisher, not a plan.
+
+The cleanest six is Blissey ex and the Mega to Excadrill for four, and a Gengar ex or the dog to Metagross for two.
 
 **Versus [the Fire decks](./blue-flame.md).** This is the bad one and there is no fixing it. Metal is Fire Weakness across the board, 340 HP halves to a 170-damage knockout, and **there is no weakness-removal card anywhere in the Standard pool** — not a Tool, not a Stadium, not an Ability. Full Metal Lab's 30 is the only patch that exists. Play for the Prize trade, keep Excadrill out of the Active Spot, and accept that this is the deck's tax.
 

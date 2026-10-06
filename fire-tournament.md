@@ -30,9 +30,9 @@
 >
 > In your Fire Force deck, every Pokémon on both sides was worth **1 Prize card**. Even trades. Not here.
 >
-> **[Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex) are worth 2 Prize cards each.** Every Pokémon in your dad's deck is still worth 1.
+> **[Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex) are worth 2 Prize cards each.** So your dad needs only **3 knockouts** to win.
 >
-> So he needs **3 knockouts** to win. You need **6**. Read **[The Prize Race Changed](#5-the-prize-race-changed)** before you play a single game with this deck.
+> His deck has big Pokémon worth 2 and 3 Prizes too. But his Mega Gengar ex has a trick that makes your knockouts worth **less**. Read **[The Prize Race Changed](#5-the-prize-race-changed)** before you play a single game with this deck.
 
 ---
 
@@ -44,7 +44,7 @@
 > **Tool** — [Sparkling Crystal](#sparkling-crystal)
 > **Energy** — [Basic Fire Energy](#basic-fire-energy) · [Basic Water Energy](#basic-water-energy)
 >
-> [**The Thesis**](#the-thesis) · [**Game Plans**](#game-plans) · [**Beating Dad's Gengar Gang**](#7-beating-dads-gengar-gang) · [**Honest Weaknesses**](#honest-weaknesses) · [**Deck List**](#deck-list)
+> [**The Thesis**](#the-thesis) · [**Game Plans**](#game-plans) · [**Beating Dad's Lucky Haunt**](#7-beating-dads-lucky-haunt) · [**Honest Weaknesses**](#honest-weaknesses) · [**Deck List**](#deck-list)
 
 ---
 
@@ -168,14 +168,16 @@ That's a 270 HP attacker on the board before your dad has done anything.
 
 So the Eevee you're going to evolve right now has to come **from your hand, into the Active Spot.** [Buddy-Buddy Poffin](#buddy-buddy-poffin) puts Pokémon on the **Bench**, so Poffin is for your *spare* Eevee and your Hoothoot, not for the one you want to grow immediately.
 
-**50 HP is nothing.** Almost anything your dad plays knocks out an Eevee. That's fine — you're not planning to leave it there. You play it, you evolve it, and by the time he gets a turn it's a Flareon ex.
+**50 HP is nothing.** Almost anything your dad plays knocks out an Eevee, and his *Chaotic Pain* can do it on your Bench too. That's fine, because you're not planning to leave it there. You play it, you evolve it, and by the time he gets a turn it's a Flareon ex.
 
 **Don't attack with it.** *Reckless Charge* does 30 and hurts itself for 10. On a 50 HP Pokémon that's a third of its life for almost no damage. If you're attacking with Eevee, something went wrong three turns ago.
 
 > [!WARNING]
-> **Watch out for Risky Ruins.** Your dad's Stadium puts **2 damage counters (20 damage)** on every Basic Pokémon that isn't a Darkness Pokémon the moment it goes on the Bench. None of yours are Darkness.
+> **Watch out for Risky Ruins.** Your dad's Stadium puts **2 damage counters (20 damage)** on every Basic Pokémon that isn't a Darkness Pokémon when it goes on the Bench during a turn. None of yours are Darkness.
 >
-> A benched Eevee under Risky Ruins shows up at **30 HP**. And the damage **stays on it after it evolves** — so your Flareon ex arrives with 20 damage already on it. Annoying, not fatal, but worth knowing.
+> A benched Eevee under Risky Ruins shows up at **30 HP**. And the damage **stays on it after it evolves**, so your Flareon ex arrives with 20 damage already on it. That 20 matters against your dad. A Flareon ex with 250 HP left is exactly in range of his Okidogi ex's 260.
+>
+> Pokémon you put down before the game starts never get the counters, and neither does anything you bench before his Ruins hits the table. So play your Poffins early.
 
 ---
 
@@ -208,9 +210,9 @@ So the Eevee you're going to evolve right now has to come **from your hand, into
 
 Eevee ex is the tough version of Eevee. **200 HP instead of 50.**
 
-It does not have *Boosted Evolution*, so it can't evolve the turn you play it. What it gives you instead is a body your dad genuinely struggles to remove. His best attack does 170.
+It does not have *Boosted Evolution*, so it can't evolve the turn you play it. What it gives you instead is a body that takes most decks two hits to remove.
 
-It also has ***Tera***, the same Ability as [Flareon ex](#flareon-ex). **On your Bench, attacks do zero damage to it.** So an Eevee ex you're saving for later cannot be picked off while it waits.
+It also has ***Tera***, the same Ability as [Flareon ex](#flareon-ex). **On your Bench, attacks do zero damage to it.** Most decks can't pick off an Eevee ex while it waits. Your dad's deck can, because his *Chaotic Pain* places damage counters instead of doing damage; see [His answer to *Tera*](#his-answer-to-tera-is-chaotic-pain).
 
 Use plain [Eevee](#eevee) when you want speed. Use Eevee ex when you have a turn to spare and you'd rather not lose anything.
 
@@ -223,7 +225,7 @@ Use plain [Eevee](#eevee) when you want speed. Use Eevee ex when you have a turn
 
 #### Strategy
 
-**It is worth 2 Prize cards.** A 200 HP Pokémon feels safe, and then your dad chips it down over three turns and takes a third of the game for it. Big is not the same as safe when the prize is doubled.
+**It is worth 2 Prize cards.** A 200 HP Pokémon feels safe, and then your dad lands two *Chaotic Pains* on it and takes a third of the game for it. Big is not the same as safe when the prize is doubled.
 
 **Buddy-Buddy Poffin cannot find it.** Poffin only fetches Basics with **70 HP or less**. Eevee ex has 200. [Ultra Ball](#ultra-ball) is your search card for this one.
 
@@ -267,7 +269,7 @@ eevee → **flareon ex**
 
 *Burning Charge* is the card. It does **130 damage** — and then it goes and finds **two more Energy** out of your deck and attaches them anywhere you like. You attack and you build up at the same time, every single turn.
 
-**130 is an exact number against your dad.** His Gengar has 130 HP. His Weezing has 130 HP. *Burning Charge* knocks out either one in **one hit**, with no Leon, no set-up, and no coin flips.
+**130 knocks out your dad's small Pokémon, not his big ones.** Gastly, Toxel, Haunter, and Chansey all go down in **one hit**, with no Leon, no set-up, and no coin flips. His ex Pokémon have 250 to 350 HP, so each one takes two or three hits. [The numbers to remember](#the-numbers-to-remember) has all of them.
 
 #### Pairing
 
@@ -282,9 +284,13 @@ eevee → **flareon ex**
 
 ***Tera* is the best Ability in the deck, and it only works on the Bench.** While a Flareon ex is benched, attacks do **zero** damage to it. Not reduced. Zero.
 
-Think about what that means against your dad. His Gengar's *Mind Jack* can't touch it. His Weezing's *Crazy Blast* can't touch it. The only Pokémon he can attack is whichever one is in your **Active Spot**.
+Against most decks, that means the only Pokémon they can attack is whichever one is in your **Active Spot**.
 
-**So the pattern is: build on the Bench, step forward, hit, step back.** Attack with one Flareon ex, and when it gets low, [Switch](#switch) it to the Bench and bring up a fresh one. The hurt one is now completely safe.
+**Your dad's deck is the exception.** His Gengar ex's *Chaotic Pain* doesn't do damage. It *places 13 damage counters*, and *Tera* can't stop counters. So against your dad, a benched Flareon ex is safe from *Void Gale*, *Chain-Crazed*, and *Return*, and it is **not** safe from *Chaotic Pain*.
+
+**So the pattern is: build on the Bench, step forward, hit, step back.** Attack with one Flareon ex, and when it gets low, [Switch](#switch) it to the Bench and bring up a fresh one. Against most decks the hurt one is now completely safe.
+
+**Against your dad, step back only with more than 130 HP left.** A Flareon ex with 130 or less dies to one *Chaotic Pain* wherever it sits. If it is going to die anyway, let it swing one more time.
 
 **Free Energy every turn adds up fast.** *Burning Charge* attaches 2 Energy on top of the 1 you attach by hand. That's 3 Energy a turn while you're also doing 130 damage. Put them on the Flareon ex sitting on your Bench, so your *next* attacker is already loaded before it ever steps out.
 
@@ -295,7 +301,9 @@ Think about what that means against your dad. His Gengar's *Mind Jack* can't tou
 >
 > Even then, think before using it. 280 damage looks amazing, but *"this Pokémon can't attack next turn"* means you give your dad a completely free turn. In a deck where losing a Flareon ex costs you **2 Prize cards**, a free turn is exactly what he wants.
 >
-> Two *Burning Charges* do **260** across two turns and never skip. That's almost the same damage and none of the risk. Use *Burning Charge*.
+> Two *Burning Charges* do **260** across two turns and never skip. Against most Pokémon that's almost the same damage with none of the risk. Use *Burning Charge*.
+>
+> **Your dad's Gengar ex is the exception.** It has exactly 280 HP, so two *Burning Charges* leave it alive at 20, and *Carnelian* knocks it out in one hit. See [Gengar ex, his closer](#gengar-ex-his-closer-280-hp).
 
 ---
 
@@ -340,7 +348,7 @@ You have 4 because Noctowl's Ability is the best draw engine in the deck, and yo
 
 **70 HP is the magic number for [Buddy-Buddy Poffin](#buddy-buddy-poffin).** Poffin fetches Basics with **70 HP or less**, and Hoothoot is exactly 70. So one Poffin can grab an Eevee *and* a Hoothoot in one go, for free, without using your Supporter.
 
-**Don't attack with it.** *Triple Stab* flips 3 coins for 10 each. On average that's 15 damage. Your dad's smallest Pokémon has 60 HP.
+**Don't attack with it.** *Triple Stab* flips 3 coins for 10 each. On average that's 15 damage. Your dad's smallest Pokémon has 70 HP.
 
 ---
 
@@ -392,7 +400,9 @@ The catch is in the wording: it only fires **the moment you evolve a Hoothoot in
 
 **Check the Tera condition first.** You need a Flareon ex *or* an Eevee ex somewhere in play. If both are gone, *Jewel Seeker* does nothing. Evolve the Hoothoot anyway if you need the HP, just don't count on the cards.
 
-**100 HP is real.** Noctowl can hold the Active Spot for a turn while you set up behind it. *Speed Wing* does 60, which knocks out his Koffing exactly.
+**100 HP is real.** Noctowl can hold the Active Spot for a turn while you set up behind it. *Speed Wing* does 60, which is 10 short of a Gastly or a Toxel.
+
+**Against your dad, Noctowl is a secret finisher.** It isn't a Pokémon ex, so his Mega Gengar ex can't shrink the Prizes it takes, and if it finishes a Gengar ex and his coin comes up heads, he only gets 1 Prize for it. When one of his Pokémon is down to 60 HP or less, let Noctowl take it. [Mega Gengar ex shrinks your Prizes](#mega-gengar-ex-shrinks-your-prizes) explains why.
 
 > [!TIP]
 > ***Jewel Seeker* fires when you evolve, not when you attack.** So it costs you nothing. You can use it, then play a Supporter, then attack, all on the same turn. Abilities are free.
@@ -498,20 +508,22 @@ So on a Crispin turn you can attach **two** Energy: one by hand, one from Crispi
 
 Boss's Orders reaches past whatever your dad is hiding behind and drags out the Pokémon you actually want to knock out.
 
-This is how you finish games. He hides a hurt Gengar on the Bench; you drag it out and hit it for 130.
+This is how you finish games. He hides a hurt Gengar ex on the Bench; you drag it out and finish it.
 
 #### Pairing
 
-- **[Flareon ex](#flareon-ex)** — 130 damage knocks out anything he owns, so whatever you drag out, it dies.
+- **[Flareon ex](#flareon-ex)**: 130 damage knocks out his Gastly, Toxel, Haunter, or Chansey in one hit. His ex Pokémon need two or three.
 - **[Noctowl](#noctowl)** — *Jewel Seeker* can go and find a Boss's Orders on the exact turn you need it.
 
 #### Strategy
 
 **Save them for Prize cards, not for fun.** You only have 3. Each one should be the difference between taking a Prize and not taking one.
 
-**Count first.** Before you play it, work out whether 130 actually knocks out the thing you're dragging. Against your dad it always does, so this is an easy one for you.
+**Count first.** Before you play it, work out whether 130 actually knocks out the thing you're dragging. Against your dad it does for his small Pokémon. His ex Pokémon have 250 to 350 HP, so drag one out only when it's already hurt, or when you can hit it two turns in a row.
 
-**He has Boss's Orders too — and it's his answer to *Tera*.** See **[Beating Dad's Gengar Gang](#7-beating-dads-gengar-gang)**. A Flareon ex on your Bench is untouchable *until* he plays this card and drags it out.
+**The best thing to drag out of his deck is [Blissey ex](#blissey-ex-the-one-to-drag-out).** It costs 4 Energy to retreat, so it gets stuck, and it's worth 2 Prizes even when his Mega Gengar ex is in play.
+
+**He has a Boss's Orders too, but his real answer to *Tera* is *Chaotic Pain*.** See **[Beating Dad's Lucky Haunt](#7-beating-dads-lucky-haunt)**. A Flareon ex on your Bench is safe from his attacks that do damage. It is not safe from his damage counters.
 
 ---
 
@@ -704,13 +716,15 @@ In most decks Switch is a small convenience card. In this deck it's a defensive 
 
 #### Strategy
 
-**Switch beats Confusion.** A Special Condition goes away the moment a Pokémon leaves the Active Spot. Your dad's [Dark Bell and Weezing](#7-beating-dads-gengar-gang) will Confuse you constantly, and a Confused Flareon ex is a coin flip away from doing nothing all turn.
+**Switch beats Confusion.** A Special Condition goes away the moment a Pokémon leaves the Active Spot. Plenty of tournament decks Confuse or Paralyze your Active Pokémon, and a Confused Flareon ex is a coin flip away from doing nothing all turn.
 
 Switching out clears it instantly, and unlike retreating it costs no Energy.
 
-**Switch turns a hurt Flareon ex into a safe one.** Your Flareon ex is at 40 HP and about to die. Switch it to the Bench. Now *Tera* means it takes **zero** damage from attacks. It's still hurt, but he can't finish it — not unless he has a Boss's Orders.
+**Switch turns a hurt Flareon ex into a safe one, against most decks.** Your Flareon ex is at 40 HP and about to die. Switch it to the Bench. Now *Tera* means it takes **zero** damage from attacks. It's still hurt, but they can't finish it unless they have a Boss's Orders.
 
-**Three copies is not many.** Don't burn one just to reposition. Save them for Confusion and for saving a Flareon ex.
+**Against your dad, it doesn't work that way.** His Gengar ex's *Chaotic Pain* places 130 worth of damage counters on any of your Pokémon, Bench included, so a Flareon ex at 40 HP dies on the Bench too. Against him, Switch is for bringing up a **fresh** attacker, not for hiding a hurt one.
+
+**Three copies is not many.** Don't burn one just to reposition. Save them for Special Conditions and for saving a Flareon ex.
 
 ---
 
@@ -911,9 +925,9 @@ Water does two jobs in this deck, and neither one is obvious.
 **Let *Burning Charge* find the Water instead.** It searches your deck for **any 2 Basic Energy** and attaches them wherever you like. So the real line is: attack with *Burning Charge*, use it to place a Water on the Flareon ex wearing Sparkling Crystal, and now *Carnelian* is armed for next turn.
 
 > [!TIP]
-> **Against your dad, you will almost never need *Carnelian*.** *Burning Charge* already does 130, and 130 knocks out every single Pokémon in his deck. 280 is not more useful than 130 when 130 is already enough.
+> **Against your dad, *Carnelian* is a real weapon.** His Gengar ex has exactly 280 HP and his Okidogi ex has 250, so *Carnelian* knocks out either one in one hit. *Burning Charge* needs three hits for a Gengar ex.
 >
-> Where 280 matters is at a **real tournament**, against a big Pokémon with 300 HP that shrugs off 130. That's the game where these three Water cards win you something.
+> Where 280 matters at a **real tournament** is the same: big Pokémon that shrug off 130. Those are the games where these three Water cards win you something.
 
 ---
 ---
@@ -949,12 +963,12 @@ Count the Energy you gain in a turn:
 
 You spend two Energy to attack. You gain three. **You get further ahead every single turn.**
 
-**130 is the number that matters against your dad.** His Gengar has 130 HP. His Weezing has 130 HP. Everything else he owns has less. *Burning Charge* one-shots his entire deck, from turn two, forever.
+**130 is a good number against your dad, not a magic one.** It knocks out his Gastly, Toxel, Haunter, and Chansey in one hit. His Okidogi ex (250), Gengar ex (280), Blissey ex (300), and Mega Gengar ex (350) take two or three. That's why the engine matters so much: every hit also loads your next attacker, so you can keep hitting every turn until the big ones fall.
 
-Compare that to your Fire Force deck, where you had to build up Leons in the discard pile just to reach 150. Here you start at the number you need.
+Compare that to your Fire Force deck, where you had to build up Leons in the discard pile just to reach 150. Here you start at 130 with no Leons and no set-up.
 
 > [!TIP]
-> **Put the 2 free Energy on a Flareon ex sitting on your Bench.** It can't be attacked there, thanks to *Tera*. So while your Active Flareon ex is fighting, a second fully-loaded one is quietly getting ready behind it. When the first one gets low, [Switch](#switch) them.
+> **Put the 2 free Energy on a Flareon ex sitting on your Bench.** Attacks can't damage it there, thanks to *Tera*. Your dad's *Chaotic Pain* can, but a healthy Flareon ex lives through two of them, because 260 is 10 short of 270. So while your Active Flareon ex is fighting, a second fully-loaded one is quietly getting ready behind it. When the first one gets low, [Switch](#switch) them.
 
 ---
 
@@ -1022,7 +1036,7 @@ Now look at *Tera*:
 
 > As long as this Pokémon is on your **Bench**, prevent all damage done to this Pokémon by attacks (both yours and your opponent's).
 
-**Zero damage. Not less. Zero.** A benched [Flareon ex](#flareon-ex) cannot be hurt by *Mind Jack*, by *Crazy Blast*, by anything he attacks with. **[Eevee ex](#eevee-ex) has the same Ability**, so a 200 HP Eevee ex waiting on your Bench is untouchable too.
+**Zero damage. Not less. Zero.** A benched [Flareon ex](#flareon-ex) can't be hurt by *Void Gale*, by *Chain-Crazed*, or by any other attack that does damage. **[Eevee ex](#eevee-ex) has the same Ability**, so a 200 HP Eevee ex waiting on your Bench is safe from them too.
 
 So the whole shape of your game changes:
 
@@ -1031,14 +1045,15 @@ So the whole shape of your game changes:
 3. **Step back when it's hurt.** [Switch](#switch) it to the Bench. Now it's safe again, damage and all.
 4. **Send out the fresh one** you were loading the whole time.
 
-Two Switch plus three [Night Stretcher](#night-stretcher) makes that a real rotation, not a dream.
+Three Switch plus three [Night Stretcher](#night-stretcher) makes that a real rotation, not a dream.
 
 > [!IMPORTANT]
-> ***Tera* stops damage from ATTACKS. It does not stop everything.**
+> ***Tera* stops damage from ATTACKS. It does not stop damage counters, and your dad's deck places a lot of them.**
 >
-> Your dad's **Risky Ruins** puts damage counters on your Basic Pokémon when you bench them. That's a **Stadium effect**, not an attack, so *Tera* does nothing about it — not even on an Eevee ex, which is a Basic and does get hit. It skips Flareon ex and Noctowl only because those are Stage 1.
+> - ***Chaotic Pain*.** His Gengar ex's attack *places* 13 damage counters (130) on any one of your Pokémon. Placing counters isn't doing damage, so *Tera* does nothing. A healthy Flareon ex lives through two of them. A hurt one doesn't, and neither does a Hoothoot, a Noctowl, or an Eevee.
+> - **Risky Ruins.** His Stadium puts damage counters on your Basic Pokémon when you bench them. That's a **Stadium effect**, not an attack, so *Tera* does nothing about it, not even on an Eevee ex, which is a Basic and does get hit. It skips Flareon ex and Noctowl only because those are Stage 1.
 >
-> The rule to remember: **an attack can't touch your benched Flareon ex. A card effect might.**
+> The rule to remember: **an attack can't damage your benched Flareon ex. Damage counters can.** Against your dad, the fortress has a door, and [game plan 7](#7-beating-dads-lucky-haunt) shows where it is.
 
 ---
 
@@ -1058,24 +1073,39 @@ That is **not** how this deck works.
 | **[Flareon ex](#flareon-ex)** | **2** |
 | **[Eevee ex](#eevee-ex)** | **2** |
 
-Every Pokémon in his Gengar Gang is still worth **1**.
+Your dad's [Lucky Haunt](./dark-lucky.md) has big Pokémon too:
+
+| His Pokémon | Prizes you take | With his Mega Gengar ex in play |
+| :--- | :--- | :--- |
+| Gastly, Toxel, Haunter, Toxtricity | 1 | **0** |
+| Chansey | 1 | 1 |
+| Gengar ex, Okidogi ex | 2 | **1** |
+| Blissey ex | 2 | 2 |
+| Mega Gengar ex | 3 | **2** |
+
+**That last column is his Mega Gengar ex's Ability.** While it is in play, even sitting on his Bench, every Darkness Pokémon your Pokémon ex knock out gives you **one Prize fewer**. Your Flareon ex and Eevee ex are both Pokémon ex. [Mega Gengar ex shrinks your Prizes](#mega-gengar-ex-shrinks-your-prizes) has the whole story.
 
 ### What that actually means
 
 ```
 He needs 3 knockouts to win.   (3 x 2 Prizes = 6)
-You need 6 knockouts to win.   (6 x 1 Prize  = 6)
+You need 6 Prizes, and with his Mega down,
+his little Pokemon are worth 0 to your Flareon ex.
 ```
 
-**He needs half as many good turns as you do.** That's the trade you made for a 270 HP attacker that one-shots everything he owns.
+**He needs only three good turns.** You need more, and his Mega makes every one of yours count for less. That's the trade you made for a 270 HP attacker that finds its own Energy.
 
 ### How to win the race anyway
 
-**Knock something out every single turn.** 130 damage kills anything in his deck. If you're attacking every turn from turn two, you take 6 Prizes in 6 turns. He can't remove three Flareon ex that fast — his best attack does 170 and yours has 270 HP.
+**Take Prizes early, before his Mega lands.** *Burning Charge* knocks out a Gastly, a Toxel, a Haunter, or a Chansey in one hit, and while there's no Mega in play each one is a full Prize. [Boss's Orders](#bosss-orders-ghetsis) drags them out.
 
-**Never let him have a free knockout.** Every Flareon ex that dies is two turns of your work handed back. [Switch](#switch) it out before it dies. That's what Switch is *for* in this deck.
+**Take the Prizes the Mega can't shrink.** Chansey and Blissey ex aren't Darkness Pokémon, so they always pay full. [Noctowl](#noctowl) isn't a Pokémon ex, so its knockouts always pay full too.
 
-**Don't leave a hurt Flareon ex in the Active Spot hoping.** If it's below 170, his Weezing can finish it. Below 160, his Gengar can. Move it.
+**Knock out the Mega when you can do it in two turns.** It's worth 2 Prizes, and every knockout after it is full price again.
+
+**Never let him have a free knockout.** Every Flareon ex that dies is two turns of your work handed back. Against most decks, [Switch](#switch) it out before it dies. Against your dad, remember that *Chaotic Pain* reaches the Bench, so a Flareon ex with 130 HP or less isn't safe anywhere.
+
+**Know his numbers.** *Void Gale* does 230, a Poisoned Okidogi ex does 260, Blissey ex's *Return* does 180, and *Chaotic Pain* places 130 anywhere. A healthy Flareon ex at 270 lives through any one of them. Any two of them finish it, except two *Chaotic Pains*, which leave it at 10.
 
 **Your small Pokémon are worth 1 Prize, and that's useful.** If something has to die, better it's a Hoothoot than a Flareon ex. Letting him knock out a Noctowl costs you one Prize and buys you a turn.
 
@@ -1115,85 +1145,128 @@ Fire, onto whatever is attacking soonest. Usually the Active Flareon ex.
 
 ---
 
-## 7. Beating Dad's Gengar Gang
+## 7. Beating Dad's Lucky Haunt
 
 **Know the other side and you'll see plays coming.**
 
-His deck is all **Darkness** Pokémon. Nothing in it is Water, so your Flareon ex's Water Weakness **never comes up.** Nothing in it is Fighting, so your Eevee ex's Fighting Weakness never comes up either.
+[His deck](./dark-lucky.md) is mostly **Darkness** Pokémon, plus a Chansey and a Blissey ex, which are Colorless. Nothing in it is Water, so your Flareon ex's Water Weakness **never comes up.** Nothing in it is Fighting, so your Eevee ex's Fighting Weakness never comes up either. Everything he does to you is just the number on the card.
 
-That's a really good start.
+That's the good news. The bad news is that his deck was built to beat big Pokémon, and Flareon ex is a big Pokémon.
 
-### The one number to remember
+### The numbers to remember
 
-**130 knocks out everything he owns.**
+What you do to him:
 
-| His Pokémon | HP | *Burning Charge* does |
+| His Pokémon | HP | *Burning Charge* (130) | *Carnelian* (280) |
+| :--- | :--- | :--- | :--- |
+| Gastly | 70 | KO | KO |
+| Toxel | 70 | KO | KO |
+| Haunter | 100 | KO | KO |
+| Chansey | 120 | KO | KO |
+| Toxtricity | 140 | 10 short | KO |
+| Okidogi ex | 250 | two hits | KO |
+| **Gengar ex** | **280** | **three hits** | **KO, exactly** |
+| Blissey ex | 300 | three hits | plus one *Burning Charge* |
+| Mega Gengar ex | 350 | three hits | plus one *Burning Charge* |
+
+What he does to you:
+
+| His attack | Damage | Your Flareon ex (270 HP) |
 | :--- | :--- | :--- |
-| Koffing | 60 | KO |
-| Gastly | 70 | KO |
-| Haunter | 100 | KO |
-| **Weezing** | **130** | **KO, exactly** |
-| **Gengar** | **130** | **KO, exactly** |
+| *Chaotic Pain*, from Gengar ex | 130, as damage counters, on **any** of your Pokémon | lives at 140; two of them leave it at 10 |
+| *Void Gale*, from Mega Gengar ex | 230 | lives at 40 |
+| *Chain-Crazed*, from a Poisoned Okidogi ex | 260 | lives at **10** |
+| *Return*, from Blissey ex | 180 | lives at 90 |
 
-No set-up. No coin flips. No Leons in the discard pile. You attack, something dies.
+**Nothing he has knocks out a healthy Flareon ex in one hit.** Every one of them gets close, though, and almost any second hit finishes the job. A Flareon ex that grew from an Eevee hit by his [Risky Ruins](#eevee) starts at 250, and a Poisoned Okidogi ex's 260 knocks that one out in one hit.
 
-### Weezing — his early attacker (130 HP)
-
-It's a two-turn combo:
-
-- **Turn A:** *Pervasive Gas* — 30 damage, and your Active Pokémon is now **Confused**.
-- **Turn B:** *Crazy Blast* — **170 damage**, but only if that same Weezing used *Pervasive Gas* last turn.
-
-**170 does not knock out a Flareon ex.** 270 HP minus 170 is 100 left. In your old deck, 170 was exactly your Charizard's HP and Weezing was terrifying. Now it isn't.
-
-**The Confusion is the real threat, not the damage.** A Confused Flareon ex has to flip a coin to attack. Tails means no damage, 30 to itself, and your turn is over. That's a turn where you took zero Prizes and he got a free one.
-
-**How to fight it:** [Switch](#switch). Leaving the Active Spot clears Confusion instantly and costs no Energy. If you're Confused and you don't have a Switch, [Noctowl](#noctowl) can go and get one.
-
-### Gengar — his closer (130 HP)
-
-*Mind Jack* costs one Energy and does **10 damage, plus 30 for every Pokémon on YOUR Bench.**
-
-| Your Bench | *Mind Jack* does | Does it KO your Active Flareon ex? |
-| :--- | :--- | :--- |
-| 2 | 70 | No |
-| 3 | 100 | No |
-| 4 | 130 | No |
-| **5** | **160** | **No — 270 HP** |
-
-**Read that last column again.** Even with a full Bench, Gengar cannot knock out a Flareon ex in one hit. In your old deck a big Bench was dangerous. Here it mostly isn't.
-
-**But it kills everything else you own.** 130 knocks out a Noctowl. 70 knocks out a Hoothoot. So the rule is simple: **keep a Flareon ex in the Active Spot.** Never leave a Hoothoot or a Noctowl out front when a Gengar is ready.
-
-**Infinite Shadow:** when his Gengar is knocked out, the card goes back to his hand instead of the discard pile. **You still take your Prize card.** Never hesitate to knock out a Gengar.
-
-### His answer to *Tera* is Boss's Orders
+### His answer to *Tera* is Chaotic Pain
 
 This is the most important thing in this whole section.
 
-A [Flareon ex](#flareon-ex) or [Eevee ex](#eevee-ex) on your Bench cannot be attacked. He knows that. So his plan is **[Boss's Orders](#bosss-orders-ghetsis)** — it drags one of your Benched Pokémon into the Active Spot, where *Tera* stops working.
+*Tera* stops **damage from attacks**. His Gengar ex's *Chaotic Pain* doesn't do damage. It **places 13 damage counters** on 1 of your Pokémon, Active or Bench, and *Tera* has nothing to say about that.
 
-**And both of those are worth 2 Prize cards.** Boss's Orders is how he turns your safest Pokémon into his best target.
+So against your dad, the Bench is not a fortress.
 
-**So a hurt Flareon ex on your Bench is safe, but it is not safe forever.**
+- **A hurt Flareon ex on your Bench is not safe.** If it has 130 HP or less left, one *Chaotic Pain* knocks it out right there, and he takes 2 Prizes.
+- **A healthy one is.** Two Pains are 260, and a Flareon ex has 270. Keep loading your next attacker on the Bench like always.
+- **Your Eevee (50), Hoothoot (70), and Noctowl (100) die to one Pain, anywhere.** Each one is a Prize for him, and he likes shooting your Noctowl engine. Bench the ones you're about to use, not all four Hoothoot at once.
+- **Eevee ex (200) takes two Pains.**
 
-- If you have a Flareon ex at 40 HP hiding on the Bench, assume he will drag it out the moment he can.
-- The answer is to have a **second** healthy Flareon ex and a [Switch](#switch) in hand, so you can drag it right back.
-- Or knock him out first. If he has no Pokémon that can attack, Boss's Orders doesn't help him.
+**If a hurt Flareon ex is going to die anyway, let it swing one more time.** A Flareon ex that dies attacking took something with it. A Flareon ex that dies hiding on the Bench took nothing.
+
+He has a Boss's Orders too, but only one. *Chaotic Pain* is the card that beats *Tera*.
+
+### Mega Gengar ex shrinks your Prizes
+
+His Mega Gengar ex usually sits on his Bench and doesn't attack. It doesn't need to. Its Ability, *Shadowy Concealment*, says that when one of his **Darkness** Pokémon is knocked out by damage from an attack by your **Pokémon ex**, you take **1 fewer Prize card**.
+
+Flareon ex and Eevee ex are both Pokémon ex. So while that Mega is in play:
+
+| You knock out | Normally | With his Mega in play |
+| :--- | :--- | :--- |
+| Gastly, Toxel, Haunter, Toxtricity | 1 | **0** |
+| Gengar ex, Okidogi ex | 2 | **1** |
+| Mega Gengar ex itself | 3 | **2** |
+| Chansey | 1 | 1 |
+| Blissey ex | 2 | 2 |
+
+Read that first row again. With the Mega in play, knocking out a Gastly with a Flareon ex gets you **nothing**.
+
+Three ways around it:
+
+1. **Knock out the Mega.** 350 HP is three *Burning Charges*, or one *Burning Charge* and one *Carnelian*. Drag it out with [Boss's Orders](#bosss-orders-ghetsis) when you can hit it two turns in a row, because if he pulls it back with AZ's Tranquility it heals 80. Once it's gone, every knockout is full price again.
+2. **Take the Pokémon it doesn't cover.** Chansey and Blissey ex are Colorless, not Darkness, so they always pay full.
+3. **Finish with [Noctowl](#noctowl).** Noctowl isn't a Pokémon ex, so its knockouts always pay full. *Speed Wing* does 60. When one of his Pokémon is down to 60 HP or less, [Switch](#switch) a Noctowl in and let it take the Prizes.
+
+### Okidogi ex, his early attacker (250 HP)
+
+If your dad goes second, he can attack on his very first turn. Okidogi ex's *Poisonous Musculature* pulls two Energy out of his deck onto it and **Poisons it on purpose**, and a Poisoned Okidogi's *Chain-Crazed* does **260** the next turn.
+
+- **260 leaves your Flareon ex at 10.** It survives, unless it already has 20 on it from Risky Ruins.
+- **Two *Burning Charges* knock it out.** 130 + 130 is 260, and it only has 250. Poison also hurts it 10 between every turn, so it's usually less. *Carnelian* does it in one.
+- **Make it move.** Once Okidogi ex leaves the Active Spot, the Poison goes away and *Chain-Crazed* drops to 130. It costs 3 Energy to retreat, so he'd rather not.
+- **With his Mega in play, it's worth 1 Prize** to your Flareon ex, and 2 to your Noctowl.
+
+### Gengar ex, his closer (280 HP)
+
+Gengar ex is the Pokémon that throws *Chaotic Pain*. Two more things about it.
+
+**It has an Ability called *Fainting Spell*.** When a Gengar ex is knocked out by an attack, your dad flips a coin. Heads, the Pokémon that knocked it out is knocked out too, and he takes Prizes for it.
+
+**So pick what finishes it:**
+
+| How you knock it out | Prizes you take (Mega in play) | If his coin is heads |
+| :--- | :--- | :--- |
+| *Carnelian* for 280, in one hit | 1 (2 with no Mega) | he knocks out your Flareon ex: **2** Prizes for him |
+| Two *Burning Charges* (260), then Noctowl's *Speed Wing* for the last 20 | **2**, always | he knocks out your Noctowl: **1** Prize for him |
+
+The Noctowl way is slower, and it's worth more. *Carnelian* is the fast answer when his Mega isn't in play yet, and it leaves that Flareon ex unable to attack next turn, so have a fresh one ready behind it.
+
+**Watch for 20 damage already on it.** His Toxtricity loads Energy onto his Bench and puts 2 damage counters on whatever it loads. A Gengar ex carrying that 20 falls to two *Burning Charges*.
+
+### Blissey ex, the one to drag out
+
+Blissey ex has 300 HP and sits on his Bench moving his Energy around with an Ability called *Happy Switch*. It's the best [Boss's Orders](#bosss-orders-ghetsis) target in his deck, for two reasons:
+
+- **It's always worth 2 Prizes.** It's Colorless, so his Mega Gengar ex can't shrink it.
+- **It gets stuck.** It costs **4 Energy** to retreat, so once you drag it out it stays there unless he spends a Switch or an AZ's Tranquility on it.
+
+300 HP is three *Burning Charges*, or two and a Noctowl *Speed Wing* (130 + 130 + 60 = 320).
 
 ### His annoying cards
 
 | Card | What it does | What you do |
 | :--- | :--- | :--- |
-| **Dark Bell** | Confuses your Active Pokémon, for free, as an Item | Keep a [Switch](#switch) around. He can play several in a turn. |
-| **Risky Ruins** | 20 damage to each Basic you bench | You have no Stadium to replace it, so just accept it. It hits Eevee and Hoothoot, never Flareon ex. |
-| **Punk Helmet** | You take 40 damage for attacking the Pokémon wearing it | Flareon ex has 270 HP. Take the 40 and keep attacking. |
-| **Infinite Shadow** | His knocked-out Gengar goes back to his hand | **You still get the Prize card.** Knock it out anyway. |
-| **Boss's Orders** | Drags your benched Pokémon into the Active Spot | The one card that beats *Tera*. Plan for it. |
-| **Haunter — *Haunt*** | Places 3 damage counters (30) on your Active | Small. Ignore it and keep attacking. |
+| ***Chaotic Pain*** | 130 as damage counters on any of your Pokémon, Bench too | Don't hide hurt Pokémon. Keep healthy ones loaded. |
+| ***Shadowy Concealment*** | Your ex knockouts on his Darkness Pokémon pay 1 fewer Prize | Knock out the Mega, take Blissey ex and Chansey, and finish with Noctowl. |
+| ***Fainting Spell*** | Coin flip when his Gengar ex is knocked out; heads, your attacker goes too | Finish a Gengar ex with Noctowl when you can. |
+| **Risky Ruins** | 20 damage to each Basic you bench during a turn | You have no Stadium to replace it, so just accept it. It hits Eevee, Eevee ex, and Hoothoot, never Flareon ex or Noctowl. Play Poffin before it hits the table. |
+| **Boss's Orders** | Drags your benched Pokémon into the Active Spot | He runs one, and his Team Rocket's Petrel can go find it. |
+| **Neo Upper Energy** | One card pays for a whole *Chaotic Pain* or *Void Gale* | A Gengar ex can attack the turn it shows up. Don't count on a turn to get ready. |
 
 > [!IMPORTANT]
-> **The whole matchup in one sentence:** he cannot knock out a Flareon ex in one hit, and you can knock out anything he owns in one hit — so the only way you lose is by giving him **three** two-Prize knockouts. Protect your Flareon ex and you win.
+> **The whole matchup in one sentence:** nothing he has knocks out a healthy Flareon ex in one hit, but his counters go straight through *Tera* and his Mega Gengar ex makes your knockouts worth less, so take the Prizes his Mega can't shrink and never leave a hurt Flareon ex sitting where *Chaotic Pain* can reach it, which is everywhere.
 
 ---
 
@@ -1207,9 +1280,13 @@ The specific traps in *this* deck. Read this one twice.
 
 **Trying to use *Carnelian* or *Coruscating Quartz* without [Sparkling Crystal](#sparkling-crystal).** Both cost **[L] Lightning** and your deck has none. With the Crystal attached, drop the Lightning and both cost [R][W]; without it, they are not options.
 
-**Leaving a hurt Flareon ex in the Active Spot.** Below 170 HP a Weezing finishes it. That's 2 Prize cards you handed over for free. [Switch](#switch) it out.
+**Leaving a hurt Flareon ex in the Active Spot.** At 230 HP or less, his Mega Gengar ex's *Void Gale* finishes it. That's 2 Prize cards you handed over for free. [Switch](#switch) it out, and against your dad remember that the Bench only protects it from attacks, not from *Chaotic Pain*.
 
-**Leaving a Hoothoot or Noctowl Active when his Gengar is ready.** *Mind Jack* eats them. Keep a Flareon ex out front.
+**Hiding a Flareon ex with 130 HP or less on the Bench against your dad.** *Chaotic Pain* finishes it there. Swing with it instead.
+
+**Benching every Hoothoot you draw against your dad.** *Chaotic Pain* knocks out a Hoothoot or a Noctowl anywhere, for a Prize each. Bench the ones you're going to evolve soon.
+
+**Knocking out his Gastly with a Flareon ex while his Mega Gengar ex is in play.** That's zero Prizes. Hit something the Mega doesn't cover, or finish with Noctowl.
 
 **Evolving all three Noctowl at once.** You only get 3 *Jewel Seeker* uses in the whole game. Save one for when you actually need a specific card.
 
@@ -1258,8 +1335,10 @@ Every deck gives something up. Know yours before your opponent finds them.
 
 **Three knockouts and it's over.** [Flareon ex](#flareon-ex) and [Eevee ex](#eevee-ex) give up 2 Prize cards each, and they are the only Pokémon that win you games. [The Prize Race Changed](#5-the-prize-race-changed) is the manual; the summary is that you cannot afford a single free knockout.
 
-**Water Weakness ×2.** Nothing in dad's Gengar Gang is Water, so you will never feel this at home. A tournament room is different. One Water deck across the table and your 270 HP attacker takes double, which means medium attacks knock it out in one hit. When you see Water Energy on their side, keep the [rotation](#4-the-bench-is-a-fortress) tight and never leave a hurt Flareon ex in front.
+**Water Weakness ×2.** Nothing in your dad's Lucky Haunt is Water, so you will never feel this at home. A tournament room is different. One Water deck across the table and your 270 HP attacker takes double, which means medium attacks knock it out in one hit. When you see Water Energy on their side, keep the [rotation](#4-the-bench-is-a-fortress) tight and never leave a hurt Flareon ex in front.
 
-**Eevee ex is Weak to Fighting ×2.** A Fighting deck removes it almost on contact, which is exactly why the Fighting build on dad's shortlist hard-counters this one. Against Fighting, plain [Eevee](#eevee) is the safer start even though it is slower.
+**Eevee ex is Weak to Fighting ×2.** A Fighting deck removes it almost on contact. Your dad's Lucky Haunt has no Fighting Pokémon, so you meet this one at tournaments, not at home. Against Fighting, plain [Eevee](#eevee) is the safer start even though it is slower.
 
-**Damage counters go through Tera.** *Tera* stops damage from **attacks**. Effects that *place counters* skip it entirely: dad's Risky Ruins taxes your Basics as they arrive, and his [lantern deck's](./psychic-lanterns.md) Dusknoir and Froslass put counters straight onto your "untouchable" Bench. Against those decks the fortress has no walls, so win fast instead of slow.
+**Damage counters go through Tera.** *Tera* stops damage from **attacks**. Effects that *place counters* skip it entirely. Your dad's Risky Ruins taxes your Basics as they arrive, and his Gengar ex's *Chaotic Pain* puts 130 straight onto your "untouchable" Bench. His [lantern deck's](./psychic-lanterns.md) Dusknoir and Froslass do the same. Against those decks the fortress has no walls, so win fast instead of slow.
+
+**Your ex knockouts are worth less against a Mega Gengar ex.** Its *Shadowy Concealment* takes a Prize off every Darkness Pokémon your Pokémon ex knock out, and both of your attackers are Pokémon ex. [Mega Gengar ex shrinks your Prizes](#mega-gengar-ex-shrinks-your-prizes) has the ways around it.

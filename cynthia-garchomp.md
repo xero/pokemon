@@ -42,7 +42,7 @@
 | *Corkscrew Dive* | 1 | 100 | 160 | 190 |
 | *Draconic Buster* | 2 | 260 | 320 | **350** |
 
-**Weakness does the rest.** Against a Fighting-weak deck every number doubles, and Corkscrew with two Roserades is 320 for one Energy. That is the whole matchup against [the Gengar decks](#versus-the-kitchen-table).
+**Weakness does the rest.** Against a Fighting-weak deck every number doubles, and Corkscrew with two Roserades is 320 for one Energy. That is the whole matchup against [Lucky Haunt](#versus-the-kitchen-table).
 
 ---
 
@@ -176,7 +176,7 @@ Four copies. Shuffle your hand into your deck and draw six, or eight while you s
 
 ### Boss's Orders
 
-Four copies, the most in the field. Corkscrew takes a Knock Out every turn it can reach one, and Boss's Orders picks which. Against the Gengar decks it drags up the Mega Gengar ex, because a Buster on the Mega ends *Shadowy Concealment* for the rest of the game.
+Four copies, the most in the field. Corkscrew takes a Knock Out every turn it can reach one, and Boss's Orders picks which. Against Lucky Haunt it drags up the Mega Gengar ex, because a Buster on the Mega ends *Shadowy Concealment* for the rest of the game, or the Blissey ex, which is 2 Prizes that Concealment never covers.
 
 ### Hilda
 
@@ -241,7 +241,7 @@ It usually goes on the Garchomp in front, because 400 clears the format's 330 wa
 
 ### Team Rocket's Watchtower
 
-Colorless Pokémon in play, on both sides, have no Abilities. One copy. Nothing in this list is Colorless, so it only ever hurts the opponent, and it doubles as the answer to their Stadium. Against the Gengar decks it replaces Risky Ruins.
+Colorless Pokémon in play, on both sides, have no Abilities. One copy. Nothing in this list is Colorless, so it only ever hurts the opponent, and it doubles as the answer to their Stadium. Against Lucky Haunt it replaces Risky Ruins and switches off Blissey ex's *Happy Switch*, because Blissey ex is Colorless.
 
 ---
 
@@ -292,7 +292,7 @@ Boosts are the Roserades on your Bench and the Premium Power Pros you played thi
 
 | Counters on your Bench | Raging Curse | With two Roserades |
 | :--- | ---: | ---: |
-| 13, a Roserade that lived through one *Chaotic Pain* | 130 | 190 |
+| 13, a Weighted Roserade that lived through one *Chaotic Pain* | 130 | 190 |
 | 26, a Garchomp that took a Poisoned *Chain-Crazed* and retreated | 260 | 320 |
 
 ---
@@ -340,13 +340,25 @@ Against a deck that discounts Knock Outs by Pokémon ex, Spiritomb is the attack
 
 ## Versus the Kitchen Table
 
-**Versus [the Gengar decks](./dark-lucky.md).** This is the matchup the page exists for. Every Pokémon in Xero's Lucky Haunt is weak to Fighting, Chansey and Blissey ex included, so every number doubles. Corkscrew alone is 200, which kills Toxtricity, Haunter, and every Basic but the dog. One boost is 260 and kills Okidogi ex. Two boosts are 320 and kill Gengar ex and Blissey ex. Buster kills anything. Here is what they have.
+**Versus [Xero's Lucky Haunt](./dark-lucky.md).** This is the matchup the page exists for. Every Pokémon in it is weak to Fighting, Chansey and Blissey ex included, so every number doubles.
 
-- ***Chaotic Pain* places 13 counters on anything**, Bench included, and kills a bare Roserade, Gabite, Gible, or Spiritomb. Rocky stops it on a Fighting Pokémon, so a Gible or Gabite wearing one is safe. A Power Weight puts a Roserade out of reach.
-- ***Shadowy Concealment*, from a Mega Gengar ex on their Bench, takes one Prize off every Knock Out your Garchomp scores.** Boss's Orders and a Buster take the Mega for 2 and end it. Spiritomb isn't a Pokémon ex, so Concealment never applies to it.
-- ***Fainting Spell* flips a coin when a Gengar ex is Knocked Out by an attack**, and heads Knocks Out the attacker. It is an Ability, so Rocky doesn't stop it. When Spiritomb can take that Knock Out instead, the coin risks a one-Prize body instead of a Garchomp.
-- **Risky Ruins puts 2 counters on every Gible and Roselia you bench during a turn**, and they stay through evolution. Watchtower replaces it. Spiritomb is Darkness, so Ruins never touches it, and every Ruins counter on your Bench adds 10 to *Raging Curse*.
-- **A Poisoned Okidogi ex hits for 260.** That leaves a bare Garchomp at 70 and a Weighted one at 140. Retreat 0 means the damaged one steps back and feeds Spiritomb.
+| Boosts | Corkscrew into Weakness | Knocks Out |
+| :--- | ---: | :--- |
+| None | 200 | Gastly, Toxel, Haunter, Chansey, and Toxtricity |
+| One | 260 | Okidogi ex too, and a Gengar ex carrying *Sinister Surge*'s two counters |
+| Two | 320 | Gengar ex and Blissey ex too |
+| Three | 380 | Mega Gengar ex too |
+
+Buster is 520 and kills anything. Here is what Xero has.
+
+- ***Chaotic Pain* places 13 counters on anything**, Bench included, and kills a bare Roserade, Gabite, Gible, Roselia, Spiritomb, or Shaymin. Rocky stops it on a Fighting Pokémon, so a Gible, Gabite, or Garchomp wearing one is safe until a Buster throws the Rocky away. Roserade is Grass, so Rocky can't cover it, and a Power Weight is its only shield.
+- ***Shadowy Concealment*, from a Mega Gengar ex on his Bench, takes one Prize off every Knock Out your Garchomp scores on a Darkness Pokémon.** Boss's Orders and a Buster take the Mega for 2 and end it. Spiritomb isn't a Pokémon ex, so Concealment never applies to its Knock Outs.
+- **Chansey and Blissey ex are Colorless, so Concealment never covers them.** Blissey ex is 2 Prizes at Retreat 4, and a two-boost Corkscrew kills it. It works from the Bench, which is where four Boss's Orders find it.
+- **Team Rocket's Watchtower switches off *Happy Switch*.** Blissey ex is Colorless, so under the Tower it has no Ability, and the deck loses its free Energy move to the Active. Lucky Haunt replaces the Tower with Risky Ruins, and it runs two.
+- ***Fainting Spell* flips a coin when a Gengar ex is Knocked Out by damage from an attack**, and heads Knocks Out the attacker. It is an Ability, so Rocky doesn't stop it. When Spiritomb can take that Knock Out instead, the coin risks a one-Prize body instead of a Garchomp, and the Gengar ex pays its full 2.
+- **Risky Ruins puts 2 counters on every Gible, Roselia, and Shaymin you bench during your turn**, and they stay through evolution. Watchtower replaces it. Spiritomb is Darkness, so Ruins never touches it, and every Ruins counter on your Bench adds 10 to *Raging Curse*.
+- **A Poisoned Okidogi ex hits for 260.** That leaves a bare Garchomp at 70 and a Weighted one at 140. Going second, the dog attaches, uses *Poisonous Musculature* on turn 1, and swings for 260 on turn 2. Retreat 0 means the damaged Garchomp steps back and feeds Spiritomb, and Lucky Haunt's answer is to Pain the Spiritomb first.
+- **Lucky Haunt runs Neo Upper Energy too.** On a Stage 2 it pays a whole *Chaotic Pain* or *Void Gale*, so a Gengar ex that lands by Rare Candy attacks the same turn.
 
 How the Gengar deck plays against this is in [Versus Cynthia's Garchomp ex](./dark-lucky.md#versus-cynthias-garchomp-ex).
 
