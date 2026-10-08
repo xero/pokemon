@@ -115,7 +115,7 @@ Three copies. Fighting Gong, Poke Pad, and Ultra Ball all find it.
 
 ***Ear Force* is [C][C][C] for 20, plus 80 for each Energy attached to the opponent's Active Pokémon.** A Mega Excadrill ex holding four Energy takes 340, which is exactly its HP.
 
-**Only Ultra Ball finds it.** It is Colorless, so Fighting Gong misses it, and it has a Rule Box, so Poke Pad does too. It is also a 3-Prize body that is weak to Fighting. Get it out of the Active Spot once its job is done, and against Elliot's Garchomp leave it in the deck.
+**Only Ultra Ball finds it.** It is Colorless, so Fighting Gong misses it, and it has a Rule Box, so Poke Pad does too. It is also a 3-Prize body that is weak to Fighting. Get it out of the Active Spot once its job is done, and against Elliott's Garchomp leave it in the deck.
 
 ### Lunatone
 
@@ -392,7 +392,7 @@ The Wednesday league at CardCrate draws from this field. Mega Zygarde is a fring
 | :--- | :--- | :--- |
 | [Steve's Dragapult ex](./dragons.md) | *Phantom Dive* is 200 to the Active and 6 damage counters across your Bench | A Zygarde takes the 200 and lives. *Geobuster* kills its 320, and so do two Gaia Waves. Bench Binacle only when it evolves next turn. |
 | [Matt's Mega Excadrill ex](./metal-excadrill.md) | *Maximum Drilling* is 330 with two extra Energy, which kills a bare Zygarde | A Zygarde that used *Gaia Wave* takes 300 and lives on 10. *Geobuster* kills its 340. *Ear Force* does exactly 340 to an Excadrill holding four Energy. |
-| [Elliot's Cynthia's Garchomp ex](./cynthia-garchomp.md) | *Draconic Buster* is 260, plus 30 for each Roserade and 30 for Premium Power Pro. Roserade's *Leaf Step* is Grass, and every Fighting Pokémon here is weak to it. | *Geobuster* kills a bare Garchomp at 330. Cynthia's Power Weight makes it 400, which two Gaia Waves reach exactly. Audino is weak to Fighting and stays in the deck. |
+| [Elliott's Cynthia's Garchomp ex](./cynthia-garchomp.md) | *Draconic Buster* is 260, plus 30 for each Roserade and 30 for Premium Power Pro. Roserade's *Leaf Step* is Grass, and every Fighting Pokémon here is weak to it. | *Geobuster* kills a bare Garchomp at 330. Cynthia's Power Weight makes it 400, which two Gaia Waves reach exactly. Audino is weak to Fighting and stays in the deck. |
 | Crustle | *Mysterious Rock Inn* prevents all damage from Pokémon ex. *Superb Scissors* is 120, doubles into Zygarde's Grass Weakness, and ignores Gaia Wave's shield. | Barbaracle's *Hammer In* at 80 and Solrock's *Cosmic Beam* at 70 are not ex, and together they kill its 150. |
 
 ---

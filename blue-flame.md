@@ -374,10 +374,10 @@ Shares from [the Limitless online ladder](https://play.limitlesstcg.com/decks?ga
 | Mega Excadrill ex, which Matt plays | 4.6% | **The best matchup.** Excadrill is Fire-weak, so the Nitro and one Bench Fire kill the 340 HP body, and *Maximum Drilling* tops out at 330, which a Charizard survives. Metang and Genesect ex are Fire-weak too. The ladder has only two games of this matchup, both losses, so trust the math over the record. |
 | Crustle | 2.9% | *Mysterious Rock Inn* blocks every ex in the deck. Ho-Oh's *Bright Wing* doubles to 260 into 150 HP; see [game plan 5](#5-crustle-night). |
 | Mega Sharpedo ex, which Steve played on September 23 | 2.0% | *Hungry Jaws* is 270, or 310 with Binding Mochi, and a Charizard survives both. Four Fire kills the 330 HP body. |
-| Cynthia's Garchomp ex, which Elliot plays | 1.5% | *Draconic Buster* is 260 plus 30 for each Roserade and Premium Power Pro, so it takes four boosts, 380, to kill a Charizard. Four Fire kills a bare Garchomp at 330, and five kills one in Cynthia's Power Weight at 400. |
+| Cynthia's Garchomp ex, which Elliott plays | 1.5% | *Draconic Buster* is 260 plus 30 for each Roserade and Premium Power Pro, so it takes four boosts, 380, to kill a Charizard. Four Fire kills a bare Garchomp at 330, and five kills one in Cynthia's Power Weight at 400. |
 | Cinccino ex | 0.2% | 240 HP, so three Fire, but *Smooth Coat* flips a coin against every hit. |
 
-**Elliot's Roserade are the quiet threat.** Each one adds 30 to his Garchomp. Each one is also Fire-weak and dies to a single Fire, 180 into 130, or two if it wears a Power Weight. Charizard Y reaches it on the Bench without a Boss's Orders.
+**Elliott's Roserade are the quiet threat.** Each one adds 30 to his Garchomp. Each one is also Fire-weak and dies to a single Fire, 180 into 130, or two if it wears a Power Weight. Charizard Y reaches it on the Bench without a Boss's Orders.
 
 ---
 
@@ -406,7 +406,7 @@ Cards and packages considered for this build, and the reason each one is not in 
 | Meowth ex (Perfect Order 062) | 1 Heatmor | Firebreather keeps arriving late. *Last-Ditch Catch* searches for any Supporter when it is benched, so it finds Firebreather without spending the turn's Supporter. It is 2 Prizes on the Bench |
 | Prime Catcher (ACE SPEC) | Precious Trolley | Firebreather and Boss's Orders keep colliding. It gusts and switches as an Item, so the big turn picks its target too |
 | Max Rod (ACE SPEC) | Precious Trolley | long games run out of fuel. Five Pokémon or Basic Energy back to hand is 450 of Fire in one card |
-| Blowtorch (Phantasmal Flames) | 1 Switch | Elliot's Power Weight decides the Garchomp game. Discard a Basic Fire from your hand to discard a Tool, a Special Energy, or a Stadium. Without the Weight, Garchomp is a four-Fire kill, and Retrieval brings the Fire back |
+| Blowtorch (Phantasmal Flames) | 1 Switch | Elliott's Power Weight decides the Garchomp game. Discard a Basic Fire from your hand to discard a Tool, a Special Energy, or a Stadium. Without the Weight, Garchomp is a four-Fire kill, and Retrieval brings the Fire back |
 | Reshiram (Phantasmal Flames 017) | Ho-Oh | you want more damage from the single-Prize slot. *Burning Flare* is [R][R][R][R] for 240 and 60 to itself; Turbo loads it in one turn |
 | Delphox line (Chaos Rising) | 2 Heatmor and 1 Dawn | you want a draw engine. *Flaring Magic* discards a Basic Fire from your hand to draw up to 7, and Retrieval brings that Fire back. Five of the top lists run it, but it is a second Stage 2 line fighting Charizard for Candy and Bench seats |
 | Energy Recycler | 1 Heatmor | the second Firebreather finds too little. It shuffles 5 Basic Energy from the discard back into the deck |

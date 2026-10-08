@@ -902,9 +902,9 @@ shelf = "opponent"
 sprites = ["gible", "garchomp"]
 mascot = ["roserade", "garchomp"]
 blurb = """
-A model of Elliot's Wednesday league deck, built from the list the field
-copies. Garchomp attacks for one Energy and draws back to six, every Roserade
-adds 30, and against a Fighting-weak deck all of it doubles."""
+Elliott's Wednesday league deck, card for card. Garchomp attacks for one
+Energy and draws back to six, every Roserade adds 30, and a Battle Cage keeps
+snipes off the Bench. Against a Fighting-weak deck all of it doubles."""
 
 # gabite, roselia, and roserade were promoted from assets/ani for this page
 [deck.flavor]
@@ -916,15 +916,16 @@ adds 30, and against a Fighting-weak deck all of it doubles."""
 "Cynthia's Roselia" = ["roselia"]
 "Cynthia's Roserade" = ["roserade"]
 "Cynthia's Spiritomb" = ["spiritomb"]
-"Shaymin" = ["shaymin"]
+"Meowth ex" = ["meowth"]
 "Damage Math" = ["garchomp"]
 "The Prize Map" = ["garchomp"]
-"1. The Poffin turn" = ["gible"]
+"1. The Trolley turn" = ["gible"]
 "2. Gabite, then Champion's Call every turn" = ["gabite"]
 "3. Garchomp on turn 3" = ["garchomp"]
 "4. Corkscrew every turn" = ["roserade", "garchomp"]
 "5. Buster for the big one" = ["garchomp"]
 "6. Spiritomb for the taxed room" = ["spiritomb"]
+"7. The Cage, once a game" = ["roserade"]
 "Versus the Kitchen Table" = ["gengar", "gengar-mega"]
 "The Field" = ["pokedex"]
 "Tells at the Table" = ["xatu"]

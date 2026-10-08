@@ -172,9 +172,9 @@ Two copies. Poke Pad, Dawn, and *Call for Family* find it; Poffin can't, at 120 
 
 ***Return* does 180 for [C][C][C], and then draws until the hand holds six.** The draw is optional.
 
-**It is a hole in the tax.** Colorless means Concealment never covers it, so it costs 2 Prizes to anything that knocks it out, and Retreat 4 means it leaves the Active only by Switch or AZ's. It sits on the Bench and works from there. The Azumarill loss had it dragged up by Boss's Orders and taken for 2.
+**It is a hole in the tax.** Colorless means Concealment never covers it, so it costs 2 Prizes to anything that knocks it out, and Retreat 4 means it leaves the Active only by Switch or AZ's. It sits on the Bench and works from there. The Azumarill game had it dragged up by Boss's Orders and taken for 2.
 
-**Check *Happy Switch* before every attack.** It is the easiest Ability in the deck to forget. In the Metagross win it fired once in five turns, and in the Azumarill loss a turn-3 *Happy Switch* moving the Toxel's Energy would have readied the Gengar ex.
+**Check *Happy Switch* before every attack.** It is the easiest Ability in the deck to forget. In the Metagross game it fired once in five turns, and in the Azumarill game a turn-3 *Happy Switch* moving the Toxel's Energy would have readied the Gengar ex.
 
 Two copies, so one survives a Prize card. Hilda and Dawn find it; Grimsley's can't, since it isn't Darkness. Only one goes on the board at a time, because a second is two more Prizes that nothing discounts.
 
@@ -210,7 +210,7 @@ The odds, and when to play it, are in [Grimsley's Move odds](#grimsleys-move-odd
 
 ### Dawn
 
-**It searches the deck for a Basic, a Stage 1, and a Stage 2 Pokémon.** Two copies. One card sets up a whole line: Gastly, Haunter, and a Gengar, or Toxel, Toxtricity, and a Gengar, or Chansey, Blissey ex, and a Gengar. [Build order](#build-order) says which line comes first; in the mirror loss it took Chansey, Blissey ex, and the Mega on turn 4, once Toxtricity was Surging, and the Mega landed by Candy the same turn.
+**It searches the deck for a Basic, a Stage 1, and a Stage 2 Pokémon.** Two copies. One card sets up a whole line: Gastly, Haunter, and a Gengar, or Toxel, Toxtricity, and a Gengar, or Chansey, Blissey ex, and a Gengar. [Build order](#build-order) says which line comes first; in a mirror game it took Chansey, Blissey ex, and the Mega on turn 4, once Toxtricity was Surging, and the Mega landed by Candy the same turn.
 
 **Its Stage 2 pick is the matchup call**, from [Which Stage 2 gets the Candy](#which-stage-2-gets-the-candy). When Grimsley's is the plan for the Mega, Dawn takes Gengar ex and leaves the Mega in the deck.
 
@@ -269,7 +269,7 @@ It does three jobs in one Supporter. It Poisons a dog again after it left the Ac
 - **It works under Item lock.** Budew's *Itchy Pollen* and Jellicent ex's *Oceanic Curse* turn off Switch and Rare Candy, and AZ's still moves.
 - **It is the dog's exit.** A dog that leaves by AZ's keeps its Energy and comes back 80 healthier.
 - **It is the Mega's return ticket.** The Mega swings *Void Gale*, takes the hit, and AZ's sends it home with Concealment still on.
-- **It is Blissey's exit.** Blissey ex costs four to retreat, and AZ's pulls it back healed 80. In the mirror loss, AZ's healed the Mega to full and put Blissey in front, and the opponent's next turn found no Knock Out.
+- **It is Blissey's exit.** Blissey ex costs four to retreat, and AZ's pulls it back healed 80. In a mirror game, AZ's healed the Mega to full and put Blissey in front, and the opponent's next turn found no Knock Out.
 
 Three misuses tempt everyone. AZ's on the attacker wastes the attacker unless the next one is loaded. AZ's on a Gengar ex that would die to the hit anyway throws away the coin, since standing flips and pulling doesn't. And AZ's over Lillie's on a bricked hand draws no cards.
 
@@ -347,7 +347,7 @@ Ten, and the count is deliberately lower than it looks. *Poisonous Musculature*,
 
 **On a Gengar ex or the Mega it is a whole attack.** One attachment pays [D][D], so a Gengar ex that lands by Candy swings *Chaotic Pain* the same turn. On a dog it is [C], which still pays *Musculature*.
 
-**It took the Cape's slot on Live and kept it.** One Neo Upper paid for three straight Pains in the Hop's Zacian game, paid for a turn-3 Pain alone in the Igglybuff win, and paid for both Pains on turns 3 and 4 of the mirror loss with no other Energy in hand. In the N's Zoroark win it bought a turn-7 attack outright, again with no other Energy in hand.
+**It took the Cape's slot on Live and kept it.** One Neo Upper paid for three straight Pains in the Hop's Zacian game, paid for a turn-3 Pain alone in the Igglybuff game, and paid for both Pains on turns 3 and 4 of a mirror game with no other Energy in hand. In the N's Zoroark game it bought a turn-7 attack outright, again with no other Energy in hand.
 
 **Most of the deck can't touch it.** Hilda finds it, and nothing else does. *Happy Switch*, Energy Recycler, Janine's, and Surge all read Basic Energy, and Petrel reads Trainers. *Void Gale* can move it, but off a Stage 2 it drops back to [C], so the Mega moves a Basic instead.
 
@@ -395,7 +395,7 @@ The Prize column assumes Mega Gengar is on the Bench and their attacker is a Pok
 
 ## The Hard Rules
 
-Every Live loss with this deck traces back to one of these. Each has a number behind it. The card sections above explain the cards; this section explains the decisions.
+Every rule here comes from a Live game, and each has a number behind it. The card sections above explain the cards; this section explains the decisions.
 
 ### Which Stage 2 gets the Candy
 
@@ -403,13 +403,13 @@ Every Live loss with this deck traces back to one of these. Each has a number be
 | :--- | :--- | :--- |
 | Pokémon ex and Megas | **Mega Gengar ex, parked on the Bench** | *Shadowy Concealment* takes a Prize off every Knock Out their ex scores. Against Mega Zygarde it would have turned their 6 Prizes into 2. |
 | Mega Lucario ex, with three Boss's Orders | **Gengar ex** | *Mega Brave* kills anything, and a parked Mega is 2 Prizes they can drag up and take. The Mega comes only when Haunter hands it over free. |
-| Cynthia's Garchomp ex | **Mega Gengar ex, parked** | Concealment still pays against an ex attacker, even though *Draconic Buster* does 640 to a Mega. |
-| Single-Prize attackers | **Gengar ex and the dogs, never the Mega** | Concealment never applies, so the Mega is 3 Prizes for nothing. One dragged-up Mega lost the Dhelmise game. |
+| Cynthia's Garchomp ex | **Mega Gengar ex, parked** | Concealment pays until he spends a Boss's Orders and a *Draconic Buster* on it, and the Buster empties that Garchomp. |
+| Single-Prize attackers | **Gengar ex and the dogs, never the Mega** | Concealment never applies, so the Mega is 3 Prizes for nothing. In the Dhelmise game, one dragged-up Mega handed them their last 3 Prizes. |
 | Munkidori on their Bench | **Gengar ex first** | Moved counters skip Concealment and *Fainting Spell*, and *Chaotic Pain* is what kills Munkidori. |
 
 Four more rules sit under the table:
 
-- **Search before the Candy.** Play Dawn, Hilda, and Petrel first, then pick the Candy's target. The Zygarde loss spent its Candy on a Gengar ex one card before Hilda brought the Mega.
+- **Search before the Candy.** Play Dawn, Hilda, and Petrel first, then pick the Candy's target. The Zygarde game spent its Candy on a Gengar ex one card before Hilda brought the Mega.
 - **One Mega on the board, never two.** Concealment doesn't stack, so a second one is two more Prizes in the open for nothing.
 - **Grimsley's can't reach the hand.** It only looks at the deck. Once both Megas are in hand, the only route left is a Gastly that has sat a turn plus a Rare Candy, so think twice before Hilda pulls a Mega that Grimsley's could have benched.
 - **Haunter is the safe step.** When a Gastly is exposed and the Candy has no good target yet, Haunter takes it to 100 HP, stays one Prize, and becomes Gengar ex next turn without a Candy.
@@ -423,7 +423,7 @@ Four more rules sit under the table:
 | **Surge the next attacker, and prefer a body that shrugs off 20.** | A benched dog (250) or the parked Mega (350) takes Surge's counters without changing a breakpoint. A benched Haunter is the classic target, because it evolves into a Gengar ex already holding [D]. |
 | **Against Fighting and Metal, feed the dogs and never the ghosts.** | Surge's 20 turns a 280 Gengar ex into a 260 one, and a bare *Aura Jab* into Fighting Weakness is exactly 260. So is a *Corkscrew Dive* with one Roserade or Premium Power Pro. Against Mega Excadrill, a Surged Mega Gengar is exactly 330. |
 | **Bank a Surge, then *Happy Switch* it forward.** | Surge only reaches the Bench, and *Happy Switch* moves a Basic Energy anywhere, Active included, once a turn for free. Bank on the parked Mega (350) or a benched dog, where the 20 changes nothing. |
-| **Bank on Toxtricity itself only when nothing places counters.** | Opponents drag Toxtricity up to strand it, and Energy it banked pays its own Retreat Cost of 2. But Toxtricity lives through *Chaotic Pain* at 140 and dies to it at 120, and that 20 lost the mirror on Live. Once it is Active, it can't Surge itself; Live used to allow that, and a September 2026 update fixed it. |
+| **Bank on Toxtricity itself only when nothing places counters.** | Opponents drag Toxtricity up to strand it, and Energy it banked pays its own Retreat Cost of 2. But Toxtricity lives through *Chaotic Pain* at 140 and dies to it at 120, and in a Live mirror that 20 handed them their fifth Prize. Once it is Active, it can't Surge itself; Live used to allow that, and a September 2026 update fixed it. |
 | **Against Bench damage and counter-multipliers, Surge only what attacks this turn.** | *Jetting Blow*'s 50 plus Surge's 20 is a dead Gastly. *Spiritual End* quadruples counters already on the board, and *Matcha Spin* adds four to everything. |
 | ***Happy Switch* or Janine's is how an Active Gengar gets its second Energy.** | Surge never reaches the Active Spot. *Happy Switch* moves one there from any body holding a Basic Energy. Janine's reaches any two Darkness Pokémon, Active or Benched, and Poisons the Active only if it took an Energy. |
 | **Retreat is Energy.** | Retreat Costs are paid in Energy, 4 for Blissey ex, 3 for a dog, and 2 for either Gengar, Toxtricity, or Chansey. One Live game burned 7 Energy on retreats. Count every retreat as a self-inflicted Crushing Hammer, and use Switch or AZ's. |
@@ -437,7 +437,7 @@ Four more rules sit under the table:
 | 3 | Draw, search, and Energy engines: Lunatone (110), Dunsparce (60 or 70), Metang (100), Kadabra (80), Cynthia's Gabite (100) | Cut the fuel and their big attacker arrives late or not at all. |
 | 4 | Eevee, before it becomes Espeon | *Miraculous Shine* devolves every evolved Pokémon the deck has in play. Anything Grimsley's benched never evolved, so it stays. |
 
-- **Read the Ability before picking a target.** One Live loss came from a turn-2 *Chaotic Pain* into a Poltchageist, which ignores it. The Eevee beside it was a free Prize, and the game ended one Prize short.
+- **Read the Ability before picking a target.** One Live game spent a turn-2 *Chaotic Pain* on a Poltchageist, which ignores it. The Eevee beside it was a free Prize, and the game ended one Prize short.
 - **Read their Energy and their Stadium too.** Mist Energy, Rocky Fighting Energy, and Battle Cage each make a target untouchable; [Cards to Watch Out For](#cards-to-watch-out-for) lists every card that does.
 - **It can't one-shot** Mew ex (160), Dhelmise (140), Fezandipiti ex (210), a healthy Stage 2 ex, or any Cynthia's Pokémon wearing Cynthia's Power Weight (+70). Alakazam (140) dies to it only after a Risky Ruins chip on the Abra. Crustle (150, or 170 with Growing Grass Energy) needs a chip too, and Haunter's *Spooky Shot* for 40 covers either.
 - **Counters ignore Weakness.** Against a Darkness-weak target, a dog or *Void Gale* doubles and *Chaotic Pain* doesn't.
@@ -617,7 +617,7 @@ Against Pokémon ex attackers, the Mega is due before anything on the board take
 2. **Rare Candy on a Gastly that has sat a turn.** Search first, so the Candy goes on the right Stage 2.
 3. **Haunter, the turn after.** Slow but free, and a benched Haunter can take a Surge on the way.
 
-**Keep one Mega in the deck while Grimsley's is the route.** A Mega in hand needs a Gastly and a Candy. The Zygarde loss had both Megas in hand by turn 3 and no Gastly to put them on.
+**Keep one Mega in the deck while Grimsley's is the route.** A Mega in hand needs a Gastly and a Candy. The Zygarde game had both Megas in hand by turn 3 and no Gastly to put them on.
 
 The exceptions are in [Which Stage 2 gets the Candy](#which-stage-2-gets-the-candy). Never build it against single-Prize attackers, and build Gengar ex first against Munkidori and against Mega Lucario.
 
@@ -661,7 +661,7 @@ Keep the board's payout at four or less against ex attackers.
 2. ***Happy Switch* that Energy onto the attacker**, then make the turn's attachment. The Active gains two Energy, and only one came from the hand.
 3. **Swing.** A *Void Gale* sends one Energy back to the Bench, and next turn's *Happy Switch* returns it.
 
-**The mirror loss ran it on turn 5.** A Surge and a *Happy Switch* put two Energy on a benched Mega with none in hand, Switch brought it up, and *Void Gale* took Pecharunt ex. The opponent in the first mirror loss ran the same loop with their own Blissey and swung *Void Gale* five turns running.
+**A mirror game ran it on turn 5.** A Surge and a *Happy Switch* put two Energy on a benched Mega with none in hand, Switch brought it up, and *Void Gale* took Pecharunt ex. The opponent in the first mirror game ran the same loop with their own Blissey and swung *Void Gale* five turns running.
 
 **The ferry only works while Blissey ex lives on the Bench.** It is 2 Prizes and an easy Boss's Orders target, so the board keeps a second Energy route ready: Janine's, Neo Upper on the next Stage 2, or a Haunter that Surge fed.
 
@@ -678,11 +678,11 @@ Keep the board's payout at four or less against ex attackers.
 | **Poltchageist, Sinistcha, and Banette** (Pitch Black), *Hide 'n' Sneak* | *Chaotic Pain*, and *Fainting Spell*'s coin too, since it stops the effects of Abilities as well as attacks | Damage. A dog or *Void Gale* kills any of them, and *Spooky Shot* kills a Poltchageist. | Dhelmise, Baby Box |
 | **Empoleon ex** (320), **Skeledirge** (180), **Antique Cover Fossil** (60) | *Chaotic Pain* on themselves | Damage. A dog kills Skeledirge in one swing, and the Fossil falls to anything. Empoleon ex takes two hits. | |
 | **Team Rocket's Articuno** (120) | *Chaotic Pain* on every Basic Team Rocket's Pokémon, itself included | A dog or *Void Gale* kills the Articuno, and then Pain reaches the rest. | |
-| **Battle Cage**; **Rabsca** (Temporal Forces, 70) | *Chaotic Pain* on their whole Bench. Rabsca stops damage there too. | Risky Ruins replaces the Cage. Rabsca is only safe on the Bench, so Boss's Orders brings it up and anything kills it. | Charizard, Baby Box |
+| **Battle Cage**; **Rabsca** (Temporal Forces, 70) | *Chaotic Pain* on their whole Bench. Rabsca stops damage there too. | Risky Ruins replaces the Cage. Rabsca is only safe on the Bench, so Boss's Orders brings it up and anything kills it. | Charizard, Baby Box, Cynthia's Garchomp |
 | **Crustle**, *Mysterious Rock Inn*; **Sylveon** (Prismatic Evolutions, 120), *Safeguard* | damage from every Pokémon ex: the dogs, *Void Gale*, and *Return* | Counters aren't damage, so one Pain kills the Sylveon. Crustle is in [Versus Crustle](#versus-crustle). | Crustle |
 | **Cornerstone Mask Ogerpon ex** (210) | damage from any attacker with an Ability, which is both Gengars, Toxtricity, and Blissey ex | A dog's 260 kills it, and Pain still lands. Gastly, Haunter, Toxel, and Chansey have no Ability, so their attacks hit it too. | |
 | **Neutralization Zone** | damage from your Pokémon ex to their Pokémon with no Rule Box | Pain them, or hit with Toxtricity, Haunter, or Chansey. Risky Ruins replaces it, and as an ACE SPEC it can't come back. | |
-| **Team Rocket's Watchtower** | *Happy Switch*, because Colorless Pokémon have no Abilities and Blissey ex is Colorless | Risky Ruins replaces it, and Petrel finds the Ruins. Janine's is the Energy route that doesn't need Blissey. | Elliot's Garchomp, N's Zoroark |
+| **Team Rocket's Watchtower** | *Happy Switch*, because Colorless Pokémon have no Abilities and Blissey ex is Colorless | Risky Ruins replaces it, and Petrel finds the Ruins. Janine's is the Energy route that doesn't need Blissey. | N's Zoroark |
 | **Gastrodon** (130), on their Bench | *Shadowy Concealment*, because Benched Stage 2 Pokémon have no Abilities and the parked Mega is one | One *Chaotic Pain* kills it exactly. | |
 | **Iron Thorns ex** (230), in their Active Spot | Concealment, *Fainting Spell*, and *Happy Switch*, because Pokémon with a Rule Box have no Abilities. Surge still works. | A Poisoned dog's 260 kills it. | |
 | **Flutter Mane** (Temporal Forces, 90), in their Active Spot | *Fainting Spell*, and every Ability on your Active | One *Chaotic Pain* kills it. | |
@@ -691,14 +691,14 @@ Keep the board's payout at four or less against ex attackers.
 | **Crushing Hammer** | any Energy, on heads | Take both from *Musculature*, and hold the Recycler. | online Dragapult, Toxtricity Box |
 | **Festival Grounds** | Poison, so *Chain-Crazed* stays at 130 | Risky Ruins replaces it. | |
 | **Budew, Flaaffy, Frillish, Galvantula ex** for a turn; **Jellicent ex, Tyranitar** while Active | Items: Rare Candy, Switch, Poffin, and Poke Pad | AZ's, Grimsley's, Janine's, and Surge all still work. | Dragapult |
-| **Special Red Card, Unfair Stamp, Judge, Xerosic's Machinations, Eri** | the hand. Eri discards two Items. | Bench Pokémon as they're drawn, and play Items rather than hold them. Eri took two Rare Candy in the Crustle loss. | N's Zoroark, Baby Box, Mega Lucario, Crustle, the Gengar mirror |
+| **Special Red Card, Unfair Stamp, Judge, Xerosic's Machinations, Eri** | the hand. Eri discards two Items. | Bench Pokémon as they're drawn, and play Items rather than hold them. Eri took two Rare Candy in the Crustle game. | N's Zoroark, Baby Box, Mega Lucario, Crustle, the Gengar mirror, Cynthia's Garchomp |
 | **Legacy Energy** | one Prize, off one Knock Out by damage | Pain the Pokémon holding it; counters aren't damage. | Baby Box |
 
 ---
 
 ## Versus the Card Shop
 
-The Live ladder is where this deck practices, and league is where it plays. Shares below come from [Limitless Play](https://play.limitlesstcg.com/decks?game=PTCG&format=standard) online tournaments since 30th Celebration went legal, pulled 2026-09-25. Gengar ex decks there sit at 0.65% of the field with a 38% win rate, and they do worst against Alakazam (18%), Crustle (14%), Mega Excadrill (17%), and Dragapult (about 30%). The samples are small, and none of those lists run the dogs.
+The Live ladder is where this deck practices, and league is where it plays. Shares below come from [Limitless Play](https://play.limitlesstcg.com/decks?game=PTCG&format=standard) online tournaments since 30th Celebration went legal, pulled 2026-09-25. Gengar ex decks there sit at 0.65% of the field, and none of those lists run the dogs.
 
 **Three kinds of room decide the build.**
 
@@ -716,7 +716,7 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 | Slowking | 6.1% | [The rest of the room](#the-rest-of-the-room) |
 | Basic Box | 4.8% | [The rest of the room](#the-rest-of-the-room) |
 | Mega Excadrill ex | 4.5%, and Matt every week at league | [Versus Mega Excadrill ex](#versus-mega-excadrill-ex) |
-| Cynthia's Garchomp ex | Elliot, every week at league | [Versus Cynthia's Garchomp ex](#versus-cynthias-garchomp-ex) |
+| Cynthia's Garchomp ex | Elliott, every week at league | [Versus Cynthia's Garchomp ex](#versus-cynthias-garchomp-ex) |
 | Mega Lucario ex, both builds | 3.9% | [Versus Mega Lucario ex](#versus-mega-lucario-ex) |
 | Dhelmise | 3.9% | [Versus Dhelmise](#versus-dhelmise) |
 | Crustle | 3.1%, and common at league | [Versus Crustle](#versus-crustle) |
@@ -770,7 +770,7 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 | Mega Zygarde ex, a 310 HP Basic | *Chain-Crazed* for 260 plus anything, or *Fainting Spell* |
 | Lunatone 110, Solrock 110, Binacle into Barbaracle, which attaches from hand every turn | *Chaotic Pain* on the draw and the Energy |
 
-- **Mega first.** Every Knock Out they took in the Live loss would have cost one Prize less, and their 6 would have been 2. Nothing here survives 400, so the tax is the whole defense, and Blissey ex is the one body it doesn't cover.
+- **Mega first.** Every Knock Out they took in the Live game would have cost one Prize less, and their 6 would have been 2. Nothing here survives 400, so the tax is the whole defense, and Blissey ex is the one body it doesn't cover.
 - **Search before the Candy.** That game's Candy went on a Gengar ex one card before Hilda brought the Mega.
 - ***Fainting Spell* is live.** It took a 3-Prize Zygarde in that game.
 - ***Nullifying Zero*** costs five Energy and flips a coin for each Pokémon on the deck's side, 150 on every heads. It is their late-game Bench wipe, and a small Bench limits it.
@@ -779,14 +779,36 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 
 | Their number | The answer |
 | :--- | :--- |
-| *Corkscrew Dive*: 100 for one Energy, and they draw to 6 | 200 into Fighting Weakness, and every Roserade or Premium Power Pro adds 60 more |
-| *Draconic Buster*: 260 for two Energy, then every Energy on it is discarded | 520 or more into Fighting Weakness, so nothing survives it. Neo Upper Energy pays for one with a single card, once a game. |
-| Garchomp ex: 330 HP, 400 under Cynthia's Power Weight, Retreat 0, holding Rocky Fighting Energy | nothing one-shots it, and *Chaotic Pain* can't touch it while the Rocky is on |
-| Cynthia's Power Weight, three copies: +70 HP on any Cynthia's Pokémon | *Chaotic Pain* kills only what's bare. A Weighted Roserade is 200, a Gabite 170, and a Gible or Roselia 140. |
-| Cynthia's Spiritomb: *Raging Curse* does 10 for every counter on their Benched Cynthia's Pokémon, for [C], ignoring Weakness | every counter left on their Bench comes back at the deck, from a single-Prize attacker that skips Concealment |
-| Roserade 130, Gabite 100, and Gible, Roselia, and Spiritomb at 70, with no Weight and no Rocky | one *Chaotic Pain* each |
+| *Corkscrew Dive*: 100 for one Energy, and he draws to 6 | 200 into Fighting Weakness, and every Roserade or Premium Power Pro adds 60 more |
+| *Draconic Buster*: 260 for two Energy, then every Energy on it is discarded | 520 or more, so nothing survives it. He runs no Neo Upper, so a Garchomp that Busters can only Corkscrew next turn. |
+| Garchomp ex: 330 HP, 400 under Cynthia's Power Weight, Retreat 0 | nothing one-shots it. Each one costs two hits, or a *Fainting Spell* coin. |
+| One Rocky Fighting Energy | *Chaotic Pain* can't touch the one line holding it, and every other Garchomp is in reach |
+| Battle Cage, one copy | no Pain on his Bench while it stands. Risky Ruins replaces it, and it can't come back. |
+| Four Cynthia's Power Weights, +70 HP on any Cynthia's Pokémon | Pain kills only what's bare or chipped. Weighted, a Roserade is 200, a Gabite 170, and a Gible, Roselia, or Spiritomb 140. |
+| Meowth ex: 170 HP, Colorless | 2 Prizes with no Weight and no Rocky. Boss's Orders and *Void Gale* or a Poisoned dog takes it. |
+| Cynthia's Spiritomb: *Raging Curse* does 10 for every counter on his Benched Cynthia's Pokémon, ignoring Weakness | single-Prize, so Concealment never discounts it, and damage left on his Bench comes back at you |
+| Special Red Card | once you're at 3 Prizes or fewer, your hand goes to the bottom of the deck and you draw 3 |
 
-**This is Elliot's deck**, the one he brings to Wednesday league every week. He built it from someone else's list, and the field has settled on one. A model of it, with the evidence and the tells, is [cynthia-garchomp.md](./cynthia-garchomp.md). It is the hardest room this deck plays. Every Pokémon in the list is weak to Fighting, their attack costs one Energy and refills their hand while it hits, and nothing here one-shots a Garchomp. The Live loss on September 25 was against a variant with Tatsugiri and Powerglass and no Power Weight, and Garchomp came down through Rare Candy on their second turn. Elliot's copy most likely carries the Weights and a Spiritomb. The deck's Prizes come from two Garchomps and two singles, usually Roserades.
+**This is Elliott's deck**, the one he brings to Wednesday league every week, and [cynthia-garchomp.md](./cynthia-garchomp.md) models his own list card for card. It is the hardest room this deck plays. Every Pokémon here is weak to Fighting, his attack costs one Energy and refills his hand, and from his third turn he takes a Knock Out every turn. You can't out-trade that. You win by making his Knock Outs cheap and his Corkscrews miss, and by taking your six from the places his list leaves open.
+
+**The plan, in four lines.**
+
+1. **Kill the Roserades.** Each one is 60 more on every Corkscrew. With none left, Corkscrew is 200, a Gengar ex survives it, and every Knock Out on one costs him two of his three Premium Power Pros.
+2. **Park the Mega before his first Garchomp swings.** Then his first Knock Out has to be Boss's Orders and a Buster on the Mega, or a Corkscrew on a Gengar ex for 1 Prize and a coin.
+3. **Keep his 2-Prize targets to the Mega and a Gengar ex.** Blissey ex stays in the deck while he has a Roserade, and the second dog stays in the deck too. Then every 2-Prize Knock Out he takes after the Mega is a Gengar ex, and every one flips *Fainting Spell*.
+4. **Take your six from Meowth ex, the coin, and the Garchomp with no Rocky.** Pain the singles that cut his damage while you wait for those.
+
+**Go first when you win the flip.** A turn-1 Risky Ruins lands before his Trolley, and your turn-2 Pain lands before anything of his has evolved. Going second, his Gabites and Roserades are on the board before your first attack.
+
+| When | Do this |
+| :--- | :--- |
+| Your first turn | Bench a Gastly and attach to it. Play Risky Ruins, so every Gible, Roselia, and Meowth ex his Trolley benches takes 20, and the 20 rides up the line. |
+| His first turn | He Trolleys, puts the Rocky on a Gible, and may hang Weights early. Note which Gible holds the Rocky. If he plays the Cage, he spent it before you had anything to Pain with. |
+| Your second turn | Ruins over the Cage if it's up. Candy a Gengar ex, pay with Neo Upper or the second attachment, and Pain a Basic before it evolves, Roselia first. Grimsley's the Mega when the Supporter is free; Hilda for the Gengar ex comes first when the hand lacks one. |
+| Your third turn | The Mega goes down now if it isn't already. Pain a Roserade or a Gabite. |
+| His first Garchomp turn | Boss's Orders and a Buster on the Mega, or a Corkscrew on the Gengar ex for 1 Prize and a coin. Both cost him something. |
+
+**Going second**, his Trolley turn lands clean and his first evolutions come before your first attack. Open with the dog's *Musculature* or *Call for Family*, bench a Gastly, and play Ruins anyway, so the Gibles and Roselias he benches later still take the 20. Your second turn is the first Pain, at a Roserade if one is bare.
 
 **Where *Corkscrew Dive* lands.** Roserade and Premium Power Pro each add 30 before Weakness, so each one is 60 more on this deck.
 
@@ -797,31 +819,44 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 | Two | 320 | Mega Gengar |
 | Three | 380 | nothing |
 
-**Two-turn Knock Outs on a Garchomp.** Nothing kills one in a single hit, so every Garchomp costs the deck two attacks, and the pair gets picked before the first swing.
+**Count his Pros.** He runs three, and each one is gone once played. The Roserades are boosts he keeps; the Pros are boosts he spends. Once his Roserades are dead, a Gengar ex at 280 survives everything but two Pros in one turn or a Buster.
+
+**What *Chaotic Pain* hits.** One a turn, in this order, while the Cage is down.
+
+| Order | Target | Why |
+| :---: | :--- | :--- |
+| 1 | A bare Roselia or Roserade | 60 less on every Corkscrew he has left |
+| 2 | Spiritomb, once counters sit on his Bench | it turns your damage into Knock Outs that pay full Prizes |
+| 3 | A bare Gabite, the last one first | *Champion's Call* finds his next Garchomp and Roserade |
+| 4 | A Garchomp with no Rocky, as the second hit | 2 Prizes |
+
+- **Ruins makes a Weighted Basic bare.** A Weighted Gible or Roselia that came down under Ruins is 120, inside one Pain.
+- **Don't Pain a Weighted Roserade unless the second Pain follows next turn.** It lives at 70, and its 13 counters are 130 of *Raging Curse*.
+
+**Two-turn Knock Outs on a Garchomp.** Nothing kills one in a single hit, so pick the pair before the first swing.
 
 | The two hits | Total | Bare, 330 | Weighted, 400 |
 | :--- | ---: | :---: | :---: |
 | *Chain-Crazed* twice | 520 | ✓ | ✓ |
 | *Chain-Crazed* and *Void Gale* | 490 | ✓ | ✓ |
+| *Void Gale* twice | 460 | ✓ | ✓ |
 | *Chain-Crazed* and *Chaotic Pain* | 390 | ✓ | ten short |
 | *Void Gale* and *Chaotic Pain* | 360 | ✓ | ✗ |
-| *Chain-Crazed* and *Gentle Slap* | 360 | ✓ | ✗ |
 
-*Chaotic Pain* only lands once a Buster has thrown away the Rocky. A Risky Ruins chip on the Gible it grew from adds 20, which turns the 390 into a Knock Out on a Weighted Garchomp.
+Pain lands only on a Garchomp without the Rocky. A Ruins chip on the Gible it grew from takes 20 off, which turns the 390 into a Knock Out on a Weighted Garchomp.
 
-- **Read the Tool before picking a *Chaotic Pain* target.** A Weighted Roserade survives it with 70 to spare, and a Weighted Gabite with 40. A Weight on a Roserade means Elliot has read the snipe.
-- ***Chaotic Pain* order: Spiritomb once counters sit on their Bench, then a bare Roserade, then a bare Gabite.** Spiritomb is Darkness, so Rocky can't protect it, and it is the one card in their list that turns the deck's damage against it. With both Roserades gone, Corkscrew is 200, and a Gengar ex survives it even with Pro. Gabite comes next, because *Champion's Call* fetches their next Garchomp.
-- **Finish every Garchomp.** It retreats for free. One left at 70, or 140 under a Weight, steps back to the Bench, and its counters become *Raging Curse* damage. One *Chain-Crazed* leaves 26 counters, which is 260, or 320 with two Roserades, and 320 kills a Gengar ex with no Concealment discount. Swing at a Garchomp when the second hit is ready or Spiritomb is gone, and Boss's Orders brings a retreated one back up.
-- **Lead with Risky Ruins, and kill the Spiritomb.** Ruins puts 2 counters on every Gible and Roselia they bench during their turn, and the counters ride the evolution. A Weighted Gible or Roselia under Ruins dies to one Pain, and a Garchomp grown from a chipped Gible falls to *Chain-Crazed* plus a Pain. Every one of those counters also adds 10 to *Raging Curse*, so Ruins and a live Spiritomb don't mix. Their Watchtower replaces the Ruins and switches off *Happy Switch* while it stands; hold the second Ruins.
-- **Make them use *Draconic Buster*.** Corkscrew is cheap and draws them cards; Buster throws away every Energy, Rocky included, and *Chaotic Pain* can reach that Garchomp until they attach another Rocky. Neo Upper Energy lets one fresh Garchomp Buster off a single attachment, once a game.
-- **The Mega is a Boss's Orders magnet, and that's fine.** They run four Boss's Orders, so expect the Mega dragged up for a Buster the first turn they can afford it. That costs them a Boss and both Energy, Rocky included, for 2 Prizes, the same 2 a Gengar ex costs with no Mega down, and every Knock Out before it was a Prize cheaper. Spiritomb's Knock Outs never get the discount.
-- **A dog in front dies to a one-boost Corkscrew**, and takes three Energy with it, so it swings for 260 the turn it can. That leaves a bare Garchomp at 70 and a Weighted one at 140.
-- **Blissey ex is Fighting-weak too, and 2 Prizes nothing discounts.** At 300 it survives a one-boost Corkscrew and dies to two, so it stays on the Bench, where their four Boss's Orders can still find it.
-- **Stand and die with Gengar ex.** *Fainting Spell* is an Ability, so Rocky doesn't stop it. Heads takes a Garchomp for 2 Prizes.
-- **Surge the dog or the Mega, never a Gengar.** Surge's 20 turns a one-boost Corkscrew into a Knock Out on a Gengar ex.
-- **Hold Boss's Orders for a Knock Out.** Everything they run retreats for one or nothing, so dragging a body up to strand it does nothing. Boss a bare Roserade into a dog, or bring back a retreated Garchomp the deck can finish.
-- **Put Energy only on something that will attack.** Six Energy died on bodies that never swung in the Live loss. If the Mega holds one Energy when the Active falls, promote it and Janine's it to two. *Void Gale* leaves a bare Garchomp at 100 and a Weighted one at 170, and a Poisoned Mega at 340 survives a two-Roserade Corkscrew.
-- **They run a Judge.** Bench Pokémon as they're drawn.
+- **Hold a Risky Ruins until his Cage is gone.** He runs one Battle Cage, and Petrel is his only other way to it. Play the Ruins on your turn before the Pain, and his Cage did nothing. Once it's in his discard pile, Pain reaches his Bench for the rest of the game. A Petrel does the same job but costs the turn's Supporter, so a Ruins in hand is the better hold. Surge still works under the Cage, since it is your own Ability.
+- **Find the Rocky first.** It stops Pain on the Fighting Pokémon holding it. He runs one, it goes on his first Gible, and nothing in his list finds it again. Pain the other lines, and once a Buster throws it away, every Garchomp is in reach.
+- **Weights ride up the line.** A Tool stays attached through evolution, so a Weight on a Roselia is a Weight on the Roserade it becomes. Read the Tool before picking a Pain target.
+- **Meowth ex is 2 Prizes on a plate.** It is Colorless and not a Cynthia's Pokémon, so neither the Rocky nor a Weight covers it. Boss's Orders, or Petrel for it, brings it up into *Void Gale*, a Poisoned dog, or *Return*, and any of them kills it alone. Pain leaves it at 40, or 20 under Ruins. When it comes down from his hand, he just searched a Supporter, usually Boss's Orders.
+- **Finish every Garchomp, or don't start one.** It retreats for free, and its counters become *Raging Curse* damage. One *Chain-Crazed* leaves 26 counters, which is 260, or 290 with one Roserade, and 290 kills a Gengar ex for its full 2 Prizes with only a Spiritomb riding on the coin. Swing at a Garchomp only when the second hit is ready or Spiritomb is gone. Boss's Orders brings a retreated one back.
+- **The Mega is a Boss's Orders magnet, and that's the point.** He runs three Boss's Orders, and Meowth ex, Petrel, and Larry's Skill each find one, so expect the Mega dragged up on his first Garchomp turn. Taking it needs a three-boost Corkscrew or a Buster. With his Roserades thinned it has to be the Buster, which throws away every Energy on that Garchomp, the Rocky too if it's the one holding it. Every Knock Out before that was a Prize cheaper, and Spiritomb's never are.
+- **Blissey ex waits until his Roserades are gone.** At 300 it dies to two boosts, it is 2 Prizes nothing discounts, it flips no coin, and he has six ways to drag it up. Until then, Janine's, Neo Upper, and Surge on the Mega feed the attackers, and *Happy Switch* waits. He runs no Watchtower, so once Blissey is down it works all game.
+- **The dog swings once, so aim it.** One boost kills it, and three Pros make one boost likely even with no Roserade. Point *Chain-Crazed* at Meowth ex, a Weighted Roserade, or a Garchomp that a Pain finishes next turn. A Poisoned *Chain-Crazed* leaves a bare Garchomp at 70 and a Weighted one at 140.
+- **Stand and die with Gengar ex.** *Fainting Spell* is an Ability, so the Rocky, the Weights, and the Cage do nothing to it. Heads takes a Garchomp for 2 Prizes.
+- **Surge the Mega or the dog, never a Gengar.** Surge's 20 turns a one-boost Corkscrew into a Knock Out on a Gengar ex, and once his Roserades are gone one boost is all he has most turns. Counters on a Haunter stay when it becomes a Gengar ex, so it counts there too.
+- **Spend the hand before the Knock Out that leaves you at 3 Prizes.** Special Red Card is live from then on. Bench, attach, and play Items before the attack, and *Return*'s draw is optional.
+- **Put Energy only on something that will attack.** If the Mega holds one Energy when the Active falls, promote it and Janine's it to two. *Void Gale* leaves a bare Garchomp at 100 and a Weighted one at 170.
 
 ### Versus Mega Excadrill ex
 
@@ -843,7 +878,7 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 - **A dog plus *Chaotic Pain* kills the Excadrill.** 260 plus 130 clears 340 even under the Lab, where the dog does 230. *Void Gale* plus a Pain gets there once the Lab is gone, or once Risky Ruins has chipped the Drilbur it grew from: 200 through the Lab plus 130 is 330, and that Excadrill has 320.
 - **Going first, play Risky Ruins on turn 1.** It lands before his Trolley, so every Drilbur and Beldum it benches carries 20 up the line. Going second, his Trolley turn comes first, and the Ruins only taxes what he benches after it.
 - **Metagross is his last resort, and it pays nothing to Concealment.** It is single-Prize and hits 330 with a Brave Bangle. A dog or *Void Gale* kills it through the Lab.
-- Online Gengar ex decks went 1-5 here. The Gengar Gang's answer was the Cape, and this list doesn't have it, so killing Metang to keep Drilling at 200 matters more here.
+- The Gengar Gang's answer here was the Cape, and this list doesn't have it, so killing Metang to keep Drilling at 200 matters more.
 
 ### Versus Alakazam
 
@@ -856,7 +891,6 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 - **No Mega.** It is 3 Prizes against an attacker Concealment never touches.
 - **The dogs are the attackers here.** Darkness Weakness makes every swing a Knock Out.
 - **Their damage is their hand size.** Unfair Stamp answers it directly, and it sits in [Alternatives](#alternatives) for when this room keeps winning.
-- Online Gengar ex decks went 2-8 here. The dogs are the difference.
 
 ### Versus N's Zoroark ex
 
@@ -866,13 +900,13 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 | Binding Mochi adds 40 while the Zoroark is Poisoned, and Pecharunt ex's *Subjugating Chains* supplies the Poison | 290, which kills a Gengar ex or a dog |
 | Black Belt's Training adds 40 more | 330; a Mega Gengar at 350 survived it on Live |
 
-Target order, from the Live win:
+Target order, from a Live game:
 
 1. **Zorua**, before it evolves.
 2. **N's Zekrom**, the 250 that *Night Joker* copies. They'll bring it back with Night Stretcher; kill it again.
 3. **Pecharunt ex**, 190 HP and 2 Prizes. Without its Poison, Mochi does nothing, and Gengar ex lives through every hit.
 
-**A turn-2 Mega won that game.** Concealment held them to 5 Prizes. **Special Red Card** comes out the moment the deck has 3 Prizes left, so the hand needs to be spent before then.
+**Get the Mega down on turn 2.** In that game, Concealment held them to 5 Prizes. **Special Red Card** comes out the moment the deck has 3 Prizes left, so the hand needs to be spent before then.
 
 ### Versus Marnie's Grimmsnarl ex
 
@@ -882,7 +916,7 @@ Target order, from the Live win:
 | Munkidori, up to three, each moving 3 counters a turn | 9 counters a turn that skip Concealment and *Fainting Spell* |
 | Froslass puts 1 counter on every Pokémon with an Ability, every Checkup | Toxtricity, both Gengars, and Blissey ex all have one |
 
-- **Kill order: Munkidori, then Froslass, then Grimmsnarl.** Damage on Grimmsnarl doesn't stick while a Munkidori lives, because they move it back onto the deck's Pokémon. In the Live loss, 90 of the dog's 260 came back that way.
+- **Kill order: Munkidori, then Froslass, then Grimmsnarl.** Damage on Grimmsnarl doesn't stick while a Munkidori lives, because they move it back onto the deck's Pokémon. In the Live game, 90 of the dog's 260 came back that way.
 - **Munkidori is weak to Darkness.** Boss's Orders plus any real attack kills it, so answering it doesn't need a Gengar in play.
 - **Gengar ex gets the Candy, not the Mega.** Concealment does nothing against moved counters.
 - **Risky Ruins** replaces Spikemuth Gym and puts 20 on every Munkidori they bench.
@@ -896,8 +930,8 @@ Target order, from the Live win:
 | *Matcha Spin* (six in the discard) puts 4 counters on each of the deck's Pokémon; *Spiritual End* (thirteen) quadruples the counters on two of them | keep counters off the board |
 | Eevee into Espeon, whose *Miraculous Shine* devolves every evolved Pokémon the deck has in play | kill the Eevee first; a Stage 2 that Grimsley's benched has nothing under it and stays put |
 
-- **Everything they attack with is single-Prize, so no Mega.** The Live loss handed them its last 3 Prizes on a dragged-up Mega.
-- ***Chaotic Pain* targets** are Dhelmise (140, after a Ruins chip), Spiritomb (60), and Eevee or Espeon. Read the Ability first; that loss also spent its first Pain on a Poltchageist.
+- **Everything they attack with is single-Prize, so no Mega.** On Live, a dragged-up Mega handed them their last 3 Prizes.
+- ***Chaotic Pain* targets** are Dhelmise (140, after a Ruins chip), Spiritomb (60), and Eevee or Espeon. Read the Ability first; that game also spent its first Pain on a Poltchageist.
 - **The dogs are the attackers.** Dhelmise and Spiritomb are Psychic and weak to Darkness. *Chain-Crazed* hit for 520 and took three Knock Outs.
 - **Surge only what attacks this turn.** *Spiritual End* quadruples whatever sits on its two targets, so one Surge's 2 counters become 8, and two Surges' 4 become 16. On Live it landed on the Mega's Surge counters.
 - ***Fainting Spell* still works.** It took a Dhelmise.
@@ -914,9 +948,9 @@ Target order, from the Live win:
 
 **Crustle is one of the most common decks at CardCrate.** Online, nearly every list pairs three Crustle with four Mega Kangaskhan ex. The rest is Mist Energy, Spiky Energy, Jumbo Ice Cream to heal, and Eri and Xerosic's Machinations to pick apart the hand.
 
-- **Expect the Mist before the Crustle.** *Superb Scissors* costs [G][C][C], and the lists pay part of it with Mist Energy, so an attacking Crustle usually holds one, and then *Chaotic Pain* can't touch it. In the Live loss on 2026-10-01 the Mist went on the Dwebble on their turn 2, and it evolved the same turn, so going second there was never a turn to Pain it. Read the Energy before picking: the Pain target is a Mega Kangaskhan ex before its own Mist lands, and the counters stay on it after.
+- **Expect the Mist before the Crustle.** *Superb Scissors* costs [G][C][C], and the lists pay part of it with Mist Energy, so an attacking Crustle usually holds one, and then *Chaotic Pain* can't touch it. In the Live game on 2026-10-01 the Mist went on the Dwebble on their turn 2, and it evolved the same turn, so going second there was never a turn to Pain it. Read the Energy before picking: the Pain target is a Mega Kangaskhan ex before its own Mist lands, and the counters stay on it after.
 - **The non-ex Pokémon are the attackers.** Rock Inn only stops Pokémon ex. *Gentle Slap* does 100, Chansey's *Boundless Power* does 80, Haunter's *Spooky Shot* does 40 for one Energy, and Toxel's *Playful Kick* adds 20. Blissey ex's *Return* is ex damage, and Rock Inn stops it.
-- **A Dwebble in front means the turn-1 Poke Pad takes Toxtricity, and one Chansey stays a Chansey.** *Gentle Slap* and *Boundless Power* are 180 together, enough for a Crustle at 170. The Live loss Padded a Haunter, evolved both the Haunter and the Chansey into Pokémon ex, and never had a hitter that could reach it.
+- **A Dwebble in front means the turn-1 Poke Pad takes Toxtricity, and one Chansey stays a Chansey.** *Gentle Slap* and *Boundless Power* are 180 together, enough for a Crustle at 170. The Live game Padded a Haunter, evolved both the Haunter and the Chansey into Pokémon ex, and never had a hitter that could reach it.
 - **Spiky Energy hits back.** Damage their Active while it holds one and the attacker takes 2 counters. One Slap leaves Toxtricity at exactly 120, which *Superb Scissors* kills.
 - ***Fainting Spell* works on Crustle.** It is an Ability, so neither Rock Inn nor Mist stops the coin.
 - **No Mega until Kangaskhan is attacking.** Crustle is single-Prize, so Concealment pays only when Kangaskhan takes the Knock Out.
@@ -950,7 +984,7 @@ Target order, from the Live win:
 | Antique Jaw Fossil, a 60 HP Basic Colorless Pokémon that becomes Tyrunt (100) | one *Chaotic Pain* each; Risky Ruins chips the Fossil 20 when it hits the Bench, and the counters ride up the line |
 | *Intimidating Jaw*: while the Fossil is Active, the deck's attacks do 30 less | counters ignore it; Boss's Orders past it |
 
-**One Tyrantrum player sits in the CardCrate room**, and it is the worst matchup there. It took a game off Xero on turn 3 in an earlier week, with his only Pokémon in play. Everything in this list is weak to Fighting, so every *Wreak Havoc* takes an ex for 2 Prizes, and every Tyrantrum is single-Prize, so Concealment never applies. They can win on three Knock Outs; the deck needs six.
+**One Tyrantrum player sits in the CardCrate room**, and it is the worst matchup there. In an earlier week it knocked out Xero's only Pokémon in play on turn 3. Everything in this list is weak to Fighting, so every *Wreak Havoc* takes an ex for 2 Prizes, and every Tyrantrum is single-Prize, so Concealment never applies. They can win on three Knock Outs; the deck needs six.
 
 - **Kill the line before the Rocky lands.** A Fossil, a Tyrunt, and a bare Tyrantrum all take *Chaotic Pain*. A Tyrantrum that grew from a Fossil Ruins chipped is at 160, and Pain plus *Spooky Shot* takes it. Once Rocky is on a Tyrunt or a Tyrantrum, Pain can't touch that one; shoot the next Fossil instead.
 - **A Rocky Tyrantrum is two hits.** *Chain-Crazed* plus anything that does 70 or more: *Gentle Slap*, *Boundless Power*, *Return*, or *Void Gale*. *Void Gale* plus *Gentle Slap* is exactly 330.
@@ -1007,7 +1041,7 @@ Target order, from the Live win:
 | Mew ex (30th Celebration 152): a 160 HP Basic ex that uses its Bench's attacks | it is weak to Darkness, and *Chain-Crazed* hit it for 520 |
 | Munkidori, Unfair Stamp, Special Red Card | *Chaotic Pain* the Munkidori; bench Pokémon as they're drawn |
 
-- **Retreat was the leak in the Live win.** Seven Energy went to Retreat Costs, and a turn-6 dog retreat skipped a free 260 into a 120 HP Scrafty.
+- **Retreat was the leak in the Live game.** Seven Energy went to Retreat Costs, and a turn-6 dog retreat skipped a free 260 into a 120 HP Scrafty.
 - **Use their Team Rocket's Factory.** Petrel is a Team Rocket's Supporter, so their Stadium draws two for this deck too.
 - **Mew ex needs damage, not counters.** *Chaotic Pain*'s 130 falls short of 160; a dog or *Void Gale* one-shots it.
 
@@ -1020,14 +1054,14 @@ Target order, from the Live win:
 | Their Mega's *Shadowy Concealment* takes a Prize off every Knock Out the deck's Pokémon ex score with damage, and their Gengar ex's *Fainting Spell* flips at whatever kills it | Counters aren't damage, so a *Chaotic Pain* Knock Out skips both. It pays 2 for a Gengar ex and 3 for the Mega. |
 | Pecharunt ex (190) swaps their Poisoned Mega out with *Subjugating Chains*, and *Irritated Outburst* does 60 for every Prize the deck has taken | *Void Gale* or a Poisoned dog kills it alone |
 
-This is the mirror. Two Live games in two days went 4-6 against it. The first list ran Blissey ex, Mew ex, and Munkidori, and its Mega swung *Void Gale* five turns running while *Happy Switch* put the moved Energy back each time. The second ran Pecharunt ex, Munkidori, Fezandipiti ex, Dudunsparce, Jamming Tower, and Special Red Card.
+This is the mirror, and Live sent it twice in two days. The first list ran Blissey ex, Mew ex, and Munkidori, and its Mega swung *Void Gale* five turns running while *Happy Switch* put the moved Energy back each time. The second ran Pecharunt ex, Munkidori, Fezandipiti ex, Dudunsparce, Jamming Tower, and Special Red Card.
 
 - **Pain takes the Prizes.** Once their Mega is down, a Knock Out by damage on their Darkness Pokémon pays one Prize less, and Pain's doesn't. Let a dog or *Void Gale* do the damage and Pain finish. The model from Live is a turn-2 *Chain-Crazed* that left their Gengar ex at 20 and a turn-3 Pain that took it for 2 Prizes through their Concealment.
 - **Their Mega is 3 Prizes to Pain.** *Void Gale* then Pain is 360, which kills it at 350 and pays all 3. Poison from their own Chains and counters from their own Surge count toward it.
 - **Kill order: Munkidori, then their Gastly and Toxel before they evolve.** Munkidori's moved counters skip Concealment and *Fainting Spell* on this side too.
-- **Surge the Mega, never Toxtricity.** Their Pain places 130; Toxtricity lives at 140 and dies at 120. *Happy Switch* moves the Energy off the Mega as easily as off Toxtricity. The second loss Surged Toxtricity on turn 4 with the Mega on the Bench, and Pain took it on turn 6 for their fifth Prize.
+- **Surge the Mega, never Toxtricity.** Their Pain places 130; Toxtricity lives at 140 and dies at 120. *Happy Switch* moves the Energy off the Mega as easily as off Toxtricity. The second game Surged Toxtricity on turn 4 with the Mega on the Bench, and Pain took it on turn 6 for their fifth Prize.
 - **Gengar ex first, then the Mega.** Pain is the deck's Prize-taker here and the answer to Munkidori. The Mega follows, because *Void Gale* and *Irritated Outburst* are both Pokémon ex damage, and Concealment takes a Prize off each Knock Out they score.
-- **Blissey ex is the wrong Gengar ex killer.** *Return* is Pokémon ex damage, so it pays 1 Prize under their Concealment and flips *Fainting Spell* at 2 Prizes of the deck's. The second loss ended on that coin. Point *Return* at their Colorless and Psychic Pokémon, and leave the Gengar ex to Pain.
+- **Blissey ex is the wrong Gengar ex killer.** *Return* is Pokémon ex damage, so it pays 1 Prize under their Concealment and flips *Fainting Spell* at 2 Prizes of the deck's. The second game ended on that coin. Point *Return* at their Colorless and Psychic Pokémon, and leave the Gengar ex to Pain.
 - **Their Colorless and Psychic Pokémon pay full.** Blissey ex, Mew ex, Munkidori, and Dudunsparce sit outside their Concealment. A dog one-shots Mew ex into Darkness Weakness.
 - **Jamming Tower does nothing to this list.** Risky Ruins still bumps their Grand Tree, and it taxes every Munkidori, Chansey, and Mew ex they bench after it.
 - **Special Red Card comes out at 3 Prizes left.** Bench what the hand holds before then. *Return*'s draw is optional, so don't draw to six into it.
@@ -1076,7 +1110,7 @@ This is the mirror. Two Live games in two days went 4-6 against it. The first li
 | Charmander 80 | *Chaotic Pain*, once the Cage is gone |
 | Mega Charizard X ex and Mega Charizard Y ex, both Pokémon ex | Mega first; the tax and *Fainting Spell* both work |
 
-- **They replay the Cage.** In the Live win, Petrel for Ruins removed it, and the second Ruins removed it again.
+- **They replay the Cage.** On Live, Petrel for Ruins removed it, and the second Ruins removed it again.
 - **Close with *Void Gale*.** Boss's Orders on a benched Pokémon ex, Switch in the Mega, attach, and swing.
 
 ### Versus Igglybuff Baby Box
@@ -1088,18 +1122,18 @@ This is the mirror. Two Live games in two days went 4-6 against it. The first li
 | Igglybuff: 30 HP, Retreat 0, and their only attacker | one *Chaotic Pain*, or Haunter's *Spooky Shot* for 40 |
 | Poltchageist, Misty's Magikarp on the Bench, Battle Cage, Mist Energy | *Chaotic Pain* can't touch them, and it doesn't need to |
 
-**Every Pokémon in it has 30 HP and gives up one Prize.** Plenty of players run it online as a troll deck, and the Live ladder has sent two, both wins. One matched [AzulGG's list](https://azul.gg/blogs/decklists/baby-box-30th-celebration) from September 26: 4 Igglybuff, 4 Poltchageist, 2 Misty's Magikarp, Tyrogue, Budew, 4 Brave Bangle, 4 Boss's Orders, 4 Night Stretcher, 4 Battle Cage, 3 Mist Energy, and a Legacy Energy. The other ran Teal Mask Ogerpon ex and Area Zero Underdepths.
+**Every Pokémon in it has 30 HP and gives up one Prize.** Plenty of players run it online as a troll deck, and the Live ladder has sent two. One matched [AzulGG's list](https://azul.gg/blogs/decklists/baby-box-30th-celebration) from September 26: 4 Igglybuff, 4 Poltchageist, 2 Misty's Magikarp, Tyrogue, Budew, 4 Brave Bangle, 4 Boss's Orders, 4 Night Stretcher, 4 Battle Cage, 3 Mist Energy, and a Legacy Energy. The other ran Teal Mask Ogerpon ex and Area Zero Underdepths.
 
 - **Go second when you win the flip.** The player going first can't attack, and *Bouncy Circle* costs nothing, so their turn 1 is the one to take away.
-- **Pain the Active Igglybuff every turn.** It's their only attacker, and Battle Cage guards only their Bench. They run four Igglybuffs and four Night Stretchers, so this is a race, not a lockout. After the fifth Knock Out in the Live win, they had no Igglybuff in play and conceded.
+- **Pain the Active Igglybuff every turn.** It's their only attacker, and Battle Cage guards only their Bench. They run four Igglybuffs and four Night Stretchers, so this is a race, not a lockout. After the fifth Knock Out in one Live game, they had no Igglybuff left in play.
 - **Legacy Energy and Mist Energy pick the attack.** Legacy takes a Prize off a Knock Out by damage, and counters aren't damage, so Pain that one. Mist stops Pain, so hit that one with damage: *Spooky Shot* or a dog.
-- **Make their attacks miss.** Every body here gives up about one Prize per *Bouncy Circle*, so the race turns on the attacks that take nothing. AZ's a Gengar ex after its first hit, per [the pull table](#when-to-stand-and-when-to-pull), and a Haunter swings in its place. The Live win let one stand at 170, and it gave them 2 Prizes and put them one from winning.
+- **Make their attacks miss.** Every body here gives up about one Prize per *Bouncy Circle*, so the race turns on the attacks that take nothing. AZ's a Gengar ex after its first hit, per [the pull table](#when-to-stand-and-when-to-pull), and a Haunter swings in its place. One Live game let one stand at 170, and it gave them 2 Prizes and left them one Prize from the end.
 - **Keep Blissey ex on the Bench.** *Bouncy Circle* only hits the Active, but they run four Boss's Orders, and a dragged-up Blissey is 2 Prizes in two hits.
 - **No Mega.** It's 3 Prizes, Concealment never applies, and two Bangle hits kill it. The Ogerpon build is the exception.
 - **Bench small Basics only when they evolve next turn.** They run four Boss's Orders, and a Gastly or Toxel is a Prize to a three-baby Bench. Morty's Conviction also draws them a card for every Pokémon on the deck's Bench.
-- **Keep Surge counters off the next Gengar ex.** At 280 it lives through 150 plus 120. The Live win's carried a Surge and died at 290. Surge the dog or a Haunter.
+- **Keep Surge counters off the next Gengar ex.** At 280 it lives through 150 plus 120. One on Live carried a Surge and died at 290. Surge the dog or a Haunter.
 - **Budew's *Itchy Pollen*** turns off Switch and Rare Candy for a turn, and AZ's still moves. **Special Red Card** lands when the deck reaches 3 Prizes left, so spend the hand before then.
-- **The Ogerpon build** adds Teal Mask Ogerpon ex and Area Zero Underdepths, which opens their Bench to 8 and *Bouncy Circle* to 210. Risky Ruins bumps Area Zero, and knocking out their only Tera does the same job: their Bench drops back to 5. *Void Gale*'s 230 one-shots Ogerpon ex (210), and against that ex attacker Concealment works. In the Live win the Mega took two.
+- **The Ogerpon build** adds Teal Mask Ogerpon ex and Area Zero Underdepths, which opens their Bench to 8 and *Bouncy Circle* to 210. Risky Ruins bumps Area Zero, and knocking out their only Tera does the same job: their Bench drops back to 5. *Void Gale*'s 230 one-shots Ogerpon ex (210), and against that ex attacker Concealment works. On Live the Mega took two.
 
 ### The rest of the room
 
@@ -1136,8 +1170,6 @@ Fox picks his deck after Xero names his, so these are the answers he chooses bet
 ## Test and Tune
 
 The list is a hypothesis, and games are the data.
-
-**The Blissey list went 2-4 on Live through 2026-10-01.** It beat Steven's Metagross, and an Igglybuff Baby Box that conceded at 5-5. It lost to Azumarill 0-6, to the Gengar mirror 4-6, to Crustle 0-2 on October 1 after a Mist Energy shut out *Chaotic Pain*, and once unranked with no log. Blissey ex never reached the board in the Igglybuff win. Six games is an anecdote, not a verdict.
 
 | Symptom | Fix |
 | :--- | :--- |

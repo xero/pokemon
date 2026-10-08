@@ -617,7 +617,7 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 | Slowking | 6.1% | [The rest of the room](#the-rest-of-the-room) |
 | Basic Box | 4.8% | [The rest of the room](#the-rest-of-the-room) |
 | Mega Excadrill ex | 4.5%, and Matt every week at league | [Versus Mega Excadrill ex](#versus-mega-excadrill-ex) |
-| Cynthia's Garchomp ex | Elliot, every week at league | [Versus Cynthia's Garchomp ex](#versus-cynthias-garchomp-ex) |
+| Cynthia's Garchomp ex | Elliott, every week at league | [Versus Cynthia's Garchomp ex](#versus-cynthias-garchomp-ex) |
 | Mega Lucario ex, both builds | 3.9% | [Versus Mega Lucario ex](#versus-mega-lucario-ex) |
 | Dhelmise | 3.9% | [Versus Dhelmise](#versus-dhelmise) |
 | Crustle | 3.1%, and common at league | [Versus Crustle](#versus-crustle) |
@@ -678,13 +678,14 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 | Their number | The answer |
 | :--- | :--- |
 | *Corkscrew Dive*: 100 for one Energy, and they draw to 6 | 200 into Fighting Weakness, and every Roserade or Premium Power Pro adds 60 more |
-| *Draconic Buster*: 260 for two Energy, then every Energy on it is discarded | 520 or more into Fighting Weakness, so nothing survives it. Neo Upper Energy pays for one with a single card, once a game. |
-| Garchomp ex: 330 HP, 400 under Cynthia's Power Weight, Retreat 0, holding Rocky Fighting Energy | nothing one-shots it, and *Chaotic Pain* can't touch it while the Rocky is on |
-| Cynthia's Power Weight, three copies: +70 HP on any Cynthia's Pokémon | *Chaotic Pain* kills only what's bare. A Weighted Roserade is 200, a Gabite 170, and a Gible or Roselia 140. |
+| *Draconic Buster*: 260 for two Energy, then every Energy on it is discarded | 520 or more into Fighting Weakness, so nothing survives it. He runs no Neo Upper, so a Garchomp that Busters can only Corkscrew next turn. |
+| Garchomp ex: 330 HP, 400 under Cynthia's Power Weight, Retreat 0 | nothing one-shots it |
+| One Rocky Fighting Energy, and one Battle Cage | *Chaotic Pain* can't touch the line holding the Rocky, or anything on his Bench while the Cage stands |
+| Cynthia's Power Weight, four copies: +70 HP on any Cynthia's Pokémon | *Chaotic Pain* kills only what's bare. A Weighted Roserade is 200, a Gabite 170, and a Gible or Roselia 140. |
 | Cynthia's Spiritomb: *Raging Curse* does 10 for every counter on their Benched Cynthia's Pokémon, for [C], ignoring Weakness | every counter left on their Bench comes back at the deck, from a single-Prize attacker that skips Concealment |
 | Roserade 130, Gabite 100, and Gible, Roselia, and Spiritomb at 70, with no Weight and no Rocky | one *Chaotic Pain* each |
 
-**This is Elliot's deck**, the one he brings to Wednesday league every week. He built it from someone else's list, and the field has settled on one. A model of it, with the evidence and the tells, is [cynthia-garchomp.md](./cynthia-garchomp.md). It is the hardest room this deck plays. Every Pokémon in the list is weak to Fighting, their attack costs one Energy and refills their hand while it hits, and nothing here one-shots a Garchomp. The Live loss on September 25 was against a variant with Tatsugiri and Powerglass and no Power Weight, and Garchomp came down through Rare Candy on their second turn. Elliot's copy most likely carries the Weights and a Spiritomb. The deck's Prizes come from two Garchomps and two singles, usually Roserades.
+**This is Elliott's deck**, the one he brings to Wednesday league every week, and [cynthia-garchomp.md](./cynthia-garchomp.md) models his own list card for card. It is the hardest room this deck plays. Every Pokémon in the list is weak to Fighting, his attack costs one Energy and refills his hand while it hits, and nothing here one-shots a Garchomp. The full plan against it, written for the Blissey build, is in [Lucky Haunt](./dark-lucky.md#versus-cynthias-garchomp-ex); most of it holds here.
 
 **Where *Corkscrew Dive* lands.** Roserade and Premium Power Pro each add 30 before Weakness, so each one is 60 more on this deck.
 
@@ -707,18 +708,19 @@ The Live ladder is where this deck practices, and league is where it plays. Shar
 
 *Chaotic Pain* only lands once a Buster has thrown away the Rocky. A Risky Ruins chip on the Gible it grew from adds 20, which turns the 390 into a Knock Out on a Weighted Garchomp.
 
-- **Read the Tool before picking a *Chaotic Pain* target.** A Weighted Roserade survives it with 70 to spare, and a Weighted Gabite with 40. A Weight on a Roserade means Elliot has read the snipe.
+- **Read the Tool before picking a *Chaotic Pain* target.** A Weighted Roserade survives it with 70 to spare, and a Weighted Gabite with 40. A Weight on a Roserade means Elliott has read the snipe.
 - ***Chaotic Pain* order: Spiritomb once counters sit on their Bench, then a bare Roserade, then a bare Gabite.** Spiritomb is Darkness, so Rocky can't protect it, and it is the one card in their list that turns the deck's damage against it. With both Roserades gone, Corkscrew is 200, and a Gengar ex survives it even with Pro. Gabite comes next, because *Champion's Call* fetches their next Garchomp.
 - **Finish every Garchomp.** It retreats for free. One left at 70, or 140 under a Weight, steps back to the Bench, and its counters become *Raging Curse* damage. One *Chain-Crazed* leaves 26 counters, which is 260, or 320 with two Roserades, and 320 kills a Gengar ex with no Concealment discount. Swing at a Garchomp when the second hit is ready or Spiritomb is gone, and Boss's Orders brings a retreated one back up.
-- **Lead with Risky Ruins, and kill the Spiritomb.** Ruins puts 2 counters on every Gible and Roselia they bench during their turn, and the counters ride the evolution. A Weighted Gible or Roselia under Ruins dies to one Pain, and a Garchomp grown from a chipped Gible falls to *Chain-Crazed* plus a Pain. Every one of those counters also adds 10 to *Raging Curse*, so Ruins and a live Spiritomb don't mix. Their Watchtower replaces the Ruins; hold the second.
-- **Make them use *Draconic Buster*.** Corkscrew is cheap and draws them cards; Buster throws away every Energy, Rocky included, and *Chaotic Pain* can reach that Garchomp until they attach another Rocky. Neo Upper Energy lets one fresh Garchomp Buster off a single attachment, once a game.
-- **The Mega is a Boss's Orders magnet, and that's fine.** They run four Boss's Orders, so expect the Mega dragged up for a Buster the first turn they can afford it. That costs them a Boss and both Energy, Rocky included, for 2 Prizes, the same 2 a Gengar ex costs with no Mega down, and every Knock Out before it was a Prize cheaper. Spiritomb's Knock Outs never get the discount.
+- **Lead with Risky Ruins, and kill the Spiritomb.** Ruins puts 2 counters on every Gible and Roselia they bench during their turn, and the counters ride the evolution. A Weighted Gible or Roselia under Ruins dies to one Pain, and a Garchomp grown from a chipped Gible falls to *Chain-Crazed* plus a Pain. Every one of those counters also adds 10 to *Raging Curse*, so Ruins and a live Spiritomb don't mix. His one Battle Cage replaces the Ruins; hold the second for it, and once the Cage is gone it can't come back.
+- **Make them use *Draconic Buster*.** Corkscrew is cheap and draws them cards; Buster throws away every Energy, Rocky included, and *Chaotic Pain* can reach that Garchomp until they attach another Rocky.
+- **The Mega is a Boss's Orders magnet, and that's fine.** He runs three Boss's Orders, and Meowth ex, Petrel, and Larry's Skill each find one, so expect the Mega dragged up for a Buster the first turn they can afford it. That costs them a Boss and both Energy, Rocky included, for 2 Prizes, the same 2 a Gengar ex costs with no Mega down, and every Knock Out before it was a Prize cheaper. Spiritomb's Knock Outs never get the discount.
 - **The Cape goes on the ex in front, usually the dog.** Going second with a dog in front, turn-1 Petrel takes the Cape. A bare Okidogi dies to a one-boost Corkscrew and takes three Energy with it. A Cape'd one lives through two boosts and hits back for 260, which leaves a bare Garchomp at 70 and a Weighted one at 140. Never Cape the Mega here, since Buster kills it either way.
 - **Stand and die with Gengar ex.** *Fainting Spell* is an Ability, so Rocky doesn't stop it. Heads takes a Garchomp for 2 Prizes.
 - **Surge the dog or the Mega, never a Gengar.** Surge's 20 turns a one-boost Corkscrew into a Knock Out on a Gengar ex.
 - **Hold Boss's Orders for a Knock Out.** Everything they run retreats for one or nothing, so dragging a body up to strand it does nothing. Boss a bare Roserade into a dog, or bring back a retreated Garchomp the deck can finish.
 - **Put Energy only on something that will attack.** Six Energy died on bodies that never swung in the Live loss. If the Mega holds one Energy when the Active falls, promote it and Janine's it to two. *Void Gale* leaves a bare Garchomp at 100 and a Weighted one at 170, and a Poisoned Mega at 340 survives a two-Roserade Corkscrew.
-- **They run a Judge.** Bench Pokémon as they're drawn.
+- **Meowth ex is 2 Prizes on a plate.** It is 170, Colorless, and takes no Weight or Rocky. Boss's Orders brings it up into *Void Gale* or a Poisoned dog.
+- **Special Red Card is live once you're at 3 Prizes or fewer.** Bench Pokémon as they're drawn.
 
 ### Versus Mega Excadrill ex
 
