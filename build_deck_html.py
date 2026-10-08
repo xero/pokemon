@@ -342,7 +342,12 @@ def resolve_card(heading, prints):
     rows = list((prints or {}).get(name.lower(), []))
     if len(rows) > 1 and hint:
         want = set(hint.lower().split())
-        rows.sort(key=lambda sn: -len(want & set(sn[0].lower().split())))
+        # two printings from one set share every set word, so a printed number
+        # in the parens is the only thing that tells them apart: "Deoxys
+        # (Chaos Rising 031)". It outranks the set words.
+        nums = {w.lstrip("0") for w in want if w.isdigit()}
+        rows.sort(key=lambda sn: (sn[1].lstrip("0") not in nums,
+                                  -len(want & set(sn[0].lower().split()))))
     for st, num in rows[:1]:
         r = find_card(name, st or hint, num)
         if r:
@@ -523,6 +528,10 @@ def convert(src):
     # card sections. also keyed with the parens dropped, which is the name a
     # Qty table row carries for a card whose heading pins a printing.
     card_anchor = {}
+    # scan file -> anchor. Two printings of one card share the name a Qty row
+    # carries, so the name alone sends both thumbnails to the first section;
+    # the scan tells them apart.
+    scan_anchor = {}
     flav, seen_flav = FLAVOR.get(src.name, {}), set()
     counts = deck_counts(lines)
     prints = deck_printings(lines)
@@ -627,6 +636,7 @@ def convert(src):
             if j < n and lines[j].strip().startswith("<img"):
                 has_image = True
                 src_m = re.search(r'src="([^"]+)"', lines[j])
+                scan_anchor.setdefault(Path(src_m.group(1)).name, a)
                 art.append("\t\t\t\t<aside>"
                            + card_art(src_m.group(1), name)
                            + "</aside>")
@@ -669,6 +679,8 @@ def convert(src):
                 # from cards.csv; the planning docs get their art this way.
                 blocks, found = card_block(name, "\t\t\t\t\t", prints)
                 if blocks:
+                    for r in found:
+                        scan_anchor.setdefault(Path(r["image_file"]).name, a)
                     badge = count_badge(sum(
                         in_deck(counts, name, r["card_number"]) for r in found))
                     # each card is its own aside+section pair; the trailing
@@ -778,10 +790,12 @@ def convert(src):
     # the card name between sentinels and the href lands here.
     def link_thumb(m):
         name = m.group(1)
+        scan = re.search(r'src="([^"]+)"', m.group(2))
         # a cards.csv name can carry a qualifier the heading drops, in parens
         # (Welder (#25 Charizard Stamped)) or brackets (Boss's Orders
         # [Ghetsis]); retry bare before giving up on the link.
-        a = (card_anchor.get(name)
+        a = ((scan and scan_anchor.get(Path(scan.group(1)).name))
+             or card_anchor.get(name)
              or card_anchor.get(
                  re.sub(r"\s*[\[(][^)\]]*[)\]]\s*$", "", name).strip()))
         return f'<a href="#{a}">{m.group(2)}</a>' if a else m.group(2)

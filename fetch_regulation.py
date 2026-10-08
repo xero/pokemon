@@ -36,7 +36,7 @@ SET_IDS = {
     "TEF": "sv5", "TWM": "sv6", "SFA": "sv6pt5", "SCR": "sv7", "PRE": "sv8pt5",
     "JTG": "sv9", "DRI": "sv10",
     "MEG": "me1", "PFL": "me2", "ASC": "me2pt5", "POR": "me3", "CRI": "me4",
-    "PBL": "me5", "WHT": "rsv10pt5",
+    "PBL": "me5", "30C": "me55", "WHT": "rsv10pt5",
     # SVP has to be resolved per card and cannot be a MANUAL_MARKS set entry:
     # the promo series has outlived several marks, so one set carries G through
     # J. Upstream numbering agrees with TCGplayer here (Lapras ex is 164 in

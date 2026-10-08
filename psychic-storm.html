@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Psychic Storm</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
+				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
+			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			/* a prose table's left column can be a whole sentence, and
+			   max-content would lay it out on one line, wider than the page,
+			   squeezing the answer column to nothing. fit-content keeps a
+			   short label on one line and wraps a long one at half the width.
+			   behind the media query so the phone layout's single column
+			   below still wins. */
+			@media (width >= 34em) {
+				grid-template-columns: fit-content(50%) minmax(0, 70ch);
+			}
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Psychic Storm <img data-mascot src="./assets/sprites/mewtwo.gif" alt="" /> <img data-mascot src="./assets/sprites/xerneas.gif" alt="" /> <img data-mascot src="./assets/sprites/deoxys.gif" alt="" /> <img data-mascot src="./assets/sprites/espeon.gif" alt="" /></h1>
+				<p>Mewtwo ex, Xerneas, and Espeon on one pile of Psychic Energy · a tournament-legal 60 for Fox</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#the-prize-tax">The Prize Tax</a></li>
+			<li><a href="#the-energy-engine">The Energy Engine</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#versus-the-card-shop">Versus the Card Shop</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#alternatives">Alternatives</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#mewtwo-ex">Mewtwo ex</a> <a href="#xerneas">Xerneas</a> <a href="#deoxys-chaos-rising-031">Deoxys (Chaos Rising 031)</a> <a href="#deoxys-chaos-rising-032">Deoxys (Chaos Rising 032)</a> <a href="#eevee">Eevee</a> <a href="#espeon">Espeon</a> <a href="#latias-ex">Latias ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#lillies-determination">Lillie&#x27;s Determination</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#hilda">Hilda</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#ultra-ball">Ultra Ball</a> <a href="#energy-switch">Energy Switch</a> <a href="#poke-pad">Poke Pad</a> <a href="#wondrous-patch">Wondrous Patch</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#switch">Switch</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#heros-cape">Hero&#x27;s Cape</a> <a href="#mystery-garden">Mystery Garden</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-psychic-energy">Basic Psychic Energy</a> <a href="#telepathic-psychic-energy">Telepathic Psychic Energy</a></dd>
+			<dt><a href="#the-hard-rules">The Hard Rules</a></dt>
+			<dd><a href="#opening-turns">Opening turns</a> <a href="#where-the-energy-goes">Where the Energy goes</a> <a href="#which-attack">Which attack</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-turn-one-going-second">1. Turn one, going second</a> <a href="#2-turn-one-going-first">2. Turn one, going first</a> <a href="#3-the-rotation">3. The rotation</a> <a href="#4-the-espeon-turn">4. The Espeon turn</a> <a href="#5-bench-discipline">5. Bench discipline</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>Fox&#x27;s Psychic deck, built outward from four cards he picked: Mewtwo ex, Espeon, Xerneas, and the Psyspear Deoxys. Xero added the Genome Charge Deoxys. Nobody else plays this deck; Limitless has no list in its database that runs this Xerneas. Every card carries regulation mark H, I, or J, so the same sleeves play at the kitchen table and at the card shop. Fox and Xero play it on <a href="https://tcg.pokemon.com/en-us/tcgl/">TCG Live</a> before buying any of it.</p>
+				<p>The deck list and the cards come first, then <a href="#the-thesis">The Thesis</a> and <a href="#the-hard-rules">The Hard Rules</a>. Game words are defined in <a href="./rules.html">the table rules</a>.</p>
+			</aside>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#mewtwo-ex"><img src="./assets/716463_mewtwo-ex-064-128.jpg" alt="Mewtwo ex" /><span data-count>x3</span></a></figure>
+				<figure><a href="#xerneas"><img src="./assets/693563_xerneas-042-086.jpg" alt="Xerneas" /><span data-count>x4</span></a></figure>
+				<figure><a href="#deoxys-chaos-rising-031"><img src="./assets/693474_deoxys-031-086.jpg" alt="Deoxys" /><span data-count>x3</span></a></figure>
+				<figure><a href="#deoxys-chaos-rising-032"><img src="./assets/693475_deoxys-032-086.jpg" alt="Deoxys" /></a></figure>
+				<figure><a href="#eevee"><img src="./assets/610429_eevee.jpg" alt="Eevee" /><span data-count>x3</span></a></figure>
+				<figure><a href="#espeon"><img src="./assets/696678_espeon.jpg" alt="Espeon" /><span data-count>x2</span></a></figure>
+				<figure><a href="#latias-ex"><img src="./assets/589983_latias-ex-076-191.jpg" alt="Latias ex" /></a></figure>
+				<figure><a href="#lillies-determination"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /><span data-count>x4</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x3</span></a></figure>
+				<figure><a href="#hilda"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a></figure>
+				<figure><a href="#ultra-ball"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /><span data-count>x4</span></a></figure>
+				<figure><a href="#energy-switch"><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /><span data-count>x4</span></a></figure>
+				<figure><a href="#poke-pad"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /><span data-count>x3</span></a></figure>
+				<figure><a href="#wondrous-patch"><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /><span data-count>x3</span></a></figure>
+				<figure><a href="#night-stretcher"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /></a></figure>
+				<figure><a href="#heros-cape"><img src="./assets/542667_heros-cape.jpg" alt="Hero&#x27;s Cape" /></a></figure>
+				<figure><a href="#mystery-garden"><img src="./assets/654461_mystery-garden-122-132.jpg" alt="Mystery Garden" /><span data-count>x3</span></a></figure>
+				<figure><a href="#basic-psychic-energy"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /><span data-count>x10</span></a></figure>
+				<figure><a href="#telepathic-psychic-energy"><img src="./assets/684396_telepathic-psychic-energy.jpg" alt="Telepathic Psychic Energy" /><span data-count>x4</span></a></figure>
+			</article>
+					<p><strong>Pokémon (17)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Mewtwo ex</td><td>30th Celebration</td><td>064</td><td>J</td></tr>
+							<tr><td>4</td><td>Xerneas</td><td>Chaos Rising</td><td>042</td><td>J</td></tr>
+							<tr><td>3</td><td>Deoxys</td><td>Chaos Rising</td><td>031</td><td>J</td></tr>
+							<tr><td>1</td><td>Deoxys</td><td>Chaos Rising</td><td>032</td><td>J</td></tr>
+							<tr><td>3</td><td>Eevee</td><td>Prismatic Evolutions</td><td>074</td><td>H</td></tr>
+							<tr><td>2</td><td>Espeon</td><td>30th Celebration</td><td>069</td><td>J</td></tr>
+							<tr><td>1</td><td>Latias ex</td><td>Surging Sparks</td><td>076</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (29)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Lillie&#x27;s Determination</td><td>Supporter</td><td>Mega Evolution</td><td>119</td><td>I</td></tr>
+							<tr><td>3</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>1</td><td>Hilda</td><td>Supporter</td><td>White Flare</td><td>084</td><td>I</td></tr>
+							<tr><td>4</td><td>Ultra Ball</td><td>Item</td><td>Mega Evolution</td><td>131</td><td>I</td></tr>
+							<tr><td>4</td><td>Energy Switch</td><td>Item</td><td>Mega Evolution</td><td>115</td><td>I</td></tr>
+							<tr><td>3</td><td>Poke Pad</td><td>Item</td><td>Perfect Order</td><td>081</td><td>J</td></tr>
+							<tr><td>3</td><td>Wondrous Patch</td><td>Item</td><td>Phantasmal Flames</td><td>094</td><td>I</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Hero&#x27;s Cape</td><td>Tool, ACE SPEC</td><td>Temporal Forces</td><td>152</td><td>H</td></tr>
+							<tr><td>3</td><td>Mystery Garden</td><td>Stadium</td><td>Mega Evolution</td><td>122</td><td>I</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (14)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>10</td><td>Basic Psychic Energy</td><td>Mega Evolution Energies</td><td>005</td><td>-</td></tr>
+							<tr><td>4</td><td>Telepathic Psychic Energy</td><td>Perfect Order</td><td>088</td><td>J</td></tr>
+						</tbody>
+					</table>
+					<p><strong>17 + 29 + 14 = 60.</strong> ✓ Fifteen Basics, eight Supporters, and one ACE SPEC. Xerneas and Deoxys each sit at four, which is the limit for the name across every print.</p>
+					<p><strong>Fifteen Basics is a 12% mulligan.</strong> A Genome Charge Deoxys opens 36% of kept hands. Telepathic Psychic Energy is in 39% of them, and 45% counting the first draw going second; it benches two Basics whatever leads. Only 14% of opening hands hold no Energy.</p>
+					<p>Eevee, Latias ex, Night Stretcher, and Hero&#x27;s Cape carry mark H and rotate around April 2027. Everything else is I or J.</p>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="mewtwo-ex">Mewtwo ex<span data-count>x3</span><span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/716463_mewtwo-ex-064-128.jpg" target="_blank" rel="noopener"><img src="./assets/716463_mewtwo-ex-064-128.jpg" alt="Mewtwo ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>ME: 30th Celebration <small>064/128</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>230</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Photon Bullets - This attack does 50 damage to each of your opponent&#x27;s Pokémon ex. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic Powers (230) - During your next turn, this Pokémon can&#x27;t use attacks.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 230 HP, 2 Prizes, Darkness Weakness, Fighting Resistance, Retreat 2.</strong> The main attacker.</p>
+					<p><strong><em>Psychic Powers</em> does 230 for <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span>, and this Mewtwo can&#x27;t attack during your next turn.</strong> The lock ends the moment it moves to the Bench. Retreat it for free with <a href="#latias-ex">Latias ex</a> out, swing with Xerneas, and the turn after that the same Mewtwo is ready again.</p>
+					<p><strong><em>Photon Bullets</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> for 50 to each of the opponent&#x27;s Pokémon ex</strong>, Bench included, with no Weakness or Resistance on the Bench. It is the setup turn against a board full of ex. A Benched Tera Pokémon, like Dragapult ex, takes none of it.</p>
+					<p>Three copies. Ultra Ball and Telepathic Psychic Energy find it. Poke Pad can&#x27;t, since it has a Rule Box.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="xerneas">Xerneas<span data-count>x4</span><span data-flavor><img src="./assets/sprites/xerneas.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693563_xerneas-042-086.jpg" target="_blank" rel="noopener"><img src="./assets/693563_xerneas-042-086.jpg" alt="Xerneas" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>042/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>130</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Geo Storm (30x) - This attack does 30 damage for each Psychic Energy attached to all of your Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 130 HP, Metal Weakness, Retreat 2.</strong> The finisher.</p>
+					<p><strong><em>Geo Storm</em> costs <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> and does 30 for each Psychic Energy attached to all of your Pokémon.</strong> The Energy can sit anywhere: on the Active, on a Benched Deoxys, on the Mewtwo waiting its turn. Telepathic Psychic Energy counts, because it provides <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>. Its own three make 90, and eight in play make 240 from a Pokémon worth 1 Prize.</p>
+					<p><strong>It is the only Pokémon here that isn&#x27;t weak to Darkness</strong>, which makes it the attacker against Dad&#x27;s decks. Metal is its problem, and Matt&#x27;s Excadrill doubles into it.</p>
+					<p>Four copies, the most the name allows; every Xerneas print shares the four. Poke Pad, Ultra Ball, and Telepathic Psychic Energy find it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="deoxys-chaos-rising-031">Deoxys (Chaos Rising 031)<span data-count>x3</span><span data-flavor><img src="./assets/sprites/deoxys.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693474_deoxys-031-086.jpg" target="_blank" rel="noopener"><img src="./assets/693474_deoxys-031-086.jpg" alt="Deoxys" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>031/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Genome Charge - Search your deck for up to 2 Basic Psychic Energy cards and attach them to this Pokémon. Then, shuffle your deck.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Psychic (80+) - This attack does 20 more damage for each Energy attached to your opponent&#x27;s Active Pokémon.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 110 HP, Darkness Weakness, Fighting Resistance, Retreat 1.</strong> The engine.</p>
+					<p><strong><em>Genome Charge</em> costs <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>: search your deck for up to 2 Basic Psychic Energy and attach them to this Deoxys.</strong> Going second, it is a turn-one attack. Lead with it, attach, and it ends the turn holding three Energy, which is 90 more on the next Geo Storm. Energy Switch then moves the two Basic Energy to whoever attacks.</p>
+					<p><em>Psychic</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 80, plus 20 for each Energy on the opponent&#x27;s Active Pokémon.</p>
+					<p>Three copies. Every Deoxys shares one four-copy limit, so three of this one leave a slot for Fox&#x27;s Psyspear. Poke Pad, Ultra Ball, and Telepathic Psychic Energy find it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="deoxys-chaos-rising-032">Deoxys (Chaos Rising 032)<span data-count>x1</span><span data-flavor><img src="./assets/sprites/deoxys-attack.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693475_deoxys-032-086.jpg" target="_blank" rel="noopener"><img src="./assets/693475_deoxys-032-086.jpg" alt="Deoxys" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>032/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>120</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psyspear (120) - If this Pokémon has at least 2 extra Energy attached (in addition to this attack&#x27;s cost), this attack also does 120 damage to 1 of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 120 HP, Darkness Weakness, Fighting Resistance, Retreat 2.</strong> Fox&#x27;s pick, and the second finisher.</p>
+					<p><strong><em>Psyspear</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> for 120. With at least 2 extra Energy on this Deoxys, it also does 120 to one of the opponent&#x27;s Benched Pokémon</strong>, with no Weakness or Resistance on the Bench.</p>
+					<p>Five Energy is a lot to park on 120 HP, so build it late with Energy Switch, on the turn the Bench hit takes a Prize. Those five count toward Geo Storm the whole time they sit there. One copy.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="eevee">Eevee<span data-count>x3</span><span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/610429_eevee.jpg" target="_blank" rel="noopener"><img src="./assets/610429_eevee.jpg" alt="Eevee" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>074/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Colorless</span></dd>
+						<dt>HP</dt><dd><span>50</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Boosted Evolution - As long as this Pokémon is in the Active Spot, it can evolve during your first turn or the turn you play it.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Reckless Charge (30) - This Pokémon also does 10 damage to itself.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic Colorless, 50 HP, Fighting Weakness, Retreat 1.</strong> Espeon&#x27;s Basic, the same print Fox&#x27;s <a href="./eevee-standard.html">Rainbow DNA</a> runs.</p>
+					<p><strong><em>Boosted Evolution</em>: while this Eevee is in the Active Spot, it can evolve during your first turn or the turn you play it.</strong> Bench Eevee only when Espeon is close, because a 50 HP Basic is a free Prize.</p>
+					<p>It is Colorless, so Telepathic Psychic Energy can&#x27;t bench it and Mystery Garden doesn&#x27;t count it. Three copies. Poke Pad and Ultra Ball find it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="espeon">Espeon<span data-count>x2</span><span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/696678_espeon.jpg" target="_blank" rel="noopener"><img src="./assets/696678_espeon.jpg" alt="Espeon" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>ME: 30th Celebration <small>069/128</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>110</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Miraculous Shine - Devolve each of your opponent&#x27;s evolved Pokémon by putting the highest Stage Evolution card on it into your opponent&#x27;s hand.</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Super Psy Bolt (90)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 1, 110 HP, Darkness Weakness, Fighting Resistance, Retreat 1.</strong> The answer to evolution decks.</p>
+					<p><strong><em>Miraculous Shine</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>: devolve each of the opponent&#x27;s evolved Pokémon by putting the highest Stage Evolution card on it into their hand.</strong> Every one, Active and Bench. Energy, Tools, and damage stay where they are. A Stage 2 that Rare Candy put down drops all the way to its Basic.</p>
+					<p><strong>Damage stays, so a Pokémon that drops below its damage is Knocked Out.</strong> A Garchomp ex carrying 230 from <em>Psychic Powers</em> becomes a Gabite with 170 HP under Power Weight, and dies. It pays as what it is now, so that Gabite is 1 Prize, not 2. Bulbapedia&#x27;s devolution page states the knockout rule. Check it with the league judge before it decides a game.</p>
+					<p>A Pokémon that Grimsley&#x27;s Move benched never evolved and has nothing under it, so it stays. <em>Super Psy Bolt</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 90. Two copies. Hilda and Poke Pad find it.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="latias-ex">Latias ex<span data-count>x1</span><span data-flavor><img src="./assets/sprites/latias.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/589983_latias-ex-076-191.jpg" target="_blank" rel="noopener"><img src="./assets/589983_latias-ex-076-191.jpg" alt="Latias ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/surging-sparks.png" /><img src="./assets/sets/surging-sparks.png" alt="SV08: Surging Sparks" /></picture></span><span>SV08: Surging Sparks <small>076/191</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/psychic.png" alt="Psychic" /></span><span>Psychic</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Skyliner - Your Basic Pokémon in play have no Retreat Cost.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Eon Blade (200) - During your next turn, this Pokémon can&#x27;t attack.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Basic, 210 HP, 2 Prizes, Darkness Weakness, Fighting Resistance, Retreat 2.</strong> The pivot.</p>
+					<p><strong><em>Skyliner</em>: your Basic Pokémon in play have no Retreat Cost.</strong> Every Pokémon here but Espeon is a Basic, so every retreat is free. That is what lets Mewtwo ex swing every other turn with Xerneas in between, and what lets a loaded Deoxys leave the Active Spot without paying Energy.</p>
+					<p><em>Eon Blade</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 200, and Latias can&#x27;t attack next turn. <strong>It is 2 Prizes on the Bench</strong>, and Boss&#x27;s Orders will find it. One copy, and the house already owns it.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="lillies-determination">Lillie&#x27;s Determination<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654458_lillies-determination-119-132.jpg" target="_blank" rel="noopener"><img src="./assets/654458_lillies-determination-119-132.jpg" alt="Lillie&#x27;s Determination" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>119/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Shuffle your hand into your deck and draw six, or eight while you still have all six Prizes.</strong> Four copies. Going second, the turn-one Lillie&#x27;s for eight is legal and good. Look first; a hand that already holds a Deoxys, Telepathic, and an Energy Switch doesn&#x27;t want shuffling.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Switch one of the opponent&#x27;s Benched Pokémon into the Active Spot.</strong> Three copies. A 230 is worth what it lands on. Drag up the damaged ex that Geo Storm finishes, the Meowth ex worth 2 Prizes for one <em>Psychic Powers</em>, or the Energy engine their attacker runs on.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="hilda">Hilda<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>084/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Search your deck for an Evolution Pokémon and an Energy card.</strong> One copy. Espeon is the only Evolution Pokémon here, so Hilda is an Espeon and a Telepathic Psychic Energy in one card.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="ultra-ball">Ultra Ball<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654470_ultra-ball.jpg" target="_blank" rel="noopener"><img src="./assets/654470_ultra-ball.jpg" alt="Ultra Ball" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>131/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>You can use this card only if you discard 2 other cards from your hand. Search your deck for a Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Discard 2 other cards from your hand, then search your deck for any Pokémon.</strong> Four copies. It is the only search that finds Mewtwo ex and Latias ex. Discard Basic Psychic Energy when you can; Wondrous Patch puts it back on the board.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="energy-switch">Energy Switch<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/654454_energy-switch.jpg" target="_blank" rel="noopener"><img src="./assets/654454_energy-switch.jpg" alt="Energy Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>115/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Move a Basic Energy from 1 of your Pokémon to another of your Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Move a Basic Energy from one of your Pokémon to another.</strong> Four copies, Mega Evolution 115, mark I. The older Scarlet and Violet print rotated.</p>
+					<p>This is how Genome Charge feeds the attacker. Two Switches move both Genome Energy from Deoxys onto a Benched Mewtwo ex, and the attachment makes three. It can&#x27;t move Telepathic Psychic Energy, which is Special.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="poke-pad">Poke Pad<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/684332_poke-pad-081-088.jpg" target="_blank" rel="noopener"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>081/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Pokémon that doesn&#x27;t have a Rule Box, reveal it, and put it into your hand. Then, shuffle your deck. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Search your deck for a Pokémon without a Rule Box.</strong> Three copies, printed Poké Pad, Perfect Order 081, mark J. It finds Xerneas, both Deoxys, Eevee, and Espeon, and never Mewtwo ex or Latias ex.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="wondrous-patch">Wondrous Patch<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/662241_wondrous-patch.jpg" target="_blank" rel="noopener"><img src="./assets/662241_wondrous-patch.jpg" alt="Wondrous Patch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>094/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Attach a Basic Psychic Energy card from your discard pile to 1 of your Benched Psychic Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Attach a Basic Psychic Energy card from your discard pile to one of your Benched Psychic Pokémon.</strong> Three copies, Phantasmal Flames 094, mark I. It is an extra attachment for each copy, aimed at the Bench, never the Active or an Eevee. Mystery Garden, Ultra Ball, and every Knocked Out battery stock the discard pile it draws from.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</strong> Two copies. Late in the game it is the Xerneas or Mewtwo ex that went down, back for the finish.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Switch your Active Pokémon with one of your Benched Pokémon.</strong> One copy. It covers the games where Latias ex is prized or Knocked Out, and Mewtwo ex and Xerneas are back to Retreat 2.</p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="heros-cape">Hero&#x27;s Cape<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/542667_heros-cape.jpg" target="_blank" rel="noopener"><img src="./assets/542667_heros-cape.jpg" alt="Hero&#x27;s Cape" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>152/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>The Pokémon this card is attached to gets +100 HP.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The Pokémon this card is attached to gets +100 HP.</strong> The ACE SPEC, Temporal Forces 152, mark H.</p>
+					<p><strong>It goes on Mewtwo ex against Fighting, and on Xerneas against Dad.</strong> A Cape&#x27;d Mewtwo ex has 330 HP behind Fighting Resistance, and Elliott needs a <em>Draconic Buster</em> with four boosts to kill it. A Cape&#x27;d Xerneas has 230, and lives through <em>Chaotic Pain</em>. If the Pokémon wearing it is Knocked Out, the Cape goes with it; Night Stretcher can&#x27;t return a Tool.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="mystery-garden">Mystery Garden<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/654461_mystery-garden-122-132.jpg" target="_blank" rel="noopener"><img src="./assets/654461_mystery-garden-122-132.jpg" alt="Mystery Garden" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>122/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Once during each player&#x27;s turn, that player may discard an Energy card from their hand in order to draw cards until they have as many cards in their hand as they have Psychic Pokémon in play.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Once during each player&#x27;s turn, that player may discard an Energy card from their hand to draw until they hold as many cards as they have Psychic Pokémon in play.</strong> Three copies, Mega Evolution 122, mark I.</p>
+					<p>With five Psychic Pokémon down, it refills a hand to five for one Energy, and that Energy is Wondrous Patch&#x27;s next attachment. It does little before the Bench fills. Both players can use it, so against another Psychic deck it draws for them too. It also knocks Risky Ruins and Battle Cage off the table.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-psychic-energy">Basic Psychic Energy<span data-count>x10</span></h3>
+				<aside>
+					<a data-art href="./assets/656267_basic-psychic-energy-005.jpg" target="_blank" rel="noopener"><img src="./assets/656267_basic-psychic-energy-005.jpg" alt="Basic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>5</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Ten. Genome Charge, Energy Switch, Wondrous Patch, and Night Stretcher only touch Basic Energy, so these are the ones that move. Any Basic Psychic print works.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="telepathic-psychic-energy">Telepathic Psychic Energy<span data-count>x4</span></h3>
+				<aside>
+					<a data-art href="./assets/684396_telepathic-psychic-energy.jpg" target="_blank" rel="noopener"><img src="./assets/684396_telepathic-psychic-energy.jpg" alt="Telepathic Psychic Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>088/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/rare.png" /><img src="./assets/rarities/rare.png" alt="Rare" /></picture></span><span>Rare</span></dd>
+						<dt>Type</dt><dd><span>Energy - Special Psychic</span></dd>
+						<dt>Ability</dt><dd><span>As long as this card is attached to a Pokémon, it provides <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Energy. When you attach this card from your hand to a <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Pokémon, search your deck for up to 2 Basic <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> Pokémon and put them onto your Bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It provides <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>. When you attach it from your hand to a Psychic Pokémon, search your deck for up to 2 Basic Psychic Pokémon and put them onto your Bench.</strong> Four copies, Perfect Order 088, mark J.</p>
+					<p>It is the turn-one card. It counts for Geo Storm like any other Psychic Energy, and the two it benches are usually Latias ex and the next attacker. <strong>It is a one-way trip.</strong> It is Special Energy, so Energy Switch can&#x27;t move it and Night Stretcher and Wondrous Patch can&#x27;t bring it back.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /><img src="./assets/sprites/xerneas.gif" alt="" /></span></h3>
+					<p>Geo Storm counts every Psychic Energy Fox has in play, wherever it sits. So nothing he attaches is wasted. A Deoxys holding three is 90 more damage on Xerneas, and so is the Mewtwo ex waiting out its lock.</p>
+					<p><strong>Mewtwo ex hits first, and Xerneas finishes.</strong> <em>Psychic Powers</em> lands 230 on anything. The next turn, Mewtwo retreats for free and Xerneas swings for whatever is left. Mewtwo keeps its three Energy on the Bench, so that Geo Storm counts at least six: Mewtwo&#x27;s three and Xerneas&#x27;s own. <strong>The pair does 410 in two attacks</strong>, and every row below dies to it.</p>
+					<table>
+						<thead><tr><th>Their Pokémon</th><th>HP</th><th>Left after 230</th><th>Geo Storm needs</th></tr></thead>
+						<tbody>
+							<tr><td>Blissey ex</td><td>300</td><td>70</td><td>3 Energy in play, 90</td></tr>
+							<tr><td>Dragapult ex</td><td>320</td><td>90</td><td>3 Energy in play, 90</td></tr>
+							<tr><td>Mega Excadrill ex</td><td>340</td><td>110</td><td>4 Energy in play, 120</td></tr>
+							<tr><td>Mega Gengar ex</td><td>350</td><td>120</td><td>4 Energy in play, 120</td></tr>
+							<tr><td>Cynthia&#x27;s Garchomp ex, Power Weight</td><td>400</td><td>170</td><td>6 Energy in play, 180</td></tr>
+						</tbody>
+					</table>
+					<table>
+						<thead><tr><th>Attack</th><th>Cost</th><th>Damage</th></tr></thead>
+						<tbody>
+							<tr><td><em>Psychic Powers</em>, Mewtwo ex</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span></td><td>230, then it can&#x27;t attack next turn</td></tr>
+							<tr><td><em>Geo Storm</em>, Xerneas</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span></td><td>30 per Psychic Energy in play: 180 at six, 240 at eight, 300 at ten</td></tr>
+							<tr><td><em>Psyspear</em>, Deoxys 032</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span></td><td>120, plus 120 to the Bench with five Energy on it</td></tr>
+							<tr><td><em>Photon Bullets</em>, Mewtwo ex</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span></td><td>50 to every Pokémon ex they have</td></tr>
+							<tr><td><em>Miraculous Shine</em>, Espeon</td><td><span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>no damage; every evolved Pokémon they have goes back a stage</td></tr>
+							<tr><td><em>Genome Charge</em>, Deoxys 031</td><td><span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span></td><td>no damage; two Energy from the deck onto itself</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Most of the deck gives up 1 Prize.</strong> Xerneas, both Deoxys, and Espeon are the bodies that take the late hits, and Mewtwo ex is the only attacker worth two. <a href="#the-prize-tax">The Prize Tax</a> covers the rest.</p>
+			</section>
+			<section>
+				<h3 id="the-hard-rules">The Hard Rules<span data-flavor><img src="./assets/sprites/deoxys-defense.gif" alt="" /></span></h3>
+					<p>A few rules decide most games with this deck. The card sections explain the cards; this section explains the decisions.</p>
+			<article>
+				<h3 id="opening-turns">Opening turns</h3>
+				<section>
+					<dl>
+						<dt data-head>When</dt><dd data-head>Do this</dd>
+						<dt>Setup</dt><dd><span>Lead a Genome Charge Deoxys if you hold one. Otherwise lead Mewtwo ex, which survives longest. Lead Eevee only when it is your only Basic.</span></dd>
+						<dt>Your first turn</dt><dd><span>Telepathic Psychic Energy goes on the Active and benches two: Latias ex first, then Mewtwo ex or Xerneas.</span></dd>
+						<dt>First turn, going second</dt><dd><span>Genome Charge. Play Lillie&#x27;s for eight unless the hand already holds next turn.</span></dd>
+						<dt>First turn, going first</dt><dd><span>No attack and no Supporter. Items, Mystery Garden, and Telepathic&#x27;s two benches are all legal.</span></dd>
+						<dt>Second turn</dt><dd><span>Energy Switch the Genome Energy onto Mewtwo ex. Two Switches and the attachment make <em>Psychic Powers</em>; one makes <em>Photon Bullets</em>. With neither, Genome Charge again.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="where-the-energy-goes">Where the Energy goes</h3>
+				<section>
+					<dl>
+						<dt data-head>Rule</dt><dd data-head>Why</dd>
+						<dt><strong>Spread it.</strong></dt><dd><span>A Deoxys holding five is five Energy off the Geo Storm count the turn Boss&#x27;s Orders finds it.</span></dd>
+						<dt><strong>Telepathic only on a Psychic Pokémon.</strong></dt><dd><span>Attached to Eevee, it benches nothing.</span></dd>
+						<dt><strong>Basic Energy goes where it will move.</strong></dt><dd><span>Energy Switch and Wondrous Patch only touch Basic Energy. Telepathic stays where it lands.</span></dd>
+						<dt><strong>The attachment goes to the next attacker.</strong></dt><dd><span>Genome Charge and Wondrous Patch fill the Bench. Only the attachment and Energy Switch reach the Active.</span></dd>
+						<dt><strong>Mystery Garden only discards a spare.</strong></dt><dd><span>The card it throws away is Wondrous Patch&#x27;s next attachment, but only to the Bench.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="which-attack">Which attack</h3>
+				<section>
+					<table>
+						<thead><tr><th>Their Active</th><th>Use</th><th>Why</th></tr></thead>
+						<tbody>
+							<tr><td>230 HP or less</td><td><em>Psychic Powers</em></td><td>it kills, and Xerneas covers the locked turn</td></tr>
+							<tr><td>Already holding Mewtwo&#x27;s 230</td><td><em>Geo Storm</em></td><td>the table in <a href="#the-thesis">The Thesis</a> says how much Energy it needs</td></tr>
+							<tr><td>A board of two or more ex</td><td><em>Photon Bullets</em></td><td>50 on each sets up two knockouts at once</td></tr>
+							<tr><td>Stage 2s, or evolved Pokémon carrying damage</td><td><em>Miraculous Shine</em></td><td>every one goes back a stage, and the damaged ones die</td></tr>
+							<tr><td>Crustle</td><td><em>Geo Storm</em> or <em>Psyspear</em></td><td>neither is an ex, so <em>Mysterious Rock Inn</em> can&#x27;t stop them</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Never leave Mewtwo ex Active on its locked turn.</strong> Retreat it for free and attack with someone else.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="the-prize-tax">The Prize Tax<span data-flavor><img src="./assets/sprites/latias.gif" alt="" /></span></h3>
+					<dl>
+						<dt data-head>Pokémon</dt><dd data-head>Prizes it gives up</dd>
+						<dt>Mewtwo ex, Latias ex</dt><dd><span>2</span></dd>
+						<dt>Xerneas, Deoxys, Eevee, Espeon</dt><dd><span>1</span></dd>
+					</dl>
+					<p><strong>Six Prizes is three ex.</strong> The single-Prize bodies make the opponent take six knockouts, so give them those first.</p>
+					<ul>
+						<li><strong>One Mewtwo ex in play until the first is in trouble.</strong> A second one on the Bench is 2 Prizes for a Boss&#x27;s Orders.</li>
+						<li><strong>Latias ex comes down when free retreat matters this turn.</strong> Against Elliott it is the first thing his Boss&#x27;s Orders looks for.</li>
+						<li><strong>Late in the game, Xerneas takes the hits.</strong> It swings for the most and costs the least.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/deoxys.gif" alt="" /><img src="./assets/sprites/xerneas-neutral.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th>Source</th><th>From</th><th>To</th><th>Costs</th></tr></thead>
+						<tbody>
+							<tr><td>Your attachment</td><td>hand</td><td>any of your Pokémon</td><td>once a turn</td></tr>
+							<tr><td>Telepathic Psychic Energy</td><td>hand</td><td>a Psychic Pokémon, and two Basic Psychic Pokémon from the deck to the Bench</td><td>your attachment</td></tr>
+							<tr><td><em>Genome Charge</em></td><td>deck, 2</td><td>the Deoxys that used it</td><td>its attack</td></tr>
+							<tr><td>Energy Switch</td><td>one of your Pokémon</td><td>another</td><td>an Item; Basic Energy only</td></tr>
+							<tr><td>Wondrous Patch</td><td>discard pile</td><td>a Benched Psychic Pokémon</td><td>an Item; Basic Psychic only</td></tr>
+							<tr><td>Night Stretcher</td><td>discard pile</td><td>hand</td><td>an Item; Basic Energy or a Pokémon</td></tr>
+							<tr><td>Hilda</td><td>deck</td><td>hand</td><td>your Supporter, with an Espeon</td></tr>
+							<tr><td>Mystery Garden</td><td>hand</td><td>discard pile</td><td>one Energy, for cards</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy on the board is damage.</strong> Every one anywhere is 30 on the next Geo Storm. Energy in the discard pile is next turn&#x27;s Wondrous Patch. Only Energy left in the deck does nothing, which is why Genome Charge pulls two at a time.</p>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-turn-one-going-second">1. Turn one, going second<span data-flavor><img src="./assets/sprites/deoxys-speed.gif" alt="" /></span></h3>
+					<p>You can attack on your first turn going second, and the best attack is <em>Genome Charge</em>.</p>
+					<p><strong>With Deoxys in front</strong>, attach to it, Telepathic if you have one, and Genome Charge. It ends the turn holding three Energy, and Telepathic has benched Latias ex and a Mewtwo ex.</p>
+					<p><strong>Without a Deoxys</strong>, put Telepathic on the Active and bench Latias ex and a Deoxys. Play Lillie&#x27;s while it still draws eight. With an Ultra Ball or Poke Pad spare, an Energy on the Benched Deoxys and a free retreat make the Genome Charge happen anyway.</p>
+			</section>
+			<section>
+				<h3 id="2-turn-one-going-first">2. Turn one, going first</h3>
+					<p><strong>You can&#x27;t attack or play a Supporter, and every Item, Tool, and Stadium is still legal.</strong> Telepathic goes on the Active and benches two. Ultra Ball and Poke Pad fill the rest. Turn two is the same Genome Charge, or <em>Photon Bullets</em> from a Mewtwo ex holding two.</p>
+			</section>
+			<section>
+				<h3 id="3-the-rotation">3. The rotation<span data-flavor><img src="./assets/sprites/mewtwo.gif" alt="" /><img src="./assets/sprites/latias.gif" alt="" /><img src="./assets/sprites/xerneas.gif" alt="" /></span></h3>
+					<p><strong>Mewtwo ex and Xerneas trade the Active Spot every turn, and Latias ex makes each swap free.</strong></p>
+					<ol>
+						<li><strong>Mewtwo ex:</strong> <em>Psychic Powers</em> for 230.</li>
+						<li><strong>Xerneas:</strong> Mewtwo retreats for free, which ends its lock. <em>Geo Storm</em> finishes what Mewtwo hit.</li>
+						<li><strong>Mewtwo ex again:</strong> Xerneas retreats for free, and Mewtwo swings at the next target.</li>
+					</ol>
+					<p>Between attacks, Energy Switch and Wondrous Patch keep three on whichever of the two attacks next. A second Mewtwo ex does the same job without Latias, at the cost of 2 more Prizes on the Bench.</p>
+			</section>
+			<section>
+				<h3 id="4-the-espeon-turn">4. The Espeon turn<span data-flavor><img src="./assets/sprites/espeon.gif" alt="" /></span></h3>
+					<p><strong>Miraculous Shine is the play when damage is already down and the board is evolved.</strong></p>
+					<ul>
+						<li><strong>After <em>Photon Bullets</em> or <em>Psychic Powers</em>,</strong> every damaged Pokémon that drops below its damage dies at once.</li>
+						<li><strong>Against Rare Candy decks,</strong> each Stage 2 falls back to its Basic, and they need another Candy to come back.</li>
+						<li><strong>Against an Ability engine,</strong> devolving switches it off until they evolve again: Metang drops to Beldum, Toxtricity to Toxel, and Blissey ex to Chansey.</li>
+					</ul>
+					<p>It does no damage, and the knockouts pay 1 Prize each. On a turn where Geo Storm can take 2 Prizes from the same Pokémon, Geo Storm is better.</p>
+			</section>
+			<section>
+				<h3 id="5-bench-discipline">5. Bench discipline<span data-flavor><img src="./assets/sprites/eevee.gif" alt="" /></span></h3>
+					<p>The Bench holds five. A working board is Latias ex, a Genome Charge Deoxys, a Xerneas, the next Mewtwo ex, and one spare.</p>
+					<ul>
+						<li>Every Benched Pokémon should be holding Energy, or about to. A Bench seat that holds none adds nothing to Geo Storm.</li>
+						<li>The spare seat is an Eevee only when Espeon is in hand.</li>
+						<li>Against <em>Phantom Dive</em> and <em>Chaotic Pain</em>, a 50 HP Eevee or a 110 HP Deoxys on the Bench is a free Prize.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/blissey.gif" alt="" /></span></h3>
+					<p>Xero&#x27;s decks, from Fox&#x27;s side of the table. <a href="./dark-lucky.html#versus-the-kitchen-table">His own page</a> has the plan from the other chair.</p>
+					<p><strong><a href="./dark-lucky.html">Lucky Haunt</a>, Xero&#x27;s league deck. Xerneas carries this game.</strong> Every other Pokémon here is weak to Darkness, and every Darkness attacker in Lucky Haunt one-shots Mewtwo ex. Xerneas is weak to Metal, so nothing of his doubles into it.</p>
+					<table>
+						<thead><tr><th>Xero&#x27;s hit</th><th>Into Mewtwo ex at 230</th><th>Into Xerneas at 130, or 230 Cape&#x27;d</th></tr></thead>
+						<tbody>
+							<tr><td><em>Void Gale</em>, Mega Gengar ex, 230</td><td>460, dies</td><td>dies, Cape or not</td></tr>
+							<tr><td><em>Chain-Crazed</em>, Okidogi ex while Poisoned, 260</td><td>520, dies</td><td>dies</td></tr>
+							<tr><td><em>Return</em>, Blissey ex, 180</td><td>lives on 50</td><td>dies; lives on 50 Cape&#x27;d</td></tr>
+							<tr><td><em>Gentle Slap</em>, Toxtricity, 100</td><td>200, lives on 30</td><td>lives on 30</td></tr>
+							<tr><td><em>Chaotic Pain</em>, Gengar ex, 13 counters</td><td>lives on 100</td><td>dies; lives on 100 Cape&#x27;d</td></tr>
+						</tbody>
+					</table>
+					<ul>
+						<li><strong>The Cape goes on Xerneas.</strong> It turns <em>Chaotic Pain</em> and <em>Return</em> into hits it lives through.</li>
+						<li><strong>Mystery Garden replaces Risky Ruins.</strong> Ruins puts 2 damage counters on every Basic non-Darkness Pokémon you bench during your turn, which is every Basic here. Bench what you can at setup, which isn&#x27;t anyone&#x27;s turn.</li>
+						<li><strong>Espeon wrecks his board.</strong> <em>Miraculous Shine</em> sends every Gengar ex and Mega Gengar ex back to Haunter, or to Gastly when Rare Candy put it down. Blissey ex drops to Chansey and Toxtricity to Toxel. Neo Upper Energy on a devolved Gengar provides only <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /></span>, so it can&#x27;t pay <span data-icons="inline"><img src="./assets/types/darkness.png" alt="Darkness" /><img src="./assets/types/darkness.png" alt="Darkness" /></span>. Any Gengar that Grimsley&#x27;s Move benched never evolved and stays.</li>
+						<li><strong><em>Shadowy Concealment</em> takes a Prize off every knockout Mewtwo ex scores on a Darkness Pokémon</strong> while a Mega Gengar is in play. Xerneas, Deoxys, and Espeon aren&#x27;t ex, so they take the full count. Blissey ex and Chansey are Colorless, so Concealment never covers them.</li>
+						<li><strong><em>Fainting Spell</em> flips a coin at whatever knocks out a Gengar ex.</strong> Heads, the attacker dies too. Finish Gengar ex with Xerneas, and the bet is 1 Prize, not 2.</li>
+						<li><strong>His page lists Eevee as a <em>Chaotic Pain</em> target.</strong> Bench it the turn before Espeon, never earlier.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="versus-the-card-shop">Versus the Card Shop<span data-flavor><img src="./assets/sprites/excadrill.gif" alt="" /><img src="./assets/sprites/genesect.gif" alt="" /><img src="./assets/sprites/crustle.gif" alt="" /></span></h3>
+					<p>The Wednesday league at CardCrate draws from this field. Each opponent page has the pilot&#x27;s full plan.</p>
+					<table>
+						<thead><tr><th>Deck</th><th>The problem</th><th>The answer</th></tr></thead>
+						<tbody>
+							<tr><td><a href="./cynthia-garchomp.html">Elliott&#x27;s Cynthia&#x27;s Garchomp ex</a></td><td>400 HP under Power Weight, and <em>Draconic Buster</em> is 260 plus 30 for each Roserade and Premium Power Pro</td><td><a href="#versus-elliotts-garchomp">Its own section</a> below</td></tr>
+							<tr><td><a href="./metal-excadrill.html">Matt&#x27;s Mega Excadrill ex</a></td><td><em>Maximum Drilling</em> is 330 with two extra Energy, which kills the Cape&#x27;d Mewtwo ex exactly. Xerneas is Metal-weak, so <em>Undermine</em>&#x27;s 90 kills it.</td><td><em>Psychic Powers</em>, then Geo Storm, kills the 340. Keep Xerneas off the Active until that finish. <em>Psychic Powers</em> alone kills Genesect ex at 220, and <em>Miraculous Shine</em> turns Metang back into Beldum, which shuts off <em>Metal Maker</em>.</td></tr>
+							<tr><td><a href="./dragons.html">Steve&#x27;s Dragapult ex</a></td><td><em>Phantom Dive</em> is 200 to the Active and 6 damage counters across your Bench. A Benched Dragapult ex is Tera, so <em>Photon Bullets</em> can&#x27;t touch it.</td><td>Mewtwo ex lives through the 200 on 30. <em>Psychic Powers</em>, then any Geo Storm, kills its 320. Keep Eevee off the Bench.</td></tr>
+							<tr><td>Crustle</td><td><em>Mysterious Rock Inn</em> prevents all damage from Pokémon ex. <em>Superb Scissors</em> is 120, which kills either Deoxys.</td><td>Xerneas and Deoxys aren&#x27;t ex. Geo Storm at five Energy kills its 150, and Scissors leaves Xerneas on 10.</td></tr>
+						</tbody>
+					</table>
+			<article>
+				<h3 id="versus-elliotts-garchomp">Versus Elliott&#x27;s Garchomp<span data-flavor><img src="./assets/sprites/garchomp.gif" alt="" /><img src="./assets/sprites/roserade.gif" alt="" /><img src="./assets/sprites/spiritomb.gif" alt="" /></span></h3>
+				<section>
+					<p><strong>Elliott&#x27;s deck is the hardest game in the room, and this is the best plan for it.</strong> Put the Cape on Mewtwo ex, and kill each Garchomp in two attacks: <em>Psychic Powers</em> for 230, then Geo Storm for 180 with Mewtwo&#x27;s three and Xerneas&#x27;s three in play.</p>
+					<p>Mewtwo ex resists Fighting by 30, so every Garchomp hit lands 30 short:</p>
+					<table>
+						<thead><tr><th>Elliott&#x27;s attack</th><th>Into Mewtwo ex at 230</th><th>Cape&#x27;d, at 330</th></tr></thead>
+						<tbody>
+							<tr><td><em>Corkscrew Dive</em>, two Roserade, 130</td><td>dies to the second</td><td>dies to the third</td></tr>
+							<tr><td><em>Draconic Buster</em>, no boosts, 230</td><td>dies</td><td>lives on 100</td></tr>
+							<tr><td><em>Draconic Buster</em>, three boosts, 320</td><td>dies</td><td>lives on 10</td></tr>
+							<tr><td><em>Draconic Buster</em>, four boosts, 350</td><td>dies</td><td>dies</td></tr>
+						</tbody>
+					</table>
+					<ul>
+						<li><strong><em>Draconic Buster</em> discards every Energy on that Garchomp.</strong> A Cape&#x27;d Mewtwo makes him spend two attachments and four boosts in one turn, and the next Garchomp starts from zero.</li>
+						<li><strong>Xerneas has no Fighting Resistance.</strong> <em>Corkscrew Dive</em> with one Roserade is 130, exactly its HP. It finishes a Garchomp and is traded for it, 1 Prize for 2.</li>
+						<li><strong>Meowth ex is his cheapest 2 Prizes.</strong> It has 170 HP, so Boss&#x27;s Orders and <em>Psychic Powers</em> take it.</li>
+						<li><strong>Each Roserade adds 30 to every hit.</strong> At 130 HP, one <em>Psychic Powers</em> kills a Roserade. When <em>Corkscrew Dive</em> starts killing Xerneas, take them first.</li>
+						<li><strong>Don&#x27;t damage his Bench while Spiritomb lives.</strong> <em>Raging Curse</em> does 10 for each damage counter on his Benched Cynthia&#x27;s Pokémon, so <em>Photon Bullets</em> and the Bench half of <em>Psyspear</em> feed it. Use them only after Spiritomb is gone, or for the last Prize.</li>
+						<li><strong>Espeon is the fallback when Geo Storm can&#x27;t reach.</strong> A Garchomp holding 230 drops to a 170 HP Gabite and dies, and every Roserade drops to Roselia for that turn. It is 1 Prize, not 2.</li>
+						<li><strong>Latias ex is 2 Prizes for his Boss&#x27;s Orders.</strong> <em>Draconic Buster</em> kills it with no boosts. Bench it on a turn the free retreat pays for itself.</li>
+					</ul>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune<span data-flavor><img src="./assets/sprites/eevee-back.gif" alt="" /></span></h3>
+					<p>The list is a hypothesis, and games on Live are the data.</p>
+					<dl>
+						<dt data-head>Symptom</dt><dd data-head>Fix</dd>
+						<dt>No Genome Charge on turn one most games</dt><dd><span>4th Deoxys 031 over the Psyspear Deoxys</span></dd>
+						<dt>Geo Storm stuck short of 180 by turn three</dt><dd><span>11th Basic Psychic Energy over a Poke Pad</span></dd>
+						<dt>Mewtwo ex stuck at two Energy on turn two</dt><dd><span>lead Deoxys harder; hold Energy Switch for that turn instead of playing it early</span></dd>
+						<dt>Latias ex keeps getting Boss&#x27;d for 2 Prizes</dt><dd><span>2nd Switch over Latias ex, and pay the Retreat Costs</span></dd>
+						<dt>Espeon never gets to attack</dt><dd><span>cut to 2 Eevee and 1 Espeon; add Jacinthe and a 4th Mewtwo ex</span></dd>
+						<dt>Hands run dry after turn three</dt><dd><span>4th Mystery Garden over Hilda</span></dd>
+						<dt>Elliott&#x27;s Garchomp keeps winning</dt><dd><span>Jacinthe over Hilda</span></dd>
+						<dt>Steve&#x27;s Dragapult keeps winning</dt><dd><span>Lillie&#x27;s Clefairy ex over a Poke Pad</span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="alternatives">Alternatives<span data-flavor><img src="./assets/sprites/floette-eternal.gif" alt="" /><img src="./assets/sprites/gardevoir-mega.gif" alt="" /><img src="./assets/sprites/slowbro-mega.gif" alt="" /></span></h3>
+					<table>
+						<thead><tr><th>Card</th><th>Swaps for</th><th>Play it when</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Floette ex (Chaos Rising 101)</td><td>a Poke Pad</td><td>the house gets one. It is a Basic Mega with 250 HP, weak to Metal. <em>Eternity Bloom</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> for 200, and it attaches up to 4 Basic Psychic Energy from the deck to your Bench: 120 more on the next Geo Storm. It gives up 3 Prizes.</td></tr>
+							<tr><td>Jacinthe (Perfect Order 110)</td><td>Hilda</td><td>Elliott. It heals 150 from one Psychic Pokémon, which resets a Cape&#x27;d Mewtwo ex after a <em>Corkscrew Dive</em>.</td></tr>
+							<tr><td>Lillie&#x27;s Clefairy ex (Journey Together 056)</td><td>a Poke Pad</td><td>Steve&#x27;s Dragapult. <em>Fairy Zone</em> makes every Dragon Pokémon weak to Psychic, so <em>Psychic Powers</em> does 460 to Dragapult ex. The house owns one.</td></tr>
+							<tr><td>Prime Catcher (ACE SPEC)</td><td>Hero&#x27;s Cape</td><td>the games are lost to stranded attackers rather than to big hits. It gusts and switches in one Item.</td></tr>
+							<tr><td>Maximum Belt (ACE SPEC)</td><td>Hero&#x27;s Cape</td><td>the Card Shop field is all ex. <em>Psychic Powers</em> does 280 to an Active Pokémon ex.</td></tr>
+							<tr><td>Sparkling Crystal (ACE SPEC)</td><td>never</td><td>it lowers attack costs only for a Tera Pokémon, and nothing here is Tera. It belongs in <a href="./eevee-standard.html">Rainbow DNA</a>.</td></tr>
+							<tr><td>Espeon ex (30th Celebration 070)</td><td>an Espeon</td><td>the deck wants a third attacker. <em>Solar Beatdown</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> for 30 per Pokémon you have in play, 180 with a full board. It is a 260 HP Stage 1 worth 2 Prizes.</td></tr>
+							<tr><td>Xerneas (Mega Evolution 064)</td><td>a Geo Storm Xerneas</td><td>the Bench fills too slowly. <em>Geo Gate</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>: put up to 3 Basic Psychic Pokémon from the deck onto the Bench. It shares the four-copy limit.</td></tr>
+							<tr><td>Mewtwo (30th Celebration 063)</td><td>a Poke Pad</td><td>Energy keeps piling up in the discard pile. <em>Empower</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span>: attach up to 2 Basic Energy from the discard pile to one Pokémon. It is a different name from Mewtwo ex.</td></tr>
+							<tr><td>Mega Slowbro ex and Slowpoke (Pitch Black 031, 029)</td><td>Latias ex and a Poke Pad</td><td>Fox wants a wall. <em>Shellnado Spin</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /><img src="./assets/types/psychic.png" alt="Psychic" /></span> for 180, and whatever damages it next turn takes 12 damage counters. It gives up 3 Prizes. Xero&#x27;s, offered.</td></tr>
+							<tr><td>Mega Chandelure ex line (Pitch Black 036-038)</td><td>never</td><td>Xero&#x27;s, offered. A Stage 2 Mega with its own engine, and every Bench seat here should hold Energy.</td></tr>
+							<tr><td>Mega Gardevoir ex</td><td>a different deck</td><td>Fox wants Geo Storm bigger. <em>Mega Symphonia</em> is <span data-icons="inline"><img src="./assets/types/psychic.png" alt="Psychic" /></span> for 50 per Psychic Energy in play, on a 360 HP Stage 2 Mega.</td></tr>
+						</tbody>
+					</table>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

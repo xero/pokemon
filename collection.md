@@ -36,6 +36,7 @@
   - [Clefairy](#clefairy) _ME03: Perfect Order_
   - [Comfey](#comfey) _SV07: Stellar Crown_
 - **D**
+  - [Deoxys](#deoxys) _ME04: Chaos Rising_
   - [Dragapult ex](#dragapult-ex) _SV06: Twilight Masquerade_
   - [Drakloak](#drakloak) _SV06: Twilight Masquerade_
   - [Dreepy](#dreepy) _SV06: Twilight Masquerade_
@@ -740,6 +741,24 @@
   <tr><td><b>Weakness</b>: <img src="./assets/types/metal.png" alt="Metal" height="18" align="top"> Metal ×2</td></tr>
   <tr><td><b>Resistance</b>: -</td></tr>
   <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 1</td></tr>
+  <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
+</table>
+
+<table>
+  <tr><td colspan="2"><h3 id="deoxys">Deoxys <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="18" align="top"></picture></h3></td></tr>
+  <tr>
+    <th rowspan="12" width="400"><a href="./assets/693475_deoxys-032-086.jpg"><img src="./assets/693475_deoxys-032-086.jpg" width="350" alt="Deoxys"></a></th>
+  </tr>
+  <tr><td><b>ME04: Chaos Rising</b> <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png"><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" height="22" align="top"></picture> 032/086</td></tr>
+  <tr><td><b>Rarity</b>: <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png"><img src="./assets/rarities/uncommon.png" alt="Uncommon" height="16" align="top"></picture> Uncommon</td></tr>
+  <tr><td><b>Type</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="18" align="top"> Psychic</td></tr>
+  <tr><td><b>HP</b>: 120</td></tr>
+  <tr><td><b>Stage</b>: Basic</td></tr>
+  <tr><td><b>Ability</b>: -</td></tr>
+  <tr><td><b>Attack</b>: <img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"><img src="./assets/types/psychic.png" alt="Psychic" height="16" align="top"> Psyspear (120) - If this Pokémon has at least 2 extra Energy attached (in addition to this attack&#x27;s cost), this attack also does 120 damage to 1 of your opponent&#x27;s Benched Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</td></tr>
+  <tr><td><b>Weakness</b>: <img src="./assets/types/darkness.png" alt="Darkness" height="18" align="top"> Darkness ×2</td></tr>
+  <tr><td><b>Resistance</b>: <img src="./assets/types/fighting.png" alt="Fighting" height="18" align="top"> Fighting -30</td></tr>
+  <tr><td><b>Retreat</b>: <img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"><img src="./assets/types/colorless.png" alt="Colorless" height="16" align="top"> 2</td></tr>
   <tr><td><b>Tournament Play</b>: <img src="./assets/ok.png" alt="OK" height="22" align="top"> legal, and good to go!</td></tr>
 </table>
 

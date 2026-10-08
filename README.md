@@ -47,6 +47,10 @@ tcg deck planning for me and my son
 
 - [ground zero](./ground-zero.md)
 
+### psychic
+
+- [psychic storm](./psychic-storm.md)
+
 ## opponent decks
 
 models of what the league regulars bring

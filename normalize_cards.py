@@ -322,6 +322,11 @@ MANUAL_CARDS = {
                             "play it.) Tera - As long as this Pokémon is on your "
                             "Bench, prevent all damage done to this Pokémon by "
                             "attacks (both yours and your opponent's)."},
+    # TCGplayer ships "Pok?mon" in this attack, a mangled é. Read off the card.
+    "30C/69": {"attack1": "[PC] Miraculous Shine - Devolve each of your "
+                          "opponent's evolved Pokémon by putting the highest "
+                          "Stage Evolution card on it into your opponent's "
+                          "hand."},
 }
 
 MANUAL_MARKS = {
@@ -342,17 +347,6 @@ MANUAL_MARKS = {
     # above. Keyed to the card, not the series: promo series outlive marks,
     # the way SVP promos span G through I.
     "MEP/27": "I",
-    # 30th Celebration released 2026-09-16 and pokemontcg.io has not indexed it
-    # yet, so every card in it resolves to "unknown". Read off limitlesstcg's
-    # card pages. Keyed to the card and NOT the set: the set is mixed, and the
-    # reprinted Trainers at the back carry I where the rest of the set carries
-    # J (Ultra Ball 128 is an I). Drop this entry once fetch_regulation.py can
-    # see the set, and check the rest of the set before adding a sibling here.
-    "30C/90": "J",
-    # Zamazenta 107/128, the shield dog steel-wolves.md is built on. Checked
-    # the same way, against limitlesstcg.com/cards/30C/107, and confirmed
-    # against the Standard pool snapshot, which also carries it as J.
-    "30C/107": "J",
 }
 
 REG_MARKS = {}

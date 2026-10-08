@@ -852,6 +852,44 @@ ex flips for Energy when it opens."""
 "Alternatives" = ["audino"]
 
 [[deck]]
+source = "psychic-storm.md"
+player = "fox"
+shelf = "other"
+group = "Psychic"
+sprites = ["mewtwo", "xerneas", "deoxys", "espeon"]
+blurb = """
+Mewtwo ex, Xerneas, and Espeon on one pile of Psychic Energy. Deoxys charges
+the board, every Energy anywhere adds 30 to Geo Storm, and Latias ex makes each
+retreat free, so Mewtwo hits for 230 and Xerneas finishes."""
+
+# deoxys and its three formes, xerneas and xerneas-neutral, floette-eternal,
+# gardevoir-mega, and slowbro-mega were promoted from assets/ani for this page.
+# Psyspear gets the Attack Forme; the turn-one plan gets Speed.
+[deck.flavor]
+"The Thesis" = ["mewtwo", "xerneas"]
+"Mewtwo ex" = ["mewtwo"]
+"Xerneas" = ["xerneas"]
+"Deoxys (Chaos Rising 031)" = ["deoxys"]
+"Deoxys (Chaos Rising 032)" = ["deoxys-attack"]
+"Eevee" = ["eevee"]
+"Espeon" = ["espeon"]
+"Latias ex" = ["latias"]
+"The Hard Rules" = ["deoxys-defense"]
+"The Prize Tax" = ["latias"]
+"The Energy Engine" = ["deoxys", "xerneas-neutral"]
+"1. Turn one, going second" = ["deoxys-speed"]
+"3. The rotation" = ["mewtwo", "latias", "xerneas"]
+"4. The Espeon turn" = ["espeon"]
+"5. Bench discipline" = ["eevee"]
+# the matchups get the deck they are about, as on the other pages
+"Versus the Kitchen Table" = ["gengar-mega", "blissey"]
+"Versus the Card Shop" = ["excadrill", "genesect", "crustle"]
+"Versus Elliott's Garchomp" = ["garchomp", "roserade", "spiritomb"]
+# a back sprite for the honest downside, as in the other files
+"Test and Tune" = ["eevee-back"]
+"Alternatives" = ["floette-eternal", "gardevoir-mega", "slowbro-mega"]
+
+[[deck]]
 source = "metal-excadrill.md"
 player = "fox"
 shelf = "opponent"
