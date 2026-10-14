@@ -22,6 +22,7 @@ instead of pulling in a full markdown engine:
     ### Gastly              a card, followed by an <img>, a stat table,
                             then #### General use / Pairing / Strategy
     ## 1. The Two-Turn Fuse a named game plan
+    | Copies | Card | Set |  a showcase list, drawn as a strip of Limitless art
 
 Cards become the same <article> the collection page uses, so both read the
 same. Stat rows reuse the shared glyph lookup where the field lines up.
@@ -59,6 +60,15 @@ PUBLISHED = {Path(e["page"]).stem for e in published(LIBRARY + DECKS)}
 # markdown that is never a page: the repo's own docs, and the GitHub copy of
 # the collection that build_markdown.py writes
 NOT_PAGES = {"README.md", "CLAUDE.md", "collection.md"}
+
+# A table led by Copies instead of Qty is a showcase: the same sixty in prints
+# nobody here owns, like Overgrowth's bling build. Those prints are not in
+# cards.csv and must not be, or the collection and the pull list would read
+# them as ours. So the art comes from Limitless by the set code and number the
+# table prints, the same codes its deck builder uses, and the counts never
+# reach the badges or the pull list, which read Qty tables only.
+SHOWCASE_ART = ("https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/"
+                "{code}/{code}_{num:0>3}_R_EN_SM.png")
 
 
 def flavor(name, table, used):
@@ -442,12 +452,34 @@ def deck_list(lines, where=""):
     return out
 
 
-def gallery(entries, heading, ind="\t\t\t"):
+def showcase(grid):
+    """(src, name, qty) for each row of a Copies table, art from Limitless."""
+    head = [c.lower() for c in grid[0]]
+
+    def col(row, want):
+        j = head.index(want) if want in head else -1
+        return row[j] if 0 <= j < len(row) else ""
+
+    out = []
+    for r in grid[1:]:
+        code, num = col(r, "set").upper(), col(r, "number").lstrip("0")
+        if not r[0].isdigit() or not code.isalnum() or not num.isdigit():
+            print(f"  showcase row has no set code and number: {r!r}")
+            continue
+        out.append((SHOWCASE_ART.format(code=code, num=num), col(r, "card"),
+                    r[0]))
+    return out
+
+
+def gallery(entries, heading, ind="\t\t\t", lazy=False):
     """The deck list as a strip of thumbnails, counts sitting on the art.
 
     One <article> rather than one per card: this is a single picture of the
     sixty, and the card pages below it are where a card gets its own box.
+    A showcase sits at the foot of the page and its art is remote, so it
+    loads lazily.
     """
+    extra = ' loading="lazy"' if lazy else ""
     out = [f"{ind}<article data-decklist>"]
     if heading:
         out.append(f'{ind}\t<h3 id="deck-list">Deck List</h3>')
@@ -460,8 +492,8 @@ def gallery(entries, heading, ind="\t\t\t"):
         # the name rides between sentinels so convert() can wrap the figure
         # in a link to the card's own section once the anchors exist; a name
         # no heading matches falls back to a plain image.
-        out.append(f"{ind}\t<figure>\x00{name}\x01{img(src, name)}{badge}\x02"
-                   "</figure>")
+        out.append(f"{ind}\t<figure>\x00{name}\x01{img(src, name, extra)}"
+                   f"{badge}\x02</figure>")
     return out + [f"{ind}</article>"]
 
 
@@ -538,6 +570,8 @@ def convert(src):
     thumbs, shown = deck_list(lines, src.name), False
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
+    art_head = None       # (heading, anchor) of that card, for the contents
+    bling = None          # (heading, anchor) of the page's showcase, if any
     sect = None           # the ## section currently being filled in
 
     def close_art():
@@ -625,6 +659,7 @@ def convert(src):
             card_anchor.setdefault(name, a)
             card_anchor.setdefault(
                 re.sub(r"\s*\([^()]*\)\s*$", "", name).strip(), a)
+            art_head = (name, a)
             art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}'
                    f'\x00{flavor(name, flav, seen_flav)}</h3>']
             badge = ""
@@ -741,6 +776,16 @@ def convert(src):
                 table.append(lines[i])
                 i += 1
             grid = parse_table(table)
+            # a showcase is drawn, not tabled, and the ### it sits under joins
+            # the contents the way one a table directly follows would.
+            if grid and grid[0][0].strip("*").lower() == "copies":
+                for h in gallery(showcase(grid), False, "\t\t\t\t\t",
+                                 lazy=True):
+                    emit(h)
+                if art is not None and (3, *art_head) not in toc:
+                    toc.append((3, *art_head))
+                    bling = bling or art_head
+                continue
             rendered = render_table(grid, "\t\t\t\t\t")
             # a Qty table exists to feed the badges and the deck-list strip.
             # on a page that draws the strip, the strip IS the deck list, so
@@ -802,7 +847,18 @@ def convert(src):
     body = [re.sub("\x00(.*?)\x01(.*?)\x02", link_thumb, b) for b in body]
     for miss in sorted(set(flav) - seen_flav):
         print(f"  {src.name}: no heading matches flavour key {miss!r}")
-    return title, subtitle, build_nav(toc), "\n".join(body), "\n".join(notes)
+    body = "\n".join(body)
+    if bling:
+        # the deck list heading links down to the showcase from the corner
+        # where flavour sprites sit, so the bling build is one tap away.
+        link = (f'<a data-bling href="#{bling[1]}" title="{esc(bling[0])}" '
+                f'aria-label="{esc(bling[0])}">$$$</a>')
+        body, hit = re.subn(r'(<h3 id="deck-list">.*?)(</h3>)',
+                            lambda m: m.group(1) + link + m.group(2), body,
+                            count=1)
+        if not hit:
+            print(f"  {src.name}: no Deck List heading to link the showcase from")
+    return title, subtitle, build_nav(toc), body, "\n".join(notes)
 
 
 def build_nav(toc):

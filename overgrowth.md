@@ -27,7 +27,7 @@
 >
 > [**The Prize Tax**](#the-prize-tax) · [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
 >
-> [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
+> [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives) · [Bling Deck](#bling-deck)
 
 ---
 
@@ -266,8 +266,6 @@ A few rules decide most games with this deck. The card sections explain the card
 
 ### Which Supporter
 
-Thirteen Supporters and one a turn make this the turn's real choice.
-
 | The hand | Play |
 | :--- | :--- |
 | No line, or nothing worth keeping | Lillie's Determination. Six cards, or eight while you still have all six Prizes. |
@@ -429,3 +427,37 @@ The list is a hypothesis, and games on Live are the data.
 | Energy Switch | the Poke Pad | Venusaur is late too often. It moves one Basic Energy between your Pokémon, which is one *Solar Transfer*. |
 | Fezandipiti ex | never | Xero's call. He cut it after playtesting this list on Live. |
 | Meowth ex | never | Xero's call. It is a 2-Prize body on the Bench for one Supporter. |
+
+### Bling Deck
+
+This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at just over $1,000 in October 2026. [Check the current market price.](https://my.limitlesstcg.com/builder?i=10133ASC2210233MEG1330233MEG1340133MEG1770133MEG1550433TWM2110332MEP460231MEG90231MEP10232MEG120333POR1090233DRI2260133TWM2070233MEG1690233MEG1840133PFL1180133PFL1290133CRI1200133CRI1060133RCL1890133RCL2000133SUM1610233MEW2060233SSP2510133POR1130433PRE1020e33GRI167)
+
+| Copies | Card | Set | Number |
+| --- | --- | --- | --- |
+| 4 | Teal Mask Ogerpon ex | TWM | 211 |
+| 3 | Chikorita | MEP | 046 |
+| 2 | Bayleef | MEG | 009 |
+| 2 | Meganium | MEP | 001 |
+| 2 | Bulbasaur | MEG | 133 |
+| 2 | Ivysaur | MEG | 134 |
+| 1 | Mega Venusaur ex | MEG | 177 |
+| 1 | Mega Venusaur ex | MEG | 155 |
+| 2 | Celebi | MEG | 012 |
+| 1 | Budew | ASC | 221 |
+| 2 | Lillie's Determination | MEG | 169 |
+| 2 | Lillie's Determination | MEG | 184 |
+| 1 | Dawn | PFL | 118 |
+| 1 | Dawn | PFL | 129 |
+| 2 | Team Rocket's Petrel | DRI | 226 |
+| 1 | Boss's Orders | RCL | 189 |
+| 1 | Boss's Orders | RCL | 200 |
+| 1 | AZ's Tranquility | CRI | 120 |
+| 1 | AZ's Tranquility | CRI | 106 |
+| 1 | Lana's Aid | TWM | 207 |
+| 4 | Bug Catching Set | PRE | 102 |
+| 2 | Switch | MEW | 206 |
+| 2 | Night Stretcher | SSP | 251 |
+| 1 | Ultra Ball | SUM | 161 |
+| 1 | Poke Pad | POR | 113 |
+| 3 | Forest of Vitality | POR | 109 |
+| 14 | Basic Grass Energy | GRI | 167 |

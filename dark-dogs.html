@@ -966,6 +966,25 @@
 			}
 		}
 
+		/* the deck list heading's link down to a showcase, Overgrowth's bling
+		   build. it parks in the corner like the sprites, and after them when
+		   a heading has both. */
+		[data-bling] {
+			margin-inline-start: auto;
+			text-decoration: none;
+		}
+
+		[data-flavor] + [data-bling] {
+			margin-inline-start: 0;
+		}
+
+		/* a showcase strip sits under a paragraph inside a card's prose. the
+		   paragraph's padding is all on top, so the strip brings its own two
+		   lines of room. */
+		p + [data-decklist] {
+			margin-top: 2lh;
+		}
+
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
@@ -1167,6 +1186,7 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
+		[data-bling],
 		[data-back],
 		[data-beside] img {
 			display: none;

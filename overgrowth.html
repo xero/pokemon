@@ -966,6 +966,25 @@
 			}
 		}
 
+		/* the deck list heading's link down to a showcase, Overgrowth's bling
+		   build. it parks in the corner like the sprites, and after them when
+		   a heading has both. */
+		[data-bling] {
+			margin-inline-start: auto;
+			text-decoration: none;
+		}
+
+		[data-flavor] + [data-bling] {
+			margin-inline-start: 0;
+		}
+
+		/* a showcase strip sits under a paragraph inside a card's prose. the
+		   paragraph's padding is all on top, so the strip brings its own two
+		   lines of room. */
+		p + [data-decklist] {
+			margin-top: 2lh;
+		}
+
 		[data-callout] {
 			flex: 1 1 100%;
 			background: var(--surface);
@@ -1167,6 +1186,7 @@
 		[data-mascot],
 		[data-sprite],
 		[data-flavor],
+		[data-bling],
 		[data-back],
 		[data-beside] img {
 			display: none;
@@ -1245,7 +1265,6 @@
 			<li><a href="#the-energy-engine">The Energy Engine</a></li>
 			<li><a href="#versus-the-ladder">Versus the Ladder</a></li>
 			<li><a href="#test-and-tune">Test and Tune</a></li>
-			<li><a href="#alternatives">Alternatives</a></li>
 		</ul>
 		<dl data-index>
 			<dt>Pokémon</dt>
@@ -1259,9 +1278,11 @@
 			<dt>Energy</dt>
 			<dd><a href="#basic-grass-energy">Basic Grass Energy</a></dd>
 			<dt><a href="#the-hard-rules">The Hard Rules</a></dt>
-			<dd><a href="#opening-turns">Opening turns</a> <a href="#where-the-energy-goes">Where the Energy goes</a> <a href="#ogerpon-or-venusaur">Ogerpon or Venusaur</a></dd>
+			<dd><a href="#opening-turns">Opening turns</a> <a href="#which-supporter">Which Supporter</a> <a href="#where-the-energy-goes">Where the Energy goes</a> <a href="#ogerpon-or-venusaur">Ogerpon or Venusaur</a></dd>
 			<dt>Game Plans</dt>
 			<dd><a href="#1-turn-one">1. Turn one</a> <a href="#2-the-meganium-turn">2. The Meganium turn</a> <a href="#3-the-venusaur-turn">3. The Venusaur turn</a> <a href="#4-after-a-knockout">4. After a knockout</a> <a href="#5-bench-discipline">5. Bench discipline</a></dd>
+			<dt><a href="#alternatives">Alternatives</a></dt>
+			<dd><a href="#bling-deck">Bling Deck</a></dd>
 		</dl>
 	</details>
 </nav>
@@ -1272,7 +1293,7 @@
 				<p>The deck list and the cards come first, then <a href="#the-thesis">The Thesis</a> and <a href="#the-hard-rules">The Hard Rules</a>. Game words are defined in <a href="./rules.html">the table rules</a>.</p>
 			</aside>
 			<section>
-				<h3 id="deck-list">Deck List</h3>
+				<h3 id="deck-list">Deck List<a data-bling href="#bling-deck" title="Bling Deck" aria-label="Bling Deck">$$$</a></h3>
 			<article data-decklist>
 				<figure><a href="#teal-mask-ogerpon-ex"><img src="./assets/550069_teal-mask-ogerpon-ex-025-167.jpg" alt="Teal Mask Ogerpon ex" /><span data-count>x4</span></a></figure>
 				<figure><a href="#chikorita"><img src="./assets/675820_chikorita.jpg" alt="Chikorita" /><span data-count>x3</span></a></figure>
@@ -1839,7 +1860,6 @@
 			<article>
 				<h3 id="which-supporter">Which Supporter</h3>
 				<section>
-					<p>Thirteen Supporters and one a turn make this the turn&#x27;s real choice.</p>
 					<dl>
 						<dt data-head>The hand</dt><dd data-head>Play</dd>
 						<dt>No line, or nothing worth keeping</dt><dd><span>Lillie&#x27;s Determination. Six cards, or eight while you still have all six Prizes.</span></dd>
@@ -2004,6 +2024,41 @@
 							<tr><td>Meowth ex</td><td>never</td><td>Xero&#x27;s call. It is a 2-Prize body on the Bench for one Supporter.</td></tr>
 						</tbody>
 					</table>
+			<article>
+				<h3 id="bling-deck">Bling Deck</h3>
+				<section>
+					<p>This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at just over $1,000 in October 2026. <a href="https://my.limitlesstcg.com/builder?i=10133ASC2210233MEG1330233MEG1340133MEG1770133MEG1550433TWM2110332MEP460231MEG90231MEP10232MEG120333POR1090233DRI2260133TWM2070233MEG1690233MEG1840133PFL1180133PFL1290133CRI1200133CRI1060133RCL1890133RCL2000133SUM1610233MEW2060233SSP2510133POR1130433PRE1020e33GRI167">Check the current market price.</a></p>
+					<article data-decklist>
+						<figure><a href="#teal-mask-ogerpon-ex"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/TWM/TWM_211_R_EN_SM.png" alt="Teal Mask Ogerpon ex" loading="lazy" /><span data-count>x4</span></a></figure>
+						<figure><a href="#chikorita"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_046_R_EN_SM.png" alt="Chikorita" loading="lazy" /><span data-count>x3</span></a></figure>
+						<figure><a href="#bayleef"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_009_R_EN_SM.png" alt="Bayleef" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#meganium"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_001_R_EN_SM.png" alt="Meganium" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#bulbasaur"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_133_R_EN_SM.png" alt="Bulbasaur" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#ivysaur"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_134_R_EN_SM.png" alt="Ivysaur" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#mega-venusaur-ex"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_177_R_EN_SM.png" alt="Mega Venusaur ex" loading="lazy" /></a></figure>
+						<figure><a href="#mega-venusaur-ex"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_155_R_EN_SM.png" alt="Mega Venusaur ex" loading="lazy" /></a></figure>
+						<figure><a href="#celebi"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_012_R_EN_SM.png" alt="Celebi" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#budew"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/ASC/ASC_221_R_EN_SM.png" alt="Budew" loading="lazy" /></a></figure>
+						<figure><a href="#lillies-determination"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_169_R_EN_SM.png" alt="Lillie&#x27;s Determination" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#lillies-determination"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEG/MEG_184_R_EN_SM.png" alt="Lillie&#x27;s Determination" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#dawn"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/PFL/PFL_118_R_EN_SM.png" alt="Dawn" loading="lazy" /></a></figure>
+						<figure><a href="#dawn"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/PFL/PFL_129_R_EN_SM.png" alt="Dawn" loading="lazy" /></a></figure>
+						<figure><a href="#team-rockets-petrel"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/DRI/DRI_226_R_EN_SM.png" alt="Team Rocket&#x27;s Petrel" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#bosss-orders"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/RCL/RCL_189_R_EN_SM.png" alt="Boss&#x27;s Orders" loading="lazy" /></a></figure>
+						<figure><a href="#bosss-orders"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/RCL/RCL_200_R_EN_SM.png" alt="Boss&#x27;s Orders" loading="lazy" /></a></figure>
+						<figure><a href="#azs-tranquility"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/CRI/CRI_120_R_EN_SM.png" alt="AZ&#x27;s Tranquility" loading="lazy" /></a></figure>
+						<figure><a href="#azs-tranquility"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/CRI/CRI_106_R_EN_SM.png" alt="AZ&#x27;s Tranquility" loading="lazy" /></a></figure>
+						<figure><a href="#lanas-aid"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/TWM/TWM_207_R_EN_SM.png" alt="Lana&#x27;s Aid" loading="lazy" /></a></figure>
+						<figure><a href="#bug-catching-set"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/PRE/PRE_102_R_EN_SM.png" alt="Bug Catching Set" loading="lazy" /><span data-count>x4</span></a></figure>
+						<figure><a href="#switch"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEW/MEW_206_R_EN_SM.png" alt="Switch" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#night-stretcher"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/SSP/SSP_251_R_EN_SM.png" alt="Night Stretcher" loading="lazy" /><span data-count>x2</span></a></figure>
+						<figure><a href="#ultra-ball"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/SUM/SUM_161_R_EN_SM.png" alt="Ultra Ball" loading="lazy" /></a></figure>
+						<figure><a href="#poke-pad"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/POR/POR_113_R_EN_SM.png" alt="Poke Pad" loading="lazy" /></a></figure>
+						<figure><a href="#forest-of-vitality"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/POR/POR_109_R_EN_SM.png" alt="Forest of Vitality" loading="lazy" /><span data-count>x3</span></a></figure>
+						<figure><a href="#basic-grass-energy"><img src="https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/GRI/GRI_167_R_EN_SM.png" alt="Basic Grass Energy" loading="lazy" /><span data-count>x14</span></a></figure>
+					</article>
+				</section>
+			</article>
 			</section>
 		</main>
 		<footer>
