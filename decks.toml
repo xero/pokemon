@@ -625,9 +625,8 @@ An online 60 for TCG Live. Meganium makes every Grass Energy count twice, so
 Teal Mask Ogerpon ex hits 330 off five cards, and Mega Venusaur ex moves the
 whole board's Energy onto whichever Ogerpon is in front."""
 
-# both lines were promoted from assets/ani for this page. Ogerpon and
-# Fezandipiti are gen 9, so they go bare; Blaziken stands in for the one
-# matchup the deck can't win.
+# both lines were promoted from assets/ani for this page. Ogerpon is gen 9,
+# so it goes bare; Blaziken stands in for the one matchup the deck can't win.
 [deck.flavor]
 "Teal Mask Ogerpon ex" = ["ogerpon"]
 "The Thesis" = ["meganium"]

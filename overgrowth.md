@@ -5,7 +5,7 @@
 > [!NOTE]
 > **What this file is for.**
 >
-> The mono-green list I play on [TCG Live](https://tcg.pokemon.com/en-us/tcgl/), for fun. It is online only, so nothing here is sleeved in paper, and every card carries regulation mark H, I, or J. The shell is the Ogerpon Meganium Venusaur build from [the Limitless ladder](https://play.limitlesstcg.com/decks/mega-venusaur-ex?format=standard&rotation=2026&set=30C), with Meowth ex out and Switch, AZ's Tranquility, and a second Celebi in.
+> The mono-green list I play on [TCG Live](https://tcg.pokemon.com/en-us/tcgl/), for fun. It is online only, so nothing here is sleeved in paper, and every card carries regulation mark H, I, or J. The shell is the Ogerpon Meganium Venusaur build from [the Limitless ladder](https://play.limitlesstcg.com/decks/mega-venusaur-ex?format=standard&rotation=2026&set=30C), with Meowth ex out and a second Celebi, two Switch, two AZ's Tranquility, and two Team Rocket's Petrel in. It runs no ACE SPEC.
 >
 > The deck list and the cards come first, then [The Thesis](#the-thesis) and [The Hard Rules](#the-hard-rules). Game words are defined in [the table rules](./rules.md).
 
@@ -15,15 +15,15 @@
 >
 > [Deck List](#deck-list)
 >
-> **Pokémon:** [Teal Mask Ogerpon ex](#teal-mask-ogerpon-ex) · [Chikorita](#chikorita) · [Bayleef](#bayleef) · [Meganium](#meganium) · [Bulbasaur](#bulbasaur) · [Ivysaur](#ivysaur) · [Mega Venusaur ex](#mega-venusaur-ex) · [Celebi](#celebi) · [Budew](#budew) · [Fezandipiti ex](#fezandipiti-ex)
-> **Supporters:** [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Boss's Orders](#bosss-orders) · [Lana's Aid](#lanas-aid) · [AZ's Tranquility](#azs-tranquility)
-> **Items:** [Ultra Ball](#ultra-ball) · [Bug Catching Set](#bug-catching-set) · [Night Stretcher](#night-stretcher) · [Poke Pad](#poke-pad) · [Switch](#switch) · [Unfair Stamp](#unfair-stamp)
+> **Pokémon:** [Teal Mask Ogerpon ex](#teal-mask-ogerpon-ex) · [Chikorita](#chikorita) · [Bayleef](#bayleef) · [Meganium](#meganium) · [Bulbasaur](#bulbasaur) · [Ivysaur](#ivysaur) · [Mega Venusaur ex](#mega-venusaur-ex) · [Celebi](#celebi) · [Budew](#budew)
+> **Supporters:** [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Team Rocket's Petrel](#team-rockets-petrel) · [Boss's Orders](#bosss-orders) · [AZ's Tranquility](#azs-tranquility) · [Lana's Aid](#lanas-aid)
+> **Items:** [Bug Catching Set](#bug-catching-set) · [Switch](#switch) · [Night Stretcher](#night-stretcher) · [Ultra Ball](#ultra-ball) · [Poke Pad](#poke-pad)
 > **Stadium:** [Forest of Vitality](#forest-of-vitality)
 > **Energy:** [Basic Grass Energy](#basic-grass-energy)
 >
 > [The Thesis](#the-thesis)
 >
-> **The Hard Rules:** [Opening turns](#opening-turns) · [Where the Energy goes](#where-the-energy-goes) · [Ogerpon or Venusaur](#ogerpon-or-venusaur)
+> **The Hard Rules:** [Opening turns](#opening-turns) · [Which Supporter](#which-supporter) · [Where the Energy goes](#where-the-energy-goes) · [Ogerpon or Venusaur](#ogerpon-or-venusaur)
 >
 > [**The Prize Tax**](#the-prize-tax) · [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
 >
@@ -33,7 +33,7 @@
 
 ## Deck List
 
-**Pokémon (21)**
+**Pokémon (20)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
@@ -46,34 +46,33 @@
 | 2 | Mega Venusaur ex | Mega Evolution | 003 | I |
 | 2 | Celebi | Mega Evolution | 012 | I |
 | 1 | Budew | Ascended Heroes | 016 | H |
-| 1 | Fezandipiti ex | Shrouded Fable | 038 | H |
 
-**Trainers (27)**
+**Trainers (26)**
 
 | Qty | Card | Type | Set | Number | Reg |
 | --- | --- | --- | --- | --- | --- |
 | 4 | Lillie's Determination | Supporter | Mega Evolution | 119 | I |
 | 2 | Dawn | Supporter | Phantasmal Flames | 087 | I |
+| 2 | Team Rocket's Petrel | Supporter | Destined Rivals | 176 | I |
 | 2 | Boss's Orders | Supporter | Mega Evolution | 114 | I |
+| 2 | AZ's Tranquility | Supporter | Chaos Rising | 076 | J |
 | 1 | Lana's Aid | Supporter | Twilight Masquerade | 155 | H |
-| 1 | AZ's Tranquility | Supporter | Chaos Rising | 076 | J |
-| 4 | Ultra Ball | Item | Mega Evolution | 131 | I |
 | 4 | Bug Catching Set | Item | Twilight Masquerade | 143 | H |
+| 2 | Switch | Item | Mega Evolution | 130 | I |
 | 2 | Night Stretcher | Item | Shrouded Fable | 061 | H |
+| 1 | Ultra Ball | Item | Mega Evolution | 131 | I |
 | 1 | Poke Pad | Item | Perfect Order | 081 | J |
-| 1 | Switch | Item | Mega Evolution | 130 | I |
-| 1 | Unfair Stamp | Item | Twilight Masquerade | 165 | H |
-| 4 | Forest of Vitality | Stadium | Mega Evolution | 117 | I |
+| 3 | Forest of Vitality | Stadium | Mega Evolution | 117 | I |
 
-**Energy (12)**
+**Energy (14)**
 
 | Qty | Card | Set | Number | Reg |
 | --- | --- | --- | --- | --- |
-| 12 | Basic Grass Energy | Mega Evolution Energies | 001 | - |
+| 14 | Basic Grass Energy | Mega Evolution Energies | 001 | - |
 
-**21 + 27 + 12 = 60.** ✓ Thirteen Basics, ten Supporters, one ACE SPEC, and nothing over four copies. There is no Rare Candy; [Forest of Vitality](#forest-of-vitality) does its job for both lines.
+**20 + 26 + 14 = 60.** ✓ Twelve Basics, thirteen Supporters, no ACE SPEC, and nothing over four copies. There is no Rare Candy; [Forest of Vitality](#forest-of-vitality) does its job for both lines.
 
-**Thirteen Basics is a 16% mulligan.** The opening seven holds an Ogerpon ex 40% of the time. Counting the first draw, 71% of hands hold an Ogerpon or an Ultra Ball, and 85% hold a Chikorita or a card that finds one, which is Poke Pad, Ultra Ball, Dawn, or Celebi. A Forest is there 45% of the time, and 79% counting Celebi and the Ultra Ball that finds it. Only 19% of opening hands hold no Grass Energy, and 10% counting Bug Catching Set.
+**Twelve Basics is a 19% mulligan.** The opening seven holds an Ogerpon ex 40% of the time. Counting the first draw, 65% of hands hold an Ogerpon or a card that finds one, which is Dawn or the Ultra Ball, and 75% counting Petrel, which finds the Ultra Ball. 82% hold a Chikorita or a card that finds one, which is Poke Pad, Ultra Ball, Dawn, Celebi, or Petrel. A Forest is there 35% of the time, and 75% counting Petrel, Celebi, and the Poke Pad and Ultra Ball that find Celebi. Only 14% of opening hands hold no Grass Energy, and 7% counting Bug Catching Set.
 
 One of the two Meganium is prized in 19% of games, and both in under 1%.
 
@@ -91,7 +90,7 @@ One of the two Meganium is prized in 19% of games, and both in under 1%.
 
 **As a Tera Pokémon, it takes no damage from attacks while it sits on your Bench.** That makes a benched Ogerpon the safe place to keep spare Energy. It stops damage, not damage counters, so the Bench half of *Phantom Dive* and Dusknoir's *Cursed Blast* still land.
 
-Four copies. Ultra Ball, Dawn, Celebi, and Bug Catching Set all find it. Poke Pad can't, since it has a Rule Box.
+Four copies. Dawn, Celebi, Bug Catching Set, and the one Ultra Ball all find it, and Petrel finds the Ultra Ball. Poke Pad can't, since it has a Rule Box.
 
 ### Chikorita
 
@@ -153,16 +152,6 @@ Two copies. It is the turn-one attack going second when the hand has no Forest, 
 
 Free retreat makes it the pivot too. Promote it after a knockout, move the Energy with *Solar Transfer*, and retreat it for nothing into the loaded Ogerpon. One copy, and it dies to three damage counters, so never bench it early against *Phantom Dive*.
 
-### Fezandipiti ex
-
-**Basic Darkness, 210 HP, 2 Prizes, Fighting Weakness, Retreat 1.** The one card here that isn't Grass.
-
-***Flip the Script* draws 3 cards, once during your turn, if any of your Pokémon were Knocked Out during your opponent's last turn.** This deck trades Ogerpon for knockouts, so it fires most turns after the first.
-
-*Cruel Arrow* is [C][C][C] and does 100 to any one of their Pokémon. Wild Growth covers Fez too, so two Grass cards pay for it.
-
-**Keep it in your hand until the turn it draws.** Bench it and use *Flip the Script* the same turn. A Fez sitting on the Bench early is 2 Prizes waiting for a Boss's Orders. One copy.
-
 ---
 
 # Trainers — Supporters
@@ -175,49 +164,49 @@ Free retreat makes it the pivot too. Promote it after a knockout, move the Energ
 
 **Search your deck for a Basic Pokémon, a Stage 1, and a Stage 2, and put them into your hand.** Two copies. That is a whole line in one card, Chikorita, Bayleef, and Meganium or Bulbasaur, Ivysaur, and Venusaur. With a Forest in play, Dawn is a Stage 2 this turn.
 
+### Team Rocket's Petrel
+
+**Search your deck for a Trainer card and put it into your hand.** Two copies. It finds whichever Trainer the turn is missing, which is usually a Forest on the Meganium turn, a Night Stretcher after a knockout, or a Switch for a stranded Venusaur. Through the one Ultra Ball it reaches any Pokémon too. Nothing in its text cares about the Team Rocket's name.
+
+**It spends your Supporter.** Petrel for a Forest means no Dawn this turn, so play it when the hand already holds the line and lacks the Stadium. A Supporter it finds waits for next turn, which makes it a slow Boss's Orders.
+
 ### Boss's Orders
 
 **Switch one of their Benched Pokémon into the Active Spot.** Two copies. Pull the pieces that build their attacker, like a Drakloak or a Kadabra, and any damaged Pokémon ex worth two or three Prizes.
 
-### Lana's Aid
-
-**Put up to 3 in any combination of Pokémon without a Rule Box and Basic Energy cards from your discard pile into your hand.** One copy. It returns a Meganium, Chikorita, or Bayleef, and the Grass the last knockout took. It can't touch Ogerpon ex, Venusaur, or Fez.
-
 ### AZ's Tranquility
 
-**Switch your Active Pokémon with one of your Benched Pokémon. If you moved a Pokémon ex to the Bench, heal 80 from it.** One copy.
+**Switch your Active Pokémon with one of your Benched Pokémon. If you moved a Pokémon ex to the Bench, heal 80 from it.** Two copies.
 
 A hurt Ogerpon moved to the Bench heals 80 and then takes no damage while it sits there. That is a full reset for a Supporter. It also gets Venusaur out of the Active Spot without paying Retreat 4.
+
+### Lana's Aid
+
+**Put up to 3 in any combination of Pokémon without a Rule Box and Basic Energy cards from your discard pile into your hand.** One copy. It returns a Meganium, Chikorita, or Bayleef, and the Grass the last knockout took. It can't touch Ogerpon ex or Venusaur.
 
 ---
 
 # Trainers — Items
 
-### Ultra Ball
-
-**Discard 2 other cards from your hand, then search your deck for any Pokémon.** Four copies. It is the only Item that searches the whole deck for Ogerpon ex, Venusaur, or Fez. Discarded Grass isn't gone; Lana's Aid and Night Stretcher bring it back.
-
 ### Bug Catching Set
 
-**Look at the top 7 cards of your deck and take up to 2 in any combination of Grass Pokémon and Basic Grass Energy.** Four copies, and in this deck it almost never misses. Twenty of the 21 Pokémon are Grass, so it finds something over 99.9% of the time and a Grass Energy 83% of the time. Take Energy when the Teal Dances need feeding, and a line piece when they don't.
+**Look at the top 7 cards of your deck and take up to 2 in any combination of Grass Pokémon and Basic Grass Energy.** Four copies, and in this deck it almost never misses. All 20 Pokémon are Grass, so it finds something 99.8% of the time and a Grass Energy 86% of the time. Take Energy when the Teal Dances need feeding, and a line piece when they don't.
+
+### Switch
+
+**Switch your Active Pokémon with one of your Benched Pokémon.** Two copies. Retreat is paid in Energy the next attack needs, and Switch pays in a card instead. Its main job is Venusaur, which Boss's Orders will drag forward.
 
 ### Night Stretcher
 
 **Put a Pokémon or a Basic Energy card from your discard pile into your hand.** Two copies. It is the only way back for a Knocked Out Ogerpon ex or Venusaur.
 
+### Ultra Ball
+
+**Discard 2 other cards from your hand, then search your deck for any Pokémon.** One copy. It is the only Item that searches the whole deck for Ogerpon ex or Venusaur, and Petrel finds it. Discarded Grass isn't gone; Lana's Aid and Night Stretcher bring it back.
+
 ### Poke Pad
 
-**Search your deck for a Pokémon without a Rule Box.** One copy, printed Poké Pad, Perfect Order 081, mark J. It finds Chikorita, Bayleef, Meganium, Bulbasaur, Ivysaur, Celebi, and Budew, and never Ogerpon, Venusaur, or Fez.
-
-### Switch
-
-**Switch your Active Pokémon with one of your Benched Pokémon.** One copy. Retreat is paid in Energy the next attack needs, and Switch pays in a card instead. Its main job is Venusaur, which Boss's Orders will drag forward.
-
-### Unfair Stamp
-
-**Play it only if one of your Pokémon was Knocked Out during your opponent's last turn. Each player shuffles their hand into their deck, then you draw 5 and your opponent draws 2.** The ACE SPEC, Twilight Masquerade 165, mark H.
-
-It is the comeback card, and it is also the Alakazam answer, since *Powerful Hand* scales with the size of their hand. It is an Item, so the turn still has a Supporter in it. **It shuffles your hand too.** Play out what you want to keep first. [Alternatives](#alternatives) has Max Rod if that cost bites.
+**Search your deck for a Pokémon without a Rule Box.** One copy, printed Poké Pad, Perfect Order 081, mark J. It finds Chikorita, Bayleef, Meganium, Bulbasaur, Ivysaur, Celebi, and Budew, and never Ogerpon or Venusaur.
 
 ---
 
@@ -225,11 +214,11 @@ It is the comeback card, and it is also the Alakazam answer, since *Powerful Han
 
 ### Forest of Vitality
 
-**Each player's Grass Pokémon can evolve into Grass Pokémon during the turn they are played, except during that player's first turn.** Four copies, and it replaces Rare Candy.
+**Each player's Grass Pokémon can evolve into Grass Pokémon during the turn they are played, except during that player's first turn.** Three copies, and it replaces Rare Candy.
 
 From your second turn, a Chikorita played this turn can become Bayleef and then Meganium in the same turn. The same goes for Bulbasaur to Venusaur. Rare Candy can't do that, because it still can't touch a Basic that came into play this turn.
 
-**It helps both players.** A Crustle deck's Dwebble evolves the turn it lands too. Their own Stadium knocks it off, and at four copies you play another.
+**It helps both players.** A Crustle deck's Dwebble evolves the turn it lands too. Their own Stadium knocks it off, and Petrel or Celebi finds you another.
 
 ---
 
@@ -237,7 +226,7 @@ From your second turn, a Chikorita played this turn can become Bayleef and then 
 
 ### Basic Grass Energy
 
-Twelve. Your attachment and every Teal Dance spend Grass from your hand, so the hand is where the count matters. Bug Catching Set and Teal Dance's draw refill it, and Lana's Aid and Night Stretcher return what knockouts take. Any Basic Grass print works.
+Fourteen. Your attachment and every Teal Dance spend Grass from your hand, so the hand is where the count matters. Bug Catching Set and Teal Dance's draw refill it, and Lana's Aid and Night Stretcher return what knockouts take. Any Basic Grass print works.
 
 ---
 
@@ -272,8 +261,21 @@ A few rules decide most games with this deck. The card sections explain the card
 | Setup | Going second with Budew, lead Budew. Going second with Celebi and no Forest, lead Celebi. Otherwise lead an Ogerpon ex. |
 | Your first turn | Bench a Chikorita, then a Bulbasaur and every Ogerpon ex you hold. Teal Dance each Ogerpon. Attach to the Ogerpon that swings next turn. |
 | First turn, going second | Attack with what is in front. *Itchy Pollen*, *Traverse Time*, or *Growl*. Play Lillie's for eight unless the hand already holds a line. |
-| First turn, going first | Items only. Ultra Ball, Poke Pad, and Bug Catching Set dig for the line. |
+| First turn, going first | Items only. Bug Catching Set, Poke Pad, and the Ultra Ball dig for the line. |
 | Second turn | Forest, then Meganium before Venusaur. Doubling matters more than moving. |
+
+### Which Supporter
+
+Thirteen Supporters and one a turn make this the turn's real choice.
+
+| The hand | Play |
+| :--- | :--- |
+| No line, or nothing worth keeping | Lillie's Determination. Six cards, or eight while you still have all six Prizes. |
+| A Forest but no Meganium line | Dawn |
+| The line but no Forest | Team Rocket's Petrel, for the Forest |
+| A hurt Ogerpon ex or a stranded Venusaur in the Active Spot | AZ's Tranquility. It heals the ex 80 on the way to the Bench. |
+| A knockout on their Bench that wins the trade | Boss's Orders |
+| A quiet turn with Meganium or Grass in the discard pile | Lana's Aid |
 
 ### Where the Energy goes
 
@@ -301,13 +303,12 @@ A few rules decide most games with this deck. The card sections explain the card
 | Pokémon | Prizes it gives up |
 | :--- | ---: |
 | Mega Venusaur ex | 3 |
-| Teal Mask Ogerpon ex, Fezandipiti ex | 2 |
+| Teal Mask Ogerpon ex | 2 |
 | Chikorita, Bayleef, Meganium, Bulbasaur, Ivysaur, Celebi, Budew | 1 |
 
 **Six Prizes is three Ogerpon, or Venusaur and one Ogerpon and one more.** The deck plans to lose Ogerpon; four copies and Night Stretcher are there for it. Venusaur is the one to protect.
 
-- **One Venusaur in play, ever.** It sits on the Bench as 3 Prizes, and Boss's Orders reaches it. Switch and AZ's Tranquility are how it gets home.
-- **Fez comes down only on the turn it draws.** Otherwise it is 2 Prizes on the Bench for nothing.
+- **One Venusaur in play, ever.** It sits on the Bench as 3 Prizes, and Boss's Orders reaches it. Two Switch and two AZ's Tranquility are how it gets home.
 - **A knocked out Meganium costs 1 Prize and the whole doubling.** Keep the second one coming, and use Lana's Aid on it.
 
 ---
@@ -324,7 +325,7 @@ A few rules decide most games with this deck. The card sections explain the card
 | Lana's Aid | discard pile, up to 3 | hand | your Supporter |
 | Night Stretcher | discard pile, 1 | hand | an Item |
 
-**The hand runs dry before the board does.** Three Ogerpon and your attachment spend four Grass a turn, and the three Teal Dance draws only give three cards back. Bug Catching Set is how the hand keeps up.
+**The hand runs dry before the board does.** Three Ogerpon and your attachment spend four Grass a turn, and the three Teal Dance draws only give three cards back. Fourteen Grass and Bug Catching Set are how the hand keeps up.
 
 **The board is the bank.** Energy on a benched Ogerpon is safe from attacks and one *Solar Transfer* from the Active. A knockout only costs you what was on the Pokémon that fell.
 
@@ -342,7 +343,7 @@ Either way, put your attachment on the Ogerpon that will be Active next turn.
 
 ## 2. The Meganium turn
 
-**Turn two is Meganium, and Dawn or Celebi makes it happen.**
+**Turn two is Meganium. Dawn or Celebi finds the line, and Petrel finds the Forest.**
 
 1. Play Forest of Vitality.
 2. Evolve Chikorita to Bayleef to Meganium. A Chikorita played this turn works, thanks to Forest.
@@ -368,16 +369,15 @@ Bench Bulbasaur early so Venusaur is one Forest turn away when Meganium is alrea
 They take an Ogerpon and whatever was on it. The next turn rebuilds it.
 
 - **Promote the next Ogerpon,** or Budew if you want the free retreat later.
-- **Bench Fez and use *Flip the Script*** for three cards.
-- **Unfair Stamp** leaves them two cards to find the next hit.
-- **Night Stretcher** returns the fallen Ogerpon. **Lana's Aid** returns three Grass, or a Meganium.
+- **Night Stretcher** returns the fallen Ogerpon. **Lana's Aid** returns three Grass, or a Meganium. **Petrel** finds the Night Stretcher when the hand lacks one.
+- **Lillie's Determination** refills a hand the trade emptied.
 - ***Solar Transfer*** moves the banked Energy onto the new Active. It swings at full size on the turn it is promoted.
 
 ## 5. Bench discipline
 
 The Bench holds five, and a working board fills it with Meganium, Venusaur, two Ogerpon ex, and one spare.
 
-- The spare is a Chikorita or Bulbasaur while a line is missing, and Fez on the turn it draws.
+- The spare is a Chikorita or Bulbasaur while a line is missing.
 - Venusaur's second copy stays in hand. See [The Prize Tax](#the-prize-tax).
 - Against *Phantom Dive*, bench Budew and Chikorita only when they are about to matter. Six damage counters kill Budew outright.
 
@@ -392,7 +392,7 @@ Shares from [the Limitless online ladder](https://play.limitlesstcg.com/decks?ga
 | Dragapult | 10.0%, 8-12 | Dragapult ex is 320, and an attacking one holds two Energy, so four cards kill it. *Phantom Dive*'s six Bench counters ignore Tera, so bench the Basics late. Budew's Item lock on turn one slows their Rare Candy. |
 | Slowking | 6.0%, 5-7 | Single-Prize. Two cards kill a Slowking at 120. Don't stack more than the knockout needs, and don't feed it Venusaur's 3 Prizes. |
 | N's Zoroark | 6.0%, 8-5 | 280 HP, and *Night Joker* needs two Energy, so four cards kill an attacking one. |
-| Alakazam Dudunsparce | 5.8%, 6-9 | Two cards kill Alakazam at 140. *Powerful Hand* places 2 counters per card in their hand, so Unfair Stamp's two-card hand makes the next one small. |
+| Alakazam Dudunsparce | 5.8%, 6-9 | Two cards kill Alakazam at 140. *Powerful Hand* places 2 counters on your Active per card in their hand, so eleven cards kill an Ogerpon ex. Kill each Alakazam the turn it lands. |
 | Dragapult Dusknoir | 5.7%, 3-7 | *Cursed Blast* places 13 counters anywhere, which is 130. Meganium's 160 survives one; Chikorita and Bayleef don't. |
 | Mega Excadrill | 4.6%, 14-4 | The best matchup. Venusaur's 380 survives *Maximum Drilling*'s 330, and an Excadrill that swung for 330 holds five Energy, so three cards kill it. |
 | Dragapult Blaziken | 2.6%, 1-7 | The bad matchup. Blaziken ex's *Smolder-sault* is 200, doubled to 400 by Fire Weakness, and it one-shots everything here. Four cards kill a Blaziken ex holding its two Energy. |
@@ -407,12 +407,12 @@ The list is a hypothesis, and games on Live are the data.
 | Symptom | Fix |
 | :--- | :--- |
 | Meganium keeps arriving on turn three | 3rd Dawn over the Poke Pad |
-| Teal Dances go unfed | 13th Basic Grass Energy over a Night Stretcher |
-| Every knockout empties the Energy bank | Max Rod over Unfair Stamp |
+| Ogerpon ex isn't there on turn one | 2nd Ultra Ball over a Switch |
+| Petrel only ever fetches the Forest, or Supporters pile up in hand | 4th Forest of Vitality over a Petrel |
+| Grass piles up in hand faster than the Teal Dances spend it | 4th Forest over the 14th Grass |
+| Every knockout empties the Energy bank | Max Rod over the 14th Grass; the ACE SPEC slot is open |
 | Boss's Orders keeps taking Meganium | 3rd Meganium over a Celebi, and bench the spare late |
-| Venusaur gets stranded in the Active Spot | 2nd Switch over the Poke Pad |
-| Venusaur never needs to come down | cut the Venusaur line to 1-1-1 for a 2nd Budew, a 13th Grass, and a 3rd Celebi |
-| Fez breaks the rhythm | 3rd Celebi over Fez |
+| Venusaur never needs to come down | cut the Venusaur line to 1-1-1 for a 2nd Budew, a 3rd Celebi, and the 4th Forest |
 
 ---
 
@@ -420,11 +420,12 @@ The list is a hypothesis, and games on Live are the data.
 
 | Card | Swaps for | Play it when |
 | :--- | :--- | :--- |
-| Max Rod (ACE SPEC) | Unfair Stamp | the Energy bank keeps running dry, or the Stamp's shuffle costs you held cards. It returns up to 5 Pokémon and Basic Energy from the discard pile. |
-| Hero's Cape (ACE SPEC) | Unfair Stamp | Dragapult Blaziken keeps showing up. A Venusaur in the Cape has 480 HP and survives *Smolder-sault*'s 400. |
+| Max Rod (ACE SPEC) | the 14th Grass | the Energy bank keeps running dry. It returns up to 5 Pokémon and Basic Energy from the discard pile. Only one ACE SPEC fits, and the deck runs none. |
+| Hero's Cape (ACE SPEC) | the 14th Grass | Dragapult Blaziken keeps showing up. A Venusaur in the Cape has 480 HP and survives *Smolder-sault*'s 400. |
+| Unfair Stamp (ACE SPEC) | the 14th Grass | knockouts keep leaving you a dead hand. After one, each player shuffles their hand away, and you draw 5 to their 2. It shuffles the cards you were holding too. |
 | Mega Meganium ex (Ascended Heroes 010) | 1 Celebi | you want a second payoff on the Chikorita line. *Giant Bouquet* is [C][C][C] for 70 plus 50 for each Grass Energy on it. It is a 3-Prize Mega. |
 | Arboliva ex line (Destined Rivals 021-023) | the Venusaur line | you want the ladder's best version of this shell, at 57%. *Oil Salvo* is 20 six times, anywhere, for one Grass, and Dolliv heals 40. |
-| Wally's Compassion | AZ's Tranquility | Venusaur tanks more than it moves. It heals all damage from it, and the Energy goes to your hand for the Teal Dances. |
+| Wally's Compassion | an AZ's Tranquility | Venusaur tanks more than it moves. It heals all damage from it, and the Energy goes to your hand for the Teal Dances. |
 | Energy Switch | the Poke Pad | Venusaur is late too often. It moves one Basic Energy between your Pokémon, which is one *Solar Transfer*. |
+| Fezandipiti ex | never | Xero's call. He cut it after playtesting this list on Live. |
 | Meowth ex | never | Xero's call. It is a 2-Prize body on the Bench for one Supporter. |
-| Team Rocket's Petrel | never | Celebi and Bug Catching Set find the pieces without spending a Supporter. |
