@@ -27,7 +27,7 @@
 >
 > [**The Prize Tax**](#the-prize-tax) · [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
 >
-> [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives) · [Bling Deck](#bling-deck)
+> [**Versus the Card Shop**](#versus-the-card-shop) · [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives) · [Bling Deck](#bling-deck)
 
 ---
 
@@ -86,7 +86,27 @@ One of the two Meganium is prized in 19% of games, and both in under 1%.
 
 ***Teal Dance* attaches a Basic Grass Energy from your hand to this Pokémon, once during your turn, and draws you a card.** Every Ogerpon in play has its own, so three Ogerpon and your attachment put four Energy down a turn and draw three back.
 
-***Myriad Leaf Shower* is [G][G][G] for 30, plus 30 for each Energy attached to both Active Pokémon.** Theirs count too. With [Meganium](#meganium) in play, each Grass card counts as two, so every card on this Ogerpon adds 60. [The Thesis](#the-thesis) has the table.
+***Myriad Leaf Shower* is [G][G][G] for 30, plus 30 for each Energy attached to both Active Pokémon.** Theirs count too. With [Meganium](#meganium) in play, each Grass card counts as two, so every card on this Ogerpon adds 60. It still pays [G][G][G] from its own cards, which is three, or two with Meganium. [The Thesis](#the-thesis) has what it one-shots.
+
+**Count the Energy, then look it up.** Count every Energy on both Active Pokémon. With Meganium in play, count each of your Grass cards twice. Theirs count once each, unless one card provides two, like Neo Upper Energy on a Stage 2.
+
+| Energy count | Damage | Into Grass Weakness |
+| :--- | ---: | ---: |
+| 3 | 120 | 240 |
+| 4 | 150 | 300 |
+| 5 | 180 | 360 |
+| 6 | 210 | 420 |
+| 7 | 240 | 480 |
+| 8 | 270 | 540 |
+| 9 | 300 | 600 |
+| 10 | 330 | 660 |
+| 11 | 360 | 720 |
+| 12 | 390 | 780 |
+| 13 | 420 | 840 |
+| 14 | 450 | 900 |
+| 15 | 480 | 960 |
+
+**Resistance and Full Metal Lab each take one off the count.** Grass Resistance is 30 less, and so is Full Metal Lab on a Metal Pokémon. Five of your Grass under Meganium against a Mega Excadrill ex holding five counts to 15. Its Resistance makes that 14, which is 450, and the Lab makes it 13, which is 420.
 
 **As a Tera Pokémon, it takes no damage from attacks while it sits on your Bench.** That makes a benched Ogerpon the safe place to keep spare Energy. It stops damage, not damage counters, so the Bench half of *Phantom Dive* and Dusknoir's *Cursed Blast* still land.
 
@@ -238,13 +258,13 @@ Teal Mask Ogerpon ex hits for 30 plus 30 per Energy on both Actives. That is a s
 
 | Grass on the Active Ogerpon | *Myriad Leaf Shower* | One-shots |
 | :--- | ---: | :--- |
-| 2 | 150 | Alakazam 140, Slowking 120 |
-| 3 | 210 | any 210 HP Basic ex; a Mega Excadrill ex that swung for 330 |
-| 4 | 270 | an attacking Dragapult ex, Blaziken ex, or N's Zoroark ex |
-| 5 | 330 | Dragapult ex with no Energy, Mega Excadrill ex with one |
-| 6 | 390 | every printed HP in the format, where 380 is the top |
+| 2 | 150 | Alakazam 140, Slowking 120, N's Zoroark ex, which is weak to Grass |
+| 3 | 210 | a 210 HP Basic ex that doesn't resist Grass |
+| 4 | 270 | an attacking Dragapult ex or Blaziken ex; a Mega Excadrill ex that swung for 330 |
+| 5 | 330 | Dragapult ex with no Energy |
+| 6 | 390 | every printed HP in the format, where 380 is the top, Grass Resistance included |
 
-**Add 30 for each Energy on their Active.** An attacking Dragapult ex holds two for *Phantom Dive*, which is why four cards kill it. A Mega Excadrill ex that used *Maximum Drilling* at full power holds five, which is why three cards kill that one.
+**Add 30 for each Energy on their Active, and check its Weakness and Resistance.** An attacking Dragapult ex holds two for *Phantom Dive*, which is why four cards kill it. A Mega Excadrill ex that used *Maximum Drilling* at full power holds five, but Grass Resistance takes 30 back, so it still takes four. N's Zoroark ex is weak to Grass, so two kill it with nothing attached. The [count table](#teal-mask-ogerpon-ex) under Ogerpon folds all of it into one lookup.
 
 Venusaur is the second attacker. *Jungle Dump* is 240 and heals 30 for two cards, on a 380 HP body that outlasts almost everything but Fire. When no Ogerpon can reach the number this turn, Venusaur holds the line.
 
@@ -289,7 +309,7 @@ A few rules decide most games with this deck. The card sections explain the card
 
 | Situation | Attack with |
 | :--- | :--- |
-| Their Active has 240 HP or less, and Venusaur is already in front | Venusaur. *Jungle Dump* kills it for two cards and heals 30. |
+| Their Active has 240 HP or less, or 210 if it resists Grass, and Venusaur is already in front | Venusaur. *Jungle Dump* kills it for two cards and heals 30. |
 | Anything bigger | Ogerpon ex, with the cards the table above calls for. |
 | No Ogerpon can reach the number this turn | Venusaur, if it survives their next hit. |
 | Their attacker is Fire | Whichever gives up fewer Prizes. Blaziken ex hits for 400 into Grass and nothing here survives it. |
@@ -381,6 +401,22 @@ The Bench holds five, and a working board fills it with Meganium, Venusaur, two 
 
 ---
 
+## Versus the Card Shop
+
+The regulars at CardCrate's Wednesday league. Each row is how many Grass Venusaur moves onto the Active Ogerpon to Knock Out that Pokémon with Meganium in play, worked through the [count table](#teal-mask-ogerpon-ex).
+
+| Their Active | Grass to move | Why |
+| :--- | ---: | :--- |
+| Elliott's Cynthia's Garchomp ex | 3 | Weak to Grass, so every number doubles. Three cards kill it at 400 in a Power Weight, with or without Energy on it. Two are enough when it has no Weight and holds an Energy. |
+| Matt's Mega Excadrill ex holding five | 4 | 340 HP and Grass Resistance. Four cards make 390, or 360 under his Full Metal Lab. One that attacked at three Energy takes five. |
+| Matt's Metagross holding four | 2 | 180 HP and Grass Resistance. Two cards make 240, or 210 under the Lab. |
+| Steve's Dragapult ex holding two | 4 | 320 HP and no Weakness. Four cards make 330. |
+| Steve's Mega Sharpedo ex holding two | 2 | Weak to Grass. Two cards make 420 into 330. With no Energy on it, three. |
+| Cinccino ex | 3 | 240 HP, and an attacking one holds at least one Energy, so three cards make 240. *Smooth Coat* flips a coin against every hit. |
+| Crustle | none | *Mysterious Rock Inn* stops damage from Pokémon ex. Meganium's *Solar Beam* is 140 into its 150, and Ivysaur's *Razor Leaf* finishes. |
+
+---
+
 ## Versus the Ladder
 
 Shares from [the Limitless online ladder](https://play.limitlesstcg.com/decks?game=PTCG&format=standard), 30C Standard, checked September 29, 2026. The record is the Venusaur build's own, 104-106 overall. The Arboliva build of the same shell is 57%.
@@ -389,10 +425,10 @@ Shares from [the Limitless online ladder](https://play.limitlesstcg.com/decks?ga
 | :--- | :--- | :--- |
 | Dragapult | 10.0%, 8-12 | Dragapult ex is 320, and an attacking one holds two Energy, so four cards kill it. *Phantom Dive*'s six Bench counters ignore Tera, so bench the Basics late. Budew's Item lock on turn one slows their Rare Candy. |
 | Slowking | 6.0%, 5-7 | Single-Prize. Two cards kill a Slowking at 120. Don't stack more than the knockout needs, and don't feed it Venusaur's 3 Prizes. |
-| N's Zoroark | 6.0%, 8-5 | 280 HP, and *Night Joker* needs two Energy, so four cards kill an attacking one. |
+| N's Zoroark | 6.0%, 8-5 | 280 HP and weak to Grass, so two cards kill it, Energy or not. |
 | Alakazam Dudunsparce | 5.8%, 6-9 | Two cards kill Alakazam at 140. *Powerful Hand* places 2 counters on your Active per card in their hand, so eleven cards kill an Ogerpon ex. Kill each Alakazam the turn it lands. |
 | Dragapult Dusknoir | 5.7%, 3-7 | *Cursed Blast* places 13 counters anywhere, which is 130. Meganium's 160 survives one; Chikorita and Bayleef don't. |
-| Mega Excadrill | 4.6%, 14-4 | The best matchup. Venusaur's 380 survives *Maximum Drilling*'s 330, and an Excadrill that swung for 330 holds five Energy, so three cards kill it. |
+| Mega Excadrill | 4.6%, 14-4 | The best matchup. Venusaur's 380 survives *Maximum Drilling*'s 330. An Excadrill that swung for 330 holds five Energy but resists Grass, so four cards kill it, even under Full Metal Lab. Hero's Cape makes it 440, which takes five, or six under the Lab. |
 | Dragapult Blaziken | 2.6%, 1-7 | The bad matchup. Blaziken ex's *Smolder-sault* is 200, doubled to 400 by Fire Weakness, and it one-shots everything here. Four cards kill a Blaziken ex holding its two Energy. |
 | Crustle | 2.5%, n/a | *Mysterious Rock Inn* stops all damage from Pokémon ex, so neither Ogerpon nor Venusaur touches it. Meganium's *Solar Beam* is 140 into its 150, and Ivysaur's *Razor Leaf* finishes. Meganium survives *Superb Scissors* at 120. |
 
