@@ -621,9 +621,10 @@ shelf = "other"
 group = "Grass"
 sprites = ["meganium", "venusaur-mega"]
 blurb = """
-An online 60 for TCG Live. Meganium makes every Grass Energy count twice, so
-Teal Mask Ogerpon ex hits 330 off five cards, and Mega Venusaur ex moves the
-whole board's Energy onto whichever Ogerpon is in front."""
+A Grass 60 for TCG Live and the Wednesday league. Meganium makes every Grass
+Energy count twice, so Teal Mask Ogerpon ex hits 330 off five cards, Mega
+Venusaur ex moves the whole board's Energy onto whichever Ogerpon is in front,
+and Hero's Cape gives that Ogerpon 310 HP."""
 
 # both lines were promoted from assets/ani for this page. Ogerpon is gen 9,
 # so it goes bare; Blaziken stands in for the one matchup the deck can't win.
@@ -637,10 +638,10 @@ whole board's Energy onto whichever Ogerpon is in front."""
 "Ivysaur" = ["ivysaur"]
 "Mega Venusaur ex" = ["venusaur-mega"]
 "Celebi" = ["celebi"]
-"Budew" = ["budew"]
 "The Energy Engine" = ["venusaur-mega"]
 "2. The Meganium turn" = ["chikorita", "meganium"]
 "3. The Venusaur turn" = ["bulbasaur", "venusaur-mega"]
+"6. Crustle" = ["crustle"]
 "Versus the Ladder" = ["blaziken", "excadrill"]
 "Alternatives" = ["celebi"]
 
