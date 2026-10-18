@@ -41,6 +41,8 @@ FIELDS = ["date", "player", "deck", "commit", "changes", "unlisted", "mode",
           "prizes", "turns", "notes"]
 ACTIVE, BENCH = "active", "bench"
 ALL = "ALL"
+# Since October 2026, Live puts a card id in front of every name: "(me1_12) Celebi".
+CARD_ID = re.compile(r"\([a-z0-9-]+_[a-z0-9_]+\) ")
 
 
 def norm(s):
@@ -110,11 +112,22 @@ class Pool:
 
 
 # ---------------------------------------------------------------- energy math
-def energy_units(pool, ecard, holder):
+def doubled_types(pool, board):
+    """{type: Ability} for Basic Energy that provides two of its type, like Meganium's Wild Growth."""
+    out = {}
+    for mon in board:
+        for a in (pool.card(mon.name) or {}).get("abilities") or []:
+            m = re.match(r"Each Basic (\w+) Energy attached to all of your Pokémon provides \1\1 Energy", a.get("text") or "")
+            if m:
+                out[m.group(1)] = a["name"]
+    return out
+
+
+def energy_units(pool, ecard, holder, doubled=()):
     """What one attached Energy card pays, as a list of sets of types."""
     m = re.fullmatch(r"Basic (\w+) Energy", ecard)
     if m:
-        return [{m.group(1)}]
+        return [{m.group(1)}] * (2 if m.group(1) in doubled else 1)
     txt = pool.text(ecard)
     st = pool.stage(holder)
     if "attached to a Stage 2" in txt and "only 2 Energy" in txt:
@@ -151,22 +164,22 @@ def hit_size(a):
     return 10 * int(m.group(1)) if m else 0
 
 
-def ready_attacks(pool, mon, floor=REAL_HIT):
+def ready_attacks(pool, mon, floor=REAL_HIT, doubled=()):
     """The attacks of at least floor damage this Pokémon could pay for now."""
     c = pool.card(mon.name)
     if not c:
         return []
-    units = [u for e in mon.energy for u in energy_units(pool, e, mon.name)]
+    units = [u for e in mon.energy for u in energy_units(pool, e, mon.name, doubled)]
     return [a["name"] for a in c.get("attacks") or []
             if hit_size(a) >= floor and can_pay(a.get("cost") or [], units)]
 
 
-def energy_short(pool, mon, most=4):
+def energy_short(pool, mon, most=4, doubled=()):
     """(Energy needed, attack) for the cheapest real attack this Pokémon can't pay yet."""
     c = pool.card(mon.name) if mon else None
     if not c:
         return None
-    units = [u for e in mon.energy for u in energy_units(pool, e, mon.name)]
+    units = [u for e in mon.energy for u in energy_units(pool, e, mon.name, doubled)]
     real = [a for a in c.get("attacks") or [] if hit_size(a) >= REAL_HIT]
     for k in range(1, most + 1):
         for a in real:
@@ -204,7 +217,7 @@ class Turn:
 class Game:
     def __init__(self, text, pool, me=None):
         self.pool = pool
-        self.lines = [l.rstrip("\n") for l in text.splitlines()]
+        self.lines = [CARD_ID.sub("", l.rstrip("\n")) for l in text.splitlines()]
         self.players = []
         for l in self.lines:
             m = re.match(r"^(.+?) drew \d+ cards for the opening hand\.$", l)
@@ -498,10 +511,13 @@ class Game:
                         if re.search(r"from (this|the Attacking) Pok", parent_text):
                             src = self._active()     # Void Gale, Handheld Fan: the attacker
                         else:
-                            # Happy Switch, Energy Switch: the log never names the source, so
-                            # guess a benched donor before the Active, the fullest one first
+                            # Happy Switch, Energy Switch, Solar Transfer: the log never names the
+                            # source, so guess a benched donor before the Active, the fullest first.
+                            # A no-limit mover onto the Bench, like Solar Transfer, is the exception:
+                            # Teal Dance overfills the Active, and the spare is parked on a benched Ogerpon.
+                            parking = loc == BENCH and parent_text.startswith("As often as you like")
                             donors = [x for x in self.board if x is not mon and c in x.energy]
-                            donors.sort(key=lambda x: (x.loc == ACTIVE, -len(x.energy)))
+                            donors.sort(key=lambda x: ((x.loc == ACTIVE) != parking, -len(x.energy)))
                             src = donors[0] if donors else None
                             src_note = f" (from {src.name}, a guess)" if src else " (source unknown)"
                         if src and src is not mon and c in src.energy:
@@ -807,17 +823,21 @@ class Game:
         # no attack, or only a setup attack, while something could have hit
         if self.first and t.n == 1:
             return
-        loaded = [f"{m!r} ({', '.join(ready_attacks(pool, m))})" for m in self.board
-                  if m.loc == BENCH and ready_attacks(pool, m)]
+        dbl = doubled_types(pool, self.board)
+        loaded = [f"{m!r} ({', '.join(ready_attacks(pool, m, doubled=dbl))})" for m in self.board
+                  if m.loc == BENCH and ready_attacks(pool, m, doubled=dbl)]
         a = self._active()
-        a_ready = ready_attacks(pool, a) if a else []
+        a_ready = ready_attacks(pool, a, doubled=dbl) if a else []
         if not t.attack:
             msg = "no attack"
             if a_ready:
                 msg += f"; the Active {a!r} could pay for {', '.join(a_ready)}"
-            elif a and energy_short(pool, a):
-                k, name = energy_short(pool, a)
+            elif a and energy_short(pool, a, doubled=dbl):
+                k, name = energy_short(pool, a, doubled=dbl)
                 msg += f"; the Active {a!r} was {k} Energy short of {name}"
+                for typ, ability in dbl.items():
+                    cards = -(-k // 2)
+                    msg += f", {cards} {typ} card{'s' if cards > 1 else ''} under {ability}"
             if loaded:
                 msg += f"; loaded on the Bench: {'; '.join(loaded)}"
             t.flags.append(msg)

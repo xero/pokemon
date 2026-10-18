@@ -114,6 +114,8 @@ Flags point at turns worth a look. They are not verdicts.
 | held a Basic with Bench space open | the evolution clock, since a Basic can't evolve the turn it lands; holding is right only when something punishes a fuller Bench, so read the opponent's attack text |
 | Ability used k of n | often a Toxtricity evolved that turn, which can Surge at once; the flag can't see conditions like an empty deck |
 
+Energy counts follow an Ability that doubles Basic Energy, like Meganium's *Wild Growth*, while it is in play, and the short flag then adds how many cards that is.
+
 "Loaded" means able to pay for an attack worth 100 or more, or 10 or more damage counters. The held-card flags read the hand at the moment of the attack, so a Prize card the attack took doesn't count against the turn.
 
 KO lines carry the damage story, such as `lost Gengar ex (took 60 + 180 + 130 = 370 of 280 HP)`. Hold that against Hero's Cape's +100 and against the page's breakpoint tables.
@@ -133,12 +135,13 @@ Live's log is mostly plain English. These are its traps:
 - "- X discarded Risky Ruins" under the other player's Stadium play is the Stadium leaving play, not a card from the hand.
 - A mulligan prints the hand that was sent back, so it shows part of the opponent's list.
 - **Your own mulligan hides your hand.** Live prints the mulliganed seven as your opening hand and never shows the seven you kept, so the report says the hand lines cover only what the log revealed afterward. Treat held-card flags and luck as partial in that game.
-- Happy Switch and Energy Switch lines name where the Energy went, never where it came from. The ledger guesses a benched donor and labels the guess; check it against the next attack before building a finding on it.
+- Happy Switch, Energy Switch, and *Solar Transfer* lines name where the Energy went, never where it came from. The ledger guesses a benched donor and labels the guess. A *Solar Transfer* onto the Bench guesses the Active instead, because Overgrowth parks spare Grass off it. Check the guess against the next attack's Energy count before building a finding on it.
 - A hit into Weakness adds a second sentence to the attack line, like "Mew ex took 260 more damage because of Darkness Weakness".
 - Damage breakdown bullets list every modifier on a hit.
 - *Chaotic Pain* hits one Pokémon, but Live prints a line for every Pokémon that couldn't take it: "Battle Cage was activated", *Hide 'n' Sneak*, *So Submerged*. These lines show what was protected, not where the counters went. The counters line names the target.
 - A Prize line can come before its KO line, when an effect like Legacy Energy's discard runs between them. The parser matches the two up.
 - Endings read "Opponent took all of their Prize cards. X wins.", "All Prize cards taken. X wins.", or "Opponent was inactive for too long. X wins." The last is a timeout. Record the win, and say the game was unfinished.
+- Since October 2026, Live puts a card id in front of every name: `(me1_12) Celebi`, `(sv6_211) Teal Mask Ogerpon ex`. The parser strips it before reading, and the archive keeps the log as pasted.
 - The log names cards, never printings, so the deck match works by name. Live prints are picked for art. Live spells Poké Pad with the accent, and the repo uses TCGplayer's Poke Pad; the parser folds accents and curly quotes.
 - The player whose opening hand is printed owns the log. Xero plays as xer0style. Fox's games carry his own handle, and the deck match finds his deck.
 

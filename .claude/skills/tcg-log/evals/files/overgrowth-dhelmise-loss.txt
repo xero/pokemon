@@ -1,0 +1,176 @@
+Setup
+xer0style chose heads for the opening coin flip.
+xer0style won the coin toss.
+xer0style decided to go second.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • (me1_177) Mega Venusaur ex, (ec_18) Basic Grass Energy, (me3_113) Poké Pad, (ec_18) Basic Grass Energy, (sv6_143) Bug Catching Set, (me2-5_8) Chikorita, (swsh11a_24) Boss's Orders
+Avie_ca drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style played (me2-5_8) Chikorita to the Active Spot.
+Avie_ca played (me5_35_ph) Spiritomb to the Active Spot.
+
+Avie_ca's Turn
+Avie_ca drew a card.
+Avie_ca attached (me3_88) Telepathic Psychic Energy to (me5_35_ph) Spiritomb in the Active Spot.
+(me3_88) Telepathic Psychic Energy was activated.
+- Avie_ca drew 2 cards and played them to the Bench.
+   • (me5_91) Dhelmise, (sv8_239) Latias ex
+- Avie_ca shuffled their deck.
+Avie_ca retreated (me5_35_ph) Spiritomb to the Bench.
+Avie_ca's (me5_91) Dhelmise is now in the Active Spot.
+Avie_ca played (sv8_164) Brilliant Blender.
+- Avie_ca discarded 5 cards.
+   • (me5_33) Shuppet, (me5_33) Shuppet, (me5_34) Banette, (me5_34) Banette, (me5_34) Banette
+- Avie_ca shuffled their deck.
+Avie_ca ended their turn.
+
+xer0style's Turn
+xer0style drew (me1_134) Ivysaur.
+xer0style played (sv6_143) Bug Catching Set.
+- xer0style drew 2 cards.
+   • (me1_12) Celebi, (me2-5_8) Chikorita
+- xer0style shuffled their deck.
+xer0style played (me1_12) Celebi to the Bench.
+xer0style played (me3_113) Poké Pad.
+- xer0style drew (mealt_3) Bulbasaur.
+- xer0style shuffled their deck.
+xer0style played (mealt_3) Bulbasaur to the Bench.
+xer0style attached (ec_18) Basic Grass Energy to (me2-5_8) Chikorita in the Active Spot.
+xer0style's (me2-5_8) Chikorita used Growl.
+
+Avie_ca's Turn
+Avie_ca drew a card.
+Avie_ca attached (mee_13) Basic Psychic Energy to (me5_91) Dhelmise in the Active Spot.
+Avie_ca played (sm5_166) Crushing Hammer.
+- Avie_ca flipped a coin and it landed on heads.
+- (ec_18) Basic Grass Energy was discarded from xer0style's (me2-5_8) Chikorita.
+Avie_ca played (me1_184) Lillie's Determination.
+- Avie_ca shuffled 3 cards into their deck.
+- Avie_ca drew 8 cards.
+Avie_ca played (me5_39) Dhelmise to the Bench.
+Avie_ca played (me5_5_ph) Poltchageist to the Bench.
+Avie_ca's (me5_91) Dhelmise used Vengeful Anchor on xer0style’s (me2-5_8) Chikorita for 150 damage.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • (Attack) Growl: -20 damage
+   • 5 Pokémon with Abilities: 140 damage
+   • Total damage: 150 damage
+
+xer0style's (me2-5_8) Chikorita was Knocked Out!
+Avie_ca took a Prize card.
+A card was added to Avie_ca's hand.
+xer0style's (me1_12) Celebi is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew (sv2_248) Boss's Orders.
+xer0style attached (ec_18) Basic Grass Energy to (me1_12) Celebi in the Active Spot.
+xer0style played (me2-5_8) Chikorita to the Bench.
+xer0style evolved (mealt_3) Bulbasaur to (me1_134) Ivysaur on the Bench.
+xer0style played (sv2_248) Boss's Orders.
+- Avie_ca's (sv8_239) Latias ex was switched with Avie_ca's (me5_91) Dhelmise to become the Active Pokémon.
+Avie_ca's (sv8_239) Latias ex is now in the Active Spot.
+xer0style's (me1_12) Celebi used Traverse Time.
+- xer0style drew 3 cards.
+   • (me1_9_ph) Bayleef, (me1_10_ph) Meganium, (me3_109) Forest of Vitality
+- xer0style shuffled their deck.
+
+Avie_ca's Turn
+Avie_ca drew a card.
+Avie_ca played (me3_113) Poké Pad.
+- Avie_ca drew (me5_34) Banette.
+- Avie_ca shuffled their deck.
+Avie_ca played (swsh9_186) Ultra Ball.
+- Avie_ca discarded 2 cards.
+   • (me5_6_ph) Sinistcha, (me5_34) Banette
+- Avie_ca drew (me5_6_ph) Sinistcha.
+- Avie_ca shuffled their deck.
+Avie_ca retreated (sv8_239) Latias ex to the Bench.
+Avie_ca's (me5_5_ph) Poltchageist is now in the Active Spot.
+Avie_ca evolved (me5_5_ph) Poltchageist to (me5_6_ph) Sinistcha in the Active Spot.
+Avie_ca attached (mee_13) Basic Psychic Energy to (me5_6_ph) Sinistcha in the Active Spot.
+Avie_ca's (me5_6_ph) Sinistcha used Matcha Spin.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_12) Celebi.
+- Avie_ca put 4 damage counters on Avie_ca's (me2-5_8) Chikorita.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_134) Ivysaur.
+
+xer0style's Turn
+xer0style drew (sv8_251) Night Stretcher.
+xer0style played (me3_109) Forest of Vitality to the Stadium spot.
+xer0style evolved (me1_134) Ivysaur to (me1_177) Mega Venusaur ex on the Bench.
+xer0style evolved (me2-5_8) Chikorita to (me1_9_ph) Bayleef on the Bench.
+xer0style evolved (me1_9_ph) Bayleef to (me1_10_ph) Meganium on the Bench.
+xer0style played (sv8_251) Night Stretcher.
+- xer0style moved xer0style's (ec_18) Basic Grass Energy to their hand.
+xer0style attached (ec_18) Basic Grass Energy to (me1_177) Mega Venusaur ex on the Bench.
+xer0style retreated (me1_12) Celebi to the Bench.
+- (ec_18) Basic Grass Energy was discarded from xer0style's (me1_12) Celebi.
+xer0style's (me1_177) Mega Venusaur ex is now in the Active Spot.
+xer0style ended their turn.
+
+Avie_ca's Turn
+Avie_ca drew a card.
+Avie_ca attached (me3_88) Telepathic Psychic Energy to (me5_39) Dhelmise on the Bench.
+(me3_88) Telepathic Psychic Energy was activated.
+- Avie_ca drew (me5_39) Dhelmise and played it to the Bench.
+- Avie_ca shuffled their deck.
+Avie_ca's (me5_6_ph) Sinistcha used Matcha Spin.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_177) Mega Venusaur ex.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_10_ph) Meganium.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_12) Celebi.
+xer0style's (me1_12) Celebi was Knocked Out!
+Avie_ca took a Prize card.
+A card was added to Avie_ca's hand.
+
+xer0style's Turn
+xer0style drew (me1_10) Meganium.
+xer0style ended their turn.
+
+Avie_ca's Turn
+Avie_ca drew a card.
+Avie_ca attached (mee_13) Basic Psychic Energy to (me5_39) Dhelmise on the Bench.
+Avie_ca played (me1_184) Lillie's Determination.
+- Avie_ca shuffled 4 cards into their deck.
+- Avie_ca drew 6 cards.
+Avie_ca's (me5_6_ph) Sinistcha used Matcha Spin.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_177) Mega Venusaur ex.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_10_ph) Meganium.
+
+xer0style's Turn
+xer0style drew (me1_155) Mega Venusaur ex.
+xer0style played (swsh11a_24) Boss's Orders.
+- Avie_ca's (sv8_239) Latias ex was switched with Avie_ca's (me5_6_ph) Sinistcha to become the Active Pokémon.
+Avie_ca's (sv8_239) Latias ex is now in the Active Spot.
+xer0style ended their turn.
+
+Avie_ca's Turn
+Avie_ca drew a card.
+Avie_ca played (me3_81_ph) Poké Pad.
+- Avie_ca drew (me5_5_ph) Poltchageist.
+- Avie_ca shuffled their deck.
+Avie_ca played (me5_119) Gwynn.
+- Avie_ca discarded 2 cards.
+   • (me5_5_ph) Poltchageist, (me5_33) Shuppet
+- Avie_ca drew 6 cards.
+Avie_ca played (me3_113) Poké Pad.
+- Avie_ca drew (me5_5_ph) Poltchageist.
+- Avie_ca shuffled their deck.
+Avie_ca played (swsh9_186) Ultra Ball.
+- Avie_ca discarded 2 cards.
+   • (me5_5_ph) Poltchageist, (me5_6_ph) Sinistcha
+- Avie_ca drew (me5_6_ph) Sinistcha.
+- Avie_ca shuffled their deck.
+Avie_ca retreated (sv8_239) Latias ex to the Bench.
+Avie_ca's (me5_6_ph) Sinistcha is now in the Active Spot.
+Avie_ca's (me5_6_ph) Sinistcha used Matcha Spin.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_177) Mega Venusaur ex.
+- Avie_ca put 4 damage counters on Avie_ca's (me1_10_ph) Meganium.
+xer0style's (me1_10_ph) Meganium was Knocked Out!
+- 2 cards were discarded from xer0style's (me1_10_ph) Meganium.
+   • (me1_9_ph) Bayleef, (me2-5_8) Chikorita
+Avie_ca took a Prize card.
+A card was added to Avie_ca's hand.
+
+xer0style's Turn
+xer0style drew (sv6_211) Teal Mask Ogerpon ex.
+You conceded. Avie_ca wins.

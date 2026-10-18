@@ -1,0 +1,292 @@
+Setup
+VenAndBunBun chose tails for the opening coin flip.
+xer0style won the coin toss.
+xer0style decided to go second.
+VenAndBunBun drew 7 cards for the opening hand.
+- 7 drawn cards.
+xer0style drew 7 cards for the opening hand.
+- 7 drawn cards.
+   • (sv10_226) Team Rocket's Petrel, (me1_9_ph) Bayleef, (me1_10) Meganium, (me2-5_264) Ultra Ball, (mealt_3) Bulbasaur, (me3_109) Forest of Vitality, (ec_18) Basic Grass Energy
+VenAndBunBun played (svalt_155) Munkidori to the Active Spot.
+xer0style played (mealt_3) Bulbasaur to the Active Spot.
+
+VenAndBunBun's Turn
+VenAndBunBun drew a card.
+VenAndBunBun played (sv8-5_101_ph) Buddy-Buddy Poffin.
+- VenAndBunBun drew 2 cards and played them to the Bench.
+   • (svbsp_189) N's Zorua, (svbsp_189) N's Zorua
+- VenAndBunBun shuffled their deck.
+VenAndBunBun attached (mee_15) Basic Darkness Energy to (svbsp_189) N's Zorua on the Bench.
+VenAndBunBun ended their turn.
+
+xer0style's Turn
+xer0style drew (me1_134) Ivysaur.
+xer0style played (sv10_226) Team Rocket's Petrel.
+- xer0style drew (me1_169) Lillie's Determination.
+- xer0style shuffled their deck.
+xer0style played (me2-5_264) Ultra Ball.
+- xer0style discarded 2 cards.
+   • (me1_134) Ivysaur, (ec_18) Basic Grass Energy
+- xer0style drew (me2-5_8) Chikorita.
+- xer0style shuffled their deck.
+xer0style played (me2-5_8) Chikorita to the Bench.
+xer0style ended their turn.
+
+VenAndBunBun's Turn
+VenAndBunBun drew a card.
+VenAndBunBun played (me1_169) Lillie's Determination.
+- VenAndBunBun shuffled 5 cards into their deck.
+- VenAndBunBun drew 8 cards.
+VenAndBunBun evolved (svbsp_189) N's Zorua to (sv9_175) N's Zoroark ex on the Bench.
+VenAndBunBun evolved (svbsp_189) N's Zorua to (me2-5_286) N's Zoroark ex on the Bench.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (me2-5_221) Budew.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun's (me2-5_286) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (me3_107) Meowth ex.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun attached (mee_15) Basic Darkness Energy to (sv9_175) N's Zoroark ex on the Bench.
+VenAndBunBun ended their turn.
+
+xer0style's Turn
+xer0style drew (me1_12) Celebi.
+xer0style played (me1_12) Celebi to the Bench.
+xer0style played (me3_109) Forest of Vitality to the Stadium spot.
+xer0style evolved (me2-5_8) Chikorita to (me1_9_ph) Bayleef on the Bench.
+xer0style evolved (me1_9_ph) Bayleef to (me1_10) Meganium on the Bench.
+xer0style played (me1_169) Lillie's Determination.
+- xer0style drew 8 cards.
+   • (rsv10-5_171) Hilda, (ec_18) Basic Grass Energy, (ec_18) Basic Grass Energy, (ec_18) Basic Grass Energy, (me1_9_ph) Bayleef, (me1_134) Ivysaur, (me2_8_ph) Genesect, (me3_109) Forest of Vitality
+xer0style evolved (mealt_3) Bulbasaur to (me1_134) Ivysaur in the Active Spot.
+xer0style played (me2_8_ph) Genesect to the Bench.
+xer0style attached (ec_18) Basic Grass Energy to (me1_134) Ivysaur in the Active Spot.
+xer0style's (me1_134) Ivysaur used Razor Leaf on VenAndBunBun’s (svalt_155) Munkidori for 60 damage.
+
+VenAndBunBun's Turn
+VenAndBunBun drew a card.
+VenAndBunBun played (me2-5_264) Ultra Ball.
+- VenAndBunBun discarded 2 cards.
+   • (me1_119) Lillie's Determination, (sv6-5_38) Fezandipiti ex
+- VenAndBunBun drew (sv9_26_ph) N's Darumaka.
+- VenAndBunBun shuffled their deck.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (sv9_26_ph) N's Darumaka.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun played (sv9_152_ph) N's Castle to the Stadium spot.
+- xer0style discarded (me3_109) Forest of Vitality.
+VenAndBunBun played (me1_167) Buddy-Buddy Poffin.
+- VenAndBunBun drew (svbsp_189) N's Zorua and played it to the Bench.
+- VenAndBunBun shuffled their deck.
+VenAndBunBun played (me1_119) Lillie's Determination.
+- VenAndBunBun shuffled 4 cards into their deck.
+- VenAndBunBun drew 8 cards.
+VenAndBunBun played (me2-5_264) Ultra Ball.
+- VenAndBunBun discarded 2 cards.
+   • (sv2_248) Boss's Orders, (mee_15) Basic Darkness Energy
+- VenAndBunBun drew (sv6-5_93) Pecharunt ex.
+- VenAndBunBun shuffled their deck.
+VenAndBunBun's (me2-5_286) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (sv9_185) N's Zoroark ex.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun attached (mee_15) Basic Darkness Energy to (svalt_155) Munkidori in the Active Spot.
+VenAndBunBun played (sv6-5_93) Pecharunt ex to the Bench.
+VenAndBunBun played (svalt_166) N's Reshiram to the Bench.
+VenAndBunBun's (svalt_155) Munkidori used Adrena-Brain.
+- VenAndBunBun moved 3 damage counters from VenAndBunBun's (svalt_155) Munkidori to VenAndBunBun's (me1_10) Meganium.
+VenAndBunBun's (sv6-5_93) Pecharunt ex used Subjugating Chains.
+- VenAndBunBun's (me2-5_286) N's Zoroark ex was switched with VenAndBunBun's (svalt_155) Munkidori to become the Active Pokémon.
+- VenAndBunBun's (me2-5_286) N's Zoroark ex is now Poisoned.
+VenAndBunBun's (me2-5_286) N's Zoroark ex is now in the Active Spot.
+VenAndBunBun retreated (me2-5_286) N's Zoroark ex to the Bench.
+VenAndBunBun's (sv9_175) N's Zoroark ex is now in the Active Spot.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Night Joker on xer0style’s (me1_134) Ivysaur for 170 damage.
+- VenAndBunBun chose Virtuous Flame
+xer0style's (me1_134) Ivysaur was Knocked Out!
+- 2 cards were discarded from xer0style's (me1_134) Ivysaur.
+   • (ec_18) Basic Grass Energy, (mealt_3) Bulbasaur
+VenAndBunBun took a Prize card.
+A card was added to VenAndBunBun's hand.
+xer0style's (me1_12) Celebi is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew (me1_184) Lillie's Determination.
+xer0style played (me3_109) Forest of Vitality to the Stadium spot.
+- VenAndBunBun discarded (sv9_152_ph) N's Castle.
+xer0style attached (ec_18) Basic Grass Energy to (me1_12) Celebi in the Active Spot.
+xer0style played (me1_184) Lillie's Determination.
+- xer0style shuffled 3 cards into their deck.
+   • (rsv10-5_171) Hilda, (ec_18) Basic Grass Energy, (me1_9_ph) Bayleef
+- xer0style drew 8 cards.
+   • (sv5_152) Hero's Cape, (sv8_251) Night Stretcher, (me2-5_8) Chikorita, (ec_18) Basic Grass Energy, (me1_169) Lillie's Determination, (rsv10-5_171) Hilda, (sv6_143_ph) Bug Catching Set, (me2_129) Dawn
+xer0style played (sv6_143_ph) Bug Catching Set.
+- xer0style drew 2 cards.
+   • (sv6_211) Teal Mask Ogerpon ex, (ec_18) Basic Grass Energy
+- xer0style shuffled their deck.
+xer0style played (sv6_211) Teal Mask Ogerpon ex to the Bench.
+xer0style attached (sv5_152) Hero's Cape to (sv6_211) Teal Mask Ogerpon ex on the Bench.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Teal Dance.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex on the Bench.
+- xer0style drew (sv3-5_206) Switch.
+xer0style's (me1_12) Celebi used Traverse Time.
+- xer0style drew 3 cards.
+   • (mealt_3) Bulbasaur, (me1_177) Mega Venusaur ex, (sv6_211) Teal Mask Ogerpon ex
+- xer0style shuffled their deck.
+
+VenAndBunBun's Turn
+VenAndBunBun drew a card.
+VenAndBunBun's (svalt_155) Munkidori used Adrena-Brain.
+- VenAndBunBun moved 3 damage counters from VenAndBunBun's (svalt_155) Munkidori to VenAndBunBun's (sv6_211) Teal Mask Ogerpon ex.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (mebsp_31) N's Zekrom.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun evolved (svbsp_189) N's Zorua to (sv9_189) N's Zoroark ex on the Bench.
+VenAndBunBun played (sv2_248) Boss's Orders.
+- xer0style's (me1_10) Meganium was switched with xer0style's (me1_12) Celebi to become the Active Pokémon.
+xer0style's (me1_10) Meganium is now in the Active Spot.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Night Joker on xer0style’s (me1_10) Meganium for 170 damage.
+- VenAndBunBun chose Virtuous Flame
+xer0style's (me1_10) Meganium was Knocked Out!
+- 2 cards were discarded from xer0style's (me1_10) Meganium.
+   • (me1_9_ph) Bayleef, (me2-5_8) Chikorita
+VenAndBunBun took a Prize card.
+A card was added to VenAndBunBun's hand.
+xer0style's (sv6_211) Teal Mask Ogerpon ex is now in the Active Spot.
+
+xer0style's Turn
+xer0style drew (me3_109) Forest of Vitality.
+xer0style played (me2_129) Dawn.
+- xer0style drew 3 cards.
+   • (me2-5_8) Chikorita, (me1_9_ph) Bayleef, (me1_10_ph) Meganium
+- xer0style shuffled their deck.
+xer0style played (me2-5_8) Chikorita to the Bench.
+xer0style evolved (me2-5_8) Chikorita to (me1_9_ph) Bayleef on the Bench.
+xer0style evolved (me1_9_ph) Bayleef to (me1_10_ph) Meganium on the Bench.
+xer0style played (sv8_251) Night Stretcher.
+- xer0style moved xer0style's (me1_134) Ivysaur to their hand.
+xer0style played (mealt_3) Bulbasaur to the Bench.
+xer0style evolved (mealt_3) Bulbasaur to (me1_134) Ivysaur on the Bench.
+xer0style evolved (me1_134) Ivysaur to (me1_177) Mega Venusaur ex on the Bench.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Teal Dance.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex in the Active Spot.
+- xer0style drew (ec_18) Basic Grass Energy.
+xer0style played (sv6_211) Teal Mask Ogerpon ex to the Bench.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Teal Dance.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex on the Bench.
+- xer0style drew (sv8_251) Night Stretcher.
+xer0style played (sv8_251) Night Stretcher.
+- xer0style moved xer0style's (ec_18) Basic Grass Energy to their hand.
+xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex in the Active Spot.
+xer0style's (me1_177) Mega Venusaur ex used Solar Transfer.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex on the Bench.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Myriad Leaf Shower on VenAndBunBun’s (sv9_175) N's Zoroark ex for 420 damage. VenAndBunBun's (sv9_175) N's Zoroark ex took 210 more damage because of Grass Weakness.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • 6 attached Energy: 180 damage
+   • Weakness to Grass: 210 damage
+   • Total damage: 420 damage
+
+VenAndBunBun's (sv9_175) N's Zoroark ex was Knocked Out!
+- 3 cards were discarded from VenAndBunBun's (sv9_175) N's Zoroark ex.
+   • (mee_15) Basic Darkness Energy, (mee_15) Basic Darkness Energy, (svbsp_189) N's Zorua
+xer0style took 2 Prize cards.
+(ec_18) Basic Grass Energy was added to xer0style's hand.
+(sv6_211) Teal Mask Ogerpon ex was added to xer0style's hand.
+VenAndBunBun's (svalt_166) N's Reshiram is now in the Active Spot.
+
+VenAndBunBun's Turn
+VenAndBunBun drew a card.
+VenAndBunBun's (me2-5_286) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (me1_167) Buddy-Buddy Poffin.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun's (sv9_189) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (sv9_27_ph) N's Darmanitan.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun played (me4_83_ph) Transformation Tome.
+VenAndBunBun played (me2-5_262) N's PP Up.
+- VenAndBunBun attached (mee_15) Basic Darkness Energy to (svbsp_189) N's Zorua on the Bench.
+VenAndBunBun played (me2-5_262) N's PP Up.
+- VenAndBunBun attached (mee_15) Basic Darkness Energy to (me2-5_286) N's Zoroark ex on the Bench.
+VenAndBunBun played (me1_173) Night Stretcher.
+- VenAndBunBun moved VenAndBunBun's (sv9_175) N's Zoroark ex to their hand.
+VenAndBunBun evolved (svbsp_189) N's Zorua to (sv9_175) N's Zoroark ex on the Bench.
+VenAndBunBun attached (sv6-5_55_ph) Binding Mochi to (sv9_175) N's Zoroark ex on the Bench.
+VenAndBunBun played (mebsp_31) N's Zekrom to the Bench.
+VenAndBunBun played (me1_169) Lillie's Determination.
+- VenAndBunBun shuffled a card into their deck.
+- VenAndBunBun drew 6 cards.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Trade.
+- VenAndBunBun discarded (sv8_230) Cyrano.
+- VenAndBunBun drew 2 cards.
+VenAndBunBun played (sv9_152) N's Castle to the Stadium spot.
+- xer0style discarded (me3_109) Forest of Vitality.
+VenAndBunBun's (sv6-5_93) Pecharunt ex used Subjugating Chains.
+- VenAndBunBun's (sv9_175) N's Zoroark ex was switched with VenAndBunBun's (svalt_166) N's Reshiram to become the Active Pokémon.
+- VenAndBunBun's (sv9_175) N's Zoroark ex is now Poisoned.
+VenAndBunBun's (sv9_175) N's Zoroark ex is now in the Active Spot.
+VenAndBunBun's (sv9_175) N's Zoroark ex used Night Joker on xer0style’s (sv6_211) Teal Mask Ogerpon ex for 290 damage.
+- Damage breakdown:
+   • Base damage: 250 damage
+   • (Pokémon Tool) (sv6-5_55_ph) Binding Mochi: 40 damage
+   • Total damage: 290 damage
+
+- VenAndBunBun chose Rampaging Thunder
+xer0style's (sv6_211) Teal Mask Ogerpon ex was Knocked Out!
+- 3 cards were discarded from xer0style's (sv6_211) Teal Mask Ogerpon ex.
+   • (ec_18) Basic Grass Energy, (ec_18) Basic Grass Energy, (sv5_152) Hero's Cape
+VenAndBunBun took 2 Prize cards.
+A card was added to VenAndBunBun's hand.
+A card was added to VenAndBunBun's hand.
+xer0style's (sv6_211) Teal Mask Ogerpon ex is now in the Active Spot.
+
+Pokémon Checkup
+1 damage counter was placed on VenAndBunBun's (sv9_175) N's Zoroark ex for the Special Condition Poisoned.
+
+xer0style's Turn
+xer0style drew (ec_18) Basic Grass Energy.
+xer0style played (me3_109) Forest of Vitality to the Stadium spot.
+- VenAndBunBun discarded (sv9_152) N's Castle.
+xer0style played (sv6_211) Teal Mask Ogerpon ex to the Bench.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Teal Dance.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex on the Bench.
+- xer0style drew (sv6_143) Bug Catching Set.
+xer0style played (sv6_143) Bug Catching Set.
+- xer0style drew 2 cards.
+   • (ec_18) Basic Grass Energy, (ec_18) Basic Grass Energy
+- xer0style shuffled their deck.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Teal Dance.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex in the Active Spot.
+- xer0style drew (ec_18) Basic Grass Energy.
+xer0style attached (ec_18) Basic Grass Energy to (me2_8_ph) Genesect on the Bench.
+xer0style's (me1_177) Mega Venusaur ex used Solar Transfer.
+- xer0style attached (ec_18) Basic Grass Energy to (sv6_211) Teal Mask Ogerpon ex on the Bench.
+xer0style's (sv6_211) Teal Mask Ogerpon ex used Myriad Leaf Shower on VenAndBunBun’s (sv9_175) N's Zoroark ex for 420 damage. VenAndBunBun's (sv9_175) N's Zoroark ex took 210 more damage because of Grass Weakness.
+- Damage breakdown:
+   • Base damage: 30 damage
+   • 6 attached Energy: 180 damage
+   • Weakness to Grass: 210 damage
+   • Total damage: 420 damage
+
+VenAndBunBun's (sv9_175) N's Zoroark ex was Knocked Out!
+- 4 cards were discarded from VenAndBunBun's (sv9_175) N's Zoroark ex.
+   • (mee_15) Basic Darkness Energy, (mee_15) Basic Darkness Energy, (svbsp_189) N's Zorua, (sv6-5_55_ph) Binding Mochi
+xer0style took 2 Prize cards.
+(ec_18) Basic Grass Energy was added to xer0style's hand.
+(sv6_211) Teal Mask Ogerpon ex was added to xer0style's hand.
+VenAndBunBun's (mebsp_31) N's Zekrom is now in the Active Spot.
+
+VenAndBunBun's Turn
+VenAndBunBun drew a card.
+VenAndBunBun attached (mee_15) Basic Darkness Energy to (me2-5_286) N's Zoroark ex on the Bench.
+VenAndBunBun's (sv6-5_93) Pecharunt ex used Subjugating Chains.
+- VenAndBunBun's (me2-5_286) N's Zoroark ex was switched with VenAndBunBun's (mebsp_31) N's Zekrom to become the Active Pokémon.
+- VenAndBunBun's (me2-5_286) N's Zoroark ex is now Poisoned.
+VenAndBunBun's (me2-5_286) N's Zoroark ex is now in the Active Spot.
+VenAndBunBun's (me2-5_286) N's Zoroark ex used Night Joker on xer0style’s (sv6_211) Teal Mask Ogerpon ex for 250 damage.
+- VenAndBunBun chose Rampaging Thunder
+xer0style's (sv6_211) Teal Mask Ogerpon ex was Knocked Out!
+- 2 cards were discarded from xer0style's (sv6_211) Teal Mask Ogerpon ex.
+   • (ec_18) Basic Grass Energy, (ec_18) Basic Grass Energy
+VenAndBunBun took 2 Prize cards.
+A card was added to VenAndBunBun's hand.
+A card was added to VenAndBunBun's hand.
+Opponent took all of their Prize cards. VenAndBunBun wins.

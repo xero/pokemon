@@ -46,6 +46,9 @@ met = load("metagross-win.txt")
 igg = load("igglybuff-win.txt")
 mir = load("gengar-mirror-loss.txt")
 cru = load("crustle-loss.txt")
+idl = load("overgrowth-idle-win.txt")
+dhl = load("overgrowth-dhelmise-loss.txt")
+zrk = load("overgrowth-zoroark-loss.txt")
 
 CHECKS = [
     # the Hop's Zacian loss
@@ -157,6 +160,25 @@ CHECKS = [
      and not any("counters" in e for e in events(cru, "you", 3))),
     ("crustle: no Energy in hand on turns 5 and 6, so no held-Energy flag",
      lambda: not any(f.startswith("held Basic Darkness Energy") for n in (5, 6) for f in flags(cru, n))),
+    # the Overgrowth win against an idle opponent, the first log with Live's card ids
+    ("card ids: names lose Live's id prefix", lambda: "Hilda" in idl.revealed and not any("(" in c for c in idl.revealed)),
+    ("card ids: Hilda is still a search", lambda: "searched Bayleef, Basic Grass Energy" in events(idl, "you", 1)),
+    ("card ids: the opponent's Pokémon carry no ids", lambda: list(dict.fromkeys(idl.opp_pokemon)) == ["Meowth ex", "Duskull"]),
+    ("card ids: a bench-out win, 3 Prizes to 0",
+     lambda: (idl.result, idl.prizes[idl.me], idl.prizes[idl.opp]) == ("win", 3, 0)),
+    ("card ids: the deck match finds Overgrowth", lambda: parse_log.match_deck(idl, *parse_log.registered_decks())[0] == "overgrowth.md"),
+    # the Overgrowth loss to Dhelmise, Meganium in play from turn 3
+    ("wild growth: a Grass card pays two under Meganium, so Venusaur is 2 short, not 3",
+     lambda: any("2 Energy short of Jungle Dump, 1 Grass card under Wild Growth" in f for f in flags(dhl, 3))),
+    ("wild growth: no Meganium, no doubling", lambda: parse_log.doubled_types(dhl.pool, []) == {}),
+    ("dhelmise: Celebi's retreat discards its Grass", lambda: "Celebi" in board(dhl, 3) and "Mega Venusaur ex[Grass]" in board(dhl, 3)),
+    ("dhelmise: a concession at 0 Prizes to 3", lambda: (dhl.result, dhl.prizes[dhl.me], dhl.prizes[dhl.opp]) == ("loss", 0, 3)),
+    # the Overgrowth loss to N's Zoroark ex: Solar Transfer parks spare Grass off the Active
+    ("solar transfer: a move onto the Bench comes off the Active, which then hits for 6 with their 2",
+     lambda: board(zrk, 4)[0] == "Teal Mask Ogerpon ex[Grass, Grass, Hero's Cape]" and "Celebi[Grass]" in board(zrk, 4)),
+    ("solar transfer: turn 5 leaves Genesect its Grass", lambda: "Genesect[Grass]" in board(zrk, 5)),
+    ("zoroark: Munkidori's moved counters show on the Cape Ogerpon's KO line",
+     lambda: any("lost Teal Mask Ogerpon ex (took 30 + 290 = 320 of 210 HP, holding Hero's Cape)" in e for e in events(zrk, "opp", 5))),
     ("dedupe: straight and curly apostrophes hash the same", lambda: parse_log.body_hash("a’s\n\nb") == parse_log.body_hash("a's\nb")),
 ]
 
