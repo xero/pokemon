@@ -275,13 +275,14 @@
 /* the $$$ in the corner of the Deck List heading: a switch, so a button,
    in the clothes of the link it used to be. the template's [data-bling]
    rule parks it in the corner; this takes the button chrome off. it says
-   where it goes: a purple $$$ up to the bling deck, and silver cents back
-   down, which the script writes the moment it is pressed. */
+   where it goes: a gold $$$ up to the bling deck, and silver cents back
+   down, which the script writes the moment it is pressed. it is never the
+   purple of a link, pressed or not. */
 h3 [data-bling] {
 	background: none;
 	border: 0;
 	padding: 0;
-	color: var(--accent);
+	color: var(--gold);
 	font: inherit;
 	font-weight: 700;
 	line-height: 1;

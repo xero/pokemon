@@ -235,7 +235,7 @@ function showPrints(prints) {
  * the swap, since what it shows has to change while every card is face
  * down.
  *
- * The switch says where it goes: a purple $$$ while the regular deck is
+ * The switch says where it goes: a gold $$$ while the regular deck is
  * up, and silver cents to come back down from the bling one. Its name for
  * a screen reader stays the same, with aria-pressed saying which way it is
  * set, since a toggle that renamed itself would read as a different
