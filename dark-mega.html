@@ -15,7 +15,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="pokedex" />
 		<link rel="manifest" href="./assets/site.webmanifest" />
-		<link rel="stylesheet" href="./assets/deal/deal.css?v=49e3fb67" />
+		<link rel="stylesheet" href="./assets/deal/deal.css?v=182eb18c" />
 		<style>
 		:root {
 			/* palette */
@@ -36,6 +36,19 @@
 			--gap:   clamp(0.75rem, 2vw, 1.25rem);
 			--pad:   clamp(0.75rem, 2vw, 1.5rem);
 			--round: 0.5rem;
+
+			/* a card scan's shape. a printed card's corners are cut round,
+			   about 4.5% of its width, and the scans keep the white behind
+			   them, often with a pixel or two of white down the sides or all
+			   the way round as well. so a scan loses 0.8% off every edge and
+			   gets its corners cut, then grows back by as much to fill its
+			   box again, which keeps the box the card for the shadow and the
+			   focus ring. percentages, since scans come at every size;
+			   3.57% is 5% of a 5:7 box's width as a share of its height, so
+			   the corners are round and not oval. */
+			--card-round: 5% / 3.57%;
+			--card-trim:  inset(0.8% round 5% / 3.57%);
+			--card-grow:  1.0163;   /* 1 / (1 - 2 × 0.8%) */
 
 			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
 			   the box is sized for that and images are constrained to fit it.
@@ -572,7 +585,8 @@
 					width: 100%;
 					aspect-ratio: 5 / 7;
 					object-fit: contain;
-					border-radius: var(--round);
+					clip-path: var(--card-trim);
+					scale: var(--card-grow);
 				}
 			}
 
@@ -584,7 +598,7 @@
 			   would turn every inline link in the prose into a block. */
 			[data-art] {
 				display: block;
-				border-radius: var(--round);
+				border-radius: var(--card-round);
 
 				&:focus-visible {
 					outline: 2px solid var(--accent);
@@ -676,7 +690,8 @@
 				width: 100%;
 				aspect-ratio: 5 / 7;
 				object-fit: contain;
-				border-radius: var(--round);
+				clip-path: var(--card-trim);
+				scale: var(--card-grow);
 			}
 
 			/* the count sits on the art rather than beside a heading, so it
