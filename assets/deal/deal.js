@@ -215,9 +215,9 @@ function twoFaced(img, back) {
 
 /**
  * Show one deck or the other, page-wide. The stylesheet does the showing:
- * every element tagged data-print, the gold frame, and the price under the
- * strip all read the root's data-showing. The card sections hear about it
- * through the event.
+ * every element tagged data-print and the price under the strip read the
+ * root's data-showing. The gold frame is gild()'s, since it moves on the
+ * press. The card sections hear about it through the event.
  *
  * @param {Prints} prints
  * @param {HTMLElement} [button]
@@ -228,6 +228,15 @@ function showPrints(prints, button) {
 	else delete root.dataset.showing;
 	button?.setAttribute("aria-pressed", String(prints === "bling"));
 	document.dispatchEvent(new CustomEvent("deal:showing", { detail: prints }));
+}
+
+/** the gold frame round the strip, on for the bling deck and off for the
+ * regular one. it follows the press of the $$$ rather than the swap, so it
+ * fades the moment the button is pressed; data-showing waits for the swap,
+ * since what it shows has to change while every card is face down.
+ * @param {Deck} deck @param {Prints} prints */
+function gild(deck, prints) {
+	deck.article.toggleAttribute("data-gold", prints === "bling");
 }
 
 /** start fetching a deck's scans now, hidden or not, so the shuffle covers
@@ -906,6 +915,9 @@ async function swap(deck) {
 	if (article.dataset.deal === "dealing") return;
 	/** @type {Prints} */
 	const prints = deck.showing === "bling" ? "regular" : "bling";
+	// the gold frame answers the press itself, not the swap seconds later,
+	// so it is the first thing to move
+	gild(deck, prints);
 	fetchSet(deck.sets[prints]);
 	document.dispatchEvent(new CustomEvent("deal:press"));
 	if (article.dataset.deal === "stacked") {
@@ -1136,6 +1148,7 @@ function main() {
 	if (hasBling && location.hash === "#bling") {
 		use(deck, "bling");
 		fetchSet(deck.sets.bling);
+		gild(deck, "bling");
 		showPrints("bling", deck.button);
 	}
 

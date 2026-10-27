@@ -15,6 +15,8 @@
  *   done     the page as it was before the script ran, plus the hover
  *
  * And one on the root: data-showing="bling" while the Bling Deck is up.
+ * The strip's data-gold runs ahead of it: it is set the moment the $$$ asks
+ * for the bling deck, so the gold frame fades in on the press.
  */
 
 :root {
@@ -224,9 +226,11 @@
 	pointer-events: none;
 }
 
-/* the strip's own corners follow the frame's, or its colour shows in the
-   corners outside the gold */
-:root[data-showing="bling"] [data-deal] {
+/* on from the moment the $$$ asks for the bling deck, off from the moment
+   it asks for the regular one, so the frame answers the press itself
+   rather than the swap a shuffle later. the strip's own corners follow the
+   frame's, or its colour shows in the corners outside the gold. */
+[data-deal][data-gold] {
 	border-radius: 15px;
 
 	&::before {
