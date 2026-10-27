@@ -73,14 +73,16 @@ def number(hit):
 
 def plain(hits, variant=""):
     """The one hit that is the print asked for, if exactly one is: the one
-    whose name carries the variant the table asked for, or with none asked
-    for, the one that is not a variant at all."""
+    whose name carries the variant the table asked for and no other, or with
+    none asked for, the one that is not a variant at all. "Metang
+    (Prerelease)" is the stamped promo, not its Staff twin."""
     if variant:
         hits = [h for h in hits if variant.lower() in h["productName"].lower()]
-        return hits[0] if len(hits) == 1 else None
     if len(hits) == 1:
         return hits[0]
-    bare = [h for h in hits if not re.search(r"[\[(]", h["productName"])]
+    asked = re.compile(r"\(\s*" + re.escape(variant) + r"\s*\)", re.I)
+    bare = [h for h in hits if not re.search(
+        r"[\[(]", asked.sub("", h["productName"]) if variant else h["productName"])]
     return bare[0] if len(bare) == 1 else None
 
 

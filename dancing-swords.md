@@ -77,6 +77,44 @@
 
 **Ten Basics is a 26% mulligan.** The opening seven holds a Honedge 40% of the time, and going first, a Honedge, Poffin, or Poke Pad shows up by the end of your first turn 75% of the time. It holds 1.4 swords on average, and 1.2 sit in the Prizes; three or more swords are prized in 9% of games. **Genesect ex or a Dawn is in your first nine cards 57% of the time.** Brock's Scouting had that at 64% and left for the second Switch, so it is still the deck's soft spot; see [Test and Tune](#test-and-tune). About one opening hand in five (22%) holds no Energy, and *Metal Maker* is the answer to that one.
 
+### Bling Deck
+
+This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at about $680 at TCGplayer market on October 27, 2026. [Check the current market price.](https://my.limitlesstcg.com/builder?i=10132POR570132MEP670232POR980432POR580432POR560332CRI590332SVP900133BLK1610133BLK1690132SFA920233PFL1180133PFL1290133TWM2070133TWM2190133PAL2480133ASC2560133DRI2260133WHT1710333TWM2230233POR1130133MEG1730133SSP2510133FLI1430133MEW2060133SUM1600133PRE1160233PBL1040232AOR770233PFL1160233TEF1480b32SFA99)
+
+| Copies | Card | Set | Number |
+| --- | --- | --- | --- |
+| 1 | Doublade | POR | 057 |
+| 1 | Doublade | MEP | 067 |
+| 2 | Doublade | POR | 098 |
+| 4 | Aegislash | POR | 058 |
+| 4 | Honedge | POR | 056 |
+| 3 | Beldum | CRI | 059 |
+| 3 | Metang (Prerelease) | SVP | 090 |
+| 1 | Genesect ex | BLK | 161 |
+| 1 | Genesect ex | BLK | 169 |
+| 1 | Fezandipiti ex | SFA | 092 |
+| 2 | Dawn | PFL | 118 |
+| 1 | Dawn | PFL | 129 |
+| 1 | Lana's Aid | TWM | 207 |
+| 1 | Lana's Aid | TWM | 219 |
+| 1 | Boss's Orders | PAL | 248 |
+| 1 | Boss's Orders | ASC | 256 |
+| 1 | Team Rocket's Petrel | DRI | 226 |
+| 1 | Hilda | WHT | 171 |
+| 3 | Buddy-Buddy Poffin | TWM | 223 |
+| 2 | Poke Pad | POR | 113 |
+| 1 | Night Stretcher | MEG | 173 |
+| 1 | Night Stretcher | SSP | 251 |
+| 1 | Energy Recycler | FLI | 143 |
+| 1 | Switch | MEW | 206 |
+| 1 | Switch | SUM | 160 |
+| 1 | Max Rod | PRE | 116 |
+| 2 | Brave Bangle | PBL | 104 |
+| 2 | Lucky Helmet | AOR | 077 |
+| 2 | Battle Cage | PFL | 116 |
+| 2 | Full Metal Lab | TEF | 148 |
+| 11 | Basic Metal Energy | SFA | 099 |
+
 ---
 
 # Pokémon
