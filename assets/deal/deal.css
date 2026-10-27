@@ -27,6 +27,17 @@
 	--deal-gild:   400ms;   /* the bling frame and price fading in and out */
 	--deal-resize: 450ms;   /* the strip easing to the other deck's height */
 	--deal-depth:  900px;
+
+	/* the cents on the switch while the bling deck is up. a true silver is
+	   too pale to read on the light theme's white, so it is a shade down
+	   there and the real thing on the dark one. */
+	--deal-silver: #858a92;
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+	--deal-silver: #c4c8cf;
+}
 }
 
 /* ---------------------------------------------------------------------
@@ -263,8 +274,9 @@
 
 /* the $$$ in the corner of the Deck List heading: a switch, so a button,
    in the clothes of the link it used to be. the template's [data-bling]
-   rule parks it in the corner; this takes the button chrome off. a link
-   ending in #bling lands here, under the page's top padding. */
+   rule parks it in the corner; this takes the button chrome off. it says
+   where it goes: a purple $$$ up to the bling deck, and silver cents back
+   down, which the script writes the moment it is pressed. */
 h3 [data-bling] {
 	background: none;
 	border: 0;
@@ -274,16 +286,23 @@ h3 [data-bling] {
 	font-weight: 700;
 	line-height: 1;
 	cursor: pointer;
-	scroll-margin-top: var(--pad);
 
 	&[aria-pressed="true"] {
-		color: var(--gold);
+		color: var(--deal-silver);
 	}
 
 	&:focus-visible {
 		outline: 2px solid var(--accent);
 		outline-offset: 2px;
 	}
+}
+
+/* the empty span beside the $$$ that a link ending in #bling lands on,
+   under the page's top padding. a span, because a browser focuses a
+   target it can focus, and on the button that drew a focus ring as the
+   page opened. */
+#bling {
+	scroll-margin-top: var(--pad);
 }
 
 /* ---------------------------------------------------------------------

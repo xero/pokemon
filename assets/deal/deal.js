@@ -216,27 +216,41 @@ function twoFaced(img, back) {
 /**
  * Show one deck or the other, page-wide. The stylesheet does the showing:
  * every element tagged data-print and the price under the strip read the
- * root's data-showing. The gold frame is gild()'s, since it moves on the
- * press. The card sections hear about it through the event.
+ * root's data-showing. The frame and the switch are gild()'s, since they
+ * move on the press. The card sections hear about it through the event.
  *
  * @param {Prints} prints
- * @param {HTMLElement} [button]
  */
-function showPrints(prints, button) {
+function showPrints(prints) {
 	const root = document.documentElement;
 	if (prints === "bling") root.dataset.showing = "bling";
 	else delete root.dataset.showing;
-	button?.setAttribute("aria-pressed", String(prints === "bling"));
 	document.dispatchEvent(new CustomEvent("deal:showing", { detail: prints }));
 }
 
-/** the gold frame round the strip, on for the bling deck and off for the
- * regular one. it follows the press of the $$$ rather than the swap, so it
- * fades the moment the button is pressed; data-showing waits for the swap,
- * since what it shows has to change while every card is face down.
+/**
+ * The gold frame round the strip and the switch in its heading, set for
+ * the deck asked for. They follow the press of the switch rather than the
+ * swap, so both answer the moment it is pressed; data-showing waits for
+ * the swap, since what it shows has to change while every card is face
+ * down.
+ *
+ * The switch says where it goes: a purple $$$ while the regular deck is
+ * up, and silver cents to come back down from the bling one. Its name for
+ * a screen reader stays the same, with aria-pressed saying which way it is
+ * set, since a toggle that renamed itself would read as a different
+ * control each time.
+ *
  * @param {Deck} deck @param {Prints} prints */
 function gild(deck, prints) {
-	deck.article.toggleAttribute("data-gold", prints === "bling");
+	const bling = prints === "bling";
+	deck.article.toggleAttribute("data-gold", bling);
+	const button = deck.button;
+	if (!button) return;
+	button.dataset.title ??= button.title;
+	button.setAttribute("aria-pressed", String(bling));
+	button.textContent = bling ? "\u00a2\u00a2\u00a2" : "$$$";
+	button.title = bling ? "Back to the regular deck" : button.dataset.title;
 }
 
 /** start fetching a deck's scans now, hidden or not, so the shuffle covers
@@ -500,7 +514,7 @@ function switchTo(deck, prints) {
 	article.style.height = "";
 	const was = article.getBoundingClientRect().height;
 	use(deck, prints);
-	showPrints(prints, deck.button);
+	showPrints(prints);
 	const now = article.getBoundingClientRect().height;
 	if (STILL || Math.abs(now - was) < 1) return;
 	article.style.height = px(was);
@@ -1134,7 +1148,8 @@ function main() {
 	const hasBling = deck.sets.bling.length > 0;
 
 	// the $$$ in the corner of the Deck List heading
-	const button = document.getElementById("bling");
+	const button = /** @type {HTMLElement | null} */ (
+		document.querySelector("h3 button[data-bling]"));
 	if (button) {
 		if (hasBling) {
 			deck.button = button;
@@ -1149,7 +1164,7 @@ function main() {
 		use(deck, "bling");
 		fetchSet(deck.sets.bling);
 		gild(deck, "bling");
-		showPrints("bling", deck.button);
+		showPrints("bling");
 	}
 
 	tilt(deck);

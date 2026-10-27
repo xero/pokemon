@@ -960,11 +960,14 @@ def convert(src):
     body = "\n".join(body)
     if bling_thumbs:
         # the switch between the deck and its Bling Deck sits in the corner
-        # of the deck list heading, where the flavour sprites go. its id is
-        # what a link ending in #bling lands on, and deal.js opens the page
-        # on the bling deck when one does.
+        # of the deck list heading, where the flavour sprites go. a link
+        # ending in #bling lands on the empty span beside it, and deal.js
+        # opens the page on the bling deck when one does. the id is not on
+        # the button, because a browser focuses a target it can focus, and
+        # the page would open with a focus ring round the $$$.
         label = esc(bling_title or "Bling Deck")
-        switch = (f'<button type="button" id="bling" data-bling '
+        switch = (f'<span id="bling"></span>'
+                  f'<button type="button" data-bling '
                   f'aria-pressed="false" title="{label}" '
                   f'aria-label="{label}">$$$</button>')
         body, hit = re.subn(r'(<h3 id="deck-list">.*?)(</h3>)',
