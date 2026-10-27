@@ -10,6 +10,8 @@ Normalizations applied:
   * type_hp_stage split into atomic card_type / hp / stage, compound kept
   * regulation_mark and standard_legal resolved per printing, not per set
   * owned carried over from product-ids.tsv as 1 or 0
+  * the Bling Deck prints in bling-ids.tsv written to bling.csv, same columns
+    with the set code their deck table uses in place of owned
   * attacks, weakness, resistance, and retreat cost carried through; the
     description field holds only the Ability, so attacks are where most of
     a card's printed text actually lives
@@ -36,6 +38,17 @@ pid_owned = {int(float(r[0])): "0" if len(r) > 2 and r[2].strip() == "0" else "1
              for r in rows}
 ids = list(pid_to_url)
 
+# The Bling Deck prints: id / url / "TWM 211", the set code and number a deck's
+# Copies table names them by. add_bling.py writes the seed. They become
+# bling.csv rather than rows in cards.csv, because cards.csv is ownership and
+# these are neither owned nor wanted; only the deck pages read bling.csv.
+BLING_SEED = ROOT / "bling-ids.tsv"
+bling_seed = [l.split("\t") for l in (BLING_SEED.read_text(encoding="utf-8").splitlines()
+                                       if BLING_SEED.exists() else [])
+              if l.strip() and not l.startswith("#")]
+bling_ids = [(int(float(r[0])), r[1], r[2].split(" ")[0].strip())
+             for r in bling_seed if len(r) > 2]
+
 
 def fetch(chunk):
     body = json.dumps({
@@ -59,13 +72,14 @@ if RAW.exists():
 
 # top up rather than all-or-nothing: adding one card to the seed should cost one
 # request, not a refetch of everything already cached.
-todo = [i for i in ids if i not in products]
+every = list(dict.fromkeys(ids + [b[0] for b in bling_ids]))
+todo = [i for i in every if i not in products]
 if todo:
     print(f"  {len(products)} cached, fetching {len(todo)}", file=sys.stderr)
     for i in range(0, len(todo), 40):
         for p in fetch(todo[i:i + 40]):
             products[int(float(p["productId"]))] = p
-        print(f"  fetched {len(products)}/{len(ids)}", file=sys.stderr)
+        print(f"  fetched {len(products)}/{len(every)}", file=sys.stderr)
         time.sleep(1.0)
     RAW.write_text(json.dumps({str(k): v for k, v in products.items()}))
 
@@ -406,16 +420,21 @@ def norm_type(card_type_b, hp, stage):
         return f"Trainer - {sub}", "", ""
     if low in ("basic energy", "special energy"):
         return f"Energy - {low.split()[0].title()}", "", ""
+    # the secret-rare Basic Energy from Sun & Moon ships as "Basic Grass
+    # Energy", which the line below turned into "Energy - Basic Grass" and
+    # legality() then failed to see as Basic Energy, legal from any set
+    if low.startswith("basic ") and low.endswith(" energy"):
+        return "Energy - Basic", "", ""
     if low.endswith(" energy"):
         return f"Energy - {low[:-7].title()}", "", ""
     st = accents(str(stage or "").strip())
     return t, str(hp or "").strip(), STAGE_FIX.get(st.lower(), st)
 
 
-records = []
-for pid in ids:
+def build_record(pid, url):
+    """One printing's row, from its cached product. Both seeds come
+    through here, so a bling print reads exactly like a card we own."""
     p = products.get(pid)
-    url = pid_to_url[pid]
     slug = re.sub(r"^.*?/pokemon(?:-japan)?/", "", url)
     card_slug = slug.split("/")[-1]
     ca = (p.get("customAttributes") or {}) if p else {}
@@ -483,10 +502,16 @@ for pid in ids:
         "regulation_mark": mark,
         "standard_legal": legal,
         "image_file": img_name,
-        "owned": pid_owned.get(pid, "1"),
         "source_url": url,
     }
     record.update(MANUAL_CARDS.get(reg_key(p.get("setCode") if p else "", number), {}))
+    return record
+
+
+records = []
+for pid in ids:
+    record = build_record(pid, pid_to_url[pid])
+    record["owned"] = pid_owned.get(pid, "1")
     records.append(record)
 
 records.sort(key=lambda r: (r["set_name"], r["name"]))
@@ -503,3 +528,19 @@ with open(ROOT / "cards.csv", "w", newline="", encoding="utf-8") as f:
 
 print(f"rows={len(records)} owned={sum(r['owned'] == '1' for r in records)} "
       f"pull={sum(r['owned'] == '0' for r in records)}")
+
+# bling.csv: the same columns, with the deck table's set code in place of
+# owned, so a deck page finds a print by the code and number its table uses
+# without knowing that TCGplayer calls Limitless's SUM "SM01".
+bling = []
+for pid, url, code in bling_ids:
+    record = build_record(pid, url)
+    record["code"] = code
+    bling.append(record)
+bling.sort(key=lambda r: (r["set_name"], r["name"], r["card_number"]))
+bling_cols = ["name", "code"] + [c for c in cols[1:] if c != "owned"]
+with open(ROOT / "bling.csv", "w", newline="", encoding="utf-8") as f:
+    w = csv.DictWriter(f, fieldnames=bling_cols)
+    w.writeheader()
+    w.writerows(bling)
+print(f"bling={len(bling)}")

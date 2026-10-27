@@ -1,0 +1,56 @@
+# The Bling Deck prints: TCGplayer product id, store URL, and the set code and
+# number the deck's Copies table names the print by.
+#
+# add_bling.py writes this file from the Copies tables in the deck markdown.
+# normalize_cards.py turns it into bling.csv, cards.csv's columns with the set
+# code in place of owned, and fetches the scans. Nothing here is owned or
+# wanted, which is why it is not in product-ids.tsv: these never reach the
+# collection page or the pull list.
+560401	https://store.tcgplayer.com/pokemon/sv-shrouded-fable/okidogi-ex-090-064	SFA 90
+560393	https://store.tcgplayer.com/pokemon/sv-shrouded-fable/okidogi-ex-082-064	SFA 82
+542898	https://store.tcgplayer.com/pokemon/sv05-temporal-forces/gastly-177-162	TEF 177
+659232	https://store.tcgplayer.com/pokemon/me-mega-evolution-promo/haunter-027	MEP 27
+717610	https://store.tcgplayer.com/pokemon/me-30th-celebration/gengar-ex-154-128	30C 154
+676096	https://store.tcgplayer.com/pokemon/me-ascended-heroes/mega-gengar-ex-284-217	ASC 284
+694692	https://store.tcgplayer.com/pokemon/me-mega-evolution-promo/toxel-078-cosmos-holo	MEP 78
+662235	https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/toxtricity-103-094	PFL 103
+550231	https://store.tcgplayer.com/pokemon/sv06-twilight-masquerade/chansey-187-167	TWM 187
+550245	https://store.tcgplayer.com/pokemon/sv06-twilight-masquerade/blissey-ex-201-167	TWM 201
+654508	https://store.tcgplayer.com/pokemon/me01-mega-evolution/lillies-determination-169-132	MEG 169
+662167	https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/grimsleys-move-120-094	PFL 120
+662149	https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/dawn-118-094	PFL 118
+662150	https://store.tcgplayer.com/pokemon/me02-phantasmal-flames/dawn-129-094	PFL 129
+642288	https://store.tcgplayer.com/pokemon/sv-white-flare/hilda-171-086	WHT 171
+642281	https://store.tcgplayer.com/pokemon/sv-white-flare/hilda-164-086	WHT 164
+633026	https://store.tcgplayer.com/pokemon/sv10-destined-rivals/team-rockets-petrel-226-182	DRI 226
+560399	https://store.tcgplayer.com/pokemon/sv-shrouded-fable/janines-secret-art-088-064	SFA 88
+497663	https://store.tcgplayer.com/pokemon/sv02-paldea-evolved/bosss-orders-248-193	PAL 248
+693450	https://store.tcgplayer.com/pokemon/me04-chaos-rising/azs-tranquility-106-086	CRI 106
+131061	https://store.tcgplayer.com/pokemon/sm-guardians-rising/rare-candy-secret	GRI 165
+550267	https://store.tcgplayer.com/pokemon/sv06-twilight-masquerade/buddy-buddy-poffin	TWM 223
+684333	https://store.tcgplayer.com/pokemon/me03-perfect-order/poke-pad-113-088	POR 113
+517052	https://store.tcgplayer.com/pokemon/sv-scarlet-and-violet-151/switch-206-165	MEW 206
+165792	https://store.tcgplayer.com/pokemon/sm-forbidden-light/energy-recycler-secret	FLI 143
+654466	https://store.tcgplayer.com/pokemon/me01-mega-evolution/risky-ruins	MEG 127
+138636	https://store.tcgplayer.com/pokemon/sm-burning-shadows/darkness-energy-secret	BUS 168
+542682	https://store.tcgplayer.com/pokemon/sv05-temporal-forces/neo-upper-energy	TEF 162
+550255	https://store.tcgplayer.com/pokemon/sv06-twilight-masquerade/teal-mask-ogerpon-ex-211-167	TWM 211
+699870	https://store.tcgplayer.com/pokemon/me-mega-evolution-promo/chikorita-046	MEP 46
+654348	https://store.tcgplayer.com/pokemon/me01-mega-evolution/bayleef	MEG 9
+654594	https://store.tcgplayer.com/pokemon/me-mega-evolution-promo/meganium-001	MEP 1
+654472	https://store.tcgplayer.com/pokemon/me01-mega-evolution/bulbasaur-133-132	MEG 133
+654473	https://store.tcgplayer.com/pokemon/me01-mega-evolution/ivysaur-134-132	MEG 134
+654516	https://store.tcgplayer.com/pokemon/me01-mega-evolution/mega-venusaur-ex-177-132	MEG 177
+654494	https://store.tcgplayer.com/pokemon/me01-mega-evolution/mega-venusaur-ex-155-132	MEG 155
+654351	https://store.tcgplayer.com/pokemon/me01-mega-evolution/celebi	MEG 12
+654523	https://store.tcgplayer.com/pokemon/me01-mega-evolution/lillies-determination-184-132	MEG 184
+213256	https://store.tcgplayer.com/pokemon/swsh02-rebel-clash/bosss-orders-full-art	RCL 189
+213257	https://store.tcgplayer.com/pokemon/swsh02-rebel-clash/bosss-orders-secret	RCL 200
+693451	https://store.tcgplayer.com/pokemon/me04-chaos-rising/azs-tranquility-120-086	CRI 120
+550251	https://store.tcgplayer.com/pokemon/sv06-twilight-masquerade/lanas-aid-207-167	TWM 207
+610457	https://store.tcgplayer.com/pokemon/sv-prismatic-evolutions/bug-catching-set	PRE 102
+593859	https://store.tcgplayer.com/pokemon/sv08-surging-sparks/night-stretcher-251-191	SSP 251
+127200	https://store.tcgplayer.com/pokemon/sm-base-set/ultra-ball-secret	SUM 161
+542667	https://store.tcgplayer.com/pokemon/sv05-temporal-forces/heros-cape	TEF 152
+684328	https://store.tcgplayer.com/pokemon/me03-perfect-order/forest-of-vitality	POR 109
+131063	https://store.tcgplayer.com/pokemon/sm-guardians-rising/grass-energy-secret	GRI 167

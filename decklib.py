@@ -114,6 +114,44 @@ def qty_rows(text):
     return out
 
 
+def bling_rows(text):
+    """[(copies, name, set code, number)] from every table led by Copies.
+
+    A Copies table is a deck's Bling Deck: the same sixty in prints nobody
+    here owns, named by the set code and number Limitless's deck builder uses
+    (TWM 211). The code is upper-cased and the number loses its leading zeros,
+    which is the form add_bling.py seeds them under and bling.csv keys them
+    by. A row without a code and a number is skipped. Neither the badges nor
+    the pull list read these: both read Qty tables only.
+    """
+    out, head = [], None
+    for line in text.splitlines():
+        s = line.strip()
+        if not s.startswith("|"):
+            head = None
+            continue
+        cells = [c.strip() for c in s.strip("|").split("|")]
+        if cells[0].strip("*").lower() == "copies":
+            head = [c.strip("*").lower() for c in cells]
+            continue
+        if head is None or set("".join(cells)) <= set("-: "):
+            continue
+        if not cells[0].strip("*").isdigit():
+            continue
+
+        def col(want):
+            j = head.index(want) if want in head else -1
+            return cells[j] if 0 <= j < len(cells) else ""
+
+        name = re.sub(r"\*+", "", col("card")).strip()
+        code = col("set").upper().strip()
+        num = col("number").strip("*").lstrip("0")
+        if not name or not code.isalnum() or not num.isdigit():
+            continue
+        out.append((int(cells[0].strip("*")), name, code, num))
+    return out
+
+
 def card_key(r):
     return (r["name"], r["set_name"], r["card_number"])
 
