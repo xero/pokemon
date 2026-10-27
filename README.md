@@ -42,6 +42,8 @@ tcg deck planning for me and my son
 
 - [hostile takeover](./rocket-mewtwo.md)
 - [steel wolves](./steel-wolves.md)
+- [dancing swords](./dancing-swords.md)
+- [robot swords](./robot-swords.md)
 
 ### fighting
 

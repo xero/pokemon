@@ -1,0 +1,2284 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#14121a" />
+		<title>Dancing Swords</title>
+		<!-- Every path here is relative. Pages ship to a project subfolder on
+		     GitHub Pages, so a leading slash would resolve to the domain root
+		     and every icon would 404. The manifest points at its own icons the
+		     same way, relative to assets/. -->
+		<link rel="icon" type="image/png" sizes="96x96" href="./assets/favicon-96x96.png" />
+		<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+		<link rel="shortcut icon" href="./assets/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="pokedex" />
+		<link rel="manifest" href="./assets/site.webmanifest" />
+		<style>
+		:root {
+			/* palette */
+			--void:   #14121a;
+			--shadow: #1e1b26;
+			--slate:  #2f2a3d;
+			--ghost:  #b9b1cc;
+			--chalk:  #f4f1ea;
+			--paper:  #ffffff;
+			--ash:    #6b6480;
+			--ember:  #f4511e;
+			--poison: #9c27b0;
+			--gold:   #f9a825;
+			--leaf:   #4caf50;
+
+			/* spacing primitives */
+			--space: 0;
+			--gap:   clamp(0.75rem, 2vw, 1.25rem);
+			--pad:   clamp(0.75rem, 2vw, 1.5rem);
+			--round: 0.5rem;
+
+			/* icon column. the widest symbol in use is a 1.94:1 set plate, so
+			   the box is sized for that and images are constrained to fit it.
+			   anything wider scales down rather than pushing the text out. */
+			--icon-h:   1.15em;
+			--icon-col: 2.4em;
+			--icon-gap: 0.6em;
+
+			/* type scale */
+			--text:    clamp(0.9rem, 0.85rem + 0.3vw, 1.05rem);
+			--text-lg: clamp(1.1rem, 1rem + 0.8vw, 1.5rem);
+			--text-xl: clamp(1.6rem, 1.2rem + 2.5vw, 2.75rem);
+
+			/* banner artwork. the frame ratios come from the png files
+			   themselves, so the banner is exactly as tall as the art at any
+			   width. the light and dark footers are drawn a few rows apart. */
+			--art-header:       url("./assets/header-light.png");
+			--art-footer:       url("./assets/footer-light.png");
+			--art-ball:         url("./assets/ball-bg-light.png");
+			--art-header-ratio: 1376 / 638;
+			--art-footer-ratio: 1376 / 491;
+
+			/* theme vars, light */
+			--bg:      var(--chalk);
+			--surface: var(--paper);
+			--fg:      #21202b;
+			--muted:   var(--ash);
+			--line:    #ddd7cc;
+			--accent:  var(--poison);   /* links, and links only */
+			--heading: var(--ash);      /* subsection headings */
+			--quiet:   var(--ash);      /* a callout with nothing to warn about */
+			--ok:      var(--leaf);
+			--no:      var(--ember);
+		}
+
+		@media (prefers-color-scheme: dark) {
+		:root {
+			--bg:      var(--void);
+			--surface: var(--shadow);
+			--fg:      var(--chalk);
+			--muted:   var(--ghost);
+			--line:    var(--slate);
+			--heading: var(--ghost);
+			--quiet:   #4b4560;
+
+			--art-header:       url("./assets/header.png");
+			--art-footer:       url("./assets/footer.png");
+			--art-ball:         url("./assets/ball-bg.png");
+			--art-footer-ratio: 1376 / 470;
+		}
+		}
+
+		html,
+		body {
+			min-height: 100%;
+			background: var(--bg);
+			color: var(--fg);
+			font-size: var(--text);
+			line-height: 1.6;
+			font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: var(--space);
+				padding: var(--space);
+			}
+		}
+
+		body {
+			-webkit-text-size-adjust: 100%;
+
+			img {
+				max-width: 100%;
+				height: auto;
+				vertical-align: middle;
+			}
+
+			/* glyphs sit in a line of text, so they are sized by it. without
+			   this a 600px set symbol renders at 600px and drags the row. */
+			h1 img,
+			h2 img,
+			dd img,
+			li img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			a {
+				color: var(--accent);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		main,
+		body > nav,
+		body > header > div,
+		body > footer > div {
+			width: min(100% - var(--pad) * 2, 78rem);
+			margin-inline: auto;
+		}
+
+		/* the full-bleed banners. the artwork is a background, so the box has
+		   to bring its own height: the aspect ratio keeps the art in frame at
+		   every width, and the padding keeps the text off the frame's edges
+		   whenever the content column is the taller of the two. */
+		body > header,
+		body > footer {
+			display: flex;
+			flex-direction: column;
+			padding-block: var(--pad);
+			background: var(--bg) center / cover no-repeat;
+		}
+
+		body > header {
+			background-image: var(--art-header);
+			aspect-ratio: var(--art-header-ratio);
+
+			> div {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				margin-top: auto;
+			}
+
+			h1 {
+				display: flex;
+				align-items: center;
+				gap: 0.5em;
+				/* the h1 is a flex item, so left alone it shrinks to its text
+				   and the mascots have no right edge to sit against. spanning
+				   the row is what gives the auto margin below room to work. */
+				flex: 1 0 100%;
+				font-size: var(--text-xl);
+				line-height: 1.1;
+				color: var(--gold);
+				text-shadow:
+				-3px -3px 0 #000,
+				 3px -3px 0 #000,
+				-3px  3px 0 #000,
+				 3px  3px 0 #000;
+			}
+
+			img {
+				height: 1.1em;
+				width: auto;
+			}
+
+			/* the deck mascots beside the title. bigger than the poké ball, and
+			   sprites, so they want nearest-neighbour scaling. the pair rides
+			   the right edge of the title row: one auto margin on the first,
+			   and the second sits beside it on the h1's own gap. */
+			[data-mascot] {
+				height: 2.2em;
+				image-rendering: pixelated;
+				margin-inline-start: auto;
+
+				& ~ [data-mascot] {
+					margin-inline-start: 0;
+				}
+			}
+
+			p {
+				flex: 1 1 100%;
+				color: var(--muted);
+			}
+
+			/* the way home, sized as a destination rather than a footnote.
+			   it sits on the same artwork as the h1, so it wears the same
+			   halo, one size thinner. */
+			[data-back] {
+				flex: 1 1 100%;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				text-decoration: none;
+				text-shadow:
+				-2px -2px 0 #000,
+				 2px -2px 0 #000,
+				-2px  2px 0 #000,
+				 2px  2px 0 #000;
+			}
+		}
+
+		/* the contents list, and on the Pokédex the whole filter strip. it
+		   sits bare between the banner and the page: no box on purpose, so
+		   it reads as part of the page's own margin rather than a section. */
+		nav {
+			padding-top: var(--pad);
+
+			/* the contents are nothing but links; underlining every one of
+			   them reads as clutter, so none are underlined at rest. */
+			a {
+				text-decoration: none;
+			}
+
+			summary {
+				cursor: pointer;
+				font-size: var(--text-lg);
+				font-weight: 700;
+				padding-block: 0.4em;
+			}
+
+			ul {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+				list-style: none;
+				padding-block: var(--gap);
+			}
+
+			li {
+				flex: 0 1 auto;
+			}
+
+			/* the alphabet markers in the Pokédex list. scoped to li so the
+			   deck pages, whose contents rows use <b> for the group label,
+			   are left alone. */
+			li:has(> b) {
+				flex: 1 0 100%;
+				color: var(--muted);
+				letter-spacing: 0.08em;
+			}
+
+			li b {
+				display: block;
+				width: 100%;
+				font-size: 1.5em;
+				border-bottom: 2px solid #393636;
+			}
+
+			em {
+				color: var(--muted);
+				font-style: normal;
+				font-size: 0.85em;
+			}
+
+			/* the name search at the top of the Pokédex. form controls opt out
+			   of inheriting type, and the global reset zeroes their padding,
+			   so both have to be said out loud. */
+			input {
+				width: min(100%, 26rem);
+				margin-block: 0.4em 0.8em;
+				padding: 0.5em 0.7em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				font: inherit;
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+		}
+
+		/* what is currently being filtered on, and the way back out. written
+		   by the script, so it is empty and hidden until something is on. */
+		[data-active] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 0.5em;
+			padding-block: 0.5em;
+
+			&[hidden] {
+				display: none;
+			}
+
+			button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5em;
+				padding: 0.25em 0.6em;
+				background: var(--surface);
+				color: var(--fg);
+				border: 1px solid var(--line);
+				border-radius: 2em;
+				font: inherit;
+				font-size: 0.9em;
+				cursor: pointer;
+
+				/* the × sits inside the chip and is not a separate control, so
+				   it is coloured as an affordance rather than as text */
+				b {
+					color: var(--muted);
+					font-weight: 400;
+				}
+
+				&:hover b {
+					color: var(--no);
+				}
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 1px;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* a stat row that filters the page when you click it. the cursor is the
+		   only tell on purpose: these are not links and should not read as any
+		   louder than the rest of the row. */
+		.filter {
+			cursor: pointer;
+		}
+
+		/* filtered-out cards and their contents entries. both selectors have to
+		   outrank a display rule, hence the element name in front. */
+		article[hidden],
+		li[hidden] {
+			display: none;
+		}
+
+		[data-empty] {
+			padding-block: var(--pad);
+			color: var(--muted);
+			font-size: var(--text-lg);
+		}
+
+		/* one card per row. side by side looked tidy until you noticed the
+		   cards have wildly different amounts of text, so every pair left a
+		   ragged gap under the shorter one. full width also gives the rules
+		   text room to breathe. */
+		main {
+			display: flex;
+			flex-direction: column;
+			gap: var(--gap);
+			padding-block: var(--pad);
+		}
+
+		/* the deck-page contents, in two tiers. the page's own sections are
+		   places to go, so they lead as chips; the card groups under them are a
+		   lookup table, and reading them as one meant giving them different
+		   shapes rather than the same bold row twelve times. */
+		[data-sections] {
+			gap: 0.5em;
+			padding-block: var(--gap) 0;
+
+			a {
+				display: block;
+				padding: 0.3em 0.7em;
+				background: var(--surface);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+
+				&:hover {
+					border-color: var(--accent);
+				}
+			}
+		}
+
+		/* one label column shared by every group, so the links all start at the
+		   same x and the group names read as a column of their own. max-content
+		   sizes it to the longest label, which is the only width that does not
+		   need maintaining as pages gain groups. */
+		[data-index] {
+			display: grid;
+			grid-template-columns: max-content minmax(0, 1fr);
+			gap: 0.35em var(--gap);
+			padding-block: var(--gap);
+
+			dt {
+				text-align: right;
+				font-weight: 700;
+				color: var(--muted);
+
+				/* a group label that links stays dressed as a label */
+				a {
+					color: inherit;
+				}
+			}
+
+			/* with the underlines gone at rest, hover is the tell */
+			a:hover {
+				text-decoration: underline;
+			}
+
+			/* each link is its own flex item rather than a run of text, so a
+			   long game plan title wraps as a whole title. dot-separated prose
+			   broke them mid-phrase, which got worse the narrower it went. */
+			dd {
+				display: flex;
+				flex-flow: row wrap;
+				gap: 0.35em var(--gap);
+			}
+
+			/* the column costs more than it gives once the links wrap to two or
+			   three lines each, which is where a phone lands. */
+			@media (width < 34em) {
+				grid-template-columns: minmax(0, 1fr);
+				gap: 0 0;
+
+				dt {
+					text-align: left;
+					padding-top: 0.6em;
+				}
+			}
+		}
+
+		main > h2 {
+			font-size: var(--text-xl);
+			padding-block: var(--pad) 0;
+			border-bottom: 1px solid var(--line);
+		}
+
+		main > h3 {
+			font-size: var(--text-lg);
+			padding-top: var(--pad);
+		}
+
+		/* a card, and a game plan on a deck page. both are self-contained
+		   boxes holding the same kind of prose. only the card lays its
+		   children out in a row, so the art can sit beside the stats. */
+		article,
+		main > section {
+			background: var(--surface);
+			border-radius: var(--round);
+			padding: var(--pad);
+		}
+
+		/* the prose in either box */
+		article,
+		main > section {
+			/* these sit right under the stat block, whose labels are 0.85em
+			   bold caps. at 1em they read as another label rather than as the
+			   heading of the section below them. */
+			h4 {
+				color: var(--heading);
+				font-size: 1.3em;
+				letter-spacing: 0.01em;
+				line-height: 1.3;
+				padding-top: 1.1em;
+			}
+
+			p,
+			ul,
+			ol {
+				padding-top: 0.5em;
+			}
+
+			/* list-style-position is outside, so with no padding here the
+			   markers hang left of the text column. */
+			ul,
+			ol {
+				padding-inline-start: 1.3em;
+			}
+
+			li {
+				padding-top: 0.2em;
+			}
+
+			/* white-space: pre means the code sets its own width. without
+			   this the whole page scrolls sideways instead of the block. */
+			pre {
+				background: var(--bg);
+				border: 1px solid var(--line);
+				border-radius: var(--round);
+				margin-block: 0.8em;
+				padding: var(--gap);
+				overflow-x: auto;
+
+				code {
+					font-size: 0.9em;
+					white-space: pre;
+				}
+			}
+		}
+
+		main > section {
+			display: flex;
+			flex-direction: column;
+
+			/* <main> puts a gap between its own articles, but a section does
+			   not, so a card sat flush against whatever came before it. prose
+			   carries its own top padding but nothing below it, so the gap has
+			   to come from the article. */
+			> * + article {
+				margin-top: var(--gap);
+			}
+
+			/* a card inside a game plan is on the plan's own background, and
+			   a border alone does not separate them. same reason a nested
+			   callout drops back to the page colour. */
+			> article {
+				background: var(--bg);
+			}
+
+			> h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+		}
+
+		article {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: flex-start;
+			align-content: flex-start;
+			gap: var(--gap);
+			/* main is a column, so a flex-basis here would size the article's
+			   HEIGHT and pad every short card with dead space. let content
+			   decide. */
+			flex: 0 0 auto;
+
+			h2,
+			h3 {
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				flex: 1 0 100%;
+				font-size: var(--text-lg);
+				scroll-margin-top: var(--pad);
+			}
+
+			aside {
+				flex: 0 1 16rem;
+
+				img {
+					width: 100%;
+					aspect-ratio: 5 / 7;
+					object-fit: contain;
+					border-radius: var(--round);
+				}
+			}
+
+			/* the scan, linked to the full-size file. an <a> is inline, so it
+			   would shrink to its own content and the image's width: 100% would
+			   resolve against that instead of against the column.
+
+			   not scoped to "aside a": a callout is an <aside> too, and that
+			   would turn every inline link in the prose into a block. */
+			[data-art] {
+				display: block;
+				border-radius: var(--round);
+
+				&:focus-visible {
+					outline: 2px solid var(--accent);
+					outline-offset: 3px;
+				}
+			}
+
+			section {
+				flex: 1 1 22rem;
+				min-width: 0;
+			}
+
+			/* a card page emits art, then stats, then the hand-written prose.
+			   only the first section belongs beside the art; the prose gets its
+			   own full-width row rather than becoming a third column. */
+			section + section {
+				flex: 1 0 100%;
+			}
+		}
+
+		/* the index cards: no border, and a poké ball watermark sitting in the
+		   right margin. the light and dark balls are separate files, so the
+		   url rides the same theme switch as the banner artwork. */
+		article.index {
+			background: var(--surface) var(--art-ball) center right no-repeat;
+
+			/* the library and the league decks get a tint of their own,
+			   watermark kept. build_index.py marks every card above the
+			   Other Decks heading, so the tint follows the section rather
+			   than a row count. */
+			&[data-featured] {
+				background-color: var(--line);
+			}
+
+			/* a deck filed under a group heading has its title one level down,
+			   at h4, and a companion page sits one under its deck's. inside an
+			   article that is the prose subheading, so undo it here and let
+			   the title read like the h2 and h3 titles do. */
+			h4,
+			h5 {
+				font-size: var(--text-lg);
+				letter-spacing: normal;
+				line-height: inherit;
+				padding-top: 0;
+			}
+
+			/* the home-only line on a deck Standard doesn't allow. its badge
+			   is the NO from the deck pages, sized to the line like a glyph. */
+			[data-home] img {
+				height: var(--icon-h);
+				width: auto;
+			}
+
+			/* the rule between a deck and the page riding in its row, like
+			   the calculator on Lucky Haunt. a full-width flex item, so what
+			   follows wraps onto a row of its own, and the article's gap
+			   spaces it, so it needs no margin. muted ink rather than a theme
+			   surface, so one rule shows on the tint, off it, and on paper. */
+			> hr {
+				flex: 1 0 100%;
+				margin: 0;
+				border: 0;
+				border-top: 1px solid color-mix(in srgb, var(--muted) 40%, transparent);
+			}
+		}
+
+		/* the Qty tables under the deck-list strip. they stay in the markdown
+		   because the count badges and the strip itself are read from them,
+		   but on the page the strip is the deck list, so the rows hide. */
+		[data-deck-rows] {
+			display: none;
+		}
+
+		/* the deck list: every distinct card in the deck at thumbnail size, in
+		   one box above the card pages. it inherits the article's row wrap, so
+		   all it changes is the gap, since here the space between cards is the
+		   cards' own padding rather than the article's gutter. */
+		[data-decklist] {
+			gap: 0;
+
+			figure {
+				position: relative;
+				flex: none;
+				width: 150px;
+				padding: 5px;
+			}
+
+			img {
+				width: 100%;
+				aspect-ratio: 5 / 7;
+				object-fit: contain;
+				border-radius: var(--round);
+			}
+
+			/* the count sits on the art rather than beside a heading, so it
+			   loses the auto margin that pushes it to the right there. 10px is
+			   the figure's own 5px padding plus 5px onto the card itself. */
+			[data-count] {
+				position: absolute;
+				inset-inline: 0;
+				bottom: 10px;
+				margin-inline: auto;
+			}
+		}
+
+		dl {
+			display: grid;
+			/* max-content sizes the term column to whatever the longest
+			   label needs, so none of them wrap. values are capped near a
+			   comfortable reading measure rather than stretched across a
+			   1400px screen. */
+			grid-template-columns: max-content minmax(0, 70ch);
+			gap: 0.3em var(--gap);
+			align-items: baseline;
+
+			/* the small-caps label treatment belongs to a card's stat block.
+			   a prose table's left column is content, so it keeps the page
+			   colour and full size, and the <small> inside it reads muted
+			   against it, exactly like the right column. */
+			&.card dt {
+				color: var(--muted);
+				font-size: 0.85em;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+			}
+
+			dd {
+				display: flex;
+				align-items: baseline;
+				min-width: 0;
+
+				/* the text box, so wrapped lines stay under the first line
+				   instead of running back beneath the icons */
+				> span:last-child {
+					min-width: 0;
+					overflow-wrap: anywhere;
+				}
+			}
+
+			small {
+				color: var(--muted);
+			}
+		}
+
+		/* the animated sprite beside an index entry. its own column, stretched
+		   to the full height of the card so it reads as a panel rather than a
+		   picture dropped into the text. */
+		[data-sprite] {
+			display: flex;
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-evenly;
+			align-self: stretch;
+			flex: 0 0 auto;
+			gap: 0.4rem;
+			/* wide enough for four sprites in a row, which is what the Eevee
+			   deck's index card puts up. */
+			width: clamp(9.5rem, 24vw, 17rem);
+
+			/* the column is a fixed size; the sprite just sits in the middle of
+			   it. capped rather than sized, so nothing is stretched and no card
+			   grows taller because its sprite happens to be a big one. */
+			img {
+				/* the card-scan rule above sets a 5/7 ratio, which would squash
+				   a sprite into a card shape. these keep their own. */
+				aspect-ratio: auto;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: clamp(3rem, 7.5vw, 5.25rem);
+				image-rendering: pixelated;   /* they are sprites, keep them crisp */
+			}
+		}
+
+		/* leading glyphs, boxed so they line up down the column instead of
+		   each row starting wherever its symbol happens to end. */
+		[data-icons] {
+			display: inline-flex;
+			align-items: center;
+			width: var(--icon-col);
+			flex: none;
+			padding-inline-end: var(--icon-gap);
+			vertical-align: baseline;
+
+			img {
+				max-width: 100%;
+				max-height: var(--icon-h);
+				object-fit: contain;
+			}
+		}
+
+		/* variable-length runs: attack costs and retreat. same left edge as
+		   every other group, then as wide as the symbols need. */
+		[data-icons="cost"] {
+			width: auto;
+			min-width: var(--icon-col);
+			gap: 0.1em;
+		}
+
+		/* energy symbols dropped mid-sentence. no column, no trailing pad:
+		   they size to the text and sit in the line like words. */
+		[data-icons="inline"] {
+			width: auto;
+			min-width: 0;
+			padding-inline-end: 0;
+			gap: 0.1em;
+		}
+
+		/* every <dl> that is not a card's stat block is a table from the
+		   prose, and reads better with ruled rows. the stat block beside a
+		   card image does not. */
+		dl:not(.card) {
+			/* space above and below, so two consecutive tables read as two
+			   things. scoped away from card stat blocks, which sit in a padded
+			   article already and just looked loose with it. no auto inline
+			   margins: as a flex item the dl would shrink to fit and float to
+			   the centre, opening a gap the real tables do not have. */
+			margin-block: 30px 25px;
+
+			/* a prose table's left column can be a whole sentence, and
+			   max-content would lay it out on one line, wider than the page,
+			   squeezing the answer column to nothing. fit-content keeps a
+			   short label on one line and wraps a long one at half the width.
+			   behind the media query so the phone layout's single column
+			   below still wins. */
+			@media (width >= 34em) {
+				grid-template-columns: fit-content(50%) minmax(0, 70ch);
+			}
+
+			dt,
+			dd {
+				border-bottom: 2px solid #393636;
+				padding-left: 2px;
+			}
+		}
+
+		/* the three- and four-column tables in the deck guides. a <dl>
+		   cannot hold a third column, so these stay tables. */
+		table {
+			border-collapse: collapse;
+			margin: 30px auto 25px auto;
+			width: 100%;
+			text-align: start;
+		}
+
+		/* a table with a sprite riding beside it: the image takes the right
+		   quarter of the row and drops below the table on a phone. the
+		   wrapper carries the table's usual block margin so the pair centre
+		   on each other cleanly. */
+		[data-beside] {
+			display: flex;
+			align-items: center;
+			gap: var(--gap);
+			margin-block: 30px 25px;
+
+			/* two-column tables render as a <dl> grid, wider ones as a
+			   <table>; either way the sheet takes the row minus the image. */
+			table,
+			dl {
+				flex: 1 1 auto;
+				min-width: 0;
+				margin: 0;
+			}
+
+			img {
+				flex: 0 0 25%;
+				width: 25%;
+				height: auto;
+				image-rendering: pixelated;
+			}
+
+			@media (width < 34em) {
+				flex-direction: column;
+
+				img {
+					flex: 0 0 auto;
+					width: 50%;
+				}
+			}
+		}
+
+		th,
+		td {
+			border-bottom: 1px solid var(--line);
+			/* small left inset so the data sits under its header, which has
+			   its own inset from the background bar */
+			padding: 0.45em 0.7em 0.45em 2px;
+			vertical-align: top;
+		}
+
+		/* the header row of a <dl> built from a real table. it has to read as a
+		   header rather than as one more term/value pair: two of these tables
+		   back to back looked like a single table with a broken first column,
+		   because max-content gives each one a different term width.
+
+		   dl:not(.card) rather than dl so this outranks the row borders above
+		   without reaching for !important. Card stat blocks never carry a
+		   header, so the two selectors match the same elements either way. */
+		dl:not(.card) [data-head] {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			padding-inline: 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+		}
+
+		/* same treatment as a <dl>'s header row above, so a table and a table
+		   that became a <dl> read the same way down the page. */
+		th {
+			background: var(--line);
+			color: var(--gold);
+			border: 0;
+			/* a th centres by UA default, which put every label off from the
+			   column under it. invisible until the header got a background. */
+			text-align: start;
+			padding: 0.2em 0.7em 0.2em 3px;
+			font-size: 0.85em;
+			font-weight: bolder;
+			letter-spacing: 0.04em;
+			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@media (width < 34em) {
+		dl {
+			grid-template-columns: 1fr;
+			gap: 0 0;
+
+			dt {
+				padding-top: 0.6em;
+			}
+		}
+		}
+
+		/* the count in the corner of a card heading, on a Pokedex. white in both
+		   themes on purpose: it sits on the artwork, not on the page. */
+		[data-count] {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			flex: none;
+			width: 40px;
+			height: 40px;
+			/* nudges the number off the Pokedex's top bezel and onto the screen */
+			padding-top: 7px;
+			margin-inline-start: auto;
+			background: url("./assets/pokedex.png") center / contain no-repeat;
+			color: #fff;
+			font-size: var(--text-lg);
+			font-weight: 700;
+			line-height: 1;
+			text-shadow: 0 1px 2px rgb(0 0 0 / 0.7);
+		}
+
+		/* only one auto margin per heading, or the free space splits between
+		   them and the badge lands mid-line instead of at the edge */
+		[data-count] + [data-flavor] {
+			margin-inline-start: 0;
+		}
+
+		/* sprites parked in the corner of a heading. decorative, and the
+		   heading beside them already says what the section is. auto margin
+		   pushes them right; on a narrow screen the heading wraps and they
+		   stay on the right of whatever line they land on. */
+		[data-flavor] {
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			gap: 0.4em;
+			margin-inline-start: auto;
+
+			img {
+				height: clamp(2.1rem, 4.5vw, 3.1rem);
+				width: auto;
+				aspect-ratio: auto;
+				image-rendering: pixelated;
+			}
+		}
+
+		/* the deck list heading's link down to a showcase, Overgrowth's bling
+		   build. it parks in the corner like the sprites, and after them when
+		   a heading has both. */
+		[data-bling] {
+			margin-inline-start: auto;
+			text-decoration: none;
+		}
+
+		[data-flavor] + [data-bling] {
+			margin-inline-start: 0;
+		}
+
+		/* a showcase strip sits under a paragraph inside a card's prose. the
+		   paragraph's padding is all on top, so the strip brings its own two
+		   lines of room. */
+		p + [data-decklist] {
+			margin-top: 2lh;
+		}
+
+		[data-callout] {
+			flex: 1 1 100%;
+			background: var(--surface);
+			border-inline-start: 8px solid var(--quiet);
+			border-radius: var(--round);
+			padding: var(--pad);
+			margin-block: 1em;
+
+			/* a callout sits on whatever box contains it, so the colour has to
+			   alternate with depth rather than being set once. one box deep it
+			   takes the page colour; two boxes deep the container has already
+			   taken that colour, so it flips back. without this a callout
+			   inside a card inside a game plan was invisible. */
+			article &,
+			main > section & {
+				background: var(--bg);
+			}
+
+			main > section > article &,
+			[data-callout] & {
+				background: var(--surface);
+			}
+
+			h2 {
+				/* flex so a corner sprite can be pushed right, the same way
+				   the headings inside a card and a section do it */
+				display: flex;
+				flex-flow: row wrap;
+				align-items: center;
+				gap: 0.4em;
+				font-size: var(--text-lg);
+				color: var(--heading);
+			}
+
+			p + p,
+			ul,
+			ol {
+				padding-top: 0.7em;
+			}
+
+			/* the prose rules inside an article give every p a padding-top,
+			   which stacks on the callout's own padding and makes the top look
+			   deeper than the other three sides. */
+			> :first-child {
+				padding-top: 0;
+			}
+
+			/* ol was missing here, so a numbered list in a callout got no
+			   indent and its markers hung outside the box. */
+			ul,
+			ol {
+				padding-inline-start: 1.2em;
+			}
+		}
+
+		[data-callout="important"] {
+			--quiet: var(--gold);
+			--heading: var(--gold);
+		}
+
+		[data-callout="warning"],
+		[data-callout="caution"] {
+			--quiet: var(--ember);
+			--heading: var(--ember);
+		}
+
+		[data-callout="tip"] {
+			--quiet: var(--leaf);
+			--heading: var(--leaf);
+		}
+
+		body > footer {
+			background-image: var(--art-footer);
+			aspect-ratio: var(--art-footer-ratio);
+			color: var(--muted);
+
+			> div {
+				margin-top: 1em;
+				justify-content: center;
+				display: flex;
+				flex-flow: row wrap;
+				gap: var(--gap);
+			}
+
+			img {
+				float: right;
+				margin: auto;
+			}
+
+			a {
+				text-decoration: none;
+			}
+		}
+
+		/* ------------------------------------------------------------------
+		   print.
+
+		   the screen styles assume two things paper does not give them. the
+		   whole type scale and both spacing primitives are vw clamps, and vw
+		   resolves against the sheet, so every heading arrives a size or two
+		   larger than it looks on screen. and the theme assumes a painted
+		   background, which browsers drop by default, which leaves the greys
+		   that were deliberately quiet floating unsupported on white.
+
+		   so: pin the scale, darken everything that was quiet, and stop a
+		   card being cut in half by a page break. */
+		@media print {
+		:root {
+			/* browsers with force-dark turned on will happily invert a
+			   printout too. opt the sheet out of the whole idea. */
+			color-scheme: only light;
+
+			/* pinned, in pt, because this is paper */
+			--text:    10pt;
+			--text-lg: 13pt;
+			--text-xl: 18pt;
+			--gap:     0.55rem;
+			--pad:     0.6rem;
+			--icon-h:   1.05em;
+			--icon-col: 2.1em;
+
+			/* the dark theme block near the top has no print guard, so on a
+			   dark desktop it still applies to the printout. this resets
+			   every themed value rather than only the ones print changes. */
+			--bg:      #fff;
+			--surface: #fff;
+			--fg:      #000;
+			--muted:   #333;
+			--line:    #999;
+			--heading: #000;
+			--quiet:   #666;
+			--accent:  #000;
+			--ok:      #000;
+			--no:      #000;
+		}
+
+		@page {
+			margin: 14mm;
+		}
+
+		html,
+		body {
+			background: #fff;
+			color: #000;
+			font-size: var(--text);
+		}
+
+		/* the banners are painted artwork, and print drops backgrounds. left
+		   alone, the aspect ratio would still reserve the artwork's height and
+		   hand every printout half a page of nothing. */
+		body > header,
+		body > footer {
+			aspect-ratio: auto;
+			background: none;
+		}
+
+		/* a card, a callout, or a table row sliced across a page break is
+		   most of what makes these unreadable on paper.
+
+		   sections are deliberately left breakable. a game plan runs longer
+		   than a sheet, and refusing to break one only pushes a mostly empty
+		   page ahead of it. */
+		article,
+		[data-callout],
+		figure,
+		tr {
+			break-inside: avoid;
+		}
+
+		/* the exception to the rule above: the deck list is taller than a
+		   sheet on its own, so refusing to break it only buys a blank page
+		   ahead of it. the thumbnails inside it are still kept whole. */
+		[data-decklist] {
+			break-inside: auto;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			break-after: avoid;
+			break-inside: avoid;
+		}
+
+		p,
+		li {
+			orphans: 3;
+			widows: 3;
+		}
+
+		/* a table that does run over the break needs its header again */
+		thead {
+			display: table-header-group;
+		}
+
+		/* decoration costs ink and vertical space and carries no
+		   information. the card scans stay; the animated sprites go, and
+		   [data-sprite] in particular is a 17rem column of nothing. */
+		[data-mascot],
+		[data-sprite],
+		[data-flavor],
+		[data-bling],
+		[data-back],
+		[data-beside] img {
+			display: none;
+		}
+
+		/* 16rem of scan beside four lines of stats leaves a card mostly
+		   white once it is printed */
+		article > aside:not([data-callout]) {
+			flex: 0 0 32mm;
+		}
+
+		/* the variants recolour their heading to gold, ember, or leaf. all
+		   three are too pale on white to read, and the left border already
+		   says which kind of callout it is. */
+		[data-callout] h2 {
+			color: #000;
+		}
+
+		/* both header rows are gold text on a filled background, and a
+		   browser drops that fill when printing unless the reader has gone
+		   looking for the setting. a rule under the row says "header"
+		   using ink the printer will always lay down. */
+		th,
+		dl:not(.card) [data-head] {
+			background: none;
+			color: #000;
+			border-bottom: 1.5pt solid #000;
+		}
+
+		/* the count is a white number sitting on a background image of a
+		   pokedex. print drops background images, so on paper it was a
+		   white number on white. how many the deck runs is the one thing
+		   on a card heading that has to survive, so it becomes a box. */
+		[data-count] {
+			width: auto;
+			height: auto;
+			padding: 0.05em 0.4em;
+			background: none;
+			border: 1pt solid #000;
+			border-radius: 3pt;
+			color: #000;
+			text-shadow: none;
+		}
+
+		/* width: auto on a badge pinned to both edges of a thumbnail stretches
+		   it across the whole card. on screen the 40px pokedex holds it in. */
+		[data-decklist] [data-count] {
+			width: fit-content;
+			background: #fff;
+		}
+
+		/* purple is the one colour left in the text, and it prints as a
+		   flat grey. an anchor is dead on paper regardless. */
+		a {
+			color: inherit;
+			text-decoration: underline;
+		}
+		}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div>
+				<h1><img src="./assets/pokeball.png" alt="" />Dancing Swords <img data-mascot src="./assets/sprites/honedge.gif" alt="" /> <img data-mascot src="./assets/sprites/doublade.gif" alt="" /> <img data-mascot src="./assets/sprites/aegislash.gif" alt="" /></h1>
+				<p>Doublade swings for 60 a sword · Metang loads the next one · every Pokémon but two is worth a single Prize</p>
+				<a data-back href="./index.html">← back to all decks</a>
+			</div>
+		</header>
+		<nav>
+	<details open>
+		<summary>Contents</summary>
+		<ul data-sections>
+			<li><a href="#deck-list">Deck List</a></li>
+			<li><a href="#the-thesis">The Thesis</a></li>
+			<li><a href="#the-prize-map">The Prize Map</a></li>
+			<li><a href="#the-energy-engine">The Energy Engine</a></li>
+			<li><a href="#cards-to-watch-out-for">Cards to Watch Out For</a></li>
+			<li><a href="#versus-the-kitchen-table">Versus the Kitchen Table</a></li>
+			<li><a href="#test-and-tune">Test and Tune</a></li>
+			<li><a href="#alternatives">Alternatives</a></li>
+		</ul>
+		<dl data-index>
+			<dt>Pokémon</dt>
+			<dd><a href="#honedge">Honedge</a> <a href="#doublade">Doublade</a> <a href="#aegislash">Aegislash</a> <a href="#beldum">Beldum</a> <a href="#metang">Metang</a> <a href="#genesect-ex">Genesect ex</a> <a href="#fezandipiti-ex">Fezandipiti ex</a></dd>
+			<dt>Trainers (Support)</dt>
+			<dd><a href="#dawn">Dawn</a> <a href="#lanas-aid">Lana&#x27;s Aid</a> <a href="#bosss-orders">Boss&#x27;s Orders</a> <a href="#team-rockets-petrel">Team Rocket&#x27;s Petrel</a> <a href="#hilda">Hilda</a></dd>
+			<dt>Trainers (Items)</dt>
+			<dd><a href="#buddy-buddy-poffin">Buddy-Buddy Poffin</a> <a href="#poke-pad">Poke Pad</a> <a href="#night-stretcher">Night Stretcher</a> <a href="#energy-recycler">Energy Recycler</a> <a href="#switch">Switch</a> <a href="#max-rod">Max Rod</a></dd>
+			<dt>Trainers (Tool / Stadium)</dt>
+			<dd><a href="#brave-bangle">Brave Bangle</a> <a href="#lucky-helmet">Lucky Helmet</a> <a href="#battle-cage">Battle Cage</a> <a href="#full-metal-lab">Full Metal Lab</a></dd>
+			<dt>Energy</dt>
+			<dd><a href="#basic-metal-energy">Basic Metal Energy</a></dd>
+			<dt><a href="#the-hard-rules">The Hard Rules</a></dt>
+			<dd><a href="#the-board">The board</a> <a href="#counting-swords">Counting swords</a> <a href="#where-the-energy-goes">Where the Energy goes</a> <a href="#when-aegislash-comes-out">When Aegislash comes out</a> <a href="#recovery-order">Recovery order</a> <a href="#opening-turns">Opening turns</a> <a href="#build-order">Build order</a></dd>
+			<dt>Game Plans</dt>
+			<dd><a href="#1-turn-one-going-first">1. Turn one, going first</a> <a href="#2-turn-one-going-second">2. Turn one, going second</a> <a href="#3-the-first-swing">3. The first swing</a> <a href="#4-rearming-after-a-knockout">4. Rearming after a knockout</a> <a href="#5-after-judge-or-unfair-stamp">5. After Judge or Unfair Stamp</a> <a href="#6-the-late-game">6. The late game</a> <a href="#7-choosing-the-stadium">7. Choosing the stadium</a></dd>
+			<dt><a href="#versus-the-card-shop">Versus the Card Shop</a></dt>
+			<dd><a href="#versus-dragapult-ex">Versus Dragapult ex</a> <a href="#versus-mega-lucario-ex">Versus Mega Lucario ex</a> <a href="#versus-greninja-ex">Versus Greninja ex</a> <a href="#the-rest-of-the-room">The rest of the room</a></dd>
+		</dl>
+	</details>
+</nav>
+		<main>
+			<aside data-callout="note">
+				<p><strong>What this file is for.</strong></p>
+				<p>Fox&#x27;s Doublade deck, the Metal Maker build, which Xero is testing on <a href="https://tcg.pokemon.com/en-us/tcgl/">TCG Live</a> before Fox sleeves it. Every card carries regulation mark H, I, or J. Its twin is <a href="./robot-swords.html">Robot Swords</a>, the same swords on Steven&#x27;s Metagross ex instead of Metang.</p>
+				<p>The attacker is Doublade, not Aegislash. <em>Weaponized Swords</em> counts the Honedge, Doublade, and Aegislash in your hand, so the deck is a hand to hold, a board to keep small, and a discard pile to pull back from. The engine is borrowed from <a href="./metal-excadrill.html">Iron Excavation</a>, the Metal Maker deck. The deck list and the cards come first, then <a href="#the-thesis">The Thesis</a> and <a href="#the-hard-rules">The Hard Rules</a>, which are how to play it. Game words are defined in <a href="./rules.html">the table rules</a>.</p>
+			</aside>
+			<section>
+				<h3 id="deck-list">Deck List</h3>
+			<article data-decklist>
+				<figure><a href="#honedge"><img src="./assets/684378_honedge.jpg" alt="Honedge" /><span data-count>x4</span></a></figure>
+				<figure><a href="#doublade"><img src="./assets/685497_doublade-067.jpg" alt="Doublade" /><span data-count>x4</span></a></figure>
+				<figure><a href="#aegislash"><img src="./assets/684381_aegislash.jpg" alt="Aegislash" /><span data-count>x4</span></a></figure>
+				<figure><a href="#beldum"><img src="./assets/693455_beldum.jpg" alt="Beldum" /><span data-count>x3</span></a></figure>
+				<figure><a href="#metang"><img src="./assets/542858_metang.jpg" alt="Metang" /><span data-count>x3</span></a></figure>
+				<figure><a href="#genesect-ex"><img src="./assets/642518_genesect-ex.jpg" alt="Genesect ex" /><span data-count>x2</span></a></figure>
+				<figure><a href="#fezandipiti-ex"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a></figure>
+				<figure><a href="#dawn"><img src="./assets/660414_dawn.jpg" alt="Dawn" /><span data-count>x3</span></a></figure>
+				<figure><a href="#lanas-aid"><img src="./assets/550199_lanas-aid-155-167.jpg" alt="Lana&#x27;s Aid" /><span data-count>x2</span></a></figure>
+				<figure><a href="#bosss-orders"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /><span data-count>x2</span></a></figure>
+				<figure><a href="#team-rockets-petrel"><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></a></figure>
+				<figure><a href="#hilda"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a></figure>
+				<figure><a href="#buddy-buddy-poffin"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /><span data-count>x3</span></a></figure>
+				<figure><a href="#poke-pad"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /><span data-count>x2</span></a></figure>
+				<figure><a href="#night-stretcher"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /><span data-count>x2</span></a></figure>
+				<figure><a href="#energy-recycler"><img src="./assets/632966_energy-recycler.jpg" alt="Energy Recycler" /></a></figure>
+				<figure><a href="#switch"><img src="./assets/654469_switch.jpg" alt="Switch" /><span data-count>x2</span></a></figure>
+				<figure><a href="#max-rod"><img src="./assets/610471_max-rod.jpg" alt="Max Rod" /></a></figure>
+				<figure><a href="#brave-bangle"><img src="./assets/642197_brave-bangle.jpg" alt="Brave Bangle" /><span data-count>x2</span></a></figure>
+				<figure><a href="#lucky-helmet"><img src="./assets/550202_lucky-helmet.jpg" alt="Lucky Helmet" /><span data-count>x2</span></a></figure>
+				<figure><a href="#battle-cage"><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /><span data-count>x2</span></a></figure>
+				<figure><a href="#full-metal-lab"><img src="./assets/542663_full-metal-lab.jpg" alt="Full Metal Lab" /><span data-count>x2</span></a></figure>
+				<figure><a href="#basic-metal-energy"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /><span data-count>x11</span></a></figure>
+			</article>
+					<p><strong>Pokémon (21)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>Honedge</td><td>Perfect Order</td><td>056</td><td>J</td></tr>
+							<tr><td>4</td><td>Doublade</td><td>Mega Evolution Promo</td><td>067</td><td>J</td></tr>
+							<tr><td>4</td><td>Aegislash</td><td>Perfect Order</td><td>058</td><td>J</td></tr>
+							<tr><td>3</td><td>Beldum</td><td>Chaos Rising</td><td>059</td><td>J</td></tr>
+							<tr><td>3</td><td>Metang</td><td>Temporal Forces</td><td>114</td><td>H</td></tr>
+							<tr><td>2</td><td>Genesect ex</td><td>Black Bolt</td><td>067</td><td>I</td></tr>
+							<tr><td>1</td><td>Fezandipiti ex</td><td>Shrouded Fable</td><td>038</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Trainers (28)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Type</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>3</td><td>Dawn</td><td>Supporter</td><td>Phantasmal Flames</td><td>087</td><td>I</td></tr>
+							<tr><td>2</td><td>Lana&#x27;s Aid</td><td>Supporter</td><td>Twilight Masquerade</td><td>155</td><td>H</td></tr>
+							<tr><td>2</td><td>Boss&#x27;s Orders</td><td>Supporter</td><td>Mega Evolution</td><td>114</td><td>I</td></tr>
+							<tr><td>1</td><td>Team Rocket&#x27;s Petrel</td><td>Supporter</td><td>Destined Rivals</td><td>176</td><td>I</td></tr>
+							<tr><td>1</td><td>Hilda</td><td>Supporter</td><td>White Flare</td><td>084</td><td>I</td></tr>
+							<tr><td>3</td><td>Buddy-Buddy Poffin</td><td>Item</td><td>Temporal Forces</td><td>144</td><td>H</td></tr>
+							<tr><td>2</td><td>Poke Pad</td><td>Item</td><td>Perfect Order</td><td>081</td><td>J</td></tr>
+							<tr><td>2</td><td>Night Stretcher</td><td>Item</td><td>Shrouded Fable</td><td>061</td><td>H</td></tr>
+							<tr><td>1</td><td>Energy Recycler</td><td>Item</td><td>Destined Rivals</td><td>164</td><td>I</td></tr>
+							<tr><td>2</td><td>Switch</td><td>Item</td><td>Mega Evolution</td><td>130</td><td>I</td></tr>
+							<tr><td>1</td><td>Max Rod</td><td>Item, ACE SPEC</td><td>Prismatic Evolutions</td><td>116</td><td>H</td></tr>
+							<tr><td>2</td><td>Brave Bangle</td><td>Tool</td><td>White Flare</td><td>080</td><td>I</td></tr>
+							<tr><td>2</td><td>Lucky Helmet</td><td>Tool</td><td>Twilight Masquerade</td><td>158</td><td>H</td></tr>
+							<tr><td>2</td><td>Battle Cage</td><td>Stadium</td><td>Phantasmal Flames</td><td>085</td><td>I</td></tr>
+							<tr><td>2</td><td>Full Metal Lab</td><td>Stadium</td><td>Temporal Forces</td><td>148</td><td>H</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Energy (11)</strong></p>
+					<table data-deck-rows>
+						<thead><tr><th>Qty</th><th>Card</th><th>Set</th><th>Number</th><th>Reg</th></tr></thead>
+						<tbody>
+							<tr><td>11</td><td>Basic Metal Energy</td><td>Mega Evolution Energies</td><td>008</td><td>-</td></tr>
+						</tbody>
+					</table>
+					<p><strong>21 + 28 + 11 = 60.</strong> ✓ Ten Basics, nine Supporters, twelve swords, one ACE SPEC, no Special Energy, and nothing over four copies.</p>
+					<p><strong>Ten Basics is a 26% mulligan.</strong> The opening seven holds a Honedge 40% of the time, and going first, a Honedge, Poffin, or Poke Pad shows up by the end of your first turn 75% of the time. It holds 1.4 swords on average, and 1.2 sit in the Prizes; three or more swords are prized in 9% of games. <strong>Genesect ex or a Dawn is in your first nine cards 57% of the time.</strong> Brock&#x27;s Scouting had that at 64% and left for the second Switch, so it is still the deck&#x27;s soft spot; see <a href="#test-and-tune">Test and Tune</a>. About one opening hand in five (22%) holds no Energy, and <em>Metal Maker</em> is the answer to that one.</p>
+			</section>
+			<h2 id="pokémon">Pokémon</h2>
+			<article>
+				<h3 id="honedge">Honedge<span data-count>x4</span><span data-flavor><img src="./assets/sprites/honedge.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684378_honedge.jpg" target="_blank" rel="noopener"><img src="./assets/684378_honedge.jpg" alt="Honedge" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>056/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cut (10)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>70 HP Basic, Fire Weakness, Grass Resistance, Retreat 2.</strong> <em>Cut</em> does 10 and you will never use it.</p>
+					<p><strong>Four copies, two jobs.</strong> It is the bottom of the line, and it is a sword while it sits in your hand. Every Honedge on the Bench is 60 off this turn&#x27;s swing, so turn one benches two (one to evolve in the Active Spot, one behind it) and the rest stay in hand.</p>
+					<p>Poffin and Poke Pad find it, and Dawn takes it as the Basic. Under their Risky Ruins a benched Honedge starts at 50.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="doublade">Doublade<span data-count>x4</span><span data-flavor><img src="./assets/sprites/doublade.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/685497_doublade-067.jpg" target="_blank" rel="noopener"><img src="./assets/685497_doublade-067.jpg" alt="Doublade" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>ME: Mega Evolution Promo <small>067</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/promo.png" /><img src="./assets/rarities/promo.png" alt="Promo" /></picture></span><span>Promo</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Weaponized Swords (60x) - Reveal any number of Honedge, Doublade, and Aegislash from your hand, and this attack does 60 damage for each card you revealed in this way.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 1, 100 HP, Fire Weakness, Grass Resistance, Retreat 2.</strong> The Mega Evolution promo 067, Yukihiro Tada&#x27;s art, mark J. It is the same card as Perfect Order 057.</p>
+					<p><strong><em>Weaponized Swords</em> costs <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>.</strong> Reveal any number of Honedge, Doublade, and Aegislash from your hand, and it does 60 for each one. <strong>Revealed, not discarded.</strong> The cards go back into your hand and swing again next turn, so the damage is a resource you keep, not one you spend.</p>
+					<p><strong>Four copies.</strong> One is the attacker, one waits in hand for the next Honedge, and the rest are swords. It has no Rule Box and no Ability, which matters more than it looks; see <a href="#the-thesis">The Thesis</a>.</p>
+					<p><strong>100 HP means it dies.</strong> Nearly every attack in the format Knocks it Out, and that is the plan, because it is one Prize. Everything attached to it goes to the discard with it, the Energy and the Tool.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="aegislash">Aegislash<span data-count>x4</span><span data-flavor><img src="./assets/sprites/aegislash-blade.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/684381_aegislash.jpg" target="_blank" rel="noopener"><img src="./assets/684381_aegislash.jpg" alt="Aegislash" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>058/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>150</span></dd>
+						<dt>Stage</dt><dd><span>Stage 2</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>3</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Slash (80)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Metal Slash (230) - During your next turn, this Pokémon can&#x27;t use attacks.</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Stage 2, 150 HP, Fire Weakness, Grass Resistance, Retreat 3.</strong></p>
+					<p><strong><em>Slash</em> does 80 for <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>. <em>Metal Slash</em> does 230 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, and this Pokémon can&#x27;t attack during your next turn.</strong></p>
+					<p><strong>Four copies, and in most games none of them touches the board.</strong> Aegislash does nothing in play that Doublade doesn&#x27;t do better, so it is the purest sword in the deck. <em>Metallic Signal</em> takes it first.</p>
+					<p><strong>It comes out when the hand can&#x27;t swing.</strong> After Judge or Unfair Stamp, or when three swords or fewer are left, <em>Metal Slash</em>&#x27;s 230 beats <em>Weaponized Swords</em>. <a href="#when-aegislash-comes-out">When Aegislash comes out</a> has the rule. At 150 it survives a bare <em>Aura Jab</em> (130), <em>Corkscrew Dive</em> with a Roserade (130), and <em>Solar Beam</em> after Resistance (110), which a Doublade doesn&#x27;t.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="beldum">Beldum<span data-count>x3</span><span data-flavor><img src="./assets/sprites/beldum.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/693455_beldum.jpg" target="_blank" rel="noopener"><img src="./assets/693455_beldum.jpg" alt="Beldum" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/chaos-rising.png" /><img src="./assets/sets/chaos-rising.png" alt="ME04: Chaos Rising" /></picture></span><span>ME04: Chaos Rising <small>059/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>70</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /></span><span>Headbutt (10)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Beam (20)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>70 HP Basic, Retreat 1.</strong> Chaos Rising 059, the print Iron Excavation runs. Its whole job is becoming Metang.</p>
+					<p><strong>Three copies.</strong> Two go down on turn one and evolve on turn two. The third replaces a Metang that dies. Poffin and Poke Pad find it, and it is the cheapest Active in the deck to retreat.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="metang">Metang<span data-count>x3</span><span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/542858_metang.jpg" target="_blank" rel="noopener"><img src="./assets/542858_metang.jpg" alt="Metang" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>114/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>100</span></dd>
+						<dt>Stage</dt><dd><span>Stage 1</span></dd>
+						<dt>Ability</dt><dd><span>Metal Maker - Once during your turn, you may look at the top 4 cards of your deck and attach any number of Basic <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Energy cards you find there to your Pokémon in any way you like. Shuffle the other cards and put them on the bottom of your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Beam (60)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>The engine.</strong> Stage 1, 100 HP, Retreat 2. The Temporal Forces print, or the Scarlet &amp; Violet promo 090, which carries the same Ability. The Chaos Rising and Journey Together Metang have no Ability at all.</p>
+					<p><strong><em>Metal Maker</em>: once during your turn, look at the top 4 cards of your deck and attach any number of Basic Metal Energy you find there to your Pokémon in any way you like. The rest go to the bottom of the deck.</strong></p>
+					<ul>
+						<li><strong>It reads your Pokémon, not this Pokémon.</strong> It loads the Active Doublade, the benched Honedge, or an Aegislash.</li>
+						<li><strong>It reads Basic Metal, and every Energy in the list is one.</strong> The cards it doesn&#x27;t take go to the bottom, which is why it runs before Signal&#x27;s shuffle.</li>
+						<li><strong>Each Metang hits about 57% of the time</strong> with eleven Metal in the list, up from 45% with the first list&#x27;s eight, and two of them find at least one Metal four turns in five. With the turn&#x27;s attachment that is two, which is exactly one fresh Doublade.</li>
+					</ul>
+					<p><strong>Two in play, never fewer.</strong> The third goes down only on a free Bench spot. <em>Beam</em> does 60 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> and you will never use it. 100 HP and Retreat 2 make it the card they drag up to strand; that is what Switch is for.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="genesect-ex">Genesect ex<span data-count>x2</span><span data-flavor><img src="./assets/sprites/genesect.gif" alt="" /></span></h3>
+				<aside>
+					<a data-art href="./assets/642518_genesect-ex.jpg" target="_blank" rel="noopener"><img src="./assets/642518_genesect-ex.jpg" alt="Genesect ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/black-bolt.png" /><img src="./assets/sets/black-bolt.png" alt="SV: Black Bolt" /></picture></span><span>SV: Black Bolt <small>067/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/metal.png" alt="Metal" /></span><span>Metal</span></dd>
+						<dt>HP</dt><dd><span>220</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Metallic Signal - Once during your turn, you may search your deck for up to 2 Evolution Metal Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fire.png" alt="Fire" /></span><span>Fire ×2</span></dd>
+						<dt>Resistance</dt><dd><span data-icons><img src="./assets/types/grass.png" alt="Grass" /></span><span>Grass -30</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>2</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Protect Charge (150) - During your opponent&#x27;s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance).</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>220 HP Basic, Fire Weakness, Grass Resistance, Retreat 2, two Prizes.</strong> Black Bolt 067.</p>
+					<p><strong><em>Metallic Signal</em>: once during your turn, search your deck for up to 2 Evolution Metal Pokémon and put them into your hand.</strong> Doublade and Aegislash are both Evolution Metal Pokémon, so Signal is +120 damage every turn, from the Bench, for no card. It finds Metang too.</p>
+					<p><strong>Two copies, one in play.</strong> It and Fezandipiti ex are the two Pokémon in the deck worth two Prizes, and every Boss&#x27;s Orders they run is aimed at one of them. The second stays off the board until the first is gone.</p>
+					<p><strong>Signal searches the deck, never the hand or the discard.</strong> Once the deck runs out of Doublade and Aegislash, Signal finds nothing, and from there the discard is the second hand; Lana&#x27;s Aid, Night Stretcher, and Max Rod read it. <em>Protect Charge</em> does 150 for <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /></span> and takes 30 less next turn, which is an emergency swing and nothing more.</p>
+					<p><strong>Finding it is the hard part.</strong> Dawn takes it as a Basic, and Night Stretcher brings one back. Poffin and Poke Pad can&#x27;t, since it has a Rule Box and 220 HP.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="fezandipiti-ex">Fezandipiti ex<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/560348_fezandipiti-ex-038-064.jpg" target="_blank" rel="noopener"><img src="./assets/560348_fezandipiti-ex-038-064.jpg" alt="Fezandipiti ex" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>038/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/double-rare.png" /><img src="./assets/rarities/double-rare.png" alt="Double Rare" /></picture></span><span>Double Rare</span></dd>
+						<dt>Type</dt><dd><span data-icons><img src="./assets/types/darkness.png" alt="Darkness" /></span><span>Darkness</span></dd>
+						<dt>HP</dt><dd><span>210</span></dd>
+						<dt>Stage</dt><dd><span>Basic</span></dd>
+						<dt>Ability</dt><dd><span>Flip the Script - Once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, you may draw 3 cards. You can&#x27;t use more than 1 Flip the Script Ability each turn.</span></dd>
+						<dt>Weakness</dt><dd><span data-icons><img src="./assets/types/fighting.png" alt="Fighting" /></span><span>Fighting ×2</span></dd>
+						<dt>Retreat</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>1</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+						<dt>Attack</dt><dd><span data-icons="cost"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span><span>Cruel Arrow - This attack does 100 damage to 1 of your opponent&#x27;s Pokémon. (Don&#x27;t apply Weakness and Resistance for Benched Pokémon.)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>210 HP Basic, Fighting Weakness, two Prizes.</strong> Shrouded Fable 038.</p>
+					<p><strong><em>Flip the Script</em>: once during your turn, if any of your Pokémon were Knocked Out during your opponent&#x27;s last turn, draw 3 cards.</strong> This deck loses a Pokémon nearly every turn by design, so from the first trade on it is three cards a turn, from the Bench, and it never touches the swords already in your hand.</p>
+					<p><strong>One copy, and it is the draw the first list didn&#x27;t have.</strong> Signal, Dawn, Poffin, and Poke Pad find Pokémon. Nothing but Petrel finds a Switch, a Stadium, or a Boss&#x27;s Orders, so those arrived one card a turn. It took Psyduck&#x27;s slot and the tenth Basic with it, so the mulligan rate doesn&#x27;t move. <em>Cruel Arrow</em> does 100 to any one of their Pokémon for <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, and you will never pay for it.</p>
+					<p><strong>It costs a Prize map.</strong> With Genesect ex and Fezandipiti both down, they can win in four Knock Outs instead of six; see <a href="#the-prize-map">The Prize Map</a>. Bench it once the two Metang are up, and when a Boss&#x27;s Orders takes it, that was an attack that didn&#x27;t take the loaded Honedge.</p>
+				</section>
+			</article>
+			<h2 id="trainers-supporters">Trainers — Supporters</h2>
+			<article>
+				<h3 id="dawn">Dawn<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/660414_dawn.jpg" target="_blank" rel="noopener"><img src="./assets/660414_dawn.jpg" alt="Dawn" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>087/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Basic Pokémon, a Stage 1 Pokémon, and a Stage 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It searches the deck for a Basic, a Stage 1, and a Stage 2 Pokémon.</strong> Three copies, and the best card in the deck.</p>
+					<p>Late in the game it takes Honedge, Doublade, and Aegislash, which is +180 from one card. Early it builds the board.</p>
+					<dl>
+						<dt data-head>Board</dt><dd data-head>Dawn takes</dd>
+						<dt>Turn one going second, no Genesect</dt><dd><span>Genesect ex, Doublade, Aegislash</span></dd>
+						<dt>Beldum benched, no Metang yet</dt><dd><span>Genesect ex or a Honedge, Metang, Aegislash</span></dd>
+						<dt>Both Metang up, no Fezandipiti yet</dt><dd><span>Fezandipiti ex, Doublade, Aegislash</span></dd>
+						<dt>Everything already up</dt><dd><span>Honedge, Doublade, Aegislash, for +180</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="lanas-aid">Lana&#x27;s Aid<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/550199_lanas-aid-155-167.jpg" target="_blank" rel="noopener"><img src="./assets/550199_lanas-aid-155-167.jpg" alt="Lana&#x27;s Aid" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>155/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Put up to 3 in any combination of Pokémon that don&#x27;t have a Rule Box and Basic Energy cards from your discard pile into your hand. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It puts up to three Pokémon without a Rule Box or Basic Energy from the discard into your hand.</strong> Two copies.</p>
+					<p>Every Doublade that dies puts two swords in the discard. Lana&#x27;s brings three back, so it out-earns a Knock Out and lands the swords where they swing this turn. It can&#x27;t take Genesect ex. Take three swords unless Energy is what the turn is missing.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="bosss-orders">Boss&#x27;s Orders<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654453_bosss-orders-ghetsis.jpg" target="_blank" rel="noopener"><img src="./assets/654453_bosss-orders-ghetsis.jpg" alt="Boss&#x27;s Orders [Ghetsis]" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>114/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Switch in 1 of your opponent&#x27;s Benched Pokémon to the Active Spot.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It switches one of their Benched Pokémon into the Active Spot.</strong> Two copies.</p>
+					<ul>
+						<li><strong>Early, take the cradle.</strong> Two swords are 120, which kills nearly every Basic and Stage 1 a Mega grows from: Riolu (80), Dreepy (70), Drakloak (90), Drilbur (70), Gastly (70). A Mega that never evolves is three Prizes stuck in their hand.</li>
+						<li><strong>Late, take the Mega that retreated.</strong> Air Balloon and Switch pull their Mega out of reach. Boss&#x27;s brings it back the turn you hold six swords.</li>
+						<li><strong>On a short-sword turn, take their engine.</strong> Toxtricity (140), Meganium (160), and Cynthia&#x27;s Roserade (130) are three swords each.</li>
+					</ul>
+			<aside data-callout="warning">
+				<p><strong>Leave a Mega Lucario ex in the Active Spot the turn after it used <em>Mega Brave</em>.</strong> It can&#x27;t use <em>Mega Brave</em> again that turn. Bossing a different Pokémon up sends it to the Bench, and it comes back fresh.</p>
+			</aside>
+				</section>
+			</article>
+			<article>
+				<h3 id="team-rockets-petrel">Team Rocket&#x27;s Petrel<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/632976_team-rockets-petrel-176-182.jpg" target="_blank" rel="noopener"><img src="./assets/632976_team-rockets-petrel-176-182.jpg" alt="Team Rocket&#x27;s Petrel" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>176/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Trainer card, reveal it, and put it into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It searches the deck for a Trainer card.</strong> One copy.</p>
+					<p>It is the Stadium toolbox, finding Battle Cage against counters or Full Metal Lab against damage, and a second way to find Max Rod, Energy Recycler, a Switch, or a Lucky Helmet. Supporters it finds, like Boss&#x27;s Orders, wait for next turn. It can&#x27;t find Energy.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="hilda">Hilda<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/642200_hilda.jpg" target="_blank" rel="noopener"><img src="./assets/642200_hilda.jpg" alt="Hilda" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>084/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Supporter</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for an Evolution Pokémon and an Energy card, reveal them, and put them into your hand. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It searches the deck for an Evolution Pokémon and an Energy card.</strong> One copy.</p>
+					<p>It is the one Supporter that finds a sword and the Energy for it in one card. Early it takes Metang and a Metal, or a Doublade and a Metal for a fresh swing, and it is the turn-one play going second when Dawn isn&#x27;t there. After Judge it takes Aegislash and the Metal that starts paying for <em>Metal Slash</em>.</p>
+				</section>
+			</article>
+			<h2 id="trainers-items">Trainers — Items</h2>
+			<article>
+				<h3 id="buddy-buddy-poffin">Buddy-Buddy Poffin<span data-count>x3</span></h3>
+				<aside>
+					<a data-art href="./assets/542659_buddy-buddy-poffin.jpg" target="_blank" rel="noopener"><img src="./assets/542659_buddy-buddy-poffin.jpg" alt="Buddy-Buddy Poffin" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>144/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your bench. Then, shuffle your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Two Basic Pokémon with 70 HP or less, straight to the Bench.</strong> Three copies. Honedge and Beldum qualify; Genesect ex and Fezandipiti ex don&#x27;t.</p>
+					<p>It is a turn-one card. Late in the game it benches swords out of the deck instead of putting them in your hand, which is why there is no fourth copy.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="poke-pad">Poke Pad<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/684332_poke-pad-081-088.jpg" target="_blank" rel="noopener"><img src="./assets/684332_poke-pad-081-088.jpg" alt="Poke Pad" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/perfect-order.png" /><img src="./assets/sets/perfect-order.png" alt="ME03: Perfect Order" /></picture></span><span>ME03: Perfect Order <small>081/088</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Search your deck for a Pokémon that doesn&#x27;t have a Rule Box, reveal it, and put it into your hand. Then, shuffle your deck. (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg J)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It searches the deck for a Pokémon without a Rule Box.</strong> Two copies, printed Poké Pad.</p>
+					<p>It finds any sword, a Beldum, or a Metang, never Genesect ex. On turn one it takes the Honedge or Beldum the Bench is missing. Later it is +60.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="night-stretcher">Night Stretcher<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/560372_night-stretcher.jpg" target="_blank" rel="noopener"><img src="./assets/560372_night-stretcher.jpg" alt="Night Stretcher" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/shrouded-fable.png" /><img src="./assets/sets/shrouded-fable.png" alt="SV: Shrouded Fable" /></picture></span><span>SV: Shrouded Fable <small>061/064</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put a Pokémon or a Basic Energy card from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It puts a Pokémon or a Basic Energy from the discard into your hand.</strong> Two copies.</p>
+					<p>It is the cheap way back for a Genesect ex, which Lana&#x27;s can&#x27;t touch. Otherwise it is one exact sword for lethal, or the Metal that pays for <em>Metal Slash</em>.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="energy-recycler">Energy Recycler<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/632966_energy-recycler.jpg" target="_blank" rel="noopener"><img src="./assets/632966_energy-recycler.jpg" alt="Energy Recycler" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/destined-rivals.png" /><img src="./assets/sets/destined-rivals.png" alt="SV10: Destined Rivals" /></picture></span><span>SV10: Destined Rivals <small>164/182</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Shuffle up to 5 Basic Energy cards from your discard pile into your deck.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It shuffles up to five Basic Energy from the discard into the deck.</strong> One copy.</p>
+					<p><em>Metal Maker</em> only looks at the deck. Every Knock Out buries two Metal, and by the third one the deck&#x27;s Metal is thin enough that Metang misses. Recycler puts five back where it looks, so it goes down before the Makers run, not after.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="switch">Switch<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/654469_switch.jpg" target="_blank" rel="noopener"><img src="./assets/654469_switch.jpg" alt="Switch" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/mega-evolution.png" /><img src="./assets/sets/mega-evolution.png" alt="ME01: Mega Evolution" /></picture></span><span>ME01: Mega Evolution <small>130/132</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Switch your Active Pokémon with 1 of your Benched Pokémon.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It swaps your Active Pokémon with a Benched one.</strong> Two copies.</p>
+					<p>A Honedge leads two games in five. The other three a Beldum, a Metang, or a Genesect ex is in front, every body in the deck retreats for two, and two Energy is a loaded Doublade. Switch rescues a Genesect ex or a Beldum that opened in the Active Spot, a Metang that got dragged up or Paralyzed, and an Aegislash after <em>Metal Slash</em>. The second copy took Brock&#x27;s Scouting&#x27;s slot after a game where a Metang sat in front with no Energy for four turns.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="max-rod">Max Rod<span data-count>x1</span></h3>
+				<aside>
+					<a data-art href="./assets/610471_max-rod.jpg" target="_blank" rel="noopener"><img src="./assets/610471_max-rod.jpg" alt="Max Rod" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/prismatic-evolutions.png" /><img src="./assets/sets/prismatic-evolutions.png" alt="SV: Prismatic Evolutions" /></picture></span><span>SV: Prismatic Evolutions <small>116/131</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><img src="./assets/rarities/ace-spec-rare.png" alt="ACE SPEC Rare" /></span><span>ACE SPEC Rare</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Item</span></dd>
+						<dt>Ability</dt><dd><span>Put up to 5 in any combination of Pokémon and Basic Energy cards from your discard pile into your hand.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It puts up to five Pokémon and Basic Energy, in any combination, from the discard into your hand.</strong> The ACE SPEC.</p>
+					<p>It took Precious Trolley&#x27;s slot. Xero found Trolley good only on the first turn; after that, it benched swords he needed in his hand. Max Rod is the opposite card, useless early and worth up to +300 late, exactly when the swords run dry. <strong>Once per game, so hold it for the turn it makes a Knock Out.</strong></p>
+				</section>
+			</article>
+			<h2 id="trainers-tool-stadium">Trainers — Tool &amp; Stadium</h2>
+			<article>
+				<h3 id="brave-bangle">Brave Bangle<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/642197_brave-bangle.jpg" target="_blank" rel="noopener"><img src="./assets/642197_brave-bangle.jpg" alt="Brave Bangle" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/white-flare.png" /><img src="./assets/sets/white-flare.png" alt="SV: White Flare" /></picture></span><span>SV: White Flare <small>080/086</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>If the Pokémon this card is attached to doesn&#x27;t have a Rule Box, attacks used by this Pokémon do 30 more damage to your opponent&#x27;s Active Pokémon ex (before applying Weakness and Resistance). (Pokémon ex, Pokémon V, etc. have Rule Boxes.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>If the Pokémon it is attached to has no Rule Box, its attacks do 30 more to the opponent&#x27;s Active Pokémon ex.</strong> Two copies.</p>
+					<table>
+						<thead><tr><th>Swords</th><th>Damage</th><th>With Bangle</th><th>What the 30 buys</th></tr></thead>
+						<tbody>
+							<tr><td>4</td><td>240</td><td>270</td><td>Okidogi ex (250)</td></tr>
+							<tr><td>5</td><td>300</td><td>330</td><td>Dragapult ex (320), Cynthia&#x27;s Garchomp ex without its Weight, Mega Sharpedo ex, Mega Lopunny ex (330), Mega Zygarde ex (310)</td></tr>
+							<tr><td>6</td><td>360</td><td>390</td><td>Mega Venusaur ex (380)</td></tr>
+						</tbody>
+					</table>
+					<p>It goes to the discard with the Doublade wearing it, so attach it the turn the 30 changes a breakpoint, not before. It adds nothing against a single-Prize Pokémon, and on those turns the Tool is a Lucky Helmet; see <a href="#bangle-or-helmet">Bangle or Helmet</a>. Jamming Tower switches it off.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="lucky-helmet">Lucky Helmet<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/550202_lucky-helmet.jpg" target="_blank" rel="noopener"><img src="./assets/550202_lucky-helmet.jpg" alt="Lucky Helmet" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/twilight-masquerade.png" /><img src="./assets/sets/twilight-masquerade.png" alt="SV06: Twilight Masquerade" /></picture></span><span>SV06: Twilight Masquerade <small>158/167</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Pokémon Tool</span></dd>
+						<dt>Ability</dt><dd><span>If the Pokémon this card is attached to is in the Active Spot and is damaged by an attack from your opponent&#x27;s Pokémon (even if this Pokémon is Knocked Out), draw 2 cards.</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>If the Pokémon wearing it is in the Active Spot and is damaged by an attack from their Pokémon, draw 2 cards, even if it is Knocked Out.</strong> Two copies, Twilight Masquerade 158.</p>
+					<p>The Active Doublade gets hit every turn, so this is two cards a turn for no card and no Supporter. Attach it to the backup Honedge the turn <em>Metal Maker</em> loads it. Tools stay on through evolution, and it fires whether that Honedge dies in front as a Doublade or gets Bossed up early. Counters aren&#x27;t attack damage, so <em>Chaotic Pain</em> and <em>Cursed Blast</em> don&#x27;t trigger it. Jamming Tower switches it off, the same as the Bangle.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="battle-cage">Battle Cage<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/662130_battle-cage-085-094.jpg" target="_blank" rel="noopener"><img src="./assets/662130_battle-cage-085-094.jpg" alt="Battle Cage" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/phantasmal-flames.png" /><img src="./assets/sets/phantasmal-flames.png" alt="ME02: Phantasmal Flames" /></picture></span><span>ME02: Phantasmal Flames <small>085/094</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>Prevent all damage counters from being placed on Benched Pokémon (both yours and your opponent&#x27;s) by effects of attacks and Abilities from the opponent&#x27;s Pokémon. (Damage from attacks is still taken.)</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg I)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>It prevents damage counters from being placed on Benched Pokémon, both players&#x27;, by effects of the opponent&#x27;s attacks and Abilities.</strong> Two copies.</p>
+					<p><em>Phantom Dive</em>&#x27;s six counters, <em>Chaotic Pain</em> aimed at your Bench, and <em>Cursed Blast</em> on a benched Pokémon all stop. Attack damage still lands. It also replaces their Risky Ruins, Forest of Vitality, or Full Metal Lab.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="full-metal-lab">Full Metal Lab<span data-count>x2</span></h3>
+				<aside>
+					<a data-art href="./assets/542663_full-metal-lab.jpg" target="_blank" rel="noopener"><img src="./assets/542663_full-metal-lab.jpg" alt="Full Metal Lab" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/sets-dark/temporal-forces.png" /><img src="./assets/sets/temporal-forces.png" alt="SV05: Temporal Forces" /></picture></span><span>SV05: Temporal Forces <small>148/162</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/uncommon.png" /><img src="./assets/rarities/uncommon.png" alt="Uncommon" /></picture></span><span>Uncommon</span></dd>
+						<dt>Type</dt><dd><span>Trainer - Stadium</span></dd>
+						<dt>Ability</dt><dd><span>All <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> Pokémon (both yours and your opponent’s) take 30 less damage from attacks from the opponent&#x27;s Pokémon (after applying Weakness and Resistance).</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal (Reg H)</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p><strong>Metal Pokémon, both players&#x27;, take 30 less damage from attacks.</strong> Two copies.</p>
+					<p>It is the Stadium against decks that deal damage, which is most of the ladder, and it reads as 30 more HP on every body you own. A Doublade lives through <em>Mirage Barrage</em> (120) and <em>Cruel Arrow</em> (100), and with Grass Resistance it takes <em>Solar Beam</em> at 80 and lives; Aegislash lives through <em>Shinobi Blade</em> (170); Genesect ex takes <em>Jungle Dump</em> at 180 and lives. Fire still kills a Doublade through it, since Weakness doubles before the 30 comes off. <strong>Never play it against a Metal deck.</strong> It shields their Pokémon too, so against Mega Excadrill ex six swords drop from 360 to 330 and miss. Counters ignore it entirely.</p>
+				</section>
+			</article>
+			<h2 id="energy">Energy</h2>
+			<article>
+				<h3 id="basic-metal-energy">Basic Metal Energy<span data-count>x11</span></h3>
+				<aside>
+					<a data-art href="./assets/656270_basic-metal-energy-008.jpg" target="_blank" rel="noopener"><img src="./assets/656270_basic-metal-energy-008.jpg" alt="Basic Metal Energy" /></a>
+				</aside>
+				<section>
+					<dl class="card">
+						<dt>Set</dt><dd><span>MEE: Mega Evolution Energies <small>8</small></span></dd>
+						<dt>Rarity</dt><dd><span data-icons><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/rarities-dark/common.png" /><img src="./assets/rarities/common.png" alt="Common" /></picture></span><span>Common</span></dd>
+						<dt>Type</dt><dd><span>Energy - Basic</span></dd>
+						<dt>Tournament</dt><dd><span data-icons><img src="./assets/ok.png" alt="OK" /></span><span>legal</span></dd>
+					</dl>
+				</section>
+				<section>
+					<p>Eleven, Mega Evolution Energies 008, the same print as Iron Excavation, and the only Energy in the list. <em>Metal Maker</em> finds it, it is the <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /></span> in <em>Metal Slash</em>, and Energy Recycler, Lana&#x27;s Aid, Night Stretcher, and Max Rod all bring it back. The first list ran three Ignition and two Mist beside eight of these. The three extra Metal do Ignition&#x27;s job through <em>Metal Maker</em>, and Mist never mattered.</p>
+				</section>
+			</article>
+			<section>
+				<h3 id="the-thesis">The Thesis<span data-flavor><img src="./assets/sprites/doublade.gif" alt="" /></span></h3>
+					<p>The format runs on Pokémon ex worth two and three Prizes. This deck runs on a 100 HP Stage 1 worth one, and it doesn&#x27;t try to survive. It trades.</p>
+					<p><strong><em>Weaponized Swords</em> does 60 for every Honedge, Doublade, and Aegislash in your hand, and the cards stay there.</strong></p>
+					<table>
+						<thead><tr><th>Swords in hand</th><th>Damage</th><th>With Brave Bangle</th><th>Knocks Out</th></tr></thead>
+						<tbody>
+							<tr><td>2</td><td>120</td><td>150</td><td>Dreepy, Drakloak, Munkidori, Riolu, Gastly, Haunter, Drilbur, Cynthia&#x27;s Gabite, Lunatone, Solrock</td></tr>
+							<tr><td>3</td><td>180</td><td>210</td><td>Toxtricity, Alakazam, Dhelmise, Crustle, Cynthia&#x27;s Roserade, Meganium, Meowth ex</td></tr>
+							<tr><td>4</td><td>240</td><td>270</td><td>Genesect ex, Fezandipiti ex, Teal Mask Ogerpon ex, Cinccino ex; Okidogi ex with Bangle</td></tr>
+							<tr><td>5</td><td>300</td><td>330</td><td>Gengar ex, N&#x27;s Zoroark ex, Blissey ex; with Bangle, Dragapult ex, Mega Zygarde ex, and everything at 330</td></tr>
+							<tr><td>6</td><td>360</td><td>390</td><td>Mega Lucario ex, Mega Excadrill ex, Mega Gengar ex, Mega Charizard X ex; Mega Venusaur ex with Bangle</td></tr>
+							<tr><td>7</td><td>420</td><td>450</td><td>Cynthia&#x27;s Garchomp ex wearing Cynthia&#x27;s Power Weight (400)</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Nothing in the format resists Metal, and a few things are weak to it.</strong> Lillie&#x27;s Clefairy ex (190) dies to two swords, and Mega Froslass ex (310) and Mega Floette ex (250) to three. Bangle adds before Weakness doubles.</p>
+					<p><strong>Doublade has no Rule Box and no Ability, and that switches off half the walls in the format.</strong> Crustle&#x27;s <em>Mysterious Rock Inn</em> stops Pokémon ex. Cornerstone Mask Ogerpon ex stops Pokémon with an Ability. Neutralization Zone stops Pokémon ex. None of them touch Doublade. Mega Gengar&#x27;s <em>Shadowy Concealment</em> only discounts Knock Outs by Pokémon ex, so it never discounts this deck&#x27;s.</p>
+					<p><strong>The swords are the resource, and every exchange costs two.</strong> When the Active Doublade dies, the Honedge behind it comes up and takes a Doublade from your hand, and a fresh Honedge goes down behind that. Signal pays exactly two back each turn. So Signal keeps the hand level, and the cards that grow it are Dawn (+3), Lana&#x27;s Aid (+3 from the discard), Poke Pad (+1), and Max Rod (+5). <em>Flip the Script</em> (+3) and Lucky Helmet (+2) draw blind, and that is how the Switches, the Stadiums, and the Boss&#x27;s Orders arrive.</p>
+			</section>
+			<section>
+				<h3 id="the-hard-rules">The Hard Rules</h3>
+					<p>The card sections explain the cards. This section explains the decisions, and it is the part to read before a game.</p>
+			<article>
+				<h3 id="the-board">The board<span data-flavor><img src="./assets/sprites/aegislash.gif" alt="" /></span></h3>
+				<section>
+					<table>
+						<thead><tr><th>Spot</th><th>Put here</th><th>Never</th></tr></thead>
+						<tbody>
+							<tr><td>Active</td><td>A Doublade holding two Energy</td><td>Genesect ex or Metang; they are the engine</td></tr>
+							<tr><td>Bench</td><td>One Genesect ex</td><td>A second Genesect ex while the first lives</td></tr>
+							<tr><td>Bench</td><td>Two Metang</td><td>A third before the backup Honedge is down</td></tr>
+							<tr><td>Bench</td><td>One Honedge, loaded with Energy</td><td>A second backup sword after turn two</td></tr>
+							<tr><td>Bench</td><td>Fezandipiti ex, once both Metang are up</td><td>a second Pokémon ex before the engine is built</td></tr>
+						</tbody>
+					</table>
+					<p><strong>The target board is a Doublade in front, and Genesect ex, two Metang, one loaded Honedge, and Fezandipiti ex behind it.</strong> That is three swords on the board and nine left for your hand, the discard, and the Prizes. Fezandipiti goes down last, because until the Metang are up its spot belongs to a Beldum.</p>
+					<ul>
+						<li><strong>The backup stays a Honedge.</strong> Load it with <em>Metal Maker</em>, and don&#x27;t evolve it. When the Active dies, promote the Honedge, evolve it from your hand on your turn, and swing. Pre-evolving it spends a sword a turn early for nothing.</li>
+						<li><strong>Bench a new Honedge every time one gets promoted.</strong> A Honedge has to sit a turn before it evolves, so next turn&#x27;s attacker goes down this turn.</li>
+						<li><strong>Aegislash stays in hand</strong> unless <a href="#when-aegislash-comes-out">the rule</a> says otherwise.</li>
+						<li><strong>Turn one is the exception.</strong> Two Honedge and two Beldum go down, because nothing evolves the turn it arrives.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="counting-swords">Counting swords</h3>
+				<section>
+					<dl>
+						<dt data-head>Rule</dt><dd data-head>Why</dd>
+						<dt><strong>Count before you play anything.</strong> Swords times 60, plus 30 with a Bangle against an Active Pokémon ex.</dt><dd><span>Benching a Honedge and evolving both take a sword out of the swing. Check lethal first.</span></dd>
+						<dt><strong>Signal takes Aegislash, unless the next attacker needs a Doublade.</strong></dt><dd><span>Aegislash does nothing on the board, so it is a pure sword. Take a Doublade when your hand has none for the Honedge that comes up next.</span></dd>
+						<dt><strong>Signal takes Metang only until two are in play.</strong></dt><dd><span>After that, every Signal is two swords.</span></dd>
+						<dt><strong>Dawn takes Honedge, Doublade, and Aegislash</strong> once the board is built.</dt><dd><span>+180, and the Honedge is next turn&#x27;s backup.</span></dd>
+						<dt><strong>Lana&#x27;s Aid takes three swords.</strong></dt><dd><span>A Metal only when Energy is the thing the turn is missing.</span></dd>
+						<dt><strong>Against Judge and Unfair Stamp, the swords in hand are the target.</strong></dt><dd><span>Keep a Doublade loaded on the Bench, so Signal, an Aegislash, and one Energy rebuild a 230 swing; see <a href="#5-after-judge-or-unfair-stamp">Game Plan 5</a>.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="where-the-energy-goes">Where the Energy goes</h3>
+				<section>
+					<dl>
+						<dt data-head>Rule</dt><dd data-head>Why</dd>
+						<dt><strong>Run <em>Metal Maker</em> before Signal and before Dawn.</strong></dt><dd><span><em>Metal Maker</em> puts what it skips on the bottom. Signal&#x27;s shuffle puts those cards back where you can draw them.</span></dd>
+						<dt><strong><em>Metal Maker</em> loads the backup Honedge first.</strong></dt><dd><span>The Active usually gets the turn&#x27;s attachment. The backup then comes up already holding two.</span></dd>
+						<dt><strong>Energy Recycler goes before <em>Metal Maker</em>.</strong></dt><dd><span>It shuffles the Metal back where the Makers look. After them it feeds nothing until next turn.</span></dd>
+						<dt><strong>Don&#x27;t feed Genesect ex.</strong></dt><dd><span><em>Protect Charge</em> is an emergency swing. Its Energy does more on a Doublade.</span></dd>
+						<dt><strong>Retreat is Energy.</strong></dt><dd><span>Doublade, Honedge, Metang, and Genesect ex all cost 2, and Aegislash costs 3. Switch costs a card instead, and there are two.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="bangle-or-helmet">Bangle or Helmet</h3>
+				<section>
+					<p>The Doublade in front wears one Tool, and it goes to the discard with it.</p>
+					<dl>
+						<dt data-head>The next swing</dt><dd data-head>The Tool</dd>
+						<dt>Thirty more reaches a Knock Out on an Active Pokémon ex</dt><dd><span>Brave Bangle</span></dd>
+						<dt>Anything else, including every single-Prize target</dt><dd><span>Lucky Helmet</span></dd>
+					</dl>
+					<p>Decide from the breakpoint table in <a href="#the-thesis">The Thesis</a>, and put the Tool on the backup Honedge the turn <em>Metal Maker</em> loads it, so the choice is made before the turn it matters. A Helmet on a Honedge that gets Bossed up still draws two.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="when-aegislash-comes-out">When Aegislash comes out</h3>
+				<section>
+					<dl>
+						<dt data-head>The hand</dt><dd data-head>Do this</dd>
+						<dt>Four swords or more</dt><dd><span>Keep swinging with Doublade. Every Aegislash stays a sword.</span></dd>
+						<dt>Three swords or fewer, and 230 Knocks Out the target</dt><dd><span>Evolve the Active Doublade into Aegislash and use <em>Metal Slash</em>. It needs <span data-icons="inline"><img src="./assets/types/metal.png" alt="Metal" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>: the two on the Doublade, the attachment, and a <em>Metal Maker</em> hit.</span></dd>
+						<dt>The hand was just shuffled away</dt><dd><span>Signal for an Aegislash and a Doublade, or Hilda for an Aegislash and a Metal. Evolve and swing.</span></dd>
+						<dt>Aegislash used <em>Metal Slash</em> last turn</dt><dd><span>It can&#x27;t attack. Switch it out, or let its 150 HP soak a hit that would kill a Doublade.</span></dd>
+					</dl>
+					<p><em>Metal Slash</em> is 230, which beats three swords (180) and loses to four (240). Evolving also spends the Aegislash out of your hand, so at four swords Doublade is always the better swing.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="recovery-order">Recovery order</h3>
+				<section>
+					<table>
+						<thead><tr><th>Card</th><th>Takes</th><th>Into</th><th>Play it when</th></tr></thead>
+						<tbody>
+							<tr><td>Lana&#x27;s Aid</td><td>three swords or Basic Energy</td><td>hand</td><td>the three make this turn&#x27;s Knock Out; the default refill</td></tr>
+							<tr><td>Max Rod</td><td>five Pokémon or Basic Energy</td><td>hand</td><td>the discard holds four or five swords and this swing needs them; once per game</td></tr>
+							<tr><td>Night Stretcher</td><td>one Pokémon or Basic Energy</td><td>hand</td><td>a Genesect ex comes back, or one exact sword makes lethal</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Nothing here puts swords back into the deck.</strong> The first list ran Sacred Ash for that, and five swords in the deck is five turns of Signal where five in the hand is a swing. Once Signal runs dry the discard is the second hand, and every card in this table reads it. Max Rod is the last card in the game, not the first.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="opening-turns">Opening turns</h3>
+				<section>
+					<dl>
+						<dt data-head>When</dt><dd data-head>Do this</dd>
+						<dt>The toss</dt><dd><span>Choose second. The turn-one Supporter is live three games in four, and in this deck it is swords: Dawn is three, Hilda is one and its Energy. Going first trades that for a swing before they evolve, and turn two can&#x27;t Dawn and Boss both to cash it in. Their turn-two Knock Out also switches on <em>Flip the Script</em> for yours.</span></dd>
+						<dt>Setup</dt><dd><span>Lead a Honedge when you hold two; it evolves in place. Otherwise lead Beldum, which retreats for 1. Genesect ex or Fezandipiti ex leads only when it is the only Basic. Bench at most two Honedge, up to two Beldum, and the Genesect ex. Honedge three and four stay in hand.</span></dd>
+						<dt>First turn, going first</dt><dd><span>Items only. Poffin takes a Honedge and a Beldum; Poke Pad takes whichever is missing. Attach a Metal to the Active Honedge.</span></dd>
+						<dt>First turn, going second</dt><dd><span>Dawn takes Genesect ex, a Doublade, and an Aegislash; without Dawn, Hilda takes a Doublade and a Metal. Bench the Genesect and Signal. Attach to the Active Honedge. Nothing evolves on your first turn.</span></dd>
+						<dt>Second turn</dt><dd><span>Evolve the Active Honedge into Doublade and both Beldum into Metang. <em>Metal Maker</em> twice, then Signal, then the Supporter. Count, attach, swing.</span></dd>
+						<dt>Every turn</dt><dd><span>Count swords first. Use Signal before you attack, since attacking ends the turn.</span></dd>
+					</dl>
+				</section>
+			</article>
+			<article>
+				<h3 id="build-order">Build order</h3>
+				<section>
+					<table>
+						<thead><tr><th>Order</th><th>Build</th><th>Found by</th><th>Why here</th></tr></thead>
+						<tbody>
+							<tr><td>1</td><td>Two Honedge</td><td>Poffin, Poke Pad, Dawn</td><td>one evolves on turn two, one is the backup</td></tr>
+							<tr><td>2</td><td>Two Beldum</td><td>Poffin, Poke Pad</td><td>Metang next turn</td></tr>
+							<tr><td>3</td><td>Genesect ex</td><td>Dawn or the draw</td><td>Signal is +120 a turn from the moment it lands</td></tr>
+							<tr><td>4</td><td>Doublade in the Active Spot</td><td>your hand, Signal, Dawn</td><td>the turn-two swing</td></tr>
+							<tr><td>5</td><td>Two Metang</td><td>Signal, Poke Pad, Dawn</td><td><em>Metal Maker</em> loads the backup</td></tr>
+							<tr><td>6</td><td>A loaded backup Honedge</td><td><em>Metal Maker</em></td><td>the next attacker arrives ready</td></tr>
+							<tr><td>7</td><td>Fezandipiti ex</td><td>Dawn or the draw</td><td>three cards a turn once the trades start</td></tr>
+						</tbody>
+					</table>
+					<p>The third Metang and the third Beldum wait for a dead Metang; Fezandipiti holds the spot they used to wait for.</p>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="the-prize-map">The Prize Map</h3>
+					<p><strong>Everything here is worth one Prize except Genesect ex and Fezandipiti ex.</strong></p>
+					<dl>
+						<dt data-head>What they take</dt><dd data-head>Knock Outs they need for six Prizes</dd>
+						<dt>Only single-Prize Pokémon</dt><dd><span>6</span></dd>
+						<dt>One Pokémon ex along the way</dt><dd><span>5</span></dd>
+						<dt>Both ex on the board</dt><dd><span>4</span></dd>
+					</dl>
+					<table>
+						<thead><tr><th>They attack with</th><th>Your Knock Outs to win</th><th>Swords for each</th></tr></thead>
+						<tbody>
+							<tr><td>Mega Evolution ex, 3 Prizes</td><td>2</td><td>six, or five with Bangle against a 330</td></tr>
+							<tr><td>Pokémon ex, 2 Prizes</td><td>3</td><td>four to six</td></tr>
+							<tr><td>Single-Prize Pokémon</td><td>6</td><td>two or three, and Bangle adds nothing</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Mega rooms are the best rooms.</strong> Two swings win, and they need six. Single-Prize rooms are the hard ones, because six Knock Outs drain the swords faster than the recovery cards refill them. That is also the room where Fezandipiti ex costs the most, since two of their six Knock Outs can be the ex on your Bench. The draw is worth it until a game says otherwise, and <a href="#test-and-tune">Test and Tune</a> has the swap back.</p>
+			</section>
+			<section>
+				<h3 id="the-energy-engine">The Energy Engine<span data-flavor><img src="./assets/sprites/metang.gif" alt="" /></span></h3>
+					<p>Doublade costs <span data-icons="inline"><img src="./assets/types/colorless.png" alt="Colorless" /><img src="./assets/types/colorless.png" alt="Colorless" /></span>, so every fresh attacker needs two Energy. This is where they come from.</p>
+					<table>
+						<thead><tr><th>Source</th><th>From</th><th>To</th><th>Costs</th></tr></thead>
+						<tbody>
+							<tr><td>Manual attachment</td><td>hand</td><td>anything</td><td>the turn&#x27;s attachment</td></tr>
+							<tr><td><em>Metal Maker</em></td><td>the top four of the deck</td><td>any of your Pokémon</td><td>nothing; Basic Metal only, about 57% a look</td></tr>
+							<tr><td>Hilda</td><td>deck</td><td>hand</td><td>the turn&#x27;s Supporter; a Metal and the sword that needs it</td></tr>
+							<tr><td>Energy Recycler</td><td>discard</td><td>deck</td><td>an Item; Basic only</td></tr>
+							<tr><td>Lana&#x27;s Aid, Night Stretcher, Max Rod</td><td>discard</td><td>hand</td><td>Basic only</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Two Metang and the attachment make one Doublade a turn.</strong> With eleven Metal, two looks find at least one four turns in five, and the attachment is the second. The first list covered the fifth turn with Ignition Energy, and the trick came up once in four games; three more Metal do the same job, and <em>Metal Maker</em> can find them.</p>
+					<p><strong>Late games thin the deck&#x27;s Metal.</strong> With four Metal left in 35 cards, each look hits 40% of the time. Every Knock Out buries two, so Energy Recycler comes down after the second or third, and before the Makers run.</p>
+			</section>
+			<h2 id="game-plans">Game Plans</h2>
+			<section>
+				<h3 id="1-turn-one-going-first">1. Turn one, going first</h3>
+					<p><strong>You lost the toss, so no attack and no Supporter, but every Item is legal.</strong> Poffin takes a Honedge and a Beldum, Poke Pad takes whatever is missing, and the Active Honedge gets a Metal. A Dawn in hand is turn two&#x27;s play.</p>
+			</section>
+			<section>
+				<h3 id="2-turn-one-going-second">2. Turn one, going second</h3>
+					<p><strong>This is the side to choose.</strong> <a href="#opening-turns">Opening turns</a> says why. <strong>Dawn is the play.</strong> It takes Genesect ex, a Doublade, and an Aegislash. Bench the Genesect, use Signal for two more swords, and attach to the Active Honedge. Bench two Beldum with Poffin. Nothing evolves yet.</p>
+					<p><strong>Without a Dawn, Hilda is the play.</strong> It takes a Doublade and the Metal for it, and Genesect ex waits for the draw or the next Dawn.</p>
+			</section>
+			<section>
+				<h3 id="3-the-first-swing">3. The first swing</h3>
+					<p>Turn two, the Active Honedge evolves, <em>Metal Maker</em> and the attachment give it two Energy, and the hand holds two to four swords.</p>
+					<p><strong>Two swords are enough to take a cradle.</strong> Boss&#x27;s Orders a Riolu, a Dreepy, a Drilbur, or a Gastly, and the Mega it grows into never arrives. Save the big swings for when the Mega is already in play.</p>
+			</section>
+			<section>
+				<h3 id="4-rearming-after-a-knockout">4. Rearming after a knockout</h3>
+					<p>The Active Doublade dies. That was always the plan.</p>
+					<ol>
+						<li><strong><em>Flip the Script</em> first.</strong> Three cards before any decision.</li>
+						<li><strong>Promote the loaded Honedge.</strong> It has sat a turn, so it evolves from your hand at once.</li>
+						<li><strong>If it isn&#x27;t loaded, <em>Metal Maker</em> first, then the attachment.</strong> Two looks and the attachment are two Energy four turns in five.</li>
+						<li><strong>Bench a new Honedge</strong> for next turn, then the other <em>Metal Maker</em> onto it.</li>
+						<li><strong>Count, then swing.</strong></li>
+					</ol>
+					<p>If there is no Honedge on the Bench, the board broke a rule. Promote a Beldum, Poke Pad a Honedge, and lose a turn rather than promoting Genesect ex or Fezandipiti ex.</p>
+					<p><strong>The loaded Honedge stays on the Bench until the Active dies.</strong> Retreating into it a turn early to Cut for 40 is how the Greninja game was lost: a 70 HP body in front with two Energy and a Bangle on it, and nothing behind it.</p>
+			</section>
+			<section>
+				<h3 id="5-after-judge-or-unfair-stamp">5. After Judge or Unfair Stamp<span data-flavor><img src="./assets/sprites/aegislash-blade.gif" alt="" /></span></h3>
+					<p>The hand is gone, so the swords are gone. Two Abilities and one card rebuild it.</p>
+					<ul>
+						<li><strong>Signal first.</strong> It takes an Aegislash and a Doublade, and it needs no card in hand.</li>
+						<li><strong>Evolve the Doublade into Aegislash.</strong> If it holds two, the attachment and a <em>Metal Maker</em> hit pay <em>Metal Slash</em> for 230.</li>
+						<li><strong>Hilda is the out without Signal.</strong> Aegislash and a Metal in one card.</li>
+						<li><strong>Next turn, back to Doublade.</strong> Dawn, Lana&#x27;s Aid, and Signal refill the hand.</li>
+					</ul>
+			</section>
+			<section>
+				<h3 id="6-the-late-game">6. The late game</h3>
+					<p>By the third Knock Out the deck has thinned, Signal is close to empty, and four or more swords sit in the discard. Nothing puts them back into the deck. The first list ran Sacred Ash for that, and five swords in the deck is five turns of Signal where five in the hand is a swing.</p>
+					<ol>
+						<li><strong>Lana&#x27;s Aid on the turns between.</strong> Three swords from the discard, into the hand where they count.</li>
+						<li><strong>Max Rod when the swing needs it.</strong> Five swords into your hand is +300 that turn.</li>
+						<li><strong>Night Stretcher for the exact one.</strong> The sword that makes lethal, or the Genesect ex that Lana&#x27;s can&#x27;t take.</li>
+					</ol>
+					<p><strong>Count what is left before choosing.</strong> Max Rod works best with five swords in the discard, and it is a one-of.</p>
+			</section>
+			<section>
+				<h3 id="7-choosing-the-stadium">7. Choosing the stadium</h3>
+					<dl>
+						<dt data-head>Their deck</dt><dd data-head>Your Stadium</dd>
+						<dt>Places counters on your Bench (Dragapult, Lucky Haunt, Dusknoir)</dt><dd><span>Battle Cage</span></dd>
+						<dt>Deals damage, and isn&#x27;t Metal (Overgrowth, Garchomp, Lucario)</dt><dd><span>Full Metal Lab</span></dd>
+						<dt>Is Metal (Mega Excadrill, Steven&#x27;s Metagross)</dt><dd><span>Battle Cage, to replace their Full Metal Lab</span></dd>
+						<dt>Plays Risky Ruins or Forest of Vitality</dt><dd><span>Either one, played over theirs</span></dd>
+					</dl>
+					<p>There are two of each, and Petrel finds whichever the game needs.</p>
+			</section>
+			<section>
+				<h3 id="cards-to-watch-out-for">Cards to Watch Out For</h3>
+					<p><strong>Read their board, their Energy, and their Stadium before every attack.</strong></p>
+					<table>
+						<thead><tr><th>Card</th><th>Switches off</th><th>The answer</th></tr></thead>
+						<tbody>
+							<tr><td><strong>Judge, Unfair Stamp, Special Red Card, Xerosic&#x27;s Machinations</strong></td><td>the swords in your hand</td><td><a href="#5-after-judge-or-unfair-stamp">Game Plan 5</a>. Signal and Aegislash rebuild a swing.</td></tr>
+							<tr><td><strong>Mega Froslass ex</strong>, <em>Resentful Refrain</em></td><td>50 for each card in your hand, so your swords are its damage</td><td>It is weak to Metal, so three swords (360) Knock Out its 310. Hit it first.</td></tr>
+							<tr><td><strong>Eri</strong></td><td>discards two Items from your hand, often Max Rod or a Switch</td><td>Play recovery Items the turn you draw them when Eri is in their list.</td></tr>
+							<tr><td><strong>Budew</strong>, <em>Itchy Pollen</em>; <strong>Jellicent ex</strong> while Active</td><td>your Items, and Jellicent stops Tools too</td><td>Supporters and Abilities still work, so Dawn, Lana&#x27;s, Signal, and <em>Metal Maker</em> carry the turn.</td></tr>
+							<tr><td><strong>Iron Thorns ex</strong>, in their Active Spot</td><td><em>Metallic Signal</em>, since Genesect ex has a Rule Box</td><td><em>Metal Maker</em> still works. Four swords Knock Out its 230.</td></tr>
+							<tr><td><strong>Jamming Tower</strong></td><td>Brave Bangle and Lucky Helmet</td><td>Replace it with Battle Cage or Full Metal Lab.</td></tr>
+							<tr><td><strong>Emma</strong></td><td>nothing, but it draws them a card for every Pokémon in your hand, and your hand is swords</td><td>Nothing stops it. Kill faster; against Greninja it drew eight once.</td></tr>
+							<tr><td><strong>Full Metal Lab</strong>, theirs</td><td>30 off every hit on their Metal Pokémon</td><td>Replace it with Battle Cage before the big swing.</td></tr>
+							<tr><td><strong>Risky Ruins</strong>, theirs</td><td>20 on every Honedge and Beldum you bench</td><td>Replace it. Bench before it lands when you can.</td></tr>
+							<tr><td><strong>Fire attackers</strong></td><td>Weakness ×2 on every Pokémon in the deck</td><td>Doublade dies anyway. Keep Genesect ex off the board until it is needed.</td></tr>
+						</tbody>
+					</table>
+			</section>
+			<section>
+				<h3 id="versus-the-card-shop">Versus the Card Shop</h3>
+					<p>The Live ladder is where this deck practices. Doublade decks are a fringe pick online, so expect every opponent to be meeting it for the first time.</p>
+			<article>
+				<h3 id="versus-dragapult-ex">Versus Dragapult ex</h3>
+				<section>
+					<dl>
+						<dt data-head>Their number</dt><dd data-head>The answer</dd>
+						<dt><em>Phantom Dive</em>: 200 to the Active, and 6 counters on your Bench</dt><dd><span>Doublade dies to the 200 either way. Battle Cage stops the 6.</span></dd>
+						<dt>Dragapult ex, 320 HP</dt><dd><span>five swords and a Bangle (330), or six</span></dd>
+						<dt>Dreepy 70, Drakloak 90, Munkidori 110</dt><dd><span>two swords each</span></dd>
+						<dt>Lillie&#x27;s Clefairy ex, 190, weak to Metal</dt><dd><span>two swords, doubled to 240</span></dd>
+					</dl>
+					<p><strong>Steve plays this most weeks at CardCrate</strong>, and <a href="./dragons.html">dragons.md</a> is modeled on his list.</p>
+					<ul>
+						<li><strong>Battle Cage first.</strong> It stops <em>Phantom Dive</em>&#x27;s counters, and it replaces Steve&#x27;s Risky Ruins and Area Zero Underdepths. Under his Ruins a benched Honedge is at 50, and six counters finish it.</li>
+						<li><strong>Boss the Drakloaks early.</strong> Each one draws them a card a turn, and each is two swords.</li>
+						<li><strong>Clefairy ex is two Prizes for two swords.</strong> Steve runs two. Take one whenever the Dragapult isn&#x27;t killable yet.</li>
+						<li><strong>Budew locks Items for a turn.</strong> Play Poffin, Poke Pad, and the recovery Items the turn before it swings.</li>
+						<li><strong>Online, Dusknoir is common.</strong> Battle Cage keeps <em>Cursed Blast</em> off the Bench, and the Active Doublade was dying anyway.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="versus-mega-lucario-ex">Versus Mega Lucario ex<span data-flavor><img src="./assets/sprites/lucario-mega.gif" alt="" /></span></h3>
+				<section>
+					<dl>
+						<dt data-head>Their number</dt><dd data-head>The answer</dd>
+						<dt><em>Aura Jab</em>: 130, or 160 with Premium Power Pro</dt><dd><span>Doublade dies; Aegislash lives through the bare 130</span></dd>
+						<dt><em>Mega Brave</em>: 270, never two turns running</dt><dd><span>nothing lives through it</span></dd>
+						<dt>Mega Lucario ex, 340 HP</dt><dd><span>six swords; five with a Bangle is 330, one short</span></dd>
+						<dt>Riolu 80, Lunatone 110, Solrock 110, Hariyama 150</dt><dd><span>two swords each; Hariyama three</span></dd>
+					</dl>
+					<ul>
+						<li><strong>Kill every Riolu.</strong> Boss&#x27;s Orders and two swords, and the Mega never arrives.</li>
+						<li><strong>Two Lucario Knock Outs win.</strong> It is three Prizes, and they need six Knock Outs on this deck.</li>
+						<li><strong>Hariyama drags Genesect ex up when it evolves.</strong> That is two Prizes for <em>Mega Brave</em>. One Genesect on the board, never two.</li>
+						<li><strong>After <em>Mega Brave</em>, leave it in front.</strong> It can&#x27;t use <em>Mega Brave</em> next turn, and Air Balloon is how they reset it. See the <a href="#bosss-orders">Boss&#x27;s Orders warning</a>.</li>
+					</ul>
+				</section>
+			</article>
+			<article>
+				<h3 id="versus-greninja-ex">Versus Greninja ex</h3>
+				<section>
+					<dl>
+						<dt data-head>Their number</dt><dd data-head>The answer</dd>
+						<dt><em>Mirage Barrage</em>: 120 to two of your Pokémon, Bench included, for three Energy, and it discards two</dt><dd><span>Full Metal Lab makes it 90. Doublade and Metang live; Honedge doesn&#x27;t.</span></dd>
+						<dt><em>Shinobi Blade</em>: 170 for one Energy, and it searches their deck for any card</dt><dd><span>Lab makes it 140, which Aegislash survives. The search is a Boss&#x27;s Orders every turn they want one.</span></dd>
+						<dt>Greninja ex, 310 HP, and no damage while Benched</dt><dd><span>five swords and a Bangle (330), or six, and only while it is Active</span></dd>
+						<dt>Fezandipiti ex, 210</dt><dd><span>four swords, or three with a Bangle</span></dd>
+						<dt>Frogadier 90, Froakie 60</dt><dd><span>two swords; Boss the Frogadier before it evolves</span></dd>
+					</dl>
+					<ul>
+						<li><strong>Battle Cage does nothing here.</strong> <em>Mirage Barrage</em> is attack damage, not counters. Lab is the Stadium, and Petrel&#x27;s first job is finding it.</li>
+						<li><strong>Barrage comes every other turn.</strong> It costs three Energy and discards two, so a Greninja alternates it with <em>Shinobi Blade</em>. A second Greninja resets that.</li>
+						<li><strong>Under Lab the backup is a Doublade.</strong> A benched Honedge dies to 90 and a benched Doublade doesn&#x27;t, so this is the one room where the backup evolves early.</li>
+						<li><strong>Emma reads your hand.</strong> It draws them a card per Pokémon in it, and your hand is swords. Kill faster.</li>
+						<li><strong><em>Numbing Water</em> Paralyzes on a heads.</strong> It is their Frogadier&#x27;s attack, and it cost a whole turn once. Switch answers it; a Paralyzed Pokémon can&#x27;t retreat, but it can be switched.</li>
+					</ul>
+					<p><strong>The first list lost this 0-6 on 2026-10-26</strong>, with both Stadiums in the deck and neither drawn, and with four swords in hand from turn 4 on and no body in front to swing them.</p>
+				</section>
+			</article>
+			<article>
+				<h3 id="the-rest-of-the-room">The rest of the room</h3>
+				<section>
+					<table>
+						<thead><tr><th>Deck</th><th>The problem</th><th>The answer</th></tr></thead>
+						<tbody>
+							<tr><td><strong>Cynthia&#x27;s Garchomp ex</strong>, Elliott at league</td><td>400 HP with Cynthia&#x27;s Power Weight; each Roserade adds 30 to every hit</td><td>Garchomp is seven swords. Take the Roserades (130) and Gabites (100) first, at three and two swords.</td></tr>
+							<tr><td><strong>Mega Excadrill ex</strong>, Matt at league</td><td>340, and his Full Metal Lab takes 30 off your hits on his Metal Pokémon</td><td>Battle Cage over his Lab, then six swords. Two Knock Outs win. Under his Lab, his Metang (100) takes three swords.</td></tr>
+							<tr><td><strong>Alakazam</strong></td><td>single-Prize, and <em>Powerful Hand</em> places counters on your Active</td><td>Nothing in the list stops it there now that Mist is gone, and Battle Cage keeps it off the Bench. Alakazam is 140, three swords, and it dies first.</td></tr>
+							<tr><td><strong>Grimmsnarl Froslass</strong></td><td><em>Resentful Refrain</em> is 50 for each card in your hand</td><td>Mega Froslass ex is weak to Metal: three swords for 360.</td></tr>
+							<tr><td><strong>Crustle</strong></td><td><em>Mysterious Rock Inn</em> stops Pokémon ex</td><td>Doublade isn&#x27;t one. Crustle is 150, three swords.</td></tr>
+							<tr><td><strong>N&#x27;s Zoroark ex</strong></td><td>280 HP</td><td>five swords</td></tr>
+						</tbody>
+					</table>
+				</section>
+			</article>
+			</section>
+			<section>
+				<h3 id="versus-the-kitchen-table">Versus the Kitchen Table<span data-flavor><img src="./assets/sprites/gengar-mega.gif" alt="" /><img src="./assets/sprites/venusaur-mega.gif" alt="" /></span></h3>
+					<p>Xero names his deck first and Fox picks in response. These are his two mains.</p>
+					<table>
+						<thead><tr><th>Dad&#x27;s deck</th><th>What it does to this deck</th><th>The answer</th></tr></thead>
+						<tbody>
+							<tr><td><strong><a href="./dark-lucky.html">Lucky Haunt</a></strong></td><td><em>Chaotic Pain</em> (130 in counters) kills any Honedge, Doublade, or Metang, Bench included, and Risky Ruins puts 20 on every Honedge and Beldum you bench. Close the Bench and Mega Gengar ex swings <em>Void Gale</em> for 230, then retreats on an Air Balloon.</td><td>Battle Cage closes the Bench and replaces the Ruins, which leaves <em>Chaotic Pain</em> one target, the Doublade that was dying anyway. That forces the Mega forward: six swords is three Prizes, and Boss&#x27;s Orders brings it back when it retreats. Short on swords, Boss the Toxtricity (140, three swords), which feeds every Mega swing. <em>Shadowy Concealment</em> never discounts a Doublade.</td></tr>
+							<tr><td><strong><a href="./overgrowth.html">Overgrowth</a></strong></td><td>Mega Venusaur ex is 380 and heals 30 a swing. Teal Mask Ogerpon ex takes no damage on the Bench.</td><td>Don&#x27;t race Venusaur. Boss the Meganium (160, three swords), and every Grass Energy drops back to one. Hit Ogerpon ex when it is Active (210, four swords, or three with a Bangle). Full Metal Lab and Grass Resistance keep a Doublade alive through <em>Solar Beam</em> (80). Venusaur takes six swords and a Bangle.</td></tr>
+						</tbody>
+					</table>
+					<p><strong>Lucky Haunt is the winnable game, and Overgrowth is the hard one.</strong> The Venusaur wall and the Bench-proof Ogerpon leave Doublade one target at a time.</p>
+			</section>
+			<section>
+				<h3 id="test-and-tune">Test and Tune</h3>
+					<p>The list is a hypothesis, and games are the data.</p>
+					<p><strong>The second list, 2026-10-26.</strong> Out went three Ignition, two Mist, Sacred Ash, Brock&#x27;s Scouting, and Psyduck. In came three Basic Metal, a second Switch, a second Full Metal Lab, two Lucky Helmet, and Fezandipiti ex. Four games on Live made the case, two wins and two losses, and both losses were turns with swords in hand and no body in front to swing them.</p>
+					<dl>
+						<dt data-head>Symptom</dt><dd data-head>Fix</dd>
+						<dt>Genesect ex still arrives late</dt><dd><span>Brock&#x27;s Scouting back over a Poke Pad</span></dd>
+						<dt>The right Stadium keeps arriving late</dt><dd><span>the second Team Rocket&#x27;s Petrel over Hilda</span></dd>
+						<dt><em>Metal Maker</em> keeps missing</dt><dd><span>a twelfth Basic Metal over a Poke Pad</span></dd>
+						<dt>A fresh Doublade keeps sitting one Energy short</dt><dd><span>one Ignition Energy back over a Basic Metal</span></dd>
+						<dt>The swords run dry before the last Knock Out</dt><dd><span>a third Lana&#x27;s Aid over a Poke Pad</span></dd>
+						<dt>The Bench keeps getting hit</dt><dd><span>read which. Counters want a third Battle Cage, damage wants a third Lab, and the one you don&#x27;t need is the slot.</span></dd>
+						<dt>Mulligans hurt</dt><dd><span>a fourth Beldum over the second Switch: 11 Basics and a 22% mulligan</span></dd>
+						<dt>Hand disruption keeps winning</dt><dd><span>a second Hilda over a Poke Pad</span></dd>
+						<dt>Fezandipiti ex keeps being the last two Prizes</dt><dd><span>Psyduck back in its slot, and the draw goes with it</span></dd>
+						<dt>Doublade keeps dying with no swing</dt><dd><span>not a card problem; keep a loaded Honedge on the Bench, per <a href="#the-board">The board</a></span></dd>
+					</dl>
+			</section>
+			<section>
+				<h3 id="alternatives">Alternatives</h3>
+					<table>
+						<thead><tr><th>Card</th><th>Swaps for</th><th>Play it when</th></tr></thead>
+						<tbody>
+							<tr><td>Precious Trolley</td><td>Max Rod</td><td>Genesect ex keeps arriving late. It is the turn-one Genesect out, and it benches swords every turn after.</td></tr>
+							<tr><td>Team Rocket&#x27;s Petrel, the second</td><td>Hilda</td><td>the Stadium matters more than the Aegislash rebuild. It was in the first list.</td></tr>
+							<tr><td>Kieran</td><td>a Boss&#x27;s Orders</td><td>the Megas keep surviving on 10. +30 against an Active Pokémon ex stacks with Bangle, so five swords make 360.</td></tr>
+							<tr><td>Maximum Belt</td><td>Max Rod</td><td>six swords keep being one short. +50 against an Active ex, but it is discarded with the Doublade wearing it.</td></tr>
+							<tr><td>Philippe</td><td>a Lana&#x27;s Aid</td><td>Energy runs short late. Two Metal from the discard onto one Doublade.</td></tr>
+							<tr><td>Steven&#x27;s Metagross ex</td><td>the Metang line</td><td>you want two Energy a turn, guaranteed; that is <a href="./robot-swords.html">Robot Swords</a></td></tr>
+							<tr><td>Dudunsparce and Dunsparce</td><td>Fezandipiti ex and a Poke Pad</td><td>you want the draw on a single-Prize body. <em>Run Away Draw</em> draws three and shuffles itself away, so it needs a spot and a turn to sit, every time.</td></tr>
+							<tr><td>Team Rocket&#x27;s Transceiver</td><td>never here</td><td>it finds a Petrel, which costs the turn&#x27;s Supporter. It earns its slot in Rare Candy builds, and this one has no Candy.</td></tr>
+							<tr><td>Hero&#x27;s Cape</td><td>never</td><td>a 200 HP Doublade still dies to everything</td></tr>
+							<tr><td>Lillie&#x27;s Determination</td><td>never</td><td>it shuffles the swords away</td></tr>
+							<tr><td>Ultra Ball</td><td>never</td><td>it discards from a hand that is the deck&#x27;s damage</td></tr>
+							<tr><td>Klefki</td><td>never</td><td>the TCG Live challenge deck runs two. <em>Memory Lock</em> does 30, and Klefki isn&#x27;t a sword.</td></tr>
+							<tr><td>Salvatore</td><td>Hilda</td><td>the no-attacker turns keep coming. It evolves a Honedge the turn it lands, from the deck, so the sword in hand stays a sword. It still needs a Switch and two Energy the same turn to swing, and it adds 60 where Dawn adds 180.</td></tr>
+							<tr><td>Brock&#x27;s Scouting</td><td>a Poke Pad</td><td>Genesect ex keeps arriving late. It finds two Basics or one Evolution, and it was in the first list.</td></tr>
+							<tr><td>Ignition Energy</td><td>a Basic Metal</td><td>a fresh Doublade keeps sitting one Energy short. One card paid a whole attack on an Evolution Pokémon; three were in the first list, and the trick came up once in four games.</td></tr>
+							<tr><td>Mist Energy</td><td>a Basic Metal</td><td><em>Powerful Hand</em> or <em>Chaotic Pain</em> on the Active keeps deciding games. Two were in the first list and never mattered.</td></tr>
+							<tr><td>Psyduck</td><td>Fezandipiti ex</td><td>the two-Prize Bench keeps costing games. <em>Damp</em> switches off <em>Cursed Blast</em>, which Battle Cage already keeps off the Bench.</td></tr>
+							<tr><td>Sacred Ash</td><td>never now</td><td>it puts five swords into the deck, where Signal takes two a turn. Lana&#x27;s Aid, Night Stretcher, and Max Rod put them in the hand, where they swing.</td></tr>
+						</tbody>
+					</table>
+			</section>
+		</main>
+		<footer>
+			<div>
+			<p><a href="./credits.html">Credits and sources</a></p>
+			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
+			</div>
+		</footer>
+	</body>
+</html>

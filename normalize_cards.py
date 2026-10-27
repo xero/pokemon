@@ -347,6 +347,10 @@ MANUAL_MARKS = {
     # above. Keyed to the card, not the series: promo series outlive marks,
     # the way SVP promos span G through I.
     "MEP/27": "I",
+    # The Yukihiro Tada Doublade promo, the print Fox's sword decks run.
+    # pokemontcg.io has no MEP set; Limitless's card page (MEP/67) reads J,
+    # the same mark as the Perfect Order 057 it reprints.
+    "MEP/67": "J",
 }
 
 REG_MARKS = {}

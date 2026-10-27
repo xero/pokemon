@@ -821,6 +821,61 @@ Bench pays for it, and Zamazenta covers the turn Zacian is locked out."""
 "Alternatives" = ["scizor"]
 
 [[deck]]
+source = "dancing-swords.md"
+player = "fox"
+shelf = "other"
+group = "Rockets and Steel"
+sprites = ["honedge", "doublade", "aegislash"]
+blurb = """
+Doublade hits for 60 per Honedge, Doublade, and Aegislash revealed from the
+hand, and the swords stay there. Metang's Metal Maker loads the next attacker,
+and every Pokémon but the two ex is worth one Prize."""
+
+# honedge, doublade, aegislash, aegislash-blade and psyduck were promoted
+# from assets/ani for the two sword pages. Dragapult is gen 8 and absent,
+# so its matchup goes bare.
+[deck.flavor]
+"Honedge" = ["honedge"]
+"Doublade" = ["doublade"]
+"Aegislash" = ["aegislash-blade"]
+"Beldum" = ["beldum"]
+"Metang" = ["metang"]
+"Genesect ex" = ["genesect"]
+"The Thesis" = ["doublade"]
+"The board" = ["aegislash"]
+"The Energy Engine" = ["metang"]
+"5. After Judge or Unfair Stamp" = ["aegislash-blade"]
+"Versus Mega Lucario ex" = ["lucario-mega"]
+"Versus the Kitchen Table" = ["gengar-mega", "venusaur-mega"]
+
+[[deck]]
+source = "robot-swords.md"
+player = "fox"
+shelf = "other"
+group = "Rockets and Steel"
+sprites = ["doublade", "metagross", "genesect"]
+blurb = """
+The same swords on Steven's Metagross ex. X-Boot loads two Energy a turn
+without fail, and Metagross swings for 200 when the hand is gone, at the
+price of a second two-Prize Pokémon on the Bench."""
+
+[deck.flavor]
+"Honedge" = ["honedge"]
+"Doublade" = ["doublade"]
+"Aegislash" = ["aegislash-blade"]
+"Steven's Beldum" = ["beldum"]
+"Steven's Metang" = ["metang"]
+"Steven's Metagross ex" = ["metagross"]
+"Genesect ex" = ["genesect"]
+"Psyduck" = ["psyduck"]
+"The Thesis" = ["doublade"]
+"Who attacks" = ["metagross", "aegislash"]
+"The Energy Engine" = ["metagross"]
+"5. After Judge or Unfair Stamp" = ["metagross"]
+"Versus Mega Lucario ex" = ["lucario-mega"]
+"Versus the Kitchen Table" = ["gengar-mega", "venusaur-mega"]
+
+[[deck]]
 source = "ground-zero.md"
 player = "fox"
 shelf = "other"
