@@ -22,19 +22,24 @@ instead of pulling in a full markdown engine:
     ### Gastly              a card, followed by an <img>, a stat table,
                             then #### General use / Pairing / Strategy
     ## 1. The Two-Turn Fuse a named game plan
-    | Copies | Card | Set |  a showcase list, drawn as a strip of Limitless art
+    ### Bling Deck          under the Deck List: its price, then a table led
+    | Copies | Card | Set |  by Copies naming the deck's rare prints
 
 Cards become the same <article> the collection page uses, so both read the
 same. Stat rows reuse the shared glyph lookup where the field lines up.
+
+Every page with a deck-list strip or a card scan loads assets/deal/deal.js,
+which shuffles and deals the strip once per load and turns each card section's
+scan face up the first time it comes into view.
 """
 import re, sys
 from collections import Counter
 from pathlib import Path
 
-from decklib import load as load_registry, published
+from decklib import bling_rows, load as load_registry, published
 from pokelib import (CREDITS_NOTE, anchor, card_art, cost_icons,
-                     count_badge, esc, find_card, flair, icon, img,
-                     legal_cell, page, row, set_slug, stat_cell,
+                     count_badge, esc, find_bling, find_card, flair, icon, img,
+                     legal_cell, page, row, set_slug, stamp, stat_cell,
                      type_icon)
 
 ROOT = Path(__file__).parent
@@ -61,14 +66,24 @@ PUBLISHED = {Path(e["page"]).stem for e in published(LIBRARY + DECKS)}
 # the collection that build_markdown.py writes
 NOT_PAGES = {"README.md", "CLAUDE.md", "collection.md"}
 
-# A table led by Copies instead of Qty is a showcase: the same sixty in prints
-# nobody here owns, like Overgrowth's bling build. Those prints are not in
-# cards.csv and must not be, or the collection and the pull list would read
-# them as ours. So the art comes from Limitless by the set code and number the
-# table prints, the same codes its deck builder uses, and the counts never
-# reach the badges or the pull list, which read Qty tables only.
-SHOWCASE_ART = ("https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/"
-                "{code}/{code}_{num:0>3}_R_EN_SM.png")
+# A table led by Copies instead of Qty is the deck's Bling Deck: the same sixty
+# in prints nobody here owns, named by the set code and number Limitless's deck
+# builder uses. Those prints are in bling.csv, never cards.csv, or the
+# collection and the pull list would read them as ours, and the counts never
+# reach the badges or the pull list, which read Qty tables only. On the page
+# the bling prints ride in the same deck-list strip as the regular ones, and a
+# card section carries its first bling print's scan and stats beside its own;
+# data-print says which is which, and deal.js shows one set at a time.
+CARD_BACK = "./assets/card-back.png"
+DEAL_JS = ROOT / "assets" / "deal" / "deal.js"
+DEAL_CSS = ROOT / "assets" / "deal" / "deal.css"
+
+
+def bare(name):
+    """A card name with no trailing parens or brackets, compared loosely: the
+    form a Copies row, a Qty row, and a card heading agree on."""
+    name = re.sub(r"\s*[\[(][^)\]]*[)\]]\s*$", "", name)
+    return re.sub(r"[^a-z0-9]+", " ", name.lower()).strip()
 
 
 def flavor(name, table, used):
@@ -452,48 +467,85 @@ def deck_list(lines, where=""):
     return out
 
 
-def showcase(grid):
-    """(src, name, qty) for each row of a Copies table, art from Limitless."""
-    head = [c.lower() for c in grid[0]]
+def bling_prose(lines):
+    """(heading, html lines) for the page's Bling Deck prose: the price and
+    where to check it. It shows only while the bling deck does, right under
+    the strip, wherever the section sits in the markdown; at the foot of the
+    Deck List is where GitHub readers find it.
 
-    def col(row, want):
-        j = head.index(want) if want in head else -1
-        return row[j] if 0 <= j < len(row) else ""
-
-    out = []
-    for r in grid[1:]:
-        code, num = col(r, "set").upper(), col(r, "number").lstrip("0")
-        if not r[0].isdigit() or not code.isalnum() or not num.isdigit():
-            print(f"  showcase row has no set code and number: {r!r}")
+    Two boxes so the height can ease open: the outer is a one-row grid that
+    goes from 0fr to 1fr, and the inner clips what has not opened yet.
+    """
+    for i, line in enumerate(lines):
+        s = line.strip()
+        if not (s.startswith("### ") and bling_section(lines, i)):
             continue
-        out.append((SHOWCASE_ART.format(code=code, num=num), col(r, "card"),
-                    r[0]))
-    return out
+        prose, j = [], i + 1
+        while j < len(lines) and not section_end(lines[j]):
+            if not lines[j].strip().startswith("|"):
+                prose.append(lines[j])
+            j += 1
+        paras = [h for para in "\n".join(prose).split("\n\n")
+                 for h in bullets_or_para(para, "\t\t\t\t\t")]
+        html = (["\t\t\t\t<div data-cost>", "\t\t\t\t\t<div>"] + paras
+                + ["\t\t\t\t\t</div>", "\t\t\t\t</div>"]) if paras else []
+        return s[4:].strip(), html
+    return "", []
 
 
-def gallery(entries, heading, ind="\t\t\t", lazy=False):
+def section_end(line):
+    """Whether a line closes the section above it: a heading, or a rule."""
+    s = line.strip()
+    return bool(re.match(r"#{1,6} ", s)) or s in ("---", "***", "___")
+
+
+def bling_section(lines, i):
+    """Whether the ### at lines[i] holds a Copies table before the next
+    heading, which makes it the page's Bling Deck."""
+    for line in lines[i + 1:]:
+        s = line.strip()
+        if section_end(line):
+            return False
+        if s.startswith("|"):
+            first = s.strip("|").split("|")[0].strip().strip("*").lower()
+            if first == "copies":
+                return True
+    return False
+
+
+def badge_for(qty):
+    """The count on a thumbnail. Singles carry no badge; the whole point of
+    the number is to say which cards arrive more than one at a time. Counts
+    read "4" or "**1** (ACE SPEC)", so take the number, not the whole cell."""
+    m = re.search(r"\d+", str(qty))
+    return count_badge(qty) if m and int(m.group()) > 1 else ""
+
+
+def gallery(entries, heading, ind="\t\t\t", bling=()):
     """The deck list as a strip of thumbnails, counts sitting on the art.
 
     One <article> rather than one per card: this is a single picture of the
     sixty, and the card pages below it are where a card gets its own box.
-    A showcase sits at the foot of the page and its art is remote, so it
-    loads lazily.
+    data-deal-back hands deal.js the card back it deals face down.
+
+    A deck with a Bling Deck draws both lists into the one strip, each figure
+    tagged with the print it belongs to. The bling figures stay hidden, and
+    their scans unloaded, until the $$$ deals them in place of the regular
+    ones; a card with two or three rare prints gets a figure for each.
     """
-    extra = ' loading="lazy"' if lazy else ""
-    out = [f"{ind}<article data-decklist>"]
+    out = [f'{ind}<article data-decklist data-deal-back="{CARD_BACK}">']
     if heading:
         out.append(f'{ind}\t<h3 id="deck-list">Deck List</h3>')
+    tag = ' data-print="regular"' if bling else ""
     for src, name, qty in entries:
-        # singles carry no badge; the whole point of the number is to say
-        # which cards arrive more than one at a time. counts read "4" or
-        # "**1** (ACE SPEC)", so take the number rather than the whole cell.
-        m = re.search(r"\d+", str(qty))
-        badge = count_badge(qty) if m and int(m.group()) > 1 else ""
         # the name rides between sentinels so convert() can wrap the figure
         # in a link to the card's own section once the anchors exist; a name
         # no heading matches falls back to a plain image.
-        out.append(f"{ind}\t<figure>\x00{name}\x01{img(src, name, extra)}"
-                   f"{badge}\x02</figure>")
+        out.append(f"{ind}\t<figure{tag}>\x00{name}\x01{img(src, name)}"
+                   f"{badge_for(qty)}\x02</figure>")
+    for src, name, qty in bling:
+        out.append(f'{ind}\t<figure data-print="bling">\x00{name}\x01'
+                   f'{img(src, name, ' loading="lazy"')}{badge_for(qty)}\x02</figure>')
     return out + [f"{ind}</article>"]
 
 
@@ -504,42 +556,67 @@ def in_deck(counts, name, number):
     return counts.get((n, num)) or counts.get((n, "")) or 0
 
 
-def card_block(heading, ind, prints=None):
+def stat_list(r, ind, attrs=""):
+    """A card's stat block from its cards.csv or bling.csv row. Both files
+    share their columns, so a bling print's block reads exactly like ours:
+    its own set, rarity, and legality, and the same card text."""
+    out = [f'{ind}<dl class="card"{attrs}>']
+    for key, label in CARD_ROWS:
+        v = r.get(key, "")
+        if not v:
+            continue
+        if key == "standard_legal":
+            # same badge the collection page uses, worded for a deck plan.
+            # the regulation mark rides along here because the heading used
+            # to carry it and nothing else on the page does.
+            mark = r.get("regulation_mark", "")
+            text = LEGAL.get(v, v) + (f" (Reg {mark})" if mark else "")
+            body = legal_cell(v, esc(text))
+        else:
+            body = stat_cell(key, r)
+        out.append(f"{ind}\t<dt>{esc(label)}</dt><dd>{body}</dd>")
+    for k in ("attack1", "attack2", "attack3", "attack4"):
+        if r.get(k):
+            out.append(f"{ind}\t<dt>Attack</dt><dd>{attack_row(r[k])}</dd>")
+    out.append(f"{ind}</dl>")
+    return out
+
+
+def bling_scan(rec, alt):
+    """A bling print's scan for a card section, shown only with the bling
+    deck, and lazy, so nothing fetches it while it is hidden."""
+    return card_art(f'./assets/{rec["image_file"]}', alt,
+                    ' data-print="bling"', ' loading="lazy"')
+
+
+def card_block(heading, ind, prints=None, bling=None):
     """Art and stats for the card a Key Card Text heading names.
 
     The deck guides hand-write this table; the planning docs never did, because
     until cards.csv carried the cards we do not own there was nothing to look
     up. A heading that names no card in the data produces nothing.
+
+    bling is the card's first print in the deck's Bling Deck, from bling.csv,
+    or None. With one, the section carries both scans and both stat blocks,
+    each tagged with its print, and deal.js shows whichever deck is up.
     """
     blocks, found = [], []
     r = resolve_card(heading, prints)
     if r:
         out = []
+        reg = ' data-print="regular"' if bling else ""
+        scans = []
         if r["image_file"]:
-            out += ["\t\t\t\t<aside>",
-                    "\t\t\t\t\t" + card_art(f'./assets/{r["image_file"]}',
-                                            r["name"]),
-                    "\t\t\t\t</aside>"]
+            scans.append(card_art(f'./assets/{r["image_file"]}', r["name"], reg))
+        if bling and bling["image_file"]:
+            scans.append(bling_scan(bling, r["name"]))
+        if scans:
+            out += (["\t\t\t\t<aside>"] + ["\t\t\t\t\t" + x for x in scans]
+                    + ["\t\t\t\t</aside>"])
         out.append("\t\t\t\t<section>")
-        out.append(f'{ind}<dl class="card">')
-        for key, label in CARD_ROWS:
-            v = r.get(key, "")
-            if not v:
-                continue
-            if key == "standard_legal":
-                # same badge the collection page uses, worded for a deck plan.
-                # the regulation mark rides along here because the heading used
-                # to carry it and nothing else on the page does.
-                mark = r.get("regulation_mark", "")
-                text = LEGAL.get(v, v) + (f" (Reg {mark})" if mark else "")
-                body = legal_cell(v, esc(text))
-            else:
-                body = stat_cell(key, r)
-            out.append(f"{ind}\t<dt>{esc(label)}</dt><dd>{body}</dd>")
-        for k in ("attack1", "attack2", "attack3", "attack4"):
-            if r.get(k):
-                out.append(f"{ind}\t<dt>Attack</dt><dd>{attack_row(r[k])}</dd>")
-        out.append(f"{ind}</dl>")
+        out += stat_list(r, ind, reg)
+        if bling:
+            out += stat_list(bling, ind, ' data-print="bling"')
         out.append("\t\t\t\t</section>")
         blocks += out
         found.append(r)
@@ -568,10 +645,22 @@ def convert(src):
     counts = deck_counts(lines)
     prints = deck_printings(lines)
     thumbs, shown = deck_list(lines, src.name), False
+    # the Bling Deck, read up front: the strip that shows it comes before the
+    # table that lists it, and every card section needs its first bling print.
+    # a parenthetical on a row names a variant of the print, not the card.
+    bling_thumbs, first_bling = [], {}
+    for copies, name, code, num in bling_rows("\n".join(lines)):
+        rec = find_bling(code, num)
+        card = re.sub(r"\s*\([^()]*\)\s*$", "", name).strip()
+        if not rec or not rec["image_file"]:
+            print(f"  {src.name}: bling print {name} {code} {num} is not in "
+                  "bling.csv yet; run add_bling.py, then normalize_cards.py")
+            continue
+        bling_thumbs.append((f'./assets/{rec["image_file"]}', card, copies))
+        first_bling.setdefault(bare(card), rec)
+    bling_title, cost = bling_prose(lines)
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
-    art_head = None       # (heading, anchor) of that card, for the contents
-    bling = None          # (heading, anchor) of the page's showcase, if any
     sect = None           # the ## section currently being filled in
 
     def close_art():
@@ -615,7 +704,9 @@ def convert(src):
             head = stripped.startswith("#")
             if head:
                 close_sect()
-            for h in gallery(thumbs, head):
+            for h in gallery(thumbs, head, bling=bling_thumbs):
+                emit(h)
+            for h in (cost if bling_thumbs else []):
                 emit(h)
             shown = True
 
@@ -652,6 +743,18 @@ def convert(src):
             i += 1
             continue
 
+        # a ### whose section holds a Copies table is the Bling Deck. it was
+        # read up front, rows and prose both, and drawn with the strip; here
+        # it is skipped. it is not a card or a place to go, so it stays out
+        # of the contents too.
+        if stripped.startswith("### ") and bling_section(lines, i):
+            close_art()
+            j = i + 1
+            while j < n and not section_end(lines[j]):
+                j += 1
+            i = j
+            continue
+
         if stripped.startswith("### "):
             close_art()
             name = stripped[4:].strip()
@@ -659,7 +762,6 @@ def convert(src):
             card_anchor.setdefault(name, a)
             card_anchor.setdefault(
                 re.sub(r"\s*\([^()]*\)\s*$", "", name).strip(), a)
-            art_head = (name, a)
             art = [f'\t\t\t<article>\n\t\t\t\t<h3 id="{a}">{inline(name)}'
                    f'\x00{flavor(name, flav, seen_flav)}</h3>']
             badge = ""
@@ -672,9 +774,13 @@ def convert(src):
                 has_image = True
                 src_m = re.search(r'src="([^"]+)"', lines[j])
                 scan_anchor.setdefault(Path(src_m.group(1)).name, a)
-                art.append("\t\t\t\t<aside>"
-                           + card_art(src_m.group(1), name)
-                           + "</aside>")
+                rec = first_bling.get(bare(name))
+                tag = ' data-print="regular"' if rec else ""
+                scan = card_art(src_m.group(1), name, tag)
+                if rec:
+                    scan += bling_scan(rec, name)
+                    scan_anchor.setdefault(Path(rec["image_file"]).name, a)
+                art.append("\t\t\t\t<aside>" + scan + "</aside>")
                 i = j
             art.append("\t\t\t\t<section>")
             # the stat table, if the next non-blank block is one
@@ -703,6 +809,13 @@ def convert(src):
                             if re.sub(r"\*+", "", r[0]).strip()
                             not in ("How many", "Qty")]
                 rendered = render_table(grid, "\t\t\t\t\t", stats=is_card)
+                rec = first_bling.get(bare(name)) if is_card else None
+                if rec and rendered:
+                    # the hand-written block is the regular print's; the
+                    # bling print's comes from bling.csv, right after it
+                    rendered[0] = rendered[0].replace(
+                        '<dl class="card">', '<dl class="card" data-print="regular">', 1)
+                    rendered += stat_list(rec, "\t\t\t\t\t", ' data-print="bling"')
                 art += rendered
                 i = j - 1
                 # a table means this is a card or a glossary entry, both worth
@@ -712,10 +825,13 @@ def convert(src):
             elif not has_image:
                 # no hand-written table. if the heading names a card, build one
                 # from cards.csv; the planning docs get their art this way.
-                blocks, found = card_block(name, "\t\t\t\t\t", prints)
+                rec = first_bling.get(bare(name))
+                blocks, found = card_block(name, "\t\t\t\t\t", prints, rec)
                 if blocks:
                     for r in found:
                         scan_anchor.setdefault(Path(r["image_file"]).name, a)
+                    if rec and rec["image_file"]:
+                        scan_anchor.setdefault(Path(rec["image_file"]).name, a)
                     badge = count_badge(sum(
                         in_deck(counts, name, r["card_number"]) for r in found))
                     # each card is its own aside+section pair; the trailing
@@ -776,15 +892,9 @@ def convert(src):
                 table.append(lines[i])
                 i += 1
             grid = parse_table(table)
-            # a showcase is drawn, not tabled, and the ### it sits under joins
-            # the contents the way one a table directly follows would.
+            # a Copies table is the Bling Deck, read up front for the strip
+            # and the card sections, so on the page it is never a table
             if grid and grid[0][0].strip("*").lower() == "copies":
-                for h in gallery(showcase(grid), False, "\t\t\t\t\t",
-                                 lazy=True):
-                    emit(h)
-                if art is not None and (3, *art_head) not in toc:
-                    toc.append((3, *art_head))
-                    bling = bling or art_head
                 continue
             rendered = render_table(grid, "\t\t\t\t\t")
             # a Qty table exists to feed the badges and the deck-list strip.
@@ -848,16 +958,20 @@ def convert(src):
     for miss in sorted(set(flav) - seen_flav):
         print(f"  {src.name}: no heading matches flavour key {miss!r}")
     body = "\n".join(body)
-    if bling:
-        # the deck list heading links down to the showcase from the corner
-        # where flavour sprites sit, so the bling build is one tap away.
-        link = (f'<a data-bling href="#{bling[1]}" title="{esc(bling[0])}" '
-                f'aria-label="{esc(bling[0])}">$$$</a>')
+    if bling_thumbs:
+        # the switch between the deck and its Bling Deck sits in the corner
+        # of the deck list heading, where the flavour sprites go. its id is
+        # what a link ending in #bling lands on, and deal.js opens the page
+        # on the bling deck when one does.
+        label = esc(bling_title or "Bling Deck")
+        switch = (f'<button type="button" id="bling" data-bling '
+                  f'aria-pressed="false" title="{label}" '
+                  f'aria-label="{label}">$$$</button>')
         body, hit = re.subn(r'(<h3 id="deck-list">.*?)(</h3>)',
-                            lambda m: m.group(1) + link + m.group(2), body,
+                            lambda m: m.group(1) + switch + m.group(2), body,
                             count=1)
         if not hit:
-            print(f"  {src.name}: no Deck List heading to link the showcase from")
+            print(f"  {src.name}: no Deck List heading for the Bling Deck switch")
     return title, subtitle, build_nav(toc), body, "\n".join(notes)
 
 
@@ -963,8 +1077,16 @@ def build(name):
     src = ROOT / name
     dest = src.with_suffix(".html")
     title, subtitle, nav, body, notes = convert(src)
+    # the deal: the strip and the card flips. a page with neither, like the
+    # table rules, gets no script at all. the ?v= hashes keep a phone from
+    # running new HTML against a cached old script.
+    script = head = ""
+    if "<article data-decklist" in body or "<a data-art" in body:
+        script = f"./assets/deal/deal.js?v={stamp(DEAL_JS)}"
+        head = (f'<link rel="stylesheet" '
+                f'href="./assets/deal/deal.css?v={stamp(DEAL_CSS)}" />')
     out = page(dest, title, subtitle, nav, body, notes or CREDITS_NOTE,
-               MASCOT.get(src.name, []))
+               MASCOT.get(src.name, []), script=script, head=head)
     print(f"{dest.name}: {body.count('<article>')} cards, "
           f"{len(out.splitlines())} lines, {len(out) / 1024:.0f}kb")
 

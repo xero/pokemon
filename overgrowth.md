@@ -15,7 +15,7 @@
 
 > ### Table of Contents
 >
-> [Deck List](#deck-list)
+> [Deck List](#deck-list) · [Bling Deck](#bling-deck)
 >
 > **Pokémon:** [Teal Mask Ogerpon ex](#teal-mask-ogerpon-ex) · [Chikorita](#chikorita) · [Bayleef](#bayleef) · [Meganium](#meganium) · [Bulbasaur](#bulbasaur) · [Ivysaur](#ivysaur) · [Mega Venusaur ex](#mega-venusaur-ex) · [Celebi](#celebi)
 > **Supporters:** [Lillie's Determination](#lillies-determination) · [Dawn](#dawn) · [Hilda](#hilda) · [Team Rocket's Petrel](#team-rockets-petrel) · [Boss's Orders](#bosss-orders) · [AZ's Tranquility](#azs-tranquility) · [Lana's Aid](#lanas-aid)
@@ -29,7 +29,7 @@
 >
 > [**The Prize Tax**](#the-prize-tax) · [**The Energy Engine**](#the-energy-engine) · [**Game Plans**](#game-plans)
 >
-> [**Versus the Card Shop**](#versus-the-card-shop) · [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives) · [Bling Deck](#bling-deck)
+> [**Versus the Card Shop**](#versus-the-card-shop) · [**Versus the Ladder**](#versus-the-ladder) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
 
 ---
 
@@ -78,6 +78,40 @@
 **Eleven Basics is a 22% mulligan.** The opening seven holds an Ogerpon ex 40% of the time. Counting the first draw, 65% of hands hold an Ogerpon or a card that finds one, which is Dawn or the Ultra Ball, and 71% counting Petrel, which finds the Ultra Ball. 79% hold a Chikorita or a card that finds one, which is Poke Pad, Ultra Ball, Dawn, Celebi, or Petrel. 82% hold a Meganium or a card that finds one, which is Dawn, Hilda, Celebi, Poke Pad, Ultra Ball, or Petrel. A Forest is there 35% of the time, and 71% counting Petrel, Celebi, and the Poke Pad and Ultra Ball that find Celebi. Only 14% of opening hands hold no Grass Energy, and 5% counting Bug Catching Set and Hilda.
 
 One of the two Meganium is prized in 19% of games, and both in under 1%. Hero's Cape is prized in 10%.
+
+### Bling Deck
+
+This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at about $1,170 at TCGplayer market on October 18, 2026. [Check the current market price.](https://my.limitlesstcg.com/builder?i=10233MEG1330233MEG1340133MEG1770133MEG1550433TWM2110332MEP460231MEG90231MEP10232MEG120333POR1090133DRI2260133TWM2070233MEG1690233MEG1840133PFL1180133PFL1290233WHT1710133CRI1200133RCL1890133RCL2000133SUM1610233MEW2060233SSP2510133POR1130133TEF1520433PRE1020e33GRI167)
+
+| Copies | Card | Set | Number |
+| --- | --- | --- | --- |
+| 4 | Teal Mask Ogerpon ex | TWM | 211 |
+| 3 | Chikorita | MEP | 046 |
+| 2 | Bayleef | MEG | 009 |
+| 2 | Meganium | MEP | 001 |
+| 2 | Bulbasaur | MEG | 133 |
+| 2 | Ivysaur | MEG | 134 |
+| 1 | Mega Venusaur ex | MEG | 177 |
+| 1 | Mega Venusaur ex | MEG | 155 |
+| 2 | Celebi | MEG | 012 |
+| 2 | Lillie's Determination | MEG | 169 |
+| 2 | Lillie's Determination | MEG | 184 |
+| 1 | Dawn | PFL | 118 |
+| 1 | Dawn | PFL | 129 |
+| 2 | Hilda | WHT | 171 |
+| 1 | Team Rocket's Petrel | DRI | 226 |
+| 1 | Boss's Orders | RCL | 189 |
+| 1 | Boss's Orders | RCL | 200 |
+| 1 | AZ's Tranquility | CRI | 120 |
+| 1 | Lana's Aid | TWM | 207 |
+| 4 | Bug Catching Set | PRE | 102 |
+| 2 | Switch | MEW | 206 |
+| 2 | Night Stretcher | SSP | 251 |
+| 1 | Ultra Ball | SUM | 161 |
+| 1 | Poke Pad | POR | 113 |
+| 1 | Hero's Cape | TEF | 152 |
+| 3 | Forest of Vitality | POR | 109 |
+| 14 | Basic Grass Energy | GRI | 167 |
 
 ---
 
@@ -516,37 +550,3 @@ The list is settled. These are the fixes to reach for only when a symptom keeps 
 | Tapu Bulu and Genesect | the two Hilda and Hero's Cape, with a 3rd Night Stretcher | Xero tested that build on Live in October for Crustle and came back to this list. Opponents kept taking Meganium, and without Hilda half the Supporters that replace it were gone. Neither tech got much play. |
 | Fezandipiti ex | never | Xero's call. He cut it after playtesting this list on Live. |
 | Meowth ex | never | Xero's call. It is a 2-Prize body on the Bench for one Supporter. |
-
-### Bling Deck
-
-This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at about $1,170 at TCGplayer market on October 18, 2026. [Check the current market price.](https://my.limitlesstcg.com/builder?i=10233MEG1330233MEG1340133MEG1770133MEG1550433TWM2110332MEP460231MEG90231MEP10232MEG120333POR1090133DRI2260133TWM2070233MEG1690233MEG1840133PFL1180133PFL1290233WHT1710133CRI1200133RCL1890133RCL2000133SUM1610233MEW2060233SSP2510133POR1130133TEF1520433PRE1020e33GRI167)
-
-| Copies | Card | Set | Number |
-| --- | --- | --- | --- |
-| 4 | Teal Mask Ogerpon ex | TWM | 211 |
-| 3 | Chikorita | MEP | 046 |
-| 2 | Bayleef | MEG | 009 |
-| 2 | Meganium | MEP | 001 |
-| 2 | Bulbasaur | MEG | 133 |
-| 2 | Ivysaur | MEG | 134 |
-| 1 | Mega Venusaur ex | MEG | 177 |
-| 1 | Mega Venusaur ex | MEG | 155 |
-| 2 | Celebi | MEG | 012 |
-| 2 | Lillie's Determination | MEG | 169 |
-| 2 | Lillie's Determination | MEG | 184 |
-| 1 | Dawn | PFL | 118 |
-| 1 | Dawn | PFL | 129 |
-| 2 | Hilda | WHT | 171 |
-| 1 | Team Rocket's Petrel | DRI | 226 |
-| 1 | Boss's Orders | RCL | 189 |
-| 1 | Boss's Orders | RCL | 200 |
-| 1 | AZ's Tranquility | CRI | 120 |
-| 1 | Lana's Aid | TWM | 207 |
-| 4 | Bug Catching Set | PRE | 102 |
-| 2 | Switch | MEW | 206 |
-| 2 | Night Stretcher | SSP | 251 |
-| 1 | Ultra Ball | SUM | 161 |
-| 1 | Poke Pad | POR | 113 |
-| 1 | Hero's Cape | TEF | 152 |
-| 3 | Forest of Vitality | POR | 109 |
-| 14 | Basic Grass Energy | GRI | 167 |

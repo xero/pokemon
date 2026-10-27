@@ -13,7 +13,7 @@
 
 > ### Table of Contents
 >
-> [Deck List](#deck-list)
+> [Deck List](#deck-list) · [Bling Deck](#bling-deck)
 >
 > **Pokémon:** [Okidogi ex](#okidogi-ex) · [Gastly](#gastly) · [Haunter](#haunter) · [Gengar ex](#gengar-ex) · [Mega Gengar ex](#mega-gengar-ex) · [Toxel](#toxel) · [Toxtricity](#toxtricity) · [Chansey](#chansey) · [Blissey ex](#blissey-ex)
 > **Supporters:** [Lillie's Determination](#lillies-determination) · [Grimsley's Move](#grimsleys-move) · [Dawn](#dawn) · [Hilda](#hilda) · [Team Rocket's Petrel](#team-rockets-petrel) · [Janine's Secret Art](#janines-secret-art) · [Boss's Orders](#bosss-orders) · [AZ's Tranquility](#azs-tranquility)
@@ -29,7 +29,7 @@
 >
 > **Versus the Card Shop:** [Dragapult ex](#versus-dragapult-ex) · [Mega Lucario ex](#versus-mega-lucario-ex) · [Mega Zygarde ex](#versus-mega-zygarde-ex) · [Cynthia's Garchomp ex](#versus-cynthias-garchomp-ex) · [Mega Excadrill ex](#versus-mega-excadrill-ex) · [Alakazam](#versus-alakazam) · [N's Zoroark ex](#versus-ns-zoroark-ex) · [Marnie's Grimmsnarl ex](#versus-marnies-grimmsnarl-ex) · [Dhelmise](#versus-dhelmise) · [Crustle](#versus-crustle) · [Festival Lead](#versus-festival-lead) · [Tyrantrum](#versus-tyrantrum) · [Beedrill ex](#versus-beedrill-ex) · [Mega Starmie ex](#versus-mega-starmie-ex) · [Mega Floette ex](#versus-mega-floette-ex) · [Toxtricity Box](#versus-toxtricity-box) · [Mega Gengar ex](#versus-mega-gengar-ex) · [Mega Sharpedo ex](#versus-mega-sharpedo-ex) · [Cinccino ex](#versus-cinccino-ex) · [Charizard](#versus-charizard-and-battle-cage) · [Igglybuff Baby Box](#versus-igglybuff-baby-box) · [The rest of the room](#the-rest-of-the-room)
 >
-> [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives) · [Bling Deck](#bling-deck)
+> [**Versus the Kitchen Table**](#versus-the-kitchen-table) · [**Test and Tune**](#test-and-tune) · [**Alternatives**](#alternatives)
 
 ---
 
@@ -78,6 +78,41 @@
 **22 + 27 + 11 = 60.** ✓ Eleven Basics, fourteen Supporters, one ACE SPEC, and nothing over four copies.
 
 **Eleven Basics is a 22% mulligan**, the same as the Gengar Gang, because the two Chansey replaced an Okidogi and a Toxel one for one. The opening seven holds an Okidogi 22% of the time, and a dog with an Energy 16% of the time. It holds at least one Gastly 40% of the time. About a fifth of opening hands (22%) hold no Energy at all, which is what Hilda, *Poisonous Musculature*, and Janine's are for. Poffin finds the seven small Basics, and Poke Pad finds those and Chansey; the dogs come from *Call for Family*, Dawn, and Grimsley's.
+
+### Bling Deck
+
+This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at over $3,000 in October 2026. [Check the current market price.](https://my.limitlesstcg.com/builder?i=10433TEF1770232MEP27033330C1540233ASC2840132SFA900132SFA820332MEP780233PFL1030233TWM1870233TWM2010233MEW2060233POR1130233TWM2230433GRI1650133CRI1060133PAL2480132SFA880233DRI2260133WHT1710133WHT1640133PFL1180133PFL1290233PFL1200333MEG1690133FLI1430233MEG1270133TEF1620a33BUS168)
+
+| Copies | Card | Set | Number |
+| --- | --- | --- | --- |
+| 1 | Okidogi ex | SFA | 090 |
+| 1 | Okidogi ex | SFA | 082 |
+| 4 | Gastly | TEF | 177 |
+| 2 | Haunter | MEP | 027 |
+| 3 | Gengar ex | 30C | 154 |
+| 2 | Mega Gengar ex | ASC | 284 |
+| 3 | Toxel | MEP | 078 |
+| 2 | Toxtricity | PFL | 103 |
+| 2 | Chansey | TWM | 187 |
+| 2 | Blissey ex | TWM | 201 |
+| 3 | Lillie's Determination | MEG | 169 |
+| 2 | Grimsley's Move | PFL | 120 |
+| 1 | Dawn | PFL | 118 |
+| 1 | Dawn | PFL | 129 |
+| 1 | Hilda | WHT | 171 |
+| 1 | Hilda | WHT | 164 |
+| 2 | Team Rocket's Petrel | DRI | 226 |
+| 1 | Janine's Secret Art | SFA | 088 |
+| 1 | Boss's Orders | PAL | 248 |
+| 1 | AZ's Tranquility | CRI | 106 |
+| 4 | Rare Candy | GRI | 165 |
+| 2 | Buddy-Buddy Poffin | TWM | 223 |
+| 2 | Poke Pad | POR | 113 |
+| 2 | Switch | MEW | 206 |
+| 1 | Energy Recycler | FLI | 143 |
+| 2 | Risky Ruins | MEG | 127 |
+| 10 | Basic Darkness Energy | BUS | 168 |
+| 1 | Neo Upper Energy | TEF | 162 |
 
 ---
 
@@ -1234,38 +1269,3 @@ Two days of Live testing produced more good cards than seats, and a few the game
 | Kofu | a Poffin | draw has to be always live |
 | Fezandipiti ex, Pecharunt ex, Munkidori, Chi-Yu | never | tried or rejected in earlier passes; they broke the rhythm |
 | Marnie's Grimmsnarl ex | never | *Punk Up* feeds only Marnie's Pokémon |
-
-### Bling Deck
-
-This is the most baller version of the deck, identical card-for-card to the original, but featuring illustration rares, full arts, and gold secret rares. Valued at over $3,000 in October 2026. [Check the current market price.](https://my.limitlesstcg.com/builder?i=10433TEF1770232MEP27033330C1540233ASC2840132SFA900132SFA820332MEP780233PFL1030233TWM1870233TWM2010233MEW2060233POR1130233TWM2230433GRI1650133CRI1060133PAL2480132SFA880233DRI2260133WHT1710133WHT1640133PFL1180133PFL1290233PFL1200333MEG1690133FLI1430233MEG1270133TEF1620a33BUS168)
-
-| Copies | Card | Set | Number |
-| --- | --- | --- | --- |
-| 1 | Okidogi ex | SFA | 090 |
-| 1 | Okidogi ex | SFA | 082 |
-| 4 | Gastly | TEF | 177 |
-| 2 | Haunter | MEP | 027 |
-| 3 | Gengar ex | 30C | 154 |
-| 2 | Mega Gengar ex | ASC | 284 |
-| 3 | Toxel | MEP | 078 |
-| 2 | Toxtricity | PFL | 103 |
-| 2 | Chansey | TWM | 187 |
-| 2 | Blissey ex | TWM | 201 |
-| 3 | Lillie's Determination | MEG | 169 |
-| 2 | Grimsley's Move | PFL | 120 |
-| 1 | Dawn | PFL | 118 |
-| 1 | Dawn | PFL | 129 |
-| 1 | Hilda | WHT | 171 |
-| 1 | Hilda | WHT | 164 |
-| 2 | Team Rocket's Petrel | DRI | 226 |
-| 1 | Janine's Secret Art | SFA | 088 |
-| 1 | Boss's Orders | PAL | 248 |
-| 1 | AZ's Tranquility | CRI | 106 |
-| 4 | Rare Candy | GRI | 165 |
-| 2 | Buddy-Buddy Poffin | TWM | 223 |
-| 2 | Poke Pad | POR | 113 |
-| 2 | Switch | MEW | 206 |
-| 1 | Energy Recycler | FLI | 143 |
-| 2 | Risky Ruins | MEG | 127 |
-| 10 | Basic Darkness Energy | BUS | 168 |
-| 1 | Neo Upper Energy | TEF | 162 |

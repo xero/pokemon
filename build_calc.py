@@ -33,11 +33,11 @@ named, so those are written out by hand below instead of parsed.
 The condition tokens an effect carries ("atk:ex", "tgt:bench", "dmg:>=200")
 are read by calc.js's test(). A new token needs a case there too.
 """
-import glob, hashlib, json, re, sys, tomllib
+import glob, json, re, sys, tomllib
 from pathlib import Path
 
 from decklib import qty_rows
-from pokelib import CREDITS_NOTE, COST_TYPE, esc, find_card, page
+from pokelib import CREDITS_NOTE, COST_TYPE, esc, find_card, page, stamp
 
 ROOT = Path(__file__).parent
 DEST = ROOT / "calc.html"
@@ -779,18 +779,12 @@ def body(atk, tools, stadiums, specials, pool_url):
 						<label data-field><span>Stadium in play</span> <select id="stadium">{stadiums}</select></label>
 					</div>
 					<figure data-preview>
-						<a data-art target="_blank" rel="noopener"><img src="./assets/calc/card-back.png" alt="" width="365" height="512" /></a>
+						<a data-art target="_blank" rel="noopener"><img src="./assets/card-back.png" alt="" width="365" height="512" /></a>
 						<figcaption>Pick a Pokémon</figcaption>
 					</figure>
 				</div>
 				<ul data-callouts></ul>
 			</section>"""
-
-
-def stamp(path):
-    """?v= from the file's own bytes, so a phone never runs new HTML against
-    a cached old script, and an unchanged file keeps its URL."""
-    return hashlib.sha1(path.read_bytes()).hexdigest()[:8]
 
 
 def main():

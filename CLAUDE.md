@@ -9,6 +9,7 @@
 
 ```
 add_cards.py --> product-ids.tsv --normalize_cards.py--> cards.csv + assets/*.jpg
+add_bling.py --> bling-ids.tsv --normalize_cards.py--> bling.csv + assets/*.jpg
 pokemontcg.io --fetch_regulation.py--> regulation-marks.json --> the reg mark and legal columns
 pokemontcg.io --fetch_legal_pool.py--> legal-cards-<epoch>.json --build_calc.py--> assets/calc/pool.json
 decks.toml + the deck .md files --build.py--> the site
@@ -18,6 +19,7 @@ decks.toml + the deck .md files --build.py--> the site
 - **Ownership is one flag, and it defaults to owned.** `owned` is `1` or `0`. There are no copy counts anywhere, nothing scrapes an order history, and nothing infers ownership from anything else. A card is on the pull list because someone marked it `0`, and for no other reason. Xero says when a card needs buying; `add_cards.py --need` records it and `--have` undoes it. Do not flip a flag on a guess.
 - **`cards.csv` is generated.** Do not hand-edit it. Columns worth knowing: `name`, `set_name`, `card_number`, `card_text`, `attack1-4`, `regulation_mark`, `standard_legal`, `image_file`, `owned`, `source_url`. Card text in it comes from TCGplayer and is the authoritative text to quote in deck prose.
 - **A card marked `0` still gets a full card block on deck pages.** It stays off the collection page and lands on the pull list.
+- **Bling prints have a seed of their own.** `bling-ids.tsv` and `bling.csv` hold the prints a deck's Bling Deck names. Nobody here owns or wants them, so they never touch `product-ids.tsv` or `cards.csv`, and they never reach the collection or the pull list. `bling.csv` has `cards.csv`'s columns, with the deck table's set code in place of `owned`, and only the deck pages read it.
 - The collection mixes more than one person's cards. Owned means in the house, not in any one binder.
 
 ## The legal card pool
@@ -42,6 +44,18 @@ A TCGplayer product URL also works as the query and skips the search entirely. `
 - **TCGplayer's product name is the authority, and it is not always the printed name.** It is `Poke Pad`, not `Poké Pad`. Basic energy is `Basic Water Energy` in the API and `cards.csv` but `Water Energy` on the storefront. A card heading or deck-list row that guesses wrong resolves to nothing, silently.
 - **Restocking a list is faster through [Mass Entry](https://www.tcgplayer.com/massentry) than the search.** Format is `qty Name [SET]` using the codes behind *Show Set/Series Codes*. Two things the docs get wrong for Pokémon: a trailing collector number does not work, and a card with more than one print in its set needs that number **inside the name** (`3 Mega Chandelure ex - 038/084 [PBL]`). One bad line discards the entire batch with nothing added.
 - **Research shortlists do not go in the seed.** An energy-acceleration survey once seeded 40 candidates into the pipeline, and every page that touched the data read them as 40 things to go buy. Keep a survey in its own document. A card goes in the seed when a deck runs it or Xero owns it.
+
+## Adding a Bling Deck
+
+A Bling Deck is a deck's same sixty in prints nobody here owns: illustration rares, full arts, and gold secret rares. Fox makes these.
+
+1. At the foot of the deck's `## Deck List`, after its tables and prose, add a `### Bling Deck` with a paragraph giving the price and a link to check it, then a table led by `Copies`: `| Copies | Card | Set | Number |`. Set holds the Limitless set code (`TWM`), the same one its deck builder uses. A card split across two or three arts gets a row per print.
+2. `python3 add_bling.py` searches TCGplayer for every print not already in `bling-ids.tsv` (network) and seeds it. It matches the table's code and number exactly, so it never guesses.
+3. `python3 normalize_cards.py`, then `python3 build.py`.
+
+- **TCGplayer numbers the older sets its own way.** It calls Limitless's `BUS` `SM03`, and its numbering is irregular (`SM8`, but `SM10`). `ALIASES` in `add_bling.py` maps the ones seen so far. A print it can't pin is reported with what the search saw at that number, so a new old set is one line there.
+- **A variant at the same number goes in parens.** `Bug Catching Set (Poke Ball Pattern)` picks the pattern print, and a bare `Bug Catching Set` gets the plain one. The page matches the row to its card section by the name without the parens.
+- **Regulation marks for bling prints come from the same cache.** Most sets are covered. A promo or a secret rare pokemontcg.io lacks shows "unknown", and an older print shows its own mark, which is usually rotated out.
 
 ## The registry
 
@@ -73,7 +87,7 @@ python3 build.py --data     # re-fetch cards.csv first
 - **Run `build.py`, never the builders individually.** `build_index.py` reads the finished pages back off disk to count the cards on each, so it runs last.
 - **`assets/template.html` has an `@media print` block, and it is load-bearing.** The screen type scale is `vw` clamps that resolve against the sheet and arrive oversized, the dark-mode block has no print guard, and browsers drop backgrounds. Anything that encodes meaning in a fill needs an explicit print rule; the table headers and the `[data-count]` badge already have one.
 - **Every generated file is committed.** `--check` on a clean tree is the regression test. No workflow runs it, so run it before committing a builder change. After changing a builder, a deck .md, or `decks.toml`, run a build before committing or the commit is stale.
-- Generated: `collection.html`, `wishlist.html`, every deck page, `credits.html`, `collection.md`, `calc.html`, `assets/calc/pool.json`, `index.html`. Hand-written: the deck `.md` files, `decks.toml`, `calc.toml`, `assets/calc/calc.js` and `calc.css`, `product-ids.tsv` through `add_cards.py`, the Python. Neither: `logs/`, the TCG Live battle logs the tcg-log skill (`.claude/skills/tcg-log/`) archives, which is gitignored. Xero drops raw logs there under any name, and the skill's `save` renames them.
+- Generated: `collection.html`, `wishlist.html`, every deck page, `credits.html`, `collection.md`, `calc.html`, `assets/calc/pool.json`, `index.html`, and `cards.csv` and `bling.csv` through `normalize_cards.py`. Hand-written: the deck `.md` files, `decks.toml`, `calc.toml`, `assets/calc/calc.js` and `calc.css`, `assets/deal/deal.js` and `deal.css`, `product-ids.tsv` through `add_cards.py`, `bling-ids.tsv` through `add_bling.py`, the Python. Neither: `logs/`, the TCG Live battle logs the tcg-log skill (`.claude/skills/tcg-log/`) archives, which is gitignored. Xero drops raw logs there under any name, and the skill's `save` renames them.
 
 ## The damage calculator
 
@@ -87,6 +101,16 @@ python3 build.py --data     # re-fetch cards.csv first
 - **Images load from Scrydex by card id** (`images.scrydex.com/pokemon/<id>/medium`), the same host pokemontcg.io's own image field points at. None are in the repo, and no header is needed: an `<img>` from another origin needs no CORS.
 - **The template's `${HEAD}` slot exists for this page's stylesheet.** Its line drops out when empty, like `${SCRIPT}`, so no other page changes. Script, stylesheet, and pool URLs carry a `?v=` hash of the file, so a phone never runs new HTML against a cached old script.
 - **It saves the form to `localStorage`**, because Android discards background tabs. Clear resets the opponent's Pokémon and what is on it, and leaves the Stadium, the attacker, and the Poisoned switch alone.
+
+## The deal
+
+`assets/deal/deal.js` and `deal.css` animate every deck page, and `build_deck_html.py` links them on any page with a deck-list strip or a card scan. The script enhances what the builder writes and never changes the layout, so the page without it is the page as it was.
+
+- **The strip deals once per load.** It waits as a face-down pile in the middle of the strip, or on a phone in its top-left corner, until the whole pile is on screen. Then it shuffles, slides to the top-left, deals, and turns over in a ripple. It never runs again that load, however far you scroll. The count badges fade in after it, since they are ours and not printed on the cards.
+- **Card sections turn over on first view.** Each scan starts face down and turns up the first time most of it is on screen, from scrolling or from landing on an anchor. Cards you skip stay down until you reach them.
+- **The `$$$` swaps the deck for the whole page.** The strip turns down, shuffles, and deals the other deck's figures, easing its height to fit. Every card section turns face down and turns up in the other deck's art the next time it is in view. The root's `data-showing="bling"` is the one switch: anything tagged `data-print` shows for its deck, and the gold frame and the price under the strip follow it. A link ending in `#bling` opens the page on the bling deck.
+- **The grid is never repositioned.** Cards move by transforms measured against the slots the strip already has, so the last frame is the static page. A builder change to the strip has to keep the figure, link, and image shape `enhance()` reads.
+- **Nothing flashes.** With scripting on, a CSS placeholder hides the strip and shows card backs until the script takes over, and lifts itself after three seconds if it never does. Under reduced motion everything arrives in place, and the `$$$` still deals.
 
 ## The deck simulator
 
@@ -108,7 +132,7 @@ python3 build.py --data     # re-fetch cards.csv first
 - **Deck list tables** whose first header cell is `Qty` feed the count badges on card headings and the pull list's counts. Card numbers in those tables must be bare (`056`), not `056/094`; the parser fullmatches 2-3 digits.
 - **`deck_counts()` overwrites, so the last `Qty` table wins.** It scans *every* table whose first header cell is `Qty`, and so does the pull list's `decklib.qty_rows()`. Two tables listing the same card at different counts silently render the wrong badge and the wrong buy count. Keep one canonical set of Qty tables per page and express variants under a different header (`| Out | In |`), which both parsers ignore.
 - **The deck list strip is generated, and it reads whichever shape the page has.** `deck_list()` builds one full-width `[data-decklist]` article of 150px scans, one per distinct card, badged with the count where the deck runs more than one. Qty tables feed it, using the Card, Set, and Number columns to pin the printing; it also reads each card page's `<img>` and its `Qty` or `How many` row, and dedupes the two on the scan path. A `###` block only counts as a card if its table carries a `Set` row. The strip lands directly above the first `# Pokémon` heading or `**Pokémon (N)**` label, and gets its own heading only in the first case, since the planning docs already sit under one. A row with no set (a flex slot) is skipped; anything else that fails to resolve prints a warning naming the card. Each thumbnail links to the card's own `###` section, matched on its scan first and then on the heading text with and without its parens, so two printings of one card each link to their own section; a card with no section on the page stays a plain image.
-- **A table led by `Copies` is a showcase**, drawn as a strip of art in the deck-list style and never as a table. Overgrowth and Lucky Haunt each end with one, a Bling Deck: the same sixty in prints nobody here owns. Its Set column holds the Limitless set code (`MEG`, `MEP`), and the art loads from Limitless's image host by code and number, so those prints never enter the seed. Both counters read only `Qty` tables, so a showcase never reaches the badges or the pull list. The `###` it sits under joins the contents, the page's Deck List heading gets a `$$$` link down to it in the flavour-sprite corner, and each thumbnail links to the card's own section by name, so a Card cell must match the heading (`Poke Pad`, `Basic Grass Energy`). The `[data-bling]` rule for that link lives in the shared template, so touching it rewrites every page.
+- **A `###` holding a table led by `Copies` is the deck's Bling Deck**, at the foot of its Deck List. Overgrowth and Lucky Haunt have one. On the page the section is never drawn where it sits. Its prints ride in the deck-list strip beside the regular ones, hidden until the `$$$` in the Deck List heading deals them, with a figure for every print. Each card section carries its first bling print's scan and stats beside its own, so a card with three arts shows the first one there. The section's paragraph, the price and where to check it, renders under the strip and shows only with the bling deck. Rows reach their card sections by name, so a Card cell must match the heading (`Poke Pad`, `Basic Grass Energy`). Both counters read only `Qty` tables, so a Bling Deck never reaches the badges or the pull list. A print missing from `bling.csv` prints a build warning naming `add_bling.py`. The `[data-bling]` rule for the `$$$` lives in the shared template, so touching it rewrites every page.
 - **An `<img>` on its own line directly after a table renders beside it**: the pair share a `[data-beside]` flex row, image on the right at a quarter width, dropping below the table on a phone and out of print entirely. A card scan never triggers this, because scans sit above their table.
 - A `###` directly under the page `# Title` is the subtitle, not a card.
 - The `> ### Table of Contents` blockquote is discarded and rebuilt from headings in the HTML, but keep it accurate in the .md for GitHub readers.

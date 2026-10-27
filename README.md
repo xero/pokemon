@@ -204,6 +204,23 @@ costs none.
 there is also a **form on the actions tab** that runs all three and republishes
 the site. it takes a card, a number, and two checkboxes: need, and japanese.
 
+### adding a bling deck
+
+a bling deck is a deck's same sixty in prints nobody here owns. it goes at the
+foot of the deck's `## Deck List` as a `### Bling Deck`: a line with the price,
+then a table of `| Copies | Card | Set | Number |` using limitless's set codes,
+one row per print. the `$$$` in the deck list heading deals it in place of the
+regular deck, and the card sections switch to its art and stats.
+
+```sh
+python3 add_bling.py         # look up every new print on tcgplayer, into bling-ids.tsv
+python3 normalize_cards.py   # pull their text and scans into bling.csv
+python3 build.py
+```
+
+the bling prints have their own seed so they never land in the collection or on
+the pull list.
+
 ## sources
 
 every csv and image in here is fetched by a script, so it all rebuilds from
@@ -217,7 +234,7 @@ artwork in every page's banner and footer is by
 weakness, resistance, retreat cost, and card text all come from the
 [tcgplayer](https://www.tcgplayer.com) marketplace search api, and the card
 scans come from the tcgplayer cdn. `normalize_cards.py` pulls both and writes
-`cards.csv`.
+`cards.csv`, and `bling.csv` for the bling deck prints.
 
 **what we own.** one flag per card in `product-ids.tsv`, set by hand through
 `add_cards.py`. every card is owned unless it is marked otherwise, and the

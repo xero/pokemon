@@ -15,6 +15,7 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png" />
 		<meta name="apple-mobile-web-app-title" content="pokedex" />
 		<link rel="manifest" href="./assets/site.webmanifest" />
+		<link rel="stylesheet" href="./assets/deal/deal.css?v=431b225a" />
 		<style>
 		:root {
 			/* palette */
@@ -966,9 +967,9 @@
 			}
 		}
 
-		/* the deck list heading's link down to a showcase, Overgrowth's bling
-		   build. it parks in the corner like the sprites, and after them when
-		   a heading has both. */
+		/* the $$$ in the deck list heading, the switch between a deck and its
+		   Bling Deck. it parks in the corner like the sprites, and after them
+		   when a heading has both. */
 		[data-bling] {
 			margin-inline-start: auto;
 			text-decoration: none;
@@ -1294,7 +1295,7 @@
 			</aside>
 			<section>
 				<h3 id="deck-list">Deck List</h3>
-			<article data-decklist>
+			<article data-decklist data-deal-back="./assets/card-back.png">
 				<figure><a href="#mega-zygarde-ex"><img src="./assets/684336_mega-zygarde-ex-047-088.jpg" alt="Mega Zygarde ex" /><span data-count>x3</span></a></figure>
 				<figure><a href="#binacle"><img src="./assets/684334_binacle.jpg" alt="Binacle" /><span data-count>x3</span></a></figure>
 				<figure><a href="#barbaracle"><img src="./assets/684335_barbaracle.jpg" alt="Barbaracle" /><span data-count>x3</span></a></figure>
@@ -1975,5 +1976,6 @@
 			<p><small>Pokémon is © Nintendo, Creatures Inc., and Game Freak. Unofficial fan project, nothing here is for sale.</small></p>
 			</div>
 		</footer>
+		<script defer src="./assets/deal/deal.js?v=4fa0628a"></script>
 	</body>
 </html>

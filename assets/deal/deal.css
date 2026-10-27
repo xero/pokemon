@@ -1,18 +1,20 @@
-/* The dealt deck list, deal.html, on top of template.html.
+/* The deal, on top of template.html: the deck-list strip and the card
+ * sections on every deck page. build_deck_html.py links it on any page with
+ * a strip or a card scan.
  *
- * Only deal.html loads this. The strip itself is the template's
- * [data-decklist]: a flex-wrapped row of 150px figures, each a link holding
- * a scan and a count badge. deal.js wraps every scan in a two-faced card,
- * and these rules are what make the faces a card: the front and the back
- * sit on the same spot, the back is pre-turned, and whichever faces away
- * from the viewer is hidden. Everything that moves is moved by the script;
- * nothing here animates on its own except the hover tilt's easing.
+ * deal.js wraps every scan in a two-faced card, and these rules are what
+ * make the faces a card: the front and the back sit on the same spot, the
+ * back is pre-turned, and whichever faces away from the viewer is hidden.
+ * Everything that moves is moved by the script, except what eases here:
+ * the hover tilt, the strip's height, the gold frame, and the price.
  *
- * Three states ride on the article's data-deal attribute:
- *   stacked  every card is face down on the pile, waiting for the strip to
+ * Three states ride on the strip's data-deal attribute:
+ *   stacked  every card is face down on the pile, waiting for the pile to
  *            scroll into view
  *   dealing  cards are in the air, or turning
  *   done     the page as it was before the script ran, plus the hover
+ *
+ * And one on the root: data-showing="bling" while the Bling Deck is up.
  */
 
 :root {
@@ -20,9 +22,92 @@
 	   of them stack up and anything heavier reads as a smudge. */
 	--deal-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
 	--deal-lift:   0 14px 26px rgb(0 0 0 / 0.32), 0 4px 8px rgb(0 0 0 / 0.22);
-	--deal-gild:   400ms;   /* the bling frame fading in and out */
+	--deal-gild:   400ms;   /* the bling frame and price fading in and out */
+	--deal-resize: 450ms;   /* the strip easing to the other deck's height */
 	--deal-depth:  900px;
-	--deal-tap:    44px;
+}
+
+/* ---------------------------------------------------------------------
+   which deck is up. a page with a Bling Deck carries both: every element
+   that belongs to one tags data-print, and only the deck that is up shows.
+   without the script nothing sets data-showing, so the regular deck is the
+   page, as it was. */
+
+:root:not([data-showing="bling"]) [data-print="bling"],
+:root[data-showing="bling"] [data-print="regular"] {
+	display: none;
+}
+
+/* ---------------------------------------------------------------------
+   the card: two faces, one turned away */
+
+[data-card] {
+	display: block;
+	position: relative;
+	aspect-ratio: 5 / 7;
+	transform-style: preserve-3d;
+}
+
+[data-face] {
+	display: block;
+	position: absolute;
+	inset: 0;
+	border-radius: var(--round);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+/* said out loud, since Safari has been known to show a back through a
+   front that has no transform of its own */
+[data-face="front"] {
+	transform: rotateY(0deg);
+}
+
+[data-face="back"] {
+	transform: rotateY(180deg);
+}
+
+/* a card face down. a turn animates away from this, and the script drops
+   the attribute as the turn ends, so the base state and the animation's
+   last frame agree and nothing snaps. */
+[data-card][data-down] {
+	transform: rotateY(180deg);
+}
+
+/* a card section's scan: the link that opens it full size is what turns
+   it, so the link carries the vanishing point */
+[data-flip] {
+	perspective: var(--deal-depth);
+}
+
+/* ---------------------------------------------------------------------
+   before the script. a page that will run it should never show a front
+   first and then turn it away, so with scripting on, the strip waits
+   unseen and each scan shows the back. the script lifts both as it takes
+   over. if it never arrives, both lift on their own after a few seconds. */
+
+@media (scripting: enabled) {
+	[data-decklist][data-deal-back]:not([data-deal]) figure {
+		visibility: hidden;
+		animation: deal-show 0s 3s forwards;
+	}
+
+	article > aside > [data-art]:not([data-flip]) {
+		background: url("../card-back.png") center / contain no-repeat;
+
+		img {
+			opacity: 0;
+			animation: deal-reveal 0s 3s forwards;
+		}
+	}
+}
+
+@keyframes deal-show {
+	to { visibility: visible; }
+}
+
+@keyframes deal-reveal {
+	to { opacity: 1; }
 }
 
 /* ---------------------------------------------------------------------
@@ -31,6 +116,12 @@
 [data-deal] {
 	/* the pile and the flights leave the box. nothing may clip them. */
 	overflow: visible;
+	position: relative;
+	/* the script holds the height at the old deck's and lets it go to the
+	   new one's, so the strip eases open or closed as the decks swap */
+	transition:
+		border-radius var(--deal-gild) ease-out,
+		height var(--deal-resize) ease-in-out;
 
 	/* the empty box over the waiting pile that the script watches, so the
 	   shuffle starts once the whole pile is on screen. the script places
@@ -50,21 +141,8 @@
 		perspective: var(--deal-depth);
 	}
 
-	[data-card] {
-		display: block;
-		position: relative;
-		aspect-ratio: 5 / 7;
-		transform-style: preserve-3d;
-	}
-
 	[data-face] {
-		display: block;
-		position: absolute;
-		inset: 0;
-		border-radius: var(--round);
 		box-shadow: var(--deal-shadow);
-		backface-visibility: hidden;
-		-webkit-backface-visibility: hidden;
 		transition: box-shadow 220ms ease-out;
 	}
 
@@ -75,28 +153,10 @@
 		box-shadow: var(--deal-lift);
 	}
 
-	/* said out loud, since Safari has been known to show a back through a
-	   front that has no transform of its own */
-	[data-face="front"] {
-		transform: rotateY(0deg);
-	}
-
-	[data-face="back"] {
-		transform: rotateY(180deg);
-	}
-
-	/* a card face down. the turn animates away from this, and the script
-	   drops the attribute as each turn ends, so the base state and the
-	   animation's last frame agree and nothing snaps. */
-	[data-card][data-down] {
-		transform: rotateY(180deg);
-	}
-
 	/* the count is ours, not the card's. it sits flat on the slot, outside
 	   the card that flies, turns, and tilts, and it is invisible until the
 	   deal is over: then every badge fades in together, and they all fade
-	   out again before anything takes the cards away. the script sets the
-	   attribute and the length, so the fade follows the speed control. */
+	   out again before anything takes the cards away. */
 	[data-count] {
 		opacity: 0;
 		transition: opacity var(--deal-fade, 240ms) ease-out;
@@ -131,6 +191,9 @@
 	}
 }
 
+/* ---------------------------------------------------------------------
+   the Bling Deck */
+
 /* the strip wearing the rare prints gets a gold frame, so the state reads
    even on a card whose two prints look alike.
 
@@ -144,42 +207,60 @@
    the gold is two radial gradients across the frame's whole box, with the
    strip's own colour laid over everything inside the border so only the
    border shows them. the cards are positioned, so they paint over that. */
-[data-deal] {
-	position: relative;
-	transition: border-radius var(--deal-gild) ease-out;
+[data-deal]::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border: 10px solid transparent;
+	border-radius: 15px;
+	background:
+		linear-gradient(var(--bg), var(--bg)) padding-box,
+		radial-gradient(ellipse farthest-corner at right bottom,
+			#fedb37 0%, #fdb931 8%, #8a6e2f 40%, transparent 80%) border-box,
+		radial-gradient(ellipse farthest-corner at left top,
+			#ffffff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%) border-box;
+	opacity: 0;
+	transition: opacity var(--deal-gild) ease-out;
+	pointer-events: none;
+}
+
+/* the strip's own corners follow the frame's, or its colour shows in the
+   corners outside the gold */
+:root[data-showing="bling"] [data-deal] {
+	border-radius: 15px;
 
 	&::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		border: 10px solid transparent;
-		border-radius: 15px;
-		background:
-			linear-gradient(var(--bg), var(--bg)) padding-box,
-			radial-gradient(ellipse farthest-corner at right bottom,
-				#fedb37 0%, #fdb931 8%, #8a6e2f 40%, transparent 80%) border-box,
-			radial-gradient(ellipse farthest-corner at left top,
-				#ffffff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%) border-box;
-		opacity: 0;
-		transition: opacity var(--deal-gild) ease-out;
-		pointer-events: none;
-	}
-
-	/* the strip's own corners follow the frame's, or its colour shows in
-	   the corners outside the gold */
-	&[data-art="bling"] {
-		border-radius: 15px;
-
-		&::before {
-			opacity: 1;
-		}
+		opacity: 1;
 	}
 }
 
-/* the $$$ in the corner of the Deck List heading. on the Overgrowth page
-   it is a link down to the showcase; here it is a switch, so it is a
-   button in the link's clothes. the template's [data-bling] rule parks it
-   in the corner; this takes the button chrome off. */
+/* the price of the Bling Deck and where to check it, under the strip. it
+   is always in the page, collapsed: a one-row grid going from 0fr to 1fr
+   eases its height open without anyone measuring it, and the inner box
+   clips what has not opened yet. */
+[data-cost] {
+	display: grid;
+	grid-template-rows: 0fr;
+	opacity: 0;
+	transition:
+		grid-template-rows var(--deal-resize) ease-in-out,
+		opacity var(--deal-gild) ease-out;
+
+	> div {
+		overflow: hidden;
+		min-height: 0;
+	}
+}
+
+:root[data-showing="bling"] [data-cost] {
+	grid-template-rows: 1fr;
+	opacity: 1;
+}
+
+/* the $$$ in the corner of the Deck List heading: a switch, so a button,
+   in the clothes of the link it used to be. the template's [data-bling]
+   rule parks it in the corner; this takes the button chrome off. a link
+   ending in #bling lands here, under the page's top padding. */
 h3 [data-bling] {
 	background: none;
 	border: 0;
@@ -189,6 +270,7 @@ h3 [data-bling] {
 	font-weight: 700;
 	line-height: 1;
 	cursor: pointer;
+	scroll-margin-top: var(--pad);
 
 	&[aria-pressed="true"] {
 		color: var(--gold);
@@ -201,78 +283,20 @@ h3 [data-bling] {
 }
 
 /* ---------------------------------------------------------------------
-   the controls. a prototype's knobs, not a design for the site. */
-
-[data-controls] {
-	gap: var(--gap);
-
-	form {
-		display: flex;
-		flex-flow: row wrap;
-		align-items: flex-end;
-		gap: var(--gap);
-	}
-
-	label {
-		display: flex;
-		flex-direction: column;
-		gap: 0.3em;
-		flex: 1 1 11rem;
-
-		/* the small-caps label over every control, the same treatment as
-		   a card's stat block on the deck pages */
-		> span {
-			color: var(--muted);
-			font-size: 0.85em;
-			font-weight: 700;
-			letter-spacing: 0.04em;
-			text-transform: uppercase;
-		}
-	}
-
-	/* form controls opt out of inheriting type, and the template's reset
-	   zeroes their padding, so both have to be said out loud */
-	select,
-	button {
-		min-height: var(--deal-tap);
-		padding: 0.45em 0.7em;
-		background: var(--bg);
-		color: var(--fg);
-		border: 1px solid var(--line);
-		border-radius: var(--round);
-		font: inherit;
-
-		&:focus-visible {
-			outline: 2px solid var(--accent);
-			outline-offset: 1px;
-		}
-	}
-
-	button {
-		flex: 1 1 11rem;
-		font-weight: 700;
-		cursor: pointer;
-
-		&:hover {
-			border-color: var(--accent);
-		}
-	}
-}
-
-/* ---------------------------------------------------------------------
-   print. the strip is the page as it was: fronts up, nothing in flight. */
+   print. the page as it was: fronts up, nothing in flight, in whichever
+   deck is up. */
 
 @media print {
+	[data-mover],
+	[data-card] {
+		transform: none !important;
+	}
+
+	[data-face="back"] {
+		display: none;
+	}
+
 	[data-deal] {
-		[data-mover],
-		[data-card] {
-			transform: none !important;
-		}
-
-		[data-face="back"] {
-			display: none;
-		}
-
 		[data-count] {
 			opacity: 1;
 		}
@@ -282,9 +306,5 @@ h3 [data-bling] {
 		&::before {
 			display: none;
 		}
-	}
-
-	[data-controls] {
-		display: none;
 	}
 }

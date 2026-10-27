@@ -64,7 +64,7 @@ def img(src, alt, extra=""):
     return f'<img src="{src}" alt="{esc(alt)}"{extra} />'
 
 
-def card_art(src, alt):
+def card_art(src, alt, attrs="", extra=""):
     """A card scan, linked to itself so it can be opened full size.
 
     The scans are 1000px wide and the page shows them at about 250, so there is
@@ -75,9 +75,12 @@ def card_art(src, alt):
 
     data-art marks it for the stylesheet. An <aside> is also what a callout is
     built from, so styling "the link inside an aside" would catch every inline
-    link in the prose.
+    link in the prose. attrs go on the link, extra on the image: a deck page
+    with a Bling Deck tags each scan with the print it belongs to, and loads
+    the bling one lazily, since it stays hidden until the $$$ is pressed.
     """
-    return f'<a data-art href="{src}" target="_blank" rel="noopener">{img(src, alt)}</a>'
+    return (f'<a data-art{attrs} href="{src}" target="_blank" rel="noopener">'
+            f'{img(src, alt, extra)}</a>')
 
 
 def icon(folder, slug, alt):
@@ -224,6 +227,42 @@ def cards():
         with open(ROOT / "cards.csv", encoding="utf-8") as f:
             _CARDS = list(csv.DictReader(f))
     return _CARDS
+
+
+_BLING = None
+
+
+def bling_cards():
+    """Every row of bling.csv, loaded once: the Bling Deck prints, which are
+    neither owned nor wanted and so live apart from cards.csv. Empty when
+    there are none yet."""
+    global _BLING
+    if _BLING is None:
+        import csv
+        path = ROOT / "bling.csv"
+        if path.exists():
+            with open(path, encoding="utf-8") as f:
+                _BLING = list(csv.DictReader(f))
+        else:
+            _BLING = []
+    return _BLING
+
+
+def find_bling(code, number):
+    """The bling.csv row for a print a Copies table names, by its set code
+    and number, or None. add_bling.py seeds the print under that code."""
+    num = str(number).split("/")[0].lstrip("0")
+    for r in bling_cards():
+        if r["code"] == code and r["card_number"].split("/")[0].lstrip("0") == num:
+            return r
+    return None
+
+
+def stamp(path):
+    """?v= from the file's own bytes, so a phone never runs new HTML against
+    a cached old script, and an unchanged file keeps its URL."""
+    import hashlib
+    return hashlib.sha1(path.read_bytes()).hexdigest()[:8]
 
 
 def _norm(s):

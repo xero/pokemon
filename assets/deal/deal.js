@@ -1,58 +1,61 @@
-/* The dealt deck list, deal.html.
+/* The deal: the deck-list strip and the card sections on every deck page.
  *
- * Progressive enhancement over the strip build_deck_html.py writes. Every
- * <figure> keeps its link, its scan, and its count badge; this file wraps
- * the scan in a two-faced card, stacks every card face down on a pile in
- * the middle (on a phone, in the top-left corner), shuffles it, slides it
- * to the corner, throws the cards one at a time to the slot the grid
- * already gave them, and turns them face up in a wave.
+ * Progressive enhancement over what build_deck_html.py writes. Every
+ * <figure> in the strip keeps its link, its scan, and its count badge; this
+ * file wraps the scan in a two-faced card, stacks every card face down on a
+ * pile in the middle (on a phone, in the top-left corner), shuffles it,
+ * slides it to the corner, throws the cards one at a time to the slot the
+ * grid already gave them, and turns them face up in a wave. That happens
+ * once per load, when the whole of the waiting pile is first on screen.
+ * Below the strip, each card section's scan starts face down too and turns
+ * over the first time it comes into view.
  *
  * The grid is never repositioned. The flight is the FLIP trick: each slot
  * is measured where it already is, the card is pushed to the pile with a
  * transform, and animated back to none. So the strip wraps exactly as it
  * did without the script, and the last frame is the page as it was before
  * the script ran. Slots are measured off the figures, which never move,
- * and kept relative to the article, so a measurement survives a scroll and
- * a card in mid-air. Resizing while the pile is waiting re-measures it;
+ * and kept relative to the strip, so a measurement survives a scroll and a
+ * card in mid-air. Resizing while the pile is waiting re-measures it;
  * resizing mid-air is left alone, since every card lands at "no transform"
  * regardless.
  *
  * The animations are Web Animations, not CSS transitions, because every
- * beat is sequenced off the last one's finished promises and a replay has
- * to be able to cancel the lot. Each animation fills both ways and is
- * cancelled only after the base style has been set to its last frame, so
- * nothing snaps. moveAll() is that pattern once, and the deal, the gather,
- * the collapse, the wash, and the slide are all calls to it.
+ * beat is sequenced off the last one's finished promises. Each animation
+ * fills both ways and is cancelled only after the base style has been set
+ * to its last frame, so nothing snaps. moveAll() is that pattern once, and
+ * the deal, the collapse, the shuffle, and the slide are all calls to it.
  *
- * The $$$ in the heading swaps the deck for its pricier prints, the
- * showcase at the foot of the Overgrowth page, without leaving the strip:
- * every card turns face down, the pile rebuilds where shuffleAt() says,
- * gets shuffled the way deck.of.cards does it with a cut through it,
- * slides to the corner, and the deal runs again with the other art behind
- * the backs. Each scan carries the other print's url in data-bling-src,
- * written by build_deal.py.
+ * A deck with a Bling Deck has a $$$ in the corner of its Deck List
+ * heading. The page carries both decks: the strip holds a figure for every
+ * print of each, and a card section holds both scans and both stat blocks,
+ * each tagged data-print. The root's data-showing says which deck is up,
+ * and the stylesheet shows that one. Pressing the $$$ turns every card in
+ * the strip face down, rebuilds the pile where shuffleAt() says, shuffles
+ * it the way deck.of.cards does with a cut through it, slides it to the
+ * corner, and there, with nothing face up, swaps the deck: the other set of
+ * figures takes the pile's place, the strip eases to its new height, and
+ * the deal runs again. The card sections turn face down when it is pressed
+ * and turn up again, in the other deck's art, as each comes into view. A
+ * link ending in #bling opens the page on the bling deck.
  *
- * Nothing starts until the whole of the waiting pile is on screen, and
- * nothing starts on its own under prefers-reduced-motion. The buttons are
- * an explicit ask, so they play either way.
+ * Nothing moves on its own under prefers-reduced-motion: the strip and the
+ * scans arrive as they are, and the $$$, an explicit ask, still deals.
  */
 // @ts-check
 "use strict";
 
-/** milliseconds, at normal speed */
+/** milliseconds */
 const T = {
 	hold: 350,        // the pile sits still before the first throw
 	flight: 560,      // one card, pile to slot
 	stagger: 75,      // between one throw and the next
 	settle: 220,      // after the last landing, before the first turn
 	flip: 640,        // one card turning over
-	flipStagger: 40,  // between turns, in deal order
 	ripple: 720,      // the whole wave, pile outward
 	fade: 240,        // the count badges, in after the deal and out before
 	                  // anything takes the cards away
-	gather: 420,      // every card back onto the pile, for a replay
-	decode: 1500,     // the most the turn waits for local scans
-	remote: 6000,     // the most the swap waits for a print off the network
+	decode: 1500,     // the most a turn waits for the art it will show
 	collapse: 480,    // the dealt strip onto the pile in the middle
 	flick: 420,       // the shuffle: each card out to one side, and back
 	step: 10,         // between one card's flick and the next
@@ -63,7 +66,17 @@ const T = {
 		lift: 200,    // or later, if it would land before the last of them
 	},
 	slide: 520,       // the stack over to the corner it deals from
+	resize: 450,      // the strip easing to the height of the other deck;
+	                  // the stylesheet's --deal-resize, and a backstop here
 };
+
+/** every duration is multiplied by this: one place to slow it all down */
+const SLOW = 1;
+
+/** where the stack goes to be dealt, and the share of a card section's scan
+ * that has to be on screen before it turns over */
+const ORIGIN = "top-left";
+const SEEN = 0.55;
 
 /** the shuffle's flick: sideways by this share of the card's width. only
  * sideways: fanning the stack open vertically was tried and looked worse.
@@ -82,7 +95,7 @@ const PHONE = matchMedia("(width < 34em)");
  * strip is two cards wide and several screens tall, so there the shuffle
  * happens where the deal starts, in the top-left corner.
  */
-const shuffleAt = () => PHONE.matches ? "top-left" : "center";
+const shuffleAt = () => PHONE.matches ? ORIGIN : "center";
 
 /** how far a card in the pile sits from the one above it, in px */
 const PILE = { x: 0.25, y: 0.3 };
@@ -92,12 +105,18 @@ const LIFT = 1.1;
 
 const EASE = "cubic-bezier(0.4, 0, 0.2, 1)";
 
-const DEFAULTS = { origin: "top-left", flip: "ripple", speed: "1" };
-const KEY = "deal:opts";
+const STILL = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/** @typedef {{origin: string, flip: string, speed: string}} Opts */
 /** @typedef {{x: number, y: number, w: number, h: number}} Rect */
 /** @typedef {{tx: number, ty: number, tilt: number, from: string}} Start */
+/** @typedef {"regular" | "bling"} Prints */
+/**
+ * @typedef {object} Fig  one figure in the strip, wrapped
+ * @property {HTMLElement} fig
+ * @property {HTMLElement} mover   the link, or a span standing in for one
+ * @property {HTMLElement} card    the thing that turns
+ * @property {HTMLImageElement} front
+ */
 /**
  * @typedef {object} Move  one card's part in a beat
  * @property {Keyframe[]} frames
@@ -114,13 +133,15 @@ const KEY = "deal:opts";
 /**
  * @typedef {object} Deck
  * @property {HTMLElement} article
- * @property {HTMLElement[]} figs
+ * @property {{regular: Fig[], bling: Fig[]}} sets  the strip's figures, by
+ *                               the deck they belong to; a page with no
+ *                               Bling Deck has only regular ones
+ * @property {Prints} showing    which set is on the table
+ * @property {HTMLElement[]} figs     the set on the table, as parallel lists
  * @property {HTMLElement[]} movers
  * @property {HTMLElement[]} cards
  * @property {HTMLImageElement[]} fronts
  * @property {HTMLElement} mark  an empty box over the waiting pile
- * @property {string[]} regular  every front's own scan
- * @property {string[]} bling    the pricier print of the same card, or ""
  * @property {object} token      the run that owns the animations in flight
  * @property {Rect[]} rects      every slot, relative to the article
  * @property {{w: number, h: number}} box  the article
@@ -128,11 +149,8 @@ const KEY = "deal:opts";
  * @property {number[]} depth    how far down the pile each card sits: 0 is
  *                               the top, and the first to be dealt
  * @property {number[]} tilt     each card's lean on the pile, in degrees
- * @property {HTMLElement} [button]  the $$$, when the strip has one
+ * @property {HTMLElement} [button]  the $$$, when the deck has a Bling Deck
  */
-
-/** @type {WeakMap<HTMLElement, Deck>} */
-const decks = new WeakMap();
 
 const sleep = (/** @type {number} */ ms) =>
 	new Promise(r => setTimeout(r, ms));
@@ -152,8 +170,75 @@ function shuffled(/** @type {number} */ n) {
 	return out;
 }
 
+/** wait for an image to be ready to show, but not for long */
+const ready = (/** @type {HTMLImageElement} */ img) =>
+	Promise.race([img.decode().catch(() => {}), sleep(T.decode)]);
+
+/** a back for a card: the same picture everywhere */
+function backFace(/** @type {string} */ src) {
+	const rear = document.createElement("span");
+	rear.dataset.face = "back";
+	const b = document.createElement("img");
+	b.src = src;
+	b.alt = "";
+	b.width = 365;
+	b.height = 512;
+	b.decoding = "async";
+	rear.append(b);
+	return rear;
+}
+
+/**
+ * Wrap a scan in a two-faced card, face down, and return the card.
+ *
+ *   <span data-card data-down>       the thing that turns
+ *     <span data-face="front"><img scan /></span>
+ *     <span data-face="back"><img back /></span>
+ *
+ * @param {HTMLImageElement} img
+ * @param {string} back
+ */
+function twoFaced(img, back) {
+	const card = document.createElement("span");
+	card.dataset.card = "";
+	card.dataset.down = "";
+	const front = document.createElement("span");
+	front.dataset.face = "front";
+	img.replaceWith(card);
+	front.append(img);
+	card.append(front, backFace(back));
+	return card;
+}
+
 /* ---------------------------------------------------------------------
-   the markup */
+   which deck is up */
+
+/**
+ * Show one deck or the other, page-wide. The stylesheet does the showing:
+ * every element tagged data-print, the gold frame, and the price under the
+ * strip all read the root's data-showing. The card sections hear about it
+ * through the event.
+ *
+ * @param {Prints} prints
+ * @param {HTMLElement} [button]
+ */
+function showPrints(prints, button) {
+	const root = document.documentElement;
+	if (prints === "bling") root.dataset.showing = "bling";
+	else delete root.dataset.showing;
+	button?.setAttribute("aria-pressed", String(prints === "bling"));
+	document.dispatchEvent(new CustomEvent("deal:showing", { detail: prints }));
+}
+
+/** start fetching a deck's scans now, hidden or not, so the shuffle covers
+ * the wait: they are lazy so a page nobody switches never fetches them
+ * @param {Fig[]} set */
+function fetchSet(set) {
+	for (const f of set) f.front.loading = "eager";
+}
+
+/* ---------------------------------------------------------------------
+   the strip: the markup */
 
 /**
  * Wrap every scan in the strip in a two-faced card.
@@ -161,8 +246,6 @@ function shuffled(/** @type {number} */ n) {
  *   <figure>
  *     <a>                             the mover
  *       <span data-card>              the thing that turns
- *         <span data-face="front"><img scan /></span>
- *         <span data-face="back"><img back /></span>
  *     <span data-count />             the badge, flat on the slot
  *
  * The badge moves out of the link and after it, so it sits on the slot
@@ -172,47 +255,31 @@ function shuffled(/** @type {number} */ n) {
  * link gets a span to move instead.
  *
  * @param {HTMLElement} article
+ * @returns {Deck | null}
  */
 function enhance(article) {
 	const back = article.dataset.dealBack;
 	if (!back) return null;
-	const figs = /** @type {HTMLElement[]} */ ([]);
-	const movers = /** @type {HTMLElement[]} */ ([]);
-	const cards = /** @type {HTMLElement[]} */ ([]);
-	const fronts = /** @type {HTMLImageElement[]} */ ([]);
-	for (const fig of article.querySelectorAll("figure")) {
+	/** @type {{regular: Fig[], bling: Fig[]}} */
+	const sets = { regular: [], bling: [] };
+	for (const el of article.querySelectorAll("figure")) {
+		const fig = /** @type {HTMLElement} */ (el);
 		const img = fig.querySelector("img");
 		if (!img || fig.querySelector("[data-card]")) continue;
 		let mover = img.parentElement;
 		if (!mover || mover === fig) {
 			mover = document.createElement("span");
-			fig.append(mover);
+			fig.prepend(mover);
+			mover.append(img);
 		}
 		mover.dataset.mover = "";
 		const count = fig.querySelector("[data-count]");
-		const card = document.createElement("span");
-		card.dataset.card = "";
-		const front = document.createElement("span");
-		front.dataset.face = "front";
-		const rear = document.createElement("span");
-		rear.dataset.face = "back";
-		const b = document.createElement("img");
-		b.src = back;
-		b.alt = "";
-		b.width = 365;
-		b.height = 512;
-		b.decoding = "async";
-		front.append(img);
-		rear.append(b);
-		card.append(front, rear);
-		mover.append(card);
+		const card = twoFaced(img, back);
 		if (count) fig.append(count);
-		figs.push(/** @type {HTMLElement} */ (fig));
-		movers.push(mover);
-		cards.push(card);
-		fronts.push(img);
+		sets[fig.dataset.print === "bling" ? "bling" : "regular"]
+			.push({ fig, mover, card, front: img });
 	}
-	if (!figs.length) return null;
+	if (!sets.regular.length) return null;
 	// an empty box laid over the waiting pile, for the observer to watch:
 	// the shuffle starts when all of the pile is on screen, which is not
 	// the same moment as some of the strip being on screen
@@ -222,18 +289,28 @@ function enhance(article) {
 	article.append(mark);
 	/** @type {Deck} */
 	const deck = {
-		article, figs, movers, cards, fronts, mark,
-		regular: fronts.map(i => i.getAttribute("src") || ""),
-		bling: fronts.map(i => i.dataset.blingSrc || ""),
+		article, sets, showing: "regular", mark,
+		figs: [], movers: [], cards: [], fronts: [],
 		token: {}, rects: [], box: { w: 0, h: 0 }, pile: { x: 0, y: 0 },
 		depth: [], tilt: [],
 	};
-	decks.set(article, deck);
+	use(deck, "regular");
 	return deck;
 }
 
+/** put one set on the table, as the parallel lists everything else reads
+ * @param {Deck} deck @param {Prints} prints */
+function use(deck, prints) {
+	const set = deck.sets[prints];
+	deck.showing = prints;
+	deck.figs = set.map(f => f.fig);
+	deck.movers = set.map(f => f.mover);
+	deck.cards = set.map(f => f.card);
+	deck.fronts = set.map(f => f.front);
+}
+
 /* ---------------------------------------------------------------------
-   where everything is */
+   the strip: where everything is */
 
 /**
  * Every slot, relative to the article. Read off the figures, which never
@@ -257,35 +334,22 @@ function measure(deck) {
 }
 
 /**
- * The top card's corner for a pile at an origin, relative to the article.
- * The corners sit where the corner slots sit, so the pile is inside the
- * box's padding like everything else. "above" is off the top of the
- * screen, which is the one place that depends on the scroll position.
+ * The top card's corner for a pile, relative to the article: the corner
+ * slot, or the middle of the strip, or of its first screenful where it is
+ * taller than the screen, as on a phone, where the middle of the strip is
+ * a screen or more below its heading.
  *
- * @param {string} origin
+ * @param {string} where  "top-left" or "center"
  * @param {DOMRect} box   the article, in the viewport
  * @param {Deck} deck
  */
-function pileAt(origin, box, deck) {
+function pileAt(where, box, deck) {
 	const first = deck.rects[0];
-	const w = first.w, h = first.h;
-	const right = box.width - first.x - w;
+	const { w, h } = first;
+	if (where === "top-left") return { x: first.x, y: first.y };
 	const bottom = box.height - first.y - h;
-	const midX = box.width / 2 - w / 2;
-	switch (origin) {
-		case "top-left": return { x: first.x, y: first.y };
-		case "top-right": return { x: right, y: first.y };
-		case "bottom-left": return { x: first.x, y: bottom };
-		case "bottom-right": return { x: right, y: bottom };
-		case "above": return { x: midX, y: -box.top - h - 80 };
-		default: {
-			// the middle of the strip, or of its first screenful where it
-			// is taller than the screen, as on a phone: there the middle of
-			// the strip is a screen or more below its heading
-			const mid = Math.min(box.height, innerHeight) / 2 - h / 2;
-			return { x: midX, y: Math.min(Math.max(mid, first.y), bottom) };
-		}
-	}
+	const mid = Math.min(box.height, innerHeight) / 2 - h / 2;
+	return { x: box.width / 2 - w / 2, y: Math.min(Math.max(mid, first.y), bottom) };
 }
 
 /**
@@ -300,11 +364,11 @@ function pileAt(origin, box, deck) {
  * place, and dealing it early would mean throwing it in under the stack.
  *
  * @param {Deck} deck
- * @param {string} origin
+ * @param {string} where
  */
-function layout(deck, origin) {
+function layout(deck, where) {
 	const box = measure(deck);
-	deck.pile = pileAt(origin, box, deck);
+	deck.pile = pileAt(where, box, deck);
 	const p = deck.pile, w = deck.rects[0].w, h = deck.rects[0].h;
 	const under = (/** @type {Rect} */ r) =>
 		r.x < p.x + w - 4 && r.x + r.w > p.x + 4
@@ -336,38 +400,60 @@ function start(deck, i) {
 }
 
 /* ---------------------------------------------------------------------
-   the moves */
+   the strip: the moves */
 
-/** Cancel everything in flight and clear every inline style.
+/** Cancel everything in flight on a set of figures, and clear every inline
+ * style off them.
+ * @param {Fig[]} set */
+function wipe(set) {
+	for (const { fig, mover, card } of set) {
+		for (const el of [fig, mover, card]) {
+			for (const a of el.getAnimations()) a.cancel();
+			el.style.transform = "";
+			el.style.zIndex = "";
+		}
+		delete fig.dataset.lift;
+	}
+}
+
+/** a fresh run, with the table cleared of the last one
  * @param {Deck} deck */
 function clear(deck) {
 	deck.token = {};
-	for (const el of [...deck.movers, ...deck.cards, ...deck.figs]) {
-		for (const a of el.getAnimations({ subtree: true })) a.cancel();
-		el.style.transform = "";
-		el.style.zIndex = "";
-		delete el.dataset.lift;
-	}
+	wipe(deck.sets[deck.showing]);
 }
 
 /**
  * The count badges, all together: in once the deal is over, out before
  * anything takes the cards away. The stylesheet does the fade off the
  * article's data-counts attribute; this sets it, tells the stylesheet how
- * long to take at the current speed, and waits that long, so the beat
- * after an "out" starts on a bare strip.
+ * long to take, and waits that long, so the beat after an "out" starts on
+ * a bare strip.
  *
  * @param {Deck} deck
  * @param {boolean} on
- * @param {number} s
  */
-async function counts(deck, on, s) {
+async function counts(deck, on) {
 	const { article } = deck;
 	if (on === ("counts" in article.dataset)) return;
-	article.style.setProperty("--deal-fade", `${Math.round(T.fade * s)}ms`);
+	article.style.setProperty("--deal-fade", `${Math.round(T.fade * SLOW)}ms`);
 	if (on) article.dataset.counts = "";
 	else delete article.dataset.counts;
-	await sleep(T.fade * s);
+	await sleep(T.fade * SLOW);
+}
+
+/** every card on the table onto the pile, face down, ordered, at once
+ * @param {Deck} deck */
+function place(deck) {
+	const n = deck.figs.length;
+	deck.figs.forEach((fig, i) => {
+		// the figure, not the mover, carries the order: the mover's
+		// perspective makes it a stacking context of its own, so a z-index
+		// on it would only ever order it against itself
+		fig.style.zIndex = String(n - deck.depth[i]);
+		deck.movers[i].style.transform = start(deck, i).from;
+		deck.cards[i].dataset.down = "";
+	});
 }
 
 /**
@@ -380,19 +466,46 @@ function stack(deck) {
 	delete deck.article.dataset.counts;
 	deck.article.dataset.deal = "stacked";
 	layout(deck, shuffleAt());
-	const n = deck.figs.length;
-	deck.figs.forEach((fig, i) => {
-		// the figure, not the mover, carries the order: the mover's
-		// perspective makes it a stacking context of its own, so a z-index
-		// on it would only ever order it against itself
-		fig.style.zIndex = String(n - deck.depth[i]);
-		deck.movers[i].style.transform = start(deck, i).from;
-		deck.cards[i].dataset.down = "";
-	});
+	place(deck);
 	// the marker the shuffle waits on, laid over the pile
 	const { w, h } = deck.rects[0];
 	Object.assign(deck.mark.style, { left: px(deck.pile.x), top: px(deck.pile.y),
 		width: px(w), height: px(h) });
+}
+
+/**
+ * Change which set of figures is on the table. The other deck's figures
+ * take the place of these in the strip at once, so this runs only when
+ * every card is face down on the pile and nothing can see it happen; the
+ * caller puts the new set on the pile in the same frame. The strip's
+ * height is held at what it was and eased to what it is now, since the
+ * two decks need not fill the same number of rows.
+ *
+ * @param {Deck} deck
+ * @param {Prints} prints
+ */
+function switchTo(deck, prints) {
+	const { article } = deck;
+	wipe(deck.sets[deck.showing]);
+	for (const f of deck.sets[deck.showing]) f.card.dataset.down = "";
+	article.style.height = "";
+	const was = article.getBoundingClientRect().height;
+	use(deck, prints);
+	showPrints(prints, deck.button);
+	const now = article.getBoundingClientRect().height;
+	if (STILL || Math.abs(now - was) < 1) return;
+	article.style.height = px(was);
+	article.getBoundingClientRect();
+	article.style.height = px(now);
+	const done = () => {
+		article.style.height = "";
+		article.removeEventListener("transitionend", end);
+	};
+	const end = (/** @type {TransitionEvent} */ e) => {
+		if (e.target === article && e.propertyName === "height") done();
+	};
+	article.addEventListener("transitionend", end);
+	setTimeout(done, T.resize * SLOW + 200);
 }
 
 /**
@@ -401,18 +514,16 @@ function stack(deck) {
  *
  * @param {Deck} deck
  * @param {object} token
- * @param {string} origin
- * @param {number} s
  */
-function slide(deck, token, origin, s) {
+function slide(deck, token) {
 	const n = deck.figs.length;
 	const was = deck.movers.map((_, i) => here(deck, i));
-	layout(deck, origin);
+	layout(deck, ORIGIN);
 	return moveAll(deck, token, i => ({
 		frames: [was[i], { transform: start(deck, i).from }],
 		end: start(deck, i).from,
-		delay: (n - 1 - deck.depth[i]) * 3 * s,
-		duration: T.slide * s,
+		delay: (n - 1 - deck.depth[i]) * 3 * SLOW,
+		duration: T.slide * SLOW,
 		easing: "cubic-bezier(0.65, 0, 0.35, 1)",
 		z: n - deck.depth[i],
 	}));
@@ -499,53 +610,45 @@ function flight(s) {
 }
 
 /**
- * When each card turns, in ms from the start of the turning.
+ * When each card turns, in ms from the start of the turning: by distance
+ * from the pile, so the wave spreads out from where the cards came from,
+ * or closes in on where they are going.
  *
- * @param {string} flip
  * @param {Deck} deck
- * @param {number} s
- * @param {boolean} [inward]  the wave closes on the pile instead
+ * @param {boolean} [inward]
  */
-function turnDelays(flip, deck, s, inward = false) {
-	const n = deck.cards.length;
-	if (flip === "once") return deck.cards.map(() => 0);
-	if (flip === "order") {
-		return deck.cards.map((_, i) => deck.depth[i] * T.flipStagger * s);
-	}
-	if (flip === "random") {
-		const order = shuffled(n);
-		const delays = new Array(n);
-		order.forEach((card, k) => { delays[card] = k * T.flipStagger * s; });
-		return delays;
-	}
-	// ripple: by distance from the pile, so the wave spreads out from
-	// where the cards came from, or closes in on where they are going
+function rippleDelays(deck, inward = false) {
 	const w = deck.rects[0].w, h = deck.rects[0].h;
 	const cx = deck.pile.x + w / 2, cy = deck.pile.y + h / 2;
 	const dist = deck.rects.map(r =>
 		Math.hypot(r.x + w / 2 - cx, r.y + h / 2 - cy));
 	const far = Math.max(...dist) || 1;
-	return dist.map(d => ((inward ? far - d : d) / far) * T.ripple * s);
+	return dist.map(d => ((inward ? far - d : d) / far) * T.ripple * SLOW);
+}
+
+/** the keyframes of one card turning over, with a little rise at the edge
+ * @param {boolean} up */
+function turnFrames(up) {
+	const from = up ? 180 : 0, end = up ? 0 : 180;
+	return [
+		{ transform: `rotateY(${from}deg) scale(1)` },
+		{ transform: "rotateY(90deg) scale(1.06)", offset: 0.5 },
+		{ transform: `rotateY(${end}deg) scale(1)` },
+	];
 }
 
 /**
- * Turn every card over. Resolves when the last one has.
+ * Turn every card on the table over. Resolves when the last one has.
  *
  * @param {Deck} deck
  * @param {object} token
  * @param {boolean} up
  * @param {number[]} delays
- * @param {number} s
  */
-function turn(deck, token, up, delays, s) {
-	const from = up ? 180 : 0, mid = 90, end = up ? 0 : 180;
+function turn(deck, token, up, delays) {
 	return Promise.all(deck.cards.map((c, i) => {
-		const a = c.animate([
-			{ transform: `rotateY(${from}deg) scale(1)` },
-			{ transform: `rotateY(${mid}deg) scale(1.06)`, offset: 0.5 },
-			{ transform: `rotateY(${end}deg) scale(1)` },
-		], {
-			duration: T.flip * s,
+		const a = c.animate(turnFrames(up), {
+			duration: T.flip * SLOW,
 			delay: delays[i],
 			easing: "ease-in-out",
 			fill: "both",
@@ -560,125 +663,61 @@ function turn(deck, token, up, delays, s) {
 }
 
 /**
- * From a waiting pile to a dealt strip: a beat of stillness, the throws,
- * a beat to settle, and the turn. The fronts have been hidden all this
- * time, so the turn waits for them to decode first, up to a point.
+ * From the pile at the corner to a dealt strip: a beat of stillness, the
+ * throws, a beat to settle, and the turn. The fronts have been hidden all
+ * this time, so the turn waits for them to decode first, up to a point.
  *
  * @param {Deck} deck
  * @param {object} token
- * @param {Opts} opts
- * @param {number} s
  */
-async function dealOut(deck, token, opts, s) {
+async function dealOut(deck, token) {
 	const stale = () => deck.token !== token;
 	await frame();
-	await sleep(T.hold * s);
+	await sleep(T.hold * SLOW);
 	if (stale()) return;
 	await moveAll(deck, token, i => ({
 		frames: flight(start(deck, i)),
 		end: "",
-		delay: deck.depth[i] * T.stagger * s,
-		duration: T.flight * s,
+		delay: deck.depth[i] * T.stagger * SLOW,
+		duration: T.flight * SLOW,
 		easing: "linear",
 	}));
 	if (stale()) return;
-	await sleep(T.settle * s);
-	await Promise.race([
-		Promise.all(deck.fronts.map(img => img.decode().catch(() => {}))),
-		sleep(T.decode),
-	]);
+	await sleep(T.settle * SLOW);
+	await Promise.all(deck.fronts.map(ready));
 	if (stale()) return;
-	await turn(deck, token, true, turnDelays(opts.flip, deck, s), s);
+	await turn(deck, token, true, rippleDelays(deck));
 	if (stale()) return;
 	deck.article.dataset.deal = "done";
-	counts(deck, true, s);
+	counts(deck, true);
 }
 
 /**
- * Every card back to the pile, face down, for a replay. The last card
- * dealt goes back first, so the pile builds in the order it will be dealt
- * from. A replay can land mid-deal, with cards in the air and half-turned;
- * each goes back from wherever it is, read off before the clear cancels
- * the animation holding it there. A matrix interpolates to a transform
- * list by decomposition, which is the right look here.
+ * The opening, once per load: the pile waiting face down where it is
+ * shuffled gets a beat, the shuffle, the slide to the corner, and the deal.
+ * Not stacked again first: the resize handler keeps a waiting pile
+ * measured, and a fresh stack would give every card a new lean in view.
  *
  * @param {Deck} deck
- * @param {Opts} opts
- * @param {number} s
  */
-async function gather(deck, opts, s) {
-	const at = deck.movers.map(m => getComputedStyle(m).transform);
-	const turned = deck.cards.map(c => getComputedStyle(c).transform);
-	clear(deck);
+async function play(deck) {
+	if (deck.article.dataset.deal !== "stacked") return;
+	deck.token = {};
 	const token = deck.token;
+	const stale = () => deck.token !== token;
 	deck.article.dataset.deal = "dealing";
-	layout(deck, opts.origin);
-	const n = deck.figs.length;
-	const timing = (/** @type {number} */ i) => ({
-		duration: T.gather * s,
-		delay: (n - 1 - deck.depth[i]) * 12 * s,
-	});
-	const turning = Promise.all(deck.cards.map((c, i) => {
-		const a = c.animate([
-			{ transform: turned[i] === "none" ? "rotateY(0deg)" : turned[i] },
-			{ transform: "rotateY(180deg)" },
-		], { ...timing(i), easing: EASE, fill: "both" });
-		return a.finished.then(() => {
-			if (deck.token !== token) return;
-			c.dataset.down = "";
-			a.cancel();
-		}, () => {});
-	}));
-	await Promise.all([turning, moveAll(deck, token, i => ({
-		frames: [
-			{ transform: at[i] === "none" ? "translate(0px, 0px)" : at[i] },
-			{ transform: start(deck, i).from },
-		],
-		end: start(deck, i).from,
-		z: n - deck.depth[i],
-		...timing(i),
-	}))]);
-	return token;
-}
-
-/**
- * The whole thing: from the pile, deal, settle, turn. Starts from wherever
- * the strip is: a waiting pile goes straight to the throws; a dealt strip
- * gathers first.
- *
- * @param {HTMLElement} article
- * @param {Opts} opts
- */
-async function play(article, opts) {
-	const deck = decks.get(article);
-	if (!deck) return;
-	const s = 1 / (Number(opts.speed) || 1);
-	let token;
-	if (article.dataset.deal === "stacked") {
-		// the pile waiting face down in the middle: a beat, the shuffle,
-		// and over to the corner. not stacked again first: the resize
-		// handler keeps a waiting pile measured, and a fresh stack would
-		// give every card a new lean in plain view.
-		deck.token = {};
-		token = deck.token;
-		article.dataset.deal = "dealing";
-		await frame();
-		await sleep(T.hold * s);
-		if (deck.token !== token) return;
-		await riffle(deck, token, s);
-		if (deck.token !== token) return;
-		await slide(deck, token, opts.origin, s);
-	} else {
-		await counts(deck, false, s);
-		token = await gather(deck, opts, s);
-	}
-	if (deck.token !== token) return;
-	article.dataset.deal = "dealing";
-	await dealOut(deck, token, opts, s);
+	await frame();
+	await sleep(T.hold * SLOW);
+	if (stale()) return;
+	await riffle(deck, token);
+	if (stale()) return;
+	await slide(deck, token);
+	if (stale()) return;
+	await dealOut(deck, token);
 }
 
 /* ---------------------------------------------------------------------
-   the shuffle, and the other prints */
+   the strip: the shuffle */
 
 /**
  * The shuffle, after deck.of.cards, taken slower, with a cut running
@@ -717,9 +756,9 @@ async function play(article, opts) {
  *
  * @param {Deck} deck
  * @param {object} token
- * @param {number} s
  */
-async function riffle(deck, token, s) {
+async function riffle(deck, token) {
+	const s = SLOW;
 	const n = deck.figs.length;
 	const { w } = deck.rects[0];
 	const ease = "cubic-bezier(0.645, 0.045, 0.355, 1)";
@@ -850,89 +889,62 @@ async function riffle(deck, token, s) {
 	if (deck.token === token) delete deck.figs[up].dataset.lift;
 }
 
-/**
- * Put the other print behind every back. Waits for each to decode, and a
- * print that never arrives, offline or a dead link, leaves the scan that
- * was there.
- *
- * @param {Deck} deck
- * @param {string} art  "regular" or "bling"
- */
-async function swapArt(deck, art) {
-	await Promise.all(deck.fronts.map(async (img, i) => {
-		const src = art === "bling" ? deck.bling[i] : deck.regular[i];
-		const was = img.getAttribute("src") || "";
-		if (!src || was === src) return;
-		img.src = src;
-		try {
-			await Promise.race([img.decode(), sleep(T.remote).then(() => {
-				throw new Error("slow");
-			})]);
-		} catch {
-			img.src = was;
-		}
-	}));
-	deck.article.dataset.art = art;
-	// the switch reads the art on the table, so a run cut short by a replay
-	// leaves it saying what is actually there
-	deck.button?.setAttribute("aria-pressed", String(art === "bling"));
-}
+/* ---------------------------------------------------------------------
+   the strip: the $$$ */
 
 /**
- * The $$$: turn the strip over to the other prints without leaving it.
- * Face down in a wave that closes on the middle, onto a pile there, a
- * wash, the stack over to the corner, the faces swapped while nothing can
- * see them, and the deal again.
+ * The $$$: deal the other deck without leaving the strip. Face down in a
+ * wave that closes on where the pile will be, onto the pile there, the
+ * shuffle, the stack over to the corner, the deck swapped there while
+ * nothing can see it, and the deal again. A pile still waiting for the
+ * opening just swaps, and plays.
  *
- * @param {HTMLElement} article
- * @param {Opts} opts
+ * @param {Deck} deck
  */
-async function swap(article, opts) {
-	const deck = decks.get(article);
-	if (!deck || article.dataset.deal === "dealing") return;
-	const art = article.dataset.art === "bling" ? "regular" : "bling";
-	const s = 1 / (Number(opts.speed) || 1);
-	// the prints come off the network, so ask for them now and let the
-	// animation cover the wait
-	if (art === "bling") {
-		for (const src of deck.bling) if (src) new Image().src = src;
-	}
+async function swap(deck) {
+	const { article } = deck;
+	if (article.dataset.deal === "dealing") return;
+	/** @type {Prints} */
+	const prints = deck.showing === "bling" ? "regular" : "bling";
+	fetchSet(deck.sets[prints]);
+	document.dispatchEvent(new CustomEvent("deal:press"));
 	if (article.dataset.deal === "stacked") {
-		// nothing on the table to gather up: swap, and deal
-		await swapArt(deck, art);
-		play(article, opts);
+		switchTo(deck, prints);
+		stack(deck);
+		play(deck);
 		return;
 	}
 	// claimed before the badges fade, so a second press during the fade
 	// is the one that gets ignored
 	article.dataset.deal = "dealing";
-	await counts(deck, false, s);
+	await counts(deck, false);
 	clear(deck);
 	const token = deck.token;
 	const stale = () => deck.token !== token;
 	const n = deck.figs.length;
 	layout(deck, shuffleAt());
-	await turn(deck, token, false, turnDelays("ripple", deck, s, true), s);
+	await turn(deck, token, false, rippleDelays(deck, true));
 	if (stale()) return;
 	await moveAll(deck, token, i => ({
 		frames: [here(deck, i), { transform: start(deck, i).from }],
 		end: start(deck, i).from,
-		delay: (n - 1 - deck.depth[i]) * 8 * s,
-		duration: T.collapse * s,
+		delay: (n - 1 - deck.depth[i]) * 8 * SLOW,
+		duration: T.collapse * SLOW,
 		z: n - deck.depth[i],
 	}));
 	if (stale()) return;
-	await riffle(deck, token, s);
+	await riffle(deck, token);
 	if (stale()) return;
-	await slide(deck, token, opts.origin, s);
+	await slide(deck, token);
 	if (stale()) return;
-	await swapArt(deck, art);
-	if (stale()) return;
-	await dealOut(deck, token, opts, s);
+	switchTo(deck, prints);
+	layout(deck, ORIGIN);
+	place(deck);
+	await dealOut(deck, token);
 }
 
 /* ---------------------------------------------------------------------
-   after the deal: the hover */
+   the strip: after the deal, the hover */
 
 /**
  * A dealt card tilts toward the pointer, like picking it up by a corner.
@@ -944,8 +956,7 @@ async function swap(article, opts) {
 function tilt(deck) {
 	if (!matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 	const { article } = deck;
-	deck.figs.forEach((fig, i) => {
-		const card = deck.cards[i];
+	for (const { fig, card } of [...deck.sets.regular, ...deck.sets.bling]) {
 		fig.addEventListener("pointermove", e => {
 			if (article.dataset.deal !== "done") return;
 			const r = fig.getBoundingClientRect();
@@ -958,114 +969,200 @@ function tilt(deck) {
 			if (article.dataset.deal !== "done") return;
 			card.style.transform = "";
 		});
+	}
+}
+
+/* ---------------------------------------------------------------------
+   the card sections */
+
+/**
+ * @typedef {object} Scan  one scan in a card section, wrapped
+ * @property {HTMLElement} link   the <a data-art>, opening it full size
+ * @property {HTMLElement} card
+ * @property {HTMLImageElement} front
+ * @property {string} print       "regular", "bling", or "" when the card
+ *                                has no bling print and shows either way
+ * @property {Animation | null} anim  a turn in flight
+ */
+/**
+ * @typedef {object} Spot  one card section's scan column
+ * @property {Scan[]} scans
+ * @property {boolean} seen       enough of it on screen to turn over
+ */
+
+/** the scan a card section shows with the deck that is up
+ * @param {Spot} spot */
+function shownScan(spot) {
+	const showing = document.documentElement.dataset.showing || "regular";
+	return spot.scans.find(s => !s.print || s.print === showing) || null;
+}
+
+/**
+ * Turn a scan over, up or down. The front is decoded first on the way up,
+ * up to a point, so it never turns up blank.
+ *
+ * @param {Scan} scan
+ * @param {boolean} up
+ */
+async function flipScan(scan, up) {
+	scan.anim?.cancel();
+	if (up) await ready(scan.front);
+	const a = scan.card.animate(turnFrames(up), {
+		duration: T.flip * SLOW, easing: "ease-in-out", fill: "both",
+	});
+	scan.anim = a;
+	try {
+		await a.finished;
+	} catch {
+		return;           // cancelled: whoever cancelled it set the face
+	}
+	if (up) delete scan.card.dataset.down;
+	else scan.card.dataset.down = "";
+	a.cancel();
+	scan.anim = null;
+}
+
+/** a scan face down at once, whatever it was doing
+ * @param {Scan} scan */
+function coverScan(scan) {
+	scan.anim?.cancel();
+	scan.anim = null;
+	scan.card.dataset.down = "";
+}
+
+/**
+ * Every card section's scan, face down, turning over the first time most
+ * of it is on screen: scrolling down the page, or landing on it from a
+ * link. Once up it stays up for the load, until the $$$ deals the other
+ * deck: then every scan turns face down, the ones in view turning over and
+ * the rest at once, and each turns up again in the other deck's art the
+ * next time it comes into view. Under reduced motion nothing turns, and
+ * the stylesheet alone swaps the art.
+ */
+function cardSections() {
+	const links = /** @type {HTMLElement[]} */ (
+		[...document.querySelectorAll("article > aside > a[data-art]")]);
+	if (!links.length) return;
+	const back = document.querySelector("[data-deal-back]")
+		?.getAttribute("data-deal-back") || "./assets/card-back.png";
+	if (STILL || !("IntersectionObserver" in window)) {
+		// lifts the stylesheet's face-down placeholder
+		for (const link of links) link.dataset.flip = "still";
+		return;
+	}
+	/** @type {Map<Element, Spot>} */
+	const spots = new Map();
+	for (const link of links) {
+		const img = link.querySelector("img");
+		const aside = link.parentElement;
+		if (!img || !aside) continue;
+		const card = twoFaced(img, back);
+		link.dataset.flip = "";
+		/** @type {Scan} */
+		const scan = { link, card, front: img, print: link.dataset.print || "", anim: null };
+		const spot = spots.get(aside) || { scans: [], seen: false };
+		spot.scans.push(scan);
+		spots.set(aside, spot);
+	}
+	// from a press of the $$$ until the other deck is up, nothing turns up:
+	// a scan in view would only turn up in the art that is leaving
+	let waiting = false;
+	const reveal = (/** @type {Spot} */ spot) => {
+		const scan = shownScan(spot);
+		if (!waiting && spot.seen && scan && "down" in scan.card.dataset && !scan.anim) {
+			flipScan(scan, true);
+		}
+	};
+	const io = new IntersectionObserver(entries => {
+		for (const e of entries) {
+			const spot = spots.get(e.target);
+			if (!spot) continue;
+			spot.seen = e.intersectionRatio >= SEEN;
+			if (spot.seen) reveal(spot);
+		}
+	}, { threshold: [0, SEEN] });
+	for (const aside of spots.keys()) io.observe(aside);
+
+	document.addEventListener("deal:press", () => {
+		waiting = true;
+		for (const spot of spots.values()) {
+			const shown = shownScan(spot);
+			for (const scan of spot.scans) {
+				if (spot.seen && scan === shown && !("down" in scan.card.dataset)) {
+					flipScan(scan, false);
+				} else {
+					coverScan(scan);
+				}
+			}
+		}
+	});
+	document.addEventListener("deal:showing", () => {
+		waiting = false;
+		for (const spot of spots.values()) {
+			// the scan that just left is hidden now; it starts down, so it
+			// turns up again if its deck comes back
+			const shown = shownScan(spot);
+			for (const scan of spot.scans) if (scan !== shown) coverScan(scan);
+			reveal(spot);
+		}
 	});
 }
 
 /* ---------------------------------------------------------------------
    wiring */
 
-/** @returns {Opts} */
-function load() {
-	try {
-		const saved = JSON.parse(localStorage.getItem(KEY) || "{}");
-		return { ...DEFAULTS, ...saved };
-	} catch {
-		return { ...DEFAULTS };
-	}
-}
-
-/** @param {Opts} opts */
-function save(opts) {
-	try {
-		localStorage.setItem(KEY, JSON.stringify(opts));
-	} catch {
-		// private window, or storage off: the form still holds the values
-	}
-}
-
-/**
- * The controls form, if the page has one.
- * @param {() => void} onChange
- * @returns {() => Opts}
- */
-function controls(onChange) {
-	const form = document.querySelector("[data-controls] form");
-	let opts = load();
-	if (!(form instanceof HTMLFormElement)) return () => opts;
-	for (const [k, v] of Object.entries(opts)) {
-		const el = form.elements.namedItem(k);
-		if (el instanceof HTMLSelectElement) el.value = v;
-	}
-	const read = () => {
-		const data = new FormData(form);
-		opts = { ...DEFAULTS };
-		for (const k of /** @type {(keyof Opts)[]} */ (Object.keys(DEFAULTS))) {
-			opts[k] = String(data.get(k) ?? DEFAULTS[k]);
-		}
-		save(opts);
-		return opts;
-	};
-	form.addEventListener("change", () => { read(); onChange(); });
-	form.querySelector("[data-replay]")?.addEventListener("click", () => {
-		read();
-		onChange();
-	});
-	return () => opts;
-}
-
 function main() {
-	const articles = /** @type {HTMLElement[]} */ (
-		[...document.querySelectorAll("[data-decklist][data-deal-back]")]);
-	const live = articles.filter(a => enhance(a));
-	if (!live.length) return;
-	const opts = controls(() => live.forEach(a => play(a, opts())));
-	const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+	// the card sections listen for the strip, so they are wired up first
+	cardSections();
 
-	for (const article of live) {
-		const deck = /** @type {Deck} */ (decks.get(article));
-		tilt(deck);
-		article.dataset.art = "regular";
+	const article = /** @type {HTMLElement | null} */ (
+		document.querySelector("[data-decklist][data-deal-back]"));
+	const deck = article && enhance(article);
+	if (!deck) return;
+	const hasBling = deck.sets.bling.length > 0;
 
-		// the $$$ in the heading above the strip
-		const button = article.closest("section")?.querySelector("button[data-bling]");
-		if (button instanceof HTMLElement) {
-			if (deck.bling.some(Boolean)) {
-				deck.button = button;
-				button.addEventListener("click", () => swap(article, opts()));
-			} else {
-				button.hidden = true;
-			}
+	// the $$$ in the corner of the Deck List heading
+	const button = document.getElementById("bling");
+	if (button) {
+		if (hasBling) {
+			deck.button = button;
+			button.addEventListener("click", () => swap(deck));
+		} else {
+			button.hidden = true;
 		}
-
-		if (still || !("IntersectionObserver" in window)) {
-			article.dataset.deal = "done";
-			article.dataset.counts = "";
-			continue;
-		}
-		stack(deck);
-		// the pile waits face down where it is shuffled, and the
-		// shuffle starts once all of it is on screen and a little way up
-		// from the bottom edge, so it does not play against the edge. the
-		// threshold is a hair under 1, since a box on a fractional pixel can
-		// top out just short of it.
-		new IntersectionObserver(entries => {
-			for (const e of entries) {
-				if (e.intersectionRatio >= 0.98
-						&& article.dataset.deal === "stacked") {
-					play(article, opts());
-				}
-			}
-		}, { threshold: [0.98], rootMargin: "0px 0px -12% 0px" }).observe(deck.mark);
-		// once the whole strip has gone, and not before, put the pile back,
-		// so it shuffles and deals again on the way back in
-		new IntersectionObserver(entries => {
-			for (const e of entries) {
-				if (!e.isIntersecting && article.dataset.deal === "done") {
-					stack(deck);
-				}
-			}
-		}, { threshold: [0] }).observe(article);
 	}
+
+	// a fresh request for #bling opens on the bling deck
+	if (hasBling && location.hash === "#bling") {
+		use(deck, "bling");
+		fetchSet(deck.sets.bling);
+		showPrints("bling", deck.button);
+	}
+
+	tilt(deck);
+	if (STILL || !("IntersectionObserver" in window)) {
+		// nothing deals on its own, so the cards start the way they end up:
+		// face up, in the grid. the $$$ still deals, from here.
+		for (const f of [...deck.sets.regular, ...deck.sets.bling]) delete f.card.dataset.down;
+		deck.article.dataset.deal = "done";
+		deck.article.dataset.counts = "";
+		return;
+	}
+	stack(deck);
+	// the pile waits face down where it is shuffled, and the opening starts
+	// once all of it is on screen and a little way up from the bottom edge,
+	// so it does not play against the edge. once, and never again: the
+	// observer goes as soon as it has fired. the threshold is a hair under
+	// 1, since a box on a fractional pixel can top out just short of it.
+	const io = new IntersectionObserver(entries => {
+		for (const e of entries) {
+			if (e.intersectionRatio >= 0.98 && deck.article.dataset.deal === "stacked") {
+				io.disconnect();
+				play(deck);
+			}
+		}
+	}, { threshold: [0.98], rootMargin: "0px 0px -12% 0px" });
+	io.observe(deck.mark);
 
 	// a pile measured at one width is wrong at another. a card in the air
 	// still lands at "no transform", so only a waiting pile is redone.
@@ -1073,11 +1170,7 @@ function main() {
 	addEventListener("resize", () => {
 		cancelAnimationFrame(pending);
 		pending = requestAnimationFrame(() => {
-			for (const article of live) {
-				if (article.dataset.deal === "stacked") {
-					stack(/** @type {Deck} */ (decks.get(article)));
-				}
-			}
+			if (deck.article.dataset.deal === "stacked") stack(deck);
 		});
 	});
 }
