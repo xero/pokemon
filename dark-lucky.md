@@ -85,8 +85,8 @@ This is the most baller version of the deck, identical card-for-card to the orig
 
 | Copies | Card | Set | Number |
 | --- | --- | --- | --- |
-| 1 | Okidogi ex | SFA | 090 |
 | 1 | Okidogi ex | SFA | 082 |
+| 1 | Okidogi ex | SFA | 090 |
 | 4 | Gastly | TEF | 177 |
 | 2 | Haunter | MEP | 027 |
 | 3 | Gengar ex | 30C | 154 |
@@ -99,8 +99,8 @@ This is the most baller version of the deck, identical card-for-card to the orig
 | 2 | Grimsley's Move | PFL | 120 |
 | 1 | Dawn | PFL | 118 |
 | 1 | Dawn | PFL | 129 |
-| 1 | Hilda | WHT | 171 |
 | 1 | Hilda | WHT | 164 |
+| 1 | Hilda | WHT | 171 |
 | 2 | Team Rocket's Petrel | DRI | 226 |
 | 1 | Janine's Secret Art | SFA | 088 |
 | 1 | Boss's Orders | PAL | 248 |

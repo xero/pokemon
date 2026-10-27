@@ -36,8 +36,10 @@
  * corner, and there, with nothing face up, swaps the deck: the other set of
  * figures takes the pile's place, the strip eases to its new height, and
  * the deal runs again. The card sections turn face down when it is pressed
- * and turn up again, in the other deck's art, as each comes into view. A
- * link ending in #bling opens the page on the bling deck.
+ * and turn up again, in the other deck's art, as each comes into view. The
+ * $$$ shows only while a press would deal: it fades in when a deal is
+ * over, and out on the press. A link ending in #bling opens the page on
+ * the bling deck.
  *
  * Nothing moves on its own under prefers-reduced-motion: the strip and the
  * scans arrive as they are, and the $$$, an explicit ask, still deals.
@@ -55,6 +57,8 @@ const T = {
 	ripple: 720,      // the whole wave, pile outward
 	fade: 240,        // the count badges, in after the deal and out before
 	                  // anything takes the cards away
+	rise: 360,        // the $$$, in with the badges
+	sink: 220,        // and out on the press, a little quicker
 	decode: 1500,     // the most a turn waits for the art it will show
 	collapse: 480,    // the dealt strip onto the pile in the middle
 	flick: 420,       // the shuffle: each card out to one side, and back
@@ -465,6 +469,24 @@ async function counts(deck, on) {
 	await sleep(T.fade * SLOW);
 }
 
+/**
+ * The $$$, faded like the badges: in once a deal is over, and out the
+ * moment it is pressed, a little quicker than it came. A press while cards
+ * are moving does nothing, so it only shows while one would. The
+ * stylesheet does the fade off the switch's data-fade; this sets it, and
+ * how long each way takes. Nothing waits on it.
+ *
+ * @param {Deck} deck
+ * @param {boolean} on
+ */
+function offer(deck, on) {
+	const button = deck.button;
+	if (!button) return;
+	button.style.setProperty("--deal-rise", `${Math.round(T.rise * SLOW)}ms`);
+	button.style.setProperty("--deal-sink", `${Math.round(T.sink * SLOW)}ms`);
+	button.dataset.fade = on ? "in" : "out";
+}
+
 /** every card on the table onto the pile, face down, ordered, at once
  * @param {Deck} deck */
 function place(deck) {
@@ -713,6 +735,7 @@ async function dealOut(deck, token) {
 	if (stale()) return;
 	deck.article.dataset.deal = "done";
 	counts(deck, true);
+	offer(deck, true);
 }
 
 /**
@@ -930,8 +953,10 @@ async function swap(deck) {
 	/** @type {Prints} */
 	const prints = deck.showing === "bling" ? "regular" : "bling";
 	// the gold frame answers the press itself, not the swap seconds later,
-	// so it is the first thing to move
+	// so it is the first thing to move. the switch goes with it, and is
+	// back when the deal is over
 	gild(deck, prints);
+	offer(deck, false);
 	fetchSet(deck.sets[prints]);
 	document.dispatchEvent(new CustomEvent("deal:press"));
 	if (article.dataset.deal === "stacked") {
@@ -1154,6 +1179,8 @@ function main() {
 		if (hasBling) {
 			deck.button = button;
 			button.addEventListener("click", () => swap(deck));
+			// unseen until the opening deal is over
+			offer(deck, false);
 		} else {
 			button.hidden = true;
 		}
@@ -1174,6 +1201,7 @@ function main() {
 		for (const f of [...deck.sets.regular, ...deck.sets.bling]) delete f.card.dataset.down;
 		deck.article.dataset.deal = "done";
 		deck.article.dataset.counts = "";
+		offer(deck, true);
 		return;
 	}
 	stack(deck);

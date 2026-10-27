@@ -72,7 +72,7 @@ NOT_PAGES = {"README.md", "CLAUDE.md", "collection.md"}
 # collection and the pull list would read them as ours, and the counts never
 # reach the badges or the pull list, which read Qty tables only. On the page
 # the bling prints ride in the same deck-list strip as the regular ones, and a
-# card section carries its first bling print's scan and stats beside its own;
+# card section carries its last bling print's scan and stats beside its own;
 # data-print says which is which, and deal.js shows one set at a time.
 CARD_BACK = "./assets/card-back.png"
 DEAL_JS = ROOT / "assets" / "deal" / "deal.js"
@@ -596,7 +596,7 @@ def card_block(heading, ind, prints=None, bling=None):
     until cards.csv carried the cards we do not own there was nothing to look
     up. A heading that names no card in the data produces nothing.
 
-    bling is the card's first print in the deck's Bling Deck, from bling.csv,
+    bling is the card's last print in the deck's Bling Deck, from bling.csv,
     or None. With one, the section carries both scans and both stat blocks,
     each tagged with its print, and deal.js shows whichever deck is up.
     """
@@ -646,9 +646,11 @@ def convert(src):
     prints = deck_printings(lines)
     thumbs, shown = deck_list(lines, src.name), False
     # the Bling Deck, read up front: the strip that shows it comes before the
-    # table that lists it, and every card section needs its first bling print.
+    # table that lists it, and every card section needs its last bling print,
+    # since a card's arts are listed plainest first and the rarest is the one
+    # its section shows.
     # a parenthetical on a row names a variant of the print, not the card.
-    bling_thumbs, first_bling = [], {}
+    bling_thumbs, last_bling = [], {}
     for copies, name, code, num in bling_rows("\n".join(lines)):
         rec = find_bling(code, num)
         card = re.sub(r"\s*\([^()]*\)\s*$", "", name).strip()
@@ -657,7 +659,7 @@ def convert(src):
                   "bling.csv yet; run add_bling.py, then normalize_cards.py")
             continue
         bling_thumbs.append((f'./assets/{rec["image_file"]}', card, copies))
-        first_bling.setdefault(bare(card), rec)
+        last_bling[bare(card)] = rec
     bling_title, cost = bling_prose(lines)
     i, n = 0, len(lines)
     art = None            # the card currently being filled in
@@ -774,7 +776,7 @@ def convert(src):
                 has_image = True
                 src_m = re.search(r'src="([^"]+)"', lines[j])
                 scan_anchor.setdefault(Path(src_m.group(1)).name, a)
-                rec = first_bling.get(bare(name))
+                rec = last_bling.get(bare(name))
                 tag = ' data-print="regular"' if rec else ""
                 scan = card_art(src_m.group(1), name, tag)
                 if rec:
@@ -809,7 +811,7 @@ def convert(src):
                             if re.sub(r"\*+", "", r[0]).strip()
                             not in ("How many", "Qty")]
                 rendered = render_table(grid, "\t\t\t\t\t", stats=is_card)
-                rec = first_bling.get(bare(name)) if is_card else None
+                rec = last_bling.get(bare(name)) if is_card else None
                 if rec and rendered:
                     # the hand-written block is the regular print's; the
                     # bling print's comes from bling.csv, right after it
@@ -825,7 +827,7 @@ def convert(src):
             elif not has_image:
                 # no hand-written table. if the heading names a card, build one
                 # from cards.csv; the planning docs get their art this way.
-                rec = first_bling.get(bare(name))
+                rec = last_bling.get(bare(name))
                 blocks, found = card_block(name, "\t\t\t\t\t", prints, rec)
                 if blocks:
                     for r in found:

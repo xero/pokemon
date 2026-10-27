@@ -91,8 +91,8 @@ This is the most baller version of the deck, identical card-for-card to the orig
 | 2 | Meganium | MEP | 001 |
 | 2 | Bulbasaur | MEG | 133 |
 | 2 | Ivysaur | MEG | 134 |
-| 1 | Mega Venusaur ex | MEG | 177 |
 | 1 | Mega Venusaur ex | MEG | 155 |
+| 1 | Mega Venusaur ex | MEG | 177 |
 | 2 | Celebi | MEG | 012 |
 | 2 | Lillie's Determination | MEG | 169 |
 | 2 | Lillie's Determination | MEG | 184 |

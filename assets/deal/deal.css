@@ -6,7 +6,8 @@
  * make the faces a card: the front and the back sit on the same spot, the
  * back is pre-turned, and whichever faces away from the viewer is hidden.
  * Everything that moves is moved by the script, except what eases here:
- * the hover tilt, the strip's height, the gold frame, and the price.
+ * the hover tilt, the strip's height, the gold frame, the price, and the
+ * $$$.
  *
  * Three states ride on the strip's data-deal attribute:
  *   stacked  every card is face down on the pile, waiting for the pile to
@@ -95,14 +96,20 @@
 
 /* ---------------------------------------------------------------------
    before the script. a page that will run it should never show a front
-   first and then turn it away, so with scripting on, the strip waits
-   unseen and each scan shows the back. the script lifts both as it takes
-   over. if it never arrives, both lift on their own after a few seconds. */
+   first and then turn it away, so with scripting on, the strip and its
+   $$$ wait unseen and each scan shows the back. the script lifts them as
+   it takes over. if it never arrives, they lift on their own after a few
+   seconds. */
 
 @media (scripting: enabled) {
 	[data-decklist][data-deal-back]:not([data-deal]) figure {
 		visibility: hidden;
 		animation: deal-show 0s 3s forwards;
+	}
+
+	h3 [data-bling]:not([data-fade]) {
+		opacity: 0;
+		animation: deal-reveal 0s 3s forwards;
 	}
 
 	article > aside > [data-art]:not([data-flip]) {
@@ -277,7 +284,11 @@
    rule parks it in the corner; this takes the button chrome off. it says
    where it goes: a gold $$$ up to the bling deck, and silver cents back
    down, which the script writes the moment it is pressed. it is never the
-   purple of a link, pressed or not. */
+   purple of a link, pressed or not.
+
+   it shows only while a press would deal: in once the deal is over, out
+   on the press, a little quicker. each state carries the transition that
+   arrives at it, so the two ways take their own time. */
 h3 [data-bling] {
 	background: none;
 	border: 0;
@@ -290,6 +301,17 @@ h3 [data-bling] {
 
 	&[aria-pressed="true"] {
 		color: var(--deal-silver);
+	}
+
+	&[data-fade="out"] {
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--deal-sink, 220ms) ease-in;
+	}
+
+	&[data-fade="in"] {
+		opacity: 1;
+		transition: opacity var(--deal-rise, 360ms) ease-out;
 	}
 
 	&:focus-visible {
