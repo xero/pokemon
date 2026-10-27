@@ -19,6 +19,8 @@
 	/* the rise off the table. one soft shadow, since in the pile two dozen
 	   of them stack up and anything heavier reads as a smudge. */
 	--deal-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+	--deal-lift:   0 14px 26px rgb(0 0 0 / 0.32), 0 4px 8px rgb(0 0 0 / 0.22);
+	--deal-gild:   400ms;   /* the bling frame fading in and out */
 	--deal-depth:  900px;
 	--deal-tap:    44px;
 }
@@ -29,6 +31,14 @@
 [data-deal] {
 	/* the pile and the flights leave the box. nothing may clip them. */
 	overflow: visible;
+
+	/* the empty box over the waiting pile that the script watches, so the
+	   shuffle starts once the whole pile is on screen. the script places
+	   and sizes it; it draws nothing and catches nothing. */
+	[data-deal-pile] {
+		position: absolute;
+		pointer-events: none;
+	}
 
 	/* the mover: the link, or a span standing in for one. its transform is
 	   the flight, so it carries the vanishing point for the card inside it,
@@ -55,6 +65,14 @@
 		box-shadow: var(--deal-shadow);
 		backface-visibility: hidden;
 		-webkit-backface-visibility: hidden;
+		transition: box-shadow 220ms ease-out;
+	}
+
+	/* the card the shuffle's cut picks up and lays on top of the stack. the
+	   deeper shadow is what says it went over the others rather than
+	   across them; it eases back down as the card lands. */
+	figure[data-lift] [data-face] {
+		box-shadow: var(--deal-lift);
 	}
 
 	/* said out loud, since Safari has been known to show a back through a
@@ -113,10 +131,49 @@
 	}
 }
 
-/* the strip wearing the rare prints: a gold ring, so the state reads even
-   on a card whose two prints look alike */
-[data-deal][data-art="bling"] {
-	box-shadow: inset 0 0 0 2px var(--gold);
+/* the strip wearing the rare prints gets a gold frame, so the state reads
+   even on a card whose two prints look alike.
+
+   the frame is a layer of its own over the strip's edge rather than a
+   border on the strip. a real 10px border narrows the strip by 20px, which
+   can drop a card off every row, and it arrives mid-deal, with every
+   card's flight already measured against the old grid. so the strip's box
+   never changes, and the frame sits in its padding, which is wider than
+   the frame at every size.
+
+   the gold is two radial gradients across the frame's whole box, with the
+   strip's own colour laid over everything inside the border so only the
+   border shows them. the cards are positioned, so they paint over that. */
+[data-deal] {
+	position: relative;
+	transition: border-radius var(--deal-gild) ease-out;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border: 10px solid transparent;
+		border-radius: 15px;
+		background:
+			linear-gradient(var(--bg), var(--bg)) padding-box,
+			radial-gradient(ellipse farthest-corner at right bottom,
+				#fedb37 0%, #fdb931 8%, #8a6e2f 40%, transparent 80%) border-box,
+			radial-gradient(ellipse farthest-corner at left top,
+				#ffffff 0%, #ffffac 8%, #d1b464 25%, #5d4a1f 62.5%, #5d4a1f 100%) border-box;
+		opacity: 0;
+		transition: opacity var(--deal-gild) ease-out;
+		pointer-events: none;
+	}
+
+	/* the strip's own corners follow the frame's, or its colour shows in
+	   the corners outside the gold */
+	&[data-art="bling"] {
+		border-radius: 15px;
+
+		&::before {
+			opacity: 1;
+		}
+	}
 }
 
 /* the $$$ in the corner of the Deck List heading. on the Overgrowth page
@@ -218,6 +275,12 @@ h3 [data-bling] {
 
 		[data-count] {
 			opacity: 1;
+		}
+
+		/* the frame is painted gradients, which print drops, and its fill
+		   of the strip's colour would print as nothing over nothing */
+		&::before {
+			display: none;
 		}
 	}
 

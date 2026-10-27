@@ -84,9 +84,9 @@ def strip():
 def body(figures):
     return f"""\t\t\t<aside data-callout="note">
 \t\t\t\t<p><strong>What this page is for.</strong></p>
-\t\t\t\t<p>A UI prototype, linked from nowhere. The deck list below is the <a href="./overgrowth.html">Overgrowth</a> sixty, exactly as that page draws it, with one script on top: the cards start in a stack, face down, get dealt out to their places in the grid, and turn face up. Hover a card once it is dealt.</p>
-\t\t\t\t<p>The <b>$$$</b> in the corner of the Deck List heading is the Bling Deck: every card turns face down, the pile rebuilds in the middle, gets shuffled, slides back to the corner, and the deal runs again with the rare prints. Press it again for the regular ones.</p>
-\t\t\t\t<p>Scroll the list out of view and back, or use the controls, to run the deal again.</p>
+\t\t\t\t<p>A UI prototype, linked from nowhere. The deck list below is the <a href="./overgrowth.html">Overgrowth</a> sixty, exactly as that page draws it, with one script on top: the cards start in a stack in the middle (on a phone, in the corner), face down, get shuffled, slide to the corner, get dealt out to their places in the grid, and turn face up. Hover a card once it is dealt.</p>
+\t\t\t\t<p>The <b>$$$</b> in the corner of the Deck List heading is the Bling Deck: every card turns face down, the pile rebuilds in the middle (on a phone, in the corner), gets shuffled, slides back to the corner, and the deal runs again with the rare prints. Press it again for the regular ones.</p>
+\t\t\t\t<p>Scroll the list out of view and back to run the whole thing again, or use the controls to run the deal again.</p>
 \t\t\t</aside>
 \t\t\t<section data-controls>
 \t\t\t\t<h3>Controls</h3>

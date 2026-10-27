@@ -2,9 +2,10 @@
  *
  * Progressive enhancement over the strip build_deck_html.py writes. Every
  * <figure> keeps its link, its scan, and its count badge; this file wraps
- * the scan in a two-faced card, stacks every card face down on a pile,
- * throws them one at a time to the slot the grid already gave them, and
- * turns them face up in a wave.
+ * the scan in a two-faced card, stacks every card face down on a pile in
+ * the middle (on a phone, in the top-left corner), shuffles it, slides it
+ * to the corner, throws the cards one at a time to the slot the grid
+ * already gave them, and turns them face up in a wave.
  *
  * The grid is never repositioned. The flight is the FLIP trick: each slot
  * is measured where it already is, the card is pushed to the pile with a
@@ -25,14 +26,15 @@
  *
  * The $$$ in the heading swaps the deck for its pricier prints, the
  * showcase at the foot of the Overgrowth page, without leaving the strip:
- * every card turns face down, the pile rebuilds in the middle, gets
- * shuffled the way deck.of.cards does it, slides to the corner, and the
- * deal runs again with the other art behind the backs. Each scan carries
- * the other print's url in data-bling-src, written by build_deal.py.
+ * every card turns face down, the pile rebuilds where shuffleAt() says,
+ * gets shuffled the way deck.of.cards does it with a cut through it,
+ * slides to the corner, and the deal runs again with the other art behind
+ * the backs. Each scan carries the other print's url in data-bling-src,
+ * written by build_deal.py.
  *
- * Nothing starts until the strip scrolls into view, and nothing starts on
- * its own under prefers-reduced-motion. The buttons are an explicit ask,
- * so they play either way.
+ * Nothing starts until the whole of the waiting pile is on screen, and
+ * nothing starts on its own under prefers-reduced-motion. The buttons are
+ * an explicit ask, so they play either way.
  */
 // @ts-check
 "use strict";
@@ -54,12 +56,33 @@ const T = {
 	collapse: 480,    // the dealt strip onto the pile in the middle
 	flick: 420,       // the shuffle: each card out to one side, and back
 	step: 10,         // between one card's flick and the next
+	tuck: 380,        // the cut: the top card, back in under the stack
+	lift: 560,        // and the bottom card, lifted over onto the top
+	cut: {            // when each starts back, after the halves start back
+		tuck: 140,
+		lift: 200,    // or later, if it would land before the last of them
+	},
 	slide: 520,       // the stack over to the corner it deals from
 };
 
 /** the shuffle's flick: sideways by this share of the card's width. only
- * sideways: fanning the stack open vertically was tried and looked worse */
-const FLICK = { min: 0.32, max: 0.97 };
+ * sideways: fanning the stack open vertically was tried and looked worse.
+ * clear is how far the cut's two cards go: just past the edge of the stack,
+ * so each reads as a card on its own rather than one of a half. beyond is
+ * where the card left out waits when both cut cards go the same way, past
+ * the other one */
+const FLICK = { min: 0.32, max: 0.97, clear: 1.08, beyond: 1.7 };
+
+/** a phone: the template's own breakpoint for its one-column layouts */
+const PHONE = matchMedia("(width < 34em)");
+
+/**
+ * Where the pile is shuffled. On a big screen that is the middle of the
+ * strip, and the stack slides over to the corner to be dealt. A phone's
+ * strip is two cards wide and several screens tall, so there the shuffle
+ * happens where the deal starts, in the top-left corner.
+ */
+const shuffleAt = () => PHONE.matches ? "top-left" : "center";
 
 /** how far a card in the pile sits from the one above it, in px */
 const PILE = { x: 0.25, y: 0.3 };
@@ -95,6 +118,7 @@ const KEY = "deal:opts";
  * @property {HTMLElement[]} movers
  * @property {HTMLElement[]} cards
  * @property {HTMLImageElement[]} fronts
+ * @property {HTMLElement} mark  an empty box over the waiting pile
  * @property {string[]} regular  every front's own scan
  * @property {string[]} bling    the pricier print of the same card, or ""
  * @property {object} token      the run that owns the animations in flight
@@ -189,9 +213,16 @@ function enhance(article) {
 		fronts.push(img);
 	}
 	if (!figs.length) return null;
+	// an empty box laid over the waiting pile, for the observer to watch:
+	// the shuffle starts when all of the pile is on screen, which is not
+	// the same moment as some of the strip being on screen
+	const mark = document.createElement("span");
+	mark.dataset.dealPile = "";
+	mark.setAttribute("aria-hidden", "true");
+	article.append(mark);
 	/** @type {Deck} */
 	const deck = {
-		article, figs, movers, cards, fronts,
+		article, figs, movers, cards, fronts, mark,
 		regular: fronts.map(i => i.getAttribute("src") || ""),
 		bling: fronts.map(i => i.dataset.blingSrc || ""),
 		token: {}, rects: [], box: { w: 0, h: 0 }, pile: { x: 0, y: 0 },
@@ -247,7 +278,13 @@ function pileAt(origin, box, deck) {
 		case "bottom-left": return { x: first.x, y: bottom };
 		case "bottom-right": return { x: right, y: bottom };
 		case "above": return { x: midX, y: -box.top - h - 80 };
-		default: return { x: midX, y: box.height / 2 - h / 2 };
+		default: {
+			// the middle of the strip, or of its first screenful where it
+			// is taller than the screen, as on a phone: there the middle of
+			// the strip is a screen or more below its heading
+			const mid = Math.min(box.height, innerHeight) / 2 - h / 2;
+			return { x: midX, y: Math.min(Math.max(mid, first.y), bottom) };
+		}
 	}
 }
 
@@ -309,6 +346,7 @@ function clear(deck) {
 		for (const a of el.getAnimations({ subtree: true })) a.cancel();
 		el.style.transform = "";
 		el.style.zIndex = "";
+		delete el.dataset.lift;
 	}
 }
 
@@ -333,15 +371,15 @@ async function counts(deck, on, s) {
 }
 
 /**
- * Put every card on the pile, face down, with no animation.
+ * Put every card on the pile where it is shuffled, face down, with no
+ * animation: where it waits to be shuffled, taken to the corner, and dealt.
  * @param {Deck} deck
- * @param {Opts} opts
  */
-function stack(deck, opts) {
+function stack(deck) {
 	clear(deck);
 	delete deck.article.dataset.counts;
 	deck.article.dataset.deal = "stacked";
-	layout(deck, opts.origin);
+	layout(deck, shuffleAt());
 	const n = deck.figs.length;
 	deck.figs.forEach((fig, i) => {
 		// the figure, not the mover, carries the order: the mover's
@@ -351,6 +389,33 @@ function stack(deck, opts) {
 		deck.movers[i].style.transform = start(deck, i).from;
 		deck.cards[i].dataset.down = "";
 	});
+	// the marker the shuffle waits on, laid over the pile
+	const { w, h } = deck.rects[0];
+	Object.assign(deck.mark.style, { left: px(deck.pile.x), top: px(deck.pile.y),
+		width: px(w), height: px(h) });
+}
+
+/**
+ * The stack from wherever it is to the corner it deals from, the bottom
+ * card first, so the top card arrives last and stays on top.
+ *
+ * @param {Deck} deck
+ * @param {object} token
+ * @param {string} origin
+ * @param {number} s
+ */
+function slide(deck, token, origin, s) {
+	const n = deck.figs.length;
+	const was = deck.movers.map((_, i) => here(deck, i));
+	layout(deck, origin);
+	return moveAll(deck, token, i => ({
+		frames: [was[i], { transform: start(deck, i).from }],
+		end: start(deck, i).from,
+		delay: (n - 1 - deck.depth[i]) * 3 * s,
+		duration: T.slide * s,
+		easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+		z: n - deck.depth[i],
+	}));
 }
 
 /**
@@ -361,12 +426,14 @@ function stack(deck, opts) {
  *
  * @param {Deck} deck
  * @param {object} token
- * @param {(i: number) => Move} spec
+ * @param {(i: number) => Move | null} spec  null leaves card i where it is
  */
 function moveAll(deck, token, spec) {
 	return Promise.all(deck.movers.map((m, i) => {
+		const move = spec(i);
+		if (!move) return undefined;     // this card sits the beat out
 		const { frames, end, delay, duration, easing = EASE, z, fill = "both" }
-			= spec(i);
+			= move;
 		if (z !== undefined) {
 			// as the card starts moving, not as the beat starts: in the
 			// shuffle that is the difference between the halves coming back
@@ -588,9 +655,19 @@ async function play(article, opts) {
 	const s = 1 / (Number(opts.speed) || 1);
 	let token;
 	if (article.dataset.deal === "stacked") {
-		// the pile may have been measured at another width or origin
-		stack(deck, opts);
+		// the pile waiting face down in the middle: a beat, the shuffle,
+		// and over to the corner. not stacked again first: the resize
+		// handler keeps a waiting pile measured, and a fresh stack would
+		// give every card a new lean in plain view.
+		deck.token = {};
 		token = deck.token;
+		article.dataset.deal = "dealing";
+		await frame();
+		await sleep(T.hold * s);
+		if (deck.token !== token) return;
+		await riffle(deck, token, s);
+		if (deck.token !== token) return;
+		await slide(deck, token, opts.origin, s);
 	} else {
 		await counts(deck, false, s);
 		token = await gather(deck, opts, s);
@@ -604,16 +681,39 @@ async function play(article, opts) {
    the shuffle, and the other prints */
 
 /**
- * The shuffle, after deck.of.cards, taken slower. Every card flicks out to
- * one side or the other by a random third to a full card width, squaring
- * up as it goes, and comes straight back onto the stack at a new place in
- * it. Two stages of the same length, each card a few ms behind the one
- * above, so the stack splits into two ragged halves and snaps back
- * together. The second stage of the top card starts while the bottom card
- * is still on its way out, which is what makes it ripple rather than step.
+ * The shuffle, after deck.of.cards, taken slower, with a cut running
+ * through it so it reads as the order changing. Every back is the same
+ * picture, so a riffle on its own only ever looks like the stack splitting
+ * and closing; nothing shows a card going anywhere. So two cards do it in
+ * plain sight, while the riffle is still going on around them.
  *
- * One pass, and the order changes for real: the slide to the corner that
- * follows puts the stack back in the order it deals from.
+ *   the riffle  every other card flicks out to one side or the other by a
+ *               third to a full card width, squaring up, and comes straight
+ *               back onto the stack at a new place in it, each a few ms
+ *               behind the one above, so the stack splits into two ragged
+ *               halves and snaps back together
+ *   the top     the top card slides off the left of the stack, over the
+ *               left-hand half, and as the halves start back it ducks and
+ *               slides in under everything
+ *   the bottom  the bottom card slides out from under the right-hand half,
+ *               further than it goes, and as the halves start back it is
+ *               picked up, shadow and all, carried over them, and laid on
+ *               top, landing last
+ *
+ * Each of the two changes its place in the order at the start of its move
+ * back, while the halves are still out, so its edge passes over or under
+ * theirs at that moment. The duck and the lift are timed to land on that
+ * instant so it reads as the card going under or coming up, not as a
+ * glitch. Where the page is too narrow, the cards go only as far as they
+ * can without handing it a sideways scrollbar, and so do the flicks. With
+ * no room on the left at all, as in the corner of a phone's strip, the top
+ * card peels off to the right instead, over the right-hand half, and the
+ * card left out waits further along, under everything; the left-hand
+ * flicks have nowhere to go, so that half stays put and the split reads
+ * as one half pulled off to the right.
+ *
+ * The order changes for real; the slide to the corner that follows puts
+ * the stack back in the order it deals from.
  *
  * @param {Deck} deck
  * @param {object} token
@@ -623,25 +723,66 @@ async function riffle(deck, token, s) {
 	const n = deck.figs.length;
 	const { w } = deck.rects[0];
 	const ease = "cubic-bezier(0.645, 0.045, 0.355, 1)";
-	/** @type {number[]} where each card lands in the stack, 0 the top */
+	// how far a card whose corner is at x can go to one side before it runs
+	// off the page, which would give the page a scrollbar for a moment
+	const box = deck.article.getBoundingClientRect();
+	const page = document.documentElement.clientWidth;
+	const reach = (/** @type {number} */ side, /** @type {number} */ d,
+		/** @type {number} */ x) =>
+		Math.max(0, Math.min(d, side < 0
+			? box.left + x - 4
+			: page - (box.left + x + w) - 4));
+	const spot = (/** @type {number} */ k) =>
+		({ x: deck.pile.x + k * PILE.x, y: deck.pile.y + k * PILE.y });
+	const clear = FLICK.clear * w;
+	const later = (/** @type {number} */ ms, /** @type {() => void} */ fn) =>
+		setTimeout(() => { if (deck.token === token) fn(); }, ms);
+
+	// the top card goes under and the bottom card goes on top; every other
+	// card riffles. a deck too small for a cut just riffles.
+	const down = n > 2 ? deck.depth.indexOf(0) : -1;
+	const up = n > 2 ? deck.depth.indexOf(n - 1) : -1;
+	const rest = deck.movers.map((_, i) => i)
+		.filter(i => i !== up && i !== down);
+	/** @type {number[]} where each riffled card lands, 0 the top */
 	const at = [];
-	shuffled(n).forEach((card, k) => { at[card] = k; });
+	shuffled(rest.length).forEach((j, k) => { at[rest[j]] = k; });
+
+	const top = spot(0), bottom = spot(n - 1);
+	// the top card peels off the left and the bottom card is left out on
+	// the right. where there is no room on the left, as in the corner of a
+	// phone's strip, both go right: the top card just past the stack, over
+	// the right-hand half, and the bottom card beyond it, under everything.
+	const cramped = reach(-1, clear, top.x) < 0.6 * w;
+	const offX = cramped                                 // the top card, out
+		? top.x + reach(1, clear, top.x)
+		: top.x - reach(-1, clear, top.x);
+	const asideX = bottom.x                              // the bottom card
+		+ reach(1, cramped ? FLICK.beyond * w : clear, bottom.x);
 	const out = deck.movers.map((_, i) => {
+		if (i === down) return to(deck, i, offX, top.y, 0);
+		if (i === up) return to(deck, i, asideX, bottom.y, 0);
+		const { x, y } = spot(at[i]);
 		const side = Math.random() < 0.5 ? -1 : 1;
-		const x = deck.pile.x + at[i] * PILE.x
-			+ side * rand(FLICK.min, FLICK.max) * w;
-		return to(deck, i, x, deck.pile.y + at[i] * PILE.y, 0);
+		const d = reach(side, rand(FLICK.min, FLICK.max) * w, x);
+		return to(deck, i, x + side * d, y, 0);
 	});
-	const back = deck.movers.map((_, i) =>
-		to(deck, i, deck.pile.x + at[i] * PILE.x, deck.pile.y + at[i] * PILE.y, 0));
+	const back = deck.movers.map((_, i) => {
+		const { x, y } = spot(at[i] ?? 0);
+		return to(deck, i, x, y, 0);
+	});
+
 	const flick = moveAll(deck, token, i => ({
 		frames: [here(deck, i), { transform: out[i] }],
 		end: out[i],
-		delay: at[i] * T.step * s,
+		delay: (i === down ? 0 : i === up ? 4 : at[i]) * T.step * s,
 		duration: T.flick * s,
 		easing: ease,
+		// the top card is on top already and stays above the left-hand half
+		// on its way out; the bottom card stays under the right-hand half
+		z: i === down ? n + 1 : i === up ? 0 : undefined,
 	}));
-	const home = moveAll(deck, token, i => ({
+	const home = moveAll(deck, token, i => rest.includes(i) ? {
 		frames: [{ transform: out[i] }, { transform: back[i] }],
 		end: back[i],
 		delay: (T.flick + at[i] * T.step) * s,
@@ -649,8 +790,64 @@ async function riffle(deck, token, s) {
 		easing: ease,
 		z: n - at[i],
 		fill: "forwards",
-	}));
-	await Promise.all([flick, home]);
+	} : null);
+	if (down < 0 || up < 0) {
+		await Promise.all([flick, home]);
+		return;
+	}
+
+	// the cut, timed off the riffle: both cards start back while the halves
+	// are still coming home, and the lifted card lands after the last of
+	// them, so the shuffle ends on it. "forwards", so neither holds its first
+	// frame through its delay and drags its card off the flick before it.
+	const closed = T.flick + (rest.length - 1) * T.step + T.flick;
+	const tuckAt = T.flick + T.cut.tuck;
+	const liftAt = Math.max(T.flick + T.cut.lift, closed + 120 - T.lift);
+
+	const under = to(deck, down, bottom.x, bottom.y, 0);
+	const ducked = to(deck, down, offX + (bottom.x - offX) * 0.25,
+		top.y + (bottom.y - top.y) * 0.25, 0);
+	const onTop = to(deck, up, top.x - PILE.x, top.y - PILE.y, 0);
+	const along = (/** @type {number} */ f, /** @type {number} */ a) =>
+		to(deck, up, asideX + (top.x - asideX) * f,
+			bottom.y + (top.y - bottom.y) * f, a);
+
+	// under everything, a touch smaller straight away so the drop in the
+	// order reads as the card ducking, then flat again as it settles. under
+	// every riffled card, but over the card left out, which it lies across
+	// when both have gone right, and never lower than 0: a figure below
+	// that would sink under the strip's own background.
+	const tuck = moveAll(deck, token, i => i === down ? {
+		frames: [
+			{ transform: `${out[i]} scale(1)` },
+			{ transform: `${ducked} scale(0.95)`, offset: 0.25 },
+			{ transform: `${under} scale(1)` },
+		],
+		end: under,
+		delay: tuckAt * s,
+		duration: T.tuck * s,
+		z: 1,
+		fill: "forwards",
+	} : null);
+	// over everything, lifted toward the viewer at once, so the rise in the
+	// order reads as the card being picked up, and carried over the halves
+	const lift = moveAll(deck, token, i => i === up ? {
+		frames: [
+			{ transform: `${out[i]} scale(1)` },
+			{ transform: `${along(0.15, -2)} scale(1.07)`, offset: 0.15 },
+			{ transform: `${along(0.6, -3)} scale(1.08)`, offset: 0.6 },
+			{ transform: `${onTop} scale(1)` },
+		],
+		end: onTop,
+		delay: liftAt * s,
+		duration: T.lift * s,
+		z: n + 2,
+		fill: "forwards",
+	} : null);
+	later(liftAt * s, () => { deck.figs[up].dataset.lift = ""; });
+	await Promise.all([flick, home, tuck, lift]);
+	// the shadow eases back down as it lands, which reads as it settling
+	if (deck.token === token) delete deck.figs[up].dataset.lift;
 }
 
 /**
@@ -714,7 +911,7 @@ async function swap(article, opts) {
 	const token = deck.token;
 	const stale = () => deck.token !== token;
 	const n = deck.figs.length;
-	layout(deck, "center");
+	layout(deck, shuffleAt());
 	await turn(deck, token, false, turnDelays("ripple", deck, s, true), s);
 	if (stale()) return;
 	await moveAll(deck, token, i => ({
@@ -727,16 +924,7 @@ async function swap(article, opts) {
 	if (stale()) return;
 	await riffle(deck, token, s);
 	if (stale()) return;
-	const was = deck.movers.map((_, i) => here(deck, i));
-	layout(deck, opts.origin);
-	await moveAll(deck, token, i => ({
-		frames: [was[i], { transform: start(deck, i).from }],
-		end: start(deck, i).from,
-		delay: (n - 1 - deck.depth[i]) * 3 * s,
-		duration: T.slide * s,
-		easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-		z: n - deck.depth[i],
-	}));
+	await slide(deck, token, opts.origin, s);
 	if (stale()) return;
 	await swapArt(deck, art);
 	if (stale()) return;
@@ -854,22 +1042,29 @@ function main() {
 			article.dataset.counts = "";
 			continue;
 		}
-		stack(deck, opts());
-		// deal when a fifth of the strip is in view. once it has gone
-		// entirely, and not before, since a fifth of it may still be on
-		// screen, put the pile back so it deals again on its return.
-		const io = new IntersectionObserver(entries => {
+		stack(deck);
+		// the pile waits face down where it is shuffled, and the
+		// shuffle starts once all of it is on screen and a little way up
+		// from the bottom edge, so it does not play against the edge. the
+		// threshold is a hair under 1, since a box on a fractional pixel can
+		// top out just short of it.
+		new IntersectionObserver(entries => {
 			for (const e of entries) {
-				if (e.intersectionRatio >= 0.2
+				if (e.intersectionRatio >= 0.98
 						&& article.dataset.deal === "stacked") {
 					play(article, opts());
-				} else if (!e.isIntersecting
-						&& article.dataset.deal === "done") {
-					stack(deck, opts());
 				}
 			}
-		}, { threshold: [0, 0.2] });
-		io.observe(article);
+		}, { threshold: [0.98], rootMargin: "0px 0px -12% 0px" }).observe(deck.mark);
+		// once the whole strip has gone, and not before, put the pile back,
+		// so it shuffles and deals again on the way back in
+		new IntersectionObserver(entries => {
+			for (const e of entries) {
+				if (!e.isIntersecting && article.dataset.deal === "done") {
+					stack(deck);
+				}
+			}
+		}, { threshold: [0] }).observe(article);
 	}
 
 	// a pile measured at one width is wrong at another. a card in the air
@@ -880,7 +1075,7 @@ function main() {
 		pending = requestAnimationFrame(() => {
 			for (const article of live) {
 				if (article.dataset.deal === "stacked") {
-					stack(/** @type {Deck} */ (decks.get(article)), opts());
+					stack(/** @type {Deck} */ (decks.get(article)));
 				}
 			}
 		});
